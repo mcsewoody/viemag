@@ -1,6 +1,6 @@
 /* ── Apply saved theme immediately to prevent flash ── */
 document.documentElement.setAttribute(
-  'data-theme', localStorage.getItem('viemag_theme') || 'dark'
+  'data-theme', localStorage.getItem('viemag_theme') || 'light'
 );
 
 /* ── Shared nav renderer ── */

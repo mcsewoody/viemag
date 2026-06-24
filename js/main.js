@@ -181,7 +181,7 @@ function applyTheme(theme) {
 }
 
 function initThemeToggle() {
-  const saved = localStorage.getItem('viemag_theme') || 'dark';
+  const saved = localStorage.getItem('viemag_theme') || 'light';
   applyTheme(saved);
   document.addEventListener('click', e => {
     if (!e.target.closest('.theme-toggle')) return;
