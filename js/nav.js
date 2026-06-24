@@ -20,9 +20,18 @@ document.documentElement.setAttribute(
         <a href="contact.html"      class="nav__link" data-i18n="nav.contact">Contact</a>
       </div>
       <div class="nav__right">
-        <button class="theme-toggle" aria-label="Toggle colour theme" title="Switch theme">
-          <span class="theme-toggle__icon">☀️</span>
-        </button>
+        <div class="theme-picker">
+          <button class="theme-picker__btn" aria-label="Choose theme" title="Choose colour theme">
+            <span class="theme-picker__dot"></span>
+          </button>
+          <div class="theme-picker__panel" role="listbox" aria-label="Colour themes">
+            <button class="theme-swatch" data-theme="dark"  aria-label="Dark"      style="background:#0A1628"></button>
+            <button class="theme-swatch" data-theme="light" aria-label="Cream"     style="background:#F8F5EF;outline:1px solid #d0c8bc"></button>
+            <button class="theme-swatch" data-theme="p1"    aria-label="Warm Sand" style="background:#FAF3E8;outline:1px solid #d8c9b4"></button>
+            <button class="theme-swatch" data-theme="p2"    aria-label="Pearl"     style="background:#F5F4F0;outline:1px solid #d0cec8"></button>
+            <button class="theme-swatch" data-theme="p4"    aria-label="Mint"      style="background:#F2F7F5;outline:1px solid #c2d8d0"></button>
+          </div>
+        </div>
         <div class="lang-switch" role="group" aria-label="Language selector">
           <button class="lang-btn" data-lang="en"  aria-label="English">EN</button>
           <button class="lang-btn" data-lang="zh"  aria-label="繁體中文">繁中</button>

@@ -172,22 +172,42 @@ function newsIllustration(cat) {
   </svg>`;
 }
 
-/* ── Theme toggle ── */
+/* ── Theme picker ── */
+const THEME_BG = {
+  dark: '#0A1628', light: '#F8F5EF',
+  p1: '#FAF3E8',   p2: '#F5F4F0', p4: '#F2F7F5'
+};
+
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  document.querySelectorAll('.theme-toggle__icon').forEach(el => {
-    el.textContent = theme === 'dark' ? '☀️' : '🌙';
+  document.querySelectorAll('.theme-swatch').forEach(el => {
+    el.classList.toggle('active', el.dataset.theme === theme);
+  });
+  document.querySelectorAll('.theme-picker__dot').forEach(el => {
+    el.style.background = THEME_BG[theme] || THEME_BG.light;
+    el.style.boxShadow = theme === 'dark' ? 'none' : 'inset 0 0 0 1.5px rgba(0,0,0,0.15)';
   });
 }
 
-function initThemeToggle() {
+function initThemePicker() {
   const saved = localStorage.getItem('viemag_theme') || 'light';
   applyTheme(saved);
+
   document.addEventListener('click', e => {
-    if (!e.target.closest('.theme-toggle')) return;
-    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    applyTheme(next);
-    localStorage.setItem('viemag_theme', next);
+    const swatch = e.target.closest('.theme-swatch');
+    if (swatch) {
+      applyTheme(swatch.dataset.theme);
+      localStorage.setItem('viemag_theme', swatch.dataset.theme);
+      document.querySelector('.theme-picker__panel')?.classList.remove('open');
+      return;
+    }
+    if (e.target.closest('.theme-picker__btn')) {
+      document.querySelector('.theme-picker__panel')?.classList.toggle('open');
+      return;
+    }
+    if (!e.target.closest('.theme-picker')) {
+      document.querySelector('.theme-picker__panel')?.classList.remove('open');
+    }
   });
 }
 
@@ -196,7 +216,7 @@ window.VIEMAG = { CAT_SVG, newsIllustration };
 
 /* ── Boot ── */
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeToggle();
+  initThemePicker();
   initNav();
   initReveal();
   initCounters();

@@ -775,19 +775,44 @@ p  { line-height: 1.75; }
   text-align: center; flex-direction: column; gap: 16px; padding-top: var(--nav-h);
 }
 
-/* === Theme Toggle Button === */
-.theme-toggle {
-  width: 36px; height: 36px;
-  border-radius: 8px;
+/* === Theme Picker === */
+.theme-picker { position: relative; }
+.theme-picker__btn {
+  width: 36px; height: 36px; border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  color: var(--text-2);
-  transition: all 0.2s;
-  flex-shrink: 0;
+  cursor: pointer; transition: border-color 0.2s;
 }
-.theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
+.theme-picker__btn:hover { border-color: var(--gold); }
+.theme-picker__dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  transition: background 0.3s;
+}
+.theme-picker__panel {
+  position: absolute; top: calc(100% + 10px); right: 0;
+  background: #fff; border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 14px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+  opacity: 0; pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.18s, transform 0.18s;
+  white-space: nowrap; z-index: 2000;
+}
+.theme-picker__panel.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+.theme-swatch {
+  width: 26px; height: 26px; border-radius: 50%;
+  cursor: pointer; border: 2px solid transparent;
+  transition: transform 0.15s, border-color 0.15s;
+  outline: none; flex-shrink: 0;
+}
+.theme-swatch:hover { transform: scale(1.2); }
+.theme-swatch.active { border-color: #C8941A; box-shadow: 0 0 0 1px #C8941A; }
+.theme-swatch-label {
+  font-size: 0.68rem; font-weight: 600; color: #666;
+  letter-spacing: 0.04em; padding: 0 2px;
+}
 
 /* ============================================================
    LIGHT THEME — Option B: Cream White + Deep Navy + Gold
@@ -866,6 +891,116 @@ p  { line-height: 1.75; }
 [data-theme="light"] .mag-ring:nth-child(3) { border-color: rgba(200,148,26,0.32); }
 [data-theme="light"] .mag-ring:nth-child(4) { border-color: rgba(200,148,26,0.16); }
 [data-theme="light"] .mag-ring:nth-child(5) { border-color: rgba(200,148,26,0.07); }
+
+/* === P1 — Warm Sand + Amber Gold === */
+[data-theme="p1"] {
+  --bg-deepest:  #FAF3E8;
+  --bg-dark:     #F3E9D5;
+  --bg-navy:     #E8DBCA;
+  --bg-card:     #FFFFFF;
+  --bg-card-2:   #FDF7EE;
+  --bg-glass:    rgba(250, 243, 232, 0.92);
+  --gold:        #A86A0A;
+  --gold-light:  #C8941A;
+  --gold-pale:   #E6B84E;
+  --gold-glow:   rgba(168, 106, 10, 0.14);
+  --gold-glow-h: rgba(168, 106, 10, 0.30);
+  --text:        #2D1A00;
+  --text-2:      rgba(45, 26, 0, 0.65);
+  --text-3:      rgba(45, 26, 0, 0.42);
+  --border:      rgba(45, 26, 0, 0.14);
+  --border-sub:  rgba(45, 26, 0, 0.08);
+}
+[data-theme="p1"] .hero {
+  background: radial-gradient(ellipse 120% 80% at 50% 100%, #E5D0B0 0%, var(--bg-deepest) 65%);
+}
+[data-theme="p1"] .hero__fade { background: linear-gradient(90deg, var(--bg-deepest) 25%, transparent 65%); }
+[data-theme="p1"] .hero__title {
+  background: linear-gradient(135deg, #2D1A00 30%, #7A4A05 68%, var(--gold) 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+[data-theme="p1"] .brand-hero-page {
+  background: radial-gradient(ellipse 100% 60% at 50% 100%, #D5C0A0 0%, var(--bg-deepest) 70%);
+}
+
+/* === P2 — Pearl Gray-White + Muted Gold === */
+[data-theme="p2"] {
+  --bg-deepest:  #F5F4F0;
+  --bg-dark:     #ECEAE4;
+  --bg-navy:     #E2E0D8;
+  --bg-card:     #FFFFFF;
+  --bg-card-2:   #F8F7F4;
+  --bg-glass:    rgba(245, 244, 240, 0.92);
+  --gold:        #8B7840;
+  --gold-light:  #A89050;
+  --gold-pale:   #C8B070;
+  --gold-glow:   rgba(139, 120, 64, 0.14);
+  --gold-glow-h: rgba(139, 120, 64, 0.28);
+  --text:        #1C1C1E;
+  --text-2:      rgba(28, 28, 30, 0.65);
+  --text-3:      rgba(28, 28, 30, 0.42);
+  --border:      rgba(28, 28, 30, 0.12);
+  --border-sub:  rgba(28, 28, 30, 0.07);
+}
+[data-theme="p2"] .hero {
+  background: radial-gradient(ellipse 120% 80% at 50% 100%, #D8D6CC 0%, var(--bg-deepest) 65%);
+}
+[data-theme="p2"] .hero__fade { background: linear-gradient(90deg, var(--bg-deepest) 25%, transparent 65%); }
+[data-theme="p2"] .hero__title {
+  background: linear-gradient(135deg, #1C1C1E 30%, #5A4A20 68%, var(--gold) 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+[data-theme="p2"] .brand-hero-page {
+  background: radial-gradient(ellipse 100% 60% at 50% 100%, #CCCAB8 0%, var(--bg-deepest) 70%);
+}
+
+/* === P4 — Mint Cream + Deep Teal === */
+[data-theme="p4"] {
+  --bg-deepest:  #F2F7F5;
+  --bg-dark:     #E5EFEA;
+  --bg-navy:     #D8E8E0;
+  --bg-card:     #FFFFFF;
+  --bg-card-2:   #F5FAF7;
+  --bg-glass:    rgba(242, 247, 245, 0.92);
+  --gold:        #C8941A;
+  --gold-light:  #E6B84E;
+  --gold-pale:   #F5D98A;
+  --gold-glow:   rgba(200, 148, 26, 0.14);
+  --gold-glow-h: rgba(200, 148, 26, 0.28);
+  --text:        #0F2A20;
+  --text-2:      rgba(15, 42, 32, 0.65);
+  --text-3:      rgba(15, 42, 32, 0.42);
+  --border:      rgba(15, 42, 32, 0.14);
+  --border-sub:  rgba(15, 42, 32, 0.08);
+}
+[data-theme="p4"] .hero {
+  background: radial-gradient(ellipse 120% 80% at 50% 100%, #C8DDD5 0%, var(--bg-deepest) 65%);
+}
+[data-theme="p4"] .hero__fade { background: linear-gradient(90deg, var(--bg-deepest) 25%, transparent 65%); }
+[data-theme="p4"] .hero__title {
+  background: linear-gradient(135deg, #0F2A20 30%, #1A5A40 68%, var(--gold) 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+[data-theme="p4"] .brand-hero-page {
+  background: radial-gradient(ellipse 100% 60% at 50% 100%, #B8D0C5 0%, var(--bg-deepest) 70%);
+}
+
+/* Shared overrides for all light themes */
+:is([data-theme="light"],[data-theme="p1"],[data-theme="p2"],[data-theme="p4"]) .nav__link:hover,
+:is([data-theme="light"],[data-theme="p1"],[data-theme="p2"],[data-theme="p4"]) .nav__link.active { color: var(--text); }
+:is([data-theme="light"],[data-theme="p1"],[data-theme="p2"],[data-theme="p4"]) .btn-outline:hover { color: var(--text); }
+:is([data-theme="p1"],[data-theme="p2"],[data-theme="p4"]) .footer {
+  background: #0A1628;
+  --text:       #F8F5EF; --text-2: rgba(248,245,239,0.68);
+  --text-3:     rgba(248,245,239,0.44); --border: rgba(200,148,26,0.18);
+  --border-sub: rgba(255,255,255,0.07); --bg-deepest: #0A1628;
+}
+:is([data-theme="p1"],[data-theme="p2"],[data-theme="p4"]) .cta-half:not(.cta-half--gold) {
+  background: #1A2C3D;
+  --text:       #F8F5EF; --text-2: rgba(248,245,239,0.72);
+  --text-3:     rgba(248,245,239,0.48); --border: rgba(200,148,26,0.18);
+  --border-sub: rgba(255,255,255,0.07); --gold-glow: rgba(200,148,26,0.22);
+}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
