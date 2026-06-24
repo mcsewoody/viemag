@@ -11,7 +11,6 @@ document.documentElement.setAttribute(
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="VIEMAG Home">
         <span class="nav__logo-en">VIEMAG</span>
-        <span class="nav__logo-cn">唯美格</span>
       </a>
       <div class="nav__links">
         <a href="index.html"        class="nav__link" data-i18n="nav.home">Home</a>
