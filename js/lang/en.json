@@ -1,0 +1,230 @@
+{
+  "nav": {
+    "home": "Home",
+    "brand": "Brand Story",
+    "products": "Products",
+    "news": "Industry News",
+    "contact": "Contact",
+    "cta_trade": "Trade Inquiry",
+    "cta_buy": "Where to Buy"
+  },
+  "hero": {
+    "badge": "MagSafe & Qi2 Certified Ecosystem",
+    "title_line1": "Make Magnetic",
+    "title_line2": "the Default.",
+    "subtitle": "A cross-scenario magnetic ecosystem that transforms every moment — from your desk to your car, your commute to your bedside.",
+    "cta_trade": "Partner With Us",
+    "cta_buy": "Shop Now",
+    "scroll": "Scroll"
+  },
+  "stats": {
+    "label1": "Product Ecosystems",
+    "label2": "Life Scenarios",
+    "label3": "SKUs Planned",
+    "label4": "Wireless Standard"
+  },
+  "cats_section": {
+    "tag": "Product Ecosystem",
+    "title": "Five Ecosystems,\nOne Magnetic Life",
+    "desc": "Every VIEMAG product belongs to a larger ecosystem, designed to work seamlessly together across all moments of your day.",
+    "explore": "Explore",
+    "skus": "SKUs"
+  },
+  "cats": {
+    "A": {
+      "code": "CAT-A",
+      "name": "Desktop Charging",
+      "desc": "From single chargers to full dock stations — power your devices without compromise.",
+      "skus": "15+"
+    },
+    "B": {
+      "code": "CAT-B",
+      "name": "Automotive Magnetic",
+      "desc": "Vent mounts, dashboard systems, and motorcycle holders — every drive, hands-free.",
+      "skus": "15+"
+    },
+    "C": {
+      "code": "CAT-C",
+      "name": "Portable Power",
+      "desc": "Magnetic power banks, travel chargers, and GaN adapters — power wherever you go.",
+      "skus": "12+"
+    },
+    "D": {
+      "code": "CAT-D",
+      "name": "Stand & Display",
+      "desc": "Desk stands, bedside displays, webcam rigs — your devices, always at the perfect angle.",
+      "skus": "13+"
+    },
+    "E": {
+      "code": "CAT-E",
+      "name": "Accessory Ecosystem",
+      "desc": "Ring adapters, cases, grips, wallets, and creator modules — extend every device.",
+      "skus": "14+"
+    }
+  },
+  "scenarios_section": {
+    "tag": "Life Scenarios",
+    "title": "Six Moments,\nSeamlessly Connected",
+    "desc": "VIEMAG products are organized around the real moments of your life, not arbitrary product categories."
+  },
+  "scenarios": {
+    "S1": { "name": "Morning Routine", "icon": "☀️", "cats": "CAT-A, CAT-E" },
+    "S2": { "name": "Commute & On-the-Go", "icon": "🚗", "cats": "CAT-B, CAT-C" },
+    "S3": { "name": "Work & Office", "icon": "💼", "cats": "CAT-A, CAT-D" },
+    "S4": { "name": "Home & Leisure", "icon": "🏠", "cats": "CAT-A, CAT-D" },
+    "S5": { "name": "Travel & Business", "icon": "✈️", "cats": "CAT-C, CAT-E" },
+    "S6": { "name": "Outdoors & Creative", "icon": "📸", "cats": "CAT-D, CAT-E" }
+  },
+  "why_section": {
+    "tag": "Why VIEMAG",
+    "title": "Built on a Standard.\nDesigned for Life.",
+    "features": [
+      {
+        "icon": "🧲",
+        "title": "Qi2 & MagSafe Certified",
+        "desc": "Every charger meets or exceeds the latest Qi2 and MagSafe specifications for guaranteed compatibility."
+      },
+      {
+        "icon": "🎨",
+        "title": "Aesthetic Function",
+        "desc": "Design that enhances your environment rather than disrupting it — materials chosen for look and feel."
+      },
+      {
+        "icon": "🔗",
+        "title": "Ecosystem Thinking",
+        "desc": "Products designed to work together. Mix and match across all five ecosystems seamlessly."
+      },
+      {
+        "icon": "🌏",
+        "title": "Global Distribution",
+        "desc": "Built for Taiwan, scaled for Southeast Asia and international markets with multi-voltage support."
+      }
+    ]
+  },
+  "news_section": {
+    "tag": "Industry News",
+    "title": "Insights & Trends",
+    "desc": "Stay ahead with the latest in wireless charging technology, market trends, and product ecosystem news.",
+    "all_news": "All Articles",
+    "read_more": "Read More →"
+  },
+  "cta_section": {
+    "b2b_label": "For Retailers & Distributors",
+    "b2b_title": "Grow with VIEMAG",
+    "b2b_desc": "Access our full trade catalog, request samples, and build your magnetic accessory lineup. We work with distributors across Taiwan, Vietnam, and Southeast Asia.",
+    "b2b_cta": "Request Trade Inquiry",
+    "consumer_label": "For Consumers",
+    "consumer_title": "Find VIEMAG Near You",
+    "consumer_desc": "VIEMAG products are available on major e-commerce platforms and retail partners across Asia.",
+    "consumer_cta": "Shop Now"
+  },
+  "footer": {
+    "desc": "The cross-scenario magnetic ecosystem brand. Compatible with MagSafe & Qi2. Designed for every moment of your life.",
+    "col_products": "Products",
+    "col_company": "Company",
+    "col_support": "Support",
+    "links_products": ["Desktop Charging", "Automotive Magnetic", "Portable Power", "Stand & Display", "Accessory Ecosystem"],
+    "links_company": ["Brand Story", "Industry News", "Partner Program", "Contact Us"],
+    "links_support": ["Where to Buy", "FAQ", "Warranty", "Compatibility"],
+    "copyright": "© 2026 VIEMAG 唯美格. All rights reserved.",
+    "made_by": "Powered by COMART Corporation"
+  },
+  "brand_page": {
+    "tag": "Brand Story",
+    "title": "We Believe in\nMagnetic Connection",
+    "subtitle": "Born from the insight that great technology should disappear into daily life — VIEMAG makes magnetic the default action for every moment.",
+    "mission_tag": "Our Mission",
+    "mission_title": "Magnetic Connection\nfor Every Moment",
+    "mission_desc": "VIEMAG was founded on a single conviction: that the friction between people and their devices should be zero. Magnetic charging technology — perfected through MagSafe and the Qi2 standard — gave us the foundation. We built the ecosystem around it.",
+    "mission_desc2": "From the moment you wake up to the moment you arrive at your destination, VIEMAG products are designed to be already there — charged, mounted, ready. No cables to untangle. No searching for the right adapter. Just magnetic, instant connection.",
+    "values_tag": "Core Values",
+    "values_title": "Four Principles\nThat Drive Everything",
+    "values": [
+      {
+        "icon": "⚡",
+        "num": "01",
+        "title": "Magnetic Precision",
+        "desc": "Every product is engineered to the exact MagSafe and Qi2 specification. Precision alignment, maximum efficiency, zero compromise."
+      },
+      {
+        "icon": "🎨",
+        "num": "02",
+        "title": "Aesthetic Function",
+        "desc": "We design products that look as good as they perform. Materials, finishes, and forms are chosen to enhance your space, not clutter it."
+      },
+      {
+        "icon": "🔗",
+        "num": "03",
+        "title": "Ecosystem Thinking",
+        "desc": "No product is designed in isolation. Every VIEMAG item fits into a larger ecosystem — five categories, six scenarios, one cohesive experience."
+      },
+      {
+        "icon": "🌱",
+        "num": "04",
+        "title": "Sustainable Premium",
+        "desc": "Premium is not just about price. It's about materials that last, manufacturing that respects the environment, and products you keep."
+      }
+    ],
+    "compat_tag": "Technology Standard",
+    "compat_title": "Built on Open Standards,\nOpen to Every Device",
+    "compat_desc": "VIEMAG's entire product lineup is built around the open Qi2 wireless charging standard — the same magnetic alignment technology that powers MagSafe. This means VIEMAG works with iPhone, Android devices with Qi2 support, and any MagSafe-compatible accessory.",
+    "timeline_tag": "Roadmap",
+    "timeline_title": "The VIEMAG Journey",
+    "timeline": [
+      {
+        "year": "2025 Q4",
+        "title": "Brand Foundation",
+        "desc": "VIEMAG 唯美格 established as a standalone magnetic ecosystem brand under COMART Corporation."
+      },
+      {
+        "year": "2026 Q1",
+        "title": "Product Architecture",
+        "desc": "Five ecosystems defined, 75 SKUs mapped, and 13 launch products selected for the market debut."
+      },
+      {
+        "year": "2026 Q3",
+        "title": "Market Launch",
+        "desc": "First wave of 13 hero SKUs launching across Taiwan and Vietnam, covering commute, office, and travel scenarios."
+      },
+      {
+        "year": "2027",
+        "title": "Full Ecosystem",
+        "desc": "Complete 75-SKU lineup available across Asia-Pacific, with expanded B2B distribution network."
+      }
+    ]
+  },
+  "products_page": {
+    "tag": "Product Lineup",
+    "title": "The Complete\nMagnetic Ecosystem",
+    "desc": "Five product categories. Six life scenarios. 75 SKUs planned for launch. Browse the full VIEMAG lineup.",
+    "explore_cat": "Explore Category",
+    "all_skus": "All SKUs",
+    "view_sku": "View Product"
+  },
+  "news_page": {
+    "tag": "Industry News",
+    "title": "Insights, Trends\n& Industry Reports",
+    "desc": "The latest in wireless charging technology, market analysis, and the magnetic accessory ecosystem.",
+    "featured": "Featured Article",
+    "latest": "Latest Articles",
+    "categories": ["All", "Technology", "Market", "Product", "Industry"]
+  },
+  "contact_page": {
+    "tag": "Get in Touch",
+    "b2b_title": "Trade & Partnership Inquiry",
+    "b2b_desc": "Interested in carrying VIEMAG products? Fill out the form below and our team will reach out within 2 business days.",
+    "form_name": "Full Name",
+    "form_company": "Company Name",
+    "form_email": "Business Email",
+    "form_country": "Country / Region",
+    "form_type": "Inquiry Type",
+    "form_type_opts": ["Retail Distribution", "Online Marketplace", "Corporate Procurement", "OEM/ODM Inquiry", "Other"],
+    "form_message": "Tell us about your needs",
+    "form_submit": "Send Inquiry",
+    "form_note": "By submitting, you agree to our Privacy Policy.",
+    "info_title": "Contact Information",
+    "consumer_title": "Consumer Purchase",
+    "consumer_desc": "Find VIEMAG products on major platforms",
+    "social_title": "Follow VIEMAG"
+  }
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category — VIEMAG 唯美格</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/nav.js"></script>
+
+<div id="page-content" style="padding-top:var(--nav-h)">
+  <div class="container" style="padding-top:48px">
+    <div style="text-align:center;padding:80px 0;color:var(--text-3)">
+      <div style="font-size:2rem;margin-bottom:12px">⏳</div>
+      Loading…
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="footer-main"></footer>
+
+<script src="js/lang/translations.js"></script>
+<script src="js/data/products-data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script>
+const CAT_NAMES = { A: 'A', B: 'B', C: 'C', D: 'D', E: 'E' };
+
+function loadProducts() {
+  return Promise.resolve(window.VIEMAG_PRODUCTS);
+}
+
+async function renderPage(lang, i18nData) {
+  const params = new URLSearchParams(location.search);
+  const catKey = (params.get('cat') || 'A').toUpperCase();
+  const pData = await loadProducts();
+  const catData = pData.categories[catKey];
+  if (!catData) {
+    document.getElementById('page-content').innerHTML = '<div class="not-found"><h2>Category not found</h2><a href="products.html" class="btn btn-primary">Back to Products</a></div>';
+    return;
+  }
+
+  const catI18n = i18nData?.cats?.[catKey] || {};
+  const catName = catI18n.name || catData.code;
+  document.title = `${catData.code} ${catName} — VIEMAG`;
+
+  const subcats = catData.subcats;
+  const subcatHtml = Object.entries(subcats).map(([sk, sc]) => {
+    const scName = sc[`name_${lang}`] || sc.name_en;
+    const skuItems = sc.skus.map(sku => {
+      const skuName = sku[`name_${lang}`] || sku.name_en;
+      const isLaunch = pData.launchSkus.includes(sku.id);
+      return `<a href="product.html?id=${sku.id}" style="text-decoration:none" class="reveal">
+        <div class="sku-item">
+          <span class="sku-item__code">VMG-${sku.id}</span>
+          <span class="sku-item__name">${skuName}</span>
+          <span style="display:flex;gap:6px;align-items:center">
+            ${sku.watt !== '—' ? `<span style="font-size:0.68rem;color:var(--gold);font-weight:700">${sku.watt}</span>` : ''}
+            ${isLaunch ? `<span style="font-size:0.62rem;background:rgba(200,148,26,0.15);border:1px solid var(--border);color:var(--gold);padding:2px 6px;border-radius:4px">Q3 Launch</span>` : ''}
+          </span>
+          <span class="sku-item__arrow">→</span>
+        </div>
+      </a>`;
+    }).join('');
+    return `<div class="subcat-card reveal">
+      <div class="subcat-card__code">${sk}</div>
+      <div class="subcat-card__name">${scName}</div>
+      <div class="sku-list">${skuItems}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('page-content').innerHTML = `
+    <section class="product-hero">
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(200,148,26,0.07) 1px,transparent 1px);background-size:36px 36px;pointer-events:none"></div>
+      <div class="container" style="position:relative">
+        <div class="breadcrumb">
+          <a href="products.html">Products</a>
+          <span class="breadcrumb__sep">/</span>
+          <span style="color:var(--text-2)">${catData.code}</span>
+        </div>
+        <div class="section-tag">${catData.code}</div>
+        <h1 style="margin:12px 0 16px">${catName}</h1>
+        <p style="color:var(--text-2);max-width:520px;font-size:1.05rem">${catI18n.desc || ''}</p>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="compat-strip">
+            <span class="compat-label">${catI18n.skus || '10+'} SKUs</span>
+            <div class="compat-sep"></div>
+            <span class="compat-item">MagSafe</span>
+            <span class="compat-item">Qi2</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="background:var(--bg-dark)">
+      <div class="container">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px">
+          <div>
+            <div class="section-tag">${catData.code} — Sub-Categories</div>
+            <h2>${catName}</h2>
+          </div>
+          <div style="display:flex;gap:8px">
+            ${['A','B','C','D','E'].map(k => `<a href="category.html?cat=${k}" class="btn btn-outline${k===catKey?' btn-primary':''}" style="padding:8px 14px;font-size:0.8rem">${k}</a>`).join('')}
+          </div>
+        </div>
+        <div class="subcat-grid">${subcatHtml}</div>
+      </div>
+    </section>`;
+  initReveal();
+}
+
+function renderFooter(d) {
+  const footer = document.getElementById('footer-main');
+  if (!footer) return;
+  footer.innerHTML = `<div class="container">
+    <div class="footer__bottom" style="border-top:none;padding-top:0">
+      <span class="footer__copy">${d.footer?.copyright || '© 2026 VIEMAG 唯美格'}</span>
+      <div class="footer__badges"><span class="badge-chip">MagSafe</span><span class="badge-chip">Qi2</span></div>
+    </div>
+  </div>`;
+}
+
+document.addEventListener('langchange', ({ detail }) => {
+  renderPage(detail.lang, detail.data);
+  renderFooter(detail.data);
+});
+</script>
+</body>
+</html>

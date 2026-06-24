@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industry News — VIEMAG 唯美格</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/nav.js"></script>
+
+<!-- ===== NEWS HERO ===== -->
+<section class="news-hero">
+  <div class="container">
+    <div class="section-tag" data-i18n="news_page.tag">Industry News</div>
+    <h1 style="margin:16px 0 16px;max-width:600px" data-i18n="news_page.title">Insights, Trends<br>&amp; Industry Reports</h1>
+    <p style="color:var(--text-2);max-width:520px" data-i18n="news_page.desc">The latest in wireless charging technology, market analysis, and the magnetic accessory ecosystem.</p>
+  </div>
+</section>
+
+<!-- ===== FEATURED ===== -->
+<section class="section" style="background:var(--bg-dark)">
+  <div class="container">
+    <div class="section-tag reveal" data-i18n="news_page.featured">Featured Article</div>
+    <div class="news-featured reveal">
+      <div class="news-featured__image">
+        <div id="featured-vis"></div>
+      </div>
+      <div>
+        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+          <span id="featured-cat" style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--gold);color:var(--bg-deepest);padding:3px 10px;border-radius:4px">Technology</span>
+          <span id="featured-date" style="font-size:0.78rem;color:var(--text-3);padding:3px 0">June 12, 2026</span>
+        </div>
+        <h2 id="featured-title" style="margin-bottom:16px;font-size:1.6rem"></h2>
+        <p id="featured-excerpt" style="color:var(--text-2);line-height:1.8;margin-bottom:24px"></p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:8px;align-items:center">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-card-2);display:flex;align-items:center;justify-content:center;font-size:0.8rem">✍️</div>
+            <div>
+              <div style="font-size:0.82rem;font-weight:600">VIEMAG Research</div>
+              <div style="font-size:0.72rem;color:var(--text-3)">Industry Analysis Team</div>
+            </div>
+          </div>
+          <a href="#" class="btn btn-primary btn-lg" style="width:fit-content" data-i18n="news_section.read_more">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ARTICLE GRID ===== -->
+<section class="section">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px" class="reveal">
+      <div class="section-tag" data-i18n="news_page.latest">Latest Articles</div>
+      <div id="cat-filters" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+    </div>
+    <div class="article-grid" id="article-grid"></div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="section--sm" style="background:var(--bg-navy);padding:64px 0;text-align:center">
+  <div class="container">
+    <div class="section-tag reveal" style="justify-content:center">Industry Intelligence</div>
+    <h2 class="reveal" style="margin:12px 0 16px;max-width:500px;margin-inline:auto">Stay Ahead of the<br>Magnetic Revolution</h2>
+    <p class="reveal" style="color:var(--text-2);max-width:400px;margin:0 auto 28px">Get the latest Qi2 industry insights, product news, and trade updates delivered directly.</p>
+    <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-lg" data-i18n="nav.cta_trade">Trade Inquiry</a>
+      <a href="contact.html" class="btn btn-outline btn-lg">Subscribe to Updates</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer-main"></footer>
+
+<script src="js/lang/translations.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script>
+const ARTICLES = [
+  {
+    id: 1, cat: 'Technology', date: 'June 12, 2026',
+    title_en: 'Qi2.2 Standard Announced: What 40W Wireless Charging Means for Consumers',
+    title_zh: 'Qi2.2 標準發布：40W 無線充電對消費者意味著什麼',
+    title_vi: 'Chuẩn Qi2.2 Được Công Bố: Sạc Không Dây 40W Có Ý Nghĩa Gì',
+    excerpt_en: 'The Wireless Power Consortium has officially published the Qi2.2 specification, opening the door to 40W magnetic wireless charging. We break down what this means for accessory manufacturers, retailers, and consumers across Asia.',
+    excerpt_zh: 'Wireless Power Consortium 正式發布 Qi2.2 規格，為相容裝置帶來 40W 磁吸無線充電。我們深入分析這對亞洲配件製造商、零售商及消費者的意義。',
+    excerpt_vi: 'Wireless Power Consortium đã chính thức công bố thông số Qi2.2, mở ra cánh cửa sạc không dây từ tính 40W. Chúng tôi phân tích ý nghĩa của điều này đối với nhà sản xuất, nhà bán lẻ và người tiêu dùng.',
+    featured: true
+  },
+  {
+    id: 2, cat: 'Market', date: 'May 28, 2026',
+    title_en: "Vietnam's Smartphone Market Surge Drives Premium Accessory Demand",
+    title_zh: '越南智慧型手機市場激增帶動高端配件需求成長',
+    title_vi: 'Thị Trường Smartphone Việt Nam Tăng Trưởng Mạnh Thúc Đẩy Nhu Cầu Phụ Kiện Cao Cấp',
+    excerpt_en: "Vietnam's smartphone penetration hit 78% in 2026 Q1, with premium accessory categories growing at 34% year-over-year. Magnetic accessories are among the fastest-growing sub-categories.",
+    excerpt_zh: '越南智慧型手機普及率在 2026 年第一季達到 78%，高端配件品類年增 34%。磁吸配件是增長最快的子品類之一。',
+    excerpt_vi: 'Tỷ lệ sử dụng smartphone tại Việt Nam đạt 78% trong Q1 2026, với danh mục phụ kiện cao cấp tăng 34% so với cùng kỳ. Phụ kiện từ tính là danh mục phụ tăng trưởng nhanh nhất.',
+    featured: false
+  },
+  {
+    id: 3, cat: 'Industry', date: 'May 10, 2026',
+    title_en: 'The MagSafe Ecosystem Expands: 2026 Is the Year of Magnetic Accessories',
+    title_zh: 'MagSafe 生態系擴張：2026 是磁吸配件之年',
+    title_vi: 'Hệ Sinh Thái MagSafe Mở Rộng: 2026 Là Năm Của Phụ Kiện Từ Tính',
+    excerpt_en: 'With Qi2 now adopted by Samsung, Google, and dozens of Android OEMs, the magnetic accessory ecosystem is entering its mainstream era. Market projections suggest $8.4B in global magnetic accessory revenue by 2027.',
+    excerpt_zh: 'Qi2 已被三星、Google 及數十家 Android 廠商採用，磁吸配件生態系正式進入主流時代。市場預測到 2027 年全球磁吸配件營收將達 84 億美元。',
+    excerpt_vi: 'Với Qi2 được Samsung, Google và hàng chục OEM Android áp dụng, hệ sinh thái phụ kiện từ tính bước vào kỷ nguyên chính thống. Dự báo doanh thu 8.4 tỷ USD toàn cầu vào 2027.',
+    featured: false
+  },
+  {
+    id: 4, cat: 'Technology', date: 'April 22, 2026',
+    title_en: 'How Automotive Wireless Charging Is Transforming the In-Car Experience',
+    title_zh: '車載無線充電如何改變車內體驗',
+    title_vi: 'Sạc Không Dây Ô Tô Đang Thay Đổi Trải Nghiệm Lái Xe',
+    excerpt_en: 'From OEM integration to aftermarket magnetic mounts, in-car wireless charging has moved from luxury feature to mass-market expectation. We examine the technology, standards, and market landscape.',
+    excerpt_zh: '從 OEM 整合到後裝磁吸支架，車載無線充電已從奢侈功能轉變為大眾市場期望。我們深入研究技術、標準和市場格局。',
+    excerpt_vi: 'Từ tích hợp OEM đến giá đỡ từ tính lắp sau, sạc không dây trên xe đã chuyển từ tính năng cao cấp sang kỳ vọng thị trường đại chúng.',
+    featured: false
+  },
+  {
+    id: 5, cat: 'Market', date: 'April 5, 2026',
+    title_en: 'Gen Z and Premium Tech Accessories: Shifting Consumer Preferences in Southeast Asia',
+    title_zh: 'Z 世代與高端科技配件：東南亞消費者偏好轉變',
+    title_vi: 'Gen Z và Phụ Kiện Công Nghệ Cao Cấp: Thay Đổi Sở Thích Tiêu Dùng ở Đông Nam Á',
+    excerpt_en: "Gen Z consumers in Taiwan and Vietnam show 2.3x higher spend on premium accessories vs. the market average. Brand aesthetics and ecosystem coherence are primary purchase drivers.",
+    excerpt_zh: '台灣和越南的 Z 世代消費者在高端配件上的花費比市場平均水平高出 2.3 倍。品牌美學和生態系連貫性是主要購買驅動因素。',
+    excerpt_vi: 'Người tiêu dùng Gen Z tại Đài Loan và Việt Nam chi tiêu cao hơn 2,3 lần cho phụ kiện cao cấp so với trung bình thị trường.',
+    featured: false
+  },
+  {
+    id: 6, cat: 'Product', date: 'March 18, 2026',
+    title_en: 'B2B Guide: Building a Magnetic Accessory Product Line for Retail Distribution',
+    title_zh: 'B2B 指南：為零售通路建立磁吸配件產品線',
+    title_vi: 'Hướng Dẫn B2B: Xây Dựng Dòng Phụ Kiện Từ Tính Cho Kênh Bán Lẻ',
+    excerpt_en: 'A practical guide for retailers and distributors entering the magnetic accessory category — from product selection and planogram strategy to retail pricing and inventory management.',
+    excerpt_zh: '為進入磁吸配件品類的零售商和分銷商提供實用指南——從產品選擇、陳列策略到零售定價和庫存管理。',
+    excerpt_vi: 'Hướng dẫn thực tế cho nhà bán lẻ và nhà phân phối gia nhập danh mục phụ kiện từ tính — từ lựa chọn sản phẩm, chiến lược trưng bày đến định giá bán lẻ.',
+    featured: false
+  }
+];
+
+let activeFilter = 'All';
+
+function renderFeatured(lang) {
+  const art = ARTICLES.find(a => a.featured);
+  if (!art) return;
+  const vis = document.getElementById('featured-vis');
+  const title = document.getElementById('featured-title');
+  const excerpt = document.getElementById('featured-excerpt');
+  const cat = document.getElementById('featured-cat');
+  if (vis) vis.innerHTML = window.VIEMAG.newsIllustration(art.cat);
+  if (title) title.textContent = art[`title_${lang}`] || art.title_en;
+  if (excerpt) excerpt.textContent = art[`excerpt_${lang}`] || art.excerpt_en;
+  if (cat) cat.textContent = art.cat;
+}
+
+function renderFilters(d, lang) {
+  const fc = document.getElementById('cat-filters');
+  if (!fc) return;
+  const cats = d?.news_page?.categories || ['All', 'Technology', 'Market', 'Product', 'Industry'];
+  fc.innerHTML = cats.map(c => `
+    <button onclick="setFilter('${c}','${lang}')"
+      class="btn btn-outline" style="padding:6px 14px;font-size:0.78rem;${c === activeFilter ? 'border-color:var(--gold);color:var(--gold)' : ''}">
+      ${c}
+    </button>`).join('');
+}
+
+function setFilter(cat, lang) {
+  activeFilter = cat;
+  renderArticles(lang);
+  document.querySelectorAll('#cat-filters button').forEach(b => {
+    const active = b.textContent.trim() === cat;
+    b.style.borderColor = active ? 'var(--gold)' : '';
+    b.style.color = active ? 'var(--gold)' : '';
+  });
+}
+
+function renderArticles(lang) {
+  const grid = document.getElementById('article-grid');
+  if (!grid) return;
+  const filtered = activeFilter === 'All'
+    ? ARTICLES.filter(a => !a.featured)
+    : ARTICLES.filter(a => !a.featured && a.cat === activeFilter);
+
+  grid.innerHTML = filtered.map((art, i) => {
+    const title = art[`title_${lang}`] || art.title_en;
+    const excerpt = art[`excerpt_${lang}`] || art.excerpt_en;
+    return `<article class="news-card reveal reveal-delay-${i%3}">
+      <div class="news-card__image">
+        ${window.VIEMAG.newsIllustration(art.cat)}
+        <div class="news-card__cat">${art.cat}</div>
+      </div>
+      <div class="news-card__body">
+        <div class="news-card__date">${art.date}</div>
+        <h3 class="news-card__title">${title}</h3>
+        <p class="news-card__excerpt">${excerpt}</p>
+        <a href="#" class="news-card__link" data-i18n="news_section.read_more">Read More →</a>
+      </div>
+    </article>`;
+  }).join('');
+  initReveal();
+}
+
+function renderFooter(d) {
+  const footer = document.getElementById('footer-main');
+  if (!footer) return;
+  const prods = (d.footer.links_products || []).map((t, i) => {
+    const codes = ['A','B','C','D','E'];
+    return `<a href="category.html?cat=${codes[i]}" class="footer__link">${t}</a>`;
+  }).join('');
+  const company = (d.footer.links_company || []).map((t, i) => {
+    const hrefs = ['brand-story.html','news.html','contact.html','contact.html'];
+    return `<a href="${hrefs[i]}" class="footer__link">${t}</a>`;
+  }).join('');
+  footer.innerHTML = `<div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">VIEMAG</div>
+        <div class="footer__brand-cn">唯美格</div>
+        <p class="footer__desc">${d.footer.desc}</p>
+      </div>
+      <div><div class="footer__col-title">${d.footer.col_products}</div><div class="footer__links">${prods}</div></div>
+      <div><div class="footer__col-title">${d.footer.col_company}</div><div class="footer__links">${company}</div></div>
+      <div></div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">${d.footer.copyright}</span>
+      <div class="footer__badges"><span class="badge-chip">MagSafe</span><span class="badge-chip">Qi2</span></div>
+    </div>
+  </div>`;
+}
+
+document.addEventListener('langchange', ({ detail }) => {
+  renderFeatured(detail.lang);
+  renderFilters(detail.data, detail.lang);
+  renderArticles(detail.lang);
+  renderFooter(detail.data);
+});
+</script>
+</body>
+</html>

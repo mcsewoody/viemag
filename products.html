@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — VIEMAG 唯美格</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/nav.js"></script>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="product-hero">
+  <div class="container">
+    <div class="section-tag" data-i18n="products_page.tag">Product Lineup</div>
+    <h1 style="margin:16px 0 20px;max-width:600px" data-i18n="products_page.title">The Complete<br>Magnetic Ecosystem</h1>
+    <p style="color:var(--text-2);max-width:520px;font-size:1.05rem" data-i18n="products_page.desc">Five product categories. Six life scenarios. 75 SKUs planned for launch. Browse the full VIEMAG lineup.</p>
+    <div style="margin-top:28px">
+      <div class="compat-strip">
+        <span class="compat-label">Q3 2026 Launch</span>
+        <div class="compat-sep"></div>
+        <span class="compat-item">13 Hero SKUs</span>
+        <span class="compat-item">MagSafe</span>
+        <span class="compat-item">Qi2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="section" style="background:var(--bg-dark)">
+  <div class="container">
+    <div class="cat-grid" id="products-cat-grid"></div>
+  </div>
+</section>
+
+<!-- ===== LAUNCH HIGHLIGHT ===== -->
+<section class="section" style="background:var(--bg-navy)">
+  <div class="container">
+    <div class="section-header section-header--center reveal">
+      <div class="section-tag">Q3 2026 Launch Wave</div>
+      <h2 class="section-title">13 Hero SKUs<br>Coming First</h2>
+      <p class="section-desc">The first wave targets commute, office, and travel scenarios — the three highest-frequency use cases.</p>
+    </div>
+    <div id="launch-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px"></div>
+  </div>
+</section>
+
+<!-- ===== SCENARIO MAP ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag" data-i18n="scenarios_section.tag">Life Scenarios</div>
+      <h2 class="section-title" data-i18n="scenarios_section.title">Six Moments,<br>Seamlessly Connected</h2>
+    </div>
+    <div class="scenario-grid" id="product-scenario-grid"></div>
+  </div>
+</section>
+
+<footer class="footer" id="footer-main"></footer>
+
+<script src="js/lang/translations.js"></script>
+<script src="js/data/products-data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script>
+const CATS_ORDER = ['A','B','C','D','E'];
+const SCENARIOS_ORDER = ['S1','S2','S3','S4','S5','S6'];
+
+function loadProducts() {
+  return Promise.resolve(window.VIEMAG_PRODUCTS);
+}
+
+function renderCats(d) {
+  const grid = document.getElementById('products-cat-grid');
+  if (!grid) return;
+  grid.innerHTML = CATS_ORDER.map((k, i) => {
+    const c = d.cats[k];
+    return `<a href="category.html?cat=${k}" class="cat-card reveal reveal-delay-${i%3}" style="text-decoration:none">
+      <div class="cat-card__visual">
+        <div class="svg-vis">${window.VIEMAG.CAT_SVG[k]}</div>
+        <div class="cat-card__label">${c.code}</div>
+      </div>
+      <div class="cat-card__body">
+        <div class="cat-card__code">${c.code}</div>
+        <div class="cat-card__name">${c.name}</div>
+        <p class="cat-card__desc">${c.desc}</p>
+      </div>
+      <div class="cat-card__footer">
+        <span class="cat-card__sku">${c.skus} ${d.cats_section?.skus || 'SKUs'}</span>
+        <div class="cat-card__arrow">→</div>
+      </div>
+    </a>`;
+  }).join('');
+  const cards = grid.querySelectorAll('.cat-card');
+  if (cards.length === 5) {
+    cards[3].style.gridColumn = '1';
+    cards[4].style.gridColumn = '2';
+  }
+  initReveal();
+}
+
+function renderScenarios(d) {
+  const grid = document.getElementById('product-scenario-grid');
+  if (!grid) return;
+  grid.innerHTML = SCENARIOS_ORDER.map((k, i) => {
+    const s = d.scenarios[k];
+    return `<div class="scenario-card reveal reveal-delay-${i%3}">
+      <div class="scenario-card__code">${k}</div>
+      <div class="scenario-card__icon">${s.icon}</div>
+      <div class="scenario-card__name">${s.name}</div>
+      <div class="scenario-card__cats">${s.cats}</div>
+    </div>`;
+  }).join('');
+  initReveal();
+}
+
+async function renderLaunchGrid(lang) {
+  const grid = document.getElementById('launch-grid');
+  if (!grid) return;
+  const pData = await loadProducts();
+  const cats = pData.categories;
+  const skuIds = pData.launchSkus;
+  const items = [];
+  for (const catKey of Object.keys(cats)) {
+    const cat = cats[catKey];
+    for (const subcatKey of Object.keys(cat.subcats)) {
+      const subcat = cat.subcats[subcatKey];
+      for (const sku of subcat.skus) {
+        if (skuIds.includes(sku.id)) {
+          items.push({ ...sku, catKey, subcatKey, subcatName: subcat[`name_${lang}`] || subcat.name_en });
+        }
+      }
+    }
+  }
+  grid.innerHTML = items.map(item => `
+    <a href="product.html?id=${item.id}" style="text-decoration:none" class="reveal">
+      <div class="sku-item" style="cursor:pointer">
+        <span class="sku-item__code">VMG-${item.id}</span>
+        <span class="sku-item__name">${item[`name_${lang}`] || item.name_en}</span>
+        ${item.watt !== '—' ? `<span style="font-size:0.7rem;color:var(--gold);font-weight:700">${item.watt}</span>` : ''}
+      </div>
+    </a>`).join('');
+  initReveal();
+}
+
+function renderFooter(d) {
+  const footer = document.getElementById('footer-main');
+  if (!footer) return;
+  const prods = (d.footer.links_products || []).map((t, i) => {
+    const codes = ['A','B','C','D','E'];
+    return `<a href="category.html?cat=${codes[i]}" class="footer__link">${t}</a>`;
+  }).join('');
+  const company = (d.footer.links_company || []).map((t, i) => {
+    const hrefs = ['brand-story.html','news.html','contact.html','contact.html'];
+    return `<a href="${hrefs[i]}" class="footer__link">${t}</a>`;
+  }).join('');
+  footer.innerHTML = `<div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">VIEMAG</div>
+        <div class="footer__brand-cn">唯美格</div>
+        <p class="footer__desc">${d.footer.desc}</p>
+      </div>
+      <div><div class="footer__col-title">${d.footer.col_products}</div><div class="footer__links">${prods}</div></div>
+      <div><div class="footer__col-title">${d.footer.col_company}</div><div class="footer__links">${company}</div></div>
+      <div><div class="footer__col-title">${d.footer.col_support}</div></div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">${d.footer.copyright}</span>
+      <div class="footer__badges"><span class="badge-chip">MagSafe</span><span class="badge-chip">Qi2</span></div>
+    </div>
+  </div>`;
+}
+
+document.addEventListener('langchange', ({ detail }) => {
+  renderCats(detail.data);
+  renderScenarios(detail.data);
+  renderLaunchGrid(detail.lang);
+  renderFooter(detail.data);
+});
+</script>
+</body>
+</html>
