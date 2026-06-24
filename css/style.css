@@ -775,6 +775,98 @@ p  { line-height: 1.75; }
   text-align: center; flex-direction: column; gap: 16px; padding-top: var(--nav-h);
 }
 
+/* === Theme Toggle Button === */
+.theme-toggle {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ============================================================
+   LIGHT THEME — Option B: Cream White + Deep Navy + Gold
+   Activated by data-theme="light" on <html>
+   ============================================================ */
+[data-theme="light"] {
+  --bg-deepest:  #F8F5EF;
+  --bg-dark:     #F0EBE3;
+  --bg-navy:     #E5DDD3;
+  --bg-card:     #FFFFFF;
+  --bg-card-2:   #FAF6F0;
+  --bg-glass:    rgba(248, 245, 239, 0.92);
+
+  --gold-glow:   rgba(200, 148, 26, 0.14);
+  --gold-glow-h: rgba(200, 148, 26, 0.30);
+
+  --text:        #1A2C3D;
+  --text-2:      rgba(26, 44, 61, 0.65);
+  --text-3:      rgba(26, 44, 61, 0.42);
+
+  --border:      rgba(26, 44, 61, 0.14);
+  --border-sub:  rgba(26, 44, 61, 0.08);
+}
+
+/* Hero: replace hardcoded dark gradient */
+[data-theme="light"] .hero {
+  background: radial-gradient(ellipse 120% 80% at 50% 100%, #DDD3C5 0%, var(--bg-deepest) 65%);
+}
+[data-theme="light"] .hero__fade {
+  background: linear-gradient(90deg, var(--bg-deepest) 25%, transparent 65%);
+}
+[data-theme="light"] .hero__title {
+  background: linear-gradient(135deg, #1A2C3D 30%, #7A5010 68%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Brand story hero */
+[data-theme="light"] .brand-hero-page {
+  background: radial-gradient(ellipse 100% 60% at 50% 100%, #D0C4B0 0%, var(--bg-deepest) 70%);
+}
+
+/* Nav links: override hardcoded `color: var(--white)` on active/hover */
+[data-theme="light"] .nav__link:hover,
+[data-theme="light"] .nav__link.active { color: var(--text); }
+[data-theme="light"] .btn-outline:hover { color: var(--text); }
+
+/* Footer always stays dark — re-scope variables locally */
+[data-theme="light"] .footer {
+  background: #0A1628;
+  --text:        #F8F5EF;
+  --text-2:      rgba(248, 245, 239, 0.68);
+  --text-3:      rgba(248, 245, 239, 0.44);
+  --border:      rgba(200, 148, 26, 0.18);
+  --border-sub:  rgba(255, 255, 255, 0.07);
+  --bg-deepest:  #0A1628;
+}
+
+/* CTA dark half always stays dark */
+[data-theme="light"] .cta-half:not(.cta-half--gold) {
+  background: #1A2C3D;
+  --text:       #F8F5EF;
+  --text-2:     rgba(248, 245, 239, 0.72);
+  --text-3:     rgba(248, 245, 239, 0.48);
+  --border:     rgba(200, 148, 26, 0.18);
+  --border-sub: rgba(255, 255, 255, 0.07);
+  --gold-glow:  rgba(200, 148, 26, 0.22);
+}
+
+/* Product-badge qi2 colour on light */
+[data-theme="light"] .product-badge--qi2 { background: rgba(74,122,181,0.08); }
+
+/* Mag ring brightness bump on light bg */
+[data-theme="light"] .mag-ring:nth-child(1) { border-color: var(--gold); }
+[data-theme="light"] .mag-ring:nth-child(2) { border-color: rgba(200,148,26,0.55); }
+[data-theme="light"] .mag-ring:nth-child(3) { border-color: rgba(200,148,26,0.32); }
+[data-theme="light"] .mag-ring:nth-child(4) { border-color: rgba(200,148,26,0.16); }
+[data-theme="light"] .mag-ring:nth-child(5) { border-color: rgba(200,148,26,0.07); }
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
   .cat-grid { grid-template-columns: repeat(2, 1fr); }

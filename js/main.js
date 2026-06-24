@@ -172,11 +172,31 @@ function newsIllustration(cat) {
   </svg>`;
 }
 
+/* ── Theme toggle ── */
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.querySelectorAll('.theme-toggle__icon').forEach(el => {
+    el.textContent = theme === 'dark' ? '☀️' : '🌙';
+  });
+}
+
+function initThemeToggle() {
+  const saved = localStorage.getItem('viemag_theme') || 'dark';
+  applyTheme(saved);
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.theme-toggle')) return;
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem('viemag_theme', next);
+  });
+}
+
 /* ── Export helpers ── */
 window.VIEMAG = { CAT_SVG, newsIllustration };
 
 /* ── Boot ── */
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   initNav();
   initReveal();
   initCounters();
