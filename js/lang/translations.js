@@ -154,5 +154,107 @@ window.VIEMAG_TRANSLATIONS = {
     "products_page": { "tag": "Dòng Sản Phẩm", "title": "Hệ Sinh Thái Từ Tính\nĐầy Đủ", "desc": "Năm danh mục sản phẩm. Sáu tình huống cuộc sống. 75 SKU lên kế hoạch ra mắt. Duyệt qua toàn bộ dòng sản phẩm VIEMAG.", "explore_cat": "Khám Phá Danh Mục", "all_skus": "Tất Cả SKU", "view_sku": "Xem Sản Phẩm" },
     "news_page": { "tag": "Tin Tức Ngành", "title": "Thông Tin, Xu Hướng\n& Báo Cáo Ngành", "desc": "Mới nhất về công nghệ sạc không dây, phân tích thị trường và tin tức hệ sinh thái phụ kiện từ tính.", "featured": "Bài Viết Nổi Bật", "latest": "Bài Viết Mới Nhất", "categories": ["Tất Cả", "Công Nghệ", "Thị Trường", "Sản Phẩm", "Ngành"] },
     "contact_page": { "tag": "Liên Hệ", "b2b_title": "Yêu Cầu Hợp Tác Thương Mại", "b2b_desc": "Quan tâm đến việc phân phối sản phẩm VIEMAG? Điền vào mẫu dưới đây và đội ngũ của chúng tôi sẽ liên hệ trong vòng 2 ngày làm việc.", "form_name": "Họ và Tên", "form_company": "Tên Công Ty", "form_email": "Email Doanh Nghiệp", "form_country": "Quốc Gia / Khu Vực", "form_type": "Loại Yêu Cầu", "form_type_opts": ["Phân Phối Bán Lẻ", "Sàn Thương Mại Điện Tử", "Mua Sắm Doanh Nghiệp", "Yêu Cầu OEM/ODM", "Khác"], "form_message": "Hãy cho chúng tôi biết nhu cầu của bạn", "form_submit": "Gửi Yêu Cầu", "form_note": "Bằng cách gửi, bạn đồng ý với Chính Sách Quyền Riêng Tư của chúng tôi.", "info_title": "Thông Tin Liên Hệ", "consumer_title": "Mua Hàng Tiêu Dùng", "consumer_desc": "Tìm sản phẩm VIEMAG trên các nền tảng lớn", "social_title": "Theo Dõi VIEMAG" }
+  },
+
+  id: {
+    "nav": { "home": "Beranda", "brand": "Kisah Merek", "products": "Produk", "news": "Berita Industri", "contact": "Hubungi Kami", "cta_trade": "Kemitraan Dagang", "cta_buy": "Tempat Beli" },
+    "hero": { "badge": "Ekosistem Bersertifikasi MagSafe & Qi2", "title_line1": "Jadikan Magnetik", "title_line2": "Pilihan Utama.", "subtitle": "Ekosistem magnetik lintas skenario yang mengubah setiap momen — dari meja kerja hingga mobil, perjalanan hingga tempat tidur.", "cta_trade": "Bermitra dengan Kami", "cta_buy": "Beli Sekarang", "scroll": "Gulir" },
+    "stats": { "label1": "Ekosistem Produk", "label2": "Skenario Kehidupan", "label3": "SKU Direncanakan", "label4": "Standar Nirkabel" },
+    "cats_section": { "tag": "Ekosistem Produk", "title": "Lima Ekosistem,\nSatu Kehidupan Magnetik", "desc": "Setiap produk VIEMAG termasuk dalam ekosistem yang lebih besar, dirancang untuk bekerja secara mulus bersama di setiap momen hari Anda.", "explore": "Jelajahi", "skus": "SKU" },
+    "cats": {
+      "A": { "code": "CAT-A", "name": "Pengisian Meja Kerja", "desc": "Dari pengisi daya tunggal hingga stasiun dok penuh — beri daya perangkat Anda tanpa kompromi.", "skus": "15+" },
+      "B": { "code": "CAT-B", "name": "Magnetik Otomotif", "desc": "Dudukan ventilasi, sistem dasbor, dan pemegang motor — setiap perjalanan, bebas tangan.", "skus": "15+" },
+      "C": { "code": "CAT-C", "name": "Daya Portabel", "desc": "Power bank magnetik, pengisi daya perjalanan, dan adaptor GaN — daya di mana pun Anda pergi.", "skus": "12+" },
+      "D": { "code": "CAT-D", "name": "Dudukan & Tampilan", "desc": "Dudukan meja kerja, tampilan samping tempat tidur, rig webcam — perangkat Anda selalu pada sudut sempurna.", "skus": "13+" },
+      "E": { "code": "CAT-E", "name": "Ekosistem Aksesori", "desc": "Adaptor ring, case, grip, dompet kartu, dan modul kreator — perluas setiap perangkat.", "skus": "14+" }
+    },
+    "scenarios_section": { "tag": "Skenario Kehidupan", "title": "Enam Momen,\nTerhubung Tanpa Batas", "desc": "Produk VIEMAG diorganisir di sekitar momen nyata dalam kehidupan Anda, bukan kategori produk yang sewenang-wenang." },
+    "scenarios": {
+      "S1": { "name": "Rutinitas Pagi", "icon": "☀️", "cats": "CAT-A, CAT-E" },
+      "S2": { "name": "Perjalanan", "icon": "🚗", "cats": "CAT-B, CAT-C" },
+      "S3": { "name": "Kerja & Kantor", "icon": "💼", "cats": "CAT-A, CAT-D" },
+      "S4": { "name": "Rumah & Santai", "icon": "🏠", "cats": "CAT-A, CAT-D" },
+      "S5": { "name": "Perjalanan Bisnis", "icon": "✈️", "cats": "CAT-C, CAT-E" },
+      "S6": { "name": "Luar Ruangan & Kreatif", "icon": "📸", "cats": "CAT-D, CAT-E" }
+    },
+    "why_section": { "tag": "Mengapa VIEMAG", "title": "Dibangun di Atas Standar.\nDirancang untuk Kehidupan.", "features": [
+      { "icon": "🧲", "title": "Bersertifikasi Qi2 & MagSafe", "desc": "Setiap pengisi daya memenuhi atau melampaui spesifikasi Qi2 dan MagSafe terbaru untuk kompatibilitas yang terjamin." },
+      { "icon": "🎨", "title": "Estetika & Fungsi", "desc": "Desain yang meningkatkan lingkungan Anda daripada mengganggunya — material dipilih untuk tampilan dan nuansa." },
+      { "icon": "🔗", "title": "Pemikiran Ekosistem", "desc": "Produk dirancang untuk bekerja bersama. Padukan di semua lima ekosistem dengan mulus." },
+      { "icon": "🌏", "title": "Distribusi Global", "desc": "Dibangun untuk Taiwan, berkembang ke Asia Tenggara dan pasar internasional dengan dukungan multi-voltase." }
+    ]},
+    "news_section": { "tag": "Berita Industri", "title": "Wawasan & Tren", "desc": "Tetap terdepan dengan berita terbaru teknologi pengisian nirkabel, tren pasar, dan berita ekosistem aksesori magnetik.", "all_news": "Semua Artikel", "read_more": "Baca Selengkapnya →" },
+    "cta_section": { "b2b_label": "Untuk Pengecer & Distributor", "b2b_title": "Berkembang Bersama VIEMAG", "b2b_desc": "Akses katalog perdagangan lengkap kami, minta sampel, dan bangun lini aksesori magnetik Anda. Kami bekerja dengan distributor di seluruh Taiwan, Vietnam, dan Asia Tenggara.", "b2b_cta": "Kirim Permintaan Kemitraan", "consumer_label": "Untuk Konsumen", "consumer_title": "Temukan VIEMAG di Dekat Anda", "consumer_desc": "Produk VIEMAG tersedia di platform e-commerce utama dan mitra ritel di seluruh Asia.", "consumer_cta": "Beli Sekarang" },
+    "footer": { "desc": "Merek ekosistem magnetik lintas skenario. Kompatibel dengan MagSafe & Qi2. Dirancang untuk setiap momen kehidupan Anda.", "col_products": "Produk", "col_company": "Perusahaan", "col_support": "Dukungan", "links_products": ["Pengisian Meja Kerja", "Magnetik Otomotif", "Daya Portabel", "Dudukan & Tampilan", "Ekosistem Aksesori"], "links_company": ["Kisah Merek", "Berita Industri", "Program Mitra", "Hubungi Kami"], "links_support": ["Tempat Beli", "FAQ", "Garansi", "Kompatibilitas"], "copyright": "© 2026 VIEMAG 唯美格. Semua hak dilindungi.", "made_by": "Didukung oleh COMART Corporation" },
+    "brand_page": { "tag": "Kisah Merek", "title": "Kami Percaya pada\nKoneksi Magnetik", "subtitle": "Lahir dari wawasan bahwa teknologi hebat harus melebur dalam kehidupan sehari-hari — VIEMAG menjadikan magnetik sebagai tindakan default untuk setiap momen.", "mission_tag": "Misi Kami", "mission_title": "Koneksi Magnetik\nuntuk Setiap Momen", "mission_desc": "VIEMAG didirikan atas satu keyakinan: bahwa gesekan antara manusia dan perangkat mereka harus nol. Teknologi pengisian magnetik — yang disempurnakan melalui MagSafe dan standar Qi2 — memberi kami fondasi. Kami membangun ekosistem di sekitarnya.", "mission_desc2": "Dari saat Anda bangun hingga tiba di tujuan, produk VIEMAG dirancang untuk sudah ada di sana — terisi penuh, terpasang, siap digunakan. Tidak ada kabel yang kusut. Tidak perlu mencari adaptor yang tepat. Cukup magnetik, koneksi instan.", "values_tag": "Nilai Inti", "values_title": "Empat Prinsip\nyang Menggerakkan Segalanya",
+      "values": [
+        { "icon": "⚡", "num": "01", "title": "Presisi Magnetik", "desc": "Setiap produk direkayasa sesuai spesifikasi MagSafe dan Qi2 yang tepat. Penyelarasan presisi, efisiensi maksimal, tanpa kompromi." },
+        { "icon": "🎨", "num": "02", "title": "Estetika & Fungsi", "desc": "Kami merancang produk yang terlihat sebaik kinerjanya. Material, finishing, dan bentuk dipilih untuk meningkatkan ruang Anda, bukan mengacaukannya." },
+        { "icon": "🔗", "num": "03", "title": "Pemikiran Ekosistem", "desc": "Tidak ada produk yang dirancang secara terpisah. Setiap item VIEMAG cocok dalam ekosistem yang lebih besar — lima kategori, enam skenario, satu pengalaman yang kohesif." },
+        { "icon": "🌱", "num": "04", "title": "Premium Berkelanjutan", "desc": "Premium bukan hanya tentang harga. Ini tentang material yang tahan lama, manufaktur yang menghormati lingkungan, dan produk yang Anda simpan." }
+      ],
+      "compat_tag": "Standar Teknologi", "compat_title": "Dibangun di Atas Standar Terbuka,\nTerbuka untuk Setiap Perangkat", "compat_desc": "Seluruh lini produk VIEMAG dibangun di sekitar standar pengisian nirkabel Qi2 terbuka — teknologi penyelarasan magnetik yang sama dengan MagSafe. Ini berarti VIEMAG bekerja dengan iPhone, perangkat Android dengan dukungan Qi2, dan aksesori apa pun yang kompatibel dengan MagSafe.",
+      "timeline_tag": "Peta Jalan", "timeline_title": "Perjalanan VIEMAG",
+      "timeline": [
+        { "year": "2025 Q4", "title": "Pendirian Merek", "desc": "VIEMAG 唯美格 didirikan sebagai merek ekosistem magnetik mandiri di bawah COMART Corporation." },
+        { "year": "2026 Q1", "title": "Arsitektur Produk", "desc": "Lima ekosistem didefinisikan, 75 SKU dipetakan, dan 13 produk peluncuran dipilih untuk debut pasar." },
+        { "year": "2026 Q3", "title": "Peluncuran Pasar", "desc": "Gelombang pertama 13 SKU unggulan diluncurkan di Taiwan dan Vietnam, mencakup skenario perjalanan, kantor, dan perjalanan bisnis." },
+        { "year": "2027", "title": "Ekosistem Penuh", "desc": "Lineup lengkap 75 SKU tersedia di seluruh Asia-Pasifik, dengan jaringan distribusi B2B yang diperluas." }
+      ]
+    },
+    "products_page": { "tag": "Lini Produk", "title": "Ekosistem Magnetik\nyang Lengkap", "desc": "Lima kategori produk. Enam skenario kehidupan. 75 SKU direncanakan untuk diluncurkan. Telusuri lini produk VIEMAG lengkap.", "explore_cat": "Jelajahi Kategori", "all_skus": "Semua SKU", "view_sku": "Lihat Produk" },
+    "news_page": { "tag": "Berita Industri", "title": "Wawasan, Tren\n& Laporan Industri", "desc": "Terbaru tentang teknologi pengisian nirkabel, analisis pasar, dan berita ekosistem aksesori magnetik.", "featured": "Artikel Unggulan", "latest": "Artikel Terbaru", "categories": ["Semua", "Teknologi", "Pasar", "Produk", "Industri"] },
+    "contact_page": { "tag": "Hubungi Kami", "b2b_title": "Permintaan Kemitraan & Perdagangan", "b2b_desc": "Tertarik membawa produk VIEMAG? Isi formulir di bawah dan tim kami akan menghubungi dalam 2 hari kerja.", "form_name": "Nama Lengkap", "form_company": "Nama Perusahaan", "form_email": "Email Bisnis", "form_country": "Negara / Wilayah", "form_type": "Jenis Permintaan", "form_type_opts": ["Distribusi Ritel", "Marketplace Online", "Pengadaan Korporat", "Permintaan OEM/ODM", "Lainnya"], "form_message": "Ceritakan kebutuhan Anda", "form_submit": "Kirim Permintaan", "form_note": "Dengan mengirimkan, Anda setuju dengan Kebijakan Privasi kami.", "info_title": "Informasi Kontak", "consumer_title": "Pembelian Konsumen", "consumer_desc": "Temukan produk VIEMAG di platform utama", "social_title": "Ikuti VIEMAG" }
+  },
+
+  "zh-hans": {
+    "nav": { "home": "首页", "brand": "品牌故事", "products": "产品线", "news": "行业资讯", "contact": "联系我们", "cta_trade": "商业合作", "cta_buy": "购买渠道" },
+    "hero": { "badge": "兼容 MagSafe 与 Qi2 认证生态系", "title_line1": "让磁吸成为", "title_line2": "生活的默认。", "subtitle": "跨场景磁吸生态品牌，从桌面到车内，从晨起到入眠，无缝磁吸连接你的每一刻。", "cta_trade": "合作洽询", "cta_buy": "立即购买", "scroll": "向下滚动" },
+    "stats": { "label1": "产品生态系", "label2": "生活场景", "label3": "规划 SKU 数", "label4": "无线充电标准" },
+    "cats_section": { "tag": "产品生态", "title": "五大生态系，\n一个磁吸生活", "desc": "每一件 VIEMAG 产品都属于更大的生态系，设计上彼此协同，无缝贯穿你一整天的生活场景。", "explore": "探索", "skus": "款 SKU" },
+    "cats": {
+      "A": { "code": "CAT-A", "name": "桌面充电生态", "desc": "从单机充电器到多合一充电底座，为你的设备提供完整的桌面充电解决方案。", "skus": "15+" },
+      "B": { "code": "CAT-B", "name": "车用磁吸生态", "desc": "出风口支架、仪表板系统、摩托车支架，每一段旅程都双手无拘。", "skus": "15+" },
+      "C": { "code": "CAT-C", "name": "随身行动生态", "desc": "磁吸移动电源、旅行充电器、GaN 插头，无论走到哪里电力都在。", "skus": "12+" },
+      "D": { "code": "CAT-D", "name": "立架影音生态", "desc": "桌面立架、床头显示、视频直播支架，永远保持最完美的观看角度。", "skus": "13+" },
+      "E": { "code": "CAT-E", "name": "扩充配件生态", "desc": "磁吸转接环、手机壳、握把、卡套、创作模块，全面扩展你的设备可能。", "skus": "14+" }
+    },
+    "scenarios_section": { "tag": "生活场景", "title": "六大场景，\n无缝连接", "desc": "VIEMAG 产品围绕你真实的生活片段而设计，不是依照商品分类，而是依照你的一天。" },
+    "scenarios": {
+      "S1": { "name": "晨起·梳妆", "icon": "☀️", "cats": "CAT-A, CAT-E" },
+      "S2": { "name": "通勤·行动", "icon": "🚗", "cats": "CAT-B, CAT-C" },
+      "S3": { "name": "工作·办公", "icon": "💼", "cats": "CAT-A, CAT-D" },
+      "S4": { "name": "居家·休憩", "icon": "🏠", "cats": "CAT-A, CAT-D" },
+      "S5": { "name": "差旅·出差", "icon": "✈️", "cats": "CAT-C, CAT-E" },
+      "S6": { "name": "户外·创作", "icon": "📸", "cats": "CAT-D, CAT-E" }
+    },
+    "why_section": { "tag": "为什么选择 VIEMAG", "title": "建立在标准之上，\n设计为生活所用。", "features": [
+      { "icon": "🧲", "title": "Qi2 & MagSafe 认证", "desc": "每一款充电器皆符合最新 Qi2 与 MagSafe 规格，保证跨设备兼容性。" },
+      { "icon": "🎨", "title": "美学功能性", "desc": "设计让你的空间更美好，而非增加负担——材质的选择兼顾外观与手感。" },
+      { "icon": "🔗", "title": "生态系思维", "desc": "产品设计彼此协同。在五大生态系之间自由搭配，完美兼容。" },
+      { "icon": "🌏", "title": "全球渠道布局", "desc": "根植台湾，扩展东南亚与国际市场，支持多国电压规格。" }
+    ]},
+    "news_section": { "tag": "行业资讯", "title": "洞察与趋势", "desc": "掌握无线充电技术最新动态、市场趋势与磁吸生态行业报道。", "all_news": "所有文章", "read_more": "阅读更多 →" },
+    "cta_section": { "b2b_label": "零售商 / 渠道商", "b2b_title": "与 VIEMAG 共同成长", "b2b_desc": "获取完整贸易目录、申请样品，并建立你的磁吸配件产品线。我们与台湾、越南及东南亚各地的渠道商合作。", "b2b_cta": "提交合作洽询", "consumer_label": "消费者", "consumer_title": "在各大渠道找到 VIEMAG", "consumer_desc": "VIEMAG 产品在亚洲主要电商平台及零售渠道均有销售。", "consumer_cta": "立即选购" },
+    "footer": { "desc": "跨场景磁吸生态品牌。兼容 MagSafe 与 Qi2。为你生活每一刻而设计。", "col_products": "产品", "col_company": "品牌", "col_support": "服务", "links_products": ["桌面充电生态", "车用磁吸生态", "随身行动生态", "立架影音生态", "扩充配件生态"], "links_company": ["品牌故事", "行业资讯", "合作伙伴计划", "联系我们"], "links_support": ["购买渠道", "常见问题", "保修说明", "兼容性查询"], "copyright": "© 2026 VIEMAG 唯美格。保留所有权利。", "made_by": "Powered by COMART Corporation" },
+    "brand_page": { "tag": "品牌故事", "title": "我们相信\n磁吸的连接力量", "subtitle": "源于一个洞察：伟大的科技应该无缝融入日常生活——VIEMAG 让磁吸成为每一刻的默认动作。", "mission_tag": "品牌使命", "mission_title": "磁吸连接，\n贯穿每一个当下", "mission_desc": "VIEMAG 诞生于一个核心信念：人与设备之间的摩擦应该为零。MagSafe 与 Qi2 标准为我们提供了技术基础，我们在其上建立了完整的生态系。", "mission_desc2": "从你清晨醒来到抵达目的地的每一刻，VIEMAG 的产品就已就位——充电完毕、固定好位、随时可用。不再需要解开缠绕的线材，不再寻找正确的接头。只要磁吸，即刻连接。", "values_tag": "核心价值", "values_title": "四大原则，\n驱动所有决策",
+      "values": [
+        { "icon": "⚡", "num": "01", "title": "磁吸精准性", "desc": "每款产品皆严格符合 MagSafe 与 Qi2 规格。精准对位，最大效率，零妥协。" },
+        { "icon": "🎨", "num": "02", "title": "美学功能性", "desc": "我们设计的产品，外观与性能同样出色。材质、表面处理与造型，都为了让你的空间更美好。" },
+        { "icon": "🔗", "num": "03", "title": "生态系思维", "desc": "没有任何产品是孤立设计的。每一件 VIEMAG 商品都融入更大的生态系——五大品类、六大场景、一个完整体验。" },
+        { "icon": "🌱", "num": "04", "title": "可持续精品主义", "desc": "高端不只是价格，而是耐用的材质、负责任的制造过程，以及你愿意长久保留的产品。" }
+      ],
+      "compat_tag": "技术标准", "compat_title": "基于开放标准，\n兼容所有设备", "compat_desc": "VIEMAG 全系列产品建立在开放的 Qi2 无线充电标准之上——这是与 MagSafe 相同的磁吸对位技术。这意味着 VIEMAG 适用于 iPhone、支持 Qi2 的 Android 设备，以及所有 MagSafe 兼容配件。",
+      "timeline_tag": "品牌蓝图", "timeline_title": "VIEMAG 的旅程",
+      "timeline": [
+        { "year": "2025 Q4", "title": "品牌创立", "desc": "VIEMAG 唯美格在 COMART Corporation 旗下，作为独立磁吸生态品牌正式成立。" },
+        { "year": "2026 Q1", "title": "产品架构确立", "desc": "五大生态系确定，75 个 SKU 完成规划，13 款首波明星商品入选市场发布。" },
+        { "year": "2026 Q3", "title": "正式上市", "desc": "首波 13 款明星 SKU 于台湾与越南市场上市，涵盖通勤、办公与差旅三大主场景。" },
+        { "year": "2027", "title": "全生态系完整上线", "desc": "75 款完整 SKU 在亚太地区全面上市，并扩展 B2B 渠道网络。" }
+      ]
+    },
+    "products_page": { "tag": "产品系列", "title": "完整的\n磁吸生态系", "desc": "五大产品品类，六大生活场景，75 款规划 SKU 即将上市。浏览完整 VIEMAG 产品系列。", "explore_cat": "探索品类", "all_skus": "所有 SKU", "view_sku": "查看产品" },
+    "news_page": { "tag": "行业资讯", "title": "洞察、趋势\n与行业报道", "desc": "无线充电技术最新动态、市场分析与磁吸配件生态行业资讯。", "featured": "精选文章", "latest": "最新文章", "categories": ["全部", "技术", "市场", "产品", "行业"] },
+    "contact_page": { "tag": "联系我们", "b2b_title": "贸易与合作洽询", "b2b_desc": "有兴趣代理 VIEMAG 产品吗？填写以下表单，我们的团队将在 2 个工作日内与你联系。", "form_name": "姓名", "form_company": "公司名称", "form_email": "商务电子邮件", "form_country": "国家 / 地区", "form_type": "洽询类型", "form_type_opts": ["零售渠道代理", "线上电商平台", "企业采购", "OEM/ODM 合作", "其他"], "form_message": "请说明您的需求", "form_submit": "发送洽询", "form_note": "提交即表示您同意我们的隐私政策。", "info_title": "联系信息", "consumer_title": "消费者购买", "consumer_desc": "在各大平台找到 VIEMAG 产品", "social_title": "关注 VIEMAG" }
   }
 };

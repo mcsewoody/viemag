@@ -5,7 +5,7 @@
    ============================================================ */
 
 const I18N = (() => {
-  const LANGS = ['en', 'zh', 'vi'];
+  const LANGS = ['en', 'vi', 'id', 'zh-hans', 'zh'];
   let currentLang = 'en';
   let currentData = {};
 
@@ -32,7 +32,8 @@ const I18N = (() => {
       const v = get(el.dataset.i18nPlaceholder);
       if (typeof v === 'string') el.placeholder = v;
     });
-    document.documentElement.lang = currentLang === 'zh' ? 'zh-TW' : currentLang;
+    const langAttr = currentLang === 'zh' ? 'zh-TW' : currentLang === 'zh-hans' ? 'zh-CN' : currentLang;
+    document.documentElement.lang = langAttr;
   }
 
   function updateUI() {
