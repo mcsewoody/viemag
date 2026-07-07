@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About VIEMAG</title>
+  <meta name="description" content="VIEMAG — Value . Innovation . Excellence. The story behind the magnetic accessory brand.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="about.title"></h1>
+      <p data-i18n="about.sub"></p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container" style="max-width:780px">
+      <p style="font-size:1.06rem;margin-bottom:20px" data-i18n="about.story1"></p>
+      <p style="font-size:1.06rem;color:var(--muted);margin-bottom:20px" data-i18n="about.story2"></p>
+      <p style="font-size:1.06rem;color:var(--muted)" data-i18n="about.story3"></p>
+    </div>
+  </section>
+
+  <!-- V.I.E.MAG letters -->
+  <section class="section">
+    <div class="container">
+      <div class="persona-grid" id="viemagGrid"></div>
+    </div>
+  </section>
+
+  <!-- tagline band -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="dealer-cta" style="justify-content:center;text-align:center">
+        <div>
+          <h2 style="letter-spacing:.04em">VIEMAG</h2>
+          <p style="max-width:none;font-size:1.05rem;color:var(--copper)">Value . Innovation . Excellence.</p>
+          <p style="max-width:none;color:rgba(255,255,255,.65);margin-top:6px">Giá trị . Đổi mới . Xuất sắc</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+window.renderPage = function ({ t }) {
+  const letters = [
+    ['V', 'Value', 'about.v'],
+    ['I', 'Innovation', 'about.i'],
+    ['E', 'Excellence', 'about.e'],
+    ['MAG', 'Magnetic', 'about.m']
+  ];
+  document.getElementById('viemagGrid').innerHTML = letters.map(([l, en, key]) => `
+    <div class="persona-card center" style="align-items:center">
+      <div class="avatar" style="background:var(--navy);color:var(--copper);font-weight:800;font-size:${l.length > 1 ? '.9rem' : '1.4rem'}">${l}</div>
+      <h3>${en}</h3>
+      <p>${t(key)}</p>
+    </div>`).join('');
+};
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

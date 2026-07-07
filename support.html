@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support & Warranty — VIEMAG</title>
+  <meta name="description" content="VIEMAG warranty policy: 12-month warranty, 14-day defect exchange, Vietnamese-language support. FAQ on installation, compatibility and charging.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="support">
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="support.title"></h1>
+      <p data-i18n="support.sub"></p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container grid-2">
+      <div>
+        <h2 class="section-title" style="font-size:1.3rem;margin-bottom:16px" data-i18n="support.policy"></h2>
+        <ul class="bullet-list" id="policyList"></ul>
+      </div>
+      <div class="trust-strip" style="grid-template-columns:1fr" id="supportTrust"></div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head center">
+        <h2 class="section-title" data-i18n="support.faq"></h2>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+window.renderPage = function ({ t, icon, faqItem }) {
+  const DB = window.DB;
+  document.getElementById('policyList').innerHTML = [1, 2, 3, 4, 5].map((i) =>
+    `<li>${icon('check')}<span>${t('support.p' + i)}</span></li>`).join('');
+  document.getElementById('supportTrust').innerHTML = [
+    ['shield', 1], ['swap', 2], ['chat', 3]
+  ].map(([ic, i]) => `
+    <div class="trust-item">${icon(ic)}<div><b>${t('trust.' + i + '.t')}</b><span>${t('trust.' + i + '.d')}</span></div></div>`).join('');
+  document.getElementById('faqList').innerHTML = DB.faqs.map(faqItem).join('');
+};
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

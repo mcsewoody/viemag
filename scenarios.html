@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scenarios — VIEMAG</title>
+  <meta name="description" content="Six life scenarios, one magnetic system: driving, desk work, travel, morning, home, outdoor creation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="scenarios">
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="scenarios.title"></h1>
+      <p data-i18n="scenarios.sub"></p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container" id="scnRows"></div>
+  </section>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+window.renderPage = function ({ t, tf, icon, esc, prodBySku }) {
+  const DB = window.DB;
+  document.getElementById('scnRows').innerHTML = DB.scenarios.map((s) => {
+    const combo = (s.combo || []).map(prodBySku).filter(Boolean)
+      .map((p) => `<a class="chip" href="product.html?sku=${encodeURIComponent(p.sku)}">${esc(tf(p.name))}</a>`).join(' ');
+    return `
+    <article class="scn-row reveal" id="${s.id}">
+      <div class="art">${icon(s.icon)}</div>
+      <div>
+        <div class="scn-code">${s.code} · ${t('scns.tag.' + s.status)}</div>
+        <h2>${esc(tf(s.name))}</h2>
+        <p>${esc(tf(s.desc))}</p>
+        ${combo ? `<p class="filter-label" style="margin-bottom:8px">${t('scns.combo')}</p><div class="combo">${combo}</div>` : ''}
+        <a class="btn btn-ghost btn-sm" href="products.html?scn=${s.code}">${t('cta.explore')}</a>
+      </div>
+    </article>`;
+  }).join('');
+};
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

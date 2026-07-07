@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Dealers — VIEMAG</title>
+  <meta name="description" content="Become a VIEMAG dealer or distributor in Vietnam: complete product line, price discipline, after-sales backing, low entry threshold.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dealers">
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="dealers.title"></h1>
+      <p data-i18n="dealers.sub"></p>
+      <p style="margin-top:14px;font-size:.82rem;letter-spacing:.08em;color:var(--copper-strong);font-weight:700">VIEMAG — Where Aesthetics Carry Technology.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="section-head"><h2 class="section-title" data-i18n="dealers.why.title"></h2></div>
+      <div class="trust-strip" id="whyGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--ivory)">
+    <div class="container" style="max-width:860px">
+      <div class="form-card">
+        <h2 class="section-title" style="font-size:1.3rem;margin-bottom:24px" data-i18n="dealers.form.title"></h2>
+        <!-- Fields mirror Notion: Dealer Leads. Submission posts to DB.config.dealerEndpoint
+             (webhook that writes into Notion); demo mode shows success locally. -->
+        <form id="dealerForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-company"><span data-i18n="dealers.form.company"></span> <span class="req">*</span></label>
+              <input id="f-company" name="company" type="text" required autocomplete="organization">
+              <p class="error-msg" data-i18n="dealers.form.required"></p>
+            </div>
+            <div class="field">
+              <label for="f-contact"><span data-i18n="dealers.form.contact"></span> <span class="req">*</span></label>
+              <input id="f-contact" name="contact" type="text" required autocomplete="name">
+              <p class="error-msg" data-i18n="dealers.form.required"></p>
+            </div>
+            <div class="field">
+              <label for="f-email"><span data-i18n="dealers.form.email"></span> <span class="req">*</span></label>
+              <input id="f-email" name="email" type="email" required autocomplete="email">
+              <p class="error-msg" data-i18n="dealers.form.required"></p>
+            </div>
+            <div class="field">
+              <label for="f-phone"><span data-i18n="dealers.form.phone"></span> <span class="req">*</span></label>
+              <input id="f-phone" name="phone" type="tel" required autocomplete="tel">
+              <p class="error-msg" data-i18n="dealers.form.required"></p>
+            </div>
+            <div class="field">
+              <label for="f-city" data-i18n="dealers.form.city"></label>
+              <input id="f-city" name="city" type="text" autocomplete="address-level2">
+            </div>
+            <div class="field">
+              <label for="f-channel" data-i18n="dealers.form.channel"></label>
+              <select id="f-channel" name="channel">
+                <option value="retail" data-i18n="dealers.form.channel.retail"></option>
+                <option value="online" data-i18n="dealers.form.channel.online"></option>
+                <option value="distributor" data-i18n="dealers.form.channel.dist"></option>
+                <option value="car" data-i18n="dealers.form.channel.car"></option>
+                <option value="mobile" data-i18n="dealers.form.channel.mobile"></option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-brands" data-i18n="dealers.form.brands"></label>
+              <input id="f-brands" name="brands" type="text">
+            </div>
+            <div class="field">
+              <label for="f-volume" data-i18n="dealers.form.volume"></label>
+              <input id="f-volume" name="volume" type="number" min="0" inputmode="numeric">
+            </div>
+            <div class="field full">
+              <label for="f-notes" data-i18n="dealers.form.notes"></label>
+              <textarea id="f-notes" name="notes"></textarea>
+            </div>
+            <div class="full check-row">
+              <input id="f-minimum" name="minimum" type="checkbox">
+              <label for="f-minimum" style="margin:0;font-weight:500" data-i18n="dealers.form.minimum"></label>
+            </div>
+            <div class="full">
+              <button type="submit" class="btn btn-primary" id="dealerSubmit" data-i18n="dealers.form.submit"></button>
+            </div>
+          </div>
+          <div class="form-success" id="formSuccess" role="status" data-i18n="dealers.form.success"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+window.renderPage = function ({ t, icon }) {
+  const DB = window.DB;
+  document.getElementById('whyGrid').innerHTML = [
+    ['box', 1], ['shield', 2], ['check', 3], ['arrow', 4]
+  ].map(([ic, i]) => `
+    <div class="trust-item">${icon(ic)}<div><b>${t('dealers.w' + i + '.t')}</b><span>${t('dealers.w' + i + '.d')}</span></div></div>`).join('');
+
+  const form = document.getElementById('dealerForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let valid = true;
+    form.querySelectorAll('input[required]').forEach((inp) => {
+      const field = inp.closest('.field');
+      const ok = inp.value.trim() !== '' && inp.checkValidity();
+      field.classList.toggle('invalid', !ok);
+      if (!ok) valid = false;
+    });
+    if (!valid) { form.querySelector('.field.invalid input')?.focus(); return; }
+
+    const btn = document.getElementById('dealerSubmit');
+    btn.disabled = true;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    payload.minimum = form.querySelector('#f-minimum').checked;
+    payload.lang = window.VIEMAG.lang;
+    try {
+      if (DB.config.dealerEndpoint) {
+        await fetch(DB.config.dealerEndpoint, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+      /* demo mode: no endpoint configured — still confirm locally */
+      document.getElementById('formSuccess').style.display = 'block';
+      form.querySelectorAll('input,select,textarea,button').forEach((el) => el.disabled = true);
+    } catch (err) {
+      btn.disabled = false;
+    }
+  });
+};
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

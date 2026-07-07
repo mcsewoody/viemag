@@ -1,67 +1,543 @@
 /* ============================================================
-   VIEMAG i18n — Internationalization Engine
-   Uses window.VIEMAG_TRANSLATIONS (no fetch needed)
-   Supported: en | zh | vi
+   VIEMAG i18n — UI copy dictionaries (vi default → en → zh)
+   Product/scenario/persona/FAQ strings live in js/data.js.
    ============================================================ */
+window.I18N_DICT = {
 
-const I18N = (() => {
-  const LANGS = ['en', 'vi', 'id', 'zh-hans', 'zh'];
-  let currentLang = 'en';
-  let currentData = {};
+  vi: {
+    'meta.title': 'VIEMAG — Phụ kiện nam châm cho lái xe & bàn làm việc',
+    'nav.products': 'Sản phẩm',
+    'nav.scenarios': 'Tình huống',
+    'nav.why': 'Vì sao VIEMAG',
+    'nav.support': 'Hỗ trợ',
+    'nav.dealers': 'Đại lý',
+    'nav.about': 'Về VIEMAG',
+    'cta.shopee': 'Mua trên Shopee',
+    'cta.explore': 'Xem sản phẩm',
+    'cta.dealer': 'Trở thành đại lý',
+    'cta.viewAll': 'Xem tất cả sản phẩm',
+    'cta.view': 'Xem chi tiết',
+    'cta.learnMore': 'Tìm hiểu thêm',
+    'cta.contact': 'Liên hệ hỗ trợ',
 
-  function getData(lang) {
-    return (window.VIEMAG_TRANSLATIONS || {})[lang] || {};
+    'hero.eyebrow': 'Hệ phụ kiện nam châm — lái xe & làm việc',
+    'hero.h1a': 'Lên xe, một chạm ',
+    'hero.h1em': 'hút chắc',
+    'hero.h1b': ' — dẫn đường không lo rơi.',
+    'hero.sub': 'VIEMAG là hệ phụ kiện nam châm cho người lái xe mỗi ngày và làm việc bên bàn: giữ chắc hơn, ít nóng hơn, bền hơn so với hàng trôi nổi.',
+    'hero.trust1': 'Bảo hành 12 tháng',
+    'hero.trust2': 'Lỗi 1 đổi 1 trong 14 ngày',
+    'hero.trust3': 'CSKH tiếng Việt',
+
+    'pains.kicker': 'Vấn đề quen thuộc',
+    'pains.title': 'Ba nỗi khổ của giá đỡ trôi nổi',
+    'pains.lede': 'Chúng tôi thiết kế VIEMAG từ chính những phàn nàn phổ biến nhất về phụ kiện không thương hiệu.',
+    'pains.1.title': 'Rơi máy',
+    'pains.1.desc': 'Qua ổ gà hoặc phanh gấp là điện thoại rơi xuống sàn xe.',
+    'pains.1.fix': 'Nam châm N52 + kiểm tra rung xóc theo tình huống lái thật.',
+    'pains.2.title': 'Nóng máy',
+    'pains.2.desc': 'Sạc không dây kém chất lượng làm máy nóng, sạc chậm dần rồi ngắt.',
+    'pains.2.fix': 'Kiểm tra tăng nhiệt từng mẫu, bản 25W có quạt tản nhiệt chủ động.',
+    'pains.3.title': 'Mau lỏng',
+    'pains.3.desc': 'Khớp xoay lỏng dần sau vài tháng, góc nhìn không giữ được.',
+    'pains.3.fix': 'Kiểm tra tuổi thọ khớp và hàng nghìn chu kỳ hút – nhả.',
+
+    'cats.kicker': 'Năm dòng sản phẩm',
+    'cats.title': 'Một hệ nam châm cho mọi bối cảnh',
+    'cats.lede': 'Từ xe hơi đến bàn làm việc — các dòng sản phẩm dùng chung một chuẩn nam châm, mua một lần dùng cả hệ.',
+    'cats.count': 'sản phẩm',
+    'cats.soon': 'Sắp ra mắt',
+
+    'scns.kicker': 'Sáu tình huống sử dụng',
+    'scns.title': 'Thiết kế theo nhịp sống của bạn',
+    'scns.lede': 'Không bán theo thông số — VIEMAG quy hoạch sản phẩm theo sáu tình huống mỗi ngày.',
+    'scns.tag.primary': 'Chủ lực',
+    'scns.tag.secondary': 'Trọng tâm',
+    'scns.tag.supporting': 'Bổ trợ',
+    'scns.tag.future': 'Đang mở rộng',
+    'scns.combo': 'Bộ gợi ý',
+
+    'feat.kicker': 'Bán chạy',
+    'feat.title': 'Sản phẩm nổi bật',
+    'feat.lede': 'Những mẫu được người dùng đánh giá cao nhất trong hệ VIEMAG.',
+
+    'proof.title': 'Chất lượng có kiểm chứng, không phải lời quảng cáo',
+    'proof.desc': 'Mỗi sản phẩm VIEMAG xuất xưởng đều đi qua bốn nhóm kiểm tra. Báo cáo kiểm tra của từng mẫu sẽ được công bố tại trang này khi sản phẩm lên kệ.',
+    'proof.note': 'VIEMAG tương thích các phụ kiện chuẩn MagSafe và được thiết kế theo chuẩn Qi2. MagSafe là thương hiệu của Apple Inc.; Qi2 là thương hiệu của Wireless Power Consortium.',
+    'proof.cta': 'Xem quy trình kiểm tra',
+
+    'personas.kicker': 'Bạn là ai trong bốn người này?',
+    'personas.title': 'Thiết kế cho bốn kiểu người dùng',
+    'personas.lede': 'Mỗi dòng sản phẩm VIEMAG bắt đầu từ một chân dung người dùng cụ thể, không phải từ bảng thông số.',
+    'personas.picks': 'Dòng phù hợp:',
+
+    'trust.title': 'Cam kết sau bán hàng',
+    'trust.1.t': 'Bảo hành 12 tháng',
+    'trust.1.d': 'Lỗi vật liệu và sản xuất trong sử dụng bình thường.',
+    'trust.2.t': 'Lỗi 1 đổi 1 trong 14 ngày',
+    'trust.2.d': 'Hàng lỗi khi nhận — đổi mới, không sửa chữa.',
+    'trust.3.t': 'CSKH tiếng Việt',
+    'trust.3.d': 'Hỗ trợ lắp đặt và bảo hành bằng tiếng Việt.',
+    'trust.4.t': 'Hướng dẫn lắp đặt',
+    'trust.4.d': 'Ảnh và video hướng dẫn cho từng kiểu lắp.',
+
+    'dealer.title': 'Tìm đối tác phân phối tại Việt Nam',
+    'dealer.desc': 'VIEMAG đang mở rộng hệ thống đại lý toàn quốc: dòng sản phẩm rõ ràng, chính sách giá kỷ luật, hỗ trợ hậu mãi và dữ liệu bán hàng minh bạch.',
+    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+
+    'products.title': 'Tất cả sản phẩm',
+    'products.sub': 'Lọc theo dòng sản phẩm hoặc tình huống sử dụng.',
+    'filter.byCat': 'Dòng sản phẩm',
+    'filter.byScn': 'Tình huống',
+    'filter.all': 'Tất cả',
+    'products.empty': 'Chưa có sản phẩm trong nhóm này — hệ sản phẩm đang mở rộng.',
+
+    'pdp.scenarios': 'Tình huống phù hợp',
+    'pdp.highlights': 'Điểm nổi bật',
+    'pdp.evidence': 'Kiểm chứng chất lượng',
+    'pdp.evidenceNote': 'Báo cáo chi tiết của mẫu này sẽ hiển thị tại đây sau khi được phê duyệt công bố.',
+    'pdp.compat': 'Tương thích',
+    'pdp.compatText': 'iPhone và điện thoại Android; máy không có nam châm dùng kèm vòng chuyển đổi hoặc ốp nam châm VIEMAG.',
+    'pdp.specs': 'Thông số',
+    'pdp.spec.watt': 'Công suất sạc',
+    'pdp.spec.mount': 'Kiểu lắp đặt',
+    'pdp.spec.qi': 'Chuẩn sạc không dây',
+    'pdp.spec.sku': 'Mã sản phẩm',
+    'pdp.warranty': 'Bảo hành 12 tháng · Lỗi 1 đổi 1 trong 14 ngày',
+    'pdp.related': 'Sản phẩm cùng tình huống',
+    'pdp.askDealer': 'Hỏi giá đại lý',
+    'pdp.notFound': 'Không tìm thấy sản phẩm.',
+    'qi.none': 'Không sạc',
+    'qi.compatible': 'Thiết kế theo chuẩn Qi2',
+    'qi.testing': 'Thiết kế theo chuẩn Qi2.2 (đang kiểm định)',
+    'qi.certified': 'Chứng nhận Qi2',
+    'mount.vent': 'Cửa gió', 'mount.dashboard': 'Táp-lô', 'mount.suction': 'Đế hút',
+    'mount.tape': 'Dán 3M', 'mount.screen': 'Kẹp màn hình', 'mount.desktop': 'Để bàn',
+
+    'why.title': 'Vì sao chọn VIEMAG?',
+    'why.sub': 'Giữa hàng trôi nổi giá rẻ và thương hiệu cao cấp đắt đỏ, VIEMAG chọn đứng ở nơi hợp lý: chất lượng kiểm chứng được, mức giá chạm tới được.',
+    'why.claims.title': 'Ba lời hứa — ba nhóm bằng chứng',
+    'why.c1.t': 'Chắc hơn', 'why.c1.d': 'Nam châm N52, kiểm tra lực hút đa hướng và rung xóc theo tình huống lái thật.',
+    'why.c2.t': 'Mát hơn', 'why.c2.d': 'Kiểm tra tăng nhiệt từng mẫu sạc; bản 25W dùng quạt tản nhiệt chủ động.',
+    'why.c3.t': 'Bền hơn', 'why.c3.d': 'Hàng nghìn chu kỳ hút – nhả, kiểm tra tuổi thọ khớp xoay và keo dán.',
+    'why.team.title': 'Đội ngũ đứng sau',
+    'why.team.desc': 'VIEMAG được xây dựng bởi đội ngũ có hơn 30 năm kinh nghiệm thiết kế và sản xuất phụ kiện di động & phụ kiện ô tô cho các thương hiệu quốc tế. Chúng tôi làm chủ từ thiết kế mạch nam châm, khuôn mẫu đến kiểm định chất lượng — và đưa chuẩn mực đó vào từng sản phẩm VIEMAG.',
+
+    'support.title': 'Hỗ trợ & Bảo hành',
+    'support.sub': 'Chính sách rõ ràng, quy trình đơn giản, hỗ trợ bằng tiếng Việt.',
+    'support.policy': 'Chính sách bảo hành',
+    'support.faq': 'Câu hỏi thường gặp',
+    'support.p1': 'Bảo hành 12 tháng cho lỗi vật liệu và sản xuất.',
+    'support.p2': 'Hàng lỗi khi nhận: đổi mới trong 14 ngày (kèm ảnh/video).',
+    'support.p3': 'Lỗi không do người dùng: xử lý bằng cách đổi sản phẩm.',
+    'support.p4': 'Chi phí đổi trả chia sẻ theo trách nhiệm của mỗi bên.',
+    'support.p5': 'Kênh CSKH tiếng Việt, phản hồi trong giờ làm việc.',
+
+    'dealers.title': 'Hợp tác đại lý & phân phối',
+    'dealers.sub': 'VIEMAG tìm đối tác muốn bán hàng thật — có động lực bán, giữ kỷ luật giá và chăm sóc khách sau bán.',
+    'dealers.why.title': 'Vì sao hợp tác với VIEMAG',
+    'dealers.w1.t': 'Dòng sản phẩm hoàn chỉnh', 'dealers.w1.d': '15 mẫu đầu tiên phủ đủ xe hơi, bàn làm việc và du lịch — không phải hàng lẻ tẻ.',
+    'dealers.w2.t': 'Bằng chứng chất lượng', 'dealers.w2.d': 'Báo cáo kiểm tra và chính sách bảo hành 12 tháng làm vũ khí bán hàng.',
+    'dealers.w3.t': 'Kỷ luật giá', 'dealers.w3.d': 'Giá niêm yết thống nhất, khuyến mãi có sàn — bảo vệ lợi nhuận đại lý.',
+    'dealers.w4.t': 'Ngưỡng khởi đầu thấp', 'dealers.w4.d': 'Đơn hàng đầu từ 1.000 USD hoặc 100 sản phẩm để thử thị trường.',
+    'dealers.form.title': 'Đăng ký trao đổi hợp tác',
+    'dealers.form.company': 'Tên công ty', 'dealers.form.contact': 'Người liên hệ',
+    'dealers.form.email': 'Email', 'dealers.form.phone': 'Điện thoại / Zalo',
+    'dealers.form.city': 'Tỉnh / Thành phố', 'dealers.form.channel': 'Loại kênh bán',
+    'dealers.form.channel.retail': 'Cửa hàng bán lẻ', 'dealers.form.channel.online': 'Shopee / TMĐT',
+    'dealers.form.channel.dist': 'Nhà phân phối', 'dealers.form.channel.car': 'Phụ kiện ô tô',
+    'dealers.form.channel.mobile': 'Phụ kiện điện thoại',
+    'dealers.form.brands': 'Các thương hiệu đang kinh doanh',
+    'dealers.form.volume': 'Doanh số dự kiến / tháng (USD)',
+    'dealers.form.minimum': 'Tôi có thể đáp ứng đơn hàng đầu tiên từ 1.000 USD hoặc 100 sản phẩm',
+    'dealers.form.notes': 'Ghi chú',
+    'dealers.form.submit': 'Gửi thông tin',
+    'dealers.form.success': 'Đã nhận thông tin. Đội ngũ VIEMAG sẽ liên hệ trong 2 ngày làm việc.',
+    'dealers.form.required': 'Vui lòng điền mục này.',
+
+    'about.title': 'Về VIEMAG',
+    'about.sub': 'Value . Innovation . Excellence — và MAG là lời hứa nam châm.',
+    'about.story1': 'VIEMAG ra đời từ một quan sát đơn giản: điện thoại là vật được cầm lên – đặt xuống nhiều nhất trong ngày, nhưng đa số phụ kiện giữ nó lại làm điều đó một cách cẩu thả. Rơi khi phanh gấp, nóng khi sạc, lỏng dần sau vài tháng.',
+    'about.story2': 'Chúng tôi tin phụ kiện tốt phải được thiết kế như sản phẩm công nghiệp: có tiêu chuẩn, có kiểm định, có cam kết. Đội ngũ VIEMAG mang hơn 30 năm kinh nghiệm thiết kế – sản xuất phụ kiện di động và ô tô cho thị trường quốc tế vào từng chi tiết: mạch nam châm, khớp xoay, quản lý nhiệt.',
+    'about.story3': 'Tên gọi VIEMAG là bốn lời hứa: Value — giá trị vượt mức giá; Innovation — giải quyết nhu cầu chưa được đáp ứng; Excellence — chuẩn chất lượng công nghiệp; và MAG — Magnetic, cam kết theo đuổi hệ sinh thái nam châm trong thập kỷ tới.',
+    'about.v': 'Giá trị vượt mức giá bạn trả',
+    'about.i': 'Đổi mới từ nhu cầu thật',
+    'about.e': 'Chuẩn chất lượng công nghiệp',
+    'about.m': 'Cam kết hệ sinh thái nam châm',
+
+    'scenarios.title': 'Sáu tình huống, một hệ nam châm',
+    'scenarios.sub': 'Chọn theo cách bạn sống, không theo bảng thông số.',
+
+    'footer.desc': 'Hệ phụ kiện nam châm cho lái xe và bàn làm việc — chắc hơn, mát hơn, bền hơn.',
+    'footer.products': 'Sản phẩm',
+    'footer.support': 'Hỗ trợ',
+    'footer.company': 'Thương hiệu',
+    'footer.warranty': 'Chính sách bảo hành',
+    'footer.faq': 'Câu hỏi thường gặp',
+    'footer.dealer': 'Hợp tác đại lý',
+    'footer.about': 'Về VIEMAG',
+    'footer.trust1': 'Bảo hành 12 tháng',
+    'footer.trust2': 'Lỗi 1 đổi 1 trong 14 ngày',
+    'footer.trust3': 'CSKH tiếng Việt',
+    'footer.legal': 'MagSafe là thương hiệu của Apple Inc. Qi và Qi2 là thương hiệu của Wireless Power Consortium. VIEMAG mô tả khả năng tương thích, không hàm ý chứng nhận khi chưa hoàn tất.',
+    'footer.rights': 'VIEMAG. Bảo lưu mọi quyền.'
+  },
+
+  en: {
+    'meta.title': 'VIEMAG — Magnetic accessories for driving & desk work',
+    'nav.products': 'Products',
+    'nav.scenarios': 'Scenarios',
+    'nav.why': 'Why VIEMAG',
+    'nav.support': 'Support',
+    'nav.dealers': 'For Dealers',
+    'nav.about': 'About',
+    'cta.shopee': 'Shop on Shopee',
+    'cta.explore': 'Explore products',
+    'cta.dealer': 'Become a dealer',
+    'cta.viewAll': 'View all products',
+    'cta.view': 'View details',
+    'cta.learnMore': 'Learn more',
+    'cta.contact': 'Contact support',
+
+    'hero.eyebrow': 'The magnetic system for driving & desk work',
+    'hero.h1a': 'Get in, ',
+    'hero.h1em': 'snap on',
+    'hero.h1b': ' — navigate without drops.',
+    'hero.sub': 'VIEMAG is the magnetic accessory system for daily drivers and desk workers: a firmer hold, cooler charging and longer life than no-name gear.',
+    'hero.trust1': '12-month warranty',
+    'hero.trust2': '14-day defect exchange',
+    'hero.trust3': 'Vietnamese support',
+
+    'pains.kicker': 'Sound familiar?',
+    'pains.title': 'Three ways no-name mounts fail you',
+    'pains.lede': 'VIEMAG was engineered from the most common complaints about generic magnetic gear.',
+    'pains.1.title': 'It drops',
+    'pains.1.desc': 'One pothole or hard brake and the phone is on the floor.',
+    'pains.1.fix': 'N52 magnets + vibration testing against real road profiles.',
+    'pains.2.title': 'It overheats',
+    'pains.2.desc': 'Cheap wireless charging cooks the phone, slows down, then cuts out.',
+    'pains.2.fix': 'Thermal-rise testing on every model; 25W flagship adds active cooling.',
+    'pains.3.title': 'It loosens',
+    'pains.3.desc': 'Joints go soft within months and the viewing angle sags.',
+    'pains.3.fix': 'Hinge-endurance testing and thousands of attach-release cycles.',
+
+    'cats.kicker': 'Five product lines',
+    'cats.title': 'One magnetic system for every setting',
+    'cats.lede': 'From the car to the desk — every line shares one magnetic standard, so the system grows with you.',
+    'cats.count': 'products',
+    'cats.soon': 'Coming soon',
+
+    'scns.kicker': 'Six life scenarios',
+    'scns.title': 'Designed around your day',
+    'scns.lede': 'We don’t sell spec sheets — VIEMAG plans products around six everyday scenarios.',
+    'scns.tag.primary': 'Flagship',
+    'scns.tag.secondary': 'Core',
+    'scns.tag.supporting': 'Supporting',
+    'scns.tag.future': 'Expanding',
+    'scns.combo': 'Suggested combo',
+
+    'feat.kicker': 'Best sellers',
+    'feat.title': 'Featured products',
+    'feat.lede': 'The highest-rated pieces of the VIEMAG system.',
+
+    'proof.title': 'Proven quality, not ad copy',
+    'proof.desc': 'Every VIEMAG product passes four groups of tests before it ships. Per-model test reports will be published here as products launch.',
+    'proof.note': 'VIEMAG works with MagSafe-standard accessories and is built to the Qi2 standard. MagSafe is a trademark of Apple Inc.; Qi2 is a trademark of the Wireless Power Consortium.',
+    'proof.cta': 'See our testing process',
+
+    'personas.kicker': 'Which one is you?',
+    'personas.title': 'Built for four kinds of users',
+    'personas.lede': 'Every VIEMAG line starts from a real user portrait, not a spec sheet.',
+    'personas.picks': 'Best lines:',
+
+    'trust.title': 'After-sales promise',
+    'trust.1.t': '12-month warranty',
+    'trust.1.d': 'Material and manufacturing defects under normal use.',
+    'trust.2.t': '14-day defect exchange',
+    'trust.2.d': 'Defective on arrival — replaced, not repaired.',
+    'trust.3.t': 'Vietnamese support',
+    'trust.3.d': 'Installation and warranty help in Vietnamese.',
+    'trust.4.t': 'Install guides',
+    'trust.4.d': 'Photo and video guides for every mounting type.',
+
+    'dealer.title': 'Looking for distribution partners in Vietnam',
+    'dealer.desc': 'VIEMAG is building its national dealer network: a complete product line, disciplined pricing, after-sales backing and transparent sales data.',
+    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+
+    'products.title': 'All products',
+    'products.sub': 'Filter by product line or by the scenario you live in.',
+    'filter.byCat': 'Product line',
+    'filter.byScn': 'Scenario',
+    'filter.all': 'All',
+    'products.empty': 'No products here yet — the lineup is expanding.',
+
+    'pdp.scenarios': 'Fits these scenarios',
+    'pdp.highlights': 'Highlights',
+    'pdp.evidence': 'Quality evidence',
+    'pdp.evidenceNote': 'Detailed test reports for this model will appear here once approved for publication.',
+    'pdp.compat': 'Compatibility',
+    'pdp.compatText': 'iPhone and Android phones; phones without magnets work with the VIEMAG adapter ring or magnetic case.',
+    'pdp.specs': 'Specifications',
+    'pdp.spec.watt': 'Charging power',
+    'pdp.spec.mount': 'Mounting type',
+    'pdp.spec.qi': 'Wireless standard',
+    'pdp.spec.sku': 'Model code',
+    'pdp.warranty': '12-month warranty · 14-day defect exchange',
+    'pdp.related': 'From the same scenario',
+    'pdp.askDealer': 'Ask dealer price',
+    'pdp.notFound': 'Product not found.',
+    'qi.none': 'No charging',
+    'qi.compatible': 'Built to the Qi2 standard',
+    'qi.testing': 'Built to Qi2.2 (certification in progress)',
+    'qi.certified': 'Qi2 certified',
+    'mount.vent': 'Vent', 'mount.dashboard': 'Dashboard', 'mount.suction': 'Suction',
+    'mount.tape': '3M tape', 'mount.screen': 'Screen clip', 'mount.desktop': 'Desktop',
+
+    'why.title': 'Why VIEMAG?',
+    'why.sub': 'Between throwaway no-name gear and overpriced premium brands, VIEMAG holds the sensible middle: verifiable quality at a reachable price.',
+    'why.claims.title': 'Three promises — three bodies of proof',
+    'why.c1.t': 'Firmer', 'why.c1.d': 'N52 magnets, multi-direction force testing and vibration profiles from real roads.',
+    'why.c2.t': 'Cooler', 'why.c2.d': 'Thermal-rise testing on every charger; the 25W flagship adds an active cooling fan.',
+    'why.c3.t': 'Longer-lasting', 'why.c3.d': 'Thousands of attach-release cycles plus hinge and adhesive endurance tests.',
+    'why.team.title': 'The team behind it',
+    'why.team.desc': 'VIEMAG is built by a team with over 30 years of experience designing and manufacturing mobile and automotive accessories for international brands. We control magnet-circuit design, tooling and quality inspection end to end — and hold every VIEMAG product to that standard.',
+
+    'support.title': 'Support & Warranty',
+    'support.sub': 'Clear policies, a simple process, help in Vietnamese.',
+    'support.policy': 'Warranty policy',
+    'support.faq': 'Frequently asked questions',
+    'support.p1': '12-month warranty covering material and manufacturing defects.',
+    'support.p2': 'Defective on arrival: replaced within 14 days (photo/video required).',
+    'support.p3': 'Non-user-caused failures are resolved by replacement.',
+    'support.p4': 'Return costs are shared according to responsibility.',
+    'support.p5': 'Vietnamese-language support during business hours.',
+
+    'dealers.title': 'Dealer & distribution partnership',
+    'dealers.sub': 'VIEMAG looks for partners who actually sell — motivated to move product, disciplined on price, and able to handle after-sales.',
+    'dealers.why.title': 'Why partner with VIEMAG',
+    'dealers.w1.t': 'A complete line', 'dealers.w1.d': '15 launch products covering car, desk and travel — not scattered one-offs.',
+    'dealers.w2.t': 'Quality evidence', 'dealers.w2.d': 'Test reports and a 12-month warranty as your selling weapons.',
+    'dealers.w3.t': 'Price discipline', 'dealers.w3.d': 'Unified list prices with a promotion floor — protecting dealer margins.',
+    'dealers.w4.t': 'Low entry threshold', 'dealers.w4.d': 'First orders from USD 1,000 or 100 units to test your market.',
+    'dealers.form.title': 'Start the conversation',
+    'dealers.form.company': 'Company name', 'dealers.form.contact': 'Contact person',
+    'dealers.form.email': 'Email', 'dealers.form.phone': 'Phone / Zalo',
+    'dealers.form.city': 'City / Province', 'dealers.form.channel': 'Channel type',
+    'dealers.form.channel.retail': 'Retail store', 'dealers.form.channel.online': 'Shopee / e-commerce',
+    'dealers.form.channel.dist': 'Distributor', 'dealers.form.channel.car': 'Car accessories',
+    'dealers.form.channel.mobile': 'Mobile accessories',
+    'dealers.form.brands': 'Brands you currently carry',
+    'dealers.form.volume': 'Estimated monthly volume (USD)',
+    'dealers.form.minimum': 'I can meet the first order of USD 1,000 or 100 units',
+    'dealers.form.notes': 'Notes',
+    'dealers.form.submit': 'Submit inquiry',
+    'dealers.form.success': 'Received. The VIEMAG team will reach out within 2 business days.',
+    'dealers.form.required': 'Please fill in this field.',
+
+    'about.title': 'About VIEMAG',
+    'about.sub': 'Value . Innovation . Excellence — and MAG is the magnetic promise.',
+    'about.story1': 'VIEMAG began with a simple observation: the phone is the object we pick up and put down more than anything else in a day — yet most accessories that hold it do that job carelessly. It drops under braking, overheats while charging, loosens within months.',
+    'about.story2': 'We believe a good accessory should be engineered like an industrial product: with standards, with testing, with commitments. The VIEMAG team brings over 30 years of experience designing and manufacturing mobile and automotive accessories for international markets into every detail — magnet circuits, rotating joints, thermal management.',
+    'about.story3': 'The name VIEMAG carries four promises: Value — worth beyond the price; Innovation — solving needs others ignore; Excellence — industrial-grade quality standards; and MAG — Magnetic, our commitment to the magnetic ecosystem for the decade ahead.',
+    'about.v': 'Worth beyond the price you pay',
+    'about.i': 'Innovation from real needs',
+    'about.e': 'Industrial-grade quality standards',
+    'about.m': 'Committed to the magnetic ecosystem',
+
+    'scenarios.title': 'Six scenarios, one magnetic system',
+    'scenarios.sub': 'Choose by how you live, not by a spec sheet.',
+
+    'footer.desc': 'The magnetic accessory system for driving and desk work — firmer, cooler, longer-lasting.',
+    'footer.products': 'Products',
+    'footer.support': 'Support',
+    'footer.company': 'Brand',
+    'footer.warranty': 'Warranty policy',
+    'footer.faq': 'FAQ',
+    'footer.dealer': 'Dealer partnership',
+    'footer.about': 'About VIEMAG',
+    'footer.trust1': '12-month warranty',
+    'footer.trust2': '14-day defect exchange',
+    'footer.trust3': 'Vietnamese support',
+    'footer.legal': 'MagSafe is a trademark of Apple Inc. Qi and Qi2 are trademarks of the Wireless Power Consortium. VIEMAG describes compatibility only and implies no certification where none is completed.',
+    'footer.rights': 'VIEMAG. All rights reserved.'
+  },
+
+  zh: {
+    'meta.title': 'VIEMAG — 為開車與桌面工作而生的磁吸配件系統',
+    'nav.products': '產品',
+    'nav.scenarios': '使用情境',
+    'nav.why': '為什麼選 VIEMAG',
+    'nav.support': '售後支援',
+    'nav.dealers': '經銷合作',
+    'nav.about': '關於品牌',
+    'cta.shopee': '前往 Shopee 選購',
+    'cta.explore': '探索產品',
+    'cta.dealer': '成為經銷商',
+    'cta.viewAll': '查看全部產品',
+    'cta.view': '查看詳情',
+    'cta.learnMore': '了解更多',
+    'cta.contact': '聯絡客服',
+
+    'hero.eyebrow': '為開車與桌面工作而生的磁吸系統',
+    'hero.h1a': '上車',
+    'hero.h1em': '一吸',
+    'hero.h1b': '，導航穩穩不掉。',
+    'hero.sub': 'VIEMAG 是為每天開車與桌面工作的人設計的磁吸配件系統：比白牌更穩、更不燙、更耐用。',
+    'hero.trust1': '12 個月保固',
+    'hero.trust2': '14 天瑕疵換新',
+    'hero.trust3': '越南語在地客服',
+
+    'pains.kicker': '是不是很熟悉？',
+    'pains.title': '白牌支架的三大痛點',
+    'pains.lede': 'VIEMAG 的設計，正是從白牌配件最常見的抱怨開始。',
+    'pains.1.title': '容易掉',
+    'pains.1.desc': '過個坑洞或急煞，手機就掉到腳踏墊上。',
+    'pains.1.fix': 'N52 強磁＋實路況震動測試。',
+    'pains.2.title': '充電燙',
+    'pains.2.desc': '劣質無線充電讓手機發燙、越充越慢甚至斷充。',
+    'pains.2.fix': '每一款都做溫升測試，25W 旗艦款配主動散熱風扇。',
+    'pains.3.title': '用久鬆',
+    'pains.3.desc': '幾個月後關節鬆動，角度固定不住。',
+    'pains.3.fix': '鉸鏈壽命測試＋數千次吸合循環驗證。',
+
+    'cats.kicker': '五大產品線',
+    'cats.title': '一套磁吸系統，覆蓋所有場景',
+    'cats.lede': '從車內到桌面，所有產品線共用同一套磁吸標準，買一次、全系統通用。',
+    'cats.count': '款產品',
+    'cats.soon': '即將推出',
+
+    'scns.kicker': '六大生活情境',
+    'scns.title': '跟著你的一天設計',
+    'scns.lede': '我們不賣規格表——VIEMAG 以六個日常情境規劃產品。',
+    'scns.tag.primary': '主力',
+    'scns.tag.secondary': '重點',
+    'scns.tag.supporting': '輔助',
+    'scns.tag.future': '擴充中',
+    'scns.combo': '建議組合',
+
+    'feat.kicker': '熱銷推薦',
+    'feat.title': '精選產品',
+    'feat.lede': 'VIEMAG 系統中評價最高的幾款。',
+
+    'proof.title': '可驗證的品質，不是廣告詞',
+    'proof.desc': '每一件 VIEMAG 產品出廠前都通過四大類測試。各型號的測試報告將隨產品上市陸續公開。',
+    'proof.note': 'VIEMAG 相容 MagSafe 標準配件，並依 Qi2 標準設計。MagSafe 為 Apple Inc. 商標；Qi2 為 Wireless Power Consortium 商標。',
+    'proof.cta': '了解測試流程',
+
+    'personas.kicker': '你是哪一種人？',
+    'personas.title': '為四種使用者而設計',
+    'personas.lede': '每條 VIEMAG 產品線都從真實的使用者輪廓出發，而不是規格表。',
+    'personas.picks': '適合產品線：',
+
+    'trust.title': '售後承諾',
+    'trust.1.t': '12 個月保固',
+    'trust.1.d': '正常使用下的材料與製造瑕疵。',
+    'trust.2.t': '14 天瑕疵換新',
+    'trust.2.d': '到貨瑕疵直接換新品，不維修。',
+    'trust.3.t': '越南語客服',
+    'trust.3.d': '以越南語提供安裝與保固協助。',
+    'trust.4.t': '安裝指南',
+    'trust.4.d': '每種安裝方式都有圖文與影片教學。',
+
+    'dealer.title': '尋找越南經銷夥伴',
+    'dealer.desc': 'VIEMAG 正在建立全國經銷網絡：完整產品線、有紀律的價格政策、售後支援與透明的銷售數據。',
+    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+
+    'products.title': '全部產品',
+    'products.sub': '依產品線或使用情境篩選。',
+    'filter.byCat': '產品線',
+    'filter.byScn': '使用情境',
+    'filter.all': '全部',
+    'products.empty': '此分類暫無產品——產品線擴充中。',
+
+    'pdp.scenarios': '適用情境',
+    'pdp.highlights': '產品亮點',
+    'pdp.evidence': '品質證據',
+    'pdp.evidenceNote': '本型號的詳細測試報告將於審核通過後在此公開。',
+    'pdp.compat': '相容性',
+    'pdp.compatText': 'iPhone 與 Android 手機皆可使用；無磁吸手機搭配 VIEMAG 轉接環或磁吸殼即可。',
+    'pdp.specs': '規格',
+    'pdp.spec.watt': '充電功率',
+    'pdp.spec.mount': '安裝方式',
+    'pdp.spec.qi': '無線充電標準',
+    'pdp.spec.sku': '型號',
+    'pdp.warranty': '12 個月保固 · 14 天瑕疵換新',
+    'pdp.related': '同情境推薦',
+    'pdp.askDealer': '洽詢經銷價',
+    'pdp.notFound': '找不到這個產品。',
+    'qi.none': '無充電功能',
+    'qi.compatible': '依 Qi2 標準設計',
+    'qi.testing': '依 Qi2.2 標準設計（認證進行中）',
+    'qi.certified': 'Qi2 認證',
+    'mount.vent': '出風口', 'mount.dashboard': '儀表板', 'mount.suction': '吸盤',
+    'mount.tape': '3M 貼片', 'mount.screen': '螢幕邊夾', 'mount.desktop': '桌面',
+
+    'why.title': '為什麼選 VIEMAG？',
+    'why.sub': '在便宜的白牌與昂貴的高端品牌之間，VIEMAG 站在合理的位置：查得到的品質、搆得著的價格。',
+    'why.claims.title': '三個承諾，三組證據',
+    'why.c1.t': '更穩', 'why.c1.d': 'N52 強磁、多方向磁力實測與實路況震動測試。',
+    'why.c2.t': '更不燙', 'why.c2.d': '每款充電產品皆做溫升測試，25W 旗艦配主動散熱。',
+    'why.c3.t': '更耐用', 'why.c3.d': '數千次吸合循環、鉸鏈與背膠耐久驗證。',
+    'why.team.title': '背後的團隊',
+    'why.team.desc': 'VIEMAG 由一支擁有 30 年以上行動配件與車用配件設計製造經驗、長期服務國際品牌的團隊打造。從磁路設計、模具到品質檢驗全程自主掌握，並以同樣的標準要求每一件 VIEMAG 產品。',
+
+    'support.title': '售後支援與保固',
+    'support.sub': '政策清楚、流程簡單、以越南語提供協助。',
+    'support.policy': '保固政策',
+    'support.faq': '常見問題',
+    'support.p1': '12 個月保固，涵蓋材料與製造瑕疵。',
+    'support.p2': '到貨瑕疵：14 天內換新（需照片/影片）。',
+    'support.p3': '非人為故障以更換方式處理。',
+    'support.p4': '退換費用依雙方責任分攤。',
+    'support.p5': '越南語客服，於工作時間內回覆。',
+
+    'dealers.title': '經銷與分銷合作',
+    'dealers.sub': 'VIEMAG 尋找真正想把貨賣動的夥伴——有動銷意願、守價格紀律、能承接售後。',
+    'dealers.why.title': '為什麼與 VIEMAG 合作',
+    'dealers.w1.t': '完整產品線', 'dealers.w1.d': '首發 15 款覆蓋車用、桌面與差旅，不是零散單品。',
+    'dealers.w2.t': '品質證據', 'dealers.w2.d': '測試報告與 12 個月保固，就是你的銷售武器。',
+    'dealers.w3.t': '價格紀律', 'dealers.w3.d': '統一牌價、促銷有底線，保護經銷利潤。',
+    'dealers.w4.t': '低起步門檻', 'dealers.w4.d': '首批 1,000 美元或 100 件即可測試市場。',
+    'dealers.form.title': '開始合作洽談',
+    'dealers.form.company': '公司名稱', 'dealers.form.contact': '聯絡人',
+    'dealers.form.email': 'Email', 'dealers.form.phone': '電話 / Zalo',
+    'dealers.form.city': '城市 / 省份', 'dealers.form.channel': '通路類型',
+    'dealers.form.channel.retail': '實體零售', 'dealers.form.channel.online': 'Shopee / 電商',
+    'dealers.form.channel.dist': '分銷商', 'dealers.form.channel.car': '汽車百貨',
+    'dealers.form.channel.mobile': '手機配件通路',
+    'dealers.form.brands': '目前經營品牌',
+    'dealers.form.volume': '預估月銷售額（USD）',
+    'dealers.form.minimum': '我可達成首批 1,000 美元或 100 件的進貨門檻',
+    'dealers.form.notes': '備註',
+    'dealers.form.submit': '送出洽詢',
+    'dealers.form.success': '已收到您的資料，VIEMAG 團隊將於 2 個工作天內與您聯繫。',
+    'dealers.form.required': '請填寫此欄位。',
+
+    'about.title': '關於 VIEMAG',
+    'about.sub': 'Value . Innovation . Excellence — MAG 是我們的磁吸承諾。',
+    'about.story1': 'VIEMAG 源自一個簡單的觀察：手機是一天中被拿起、放下最多次的物件，但多數固定它的配件都做得很隨便——急煞會掉、充電會燙、用幾個月就鬆。',
+    'about.story2': '我們相信好的配件應該像工業產品一樣被設計：有標準、有測試、有承諾。VIEMAG 團隊將 30 多年為國際市場設計製造行動與車用配件的經驗，投入每一個細節：磁路設計、旋轉關節、熱管理。',
+    'about.story3': 'VIEMAG 這個名字承載四個承諾：Value 價值——超越價格的使用價值；Innovation 創新——解決被忽略的需求；Excellence 卓越——工業級的品質標準；MAG——Magnetic，投入磁吸生態下一個十年的承諾。',
+    'about.v': '超越價格的使用價值',
+    'about.i': '從真實需求出發的創新',
+    'about.e': '工業級品質標準',
+    'about.m': '投入磁吸生態的承諾',
+
+    'scenarios.title': '六大情境，一套磁吸系統',
+    'scenarios.sub': '按你的生活方式選擇，而不是按規格表。',
+
+    'footer.desc': '為開車與桌面工作而生的磁吸配件系統——更穩、更不燙、更耐用。',
+    'footer.products': '產品',
+    'footer.support': '售後支援',
+    'footer.company': '品牌',
+    'footer.warranty': '保固政策',
+    'footer.faq': '常見問題',
+    'footer.dealer': '經銷合作',
+    'footer.about': '關於 VIEMAG',
+    'footer.trust1': '12 個月保固',
+    'footer.trust2': '14 天瑕疵換新',
+    'footer.trust3': '越南語客服',
+    'footer.legal': 'MagSafe 為 Apple Inc. 商標；Qi 與 Qi2 為 Wireless Power Consortium 商標。VIEMAG 僅描述相容性，未完成認證前不作任何認證宣稱。',
+    'footer.rights': 'VIEMAG 版權所有。'
   }
-
-  function get(key) {
-    const parts = key.split('.');
-    let cur = currentData;
-    for (const p of parts) {
-      if (cur == null) return key;
-      cur = cur[p];
-    }
-    return cur ?? key;
-  }
-
-  function apply() {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const v = get(el.dataset.i18n);
-      if (typeof v === 'string') el.innerHTML = v.replace(/\n/g, '<br>');
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const v = get(el.dataset.i18nPlaceholder);
-      if (typeof v === 'string') el.placeholder = v;
-    });
-    const langAttr = currentLang === 'zh' ? 'zh-TW' : currentLang === 'zh-hans' ? 'zh-CN' : currentLang;
-    document.documentElement.lang = langAttr;
-  }
-
-  function updateUI() {
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === currentLang);
-    });
-  }
-
-  function setLang(lang) {
-    if (!LANGS.includes(lang)) lang = 'en';
-    currentLang = lang;
-    currentData = getData(lang);
-    localStorage.setItem('viemag_lang', lang);
-    apply();
-    updateUI();
-    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang, data: currentData } }));
-  }
-
-  function init() {
-    const urlParam = new URLSearchParams(location.search).get('lang');
-    const saved = localStorage.getItem('viemag_lang');
-    const preferred = urlParam || saved || 'en';
-    setLang(preferred);
-    document.addEventListener('click', e => {
-      const btn = e.target.closest('[data-lang]');
-      if (btn && LANGS.includes(btn.dataset.lang)) setLang(btn.dataset.lang);
-    });
-  }
-
-  return { init, setLang, get, getLang: () => currentLang, getData: () => currentData };
-})();
+};

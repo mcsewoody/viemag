@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why VIEMAG</title>
+  <meta name="description" content="Firmer, cooler, longer-lasting — three promises backed by testing: vibration, thermal-rise, magnetic force and lifecycle.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="why">
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="why.title"></h1>
+      <p data-i18n="why.sub"></p>
+    </div>
+  </section>
+
+  <!-- three claims -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="section-head"><h2 class="section-title" data-i18n="why.claims.title"></h2></div>
+      <div class="pain-grid" id="claimGrid"></div>
+    </div>
+  </section>
+
+  <!-- testing process -->
+  <section class="section scenario-strip">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="proof.title"></h2>
+        <p class="lede" data-i18n="proof.desc"></p>
+      </div>
+      <div class="scn-grid" id="testGrid"></div>
+      <p class="proof-note" style="margin-top:24px" data-i18n="proof.note"></p>
+    </div>
+  </section>
+
+  <!-- personas -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker" data-i18n="personas.kicker"></div>
+        <h2 class="section-title" data-i18n="personas.title"></h2>
+        <p class="lede" data-i18n="personas.lede"></p>
+      </div>
+      <div class="persona-grid" id="personaGrid"></div>
+    </div>
+  </section>
+
+  <!-- team (neutral wording — no company/country disclosure) -->
+  <section class="section" style="background:var(--ivory)">
+    <div class="container grid-2" style="align-items:center">
+      <div>
+        <h2 class="section-title" data-i18n="why.team.title"></h2>
+        <p style="color:var(--muted)" data-i18n="why.team.desc"></p>
+        <div style="margin-top:24px"><a class="btn btn-dark" href="about.html" data-i18n="cta.learnMore"></a></div>
+      </div>
+      <div class="trust-strip" style="grid-template-columns:1fr 1fr" id="teamTrust"></div>
+    </div>
+  </section>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+window.renderPage = function ({ t, tf, icon }) {
+  const DB = window.DB;
+  document.getElementById('claimGrid').innerHTML = [1, 2, 3].map((i) => `
+    <div class="pain-card reveal">
+      <div class="icon-wrap icon-teal" style="background:var(--teal-soft)">${icon(['magnet', 'thermo', 'cycle'][i - 1])}</div>
+      <h3 style="color:var(--navy)">${t('why.c' + i + '.t')}</h3>
+      <p>${t('why.c' + i + '.d')}</p>
+    </div>`).join('');
+
+  document.getElementById('testGrid').innerHTML = DB.tests.map((x, i) => `
+    <div class="scn-card">
+      <div class="scn-icon">${icon(x.icon)}</div>
+      <div class="scn-code">0${i + 1}</div>
+      <h3>${tf(x.name)}</h3>
+      <p>${tf(x.desc)}</p>
+    </div>`).join('');
+
+  document.getElementById('personaGrid').innerHTML = DB.personas.map((pe) => {
+    const picks = pe.picks.map((id) => DB.categories.find((c) => c.id === id)).filter(Boolean)
+      .map((c) => `<a class="chip" href="products.html?cat=${c.id}">${tf(c.name)}</a>`).join(' ');
+    return `
+    <div class="persona-card">
+      <div class="avatar">${icon(pe.icon)}</div>
+      <div class="age">${pe.age}</div>
+      <h3>${tf(pe.name)}</h3>
+      <p>${tf(pe.desc)}</p>
+      <div class="picks">${t('personas.picks')}</div>
+      <div class="meta-chips">${picks}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('teamTrust').innerHTML = [
+    ['shield', 1], ['swap', 2], ['chat', 3], ['guide', 4]
+  ].map(([ic, i]) => `
+    <div class="trust-item">${icon(ic)}<div><b>${t('trust.' + i + '.t')}</b><span>${t('trust.' + i + '.d')}</span></div></div>`).join('');
+};
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
