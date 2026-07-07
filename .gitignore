@@ -3,3 +3,10 @@ Thumbs.db
 *.log
 node_modules/
 .env
+
+# 內部企劃與機密素材：本 repo 為公開網站（viemag.biz），以下不得推送
+material/
+planning/
+前台.md
+後台.md
+.claude/
