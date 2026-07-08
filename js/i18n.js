@@ -26,7 +26,7 @@ window.I18N_DICT = {
     'hero.sub': 'VIEMAG là hệ phụ kiện nam châm cho người lái xe mỗi ngày và làm việc bên bàn: giữ chắc hơn, ít nóng hơn, bền hơn so với hàng trôi nổi.',
     'hero.trust1': 'Bảo hành 12 tháng',
     'hero.trust2': 'Lỗi 1 đổi 1 trong 14 ngày',
-    'hero.trust3': 'CSKH tiếng Việt',
+    'hero.trust3': 'Hỗ trợ ngôn ngữ bản địa',
 
     'pains.kicker': 'Vấn đề quen thuộc',
     'pains.title': 'Ba nỗi khổ của giá đỡ trôi nổi',
@@ -75,8 +75,8 @@ window.I18N_DICT = {
     'trust.1.d': 'Lỗi vật liệu và sản xuất trong sử dụng bình thường.',
     'trust.2.t': 'Lỗi 1 đổi 1 trong 14 ngày',
     'trust.2.d': 'Hàng lỗi khi nhận — đổi mới, không sửa chữa.',
-    'trust.3.t': 'CSKH tiếng Việt',
-    'trust.3.d': 'Hỗ trợ lắp đặt và bảo hành bằng tiếng Việt.',
+    'trust.3.t': 'Hỗ trợ ngôn ngữ bản địa',
+    'trust.3.d': 'Hỗ trợ lắp đặt và bảo hành bằng ngôn ngữ bản địa.',
     'trust.4.t': 'Hướng dẫn lắp đặt',
     'trust.4.d': 'Ảnh và video hướng dẫn cho từng kiểu lắp.',
 
@@ -123,14 +123,14 @@ window.I18N_DICT = {
     'why.team.desc': 'VIEMAG được xây dựng bởi đội ngũ có hơn 30 năm kinh nghiệm thiết kế và sản xuất phụ kiện di động & phụ kiện ô tô cho các thương hiệu quốc tế. Chúng tôi làm chủ từ thiết kế mạch nam châm, khuôn mẫu đến kiểm định chất lượng — và đưa chuẩn mực đó vào từng sản phẩm VIEMAG.',
 
     'support.title': 'Hỗ trợ & Bảo hành',
-    'support.sub': 'Chính sách rõ ràng, quy trình đơn giản, hỗ trợ bằng tiếng Việt.',
+    'support.sub': 'Chính sách rõ ràng, quy trình đơn giản, hỗ trợ bằng ngôn ngữ bản địa.',
     'support.policy': 'Chính sách bảo hành',
     'support.faq': 'Câu hỏi thường gặp',
     'support.p1': 'Bảo hành 12 tháng cho lỗi vật liệu và sản xuất.',
     'support.p2': 'Hàng lỗi khi nhận: đổi mới trong 14 ngày (kèm ảnh/video).',
     'support.p3': 'Lỗi không do người dùng: xử lý bằng cách đổi sản phẩm.',
     'support.p4': 'Chi phí đổi trả chia sẻ theo trách nhiệm của mỗi bên.',
-    'support.p5': 'Kênh CSKH tiếng Việt, phản hồi trong giờ làm việc.',
+    'support.p5': 'Kênh CSKH bằng ngôn ngữ bản địa, phản hồi trong giờ làm việc.',
 
     'dealers.title': 'Hợp tác đại lý & phân phối',
     'dealers.sub': 'VIEMAG tìm đối tác muốn bán hàng thật — có động lực bán, giữ kỷ luật giá và chăm sóc khách sau bán.',
@@ -177,7 +177,7 @@ window.I18N_DICT = {
     'footer.about': 'Về VIEMAG',
     'footer.trust1': 'Bảo hành 12 tháng',
     'footer.trust2': 'Lỗi 1 đổi 1 trong 14 ngày',
-    'footer.trust3': 'CSKH tiếng Việt',
+    'footer.trust3': 'Hỗ trợ ngôn ngữ bản địa',
     'footer.legal': 'MagSafe là thương hiệu của Apple Inc. Qi và Qi2 là thương hiệu của Wireless Power Consortium. VIEMAG mô tả khả năng tương thích, không hàm ý chứng nhận khi chưa hoàn tất.',
     'footer.rights': 'VIEMAG. Bảo lưu mọi quyền.'
   },
@@ -204,7 +204,7 @@ window.I18N_DICT = {
     'hero.sub': 'VIEMAG is the magnetic accessory system for daily drivers and desk workers: a firmer hold, cooler charging and longer life than no-name gear.',
     'hero.trust1': '12-month warranty',
     'hero.trust2': '14-day defect exchange',
-    'hero.trust3': 'Vietnamese support',
+    'hero.trust3': 'Local-language support',
 
     'pains.kicker': 'Sound familiar?',
     'pains.title': 'Three ways no-name mounts fail you',
@@ -253,8 +253,8 @@ window.I18N_DICT = {
     'trust.1.d': 'Material and manufacturing defects under normal use.',
     'trust.2.t': '14-day defect exchange',
     'trust.2.d': 'Defective on arrival — replaced, not repaired.',
-    'trust.3.t': 'Vietnamese support',
-    'trust.3.d': 'Installation and warranty help in Vietnamese.',
+    'trust.3.t': 'Local-language support',
+    'trust.3.d': 'Installation and warranty help in your local language.',
     'trust.4.t': 'Install guides',
     'trust.4.d': 'Photo and video guides for every mounting type.',
 
@@ -301,14 +301,14 @@ window.I18N_DICT = {
     'why.team.desc': 'VIEMAG is built by a team with over 30 years of experience designing and manufacturing mobile and automotive accessories for international brands. We control magnet-circuit design, tooling and quality inspection end to end — and hold every VIEMAG product to that standard.',
 
     'support.title': 'Support & Warranty',
-    'support.sub': 'Clear policies, a simple process, help in Vietnamese.',
+    'support.sub': 'Clear policies, a simple process, help in your local language.',
     'support.policy': 'Warranty policy',
     'support.faq': 'Frequently asked questions',
     'support.p1': '12-month warranty covering material and manufacturing defects.',
     'support.p2': 'Defective on arrival: replaced within 14 days (photo/video required).',
     'support.p3': 'Non-user-caused failures are resolved by replacement.',
     'support.p4': 'Return costs are shared according to responsibility.',
-    'support.p5': 'Vietnamese-language support during business hours.',
+    'support.p5': 'Local-language support during business hours.',
 
     'dealers.title': 'Dealer & distribution partnership',
     'dealers.sub': 'VIEMAG looks for partners who actually sell — motivated to move product, disciplined on price, and able to handle after-sales.',
@@ -355,7 +355,7 @@ window.I18N_DICT = {
     'footer.about': 'About VIEMAG',
     'footer.trust1': '12-month warranty',
     'footer.trust2': '14-day defect exchange',
-    'footer.trust3': 'Vietnamese support',
+    'footer.trust3': 'Local-language support',
     'footer.legal': 'MagSafe is a trademark of Apple Inc. Qi and Qi2 are trademarks of the Wireless Power Consortium. VIEMAG describes compatibility only and implies no certification where none is completed.',
     'footer.rights': 'VIEMAG. All rights reserved.'
   },
@@ -382,7 +382,7 @@ window.I18N_DICT = {
     'hero.sub': 'VIEMAG 是為每天開車與桌面工作的人設計的磁吸配件系統：比白牌更穩、更不燙、更耐用。',
     'hero.trust1': '12 個月保固',
     'hero.trust2': '14 天瑕疵換新',
-    'hero.trust3': '越南語在地客服',
+    'hero.trust3': '本地語言客服',
 
     'pains.kicker': '是不是很熟悉？',
     'pains.title': '白牌支架的三大痛點',
@@ -431,8 +431,8 @@ window.I18N_DICT = {
     'trust.1.d': '正常使用下的材料與製造瑕疵。',
     'trust.2.t': '14 天瑕疵換新',
     'trust.2.d': '到貨瑕疵直接換新品，不維修。',
-    'trust.3.t': '越南語客服',
-    'trust.3.d': '以越南語提供安裝與保固協助。',
+    'trust.3.t': '本地語言客服',
+    'trust.3.d': '以本地語言提供安裝與保固協助。',
     'trust.4.t': '安裝指南',
     'trust.4.d': '每種安裝方式都有圖文與影片教學。',
 
@@ -479,14 +479,14 @@ window.I18N_DICT = {
     'why.team.desc': 'VIEMAG 由一支擁有 30 年以上行動配件與車用配件設計製造經驗、長期服務國際品牌的團隊打造。從磁路設計、模具到品質檢驗全程自主掌握，並以同樣的標準要求每一件 VIEMAG 產品。',
 
     'support.title': '售後支援與保固',
-    'support.sub': '政策清楚、流程簡單、以越南語提供協助。',
+    'support.sub': '政策清楚、流程簡單、以本地語言提供協助。',
     'support.policy': '保固政策',
     'support.faq': '常見問題',
     'support.p1': '12 個月保固，涵蓋材料與製造瑕疵。',
     'support.p2': '到貨瑕疵：14 天內換新（需照片/影片）。',
     'support.p3': '非人為故障以更換方式處理。',
     'support.p4': '退換費用依雙方責任分攤。',
-    'support.p5': '越南語客服，於工作時間內回覆。',
+    'support.p5': '本地語言客服，於工作時間內回覆。',
 
     'dealers.title': '經銷與分銷合作',
     'dealers.sub': 'VIEMAG 尋找真正想把貨賣動的夥伴——有動銷意願、守價格紀律、能承接售後。',
@@ -533,7 +533,7 @@ window.I18N_DICT = {
     'footer.about': '關於 VIEMAG',
     'footer.trust1': '12 個月保固',
     'footer.trust2': '14 天瑕疵換新',
-    'footer.trust3': '越南語客服',
+    'footer.trust3': '本地語言客服',
     'footer.legal': 'MagSafe 為 Apple Inc. 商標；Qi 與 Qi2 為 Wireless Power Consortium 商標。VIEMAG 僅描述相容性，未完成認證前不作任何認證宣稱。',
     'footer.rights': 'VIEMAG 版權所有。'
   },
