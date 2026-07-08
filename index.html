@@ -17,7 +17,7 @@
     <div class="container hero-inner">
       <div class="hero-copy">
         <span class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow"></span></span>
-        <h1 class="display"><span data-i18n="hero.h1a"></span><em data-i18n="hero.h1em"></em><span data-i18n="hero.h1b"></span></h1>
+        <h1 class="display" data-i18n="hero.slogan"></h1>
         <p class="sub" data-i18n="hero.sub"></p>
         <div class="hero-ctas">
           <a class="btn btn-primary" id="heroShopee" href="#" target="_blank" rel="noopener" data-i18n="cta.shopee"></a>
@@ -25,65 +25,8 @@
         </div>
         <div class="hero-trust" id="heroTrust"></div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <!-- In-car navigation scene -->
-        <svg viewBox="0 0 560 430" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#DCE9F5"/><stop offset="1" stop-color="#F8F5EF"/>
-            </linearGradient>
-            <linearGradient id="dashg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#1A3A5C"/><stop offset="1" stop-color="#0F1F33"/>
-            </linearGradient>
-          </defs>
-          <!-- windshield -->
-          <rect x="16" y="14" width="528" height="250" rx="26" fill="url(#sky)" stroke="#D9D2C5"/>
-          <!-- horizon & road -->
-          <path d="M16 196h528" stroke="#C9D6E2" stroke-width="2"/>
-          <path d="M240 264L282 196h30l64 68z" fill="#B9C9D8" opacity=".55"/>
-          <path d="M296 258l-2-54M304 258l6-54" stroke="#fff" stroke-width="3" stroke-dasharray="10 12"/>
-          <!-- distant hills / buildings -->
-          <path d="M40 196l40-32 36 32z" fill="#AFC3D6"/>
-          <rect x="130" y="150" width="26" height="46" fill="#B9CBDC"/>
-          <rect x="162" y="162" width="20" height="34" fill="#A9BFD3"/>
-          <path d="M430 196l34-40 44 40z" fill="#AFC3D6"/>
-          <circle cx="472" cy="70" r="24" fill="#F4D98C"/>
-          <!-- rearview mirror -->
-          <rect x="242" y="24" width="76" height="26" rx="8" fill="#16314E"/>
-          <!-- dashboard -->
-          <path d="M8 430V300q120-52 272-52t272 52v130z" fill="url(#dashg)"/>
-          <path d="M8 314q130-50 272-50t272 50" stroke="#2B4C70" stroke-width="3" fill="none"/>
-          <!-- vents -->
-          <g stroke="#2B4C70" stroke-width="4" stroke-linecap="round">
-            <path d="M96 330h64M96 346h64M96 362h64"/>
-            <path d="M400 330h64M400 346h64M400 362h64"/>
-          </g>
-          <!-- steering wheel -->
-          <path d="M30 430a96 96 0 01180-46" stroke="#0B1828" stroke-width="16" fill="none" stroke-linecap="round"/>
-          <!-- mount arm -->
-          <rect x="266" y="290" width="28" height="34" rx="8" fill="#16314E"/>
-          <circle cx="280" cy="288" r="16" fill="#1A3A5C" stroke="#C8941A" stroke-width="3"/>
-          <!-- phone with navigation -->
-          <g filter="none">
-            <rect x="232" y="160" width="96" height="176" rx="18" fill="#0F1F33"/>
-            <rect x="238" y="166" width="84" height="164" rx="13" fill="#FFFFFF"/>
-            <!-- map -->
-            <rect x="238" y="166" width="84" height="164" rx="13" fill="#EEF4F1"/>
-            <path d="M238 220h34M258 166v52M238 292h84M300 236v94M238 260h44" stroke="#D5E0DA" stroke-width="5"/>
-            <path d="M252 318l16-44 18-14 4-38 22-24" stroke="#2FA7A0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <circle cx="252" cy="318" r="7" fill="#2FA7A0"/>
-            <!-- destination pin -->
-            <path d="M312 186c0 8-10 20-10 20s-10-12-10-20a10 10 0 0120 0z" fill="#C8941A"/>
-            <circle cx="302" cy="186" r="4" fill="#fff"/>
-            <!-- ETA card -->
-            <rect x="246" y="300" width="68" height="22" rx="7" fill="#0F1F33"/>
-            <rect x="252" y="308" width="30" height="6" rx="3" fill="#C8941A"/>
-            <rect x="288" y="308" width="18" height="6" rx="3" fill="#3E5A78"/>
-          </g>
-          <!-- magnetic hold rings -->
-          <circle cx="280" cy="248" r="66" stroke="#C8941A" stroke-width="2" stroke-dasharray="5 8" opacity=".8"/>
-          <circle cx="280" cy="248" r="88" stroke="#C8941A" stroke-width="1.5" stroke-dasharray="4 10" opacity=".45"/>
-        </svg>
+      <div class="hero-art">
+        <img id="heroImg" src="image/main.png" width="1672" height="941" alt="" fetchpriority="high" decoding="async">
       </div>
     </div>
   </section>
@@ -199,6 +142,7 @@
 window.renderPage = function ({ t, icon, productCard, categoryCard, scenarioCard, personaCard }) {
   const DB = window.DB;
   document.getElementById('heroShopee').href = DB.config.shopeeUrl;
+  document.getElementById('heroImg').alt = t('hero.imgAlt');
 
   document.getElementById('heroTrust').innerHTML = [
     ['shield', 'hero.trust1'], ['swap', 'hero.trust2'], ['chat', 'hero.trust3']

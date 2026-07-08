@@ -146,6 +146,8 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 .hero-trust .item svg{width:19px;height:19px;color:var(--teal);flex:none}
 .hero-art{position:relative}
 .hero-art svg{width:100%;height:auto;filter:drop-shadow(0 24px 48px rgba(15,31,51,.18))}
+.hero-art img{width:100%;height:auto;aspect-ratio:1672/941;object-fit:cover;border-radius:var(--radius-lg);
+  box-shadow:0 24px 48px rgba(15,31,51,.18);border:1px solid var(--line)}
 @media (max-width:920px){
   .hero-inner{grid-template-columns:1fr;padding:var(--s6) 0}
   .hero-art{order:-1;max-width:520px;margin:0 auto}

@@ -6,20 +6,44 @@
   'use strict';
   const DB = window.DB, DICT = window.I18N_DICT;
   const LANGS = [
-    { code: 'vi', label: 'Tiếng Việt' },
-    { code: 'en', label: 'English' },
-    { code: 'zh', label: '繁體中文' }
+    { code: 'vi', label: 'Tiếng Việt', short: 'VI' },
+    { code: 'en', label: 'English', short: 'EN' },
+    { code: 'zh', label: '繁體中文', short: '繁' },
+    { code: 'zh-Hans', label: '简体中文', short: '简' }
   ];
+  const SUPPORTED = LANGS.map((l) => l.code);
+
+  /* Traditional→Simplified char map (generated offline via OpenCC tw→cn).
+     zh-Hans is derived from the zh dict/data at runtime — single source stays zh. */
+  const T2S = {"並":"并","來":"来","個":"个","們":"们","備":"备","僅":"仅","價":"价","儀":"仪","內":"内","創":"创","劃":"划","劇":"剧","動":"动","務":"务","協":"协","問":"问","單":"单","嗎":"吗","國":"国","圍":"围","圓":"圆","圖":"图","團":"团","報":"报","場":"场","墊":"垫","壞":"坏","壽":"寿","夥":"伙","夾":"夹","妝":"妆","學":"学","實":"实","審":"审","寫":"写","將":"将","專":"专","尋":"寻","對":"对","導":"导","屬":"属","幾":"几","廚":"厨","廠":"厂","廣":"广","強":"强","彎":"弯","後":"后","從":"从","態":"态","應":"应","戶":"户","換":"换","損":"损","撐":"撑","擁":"拥","擇":"择","擊":"击","擋":"挡","據":"据","擬":"拟","擴":"扩","攝":"摄","攤":"摊","數":"数","斷":"断","於":"于","時":"时","暫":"暂","曬":"晒","會":"会","條":"条","業":"业","構":"构","標":"标","樣":"样","機":"机","橫":"横","檢":"检","檻":"槛","欄":"栏","權":"权","殼":"壳","氣":"气","決":"决","沒":"没","況":"况","減":"减","測":"测","準":"准","溫":"温","潔":"洁","潤":"润","為":"为","無":"无","熱":"热","燙":"烫","營":"营","爛":"烂","狀":"状","環":"环","產":"产","畫":"画","異":"异","疊":"叠","發":"发","監":"监","盤":"盘","確":"确","種":"种","稱":"称","穩":"稳","節":"节","範":"范","篩":"筛","簡":"简","糾":"纠","紀":"纪","級":"级","細":"细","組":"组","結":"结","絡":"络","給":"给","統":"统","經":"经","維":"维","網":"网","緊":"紧","線":"线","繫":"系","續":"续","纏":"缠","聯":"联","脫":"脱","腳":"脚","膠":"胶","與":"与","艦":"舰","葉":"叶","著":"着","蓋":"盖","薦":"荐","處":"处","號":"号","螢":"萤","裝":"装","製":"制","複":"复","見":"见","規":"规","視":"视","觀":"观","觸":"触","計":"计","訊":"讯","設":"设","註":"注","評":"评","詞":"词","詢":"询","試":"试","話":"话","該":"该","詳":"详","認":"认","語":"语","說":"说","調":"调","談":"谈","請":"请","諾":"诺","證":"证","議":"议","護":"护","讓":"让","貨":"货","責":"责","貴":"贵","買":"买","費":"费","貼":"贴","資":"资","賣":"卖","質":"质","購":"购","車":"车","載":"载","輔":"辅","輕":"轻","輪":"轮","轉":"转","辦":"办","這":"这","週":"周","進":"进","運":"运","過":"过","達":"达","適":"适","選":"选","邊":"边","鉸":"铰","銷":"销","鎖":"锁","鏈":"链","長":"长","門":"门","開":"开","間":"间","關":"关","陣":"阵","陸":"陆","陽":"阳","隊":"队","際":"际","隨":"随","隱":"隐","隻":"只","雙":"双","電":"电","預":"预","頭":"头","顆":"颗","題":"题","額":"额","願":"愿","類":"类","顯":"显","風":"风","飯":"饭","驗":"验","體":"体","鬆":"松","麼":"么","點":"点"};
+  /* TW→CN vocabulary overrides (phrase-level; char map can't localize these) */
+  const T2S_PHRASE = { '螢幕': '屏幕', '行動電源': '移动电源', '影片': '视频', '回覆': '回复' };
+  const toSimp = (s) => {
+    if (s == null) return s;
+    s = String(s);
+    for (const k in T2S_PHRASE) s = s.split(k).join(T2S_PHRASE[k]);
+    return s.replace(/[一-鿿]/g, (c) => T2S[c] || c);
+  };
 
   /* ---------- i18n ---------- */
   let lang = localStorage.getItem('viemag-lang');
-  if (!DICT[lang]) lang = 'vi';
-  const t = (key) => (DICT[lang] && DICT[lang][key]) || (DICT.en && DICT.en[key]) || key;
-  const tf = (obj) => (obj && (obj[lang] || obj.en)) || '';
+  if (!SUPPORTED.includes(lang)) lang = 'vi';
+  const t = (key) => {
+    if (lang === 'zh-Hans') {
+      const zh = DICT.zh || {};
+      return toSimp(zh[key] != null ? zh[key] : ((DICT.en && DICT.en[key]) || key));
+    }
+    return (DICT[lang] && DICT[lang][key]) || (DICT.en && DICT.en[key]) || key;
+  };
+  const tf = (obj) => {
+    if (!obj) return '';
+    if (lang === 'zh-Hans') return toSimp(obj['zh-Hans'] || obj.zh || obj.en || '');
+    return obj[lang] || obj.en || '';
+  };
   window.VIEMAG = { t, tf, get lang() { return lang; } };
 
   function setLang(next) {
-    if (!DICT[next]) return;
+    if (!SUPPORTED.includes(next)) return;
     localStorage.setItem('viemag-lang', next);
     location.reload();
   }
@@ -118,7 +142,7 @@
         <nav class="main-nav" id="mainNav" aria-label="Main">${nav}</nav>
         <div class="header-actions">
           <div class="lang-switch">
-            <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">${icon('globe')}${lang.toUpperCase()}${icon('chevron')}</button>
+            <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">${icon('globe')}${(LANGS.find((l) => l.code === lang) || {}).short || lang.toUpperCase()}${icon('chevron')}</button>
             <div class="lang-menu" id="langMenu" role="menu">${langBtns}</div>
           </div>
           <a class="btn btn-primary btn-sm header-cta" href="${DB.config.shopeeUrl}" target="_blank" rel="noopener">${t('cta.shopee')}</a>
@@ -257,7 +281,7 @@
     const active = document.body.dataset.page || '';
     document.body.insertAdjacentHTML('afterbegin', header(active));
     document.body.insertAdjacentHTML('beforeend', footer());
-    if (DICT[lang]['meta.title'] && document.body.dataset.keepTitle !== '1') document.title = t('meta.title');
+    if (document.body.dataset.keepTitle !== '1') document.title = t('meta.title');
 
     /* language menu */
     const langBtn = document.getElementById('langBtn');
@@ -282,14 +306,14 @@
 
     applyI18nAttrs(document);
 
-    /* scroll reveal */
+    /* per-page render hook (injects dynamic .reveal content) */
+    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, productCard, categoryCard, scenarioCard, personaCard, faqItem, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
+
+    /* scroll reveal — observe AFTER dynamic content exists so injected cards animate in */
     const io = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     }), { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-    /* per-page render hook */
-    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, productCard, categoryCard, scenarioCard, personaCard, faqItem, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
   }
 
   document.addEventListener('DOMContentLoaded', boot);
