@@ -12,21 +12,20 @@
 <body data-page="home">
 
 <main>
-  <!-- ===== HERO: real driving scenario (per spec, H1 = scene, not slogan) ===== -->
-  <section class="hero">
-    <div class="container hero-inner">
+  <!-- ===== HERO: full-bleed real driving scene, slogan overlaid ===== -->
+  <section class="hero-full">
+    <img class="hero-bg" id="heroImg" src="image/main.png" width="1672" height="941" alt="" fetchpriority="high" decoding="async">
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="container hero-full-inner">
       <div class="hero-copy">
         <span class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow"></span></span>
         <h1 class="display" data-i18n="hero.slogan"></h1>
         <p class="sub" data-i18n="hero.sub"></p>
         <div class="hero-ctas">
           <a class="btn btn-primary" id="heroShopee" href="#" target="_blank" rel="noopener" data-i18n="cta.shopee"></a>
-          <a class="btn btn-ghost" href="products.html" data-i18n="cta.explore"></a>
+          <a class="btn btn-ghost hero-ghost" href="products.html" data-i18n="cta.explore"></a>
         </div>
         <div class="hero-trust" id="heroTrust"></div>
-      </div>
-      <div class="hero-art">
-        <img id="heroImg" src="image/main.png" width="1672" height="941" alt="" fetchpriority="high" decoding="async">
       </div>
     </div>
   </section>

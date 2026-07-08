@@ -8,8 +8,9 @@
   const LANGS = [
     { code: 'vi', label: 'Tiếng Việt', short: 'VI' },
     { code: 'en', label: 'English', short: 'EN' },
-    { code: 'zh', label: '繁體中文', short: '繁' },
-    { code: 'zh-Hans', label: '简体中文', short: '简' }
+    { code: 'id', label: 'Bahasa Indonesia', short: 'ID' },
+    { code: 'zh-Hans', label: '简体中文', short: '简' },
+    { code: 'zh', label: '繁體中文', short: '繁' }
   ];
   const SUPPORTED = LANGS.map((l) => l.code);
 
