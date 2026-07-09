@@ -27,8 +27,21 @@
   };
 
   /* ---------- i18n ---------- */
+  /* First visit: detect from browser languages → supported code; else fall back to English.
+     Only an explicit menu pick is persisted (setLang), so detection re-runs until the user chooses. */
+  function detectLang() {
+    const cands = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+    for (const raw of cands) {
+      const l = (raw || '').toLowerCase();
+      if (l.startsWith('vi')) return 'vi';
+      if (l.startsWith('id') || l.startsWith('in')) return 'id';   // 'in' = legacy Indonesian code
+      if (l.startsWith('zh')) return /hant|-tw|-hk|-mo/.test(l) ? 'zh' : 'zh-Hans'; // TW/HK/MO → Traditional; else Simplified
+      if (l.startsWith('en')) return 'en';
+    }
+    return 'en';
+  }
   let lang = localStorage.getItem('viemag-lang');
-  if (!SUPPORTED.includes(lang)) lang = 'en';
+  if (!SUPPORTED.includes(lang)) lang = detectLang();
   const t = (key) => {
     if (lang === 'zh-Hans') {
       const zh = DICT.zh || {};
