@@ -133,7 +133,7 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 /* ---------- hero (full-bleed photo, slogan overlaid) ---------- */
 .hero-full{position:relative;isolation:isolate;display:flex;align-items:center;
   min-height:min(94vh,840px);overflow:hidden;background:var(--midnight)}
-.hero-full .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% center;z-index:-2}
+.hero-full .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:15% center;z-index:-2}
 .hero-full .hero-scrim{position:absolute;inset:0;z-index:-1;
   background:
     linear-gradient(90deg, rgba(9,18,31,.90) 0%, rgba(9,18,31,.74) 30%, rgba(9,18,31,.40) 55%, rgba(9,18,31,.06) 82%, rgba(9,18,31,0) 100%),
