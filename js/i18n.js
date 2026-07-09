@@ -379,7 +379,7 @@ window.I18N_DICT = {
     'hero.eyebrow': '為開車與桌面工作而生的磁吸系統',
     'hero.slogan': '磁吸，<em>解放雙手</em>，<br>穩定就位',
     'hero.imgAlt': '手機吸附在車用磁吸支架上，螢幕顯示導航畫面',
-    'hero.sub': 'VIEMAG 是為每天開車與桌面工作的人設計的磁吸配件系統：比白牌更穩、更不燙、更耐用。',
+    'hero.sub': 'VIEMAG 是為每天開車與桌面工作的人設計的磁吸配件系統：<br>比白牌更穩、更不燙、更耐用。',
     'hero.trust1': '12 個月保固',
     'hero.trust2': '14 天瑕疵換新',
     'hero.trust3': '本地語言客服',
