@@ -177,10 +177,10 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 @media (max-width:820px){.pain-grid{grid-template-columns:1fr}}
 
 /* ---------- category cards (5 CAT) ---------- */
-.cat-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:var(--s4)}
+.cat-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:var(--s4)}
 .cat-card{grid-column:span 2;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--s5);
   display:flex;flex-direction:column;gap:var(--s3);transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
-.cat-grid .cat-card:nth-child(1),.cat-grid .cat-card:nth-child(2){grid-column:span 5;flex-direction:row;align-items:center;gap:var(--s5)}
+.cat-grid .cat-card:nth-child(1),.cat-grid .cat-card:nth-child(2){grid-column:span 4;flex-direction:row;align-items:center;gap:var(--s5)}
 .cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--navy)}
 .cat-card .cat-art{width:88px;height:88px;flex:none;border-radius:20px;background:var(--ivory);display:flex;align-items:center;justify-content:center}
 .cat-card .cat-art svg{width:52px;height:52px}
