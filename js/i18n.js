@@ -21,7 +21,7 @@ window.I18N_DICT = {
     'cta.contact': 'Liên hệ hỗ trợ',
 
     'hero.eyebrow': 'Hệ phụ kiện nam châm — lái xe & làm việc',
-    'hero.slogan': 'Hút một chạm. <em>Rảnh tay.</em> Luôn cố định.',
+    'hero.slogan': 'Hút một chạm. <em>Rảnh tay.</em><br>Luôn cố định.',
     'hero.imgAlt': 'Điện thoại hút trên giá đỡ nam châm trong ô tô, màn hình đang dẫn đường',
     'hero.sub': 'VIEMAG là hệ phụ kiện nam châm cho người lái xe mỗi ngày và làm việc bên bàn: giữ chắc hơn, ít nóng hơn, bền hơn so với hàng trôi nổi.',
     'hero.trust1': 'Bảo hành 12 tháng',
@@ -377,7 +377,7 @@ window.I18N_DICT = {
     'cta.contact': '聯絡客服',
 
     'hero.eyebrow': '為開車與桌面工作而生的磁吸系統',
-    'hero.slogan': '磁吸，<em>解放雙手</em>，穩定就位',
+    'hero.slogan': '磁吸，<em>解放雙手</em>，<br>穩定就位',
     'hero.imgAlt': '手機吸附在車用磁吸支架上，螢幕顯示導航畫面',
     'hero.sub': 'VIEMAG 是為每天開車與桌面工作的人設計的磁吸配件系統：比白牌更穩、更不燙、更耐用。',
     'hero.trust1': '12 個月保固',
@@ -555,7 +555,7 @@ window.I18N_DICT = {
     'cta.contact': 'Hubungi dukungan',
 
     'hero.eyebrow': 'Sistem magnetik untuk berkendara & meja kerja',
-    'hero.slogan': 'Tempel sekali. <em>Bebas genggam.</em> Selalu di tempat.',
+    'hero.slogan': 'Tempel sekali. <em>Bebas genggam.</em><br>Selalu di tempat.',
     'hero.imgAlt': 'Ponsel menempel pada dudukan mobil magnetik dengan navigasi di layar',
     'hero.sub': 'VIEMAG adalah sistem aksesori magnetik untuk pengendara harian dan pekerja meja: cengkeraman lebih kuat, pengisian lebih adem, dan usia lebih panjang dibanding produk tanpa merek.',
     'hero.trust1': 'Garansi 12 bulan',
