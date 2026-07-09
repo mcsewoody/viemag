@@ -133,7 +133,7 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 /* ---------- hero (full-bleed photo, slogan overlaid) ---------- */
 .hero-full{position:relative;isolation:isolate;display:flex;align-items:center;
   min-height:min(94vh,840px);overflow:hidden;background:var(--midnight)}
-.hero-full .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:15% center;z-index:-2}
+.hero-full .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0% center;transform:scale(1.12);transform-origin:0% 50%;z-index:-2}
 .hero-full .hero-scrim{position:absolute;inset:0;z-index:-1;
   background:
     linear-gradient(90deg, rgba(9,18,31,.90) 0%, rgba(9,18,31,.74) 30%, rgba(9,18,31,.40) 55%, rgba(9,18,31,.06) 82%, rgba(9,18,31,0) 100%),
@@ -155,7 +155,7 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 .hero-full .hero-trust .item svg{width:19px;height:19px;color:var(--teal);flex:none}
 @media (max-width:768px){
   .hero-full{min-height:84vh;align-items:flex-end}
-  .hero-full .hero-bg{object-position:66% center}
+  .hero-full .hero-bg{object-position:66% center;transform:none}
   .hero-full .hero-scrim{background:linear-gradient(0deg, rgba(9,18,31,.93) 8%, rgba(9,18,31,.64) 46%, rgba(9,18,31,.32) 100%)}
   .hero-full-inner{padding:var(--s8) 0 var(--s7)}
   .hero-full .hero-copy p.sub{font-size:1rem}
