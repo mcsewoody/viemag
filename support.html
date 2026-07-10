@@ -38,12 +38,74 @@
       <div class="faq-list" id="faqList"></div>
     </div>
   </section>
+
+  <section class="section" style="background:var(--ivory)" id="request">
+    <div class="container" style="max-width:860px">
+      <div class="form-card">
+        <h2 class="section-title" style="font-size:1.3rem;margin-bottom:24px" data-i18n="support.form.title"></h2>
+        <!-- Fields mirror Notion: Support Cases. Posts to DB.config.supportEndpoint
+             (Make webhook that writes into Notion); demo mode shows success locally. -->
+        <form id="supportForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="s-name"><span data-i18n="support.form.name"></span> <span class="req">*</span></label>
+              <input id="s-name" name="name" type="text" required autocomplete="name">
+              <p class="error-msg" data-i18n="support.form.required"></p>
+            </div>
+            <div class="field">
+              <label for="s-contact"><span data-i18n="support.form.contact"></span> <span class="req">*</span></label>
+              <input id="s-contact" name="contact" type="text" required autocomplete="email">
+              <p class="error-msg" data-i18n="support.form.required"></p>
+            </div>
+            <div class="field">
+              <label for="s-product" data-i18n="support.form.product"></label>
+              <select id="s-product" name="product"></select>
+            </div>
+            <div class="field">
+              <label for="s-channel" data-i18n="support.form.channel"></label>
+              <select id="s-channel" name="channel">
+                <option value="Shopee" data-i18n="support.form.channel.shopee"></option>
+                <option value="Dealer" data-i18n="support.form.channel.dealer"></option>
+                <option value="Website" data-i18n="support.form.channel.website"></option>
+                <option value="Other" data-i18n="support.form.channel.other"></option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="s-date" data-i18n="support.form.date"></label>
+              <input id="s-date" name="date" type="date">
+            </div>
+            <div class="field">
+              <label for="s-issue" data-i18n="support.form.issue"></label>
+              <select id="s-issue" name="issue">
+                <option value="DOA" data-i18n="support.form.issue.doa"></option>
+                <option value="Heat" data-i18n="support.form.issue.heat"></option>
+                <option value="Drop" data-i18n="support.form.issue.drop"></option>
+                <option value="Charging" data-i18n="support.form.issue.charging"></option>
+                <option value="Mount Loose" data-i18n="support.form.issue.loose"></option>
+                <option value="Compatibility" data-i18n="support.form.issue.compat"></option>
+                <option value="Other" data-i18n="support.form.issue.other"></option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="s-desc"><span data-i18n="support.form.desc"></span> <span class="req">*</span></label>
+              <textarea id="s-desc" name="desc" required></textarea>
+              <p class="error-msg" data-i18n="support.form.required"></p>
+            </div>
+            <div class="full">
+              <button type="submit" class="btn btn-primary" id="supportSubmit" data-i18n="support.form.submit"></button>
+            </div>
+          </div>
+          <div class="form-success" id="supportSuccess" role="status" data-i18n="support.form.success"></div>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
 
 <script src="js/data.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-window.renderPage = function ({ t, icon, faqItem }) {
+window.renderPage = function ({ t, tf, esc, icon, faqItem, published }) {
   const DB = window.DB;
   document.getElementById('policyList').innerHTML = [1, 2, 3, 4, 5].map((i) =>
     `<li>${icon('check')}<span>${t('support.p' + i)}</span></li>`).join('');
@@ -52,6 +114,44 @@ window.renderPage = function ({ t, icon, faqItem }) {
   ].map(([ic, i]) => `
     <div class="trust-item">${icon(ic)}<div><b>${t('trust.' + i + '.t')}</b><span>${t('trust.' + i + '.d')}</span></div></div>`).join('');
   document.getElementById('faqList').innerHTML = DB.faqs.map(faqItem).join('');
+
+  /* Product dropdown: value is stable EN name for the team, label is localized. */
+  const prodSel = document.getElementById('s-product');
+  prodSel.innerHTML = [`<option value="">${t('support.form.select')}</option>`]
+    .concat((published || DB.products).map((p) =>
+      `<option value="${esc((p.name && p.name.en) || tf(p.name))}">${esc(tf(p.name))}</option>`)).join('');
+
+  const form = document.getElementById('supportForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let valid = true;
+    form.querySelectorAll('[required]').forEach((inp) => {
+      const field = inp.closest('.field');
+      const ok = inp.value.trim() !== '' && inp.checkValidity();
+      field.classList.toggle('invalid', !ok);
+      if (!ok) valid = false;
+    });
+    if (!valid) { form.querySelector('.field.invalid input,.field.invalid textarea')?.focus(); return; }
+
+    const btn = document.getElementById('supportSubmit');
+    btn.disabled = true;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    payload.caseId = 'SC-' + Date.now().toString(36).toUpperCase();
+    payload.lang = window.VIEMAG.lang;
+    try {
+      if (DB.config.supportEndpoint) {
+        await fetch(DB.config.supportEndpoint, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+      /* demo mode: no endpoint configured — still confirm locally */
+      document.getElementById('supportSuccess').style.display = 'block';
+      form.querySelectorAll('input,select,textarea,button').forEach((el) => el.disabled = true);
+    } catch (err) {
+      btn.disabled = false;
+    }
+  });
 };
 </script>
 <script src="js/main.js"></script>

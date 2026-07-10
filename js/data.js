@@ -404,6 +404,7 @@ window.DB = {
   /* ---- Config: connect forms / shop links later ---- */
   config: {
     shopeeUrl: '#', /* Shopee Vietnam store URL — fill when live */
-    dealerEndpoint: 'https://hook.us1.make.com/tns4rhmwtjcm36s4pwb8yn66xssy4uwt' /* Make webhook → Notion Dealer Leads */
+    dealerEndpoint: 'https://hook.us1.make.com/tns4rhmwtjcm36s4pwb8yn66xssy4uwt', /* Make webhook → Notion Dealer Leads */
+    supportEndpoint: 'https://hook.us1.make.com/j3qdnv692j5lwqjglno44vj21hf1zog4' /* Make webhook → Notion Support Cases */
   }
 };
