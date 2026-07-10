@@ -765,7 +765,7 @@ window.I18N_DICT = {
     'support.form.required': '请填写此栏位。',
     'about.title': '关于 VIEMAG',
     'about.sub': 'Value . Innovation . Excellence — MAG 是我们的磁吸承诺。',
-    'about.story1': 'VIEMAG 源自一个简单的观察：手机是一天中被拿起、放下最多次的物件，但多数固定它的配件都做得很随便——急煞会掉、充电会烫、用几个月就松。',
+    'about.story1': 'VIEMAG 源自一个简单的观察：手机是一天中被拿起、放下最多次的物件，但多数固定它的配件都做得很随便——急刹会掉、充电会烫、用几个月就松。',
     'about.story2': '我们相信好的配件应该像工业产品一样被设计：有标准、有测试、有承诺。VIEMAG 团队将 30 多年为国际市场设计制造行动与车用配件的经验，投入每一个细节：磁路设计、旋转关节、热管理。',
     'about.story3': 'VIEMAG 这个名字承载四个承诺：Value 价值——超越价格的使用价值；Innovation 创新——解决被忽略的需求；Excellence 卓越——工业级的品质标准；MAG——Magnetic，投入磁吸生态下一个十年的承诺。',
     'about.v': '超越价格的使用价值',
