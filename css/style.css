@@ -3,7 +3,7 @@
    Palette: official brand colors (Scheme A)
    White base · Navy #1A3A5C · Copper #C8941A · Teal #2FA7A0
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+@import url('fonts.css'); /* self-hosted Be Vietnam Pro; CJK falls back to system fonts */
 
 :root{
   /* brand tokens */
@@ -30,7 +30,7 @@
   --text:var(--ink);
 
   /* type */
-  --font:'Be Vietnam Pro','Noto Sans TC',-apple-system,'Segoe UI',sans-serif;
+  --font:'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'PingFang SC','Microsoft YaHei','Noto Sans CJK SC','Hiragino Sans GB',sans-serif;
 
   /* spacing scale (4/8) */
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
