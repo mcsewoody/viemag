@@ -9,10 +9,8 @@ name: Export Notion → data.js
 
 on:
   workflow_dispatch: {}
-  # Enable the daily schedule only AFTER a first manual run is reviewed and
-  # the output looks correct (uncomment):
-  # schedule:
-  #   - cron: '0 1 * * *'   # 01:00 UTC daily
+  schedule:
+    - cron: '0 0,12 * * *'   # every 12h at 00:00 & 12:00 UTC (08:00 & 20:00 Taiwan)
 
 permissions:
   contents: write
