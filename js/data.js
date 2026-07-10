@@ -6,8 +6,10 @@
    Mock products are placeholders to be replaced with final SKUs.
    NOTE: qi values are 'none' | 'compatible' | 'testing' | 'certified'.
    Only 'certified' may ever render a certified badge (none are, today).
-   Languages per string: vi | en | id | zh. zh-Hans is derived from zh
-   at runtime (see js/main.js). id (Indonesian) is authored here.
+   Languages per string: vi | en | id | zh. zh (Traditional) is the base;
+   zh-Hans auto-converts from zh at runtime (see js/main.js). To hand-tune a
+   Simplified string, add a `'zh-Hans'` field to that object — it wins verbatim.
+   id (Indonesian) is authored here.
    ============================================================ */
 window.DB = {
 
