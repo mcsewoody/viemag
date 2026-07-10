@@ -1,0 +1,49 @@
+name: Export Notion → data.js
+
+# Pulls content from the VIEMAG 後台 Notion workspace and regenerates
+# js/data.js, committing the change so GitHub Pages redeploys.
+#
+# Trigger: manually (Actions tab → Run workflow) or on a daily schedule.
+# Requires repo secret NOTION_TOKEN (a Notion internal integration token
+# with access to the 「VIEMAG 後台」 page). See scripts/README.md.
+
+on:
+  workflow_dispatch: {}
+  # Enable the daily schedule only AFTER a first manual run is reviewed and
+  # the output looks correct (uncomment):
+  # schedule:
+  #   - cron: '0 1 * * *'   # 01:00 UTC daily
+
+permissions:
+  contents: write
+
+concurrency:
+  group: notion-export
+  cancel-in-progress: true
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Export from Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node scripts/export-notion.mjs
+
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain js/data.js)" ]]; then
+            git config user.name  "viemag-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add js/data.js
+            git commit -m "Sync js/data.js from Notion [skip ci]"
+            git push
+          else
+            echo "No changes."
+          fi
