@@ -23,9 +23,11 @@ jobs:
   export:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0          # full history so `git pull --rebase` works
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
 
@@ -42,10 +44,14 @@ jobs:
             git add js/data.js
             git commit -m "Sync js/data.js from Notion [skip ci]"
             for i in 1 2 3; do
-              git pull --rebase origin "${GITHUB_REF_NAME}" && git push && break
+              if git pull --rebase origin "${GITHUB_REF_NAME}" && git push; then
+                exit 0
+              fi
               echo "push attempt $i rejected (concurrent sync), retrying in 3s…"
               sleep 3
             done
+            echo "::error::push failed after 3 attempts"
+            exit 1
           else
             echo "No changes."
           fi
