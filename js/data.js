@@ -367,7 +367,7 @@ window.DB = {
         "screen",
         "desktop"
       ],
-      "price": null,
+      "price": 24.9,
       "rating": null,
       "reviews": 0,
       "badge": "bestseller",
@@ -396,7 +396,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "dash",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -431,7 +431,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "tape",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -466,7 +466,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "clip",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -501,7 +501,7 @@ window.DB = {
       "personas": [
         "creator"
       ],
-      "art": "tripod",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [],
@@ -534,7 +534,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "pro",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -570,7 +570,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "suctioncharge",
+      "art": "",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -605,7 +605,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "vent",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -641,7 +641,7 @@ window.DB = {
         "commuter",
         "traveler"
       ],
-      "art": "fancharge",
+      "art": "",
       "qi": "testing",
       "watt": "25W",
       "mount": [
@@ -677,7 +677,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "suction",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -713,7 +713,7 @@ window.DB = {
       "personas": [
         "homeoffice"
       ],
-      "art": "stand2in1",
+      "art": "",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -751,7 +751,7 @@ window.DB = {
         "commuter",
         "creator"
       ],
-      "art": "ring",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [],
@@ -785,7 +785,7 @@ window.DB = {
       "personas": [
         "homeoffice"
       ],
-      "art": "deskcharge",
+      "art": "",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -822,7 +822,7 @@ window.DB = {
         "homeoffice",
         "creator"
       ],
-      "art": "stand",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -857,7 +857,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "dashcharge",
+      "art": "",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -893,7 +893,7 @@ window.DB = {
       "personas": [
         "traveler"
       ],
-      "art": "powerbank",
+      "art": "",
       "qi": "compatible",
       "watt": "15W",
       "mount": [],
@@ -928,7 +928,7 @@ window.DB = {
         "commuter",
         "homeoffice"
       ],
-      "art": "case",
+      "art": "",
       "qi": "none",
       "watt": null,
       "mount": [],
@@ -963,7 +963,7 @@ window.DB = {
         "traveler",
         "homeoffice"
       ],
-      "art": "fold",
+      "art": "",
       "qi": "testing",
       "watt": "15W",
       "mount": [
@@ -998,7 +998,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "carcharge",
+      "art": "",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
