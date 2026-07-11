@@ -343,6 +343,48 @@ window.DB = {
   ],
   "products": [
     {
+      "sku": "VB001DSH1_BK",
+      "slug": "VB001DSH1_BK",
+      "status": "published",
+      "tier": "A",
+      "category": "accessories",
+      "scenarios": [
+        "S2",
+        "S4",
+        "S5",
+        "S6"
+      ],
+      "personas": [
+        "traveler",
+        "creator"
+      ],
+      "art": "",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "dashboard",
+        "suction",
+        "screen",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": "bestseller",
+      "name": {
+        "en": "Extended Aluminum Alloy Universal Magnetic Mount",
+        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm",
+        "id": "Dudukan Magnetik Serbaguna Aluminium Alloy Versi Panjang",
+        "zh": "鋁合金加長型萬用磁吸支架"
+      },
+      "claim": {
+        "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — your perfect companion for driving and everyday recording.",
+        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành lý tưởng cho mọi hành trình và khoảnh khắc.",
+        "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman ideal untuk berkendara dan merekam keseharian.",
+        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄最佳伴侶。"
+      }
+    },
+    {
       "sku": "VB002DSH",
       "slug": "dashboard-magnetic-car-mount",
       "status": "published",
