@@ -144,7 +144,6 @@ async function main() {
 
   const products = prodRows
     .map((r) => {
-      const claimVi = txt(P(r, 'One-line Claim VI')) || '';
       return {
         sku: txt(P(r, 'Official SKU Code')) || titleOf(P(r, 'Product ID')),
         slug: txt(P(r, 'Slug')),
@@ -162,7 +161,7 @@ async function main() {
         reviews: num(P(r, 'Review Count')) || 0,
         badge: sel(P(r, 'Badge')),
         name: langObj(r, 'Name'),
-        claim: { en: txt(P(r, 'Claim EN')) || '', vi: claimVi, id: txt(P(r, 'Claim ID')) || '', zh: txt(P(r, 'Claim ZH')) || '' },
+        claim: langObj(r, 'Claim'),
       };
     })
     .filter((p) => p.sku && p.slug);

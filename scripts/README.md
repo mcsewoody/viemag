@@ -35,7 +35,7 @@ read or written. Do not add them to the exporter.
 | data.js | Notion (DB · property) |
 |---|---|
 | product `sku` | Products · Official SKU Code |
-| product `name/claim` {en,vi,id,zh} | Name EN/VI/ID/ZH · Claim EN / One-line Claim VI / Claim ID / Claim ZH |
+| product `name/claim` {en,vi,id,zh} | Name EN/VI/ID/ZH · Claim EN/VI/ID/ZH |
 | product `category` | Public Category (relation → Categories.Slug) |
 | product `scenarios` | Scenario (relation → Scenarios.Scenario Code) |
 | product `tier/status` | Launch Tier (`Future` ⇒ status `future`) |
