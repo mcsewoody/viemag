@@ -358,7 +358,7 @@ window.DB = {
         "traveler",
         "creator"
       ],
-      "art": "",
+      "art": "suction",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -382,7 +382,8 @@ window.DB = {
         "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành lý tưởng cho mọi hành trình và khoảnh khắc.",
         "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman ideal untuk berkendara dan merekam keseharian.",
         "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄最佳伴侶。"
-      }
+      },
+      "img": "assets/products/VB001DSH1_BK.png"
     },
     {
       "sku": "VB002DSH",
@@ -396,7 +397,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "dash",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -431,7 +432,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "tape",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -466,7 +467,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "clip",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -501,7 +502,7 @@ window.DB = {
       "personas": [
         "creator"
       ],
-      "art": "",
+      "art": "tripod",
       "qi": "none",
       "watt": null,
       "mount": [],
@@ -534,7 +535,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "pro",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -570,7 +571,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "suctioncharge",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -605,7 +606,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "vent",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -641,7 +642,7 @@ window.DB = {
         "commuter",
         "traveler"
       ],
-      "art": "",
+      "art": "fancharge",
       "qi": "testing",
       "watt": "25W",
       "mount": [
@@ -677,7 +678,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "suction",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -713,7 +714,7 @@ window.DB = {
       "personas": [
         "homeoffice"
       ],
-      "art": "",
+      "art": "stand2in1",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -751,7 +752,7 @@ window.DB = {
         "commuter",
         "creator"
       ],
-      "art": "",
+      "art": "ring",
       "qi": "none",
       "watt": null,
       "mount": [],
@@ -785,7 +786,7 @@ window.DB = {
       "personas": [
         "homeoffice"
       ],
-      "art": "",
+      "art": "deskcharge",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -822,7 +823,7 @@ window.DB = {
         "homeoffice",
         "creator"
       ],
-      "art": "",
+      "art": "stand",
       "qi": "none",
       "watt": null,
       "mount": [
@@ -857,7 +858,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "dashcharge",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
@@ -893,7 +894,7 @@ window.DB = {
       "personas": [
         "traveler"
       ],
-      "art": "",
+      "art": "powerbank",
       "qi": "compatible",
       "watt": "15W",
       "mount": [],
@@ -928,7 +929,7 @@ window.DB = {
         "commuter",
         "homeoffice"
       ],
-      "art": "",
+      "art": "case",
       "qi": "none",
       "watt": null,
       "mount": [],
@@ -963,7 +964,7 @@ window.DB = {
         "traveler",
         "homeoffice"
       ],
-      "art": "",
+      "art": "fold",
       "qi": "testing",
       "watt": "15W",
       "mount": [
@@ -998,7 +999,7 @@ window.DB = {
       "personas": [
         "commuter"
       ],
-      "art": "",
+      "art": "carcharge",
       "qi": "compatible",
       "watt": "15W",
       "mount": [
