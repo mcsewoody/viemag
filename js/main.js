@@ -226,6 +226,11 @@
     if (p.qi === 'none' || !p.qi) return '';
     return `<span class="chip qi">${t('qi.' + p.qi)}</span>`;
   }
+  /* real photo (Notion Hero Image → assets/products/…) if present, else SVG art */
+  const thumb = (p) => p.img
+    ? `<img class="thumb-img" src="${p.img}" alt="${esc(tf(p.name))}" loading="lazy" style="width:100%;height:100%;object-fit:contain">`
+    : art(p.art, tf(p.name));
+
   function productCard(p) {
     const cat = catById(p.category);
     const future = p.status === 'future';
@@ -237,7 +242,7 @@
       : `<div class="foot"><span class="price">${money(p.price)}</span><span class="btn btn-ghost btn-sm">${t('cta.view')}</span></div>`;
     return `
     <a class="prod-card" href="product.html?sku=${encodeURIComponent(p.sku)}" aria-label="${esc(tf(p.name))}">
-      <div class="thumb">${badge}${art(p.art, tf(p.name))}</div>
+      <div class="thumb">${badge}${thumb(p)}</div>
       <div class="body">
         <span class="cat-label">${cat ? esc(tf(cat.name)) : ''}</span>
         <h3>${esc(tf(p.name))}</h3>
@@ -331,7 +336,7 @@
     applyI18nAttrs(document);
 
     /* per-page render hook (injects dynamic .reveal content) */
-    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, productCard, categoryCard, scenarioCard, personaCard, faqItem, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
+    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, personaCard, faqItem, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
 
     /* scroll reveal — observe AFTER dynamic content exists so injected cards animate in */
     const io = new IntersectionObserver((es) => es.forEach((e) => {

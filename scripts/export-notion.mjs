@@ -57,6 +57,12 @@ const multi = (p) => (p && p.type === 'multi_select' ? p.multi_select.map((o) =>
 const num = (p) => (p && p.type === 'number' ? p.number : null);
 const rel = (p) => (p && p.type === 'relation' ? p.relation.map((r) => r.id.replace(/-/g, '')) : []);
 const idOf = (page) => page.id.replace(/-/g, '');
+const fileUrl = (p) => {
+  if (!p || p.type !== 'files' || !p.files.length) return null;
+  const f = p.files[0];
+  const u = f.type === 'external' ? (f.external && f.external.url) : (f.file && f.file.url);
+  return u ? { url: u, name: f.name || '' } : null;
+};
 
 const langObj = (page, prefix) => ({
   en: txt(P(page, `${prefix} EN`)) || '',
@@ -152,7 +158,8 @@ async function main() {
         category: rel(P(r, 'Public Category')).map((id) => catById.get(id)).filter(Boolean)[0] || null,
         scenarios: rel(P(r, 'Scenario')).map((id) => scnById.get(id)).filter(Boolean),
         personas: multi(P(r, 'Persona')),
-        art: txt(P(r, 'Art Key')) || '',
+        art: sel(P(r, 'Art Key')) || '',
+        _hero: fileUrl(P(r, 'Hero Image')),
         qi: QI[sel(P(r, 'Qi Status'))] || 'none',
         watt: sel(P(r, 'Charging Watt')) === 'None' ? null : sel(P(r, 'Charging Watt')),
         mount: multi(P(r, 'Mount Type')).map((m) => MOUNT[m]).filter(Boolean),
@@ -165,6 +172,28 @@ async function main() {
       };
     })
     .filter((p) => p.sku && p.slug);
+
+  /* ---- download Hero Images → assets/products/<sku>.<ext> (build-time,
+     so Notion's expiring signed URLs never reach the front-end) ---- */
+  {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const url = await import('node:url');
+    const dir = path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), '../assets/products');
+    fs.mkdirSync(dir, { recursive: true });
+    for (const p of products) {
+      const hero = p._hero; delete p._hero;
+      if (!hero) continue;
+      let ext = path.extname((hero.name || '').split('?')[0]).toLowerCase();
+      if (!/^\.(jpe?g|png|webp|gif|avif)$/.test(ext)) ext = '.jpg';
+      try {
+        const res = await fetch(hero.url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        fs.writeFileSync(path.join(dir, p.sku + ext), Buffer.from(await res.arrayBuffer()));
+        p.img = `assets/products/${p.sku}${ext}`;
+      } catch (e) { console.error(`Hero download failed for ${p.sku}: ${e.message}`); }
+    }
+  }
 
   const faqs = faqRows
     .filter((r) => sel(P(r, 'Status')) === 'Published')

@@ -23,7 +23,7 @@
 <script src="js/data.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-window.renderPage = function ({ t, tf, icon, art, productCard, catById, scnByCode, esc, stars, money }) {
+window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, scnByCode, esc, stars, money }) {
   const DB = window.DB;
   const sku = new URLSearchParams(location.search).get('sku');
   const p = DB.products.find((x) => x.sku === sku) || DB.products[0];
@@ -60,7 +60,7 @@ window.renderPage = function ({ t, tf, icon, art, productCard, catById, scnByCod
   box.innerHTML = `
   <div class="pdp">
     <div class="pdp-gallery">
-      <div class="main">${art(p.art, tf(p.name))}</div>
+      <div class="main">${thumb(p)}</div>
     </div>
     <div class="pdp-info">
       <span class="sku">${esc(tf(cat.name))} · ${p.sku}</span>

@@ -38,10 +38,10 @@ jobs:
 
       - name: Commit if changed
         run: |
-          if [[ -n "$(git status --porcelain js/data.js)" ]]; then
+          if [[ -n "$(git status --porcelain js/data.js assets/products)" ]]; then
             git config user.name  "viemag-bot"
             git config user.email "actions@users.noreply.github.com"
-            git add js/data.js
+            git add js/data.js assets/products
             git commit -m "Sync js/data.js from Notion [skip ci]"
             for i in 1 2 3; do
               if git pull --rebase origin "${GITHUB_REF_NAME}" && git push; then
