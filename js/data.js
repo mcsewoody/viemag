@@ -346,7 +346,7 @@ window.DB = {
       "sku": "VB001DSH1_BK",
       "slug": "VB001DSH1_BK",
       "status": "published",
-      "tier": "A",
+      "tier": "Future",
       "category": "accessories",
       "scenarios": [
         "S2",
@@ -389,7 +389,7 @@ window.DB = {
       "sku": "VB002DSH",
       "slug": "dashboard-magnetic-car-mount",
       "status": "published",
-      "tier": "A",
+      "tier": "Future",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -424,7 +424,7 @@ window.DB = {
       "sku": "VB005TAP",
       "slug": "tape-magnetic-car-mount",
       "status": "published",
-      "tier": "C",
+      "tier": "Future",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -459,7 +459,7 @@ window.DB = {
       "sku": "VB004CLP",
       "slug": "screen-clip-magnetic-mount",
       "status": "published",
-      "tier": "C",
+      "tier": "Future",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -527,7 +527,7 @@ window.DB = {
       "sku": "VB006PRO",
       "slug": "pro-antivibration-magnetic-mount",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -563,7 +563,7 @@ window.DB = {
       "sku": "VB010ARM",
       "slug": "long-arm-qi2-car-charger",
       "status": "published",
-      "tier": "C",
+      "tier": "Future",
       "category": "car-chargers",
       "scenarios": [
         "S2"
@@ -598,7 +598,7 @@ window.DB = {
       "sku": "VB001VNT",
       "slug": "vent-magnetic-car-mount",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -633,7 +633,7 @@ window.DB = {
       "sku": "VB00925W",
       "slug": "qi2-25w-cooled-car-charger",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "car-chargers",
       "scenarios": [
         "S2"
@@ -670,7 +670,7 @@ window.DB = {
       "sku": "VB003SUC",
       "slug": "suction-arm-magnetic-mount",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -705,7 +705,7 @@ window.DB = {
       "sku": "VA002DSK",
       "slug": "2in1-desk-charging-stand",
       "status": "published",
-      "tier": "A",
+      "tier": "Future",
       "category": "desk-travel",
       "scenarios": [
         "S3",
@@ -741,7 +741,7 @@ window.DB = {
       "sku": "VE001RNG",
       "slug": "magnetic-adapter-ring-kit",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "accessories",
       "scenarios": [
         "S2",
@@ -777,7 +777,7 @@ window.DB = {
       "sku": "VA00115W",
       "slug": "qi2-desktop-charger",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "desk-travel",
       "scenarios": [
         "S3",
@@ -850,7 +850,7 @@ window.DB = {
       "sku": "VB00815W",
       "slug": "dashboard-qi2-15w-car-charger",
       "status": "published",
-      "tier": "A",
+      "tier": "Future",
       "category": "car-chargers",
       "scenarios": [
         "S2"
@@ -919,7 +919,7 @@ window.DB = {
       "sku": "VE002KIT",
       "slug": "magnetic-case-ring-bundle",
       "status": "published",
-      "tier": "C",
+      "tier": "Future",
       "category": "accessories",
       "scenarios": [
         "S2",
@@ -954,7 +954,7 @@ window.DB = {
       "sku": "VA003FLD",
       "slug": "folding-travel-qi2-charger",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "desk-travel",
       "scenarios": [
         "S5",
@@ -991,7 +991,7 @@ window.DB = {
       "sku": "VB00715W",
       "slug": "vent-qi2-15w-car-charger",
       "status": "published",
-      "tier": "B",
+      "tier": "Future",
       "category": "car-chargers",
       "scenarios": [
         "S2"
