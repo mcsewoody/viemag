@@ -1050,10 +1050,10 @@ window.DB = {
         "zh": "溫升測試"
       },
       "desc": {
-        "vi": "Theo dõi nhiệt độ suốt chu kỳ sạc để giữ máy luôn mát.",
-        "en": "Charge-cycle temperature profiling keeps phones cool.",
-        "id": "Pemantauan suhu sepanjang siklus pengisian menjaga ponsel tetap adem.",
-        "zh": "全充電週期溫度監控，手機不燙手。"
+        "vi": "Theo dõi nhiệt độ suốt chu kỳ sạc — bảo vệ điện thoại của bạn khi sạc.",
+        "en": "Charge-cycle temperature profiling — protects your phone while charging.",
+        "id": "Pemantauan suhu sepanjang siklus pengisian — melindungi ponsel Anda saat mengisi daya.",
+        "zh": "全充電週期溫度監控，充電時更保護您的手機。"
       }
     },
     {
