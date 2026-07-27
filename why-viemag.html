@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Why VIEMAG</title>
-  <meta name="description" content="Firmer, cooler, longer-lasting — three promises backed by testing: vibration, thermal-rise, magnetic force and lifecycle.">
+  <meta name="description" content="Steadier, more secure, longer-lasting and safer charging — promises backed by testing: magnetic force, vibration, thermal-rise and lifecycle.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -68,9 +68,9 @@
 <script>
 window.renderPage = function ({ t, tf, icon }) {
   const DB = window.DB;
-  document.getElementById('claimGrid').innerHTML = [1, 2, 3].map((i) => `
+  document.getElementById('claimGrid').innerHTML = [1, 2, 3, 4].map((i) => `
     <div class="pain-card reveal">
-      <div class="icon-wrap icon-teal" style="background:var(--teal-soft)">${icon(['magnet', 'thermo', 'cycle'][i - 1])}</div>
+      <div class="icon-wrap icon-teal" style="background:var(--teal-soft)">${icon(['magnet', 'shield', 'cycle', 'thermo'][i - 1])}</div>
       <h3 style="color:var(--navy)">${t('why.c' + i + '.t')}</h3>
       <p>${t('why.c' + i + '.d')}</p>
     </div>`).join('');
