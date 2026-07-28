@@ -51,6 +51,8 @@ a { color: var(--navy); }
 .topbar select, .topbar button {
   padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; font-size: .85rem;
 }
+.topbar .sync-status { font-size: .8rem; color: var(--teal); min-width: 0; }
+.topbar .sync-status.error { color: var(--danger); }
 
 .content { padding: 24px; }
 .content h2 { margin-top: 0; color: var(--navy); }

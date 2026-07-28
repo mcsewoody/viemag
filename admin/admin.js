@@ -22,13 +22,34 @@
      Saving/deleting a row in one of these triggers a re-export + GitHub commit. */
   var EXPORT_TRIGGER_TABLES = ['products', 'categories', 'scenarios', 'faq'];
 
+  function callExportFunction() {
+    /* Raw fetch with keepalive:true instead of sb.functions.invoke(), which
+       does NOT set keepalive — without it, closing the tab or navigating
+       away right after Save can cancel the in-flight request before the
+       export ever runs, even though the DB save itself already succeeded.
+       keepalive lets the browser finish sending it after the page unloads
+       (subject to the ~64KB keepalive body-size limit, fine for this — the
+       request body here is empty). */
+    return sb.auth.getSession().then(function (sessionRes) {
+      var token = (sessionRes.data.session && sessionRes.data.session.access_token) || CFG.supabaseAnonKey;
+      return fetch(CFG.supabaseUrl + '/functions/v1/export-site-data', {
+        method: 'POST',
+        keepalive: true,
+        headers: { apikey: CFG.supabaseAnonKey, Authorization: 'Bearer ' + token },
+      }).then(function (res) {
+        return res.json().then(function (data) { return { httpOk: res.ok, data: data }; });
+      });
+    });
+  }
+
   function triggerExportIfNeeded(tableName, statusEl) {
     if (EXPORT_TRIGGER_TABLES.indexOf(tableName) === -1) return;
-    sb.functions.invoke('export-site-data').then(function (res) {
+    callExportFunction().then(function (result) {
       if (!statusEl) return;
-      if (res.error) { statusEl.textContent += ' (' + t('exportFailed') + res.error.message + ')'; return; }
-      var data = res.data || {};
-      if (data.committed) statusEl.textContent += ' · ' + t('exported');
+      if (!result.httpOk) { statusEl.textContent += ' (' + t('exportFailed') + (result.data.error || 'HTTP error') + ')'; return; }
+      if (result.data.committed) statusEl.textContent += ' · ' + t('exported');
+    }).catch(function (err) {
+      if (statusEl) statusEl.textContent += ' (' + t('exportFailed') + err.message + ')';
     });
   }
 
@@ -76,10 +97,28 @@
     document.getElementById('brandLabel').textContent = t('appTitle');
     document.getElementById('userEmail').textContent = state.session.user.email;
     document.getElementById('signOutBtn').textContent = t('signOut');
+    document.getElementById('syncNowBtn').textContent = t('syncNow');
     buildLangPicker(document.getElementById('langPicker'));
     renderSidebar();
     renderContent();
   }
+
+  document.getElementById('syncNowBtn').addEventListener('click', function () {
+    var btn = document.getElementById('syncNowBtn');
+    var statusEl = document.getElementById('syncStatus');
+    btn.disabled = true;
+    statusEl.className = 'sync-status';
+    statusEl.textContent = t('syncing');
+    callExportFunction().then(function (result) {
+      btn.disabled = false;
+      if (!result.httpOk) { statusEl.className = 'sync-status error'; statusEl.textContent = t('exportFailed') + (result.data.error || 'HTTP error'); return; }
+      statusEl.textContent = result.data.committed ? t('exported') : t('exportNoChange');
+    }).catch(function (err) {
+      btn.disabled = false;
+      statusEl.className = 'sync-status error';
+      statusEl.textContent = t('exportFailed') + err.message;
+    });
+  });
 
   document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
