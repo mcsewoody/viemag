@@ -18,6 +18,20 @@
     relationCache: {},
   };
 
+  /* Tables that actually feed js/data.js (see supabase/functions/export-site-data).
+     Saving/deleting a row in one of these triggers a re-export + GitHub commit. */
+  var EXPORT_TRIGGER_TABLES = ['products', 'categories', 'scenarios', 'faq'];
+
+  function triggerExportIfNeeded(tableName, statusEl) {
+    if (EXPORT_TRIGGER_TABLES.indexOf(tableName) === -1) return;
+    sb.functions.invoke('export-site-data').then(function (res) {
+      if (!statusEl) return;
+      if (res.error) { statusEl.textContent += ' (' + t('exportFailed') + res.error.message + ')'; return; }
+      var data = res.data || {};
+      if (data.committed) statusEl.textContent += ' · ' + t('exported');
+    });
+  }
+
   function t(key) {
     var dict = I18N[state.lang] || I18N.en;
     return dict[key] !== undefined ? dict[key] : (I18N.en[key] !== undefined ? I18N.en[key] : key);
@@ -174,6 +188,7 @@
           var id = btn.closest('tr').dataset.id;
           sb.from(tableName).delete().eq('id', id).then(function (res) {
             if (res.error) { alert(t('deleteFailed') + res.error.message); return; }
+            triggerExportIfNeeded(tableName, null);
             renderContent();
           });
         });
@@ -419,10 +434,11 @@
       });
       Promise.all(joinOps).then(function () {
         statusEl.textContent = t('saved');
+        triggerExportIfNeeded(tableName, statusEl);
         setTimeout(function () {
           state.view = { table: tableName, mode: 'list', id: null };
           renderContent();
-        }, 500);
+        }, 800);
       });
     });
   }
