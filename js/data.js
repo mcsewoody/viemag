@@ -584,7 +584,7 @@ window.DB = {
       ],
       "price": 22.9,
       "rating": 4.7,
-      "reviews": 63,
+      "reviews": 999,
       "badge": null,
       "name": {
         "en": "VIEMAG Suction Long-Arm Mount",
