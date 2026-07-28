@@ -121,7 +121,7 @@ window.I18N_DICT = {
     'why.c3.t': 'Bền hơn', 'why.c3.d': 'Mọi khớp nối, trục xoay và cơ cấu khóa đều trải qua các bài kiểm định độ bền: trục xoay, khớp bi, chu kỳ hút–nhả và rơi rớt, giữ chất lượng qua thời gian dài sử dụng — VIEMAG xứng đáng với niềm tin của bạn.',
     'why.c4.t': 'Sạc yên tâm hơn', 'why.c4.d': 'Giám sát nhiệt độ toàn chu trình, phát hiện vật thể lạ và bảo vệ quá nhiệt / quá dòng, kèm trạng thái tương thích hoặc chứng nhận Qi / Qi2 ghi rõ theo từng SKU — thông tin sạc minh bạch để bạn yên tâm.',
     'why.team.title': 'Đội ngũ đứng sau',
-    'why.team.desc': 'VIEMAG được xây dựng bởi đội ngũ có hơn 30 năm kinh nghiệm thiết kế và sản xuất phụ kiện di động & phụ kiện ô tô cho các thương hiệu quốc tế. Chúng tôi làm chủ từ thiết kế mạch nam châm, khuôn mẫu đến kiểm định chất lượng — và đưa chuẩn mực đó vào từng sản phẩm VIEMAG.',
+    'why.team.desc': 'VIEMAG được xây dựng bởi một nhóm yêu thích sự phát triển công nghệ và trân trọng trải nghiệm cuộc sống. Chúng tôi luôn nỗ lực đáp ứng nhu cầu của người dùng trong mọi tình huống cuộc sống, để mỗi sản phẩm VIEMAG đều trở thành người bạn đồng hành quan trọng trong cuộc sống của bạn.',
 
     'support.title': 'Hỗ trợ & Bảo hành',
     'support.sub': 'Chính sách rõ ràng, quy trình đơn giản, hỗ trợ bằng ngôn ngữ bản địa.',
@@ -316,7 +316,7 @@ window.I18N_DICT = {
     'why.c3.t': 'Longer-lasting', 'why.c3.d': 'Every joint, pivot and locking mechanism is validated through hinge, ball-joint, attachment-cycle and drop durability tests, holding its quality through long-term use — VIEMAG earns your trust.',
     'why.c4.t': 'Charge with confidence', 'why.c4.d': 'Full-cycle temperature monitoring, foreign-object detection and over-temperature / over-current protection, with each SKU\'s Qi / Qi2 compatibility or certification status clearly stated — transparent charging you can rely on.',
     'why.team.title': 'The team behind it',
-    'why.team.desc': 'VIEMAG is built by a team with over 30 years of experience designing and manufacturing mobile and automotive accessories for international brands. We control magnet-circuit design, tooling and quality inspection end to end — and hold every VIEMAG product to that standard.',
+    'why.team.desc': 'VIEMAG is built by a team who love where technology is going and care deeply about everyday experience. We work to meet what people need in every moment of life, so that every VIEMAG product can become a meaningful companion in yours.',
 
     'support.title': 'Support & Warranty',
     'support.sub': 'Clear policies, a simple process, help in your local language.',
@@ -511,7 +511,7 @@ window.I18N_DICT = {
     'why.c3.t': '更耐用', 'why.c3.d': '每一個關節、轉軸與結合機構都經過轉軸開闔、球頭、吸合循環與跌落等耐久測試，長時間使用仍能維持品質，VIEMAG 值得您信賴。',
     'why.c4.t': '充電更安心', 'why.c4.d': '全程溫度監控、異物偵測與過溫過流保護，並依各 SKU 標示 Qi／Qi2 相容或認證狀態——充電資訊透明，讓您安心使用。',
     'why.team.title': '背後的團隊',
-    'why.team.desc': 'VIEMAG 由一支擁有 30 年以上行動配件與車用配件設計製造經驗、長期服務國際品牌的團隊打造。從磁路設計、模具到品質檢驗全程自主掌握，並以同樣的標準要求每一件 VIEMAG 產品。',
+    'why.team.desc': 'VIEMAG 由一群熱愛科技發展與重視生活體驗的團隊組成，我們努力滿足使用者在每一個生活情境中的需求，務求每一件 VIEMAG 產品都能成為您生活中重要的夥伴。',
 
     'support.title': '售後支援與保固',
     'support.sub': '政策清楚、流程簡單、以本地語言提供協助。',
@@ -705,7 +705,7 @@ window.I18N_DICT = {
     'why.c4.t': '充电更安心',
     'why.c4.d': '全程温度监控、异物侦测与过温过流保护，并依各 SKU 标示 Qi／Qi2 兼容或认证状态——充电信息透明，让您安心使用。',
     'why.team.title': '背后的团队',
-    'why.team.desc': 'VIEMAG 由一支拥有 30 年以上行动配件与车用配件设计制造经验、长期服务国际品牌的团队打造。从磁路设计、模具到品质检验全程自主掌握，并以同样的标准要求每一件 VIEMAG 产品。',
+    'why.team.desc': 'VIEMAG 由一群热爱科技发展与重视生活体验的团队组成，我们努力满足使用者在每一个生活情境中的需求，务求每一件 VIEMAG 产品都能成为您生活中重要的伙伴。',
     'support.title': '售后支持与保修',
     'support.sub': '政策清楚、流程简单、以本地语言提供协助。',
     'support.policy': '保修政策',
@@ -911,7 +911,7 @@ window.I18N_DICT = {
     'why.c3.t': 'Lebih awet', 'why.c3.d': 'Setiap sambungan, poros, dan mekanisme pengunci diuji melalui pengujian ketahanan: engsel, sendi bola, siklus tempel–lepas, dan jatuh, menjaga kualitas untuk pemakaian jangka panjang — VIEMAG layak Anda percaya.',
     'why.c4.t': 'Mengisi daya lebih tenang', 'why.c4.d': 'Pemantauan suhu sepanjang siklus, deteksi benda asing, serta perlindungan suhu / arus berlebih, dengan status kompatibilitas atau sertifikasi Qi / Qi2 tercantum jelas per SKU — informasi pengisian yang transparan dan menenangkan.',
     'why.team.title': 'Tim di baliknya',
-    'why.team.desc': 'VIEMAG dibangun oleh tim dengan pengalaman lebih dari 30 tahun merancang dan memproduksi aksesori ponsel dan otomotif untuk merek internasional. Kami menguasai desain sirkuit magnet, cetakan, hingga inspeksi kualitas dari hulu ke hilir — dan menerapkan standar itu pada setiap produk VIEMAG.',
+    'why.team.desc': 'VIEMAG dibangun oleh tim yang mencintai perkembangan teknologi dan menghargai pengalaman hidup sehari-hari. Kami berupaya memenuhi kebutuhan pengguna di setiap momen kehidupan, agar setiap produk VIEMAG dapat menjadi pendamping penting dalam hidup Anda.',
 
     'support.title': 'Dukungan & Garansi',
     'support.sub': 'Kebijakan jelas, proses sederhana, bantuan dalam bahasa lokal.',
