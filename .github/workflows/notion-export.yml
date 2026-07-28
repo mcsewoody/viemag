@@ -3,14 +3,20 @@ name: Export Notion → data.js
 # Pulls content from the VIEMAG 後台 Notion workspace and regenerates
 # js/data.js, committing the change so GitHub Pages redeploys.
 #
-# Trigger: manually (Actions tab → Run workflow) or on a daily schedule.
+# DISABLED 2026-07-28: backend is migrating Notion -> Supabase (see
+# supabase/functions/export-site-data). The 12h schedule was removed
+# so this can no longer race with Supabase-driven edits and clobber
+# them by re-exporting stale Notion content. workflow_dispatch is kept
+# only as a manual escape hatch during the cutover; do not re-enable
+# the schedule. This whole file will be deleted once the Supabase
+# export is fully verified (see the migration task list).
+#
+# Trigger: manually only (Actions tab → Run workflow).
 # Requires repo secret NOTION_TOKEN (a Notion internal integration token
 # with access to the 「VIEMAG 後台」 page). See scripts/README.md.
 
 on:
   workflow_dispatch: {}
-  schedule:
-    - cron: '0 0,12 * * *'   # every 12h at 00:00 & 12:00 UTC (08:00 & 20:00 Taiwan)
 
 permissions:
   contents: write
