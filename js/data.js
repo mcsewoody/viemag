@@ -1021,6 +1021,35 @@ window.DB = {
         "id": "Casing pelindung dengan cincin magnet yang sudah presisi untuk cengkeraman maksimal.",
         "zh": "保護殼內建對位磁環，相容性一次到位。"
       }
+    },
+    {
+      "sku": "ZZTEST001",
+      "slug": "zztest-defaults-check",
+      "status": "future",
+      "tier": "Future",
+      "category": null,
+      "scenarios": [],
+      "personas": [],
+      "art": "",
+      "qi": "none",
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "預設值測試品"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "tests": [
