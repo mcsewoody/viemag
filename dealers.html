@@ -30,7 +30,9 @@
     <div class="container" style="max-width:860px">
       <div class="form-card">
         <h2 class="section-title" style="font-size:1.3rem;margin-bottom:24px" data-i18n="dealers.form.title"></h2>
-        <!-- Fields mirror Notion: Dealer Leads. Submission posts to DB.config.dealerEndpoint
+        <!-- Fields mirror Supabase table: dealer_leads. Submission inserts directly via
+             supabase-js (anon key, INSERT-only per RLS) — see js/supabase-config.js.
+             Old note (pre 2026-07-28): posts to DB.config.dealerEndpoint
              (webhook that writes into Notion); demo mode shows success locally. -->
         <form id="dealerForm" novalidate>
           <div class="form-grid">
@@ -95,11 +97,14 @@
   </section>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
 <script src="js/data.js"></script>
 <script src="js/i18n.js"></script>
 <script>
 window.renderPage = function ({ t, icon }) {
   const DB = window.DB;
+  const sb = window.supabase.createClient(window.VIEMAG_SUPABASE.url, window.VIEMAG_SUPABASE.anonKey);
   document.getElementById('whyGrid').innerHTML = [
     ['box', 1], ['shield', 2], ['check', 3], ['arrow', 4]
   ].map(([ic, i]) => `
@@ -119,17 +124,22 @@ window.renderPage = function ({ t, icon }) {
 
     const btn = document.getElementById('dealerSubmit');
     btn.disabled = true;
-    const payload = Object.fromEntries(new FormData(form).entries());
-    payload.minimum = form.querySelector('#f-minimum').checked;
-    payload.lang = window.VIEMAG.lang;
+    const fd = Object.fromEntries(new FormData(form).entries());
+    const row = {
+      company_name: fd.company,
+      contact_person: fd.contact,
+      email: fd.email,
+      phone_zalo: fd.phone,
+      city_region: fd.city || null,
+      channel_type: fd.channel ? [fd.channel] : [],
+      current_brands: fd.brands || null,
+      monthly_sales_estimate: fd.volume ? Number(fd.volume) : null,
+      notes: fd.notes || null,
+      can_meet_minimum_order: form.querySelector('#f-minimum').checked,
+    };
     try {
-      if (DB.config.dealerEndpoint) {
-        await fetch(DB.config.dealerEndpoint, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      }
-      /* demo mode: no endpoint configured — still confirm locally */
+      const { error } = await sb.from('dealer_leads').insert(row);
+      if (error) throw error;
       document.getElementById('formSuccess').style.display = 'block';
       form.querySelectorAll('input,select,textarea,button').forEach((el) => el.disabled = true);
     } catch (err) {
