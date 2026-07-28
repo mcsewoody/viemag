@@ -1,0 +1,100 @@
+:root {
+  --navy: #1A3A5C;
+  --navy-dark: #0F1F33;
+  --copper: #C8941A;
+  --teal: #2FA7A0;
+  --ivory: #F8F5EF;
+  --line: #D9D2C5;
+  --danger: #B3352C;
+  --bg: #F5F6F8;
+  --card: #FFFFFF;
+  --text: #1A1F27;
+  --muted: #6B7280;
+  --radius: 10px;
+  font-family: -apple-system, "Segoe UI", "Noto Sans TC", "Noto Sans", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+a { color: var(--navy); }
+
+/* ---------- login screen ---------- */
+.login-wrap {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, var(--navy-dark), var(--navy));
+}
+.login-card {
+  background: var(--card); border-radius: var(--radius); padding: 40px 36px;
+  width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,.3);
+}
+.login-card h1 { font-size: 1.3rem; margin: 0 0 20px; color: var(--navy); }
+.login-card label { display: block; font-size: .85rem; color: var(--muted); margin: 14px 0 4px; }
+.login-card input { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 1rem; }
+.login-card button { margin-top: 20px; width: 100%; padding: 11px; border: none; border-radius: 8px;
+  background: var(--copper); color: #1a1300; font-weight: 700; font-size: 1rem; cursor: pointer; }
+.login-card button:hover { filter: brightness(1.05); }
+.login-error { color: var(--danger); font-size: .85rem; margin-top: 10px; min-height: 1.2em; }
+.lang-picker-login { position: absolute; top: 20px; right: 20px; }
+
+/* ---------- app shell ---------- */
+.app { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+.sidebar { background: var(--navy-dark); color: #fff; padding: 20px 0; }
+.sidebar .brand { padding: 0 20px 20px; font-weight: 800; letter-spacing: .04em; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 10px; }
+.sidebar nav a {
+  display: block; padding: 10px 20px; color: rgba(255,255,255,.75); text-decoration: none; font-size: .92rem; cursor: pointer;
+}
+.sidebar nav a:hover { background: rgba(255,255,255,.06); color: #fff; }
+.sidebar nav a.active { background: var(--copper); color: #1a1300; font-weight: 700; }
+
+.topbar { display: flex; align-items: center; justify-content: flex-end; gap: 14px;
+  padding: 12px 24px; background: var(--card); border-bottom: 1px solid var(--line); }
+.topbar .user-email { color: var(--muted); font-size: .85rem; }
+.topbar select, .topbar button {
+  padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; font-size: .85rem;
+}
+
+.content { padding: 24px; }
+.content h2 { margin-top: 0; color: var(--navy); }
+.panel-note { color: var(--muted); font-size: .82rem; margin: -8px 0 16px; }
+
+.toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 12px; }
+.toolbar input[type=search] { flex: 1; max-width: 320px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; }
+.btn { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: .9rem; }
+.btn:hover { border-color: var(--navy); }
+.btn-primary { background: var(--copper); border-color: var(--copper); color: #1a1300; font-weight: 700; }
+.btn-danger { color: var(--danger); border-color: var(--danger); }
+
+table.grid { width: 100%; border-collapse: collapse; background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+table.grid th, table.grid td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); font-size: .9rem; }
+table.grid th { background: var(--ivory); color: var(--navy); font-weight: 700; }
+table.grid tr:hover td { background: #FAFBFC; }
+table.grid .row-actions { white-space: nowrap; text-align: right; }
+table.grid .row-actions button { margin-left: 6px; }
+.badge-status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .75rem; font-weight: 700; background: var(--ivory); color: var(--navy); }
+.empty-state { padding: 40px; text-align: center; color: var(--muted); background: var(--card); border-radius: var(--radius); }
+
+/* ---------- edit form ---------- */
+.form-card { background: var(--card); border-radius: var(--radius); padding: 24px; max-width: 900px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 20px; }
+.field { display: flex; flex-direction: column; }
+.field.wide { grid-column: 1 / -1; }
+.field label { font-size: .82rem; color: var(--muted); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.field input[type=text], .field input[type=number], .field input[type=date], .field select, .field textarea {
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: .92rem; font-family: inherit;
+}
+.field textarea { resize: vertical; min-height: 70px; }
+.field textarea.large { min-height: 200px; }
+.field.checkbox { flex-direction: row; align-items: center; gap: 8px; }
+.field.checkbox label { margin-bottom: 0; }
+.internal-tag { color: var(--danger); font-size: .7rem; border: 1px solid var(--danger); border-radius: 4px; padding: 0 4px; }
+.multiselect-options, .relation-many-options { display: flex; flex-wrap: wrap; gap: 6px 12px; padding: 8px 0; }
+.multiselect-options label, .relation-many-options label { display: flex; align-items: center; gap: 4px; font-size: .85rem; font-weight: 400; color: var(--text); }
+.image-field-preview { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.image-field-preview img { width: 72px; height: 72px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
+.image-field-preview .thumb-wrap { position: relative; }
+.image-field-preview .thumb-remove {
+  position: absolute; top: -6px; right: -6px; background: var(--danger); color: #fff; border: none;
+  border-radius: 50%; width: 18px; height: 18px; font-size: 11px; line-height: 18px; cursor: pointer;
+}
+.form-actions { margin-top: 20px; display: flex; gap: 10px; align-items: center; }
+.save-status { font-size: .85rem; color: var(--teal); }
+.save-status.error { color: var(--danger); }

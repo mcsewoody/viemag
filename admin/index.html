@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>VIEMAG Admin</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div id="loginScreen" class="login-wrap" style="display:none">
+  <div class="lang-picker-login">
+    <select id="loginLangPicker"></select>
+  </div>
+  <div class="login-card">
+    <h1 id="loginTitle">Sign in</h1>
+    <form id="loginForm">
+      <label id="loginEmailLabel" for="loginEmail">Email</label>
+      <input id="loginEmail" type="email" autocomplete="username" required>
+      <label id="loginPasswordLabel" for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" required>
+      <button id="loginSubmit" type="submit">Sign in</button>
+      <div id="loginError" class="login-error"></div>
+    </form>
+  </div>
+</div>
+
+<div id="app" class="app" style="display:none">
+  <div class="sidebar">
+    <div class="brand" id="brandLabel">VIEMAG ADMIN</div>
+    <nav id="sidebarNav"></nav>
+  </div>
+  <div>
+    <div class="topbar">
+      <span class="user-email" id="userEmail"></span>
+      <select id="langPicker"></select>
+      <button id="signOutBtn">Sign out</button>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="schema.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

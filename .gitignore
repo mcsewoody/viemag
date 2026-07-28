@@ -11,3 +11,6 @@ planning/
 後台.md
 CLAUDE.md
 .claude/
+
+# Supabase CLI 本機專案設定與 migration SQL：欄位名稱（含毛利/備貨等內部欄位名）不得公開
+supabase/
