@@ -635,41 +635,6 @@ window.DB = {
       }
     },
     {
-      "sku": "VB005TAP",
-      "slug": "tape-magnetic-car-mount",
-      "status": "published",
-      "tier": "C - Display",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
-      ],
-      "personas": [
-        "commuter"
-      ],
-      "art": "tape",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "tape"
-      ],
-      "price": 17.9,
-      "rating": 4.6,
-      "reviews": 52,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG 3M Tape Magnetic Mount",
-        "vi": "Giá đỡ nam châm dán 3M VIEMAG",
-        "id": "Dudukan Magnetik Perekat 3M VIEMAG",
-        "zh": "VIEMAG 3M 膠貼磁吸支架"
-      },
-      "claim": {
-        "en": "Mounts on any flat surface with 3M adhesive in 30 seconds.",
-        "vi": "Dán phẳng mọi bề mặt bằng keo 3M, lắp trong 30 giây.",
-        "id": "Terpasang di permukaan rata mana pun dengan perekat 3M dalam 30 detik.",
-        "zh": "3M 背膠貼平任何平面，30 秒完成安裝。"
-      }
-    },
-    {
       "sku": "VB006PRO",
       "slug": "pro-antivibration-magnetic-mount",
       "status": "published",
