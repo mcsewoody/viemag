@@ -82,7 +82,7 @@ window.I18N_DICT = {
 
     'dealer.title': 'Tìm đối tác phân phối',
     'dealer.desc': 'VIEMAG đang mở rộng hệ thống đại lý toàn quốc: dòng sản phẩm rõ ràng, chính sách giá kỷ luật, hỗ trợ hậu mãi và dữ liệu bán hàng minh bạch.',
-    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+    'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': 'Tất cả sản phẩm',
     'products.sub': 'Lọc theo dòng sản phẩm hoặc tình huống sử dụng.',
@@ -277,7 +277,7 @@ window.I18N_DICT = {
 
     'dealer.title': 'Looking for distribution partners',
     'dealer.desc': 'VIEMAG is building its national dealer network: a complete product line, disciplined pricing, after-sales backing and transparent sales data.',
-    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+    'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': 'All products',
     'products.sub': 'Filter by product line or by the scenario you live in.',
@@ -472,7 +472,7 @@ window.I18N_DICT = {
 
     'dealer.title': '尋找經銷夥伴',
     'dealer.desc': 'VIEMAG 正在建立全國經銷網絡：完整產品線、有紀律的價格政策、售後支援與透明的銷售數據。',
-    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+    'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': '全部產品',
     'products.sub': '依產品線或使用情境篩選。',
@@ -661,7 +661,7 @@ window.I18N_DICT = {
     'trust.4.d': '每种安装方式都有图文与视频教学。',
     'dealer.title': '寻找经销伙伴',
     'dealer.desc': 'VIEMAG 正在建立全国经销网络：完整产品线、有纪律的价格政策、售后支持与透明的销售数据。',
-    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+    'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
     'products.title': '全部产品',
     'products.sub': '依产品线或使用情境筛选。',
     'filter.byCat': '产品线',
@@ -872,7 +872,7 @@ window.I18N_DICT = {
 
     'dealer.title': 'Mencari mitra distribusi',
     'dealer.desc': 'VIEMAG sedang membangun jaringan dealer: lini produk lengkap, kebijakan harga disiplin, dukungan purnajual, dan data penjualan transparan.',
-    'dealer.tagline': 'VIEMAG — Where Aesthetics Carry Technology.',
+    'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': 'Semua produk',
     'products.sub': 'Saring berdasarkan lini produk atau skenario pemakaian.',
