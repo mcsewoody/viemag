@@ -2,10 +2,14 @@
    Drives the generic list/edit UI: one definition per Supabase table.
    field.type: text | textarea | number | boolean | date | select |
                multiselect | image | images | relation | relation_many
-   field.internal: true -> shown with a red "internal" tag (cost/margin/
-               stock fields per CLAUDE.md — never exported to the public
-               site, but admins still need to edit them here).
-*/
+   field.internal: true -> flagged in the form as staff-only; these values are
+               never part of the public site export.
+
+   NOTE: this file is served publicly (it is inside the GitHub Pages repo, so
+   https://viemag.biz/admin/schema.js is fetchable by anyone). It must
+   therefore contain no confidential values and no field names that reveal
+   anything the brand rules say to keep private. Login protects the DATA, not
+   this file. */
 window.VIEMAG_SCHEMA = {
   categories: {
     title: 'category_name',
@@ -193,7 +197,7 @@ window.VIEMAG_SCHEMA = {
       { name: 'resolution', type: 'select', options: ['Replace', 'Guide', 'Reject', 'Pending'] },
       { name: 'cost_owner', type: 'select', options: ['VIEMAG', 'Customer', 'Shared', 'Dealer'] },
       { name: 'status', type: 'select', options: ['New', 'Reviewing', 'Resolved', 'Escalated'] },
-      { name: 'escalate_to_taiwan', type: 'boolean' },
+      { name: 'escalate_to_hq', type: 'boolean' },
       { name: 'root_cause', type: 'textarea' },
     ],
   },

@@ -223,27 +223,55 @@
       });
       Array.prototype.forEach.call(root.querySelectorAll('.del-btn'), function (btn) {
         btn.addEventListener('click', function () {
-          if (!confirm(t('confirmDelete'))) return;
           var id = btn.closest('tr').dataset.id;
-          sb.from(tableName).delete().eq('id', id).then(function (res) {
-            if (res.error) { alert(t('deleteFailed') + res.error.message); return; }
-            triggerExportIfNeeded(tableName, null);
-            renderContent();
+          /* Deleting a category sets category_id = NULL on every product in it
+             (FK is ON DELETE SET NULL), which silently pulls those products off
+             the category pages. Say how many will be affected before asking. */
+          var preflight = tableName === 'categories'
+            ? sb.from('products').select('id', { count: 'exact', head: true }).eq('category_id', id)
+                .then(function (r) { return r.count || 0; })
+            : Promise.resolve(0);
+
+          preflight.then(function (affected) {
+            var msg = t('confirmDelete');
+            if (affected > 0) msg += '\n\n' + t('confirmDeleteCategory').replace('{n}', affected);
+            if (!confirm(msg)) return;
+            sb.from(tableName).delete().eq('id', id).then(function (res) {
+              if (res.error) { alert(t('deleteFailed') + res.error.message); return; }
+              // Labels/options may have changed — don't serve them from a stale cache.
+              state.relationCache = {};
+              triggerExportIfNeeded(tableName, document.getElementById('syncStatus'));
+              renderContent();
+            });
           });
         });
       });
     });
   }
 
-  /* ---------------- edit / create form ---------------- */
+  /* ---------------- edit / create form ----------------
+     Every read below REJECTS on error instead of falling back to empty.
+     Reason: this form is also what Save writes back. If a read silently
+     yielded [] the form would render "nothing selected", and saving would
+     then delete the real relations / null the real category — losing data the
+     operator never touched, while the UI said "Saved". */
+  function must(promise, what) {
+    return promise.then(function (res) {
+      if (res.error) throw new Error(what + ': ' + res.error.message);
+      return res.data;
+    });
+  }
+
   function fetchRelationOptions(tableName, labelField) {
     var cacheKey = tableName + ':' + labelField;
     if (state.relationCache[cacheKey]) return Promise.resolve(state.relationCache[cacheKey]);
-    return sb.from(tableName).select('id,' + labelField).then(function (res) {
-      var opts = (res.data || []).map(function (r) { return { id: r.id, label: r[labelField] }; });
-      state.relationCache[cacheKey] = opts;
-      return opts;
-    });
+    return must(sb.from(tableName).select('id,' + labelField).order(labelField), 'load ' + tableName)
+      .then(function (data) {
+        var opts = (data || []).map(function (r) { return { id: r.id, label: r[labelField] }; });
+        // Only cache a successful, non-empty-by-error result.
+        state.relationCache[cacheKey] = opts;
+        return opts;
+      });
   }
 
   function renderForm(root) {
@@ -254,7 +282,7 @@
 
     var rowPromise = isNew
       ? Promise.resolve({})
-      : sb.from(tableName).select('*').eq('id', id).single().then(function (res) { return res.data || {}; });
+      : must(sb.from(tableName).select('*').eq('id', id).single(), 'load record');
 
     var relFields = def.fields.filter(function (f) { return f.type === 'relation' || f.type === 'relation_many'; });
     var relOptionsPromise = Promise.all(relFields.map(function (f) { return fetchRelationOptions(f.table, f.labelField); }))
@@ -268,16 +296,26 @@
     var joinValuesPromise = isNew || !joinFields.length
       ? Promise.resolve({})
       : Promise.all(joinFields.map(function (f) {
-          return sb.from(f.joinTable).select(f.joinTargetKey).eq(f.joinKey, id).then(function (res) {
-            return (res.data || []).map(function (r) { return r[f.joinTargetKey]; });
-          });
+          return must(sb.from(f.joinTable).select(f.joinTargetKey).eq(f.joinKey, id), 'load ' + f.joinTable)
+            .then(function (data) { return (data || []).map(function (r) { return r[f.joinTargetKey]; }); });
         })).then(function (results) {
           var map = {};
           joinFields.forEach(function (f, i) { map[f.name] = results[i]; });
           return map;
         });
 
-    Promise.all([rowPromise, relOptionsPromise, joinValuesPromise]).then(function (results) {
+    Promise.all([rowPromise, relOptionsPromise, joinValuesPromise]).catch(function (err) {
+      // Never render a half-loaded form — it would be a loaded gun for Save.
+      root.innerHTML = '<div class="empty-state"><p class="save-status error">' + esc(t('loadFailed') + err.message) + '</p>' +
+        '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button></div>';
+      var b = document.getElementById('backBtn');
+      if (b) b.addEventListener('click', function () {
+        state.view = { table: tableName, mode: 'list', id: null };
+        renderContent();
+      });
+      return null;
+    }).then(function (results) {
+      if (!results) return;
       var row = results[0], relOptions = results[1], joinValues = results[2];
       root.innerHTML = buildFormHtml(tableName, def, row, relOptions, joinValues, isNew);
       wireFormEvents(tableName, def, id, isNew, joinFields);
@@ -314,7 +352,7 @@
       case 'number':
         return '<input type="number" step="any" data-name="' + f.name + '" value="' + (value == null ? '' : esc(value)) + '">';
       case 'date':
-        return '<input type="date" data-name="' + f.name + '" value="' + (value || '') + '">';
+        return '<input type="date" data-name="' + f.name + '" value="' + esc(value || '') + '">';
       case 'boolean':
         return '<div class="field checkbox"><input type="checkbox" data-name="' + f.name + '" ' + (value ? 'checked' : '') + '></div>';
       case 'select':
@@ -426,58 +464,103 @@
     });
   }
 
-  function collectFormValues(def) {
+  /* omitEmpty=true (INSERT): leave blank fields OUT of the payload entirely so
+     the column DEFAULT applies. Sending an explicit null overrides a default in
+     SQL, which is how a half-filled new product used to end up with
+     launch_tier=NULL — and NULL is not 'Future', so the exporter published it
+     to the live site immediately. On UPDATE we DO send null, because there a
+     cleared field genuinely means "erase this value". */
+  function collectFormValues(def, omitEmpty) {
     var out = {};
     def.fields.forEach(function (f) {
       if (f.type === 'relation_many') return; // handled separately via join tables
       if (f.type === 'multiselect') {
         var checked = document.querySelectorAll('input[data-name="' + f.name + '"][data-multi-value]:checked');
-        out[f.name] = Array.prototype.map.call(checked, function (c) { return c.dataset.multiValue; });
+        var vals = Array.prototype.map.call(checked, function (c) { return c.dataset.multiValue; });
+        if (omitEmpty && !vals.length) return;
+        out[f.name] = vals;
         return;
       }
       var el = document.querySelector('[data-name="' + f.name + '"]');
       if (!el) return;
       if (f.type === 'boolean') { out[f.name] = el.checked; return; }
-      if (f.type === 'number') { out[f.name] = el.value === '' ? null : Number(el.value); return; }
-      if (f.type === 'images') { out[f.name] = el.value ? JSON.parse(el.value) : []; return; }
-      if (f.type === 'image') { out[f.name] = el.value || null; return; }
-      out[f.name] = el.value === '' ? null : el.value;
+      if (f.type === 'number') {
+        if (el.value === '') { if (!omitEmpty) out[f.name] = null; return; }
+        out[f.name] = Number(el.value);
+        return;
+      }
+      if (f.type === 'images') {
+        var arr = el.value ? JSON.parse(el.value) : [];
+        if (omitEmpty && !arr.length) return;
+        out[f.name] = arr;
+        return;
+      }
+      if (el.value === '') { if (!omitEmpty) out[f.name] = null; return; }
+      out[f.name] = el.value;
     });
     return out;
   }
 
   function saveForm(tableName, def, id, isNew, joinFields) {
     var statusEl = document.getElementById('saveStatus');
+    var saveBtn = document.getElementById('saveBtn');
     statusEl.className = 'save-status';
     statusEl.textContent = t('loading');
-    var values = collectFormValues(def);
+    // Guard against double-click creating two rows in tables with no unique key.
+    saveBtn.disabled = true;
+    var fail = function (msg) {
+      saveBtn.disabled = false;
+      statusEl.className = 'save-status error';
+      statusEl.textContent = msg;
+    };
+    var values = collectFormValues(def, isNew);
 
     var savePromise = isNew
       ? sb.from(tableName).insert(values).select('id').single()
       : sb.from(tableName).update(values).eq('id', id).select('id').single();
 
     savePromise.then(function (res) {
-      if (res.error) { statusEl.className = 'save-status error'; statusEl.textContent = t('saveFailed') + res.error.message; return; }
+      if (res.error) { fail(t('saveFailed') + res.error.message); return; }
       var rowId = res.data.id;
+
+      /* Relation sets are rewritten delete-then-insert. That is destructive, so
+         every step is error-checked: if the insert fails (e.g. a CHECK
+         constraint) after the delete already committed, the operator must be
+         told the set is now empty rather than shown "Saved". */
       var joinOps = joinFields.map(function (f) {
-        var wrap = document.querySelector('.relation-many-options input[data-name="' + f.name + '"]');
         var checks = document.querySelectorAll('input[data-name="' + f.name + '"][data-rel-id]:checked');
-        var selectedIds = Array.prototype.map.call(checks, function (c) { return c.dataset.relId; });
-        return sb.from(f.joinTable).delete().eq(f.joinKey, rowId).then(function () {
+        var selectedIds = Array.prototype.map.call(checks, function (c) { return c.dataset.relId; })
+          // A product must never relate to itself — the DB has a CHECK for it,
+          // and without this filter one stray tick wiped the whole set.
+          .filter(function (targetId) { return targetId !== rowId; });
+        return sb.from(f.joinTable).delete().eq(f.joinKey, rowId).then(function (delRes) {
+          if (delRes.error) throw new Error(f.joinTable + ' (clear): ' + delRes.error.message);
           if (!selectedIds.length) return null;
           var rows = selectedIds.map(function (targetId) {
             var o = {}; o[f.joinKey] = rowId; o[f.joinTargetKey] = targetId; return o;
           });
-          return sb.from(f.joinTable).insert(rows);
+          return sb.from(f.joinTable).insert(rows).then(function (insRes) {
+            if (insRes.error) throw new Error(f.joinTable + ' (rewrite): ' + insRes.error.message);
+          });
         });
       });
+
       Promise.all(joinOps).then(function () {
         statusEl.textContent = t('saved');
-        triggerExportIfNeeded(tableName, statusEl);
+        // A renamed/created row changes relation labels elsewhere; drop the cache
+        // so other forms don't keep showing stale options for the whole session.
+        state.relationCache = {};
+        /* Report export status into the PERSISTENT topbar, not this form's
+           status line: the form is torn down below long before the export's
+           GitHub round-trip finishes, so a failure written here would land on a
+           detached node and the operator would never see it. */
+        triggerExportIfNeeded(tableName, document.getElementById('syncStatus'));
         setTimeout(function () {
           state.view = { table: tableName, mode: 'list', id: null };
           renderContent();
-        }, 800);
+        }, 600);
+      }).catch(function (err) {
+        fail(t('saveFailed') + err.message);
       });
     });
   }
