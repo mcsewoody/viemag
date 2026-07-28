@@ -1,53 +1,77 @@
-# Notion → data.js pipeline
+# Supabase → data.js pipeline
 
-`js/data.js` is **generated** from the Notion workspace **「VIEMAG 後台」**.
-Edit content in Notion, then run the exporter — never hand-edit `js/data.js`.
+`js/data.js` is **generated** from the VIEMAG Supabase project.
+Edit content in **`/admin`**, never hand-edit `js/data.js` — it's overwritten
+on the next export.
 
 ## What it does
 
-`scripts/export-notion.mjs` reads four Notion databases (Products, Categories,
-Scenarios, FAQ) and writes `js/data.js`. `personas`, `tests`, and `config`
-have no Notion source and are kept as static blocks inside the script.
+`supabase/functions/export-site-data/index.ts` (a Supabase Edge Function)
+reads `products`, `categories`, `scenarios`, `faq` (+ the `product_scenarios`
+join table) and writes `js/data.js` by committing directly to this repo via
+the GitHub Contents API. `personas`, `tests`, and `config` have no Supabase
+source and are kept as static blocks inside the function, same as the old
+Notion-era script.
 
-**Security:** this repo is public. The exporter only emits whitelisted public
+**Trigger:** `/admin` calls the function automatically right after a save or
+delete on Products/Categories/Scenarios/FAQ (see `admin/admin.js`,
+`triggerExportIfNeeded`). There is no schedule — it's on-demand, not polling.
+
+**Security:** this repo is public. The function only emits whitelisted public
 fields. Internal fields (gross margin, promo floor, inventory, cost) are never
-read or written. Do not add them to the exporter.
+read or written. Do not add them.
 
-## One-time setup (you must do this — tokens are yours)
+## One-time setup (already done for this project — for reference only)
 
-1. Create a Notion **internal integration**: https://www.notion.so/my-integrations
-   → New integration → Internal → copy the token (`ntn_...` / `secret_...`).
-2. Give it access to the content: open the **「VIEMAG 後台」** page in Notion →
-   **•••  → Connections → add your integration**. (Access flows to the 10 DBs.)
-3. Add the token as a **GitHub repo secret**: repo → Settings → Secrets and
-   variables → Actions → New repository secret → name `NOTION_TOKEN`, paste value.
+1. `supabase functions deploy export-site-data --project-ref <ref>`
+2. Create a GitHub **fine-grained PAT** scoped to just this repo, permission
+   `Contents: Read and write` only (do not use a broad personal token).
+3. `supabase secrets set GITHUB_PAT=<token> --project-ref <ref>`
+   (`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` / `SUPABASE_ANON_KEY` are
+   auto-injected by the platform — never set those yourself.)
 
-## Run it
+## Run it manually (rare — normally /admin triggers this)
 
-- **In CI:** Actions tab → *Export Notion → data.js* → **Run workflow**.
-  It regenerates `js/data.js`, commits if changed, and GitHub Pages redeploys.
-  (Also runs daily at 01:00 UTC — edit the cron in the workflow to change/disable.)
-- **Locally:** `NOTION_TOKEN=secret_xxx node scripts/export-notion.mjs`
-  then commit `js/data.js` yourself.
+```
+curl -X POST "https://<project-ref>.supabase.co/functions/v1/export-site-data" \
+  -H "apikey: <anon key>" -H "Authorization: Bearer <a logged-in user's access token>"
+```
+Must be called with a real signed-in user's token — `anon` alone is rejected
+(401). Returns `{"committed": true/false, "message": "..."}`.
 
-## Field mapping (Notion → data.js)
+## Field mapping (Supabase → data.js)
 
-| data.js | Notion (DB · property) |
+| data.js | Supabase (table · column) |
 |---|---|
-| product `sku` | Products · Official SKU Code |
-| product `name/claim` {en,vi,id,zh} | Name EN/VI/ID/ZH · Claim EN/VI/ID/ZH |
-| product `category` | Public Category (relation → Categories.Slug) |
-| product `scenarios` | Scenario (relation → Scenarios.Scenario Code) |
-| product `tier/status` | Launch Tier (`Future` ⇒ status `future`) |
-| product `qi/watt/mount` | Qi Status / Charging Watt / Mount Type |
-| product `price/rating/reviews/badge` | Price USD / Rating / Review Count / Badge |
-| product `personas` · `art` | Persona (multi-select) · Art Key |
-| category `id/cat/sort/status/art` | Slug / Internal CAT Mapping / Sort Order / Public·Internal / Art Key |
-| scenario `code/id/priority/status/icon/combo` | Scenario Code / Slug / Priority / Status / Icon / Combo SKUs |
-| faq `id/q/a` | FAQ Key / Question EN·VI·ID·ZH / Answer EN·VI·ID·ZH |
+| product `sku` | products · official_sku_code |
+| product `name/claim` {en,vi,id,zh} | name_en/vi/id/zh · claim_en/vi/id/zh |
+| product `category` | category_id (FK → categories.id, exported as categories.slug) |
+| product `scenarios` | product_scenarios join → scenarios.scenario_code |
+| product `tier/status` | launch_tier (`Future` ⇒ status `future`) |
+| product `qi/watt/mount` | qi_status / charging_watt / mount_type |
+| product `price/rating/reviews/badge` | price_usd / rating / review_count / badge |
+| product `personas` · `art` | persona (array) · art_key |
+| category `id/cat/sort/status/art` | slug / internal_cat_mapping / sort_order / visibility / art_key |
+| scenario `code/id/priority/status/icon/combo` | scenario_code / slug / priority / status / icon / combo_skus |
+| faq `id/q/a` | faq_key / question_en·vi·id·zh / answer_en·vi·id·zh |
 
 Notes:
-- **zh-Hans** is not stored in Notion — it auto-converts from zh at runtime
+- **zh-Hans** is not stored in Supabase — it auto-converts from zh at runtime
   (see `js/main.js`). Hand-tune Simplified only in the front-end override layer.
-- Publish gating: Categories/FAQ with Status `Hidden`/not `Published` and
-  Scenarios `Hidden` are dropped from the export.
+- Publish gating: Categories/FAQ with status `Hidden`/not `Published` and
+  Scenarios `Hidden` are dropped from the export. Products use `launch_tier`
+  (not the `status` column) to decide `published` vs `future` — same
+  long-standing behavior as the old Notion-era script.
+- Products query is explicitly `.order('product_id')` for a stable, repeatable
+  export order (fixed 2026-07-28 — Postgres gives no ordering guarantee
+  without it, which briefly shuffled the homepage's featured-product order).
+
+## Retired (2026-07-28)
+
+Notion is no longer the backend. `scripts/export-notion.mjs`,
+`scripts/translate-notion.mjs`, and `.github/workflows/notion-export.yml` were
+deleted (recoverable from git history if ever needed). The `NOTION_TOKEN`
+GitHub repo secret should be deleted manually (Settings → Secrets and
+variables → Actions) — Claude's GitHub PAT is scoped to Contents only and
+cannot manage repo secrets. Consider also revoking the Notion integration
+token itself in Notion's own integration settings.
