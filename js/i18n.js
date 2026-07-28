@@ -21,7 +21,7 @@ window.I18N_DICT = {
     'cta.contact': 'Liên hệ hỗ trợ',
 
     'hero.eyebrow': 'Hệ phụ kiện nam châm — lái xe & làm việc',
-    'hero.slogan': 'Hút một chạm. <em>Rảnh tay.</em><br>Luôn cố định.',
+    'hero.slogan': 'Tương lai nam châm,<br><em>giờ đã vào vị trí.</em>',
     'hero.imgAlt': 'Điện thoại hút trên giá đỡ nam châm trong ô tô, màn hình đang dẫn đường',
     'hero.sub': 'VIEMAG là hệ phụ kiện nam châm cho người lái xe mỗi ngày và làm việc bên bàn: so với hàng trôi nổi — ổn định hơn, chắc chắn hơn, bền bỉ hơn.',
     'hero.trust1': 'Bảo hành 12 tháng',
@@ -216,7 +216,7 @@ window.I18N_DICT = {
     'cta.contact': 'Contact support',
 
     'hero.eyebrow': 'The magnetic system for driving & desk work',
-    'hero.slogan': 'Snap in. <em>Hands free.</em> Always in place.',
+    'hero.slogan': 'The Magnetic Future,<br><em>Now in Place.</em>',
     'hero.imgAlt': 'Phone snapped onto a magnetic car mount with navigation on screen',
     'hero.sub': 'VIEMAG is the magnetic accessory system for daily drivers and desk workers: steadier, more secure and longer-lasting than no-name gear.',
     'hero.trust1': '12-month warranty',
@@ -411,7 +411,7 @@ window.I18N_DICT = {
     'cta.contact': '聯絡客服',
 
     'hero.eyebrow': '為開車與桌面工作而生的磁吸系統',
-    'hero.slogan': '磁吸，<em>解放雙手</em>，<br>穩固就位',
+    'hero.slogan': '磁吸未來，<br><em>現在就位</em>',
     'hero.imgAlt': '手機吸附在車用磁吸支架上，螢幕顯示導航畫面',
     'hero.sub': 'VIEMAG 是為每天開車與桌面工作的人設計的磁吸配件系統：<br>比白牌 更穩固、更牢靠、更耐用。',
     'hero.trust1': '12 個月保固',
@@ -608,7 +608,7 @@ window.I18N_DICT = {
     'cta.learnMore': '了解更多',
     'cta.contact': '联络客服',
     'hero.eyebrow': '为开车与桌面工作而生的磁吸系统',
-    'hero.slogan': '磁吸，<em>解放双手</em>，<br>稳固就位',
+    'hero.slogan': '磁吸未来，<br><em>现在就位</em>',
     'hero.imgAlt': '手机吸附在车用磁吸支架上，屏幕显示导航画面',
     'hero.sub': 'VIEMAG 是为每天开车与桌面工作的人设计的磁吸配件系统：<br>比白牌 更稳固、更牢靠、更耐用。',
     'hero.trust1': '12 个月保修',
@@ -811,7 +811,7 @@ window.I18N_DICT = {
     'cta.contact': 'Hubungi dukungan',
 
     'hero.eyebrow': 'Sistem magnetik untuk berkendara & meja kerja',
-    'hero.slogan': 'Tempel sekali. <em>Bebas genggam.</em><br>Selalu di tempat.',
+    'hero.slogan': 'Masa depan magnetik,<br><em>kini di tempatnya.</em>',
     'hero.imgAlt': 'Ponsel menempel pada dudukan mobil magnetik dengan navigasi di layar',
     'hero.sub': 'VIEMAG adalah sistem aksesori magnetik untuk pengendara harian dan pekerja meja: dibanding produk tanpa merek — lebih stabil, lebih kokoh, lebih awet.',
     'hero.trust1': 'Garansi 12 bulan',
