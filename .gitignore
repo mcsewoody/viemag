@@ -12,5 +12,10 @@ planning/
 CLAUDE.md
 .claude/
 
-# Supabase CLI 本機專案設定與 migration SQL：欄位名稱（含毛利/備貨等內部欄位名）不得公開
-supabase/
+# Supabase 後端（schema migrations + Edge Function）**納入版控**（2026-07-28 定案）。
+# 原本整個 supabase/ 被排除，理由是 migration SQL 含內部欄位名稱（毛利/備貨）。
+# 但那是自我安慰：admin/schema.js 在同一個公開 repo 裡把同一份 schema 又宣告了
+# 一次，欄位名稱早就公開（https://viemag.biz/admin/schema.js 任何人可下載）。
+# 既然隱藏沒達到效果，就換取版本控制的實質好處——後端程式碼原本完全沒有歷史紀錄。
+# 前提：只有欄位「名稱」會公開，任何實際數值都不在 SQL 裡；密鑰一律走
+# Supabase Function Secrets，不進檔案（supabase/.gitignore 另有排除 .env*、.temp）。
