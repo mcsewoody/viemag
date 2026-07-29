@@ -8,6 +8,25 @@
 window.DB = {
   "categories": [
     {
+      "id": "car-mounts",
+      "cat": "CAT-B",
+      "status": "published",
+      "sort": 1,
+      "art": "dash",
+      "name": {
+        "en": "Car Magnetic Mounts",
+        "vi": "Giá đỡ nam châm ô tô",
+        "id": "Dudukan Magnetik Mobil",
+        "zh": "車用磁吸支架"
+      },
+      "desc": {
+        "en": "Drive, navigate, one-hand dock. The flagship line built for daily commutes.",
+        "vi": "Lái xe, dẫn đường, hút chắc không rơi — dòng chủ lực của VIEMAG.",
+        "id": "Berkendara, navigasi, tempel satu tangan. Lini unggulan untuk komuter harian.",
+        "zh": "開車導航、單手取放、穩固不掉，VIEMAG 的旗艦產品線。"
+      }
+    },
+    {
       "id": "car-chargers",
       "cat": "CAT-B",
       "status": "published",
@@ -468,10 +487,10 @@ window.DB = {
         "zh": "鋁合金加長型萬用磁吸支架"
       },
       "claim": {
-        "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — your perfect companion for driving and everyday recording.",
-        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành lý tưởng cho mọi hành trình và khoảnh khắc.",
-        "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman ideal untuk berkendara dan merekam keseharian.",
-        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄最佳伴侶。"
+        "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — a dependable companion for driving and everyday recording.",
+        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
+        "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman yang andal untuk berkendara dan merekam keseharian.",
+        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄生活好夥伴。"
       },
       "img": "assets/products/VB001DSH1_BK.png"
     },
@@ -480,7 +499,7 @@ window.DB = {
       "slug": "vent-magnetic-car-mount",
       "status": "published",
       "tier": "B - Test",
-      "category": null,
+      "category": "car-mounts",
       "scenarios": [
         "S2"
       ],
@@ -515,7 +534,7 @@ window.DB = {
       "slug": "dashboard-magnetic-car-mount",
       "status": "published",
       "tier": "A - Core",
-      "category": null,
+      "category": "car-mounts",
       "scenarios": [
         "S2"
       ],
@@ -550,7 +569,7 @@ window.DB = {
       "slug": "suction-arm-magnetic-mount",
       "status": "published",
       "tier": "B - Test",
-      "category": null,
+      "category": "car-mounts",
       "scenarios": [
         "S2"
       ],
@@ -585,7 +604,7 @@ window.DB = {
       "slug": "screen-clip-magnetic-mount",
       "status": "published",
       "tier": "C - Display",
-      "category": null,
+      "category": "car-mounts",
       "scenarios": [
         "S2"
       ],
@@ -620,7 +639,7 @@ window.DB = {
       "slug": "tape-magnetic-car-mount",
       "status": "published",
       "tier": "C - Display",
-      "category": null,
+      "category": "car-mounts",
       "scenarios": [
         "S2"
       ],
@@ -655,7 +674,7 @@ window.DB = {
       "slug": "pro-antivibration-magnetic-mount",
       "status": "published",
       "tier": "B - Test",
-      "category": null,
+      "category": "car-mounts",
       "scenarios": [
         "S2"
       ],
