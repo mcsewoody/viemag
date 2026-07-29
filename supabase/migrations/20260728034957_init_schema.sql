@@ -291,7 +291,7 @@ create table support_cases (
   resolution         text check (resolution in ('Replace','Guide','Reject','Pending')),
   cost_owner         text check (cost_owner in ('VIEMAG','Customer','Shared','Dealer')),
   status             text check (status in ('New','Reviewing','Resolved','Escalated')) default 'New',
-  escalate_to_taiwan boolean default false,
+  escalate_to_hq     boolean default false,
   root_cause         text,
   created_at         timestamptz not null default now(),
   updated_at         timestamptz not null default now()

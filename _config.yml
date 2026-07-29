@@ -1,0 +1,17 @@
+# GitHub Pages (Jekyll) build config.
+#
+# This repo is PUBLIC and is published to viemag.biz, so anything left in the
+# tree is fetchable over HTTP as well as readable on GitHub. The backend source
+# is version-controlled on purpose but has no business being served to visitors:
+# supabase/migrations/*.sql spells out the whole schema, including the internal
+# pricing columns, at a guessable URL. Excluding it here keeps it in git and out
+# of the deployed site.
+#
+# Not a substitute for .gitignore, and not a place to hide secrets — anything
+# committed here is still public on GitHub. Real secrets stay in Supabase
+# function secrets; see CLAUDE.md 機密邊界.
+exclude:
+  - supabase
+  - scripts
+  - .github
+  - README.md
