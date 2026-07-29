@@ -58,6 +58,10 @@ a { color: var(--navy); }
 .content { padding: 24px; }
 .content h2 { margin-top: 0; color: var(--navy); }
 .panel-note { color: var(--muted); font-size: .82rem; margin: -8px 0 16px; }
+/* Row count sits UNDER a table, not under an h2, so it must not inherit
+   .panel-note's negative top margin — that pulled it up into the last row and
+   made it look like it was printed inside the card. */
+.row-count { color: var(--muted); font-size: .82rem; margin: 12px 2px 0; text-align: right; }
 
 .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 12px; }
 .toolbar input[type=search] { flex: 1; max-width: 320px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; }
@@ -83,13 +87,16 @@ table.grid .row-actions button { margin-left: 6px; }
 
 /* ---------- edit form ---------- */
 .form-card { background: var(--card); border-radius: var(--radius); padding: 24px; max-width: 900px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
-.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 20px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 20px; }
 .field { display: flex; flex-direction: column; }
 .field.wide { grid-column: 1 / -1; }
-.field label { font-size: .82rem; color: var(--muted); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-.field input[type=text], .field input[type=number], .field input[type=date], .field select, .field textarea {
-  padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: .92rem; font-family: inherit;
+.field label { font-size: .82rem; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.field input[type=text], .field input[type=email], .field input[type=number], .field input[type=date], .field select, .field textarea {
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; font-size: .92rem; font-family: inherit;
 }
+.field input:disabled, .field select:disabled { background: var(--ivory); color: var(--muted); }
+/* Helper text under a field needs air, or it reads as part of the next row. */
+.field .hint { margin-top: 6px; line-height: 1.5; }
 .field textarea { resize: vertical; min-height: 70px; }
 .field textarea.large { min-height: 200px; }
 .field.checkbox { flex-direction: row; align-items: center; gap: 8px; }

@@ -14,7 +14,7 @@
   /* The account panel is not a Postgres table, so it rides in view.table as a
      sentinel that can never collide with a real table name. */
   var ACCOUNTS_VIEW = '__accounts';
-  var MIN_PASSWORD = 12; // must match MIN_PASSWORD in supabase/functions/manage-admins
+  var MIN_PASSWORD = 10; // must match MIN_PASSWORD in supabase/functions/manage-admins
 
   var state = {
     lang: localStorage.getItem('viemag-admin-lang') || 'en',
@@ -268,7 +268,7 @@
     if (!m) return msg;
     return t('pwWeak') + ' ' + m[1].split(',').map(function (key) {
       var rule = PW_RULES.filter(function (r) { return r.key === key; })[0];
-      return rule ? t(rule.label) : key;
+      return rule ? tf(rule.label, { n: MIN_PASSWORD }) : key;
     }).join('; ');
   }
 
@@ -345,7 +345,7 @@
         html += '</td></tr>';
       });
       html += '</tbody></table>';
-      html += '<p class="panel-note">' + t('rowCount')(users.length) + '</p>';
+      html += '<p class="row-count">' + t('rowCount')(users.length) + '</p>';
       html += '<span class="save-status" id="rosterStatus"></span>';
       root.innerHTML = html;
 
@@ -441,7 +441,7 @@
     html += '<input id="accPw" type="text" autocomplete="off"' + (isNew ? ' required' : '') + '>';
     html += '<ul class="pw-rules" id="pwRules">';
     PW_RULES.forEach(function (r) {
-      html += '<li data-rule="' + r.key + '">' + esc(t(r.label)) + '</li>';
+      html += '<li data-rule="' + r.key + '">' + esc(tf(r.label, { n: MIN_PASSWORD })) + '</li>';
     });
     html += '</ul></div>';
 
@@ -589,7 +589,7 @@
           html += '</td></tr>';
         });
         html += '</tbody></table>';
-        html += '<p class="panel-note">' + t('rowCount')(rows.length) + '</p>';
+        html += '<p class="row-count">' + t('rowCount')(rows.length) + '</p>';
       }
       root.innerHTML = html;
 

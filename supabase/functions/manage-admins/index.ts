@@ -32,7 +32,11 @@ const SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
    stricter than the project's Auth setting. Enforced HERE, server-side, because
    that is the only place a client cannot skip: /admin mirrors the same rules to
    give live feedback, but that copy is a convenience, not the boundary. */
-const MIN_PASSWORD = 12;
+/* 10, not 12 (Woody, 2026-07-29: 12 was too long to type). Paired with the
+   required character classes below and the project's HaveIBeenPwned check, this
+   is reasonable for a small staff console. To change it, change all three
+   places listed above the class table — including the project Auth setting. */
+const MIN_PASSWORD = 10;
 const MAX_PASSWORD = 200; // bcrypt truncates far below this; reject rather than silently accept
 /* Lower + upper + digit, symbols optional. This is not a free choice: the
    project's Auth setting (password_required_characters) enforces exactly these
