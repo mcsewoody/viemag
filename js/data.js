@@ -11,7 +11,6 @@ window.DB = {
       "id": "car-mounts",
       "cat": "CAT-B",
       "status": "published",
-      "sort": 1,
       "art": "dash",
       "name": {
         "en": "Car Magnetic Mounts",
@@ -42,7 +41,6 @@ window.DB = {
       "id": "car-chargers",
       "cat": "CAT-B",
       "status": "published",
-      "sort": 2,
       "art": "carcharge",
       "name": {
         "en": "Qi2 Car Charging Mounts",
@@ -73,7 +71,6 @@ window.DB = {
       "id": "desk-travel",
       "cat": "CAT-A",
       "status": "published",
-      "sort": 3,
       "art": "deskcharge",
       "name": {
         "en": "Desk & Travel Qi2 Chargers",
@@ -104,7 +101,6 @@ window.DB = {
       "id": "accessories",
       "cat": "CAT-E",
       "status": "published",
-      "sort": 4,
       "art": "ring",
       "name": {
         "en": "Magnetic Accessories",
@@ -135,7 +131,6 @@ window.DB = {
       "id": "portable-power",
       "cat": "CAT-C",
       "status": "future",
-      "sort": 5,
       "art": "powerbank",
       "name": {
         "en": "Portable Magnetic Power",
@@ -166,7 +161,6 @@ window.DB = {
       "id": "stands-display",
       "cat": "CAT-D",
       "status": "future",
-      "sort": 6,
       "art": "stand",
       "name": {
         "en": "Stands & Display",
@@ -198,7 +192,6 @@ window.DB = {
     {
       "code": "S2",
       "id": "driving",
-      "priority": 1,
       "status": "primary",
       "icon": "car",
       "name": {
@@ -229,7 +222,6 @@ window.DB = {
     {
       "code": "S3",
       "id": "deskwork",
-      "priority": 2,
       "status": "secondary",
       "icon": "desk",
       "name": {
@@ -260,7 +252,6 @@ window.DB = {
     {
       "code": "S5",
       "id": "travel",
-      "priority": 3,
       "status": "supporting",
       "icon": "plane",
       "name": {
@@ -290,7 +281,6 @@ window.DB = {
     {
       "code": "S1",
       "id": "morning",
-      "priority": 4,
       "status": "future",
       "icon": "sun",
       "name": {
@@ -317,7 +307,6 @@ window.DB = {
     {
       "code": "S4",
       "id": "home",
-      "priority": 5,
       "status": "future",
       "icon": "home",
       "name": {
@@ -344,7 +333,6 @@ window.DB = {
     {
       "code": "S6",
       "id": "creator",
-      "priority": 6,
       "status": "future",
       "icon": "camera",
       "name": {
@@ -460,7 +448,6 @@ window.DB = {
       "sku": "VA00115W",
       "slug": "qi2-desktop-charger",
       "status": "published",
-      "tier": "B - Test",
       "category": "desk-travel",
       "scenarios": [
         "S1",
@@ -513,7 +500,6 @@ window.DB = {
       "sku": "VA002DSK",
       "slug": "2in1-desk-charging-stand",
       "status": "published",
-      "tier": "A - Core",
       "category": "desk-travel",
       "scenarios": [
         "S3",
@@ -566,7 +552,6 @@ window.DB = {
       "sku": "VA003FLD",
       "slug": "folding-travel-qi2-charger",
       "status": "published",
-      "tier": "B - Test",
       "category": "desk-travel",
       "scenarios": [
         "S3",
@@ -620,7 +605,6 @@ window.DB = {
       "sku": "VB001DSH1_BK",
       "slug": "VB001DSH1_BK",
       "status": "published",
-      "tier": "A - Core",
       "category": "accessories",
       "scenarios": [
         "S2",
@@ -683,7 +667,6 @@ window.DB = {
       "sku": "VB001VNT",
       "slug": "vent-magnetic-car-mount",
       "status": "published",
-      "tier": "B - Test",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -735,7 +718,6 @@ window.DB = {
       "sku": "VB002DSH",
       "slug": "dashboard-magnetic-car-mount",
       "status": "published",
-      "tier": "A - Core",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -787,7 +769,6 @@ window.DB = {
       "sku": "VB003SUC",
       "slug": "suction-arm-magnetic-mount",
       "status": "published",
-      "tier": "B - Test",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -839,7 +820,6 @@ window.DB = {
       "sku": "VB004CLP",
       "slug": "screen-clip-magnetic-mount",
       "status": "published",
-      "tier": "C - Display",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -891,7 +871,6 @@ window.DB = {
       "sku": "VB005TAP",
       "slug": "tape-magnetic-car-mount",
       "status": "published",
-      "tier": "C - Display",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -943,7 +922,6 @@ window.DB = {
       "sku": "VB006PRO",
       "slug": "pro-antivibration-magnetic-mount",
       "status": "published",
-      "tier": "B - Test",
       "category": "car-mounts",
       "scenarios": [
         "S2"
@@ -996,7 +974,6 @@ window.DB = {
       "sku": "VB00715W",
       "slug": "vent-qi2-15w-car-charger",
       "status": "published",
-      "tier": "B - Test",
       "category": "car-chargers",
       "scenarios": [
         "S2"
@@ -1048,7 +1025,6 @@ window.DB = {
       "sku": "VB00815W",
       "slug": "dashboard-qi2-15w-car-charger",
       "status": "published",
-      "tier": "A - Core",
       "category": "car-chargers",
       "scenarios": [
         "S2"
@@ -1100,7 +1076,6 @@ window.DB = {
       "sku": "VB00925W",
       "slug": "qi2-25w-cooled-car-charger",
       "status": "published",
-      "tier": "B - Test",
       "category": "car-chargers",
       "scenarios": [
         "S2"
@@ -1154,7 +1129,6 @@ window.DB = {
       "sku": "VB010ARM",
       "slug": "long-arm-qi2-car-charger",
       "status": "published",
-      "tier": "C - Display",
       "category": "car-chargers",
       "scenarios": [
         "S2"
@@ -1206,7 +1180,6 @@ window.DB = {
       "sku": "VC00110K",
       "slug": "magnetic-power-bank-10k",
       "status": "future",
-      "tier": "Future",
       "category": "portable-power",
       "scenarios": [
         "S2",
@@ -1257,7 +1230,6 @@ window.DB = {
       "sku": "VD001STD",
       "slug": "desktop-magnetic-stand",
       "status": "future",
-      "tier": "Future",
       "category": "stands-display",
       "scenarios": [
         "S3",
@@ -1311,7 +1283,6 @@ window.DB = {
       "sku": "VD002TRP",
       "slug": "creator-tripod-adapter",
       "status": "future",
-      "tier": "Future",
       "category": "stands-display",
       "scenarios": [
         "S6"
@@ -1361,7 +1332,6 @@ window.DB = {
       "sku": "VE001RNG",
       "slug": "magnetic-adapter-ring-kit",
       "status": "published",
-      "tier": "B - Test",
       "category": "accessories",
       "scenarios": [
         "S2",
@@ -1414,7 +1384,6 @@ window.DB = {
       "sku": "VE002KIT",
       "slug": "magnetic-case-ring-bundle",
       "status": "published",
-      "tier": "C - Display",
       "category": "accessories",
       "scenarios": [
         "S2",
