@@ -24,6 +24,18 @@ window.DB = {
         "vi": "Lái xe, dẫn đường, hút chắc không rơi — dòng chủ lực của VIEMAG.",
         "id": "Berkendara, navigasi, tempel satu tangan. Lini unggulan untuk komuter harian.",
         "zh": "開車導航、單手取放、穩固不掉，VIEMAG 的旗艦產品線。"
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
       }
     },
     {
@@ -43,6 +55,18 @@ window.DB = {
         "vi": "Vừa giữ chắc vừa sạc nhanh 15W–25W, kiểm soát nhiệt khi dẫn đường.",
         "id": "Menahan kuat sekaligus mengisi cepat 15W–25W dengan panas terkendali saat navigasi.",
         "zh": "穩固支撐同時 15W–25W 快充，導航時溫度受控。"
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
       }
     },
     {
@@ -62,6 +86,18 @@ window.DB = {
         "vi": "Bàn làm việc gọn gàng, đi công tác nhẹ hành lý.",
         "id": "Meja kerja lebih rapi, tas lebih ringan saat bepergian.",
         "zh": "工作桌面更整潔，出差行李更輕。"
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
       }
     },
     {
@@ -81,6 +117,18 @@ window.DB = {
         "vi": "Vòng chuyển đổi và ốp lưng giúp mọi điện thoại dùng được hệ nam châm.",
         "id": "Cincin adaptor dan casing yang membawa ponsel apa pun ke sistem magnetik.",
         "zh": "轉接環與手機殼，讓任何手機都能進入磁吸系統。"
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
       }
     },
     {
@@ -100,6 +148,18 @@ window.DB = {
         "vi": "Pin dự phòng hút dán sau máy — sắp ra mắt.",
         "id": "Power bank tempel untuk perjalanan — segera hadir.",
         "zh": "吸附即充的行動電源，即將推出。"
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
       }
     },
     {
@@ -119,6 +179,18 @@ window.DB = {
         "vi": "Giá đỡ bàn làm việc, đầu giường và quay video — sắp ra mắt.",
         "id": "Dudukan meja, samping ranjang, dan kreator — segera hadir.",
         "zh": "桌面、床邊與創作立架，即將推出。"
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
       }
     }
   ],
@@ -141,6 +213,13 @@ window.DB = {
         "id": "Navigasi stabil, pasang–lepas satu tangan, tidak jatuh saat mengerem mendadak.",
         "zh": "導航穩定、單手取放，急煞不掉落。"
       },
+      "pain": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": null,
       "combo": [
         "VB002DSH",
         "VB00815W",
@@ -165,6 +244,13 @@ window.DB = {
         "id": "Mengisi daya sambil rapat video, meja tanpa kabel semrawut.",
         "zh": "邊充電邊視訊，桌面沒有線材糾纏。"
       },
+      "pain": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": null,
       "combo": [
         "VA002DSK",
         "VA00115W",
@@ -189,6 +275,13 @@ window.DB = {
         "id": "Satu pengisi lipat menggantikan sekantong kabel.",
         "zh": "一顆折疊充電器，取代一整包線材。"
       },
+      "pain": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": null,
       "combo": [
         "VA003FLD",
         "VE001RNG"
@@ -212,6 +305,13 @@ window.DB = {
         "id": "Pengisian semalaman dan rutinitas pagi — lini sedang berkembang.",
         "zh": "夜間充電與晨間節奏，產品線擴充中。"
       },
+      "pain": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": null,
       "combo": []
     },
     {
@@ -232,6 +332,13 @@ window.DB = {
         "id": "Film, dapur, pengisian keluarga — satu sistem magnetik dibagi di rumah.",
         "zh": "追劇、下廚，全家共用同一套磁吸系統。"
       },
+      "pain": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": null,
       "combo": []
     },
     {
@@ -252,6 +359,13 @@ window.DB = {
         "id": "Vlog, tripod, dan modul kreator — sistem yang bisa diperluas.",
         "zh": "Vlog 拍攝、腳架轉接，創作者的擴充系統。"
       },
+      "pain": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": null,
       "combo": []
     }
   ],
@@ -377,7 +491,23 @@ window.DB = {
         "id": "Satu titik pengisian tetap di meja — letakkan ponsel, langsung mengisi.",
         "zh": "桌面固定充電點，放下即充。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VA002DSK",
@@ -414,7 +544,23 @@ window.DB = {
         "id": "Ponsel tegak untuk panggilan video, earbud mengisi di bawah.",
         "zh": "手機立式視訊，耳機在下方同步充電。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VA003FLD",
@@ -452,7 +598,23 @@ window.DB = {
         "id": "Terlipat seukuran telapak tangan, terbuka jadi stasiun pengisian hotel Anda.",
         "zh": "折起一掌大小，展開就是飯店充電站。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB001DSH1_BK",
@@ -496,6 +658,25 @@ window.DB = {
         "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
       },
       "reports": [],
+      "pains": [
+        "Dropping",
+        "Loose"
+      ],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
@@ -532,7 +713,23 @@ window.DB = {
         "id": "Terkunci di kisi AC, memasang ponsel begitu Anda masuk mobil.",
         "zh": "穩固卡入出風口，上車一吸即定位。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB002DSH",
@@ -568,7 +765,23 @@ window.DB = {
         "id": "Navigasi seharian di dasbor yang tetap diam saat mengerem mendadak.",
         "zh": "儀表板全日導航，急煞依然穩固。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB003SUC",
@@ -604,7 +817,23 @@ window.DB = {
         "id": "Lengan panjang untuk segala sudut pandang, dasar vakum mencengkeram kaca dan dasbor.",
         "zh": "長臂調整任何視角，吸盤緊咬玻璃與儀表板。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB004CLP",
@@ -640,7 +869,23 @@ window.DB = {
         "id": "Menjepit tepi layar tengah — tanpa menutup kisi AC, tanpa perekat.",
         "zh": "夾在中控螢幕邊，不擋出風口、不用貼膠。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB005TAP",
@@ -676,7 +921,23 @@ window.DB = {
         "id": "Terpasang di permukaan rata mana pun dengan perekat 3M dalam 30 detik.",
         "zh": "3M 背膠貼平任何平面，30 秒完成安裝。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB006PRO",
@@ -713,7 +974,23 @@ window.DB = {
         "id": "Magnet N52 dan konstruksi anti-getar — bukti kualitas seluruh lini.",
         "zh": "N52 強磁與耐震結構，整條產品線的品質證據款。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB00715W",
@@ -749,7 +1026,23 @@ window.DB = {
         "id": "Tempel dan isi 15W, dibuat sesuai standar Qi2, didinginkan aliran udara kisi AC.",
         "zh": "一吸即充 15W，依 Qi2 標準設計，出風口氣流輔助散熱。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB00815W",
@@ -785,7 +1078,23 @@ window.DB = {
         "id": "Andalan: navigasi seharian dengan pengisian 15W yang tetap adem.",
         "zh": "車充主力款：全日導航，15W 充電不過熱。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB00925W",
@@ -823,7 +1132,23 @@ window.DB = {
         "id": "Pengisian cepat 25W dibuat sesuai Qi2.2 dengan kipas pendingin aktif — model unggulan.",
         "zh": "依 Qi2.2 標準設計的 25W 快充＋主動散熱風扇，旗艦款。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VB010ARM",
@@ -859,7 +1184,23 @@ window.DB = {
         "id": "Lengan panjang yang bisa disetel untuk dasbor dalam — menahan dan mengisi sekaligus.",
         "zh": "深儀表板車型的長臂解法，支撐與充電一次到位。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VC00110K",
@@ -894,7 +1235,23 @@ window.DB = {
         "id": "Menempel di belakang dan mengisi nirkabel saat bergerak — segera hadir.",
         "zh": "吸附機背、行進間無線充電，即將推出。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VD001STD",
@@ -932,7 +1289,23 @@ window.DB = {
         "id": "Mengangkat ponsel setinggi mata, memutar potret ke lanskap — segera hadir.",
         "zh": "手機抬升至視線高度、直橫向自由旋轉，即將推出。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VD002TRP",
@@ -966,7 +1339,23 @@ window.DB = {
         "id": "Satu kepala magnetik menghubungkan ponsel ke tripod 1/4\" mana pun — segera hadir.",
         "zh": "一顆磁吸頭，接上任何 1/4\" 腳架，即將推出。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VE001RNG",
@@ -1003,7 +1392,23 @@ window.DB = {
         "id": "Tempel satu cincin dan ponsel apa pun bergabung ke sistem magnetik.",
         "zh": "貼上一枚轉接環，任何手機都能進入磁吸系統。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     },
     {
       "sku": "VE002KIT",
@@ -1039,7 +1444,23 @@ window.DB = {
         "id": "Casing pelindung dengan cincin magnet yang sudah presisi untuk cengkeraman maksimal.",
         "zh": "保護殼內建對位磁環，相容性一次到位。"
       },
-      "reports": []
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "tests": [
@@ -1113,6 +1534,7 @@ window.DB = {
   "faqs": [
     {
       "id": "doa",
+      "cat": "",
       "q": {
         "en": "How do I exchange a defective item on arrival?",
         "vi": "Hàng lỗi khi nhận được đổi mới thế nào?",
@@ -1128,6 +1550,7 @@ window.DB = {
     },
     {
       "id": "heat",
+      "cat": "",
       "q": {
         "en": "Is it normal for the phone to get warm while charging?",
         "vi": "Sạc không dây bị ấm máy có bình thường không?",
@@ -1143,6 +1566,7 @@ window.DB = {
     },
     {
       "id": "no-magnet",
+      "cat": "",
       "q": {
         "en": "My phone has no built-in magnets. Can I still use VIEMAG?",
         "vi": "Điện thoại của tôi không có nam châm, dùng được không?",
@@ -1158,6 +1582,7 @@ window.DB = {
     },
     {
       "id": "tape",
+      "cat": "",
       "q": {
         "en": "Can the 3M adhesive pad be reused?",
         "vi": "Miếng dán 3M có dùng lại được không?",
@@ -1173,6 +1598,7 @@ window.DB = {
     },
     {
       "id": "vent",
+      "cat": "",
       "q": {
         "en": "Which car vents are not suitable for vent mounts?",
         "vi": "Loại cửa gió nào không phù hợp với giá đỡ cửa gió?",
@@ -1188,6 +1614,7 @@ window.DB = {
     },
     {
       "id": "warranty",
+      "cat": "",
       "q": {
         "en": "What does the 12-month warranty cover?",
         "vi": "Bảo hành 12 tháng gồm những gì?",
@@ -1203,6 +1630,7 @@ window.DB = {
     },
     {
       "id": "why-ring",
+      "cat": "",
       "q": {
         "en": "Why do I need a magnetic case or adapter ring?",
         "vi": "Vì sao cần ốp lưng nam châm hoặc vòng chuyển đổi?",
@@ -1218,6 +1646,8 @@ window.DB = {
     }
   ],
   "config": {
-    "shopeeUrl": "#"
+    "shopeeUrl": "#",
+    "warrantyMonths": 12,
+    "exchangeDays": 14
   }
 };
