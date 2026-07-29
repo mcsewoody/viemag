@@ -59,6 +59,12 @@ const STATIC = {
   ],
   config: {
     shopeeUrl: '#',
+    /* Site-wide fallback for products that leave the fields blank. The front-end
+       copy interpolates these ("{m}-month warranty · {d}-day exchange") instead
+       of hard-coding 12 and 14 into five languages, which is what made the
+       warranty_months / defect_exchange_days columns inert until 2026-07-29. */
+    warrantyMonths: 12,
+    exchangeDays: 14,
     // dealerEndpoint/supportEndpoint (Make.com webhooks) retired 2026-07-28 —
     // dealers.html / support.html now insert into Supabase directly (anon key + RLS).
   },
@@ -93,14 +99,23 @@ const PRODUCT_COLS = [
   'claim_en', 'claim_vi', 'claim_id', 'claim_zh', 'shopee_url', 'price_usd',
   'mount_type', 'charging_watt', 'qi_status', 'hero_image_url', 'art_key',
   'badge', 'rating', 'review_count',
+  /* Added 2026-07-29. All of these were editable in /admin with no effect on the
+     site — staff could fill them in and nothing happened. */
+  'gallery_urls', 'spec_sheet_url', 'consumer_pain_point',
+  'warranty_months', 'defect_exchange_days',
+  'seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh',
+  'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
 ].join(',');
 const CATEGORY_COLS = [
   'id', 'slug', 'internal_cat_mapping', 'visibility', 'status', 'sort_order', 'art_key',
   'name_en', 'name_vi', 'name_id', 'name_zh', 'desc_en', 'desc_vi', 'desc_id', 'desc_zh',
+  'seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh',
+  'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
 ].join(',');
 const SCENARIO_COLS = [
   'id', 'scenario_code', 'slug', 'priority', 'status', 'icon', 'combo_skus',
   'name_en', 'name_vi', 'name_id', 'name_zh', 'desc_en', 'desc_vi', 'desc_id', 'desc_zh',
+  'hero_image_url', 'pain_point_en', 'pain_point_vi', 'pain_point_id', 'pain_point_zh',
 ].join(',');
 /* Test reports shown on product pages. `limitations` travels with the result on
    purpose: under Vietnam's advertising rules a performance claim has to carry
@@ -125,7 +140,7 @@ const GUIDE_COLS = [
 ].join(', ');
 
 const FAQ_COLS = [
-  'id', 'faq_key', 'status',
+  'id', 'faq_key', 'status', 'category',
   'question_en', 'question_vi', 'question_id', 'question_zh',
   'answer_en', 'answer_vi', 'answer_id', 'answer_zh',
 ].join(',');
@@ -152,7 +167,8 @@ async function selectAll(sb: any, table: string, cols: string, tweak?: (q: any) 
 async function buildDataJs(): Promise<{ content: string; counts: Record<string, number>; skipped: string[]; withheld: string[] }> {
   const sb = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
-  const [catRows, scnRows, prodRows, faqRows, linkRows, reportRows, reportLinkRows, guideRows] =
+  const [catRows, scnRows, prodRows, faqRows, linkRows, reportRows, reportLinkRows, guideRows,
+         faqLinkRows, relatedLinkRows] =
     await Promise.all([
       selectAll(sb, 'categories', CATEGORY_COLS, (q: any) => q.order('sort_order').order('slug')),
       selectAll(sb, 'scenarios', SCENARIO_COLS, (q: any) => q.order('priority').order('scenario_code')),
@@ -172,6 +188,15 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         (q: any) => q.order('product_id').order('test_report_id')),
       selectAll(sb, 'guides', GUIDE_COLS, (q: any) =>
         q.eq('status', 'Published').order('sort_order').order('published_date', { ascending: false })),
+      /* Both were editable in /admin and read by nobody, so ticking them
+         achieved exactly nothing. Now they OVERRIDE the automatic behaviour:
+         per-product FAQs replace the global list, hand-picked related products
+         replace the scenario-overlap guess. Leaving them empty keeps the
+         automatic behaviour, so no SKU has to be maintained by hand. */
+      selectAll(sb, 'product_faqs', 'product_id, faq_id',
+        (q: any) => q.order('product_id').order('faq_id')),
+      selectAll(sb, 'product_related_products', 'product_id, related_product_id',
+        (q: any) => q.order('product_id').order('related_product_id')),
     ]);
 
   const scenarioById = new Map((scnRows || []).map((r: any) => [r.id, r]));
@@ -198,6 +223,33 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     reportKeysByProduct.set(l.product_id, arr);
   });
 
+  /* Per-product FAQ and hand-picked related products. Both resolve to the PUBLIC
+     key (faq_key / sku) rather than the uuid, so the front end can look them up
+     in DB.faqs / DB.products without another id map. A link to an unpublished
+     FAQ or product simply drops out — the visibility gate stays with the target
+     row, not with the link. */
+  const faqKeyById = new Map((faqRows || []).map((r: any) => [r.id, r.faq_key]));
+  const faqKeysByProduct = new Map<string, string[]>();
+  (faqLinkRows || []).forEach((l: any) => {
+    const key = faqKeyById.get(l.faq_id);
+    if (!key) return;
+    const arr = faqKeysByProduct.get(l.product_id) || [];
+    arr.push(key);
+    faqKeysByProduct.set(l.product_id, arr);
+  });
+
+  const skuById = new Map((prodRows || [])
+    .filter((r: any) => r.status === 'Published')
+    .map((r: any) => [r.id, r.official_sku_code || r.product_id]));
+  const relatedSkusByProduct = new Map<string, string[]>();
+  (relatedLinkRows || []).forEach((l: any) => {
+    const sku = skuById.get(l.related_product_id);
+    if (!sku) return;   // unpublished or deleted target
+    const arr = relatedSkusByProduct.get(l.product_id) || [];
+    arr.push(sku);
+    relatedSkusByProduct.set(l.product_id, arr);
+  });
+
   const categories = (catRows || [])
     .filter((r: any) => r.status !== 'Hidden' && r.slug)
     .map((r: any) => ({
@@ -208,6 +260,8 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       art: r.art_key || '',
       name: langObj(r, 'name'),
       desc: langObj(r, 'desc'),
+      seoTitle: langObj(r, 'seo_title'),
+      seoDesc: langObj(r, 'seo_description'),
     }))
     .sort((a: any, b: any) => a.sort - b.sort);
 
@@ -220,6 +274,8 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       icon: r.icon || '',
       name: langObj(r, 'name'),
       desc: langObj(r, 'desc'),
+      pain: langObj(r, 'pain_point'),
+      img: r.hero_image_url || null,
       combo: (r.combo_skus || '').split(',').map((s: string) => s.trim()).filter(Boolean),
     }))
     .filter((s: any) => s.status !== 'hidden')
@@ -269,7 +325,24 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
            than embedded copies because a report covering 8 SKUs would otherwise
            be serialised 8 times into data.js. */
         reports: (reportKeysByProduct.get(r.id) || []).slice(),
+        /* Fixed tag set (5 options), not prose — rendered through i18n labels, so
+           adding a SKU costs no translation work. */
+        pains: r.consumer_pain_point || [],
+        gallery: r.gallery_urls || [],
+        /* Per-product terms, falling back to config.warrantyMonths/exchangeDays
+           in the front end when blank. */
+        warranty: r.warranty_months || null,
+        exchange: r.defect_exchange_days || null,
+        seoTitle: langObj(r, 'seo_title'),
+        seoDesc: langObj(r, 'seo_description'),
       };
+      if (r.spec_sheet_url) out.spec = r.spec_sheet_url;
+      /* Empty arrays are the common case; omit them so data.js does not carry 19
+         copies of `"faqs": []` and `"related": []`. */
+      const ownFaqs = faqKeysByProduct.get(r.id);
+      if (ownFaqs && ownFaqs.length) out.faqs = ownFaqs.slice();
+      const ownRelated = relatedSkusByProduct.get(r.id);
+      if (ownRelated && ownRelated.length) out.related = ownRelated.slice();
       if (r.hero_image_url) out.img = r.hero_image_url;
       /* Per-product Shopee link, falling back to the store-level URL. Without
          this every "Buy on Shopee" CTA on the site was a dead href="#" no
@@ -290,6 +363,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
   const faqs = (faqRows || [])
     .map((r: any) => ({
       id: r.faq_key,
+      cat: r.category || '',
       q: { en: r.question_en || '', vi: r.question_vi || '', id: r.question_id || '', zh: r.question_zh || '' },
       a: { en: r.answer_en || '', vi: r.answer_vi || '', id: r.answer_id || '', zh: r.answer_zh || '' },
     }))
@@ -347,6 +421,8 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       insights: insights.length,
       productScenarioLinks: (linkRows || []).length,
       productReportLinks: (reportLinkRows || []).length,
+      productFaqLinks: (faqLinkRows || []).length,
+      productRelatedLinks: (relatedLinkRows || []).length,
     },
     skipped,
     /* Answers "why isn't my product on the site?" without needing DB access —

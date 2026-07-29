@@ -79,7 +79,22 @@
   }
   let lang = localStorage.getItem('viemag-lang');
   if (!SUPPORTED.includes(lang)) lang = detectLang();
-  const t = (key) => {
+  /* Warranty terms are interpolated, not hard-coded into five languages. Before
+     2026-07-29 every string said "12 months / 14 days" literally, so the
+     warranty_months and defect_exchange_days columns in /admin were inert and,
+     worse, a policy change would have left the site stating the old terms.
+     Defaults come from DB.config; the product page passes the SKU's own values. */
+  const termVars = () => ({
+    m: (window.DB && DB.config && DB.config.warrantyMonths) || 12,
+    d: (window.DB && DB.config && DB.config.exchangeDays) || 14,
+  });
+  const interp = (str, vars) => {
+    if (str.indexOf('{') === -1) return str;
+    const v = vars ? Object.assign(termVars(), vars) : termVars();
+    return str.replace(/\{(\w+)\}/g, (m0, k) => (v[k] !== undefined ? String(v[k]) : m0));
+  };
+
+  const tRaw = (key) => {
     if (lang === 'zh-Hans') {
       const ov = DICT['zh-Hans'];
       if (ov && ov[key] != null) return ov[key];       // hand-tuned seed/override wins verbatim
@@ -89,6 +104,7 @@
     }
     return (DICT[lang] && DICT[lang][key]) || (DICT.en && DICT.en[key]) || key;
   };
+  const t = (key, vars) => interp(tRaw(key), vars);
   const tf = (obj) => {
     if (!obj) return '';
     if (lang === 'zh-Hans') {
@@ -439,7 +455,67 @@
     </details>`;
   }
 
+  /* FAQ grouped by category with a small heading per group, instead of one flat
+     list. The category column existed from day one and did nothing; at 7 entries
+     a flat list was survivable, at 30 it would not be. Order follows FAQ_CATS so
+     the sequence is editorial, not alphabetical or insertion order; anything with
+     an unrecognised or empty category falls into a final "other" group rather
+     than disappearing. */
+  const FAQ_CATS = ['Installation', 'Compatibility', 'Charging', 'Heat', 'Warranty', 'Return'];
+
+  function faqGroups(list) {
+    const seen = new Set();
+    const groups = FAQ_CATS.map((c) => ({
+      cat: c,
+      label: t('faq.cat.' + c),
+      items: list.filter((f) => { if (f.cat === c) { seen.add(f.id); return true; } return false; }),
+    })).filter((g) => g.items.length);
+    const rest = list.filter((f) => !seen.has(f.id));
+    if (rest.length) groups.push({ cat: '', label: t('faq.cat.other'), items: rest });
+
+    /* One group and no meaningful split? Don't print a heading for the sake of it. */
+    if (groups.length === 1) return groups[0].items.map(faqItem).join('');
+    return groups.map((g) => `
+      <div class="faq-group">
+        <h3 class="faq-group-title">${esc(g.label)}</h3>
+        ${g.items.map(faqItem).join('')}
+      </div>`).join('');
+  }
+
+  /* Thumbnail strip under the main product image. Clicking swaps the main image
+     rather than opening a lightbox: no keyboard/touch gesture code to get wrong,
+     and it works the same on a phone. Returns '' when there is nothing to show,
+     so the markup simply isn't there for a product with one photo. */
+  function gallery(p) {
+    const shots = [p.img].concat(p.gallery || []).filter(Boolean);
+    if (shots.length < 2) return '';
+    return `<div class="pdp-shots" role="group" aria-label="${esc(t('pdp.gallery'))}">${
+      shots.map((src, i) => `
+        <button type="button" class="pdp-shot${i === 0 ? ' active' : ''}" data-src="${esc(src)}"
+                aria-label="${esc(t('pdp.gallery'))} ${i + 1}">
+          <img src="${esc(src)}" alt="" loading="lazy">
+        </button>`).join('')
+    }</div>`;
+  }
+
+  /* consumer_pain_point is a fixed 5-value tag set, not free text, so the labels
+     are translated once here rather than per SKU. */
+  function painChips(p) {
+    const pains = (p.pains || []).filter(Boolean);
+    if (!pains.length) return '';
+    return `<div class="pdp-pains">
+      <span class="filter-label">${esc(t('pdp.solves'))}</span>
+      <div class="meta-chips">${pains.map((k) => `<span class="chip">${esc(t('pain.' + k))}</span>`).join('')}</div>
+    </div>`;
+  }
+
   /* ---------- boot ---------- */
+  /* i18n copy may contain markup (<br>, <b>) because it is injected with
+     innerHTML. A <title> and a meta description are plain text. */
+  function stripTags(str) {
+    return String(str == null ? '' : str).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+  }
+
   function applyI18nAttrs(root) {
     (root || document).querySelectorAll('[data-i18n]').forEach((el) => { el.innerHTML = t(el.getAttribute('data-i18n')); });
     (root || document).querySelectorAll('[data-i18n-ph]').forEach((el) => { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph'))); });
@@ -450,7 +526,27 @@
     const active = document.body.dataset.page || '';
     document.body.insertAdjacentHTML('afterbegin', header(active));
     document.body.insertAdjacentHTML('beforeend', footer());
-    if (document.body.dataset.keepTitle !== '1') document.title = t('meta.title');
+    /* Until 2026-07-29 this line overwrote the <title> of EVERY page with one
+       generic string, so seven of eight pages were indistinguishable to a search
+       engine and in a browser's tab bar or history. Compose from the copy each
+       page already has translated instead of inventing 8 x 5 new strings; pages
+       that build their own title (product, insight) opt out with
+       data-keep-title="1" and set document.title in renderPage. */
+    const PAGE_META = {
+      products:  ['products.title', 'products.sub'],
+      scenarios: ['scenarios.title', 'scenarios.sub'],
+      why:       ['why.title', 'why.sub'],
+      insights:  ['insights.title', 'insights.sub'],
+      support:   ['support.title', 'support.sub'],
+      dealers:   ['dealers.title', 'dealers.sub'],
+      about:     ['about.title', 'about.sub'],
+    };
+    if (document.body.dataset.keepTitle !== '1') {
+      const pm = PAGE_META[active];
+      document.title = pm ? `${stripTags(t(pm[0]))} — VIEMAG` : t('meta.title');
+      const descEl = document.querySelector('meta[name="description"]');
+      if (descEl && pm) descEl.setAttribute('content', stripTags(t(pm[1])));
+    }
 
     /* language menu */
     const langBtn = document.getElementById('langBtn');
@@ -476,7 +572,7 @@
     applyI18nAttrs(document);
 
     /* per-page render hook (injects dynamic .reveal content) */
-    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, personaCard, faqItem, insightCard, reportList, formatDate, richText, INSIGHT_CATS, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
+    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, personaCard, faqItem, faqGroups, insightCard, reportList, gallery, painChips, formatDate, richText, stripTags, INSIGHT_CATS, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
 
     /* scroll reveal — observe AFTER dynamic content exists so injected cards animate in */
     const io = new IntersectionObserver((es) => es.forEach((e) => {

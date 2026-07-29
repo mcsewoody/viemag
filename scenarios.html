@@ -33,11 +33,17 @@ window.renderPage = function ({ t, tf, icon, esc, prodBySku }) {
       .map((p) => `<a class="chip" href="product.html?sku=${encodeURIComponent(p.sku)}">${esc(tf(p.name))}</a>`).join(' ');
     return `
     <article class="scn-row reveal" id="${s.id}">
-      <div class="art">${icon(s.icon)}</div>
+      <div class="art${s.img ? ' has-photo' : ''}">${
+        /* A real photograph when one exists, the built-in icon otherwise. The
+           hero_image_url column was editable in /admin and read by nobody until
+           2026-07-29, so an uploaded photo simply never appeared. */
+        s.img ? `<img src="${esc(s.img)}" alt="${esc(tf(s.name))}" loading="lazy">` : icon(s.icon)
+      }</div>
       <div>
         <div class="scn-code">${s.code} · ${t('scns.tag.' + s.status)}</div>
         <h2>${esc(tf(s.name))}</h2>
         <p>${esc(tf(s.desc))}</p>
+        ${tf(s.pain) ? `<p class="scn-pain"><b>${t('scns.pain')}</b> ${esc(tf(s.pain))}</p>` : ''}
         ${combo ? `<p class="filter-label" style="margin-bottom:8px">${t('scns.combo')}</p><div class="combo">${combo}</div>` : ''}
         <a class="btn btn-ghost btn-sm" href="products.html?scn=${s.code}">${t('cta.explore')}</a>
       </div>

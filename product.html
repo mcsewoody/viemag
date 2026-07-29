@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product — VIEMAG</title>
+  <meta name="description" content="">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -13,6 +14,10 @@
   <div class="container">
     <nav class="breadcrumbs" id="crumbs" aria-label="Breadcrumb"></nav>
     <div id="pdp"></div>
+    <section class="pdp-section" id="pdpFaqWrap" style="display:none">
+      <h2 data-i18n="pdp.faqTitle"></h2>
+      <div class="faq-list" id="pdpFaqList"></div>
+    </section>
     <section class="pdp-section" id="relatedWrap" style="display:none">
       <h2 data-i18n="pdp.related"></h2>
       <div class="prod-grid" id="relatedGrid"></div>
@@ -23,7 +28,7 @@
 <script src="js/data-loader.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, scnByCode, esc, stars, money, reportList }) {
+window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, scnByCode, esc, stars, money, reportList, gallery, painChips, faqItem, stripTags }) {
   const DB = window.DB;
   const sku = new URLSearchParams(location.search).get('sku');
   /* An unknown ?sku= must NOT silently fall back to some other product: a stale
@@ -38,7 +43,12 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
      aborted renderPage BEFORE the reveal-observer was set up, leaving the whole
      page blank (not just the breadcrumb). */
   const cat = catById(p.category);
-  document.title = `${tf(p.name)} — VIEMAG`;
+  /* Staff can override the <title> and description per product; blank (the normal
+     case) composes them from the name and claim, so nobody has to fill 19 SKUs
+     x 4 languages in before the page has a usable title. */
+  document.title = stripTags(tf(p.seoTitle)) || `${tf(p.name)} — VIEMAG`;
+  const descEl = document.querySelector('meta[name="description"]');
+  if (descEl) descEl.setAttribute('content', stripTags(tf(p.seoDesc)) || stripTags(tf(p.claim)));
   document.getElementById('crumbs').innerHTML =
     `<a href="index.html">VIEMAG</a><span>/</span>` +
     `<a href="products.html">${t('nav.products')}</a><span>/</span>` +
@@ -56,7 +66,13 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
   hl.push(tf(p.claim));
   if (p.qi !== 'none') hl.push(t('qi.' + p.qi));
   if ((p.mount || []).length) hl.push(`${t('pdp.spec.mount')}: ${(p.mount).map((m) => t('mount.' + m)).join(' · ')}`);
-  hl.push(t('pdp.warranty'));
+  /* This SKU's own terms, falling back to the site-wide policy. Before
+     2026-07-29 the numbers were hard-coded into five languages, so the
+     warranty_months / defect_exchange_days fields in /admin did nothing. */
+  hl.push(t('pdp.warranty', {
+    m: p.warranty || DB.config.warrantyMonths,
+    d: p.exchange || DB.config.exchangeDays,
+  }));
 
   const specRows = [
     [t('pdp.spec.sku'), p.sku],
@@ -68,13 +84,15 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
   box.innerHTML = `
   <div class="pdp">
     <div class="pdp-gallery">
-      <div class="main">${thumb(p)}</div>
+      <div class="main" id="pdpMain">${thumb(p)}</div>
+      ${gallery(p)}
     </div>
     <div class="pdp-info">
       <span class="sku">${cat ? esc(tf(cat.name)) + ' · ' : ''}${p.sku}</span>
       <h1>${esc(tf(p.name))}</h1>
       ${p.rating ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : ''}
       <p class="claim">${esc(tf(p.claim))}</p>
+      ${painChips(p)}
       <div class="meta-chips">${scnChips}</div>
       ${future
         ? `<div class="notice" style="margin:20px 0">${t('cats.soon')}</div>`
@@ -89,6 +107,7 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
       <div class="spec-block">
         <h3>${t('pdp.specs')}</h3>
         <table>${specRows}</table>
+        ${p.spec ? `<p class="spec-download"><a href="${esc(p.spec)}" target="_blank" rel="noopener">${icon('external')}${t('pdp.specSheet')}</a></p>` : ''}
       </div>
       <div class="spec-block">
         <h3>${t('pdp.compat')}</h3>
@@ -101,9 +120,33 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
     </div>
   </div>`;
 
-  /* related: same primary scenario, exclude self */
-  const rel = DB.products.filter((x) => x.sku !== p.sku && x.status === 'published' &&
-    (x.scenarios || []).some((s) => (p.scenarios || []).includes(s))).slice(0, 4);
+  /* Thumbnail strip: swap the main image. Bound after innerHTML, and only when
+     the strip actually exists (a single-photo product has no strip). */
+  const shots = box.querySelectorAll('.pdp-shot');
+  if (shots.length) {
+    const main = document.getElementById('pdpMain');
+    shots.forEach((btn) => btn.addEventListener('click', () => {
+      main.innerHTML = `<img src="${esc(btn.dataset.src)}" alt="${esc(tf(p.name))}">`;
+      shots.forEach((b) => b.classList.toggle('active', b === btn));
+    }));
+  }
+
+  /* Product-specific FAQ. p.faqs holds faq_keys picked in /admin; unset means
+     this product has no questions of its own and the global list on the support
+     page covers it, so the section is simply absent rather than empty. */
+  const ownFaqs = (p.faqs || []).map((k) => DB.faqs.find((f) => f.id === k)).filter(Boolean);
+  if (ownFaqs.length) {
+    document.getElementById('pdpFaqWrap').style.display = '';
+    document.getElementById('pdpFaqList').innerHTML = ownFaqs.map(faqItem).join('');
+  }
+
+  /* Related products: hand-picked in /admin wins; with none set, fall back to
+     products sharing a scenario. The manual list was editable but ignored until
+     2026-07-29. */
+  const manual = (p.related || []).map((s) => DB.products.find((x) => x.sku === s && x.status === 'published')).filter(Boolean);
+  const rel = manual.length ? manual.slice(0, 4)
+    : DB.products.filter((x) => x.sku !== p.sku && x.status === 'published' &&
+        (x.scenarios || []).some((s) => (p.scenarios || []).includes(s))).slice(0, 4);
   if (rel.length) {
     document.getElementById('relatedWrap').style.display = '';
     document.getElementById('relatedGrid').innerHTML = rel.map(productCard).join('');

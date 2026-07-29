@@ -107,7 +107,7 @@
 <script src="js/data-loader.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-window.renderPage = function ({ t, tf, esc, icon, faqItem, published }) {
+window.renderPage = function ({ t, tf, esc, icon, faqGroups, published }) {
   const DB = window.DB;
   const sb = window.supabase.createClient(window.VIEMAG_SUPABASE.url, window.VIEMAG_SUPABASE.anonKey);
   document.getElementById('policyList').innerHTML = [1, 2, 3, 4, 5].map((i) =>
@@ -116,7 +116,10 @@ window.renderPage = function ({ t, tf, esc, icon, faqItem, published }) {
     ['shield', 1], ['swap', 2], ['chat', 3]
   ].map(([ic, i]) => `
     <div class="trust-item">${icon(ic)}<div><b>${t('trust.' + i + '.t')}</b><span>${t('trust.' + i + '.d')}</span></div></div>`).join('');
-  document.getElementById('faqList').innerHTML = DB.faqs.map(faqItem).join('');
+    /* Grouped by category with a heading per group. The faq.category column
+     existed from the start and was ignored; at 7 entries a flat list was
+     survivable, at 30 it would not be. */
+  document.getElementById('faqList').innerHTML = faqGroups(DB.faqs);
 
   /* Product dropdown: value is stable EN name for the team, label is localized. */
   const prodSel = document.getElementById('s-product');

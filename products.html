@@ -33,7 +33,7 @@
 <script src="js/data-loader.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-window.renderPage = function ({ t, tf, productCard }) {
+window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   const DB = window.DB;
   const params = new URLSearchParams(location.search);
   let curCat = params.get('cat') || 'all';
@@ -55,12 +55,25 @@ window.renderPage = function ({ t, tf, productCard }) {
     scnBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curScn = b.dataset.v; sync(); });
   }
 
+  /* When the listing is filtered to one category, use that category's own title
+     and description if staff wrote them. The seo_title/seo_description columns
+     were Vietnamese-only and unread until 2026-07-29; they are four languages now
+     and blank stays blank, falling back to the generic listing title. */
+  function applyCategoryMeta() {
+    const c = curCat !== 'all' ? catById(curCat) : null;
+    const title = c && stripTags(tf(c.seoTitle));
+    const desc = c && stripTags(tf(c.seoDesc));
+    document.title = title || `${stripTags(t('products.title'))} — VIEMAG`;
+    const el = document.querySelector('meta[name="description"]');
+    if (el) el.setAttribute('content', desc || (c ? stripTags(tf(c.desc)) : stripTags(t('products.sub'))));
+  }
+
   function sync() {
     const p = new URLSearchParams();
     if (curCat !== 'all') p.set('cat', curCat);
     if (curScn !== 'all') p.set('scn', curScn);
     history.replaceState(null, '', 'products.html' + (p.toString() ? '?' + p : ''));
-    drawFilters(); draw();
+    drawFilters(); draw(); applyCategoryMeta();
   }
 
   function draw() {
@@ -73,7 +86,7 @@ window.renderPage = function ({ t, tf, productCard }) {
     empty.style.display = list.length ? 'none' : 'block';
   }
 
-  drawFilters(); draw();
+  drawFilters(); draw(); applyCategoryMeta();
 };
 </script>
 <script src="js/main.js"></script>
