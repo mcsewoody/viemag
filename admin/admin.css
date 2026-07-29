@@ -77,7 +77,7 @@ table.grid th.thumb-col, table.grid td.thumb-col { width: 56px; padding-right: 0
   font-size: .58rem; line-height: 1.1; text-align: center; color: var(--muted);
   word-break: break-all; padding: 2px; cursor: help; }
 table.grid .row-actions button { margin-left: 6px; }
-.badge-status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .75rem; font-weight: 700; background: var(--ivory); color: var(--navy); }
+.badge-status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .75rem; font-weight: 700; background: var(--ivory); color: var(--navy); white-space: nowrap; }
 .empty-state { padding: 40px; text-align: center; color: var(--muted); background: var(--card); border-radius: var(--radius); }
 
 /* ---------- edit form ---------- */
@@ -106,3 +106,18 @@ table.grid .row-actions button { margin-left: 6px; }
 .form-actions { margin-top: 20px; display: flex; gap: 10px; align-items: center; }
 .save-status { font-size: .85rem; color: var(--teal); }
 .save-status.error { color: var(--danger); }
+
+/* ---------- accounts panel ---------- */
+.nav-sep { height: 1px; background: rgba(255,255,255,.12); margin: 10px 20px; }
+.account-card { margin-bottom: 20px; }
+.account-card h3 { margin: 0 0 4px; color: var(--navy); font-size: 1rem; }
+.account-card .add-account-heading { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); }
+.account-card table.grid { box-shadow: none; border: 1px solid var(--line); margin-bottom: 6px; }
+.stack-form { max-width: 340px; }
+.stack-form label { display: block; font-size: .82rem; color: var(--muted); margin: 12px 0 4px; }
+.stack-form input, .stack-form select {
+  width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px;
+  font-size: .92rem; font-family: inherit;
+}
+.hint { color: var(--muted); font-weight: 400; font-size: .78rem; }
+.account-card td:nth-child(4) { white-space: nowrap; }

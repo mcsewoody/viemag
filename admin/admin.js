@@ -11,11 +11,17 @@
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
+  /* The account panel is not a Postgres table, so it rides in view.table as a
+     sentinel that can never collide with a real table name. */
+  var ACCOUNTS_VIEW = '__accounts';
+  var MIN_PASSWORD = 12; // must match MIN_PASSWORD in supabase/functions/manage-admins
+
   var state = {
     lang: localStorage.getItem('viemag-admin-lang') || 'en',
     session: null,
     view: { table: TABLE_ORDER[0], mode: 'list', id: null },
     relationCache: {},
+    myRole: 'editor', // re-read from admin_users on every showApp(); never trusted for enforcement
   };
 
   /* Tables that actually feed js/data.js (see supabase/functions/export-site-data).
@@ -56,6 +62,13 @@
   function t(key) {
     var dict = I18N[state.lang] || I18N.en;
     return dict[key] !== undefined ? dict[key] : (I18N.en[key] !== undefined ? I18N.en[key] : key);
+  }
+  /* t() with {placeholder} substitution. Values are substituted into the raw
+     string, so every caller must esc() the result before inserting it as HTML. */
+  function tf(key, vars) {
+    return String(t(key)).replace(/\{(\w+)\}/g, function (m, k) {
+      return vars[k] !== undefined ? String(vars[k]) : m;
+    });
   }
   function tTable(name) {
     var dict = I18N[state.lang] || I18N.en;
@@ -111,6 +124,17 @@
     buildLangPicker(document.getElementById('langPicker'));
     renderSidebar();
     renderContent();
+    /* Refresh the cached role on every render of the shell, so a promotion or
+       demotion made by someone else takes effect on the next navigation rather
+       than only after a re-login. This only decides what the UI OFFERS — the
+       manage-admins function re-checks the role server-side on every call. */
+    sb.from('admin_users').select('role').eq('user_id', state.session.user.id).maybeSingle()
+      .then(function (res) {
+        var role = (res.data && res.data.role) === 'owner' ? 'owner' : 'editor';
+        if (role === state.myRole) return;
+        state.myRole = role;
+        if (state.view.table === ACCOUNTS_VIEW) renderContent();
+      });
   }
 
   document.getElementById('syncNowBtn').addEventListener('click', function () {
@@ -156,7 +180,10 @@
     nav.innerHTML = TABLE_ORDER.map(function (name) {
       var active = state.view.table === name ? ' class="active"' : '';
       return '<a' + active + ' data-table="' + name + '">' + esc(tTable(name)) + '</a>';
-    }).join('');
+    }).join('')
+      + '<div class="nav-sep"></div>'
+      + '<a' + (state.view.table === ACCOUNTS_VIEW ? ' class="active"' : '')
+      + ' data-table="' + ACCOUNTS_VIEW + '">' + esc(t('accounts')) + '</a>';
     Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) {
       a.addEventListener('click', function () {
         state.view = { table: a.dataset.table, mode: 'list', id: null };
@@ -173,8 +200,235 @@
   function renderContent() {
     var root = document.getElementById('content');
     root.innerHTML = '<p>' + esc(t('loading')) + '</p>';
-    if (state.view.mode === 'list') renderList(root);
+    if (state.view.table === ACCOUNTS_VIEW) renderAccounts(root);
+    else if (state.view.mode === 'list') renderList(root);
     else renderForm(root);
+  }
+
+  /* ---------------- accounts panel ----------------
+     Two halves with deliberately different trust levels:
+       - "My account": changes the caller's OWN password through their own
+         session (supabase.auth.updateUser). No elevated key involved.
+       - "Staff accounts": every mutation is a POST to the manage-admins Edge
+         Function, which is the only holder of the service_role key. The
+         buttons below are convenience, not security — hiding them from an
+         editor does not protect anything; the function's own owner check does.
+  */
+  function callManageAdmins(payload) {
+    return sb.auth.getSession().then(function (sessionRes) {
+      var session = sessionRes.data.session;
+      if (!session) throw new Error('session expired');
+      return fetch(CFG.supabaseUrl + '/functions/v1/manage-admins', {
+        method: 'POST',
+        headers: {
+          apikey: CFG.supabaseAnonKey,
+          Authorization: 'Bearer ' + session.access_token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+    }).then(function (res) {
+      return res.json().then(function (data) {
+        if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+        return data;
+      });
+    });
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return t('never');
+    var d = new Date(iso);
+    return isNaN(d.getTime()) ? String(iso) : d.toLocaleString();
+  }
+
+  function renderAccounts(root) {
+    var isOwner = state.myRole === 'owner';
+    var myId = state.session.user.id;
+
+    var html = '';
+    html += '<h2>' + esc(t('accounts')) + '</h2>';
+    html += '<p class="panel-note">' + esc(t('accountsNote')) + '</p>';
+
+    /* --- my own password --- */
+    html += '<div class="form-card account-card">';
+    html += '<h3>' + esc(t('myAccount')) + ' — ' + esc(state.session.user.email) + '</h3>';
+    html += '<form id="ownPwForm" class="stack-form" autocomplete="off">';
+    html += '<label for="curPw">' + esc(t('currentPassword')) + '</label>';
+    html += '<input id="curPw" type="password" autocomplete="current-password" required>';
+    html += '<label for="newPw">' + esc(t('newPassword')) + '</label>';
+    html += '<input id="newPw" type="password" autocomplete="new-password" minlength="' + MIN_PASSWORD + '" required>';
+    html += '<label for="newPw2">' + esc(t('confirmPassword')) + '</label>';
+    html += '<input id="newPw2" type="password" autocomplete="new-password" minlength="' + MIN_PASSWORD + '" required>';
+    html += '<div class="form-actions"><button type="submit" class="btn btn-primary" id="ownPwBtn">'
+         + esc(t('changeOwnPassword')) + '</button><span class="save-status" id="ownPwStatus"></span></div>';
+    html += '</form></div>';
+
+    /* --- staff roster --- */
+    html += '<div class="form-card account-card">';
+    html += '<h3>' + esc(t('staffAccounts')) + '</h3>';
+    if (!isOwner) html += '<p class="panel-note">' + esc(t('editorCannotManage')) + '</p>';
+    html += '<div id="rosterHost"><p>' + esc(t('loading')) + '</p></div>';
+    html += '<span class="save-status" id="rosterStatus"></span>';
+    if (isOwner) {
+      html += '<h3 class="add-account-heading">' + esc(t('addAccount')) + '</h3>';
+      html += '<form id="addAccForm" class="stack-form" autocomplete="off">';
+      html += '<label for="accEmail">' + esc(t('email')) + '</label>';
+      html += '<input id="accEmail" type="email" autocomplete="off" required>';
+      html += '<label for="accName">' + esc(t('displayName')) + ' <span class="hint">(' + esc(t('optional')) + ')</span></label>';
+      html += '<input id="accName" type="text" autocomplete="off">';
+      html += '<label for="accPw">' + esc(t('initialPassword')) + '</label>';
+      html += '<input id="accPw" type="text" autocomplete="off" minlength="' + MIN_PASSWORD + '" required>';
+      html += '<label for="accRole">' + esc(t('colRole')) + '</label>';
+      html += '<select id="accRole"><option value="editor">' + esc(t('roleEditor'))
+           + '</option><option value="owner">' + esc(t('roleOwner')) + '</option></select>';
+      html += '<div class="form-actions"><button type="submit" class="btn btn-primary" id="addAccBtn">'
+           + esc(t('create')) + '</button><span class="save-status" id="addAccStatus"></span></div>';
+      html += '</form>';
+    }
+    html += '</div>';
+    root.innerHTML = html;
+
+    /* own-password submit */
+    document.getElementById('ownPwForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('ownPwBtn');
+      var status = document.getElementById('ownPwStatus');
+      var cur = document.getElementById('curPw').value;
+      var pw = document.getElementById('newPw').value;
+      var pw2 = document.getElementById('newPw2').value;
+      function fail(msg) { status.className = 'save-status error'; status.textContent = msg; btn.disabled = false; }
+      status.className = 'save-status'; status.textContent = '';
+      if (pw.length < MIN_PASSWORD) { fail(tf('passwordTooShort', { n: MIN_PASSWORD })); return; }
+      if (pw !== pw2) { fail(t('passwordMismatch')); return; }
+      btn.disabled = true;
+      /* Verify the current password before changing it. Supabase would accept
+         updateUser() on the strength of the session alone, which means an
+         unattended logged-in browser could be used to lock the real owner out
+         of their own account. */
+      sb.auth.signInWithPassword({ email: state.session.user.email, password: cur }).then(function (res) {
+        if (res.error) { fail(t('wrongCurrentPassword')); return null; }
+        return sb.auth.updateUser({ password: pw }).then(function (upd) {
+          if (upd.error) { fail(t('saveFailed') + upd.error.message); return; }
+          btn.disabled = false;
+          status.textContent = t('passwordChanged');
+          document.getElementById('ownPwForm').reset();
+        });
+      }).catch(function (err) { fail(t('saveFailed') + err.message); });
+    });
+
+    /* add-account submit */
+    if (isOwner) {
+      document.getElementById('addAccForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = document.getElementById('addAccBtn');
+        var status = document.getElementById('addAccStatus');
+        var email = document.getElementById('accEmail').value.trim();
+        var pw = document.getElementById('accPw').value;
+        status.className = 'save-status'; status.textContent = '';
+        if (pw.length < MIN_PASSWORD) {
+          status.className = 'save-status error';
+          status.textContent = tf('passwordTooShort', { n: MIN_PASSWORD });
+          return;
+        }
+        btn.disabled = true;
+        callManageAdmins({
+          action: 'invite',
+          email: email,
+          password: pw,
+          display_name: document.getElementById('accName').value.trim() || null,
+          role: document.getElementById('accRole').value,
+        }).then(function () {
+          btn.disabled = false;
+          status.textContent = tf('accountCreated', { email: email });
+          document.getElementById('addAccForm').reset();
+          loadRoster();
+        }).catch(function (err) {
+          btn.disabled = false;
+          status.className = 'save-status error';
+          status.textContent = t('accountActionFailed') + err.message;
+        });
+      });
+    }
+
+    loadRoster();
+
+    function loadRoster() {
+      var host = document.getElementById('rosterHost');
+      callManageAdmins({ action: 'list' }).then(function (data) {
+        var users = data.users || [];
+        var h = '<table class="grid"><thead><tr>';
+        h += '<th>' + esc(t('email')) + '</th><th>' + esc(t('colName')) + '</th>';
+        h += '<th>' + esc(t('colRole')) + '</th><th>' + esc(t('colLastSignIn')) + '</th>';
+        h += '<th></th></tr></thead><tbody>';
+        users.forEach(function (u) {
+          var self = u.user_id === myId;
+          h += '<tr data-uid="' + esc(u.user_id) + '" data-email="' + esc(u.email) + '" data-role="' + esc(u.role) + '">';
+          h += '<td>' + esc(u.email) + (self ? '<span class="hint">' + esc(t('youTag')) + '</span>' : '') + '</td>';
+          h += '<td>' + esc(u.display_name || '—') + '</td>';
+          h += '<td><span class="badge-status">' + esc(u.role === 'owner' ? t('roleOwner') : t('roleEditor')) + '</span></td>';
+          h += '<td>' + esc(fmtDate(u.last_sign_in_at)) + '</td>';
+          h += '<td class="row-actions">';
+          /* No self-targeting buttons: the Edge Function refuses those anyway
+             (they are the lock-out cases), so offering them would only produce
+             an error the operator cannot act on. */
+          if (isOwner && !self) {
+            h += '<button class="btn acc-pw-btn">' + esc(t('resetPassword')) + '</button>';
+            h += '<button class="btn acc-role-btn">'
+              + esc(u.role === 'owner' ? t('demote') : t('promote')) + '</button>';
+            h += '<button class="btn btn-danger acc-del-btn">' + esc(t('delete')) + '</button>';
+          }
+          h += '</td></tr>';
+        });
+        h += '</tbody></table>';
+        h += '<p class="panel-note">' + t('rowCount')(users.length) + '</p>';
+        host.innerHTML = h;
+        wireRosterButtons(host);
+      }).catch(function (err) {
+        host.innerHTML = '<p class="save-status error">' + esc(t('loadFailed') + err.message) + '</p>';
+      });
+    }
+
+    function wireRosterButtons(host) {
+      var status = document.getElementById('rosterStatus');
+      function run(payload, okMsg, buttons) {
+        status.className = 'save-status'; status.textContent = '';
+        buttons.forEach(function (b) { b.disabled = true; });
+        callManageAdmins(payload).then(function () {
+          status.textContent = okMsg;
+          loadRoster();
+        }).catch(function (err) {
+          buttons.forEach(function (b) { b.disabled = false; });
+          status.className = 'save-status error';
+          status.textContent = t('accountActionFailed') + err.message;
+        });
+      }
+      Array.prototype.forEach.call(host.querySelectorAll('tr[data-uid]'), function (tr) {
+        var uid = tr.dataset.uid, email = tr.dataset.email, role = tr.dataset.role;
+        var buttons = Array.prototype.slice.call(tr.querySelectorAll('button'));
+        var pwBtn = tr.querySelector('.acc-pw-btn');
+        var roleBtn = tr.querySelector('.acc-role-btn');
+        var delBtn = tr.querySelector('.acc-del-btn');
+        if (pwBtn) pwBtn.addEventListener('click', function () {
+          var pw = window.prompt(tf('newPasswordFor', { email: email }));
+          if (pw === null) return;
+          if (pw.length < MIN_PASSWORD) {
+            status.className = 'save-status error';
+            status.textContent = tf('passwordTooShort', { n: MIN_PASSWORD });
+            return;
+          }
+          run({ action: 'set_password', user_id: uid, password: pw },
+              tf('passwordReset', { email: email }), buttons);
+        });
+        if (roleBtn) roleBtn.addEventListener('click', function () {
+          run({ action: 'set_role', user_id: uid, role: role === 'owner' ? 'editor' : 'owner' },
+              t('roleChanged'), buttons);
+        });
+        if (delBtn) delBtn.addEventListener('click', function () {
+          if (!window.confirm(tf('confirmDeleteAccount', { email: email }))) return;
+          run({ action: 'delete', user_id: uid }, tf('accountDeleted', { email: email }), buttons);
+        });
+      });
+    }
   }
 
   /* ---------------- list view ---------------- */
