@@ -14,6 +14,7 @@ window.VIEMAG_SCHEMA = {
   categories: {
     title: 'category_name',
     order: 'sort_order',
+    thumbFallback: 'art_key',
     fields: [
       { name: 'category_name', type: 'text', required: true },
       { name: 'slug', type: 'text', required: true },
@@ -35,6 +36,8 @@ window.VIEMAG_SCHEMA = {
   scenarios: {
     title: 'scenario_name',
     order: 'priority',
+    thumb: 'hero_image_url',
+    thumbFallback: 'icon',
     fields: [
       { name: 'scenario_name', type: 'text', required: true },
       { name: 'scenario_code', type: 'select', options: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6'] },
@@ -56,6 +59,8 @@ window.VIEMAG_SCHEMA = {
   products: {
     title: 'product_id',
     order: 'product_id',
+    thumb: 'hero_image_url',
+    thumbFallback: 'art_key',   // no photo yet → show which illustration the site uses
     fields: [
       { name: 'product_id', type: 'text', required: true },
       { name: 'official_sku_code', type: 'text' },

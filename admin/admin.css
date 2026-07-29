@@ -70,6 +70,12 @@ table.grid th, table.grid td { padding: 10px 14px; text-align: left; border-bott
 table.grid th { background: var(--ivory); color: var(--navy); font-weight: 700; }
 table.grid tr:hover td { background: #FAFBFC; }
 table.grid .row-actions { white-space: nowrap; text-align: right; }
+table.grid th.thumb-col, table.grid td.thumb-col { width: 56px; padding-right: 0; }
+.row-thumb { width: 40px; height: 40px; border-radius: 8px; object-fit: cover;
+  border: 1px solid var(--line); background: var(--ivory); display: block; }
+.row-thumb-ph { display: flex; align-items: center; justify-content: center;
+  font-size: .58rem; line-height: 1.1; text-align: center; color: var(--muted);
+  word-break: break-all; padding: 2px; cursor: help; }
 table.grid .row-actions button { margin-left: 6px; }
 .badge-status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .75rem; font-weight: 700; background: var(--ivory); color: var(--navy); }
 .empty-state { padding: 40px; text-align: center; color: var(--muted); background: var(--card); border-radius: var(--radius); }

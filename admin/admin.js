@@ -61,6 +61,16 @@
     var dict = I18N[state.lang] || I18N.en;
     return (dict.tables && dict.tables[name]) || name;
   }
+  /* hero_image_url holds two shapes: an absolute Supabase Storage URL (anything
+     uploaded through this admin) and, for content migrated from Notion, a
+     repo-relative path like "assets/products/X.png". A relative path would
+     resolve against /admin/ and 404, so send those to the site root. */
+  function mediaUrl(v) {
+    if (!v) return null;
+    if (/^(https?:)?\/\//.test(v) || v.charAt(0) === '/') return v;
+    return '../' + v.replace(/^\.?\//, '');
+  }
+
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -186,11 +196,26 @@
         html += '<div class="empty-state">' + esc(t('noRecords')) + '</div>';
       } else {
         html += '<table class="grid"><thead><tr>';
+        if (def.thumb || def.thumbFallback) html += '<th class="thumb-col"></th>';
         html += '<th>' + esc(def.title) + '</th>';
         if (statusField) html += '<th>status</th>';
         html += '<th></th></tr></thead><tbody id="listBody">';
         rows.forEach(function (r) {
           html += '<tr data-id="' + esc(r.id) + '">';
+          if (def.thumb || def.thumbFallback) {
+            var img = mediaUrl(def.thumb ? r[def.thumb] : null);
+            var fb = def.thumbFallback ? r[def.thumbFallback] : null;
+            html += '<td class="thumb-col">';
+            if (img) {
+              html += '<img class="row-thumb" src="' + esc(img) + '" alt="" loading="lazy">';
+            } else if (fb) {
+              // No photo uploaded yet — show which front-end illustration this row uses.
+              html += '<span class="row-thumb row-thumb-ph" title="' + esc(t('noPhotoUsesArt')) + '">' + esc(fb) + '</span>';
+            } else {
+              html += '<span class="row-thumb row-thumb-ph">—</span>';
+            }
+            html += '</td>';
+          }
           html += '<td>' + esc(r[def.title]) + '</td>';
           if (statusField) html += '<td><span class="badge-status">' + esc(r.status || '—') + '</span></td>';
           html += '<td class="row-actions">';
@@ -393,7 +418,7 @@
     var html = '<div class="image-field" data-image-field="' + name + '" data-multi="' + (multi ? '1' : '0') + '">';
     html += '<input type="hidden" data-name="' + name + '" value="' + esc(multi ? JSON.stringify(urls) : (urls[0] || '')) + '">';
     html += '<div class="image-field-preview">' + urls.map(function (u) {
-      return '<div class="thumb-wrap"><img src="' + esc(u) + '"><button type="button" class="thumb-remove" data-remove-url="' + esc(u) + '">&times;</button></div>';
+      return '<div class="thumb-wrap"><img src="' + esc(mediaUrl(u)) + '"><button type="button" class="thumb-remove" data-remove-url="' + esc(u) + '">&times;</button></div>';
     }).join('') + '</div>';
     html += '<input type="file" accept="image/*,.pdf" ' + (multi ? 'multiple' : '') + '>';
     html += '<span class="upload-status" style="font-size:.8rem;color:var(--muted)"></span>';
@@ -434,7 +459,7 @@
     function setUrls(urls) {
       hidden.value = multi ? JSON.stringify(urls) : (urls[0] || '');
       previewEl.innerHTML = urls.map(function (u) {
-        return '<div class="thumb-wrap"><img src="' + esc(u) + '"><button type="button" class="thumb-remove" data-remove-url="' + esc(u) + '">&times;</button></div>';
+        return '<div class="thumb-wrap"><img src="' + esc(mediaUrl(u)) + '"><button type="button" class="thumb-remove" data-remove-url="' + esc(u) + '">&times;</button></div>';
       }).join('');
       Array.prototype.forEach.call(previewEl.querySelectorAll('.thumb-remove'), function (btn) {
         btn.addEventListener('click', function () {
