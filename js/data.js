@@ -376,7 +376,8 @@ window.DB = {
         "vi": "Một điểm sạc cố định trên bàn, đặt xuống là sạc.",
         "id": "Satu titik pengisian tetap di meja — letakkan ponsel, langsung mengisi.",
         "zh": "桌面固定充電點，放下即充。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VA002DSK",
@@ -412,7 +413,8 @@ window.DB = {
         "vi": "Điện thoại dựng đứng họp video, tai nghe sạc bên dưới.",
         "id": "Ponsel tegak untuk panggilan video, earbud mengisi di bawah.",
         "zh": "手機立式視訊，耳機在下方同步充電。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VA003FLD",
@@ -449,7 +451,8 @@ window.DB = {
         "vi": "Gập lại bằng lòng bàn tay, mở ra là trạm sạc khách sạn.",
         "id": "Terlipat seukuran telapak tangan, terbuka jadi stasiun pengisian hotel Anda.",
         "zh": "折起一掌大小，展開就是飯店充電站。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB001DSH1_BK",
@@ -492,6 +495,7 @@ window.DB = {
         "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman yang andal untuk berkendara dan merekam keseharian.",
         "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
       },
+      "reports": [],
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
@@ -527,7 +531,8 @@ window.DB = {
         "vi": "Kẹp cửa gió chắc chắn, gắn máy một chạm khi lên xe.",
         "id": "Terkunci di kisi AC, memasang ponsel begitu Anda masuk mobil.",
         "zh": "穩固卡入出風口，上車一吸即定位。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB002DSH",
@@ -562,7 +567,8 @@ window.DB = {
         "vi": "Dẫn đường cả ngày trên táp-lô, phanh gấp vẫn đứng yên.",
         "id": "Navigasi seharian di dasbor yang tetap diam saat mengerem mendadak.",
         "zh": "儀表板全日導航，急煞依然穩固。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB003SUC",
@@ -597,7 +603,8 @@ window.DB = {
         "vi": "Tay đòn dài chỉnh mọi góc nhìn, đế hút bám chắc kính và táp-lô.",
         "id": "Lengan panjang untuk segala sudut pandang, dasar vakum mencengkeram kaca dan dasbor.",
         "zh": "長臂調整任何視角，吸盤緊咬玻璃與儀表板。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB004CLP",
@@ -632,7 +639,8 @@ window.DB = {
         "vi": "Kẹp cạnh màn hình trung tâm, không che cửa gió, không dán keo.",
         "id": "Menjepit tepi layar tengah — tanpa menutup kisi AC, tanpa perekat.",
         "zh": "夾在中控螢幕邊，不擋出風口、不用貼膠。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB005TAP",
@@ -667,7 +675,8 @@ window.DB = {
         "vi": "Dán phẳng mọi bề mặt bằng keo 3M, lắp trong 30 giây.",
         "id": "Terpasang di permukaan rata mana pun dengan perekat 3M dalam 30 detik.",
         "zh": "3M 背膠貼平任何平面，30 秒完成安裝。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB006PRO",
@@ -703,7 +712,8 @@ window.DB = {
         "vi": "Nam châm N52 và kết cấu chống rung — bằng chứng chất lượng của cả dòng sản phẩm.",
         "id": "Magnet N52 dan konstruksi anti-getar — bukti kualitas seluruh lini.",
         "zh": "N52 強磁與耐震結構，整條產品線的品質證據款。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB00715W",
@@ -738,7 +748,8 @@ window.DB = {
         "vi": "Gắn là sạc 15W, thiết kế theo chuẩn Qi2, gió điều hoà hỗ trợ tản nhiệt.",
         "id": "Tempel dan isi 15W, dibuat sesuai standar Qi2, didinginkan aliran udara kisi AC.",
         "zh": "一吸即充 15W，依 Qi2 標準設計，出風口氣流輔助散熱。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB00815W",
@@ -773,7 +784,8 @@ window.DB = {
         "vi": "Chủ lực của dòng sạc xe: dẫn đường cả ngày, sạc 15W không quá nóng.",
         "id": "Andalan: navigasi seharian dengan pengisian 15W yang tetap adem.",
         "zh": "車充主力款：全日導航，15W 充電不過熱。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB00925W",
@@ -810,7 +822,8 @@ window.DB = {
         "vi": "Sạc nhanh 25W theo chuẩn Qi2.2 với quạt tản nhiệt chủ động — mẫu đầu bảng.",
         "id": "Pengisian cepat 25W dibuat sesuai Qi2.2 dengan kipas pendingin aktif — model unggulan.",
         "zh": "依 Qi2.2 標準設計的 25W 快充＋主動散熱風扇，旗艦款。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VB010ARM",
@@ -845,7 +858,8 @@ window.DB = {
         "vi": "Tay đòn dài cho xe có táp-lô sâu, vừa giữ vừa sạc.",
         "id": "Lengan panjang yang bisa disetel untuk dasbor dalam — menahan dan mengisi sekaligus.",
         "zh": "深儀表板車型的長臂解法，支撐與充電一次到位。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VC00110K",
@@ -879,7 +893,8 @@ window.DB = {
         "vi": "Hút dán sau máy, sạc không dây khi đang di chuyển — sắp ra mắt.",
         "id": "Menempel di belakang dan mengisi nirkabel saat bergerak — segera hadir.",
         "zh": "吸附機背、行進間無線充電，即將推出。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VD001STD",
@@ -916,7 +931,8 @@ window.DB = {
         "vi": "Nâng máy lên tầm mắt, xoay dọc ngang tuỳ ý — sắp ra mắt.",
         "id": "Mengangkat ponsel setinggi mata, memutar potret ke lanskap — segera hadir.",
         "zh": "手機抬升至視線高度、直橫向自由旋轉，即將推出。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VD002TRP",
@@ -949,7 +965,8 @@ window.DB = {
         "vi": "Một ngàm nam châm nối điện thoại với mọi chân máy 1/4\" — sắp ra mắt.",
         "id": "Satu kepala magnetik menghubungkan ponsel ke tripod 1/4\" mana pun — segera hadir.",
         "zh": "一顆磁吸頭，接上任何 1/4\" 腳架，即將推出。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VE001RNG",
@@ -985,7 +1002,8 @@ window.DB = {
         "vi": "Dán một vòng, điện thoại nào cũng vào được hệ nam châm.",
         "id": "Tempel satu cincin dan ponsel apa pun bergabung ke sistem magnetik.",
         "zh": "貼上一枚轉接環，任何手機都能進入磁吸系統。"
-      }
+      },
+      "reports": []
     },
     {
       "sku": "VE002KIT",
@@ -1020,7 +1038,8 @@ window.DB = {
         "vi": "Ốp bảo vệ kèm vòng nam châm định vị sẵn — tương thích tối đa.",
         "id": "Casing pelindung dengan cincin magnet yang sudah presisi untuk cengkeraman maksimal.",
         "zh": "保護殼內建對位磁環，相容性一次到位。"
-      }
+      },
+      "reports": []
     }
   ],
   "tests": [
@@ -1089,6 +1108,8 @@ window.DB = {
       }
     }
   ],
+  "reports": [],
+  "insights": [],
   "faqs": [
     {
       "id": "doa",
