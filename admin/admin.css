@@ -33,6 +33,7 @@ a { color: var(--navy); }
   background: var(--copper); color: #1a1300; font-weight: 700; font-size: 1rem; cursor: pointer; }
 .login-card button:hover { filter: brightness(1.05); }
 .login-error { color: var(--danger); font-size: .85rem; margin-top: 10px; min-height: 1.2em; }
+.login-error.info { color: var(--navy); }
 .lang-picker-login { position: absolute; top: 20px; right: 20px; }
 
 /* ---------- app shell ---------- */
@@ -109,15 +110,14 @@ table.grid .row-actions button { margin-left: 6px; }
 
 /* ---------- accounts panel ---------- */
 .nav-sep { height: 1px; background: rgba(255,255,255,.12); margin: 10px 20px; }
-.account-card { margin-bottom: 20px; }
-.account-card h3 { margin: 0 0 4px; color: var(--navy); font-size: 1rem; }
-.account-card .add-account-heading { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); }
-.account-card table.grid { box-shadow: none; border: 1px solid var(--line); margin-bottom: 6px; }
-.stack-form { max-width: 340px; }
-.stack-form label { display: block; font-size: .82rem; color: var(--muted); margin: 12px 0 4px; }
-.stack-form input, .stack-form select {
-  width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px;
-  font-size: .92rem; font-family: inherit;
-}
 .hint { color: var(--muted); font-weight: 400; font-size: .78rem; }
-.account-card td:nth-child(4) { white-space: nowrap; }
+table.grid td:last-child { white-space: nowrap; }
+
+/* password rule checklist */
+.pw-rules { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.pw-rules li { font-size: .78rem; color: var(--muted); }
+.pw-rules li::before { content: '•'; margin-right: 5px; }
+.pw-rules li.ok { color: #1F7A4D; }
+.pw-rules li.ok::before { content: '✓'; }
+.pw-rules li.bad { color: var(--danger); }
+.pw-rules li.bad::before { content: '✕'; }
