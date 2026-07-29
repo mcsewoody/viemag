@@ -46,6 +46,7 @@ window.I18N_DICT = {
     'cats.lede': 'Từ xe hơi đến bàn làm việc — các dòng sản phẩm dùng chung một chuẩn nam châm, mua một lần dùng cả hệ.',
     'cats.count': 'sản phẩm',
     'cats.soon': 'Sắp ra mắt',
+    'badge.new': 'Mới', 'badge.popular': 'Được chọn nhiều',
 
     'scns.kicker': 'Sáu tình huống sử dụng',
     'scns.title': 'Thiết kế cho cuộc sống di động của bạn',
@@ -58,7 +59,7 @@ window.I18N_DICT = {
 
     'feat.kicker': 'Bán chạy',
     'feat.title': 'Sản phẩm nổi bật',
-    'feat.lede': 'Những mẫu được người dùng đánh giá cao nhất trong hệ VIEMAG.',
+    'feat.lede': 'Những mẫu được nhiều người chọn trong hệ VIEMAG.',
 
     'proof.title': 'Chất lượng có kiểm chứng, không phải lời quảng cáo',
     'proof.desc': 'Mỗi sản phẩm VIEMAG xuất xưởng đều đi qua bốn nhóm kiểm tra. Báo cáo kiểm tra của từng mẫu sẽ được công bố tại trang này khi sản phẩm lên kệ.',
@@ -153,6 +154,7 @@ window.I18N_DICT = {
     'dealers.form.notes': 'Ghi chú',
     'dealers.form.submit': 'Gửi thông tin',
     'dealers.form.success': 'Đã nhận thông tin. Đội ngũ VIEMAG sẽ liên hệ trong 2 ngày làm việc.',
+    'dealers.form.error': 'Không gửi được. Vui lòng kiểm tra lại thông tin (nội dung quá dài?) rồi thử lại, hoặc email cho chúng tôi.',
     'dealers.form.required': 'Vui lòng điền mục này.',
     'support.form.title': 'Gửi yêu cầu bảo hành / hỗ trợ',
     'support.form.name': 'Họ và tên', 'support.form.contact': 'Email hoặc điện thoại',
@@ -169,6 +171,7 @@ window.I18N_DICT = {
     'support.form.desc': 'Mô tả vấn đề',
     'support.form.submit': 'Gửi yêu cầu',
     'support.form.success': 'Đã nhận yêu cầu. Bộ phận hỗ trợ VIEMAG sẽ liên hệ trong 2 ngày làm việc.',
+    'support.form.error': 'Không gửi được. Vui lòng kiểm tra lại thông tin (mô tả quá dài?) rồi thử lại, hoặc email cho chúng tôi.',
     'support.form.required': 'Vui lòng điền mục này.',
 
     'about.title': 'Về VIEMAG',
@@ -241,6 +244,7 @@ window.I18N_DICT = {
     'cats.lede': 'From the car to the desk — every line shares one magnetic standard, so the system grows with you.',
     'cats.count': 'products',
     'cats.soon': 'Coming soon',
+    'badge.new': 'New', 'badge.popular': 'Popular',
 
     'scns.kicker': 'Six life scenarios',
     'scns.title': 'Designed for life on the move',
@@ -253,7 +257,7 @@ window.I18N_DICT = {
 
     'feat.kicker': 'Best sellers',
     'feat.title': 'Featured products',
-    'feat.lede': 'The highest-rated pieces of the VIEMAG system.',
+    'feat.lede': 'Popular picks from the VIEMAG system.',
 
     'proof.title': 'Proven quality, not ad copy',
     'proof.desc': 'Every VIEMAG product passes four groups of tests before it ships. Per-model test reports will be published here as products launch.',
@@ -263,7 +267,7 @@ window.I18N_DICT = {
     'personas.kicker': 'Which one is you?',
     'personas.title': 'Built for four kinds of users',
     'personas.lede': 'Every VIEMAG line starts from a real user portrait, not a spec sheet.',
-    'personas.picks': 'Best lines:',
+    'personas.picks': 'Suitable lines:',
 
     'trust.title': 'After-sales promise',
     'trust.1.t': '12-month warranty',
@@ -348,6 +352,7 @@ window.I18N_DICT = {
     'dealers.form.notes': 'Notes',
     'dealers.form.submit': 'Submit inquiry',
     'dealers.form.success': 'Received. The VIEMAG team will reach out within 2 business days.',
+    'dealers.form.error': "Couldn't send. Please check your details (is any field too long?) and try again, or email us instead.",
     'dealers.form.required': 'Please fill in this field.',
     'support.form.title': 'Submit a warranty / support request',
     'support.form.name': 'Full name', 'support.form.contact': 'Email or phone',
@@ -364,6 +369,7 @@ window.I18N_DICT = {
     'support.form.desc': 'Describe the problem',
     'support.form.submit': 'Submit request',
     'support.form.success': 'Received. VIEMAG support will contact you within 2 business days.',
+    'support.form.error': "Couldn't send. Please check your details (is the description too long?) and try again, or email us instead.",
     'support.form.required': 'Please fill in this field.',
 
     'about.title': 'About VIEMAG',
@@ -436,6 +442,7 @@ window.I18N_DICT = {
     'cats.lede': '從車內到桌面，所有產品線共用同一套磁吸標準，買一次、全系統通用。',
     'cats.count': '款產品',
     'cats.soon': '即將推出',
+    'badge.new': '新品', 'badge.popular': '人氣',
 
     'scns.kicker': '六大生活情境',
     'scns.title': '為你的行動生活而設計',
@@ -448,7 +455,7 @@ window.I18N_DICT = {
 
     'feat.kicker': '熱銷推薦',
     'feat.title': '精選產品',
-    'feat.lede': 'VIEMAG 系統中評價最高的幾款。',
+    'feat.lede': 'VIEMAG 系統中較受歡迎的幾款。',
 
     'proof.title': '可驗證的品質，不是廣告詞',
     'proof.desc': '每一件 VIEMAG 產品出廠前都通過四大類測試。各型號的測試報告將隨產品上市陸續公開。',
@@ -543,6 +550,7 @@ window.I18N_DICT = {
     'dealers.form.notes': '備註',
     'dealers.form.submit': '送出洽詢',
     'dealers.form.success': '已收到您的資料，VIEMAG 團隊將於 2 個工作天內與您聯繫。',
+    'dealers.form.error': '送出失敗，請檢查填寫內容（是否有欄位過長？）後再試一次，或直接email給我們。',
     'dealers.form.required': '請填寫此欄位。',
     'support.form.title': '送出保固 / 售後需求',
     'support.form.name': '姓名', 'support.form.contact': 'Email 或電話',
@@ -559,6 +567,7 @@ window.I18N_DICT = {
     'support.form.desc': '問題描述',
     'support.form.submit': '送出需求',
     'support.form.success': '已收到您的需求，VIEMAG 售後團隊將於 2 個工作天內與您聯繫。',
+    'support.form.error': '送出失敗，請檢查填寫內容（問題描述是否過長？）後再試一次，或直接email給我們。',
     'support.form.required': '請填寫此欄位。',
 
     'about.title': '關於 VIEMAG',
@@ -631,6 +640,7 @@ window.I18N_DICT = {
     'cats.lede': '从车内到桌面，所有产品线共用同一套磁吸标准，买一次、全系统通用。',
     'cats.count': '款产品',
     'cats.soon': '即将推出',
+    'badge.new': '新品', 'badge.popular': '人气',
     'scns.kicker': '六大生活情境',
     'scns.title': '为你的行动生活而设计',
     'scns.lede': '我们不卖规格表——VIEMAG 以六个日常情境规划产品。',
@@ -641,7 +651,7 @@ window.I18N_DICT = {
     'scns.combo': '建议组合',
     'feat.kicker': '热销推荐',
     'feat.title': '精选产品',
-    'feat.lede': 'VIEMAG 系统中评价最高的几款。',
+    'feat.lede': 'VIEMAG 系统中较受欢迎的几款。',
     'proof.title': '可验证的品质，不是广告词',
     'proof.desc': '每一件 VIEMAG 产品出厂前都通过四大类测试。各型号的测试报告将随产品上市陆续公开。',
     'proof.note': 'VIEMAG 兼容 MagSafe 标准配件，并依 Qi2 标准设计。MagSafe 为 Apple Inc. 商标；Qi2 为 Wireless Power Consortium 商标。',
@@ -744,6 +754,7 @@ window.I18N_DICT = {
     'dealers.form.notes': '备注',
     'dealers.form.submit': '送出洽询',
     'dealers.form.success': '已收到您的资料，VIEMAG 团队将于 2 个工作天内与您联系。',
+    'dealers.form.error': '发送失败，请检查填写内容（是否有字段过长？）后再试一次，或直接email给我们。',
     'dealers.form.required': '请填写此栏位。',
     'support.form.title': '送出保修 / 售后需求',
     'support.form.name': '姓名',
@@ -767,6 +778,7 @@ window.I18N_DICT = {
     'support.form.desc': '问题描述',
     'support.form.submit': '送出需求',
     'support.form.success': '已收到您的需求，VIEMAG 售后团队将于 2 个工作天内与您联系。',
+    'support.form.error': '发送失败，请检查填写内容（问题描述是否过长？）后再试一次，或直接email给我们。',
     'support.form.required': '请填写此栏位。',
     'about.title': '关于 VIEMAG',
     'about.sub': 'Value . Innovation . Excellence — MAG 是我们的磁吸承诺。',
@@ -836,6 +848,7 @@ window.I18N_DICT = {
     'cats.lede': 'Dari mobil hingga meja kerja — setiap lini berbagi satu standar magnetik, jadi sistemnya tumbuh bersama Anda.',
     'cats.count': 'produk',
     'cats.soon': 'Segera hadir',
+    'badge.new': 'Baru', 'badge.popular': 'Populer',
 
     'scns.kicker': 'Enam skenario harian',
     'scns.title': 'Dirancang untuk hidup Anda yang bergerak',
@@ -848,7 +861,7 @@ window.I18N_DICT = {
 
     'feat.kicker': 'Terlaris',
     'feat.title': 'Produk unggulan',
-    'feat.lede': 'Produk dengan rating tertinggi dalam sistem VIEMAG.',
+    'feat.lede': 'Pilihan populer dari sistem VIEMAG.',
 
     'proof.title': 'Kualitas teruji, bukan sekadar iklan',
     'proof.desc': 'Setiap produk VIEMAG melewati empat kelompok pengujian sebelum dikirim. Laporan uji tiap model akan dipublikasikan di sini saat produk diluncurkan.',
@@ -943,6 +956,7 @@ window.I18N_DICT = {
     'dealers.form.notes': 'Catatan',
     'dealers.form.submit': 'Kirim permintaan',
     'dealers.form.success': 'Diterima. Tim VIEMAG akan menghubungi Anda dalam 2 hari kerja.',
+    'dealers.form.error': 'Gagal mengirim. Silakan periksa data Anda (ada kolom yang terlalu panjang?) lalu coba lagi, atau kirim email kepada kami.',
     'dealers.form.required': 'Mohon isi kolom ini.',
     'support.form.title': 'Kirim permintaan garansi / dukungan',
     'support.form.name': 'Nama lengkap', 'support.form.contact': 'Email atau telepon',
@@ -959,6 +973,7 @@ window.I18N_DICT = {
     'support.form.desc': 'Jelaskan masalahnya',
     'support.form.submit': 'Kirim permintaan',
     'support.form.success': 'Diterima. Dukungan VIEMAG akan menghubungi Anda dalam 2 hari kerja.',
+    'support.form.error': 'Gagal mengirim. Silakan periksa data Anda (deskripsi terlalu panjang?) lalu coba lagi, atau kirim email kepada kami.',
     'support.form.required': 'Mohon isi kolom ini.',
 
     'about.title': 'Tentang VIEMAG',

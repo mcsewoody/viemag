@@ -26,16 +26,24 @@
 window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, scnByCode, esc, stars, money }) {
   const DB = window.DB;
   const sku = new URLSearchParams(location.search).get('sku');
-  const p = DB.products.find((x) => x.sku === sku) || DB.products[0];
+  /* An unknown ?sku= must NOT silently fall back to some other product: a stale
+     QR code or a discontinued SKU would show a customer the wrong item at the
+     wrong price. Show "not found" instead. */
+  const p = DB.products.find((x) => x.sku === sku);
   const box = document.getElementById('pdp');
   if (!p) { box.innerHTML = `<div class="empty-state">${t('pdp.notFound')}</div>`; return; }
 
+  /* cat can legitimately be undefined — a product whose category was hidden or
+     deleted exports category:null. Dereferencing it used to throw here, which
+     aborted renderPage BEFORE the reveal-observer was set up, leaving the whole
+     page blank (not just the breadcrumb). */
   const cat = catById(p.category);
   document.title = `${tf(p.name)} — VIEMAG`;
   document.getElementById('crumbs').innerHTML =
     `<a href="index.html">VIEMAG</a><span>/</span>` +
     `<a href="products.html">${t('nav.products')}</a><span>/</span>` +
-    `<a href="products.html?cat=${cat.id}">${esc(tf(cat.name))}</a><span>/</span><span>${esc(tf(p.name))}</span>`;
+    (cat ? `<a href="products.html?cat=${cat.id}">${esc(tf(cat.name))}</a><span>/</span>` : '') +
+    `<span>${esc(tf(p.name))}</span>`;
 
   const future = p.status === 'future';
   const scnChips = (p.scenarios || []).map((code) => {
@@ -63,7 +71,7 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
       <div class="main">${thumb(p)}</div>
     </div>
     <div class="pdp-info">
-      <span class="sku">${esc(tf(cat.name))} · ${p.sku}</span>
+      <span class="sku">${cat ? esc(tf(cat.name)) + ' · ' : ''}${p.sku}</span>
       <h1>${esc(tf(p.name))}</h1>
       ${p.rating ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : ''}
       <p class="claim">${esc(tf(p.claim))}</p>
@@ -72,7 +80,7 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
         ? `<div class="notice" style="margin:20px 0">${t('cats.soon')}</div>`
         : `<div class="price">${money(p.price)}</div>
            <div class="pdp-ctas">
-             <a class="btn btn-primary" href="${DB.config.shopeeUrl}" target="_blank" rel="noopener">${t('cta.shopee')}</a>
+             <a class="btn btn-primary" href="${p.shopee || DB.config.shopeeUrl}" target="_blank" rel="noopener">${t('cta.shopee')}</a>
              <a class="btn btn-ghost" href="dealers.html">${t('pdp.askDealer')}</a>
            </div>`}
       <ul class="bullet-list" aria-label="${t('pdp.highlights')}">

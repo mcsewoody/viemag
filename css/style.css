@@ -350,6 +350,7 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 .check-row{display:flex;gap:10px;align-items:flex-start;font-size:.9rem}
 .check-row input{width:20px;height:20px;min-height:0;margin-top:2px;accent-color:var(--navy)}
 .form-success{display:none;background:var(--teal-soft);border:1px solid var(--teal);border-radius:var(--radius);padding:var(--s5);margin-top:var(--s4);color:#155E59;font-weight:600}
+.form-error{display:none;background:#FDEDEC;border:1px solid var(--danger);border-radius:var(--radius);padding:var(--s5);margin-top:var(--s4);color:#8E2B22;font-weight:600}
 
 @media (max-width:680px){.form-grid{grid-template-columns:1fr}}
 
