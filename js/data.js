@@ -405,7 +405,7 @@ window.DB = {
         "en": "VIEMAG 2-in-1 Desk Charging Stand",
         "vi": "Đế sạc 2 trong 1 VIEMAG",
         "id": "Dudukan Pengisi Meja 2-in-1 VIEMAG",
-        "zh": "VIEMAG 二合一桌上充電座"
+        "zh": "VIEMAG 二合一充電座"
       },
       "claim": {
         "en": "Phone upright for video calls, earbuds charging below.",
