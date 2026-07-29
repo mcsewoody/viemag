@@ -116,6 +116,8 @@ window.I18N_DICT = {
     'pdp.limitations': 'Điều kiện đo:',
     /* ---- pain-point tags (fixed 5-value set on products) ---- */
     'pdp.solves': 'Giải quyết vấn đề',
+    'filter.byPersona': 'Theo nhu cầu',
+    'personas.see': 'Xem sản phẩm phù hợp',
     'pain.Dropping': 'Điện thoại bị rơi',
     'pain.Heat': 'Nóng khi sạc',
     'pain.Loose': 'Giữ không chắc',
@@ -363,6 +365,8 @@ window.I18N_DICT = {
     'pdp.limitations': 'Test conditions:',
     /* ---- pain-point tags (fixed 5-value set on products) ---- */
     'pdp.solves': 'Solves',
+    'filter.byPersona': 'By who you are',
+    'personas.see': 'See suitable products',
     'pain.Dropping': 'Phone falling off',
     'pain.Heat': 'Heat while charging',
     'pain.Loose': 'Loose hold',
@@ -610,6 +614,8 @@ window.I18N_DICT = {
     'pdp.limitations': '測試條件：',
     /* ---- 痛點標籤（產品的五個固定標籤） ---- */
     'pdp.solves': '解決的問題',
+    'filter.byPersona': '依使用者類型',
+    'personas.see': '看適合的產品',
     'pain.Dropping': '手機掉落',
     'pain.Heat': '充電發熱',
     'pain.Loose': '吸不牢',
@@ -1066,6 +1072,8 @@ window.I18N_DICT = {
     'pdp.limitations': 'Kondisi pengujian:',
     /* ---- pain-point tags (fixed 5-value set on products) ---- */
     'pdp.solves': 'Mengatasi',
+    'filter.byPersona': 'Berdasarkan kebutuhan',
+    'personas.see': 'Lihat produk yang sesuai',
     'pain.Dropping': 'Ponsel terjatuh',
     'pain.Heat': 'Panas saat mengisi daya',
     'pain.Loose': 'Tidak menempel kuat',

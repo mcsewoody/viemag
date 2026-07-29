@@ -557,6 +557,13 @@
       var statusField = def.fields.find(function (f) { return f.name === 'status'; });
       var html = '';
       html += '<h2>' + esc(tTable(tableName)) + '</h2>';
+      /* Per-table explanation of what this table IS. Three kinds of table exist
+         and they behave completely differently; without saying so, an editor
+         reasonably assumes everything they type appears on the site.
+           (no note) = catalogue content, published on save
+           inbox     = filled by a public form, triaged here, never published
+           notWired  = the editor exists but nothing consumes it yet */
+      if (def.note) html += '<p class="panel-note">' + esc(t(def.note)) + '</p>';
       html += '<div class="toolbar">';
       html += '<input type="search" id="listSearch" placeholder="' + esc(t('search')) + '">';
       html += '<button class="btn btn-primary" id="addNewBtn">+ ' + esc(t('addNew')) + '</button>';

@@ -66,7 +66,7 @@
 <script src="js/data-loader.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-window.renderPage = function ({ t, tf, icon }) {
+window.renderPage = function ({ t, tf, icon, personaCard }) {
   const DB = window.DB;
   document.getElementById('claimGrid').innerHTML = [1, 2, 3, 4].map((i) => `
     <div class="pain-card reveal">
@@ -83,19 +83,11 @@ window.renderPage = function ({ t, tf, icon }) {
       <p>${tf(x.desc)}</p>
     </div>`).join('');
 
-  document.getElementById('personaGrid').innerHTML = DB.personas.map((pe) => {
-    const picks = pe.picks.map((id) => DB.categories.find((c) => c.id === id)).filter(Boolean)
-      .map((c) => `<a class="chip" href="products.html?cat=${c.id}">${tf(c.name)}</a>`).join(' ');
-    return `
-    <div class="persona-card">
-      <div class="avatar">${icon(pe.icon)}</div>
-      <div class="age">${pe.age}</div>
-      <h3>${tf(pe.name)}</h3>
-      <p>${tf(pe.desc)}</p>
-      <div class="picks">${t('personas.picks')}</div>
-      <div class="meta-chips">${picks}</div>
-    </div>`;
-  }).join('');
+  /* Use the SHARED personaCard rather than a local copy. This page had drifted
+     into its own duplicate, which meant the persona wiring (products.persona
+     driving the links) would have worked on the homepage and silently not here.
+     Also note the shared version escapes its interpolations; this copy did not. */
+  document.getElementById('personaGrid').innerHTML = DB.personas.map(personaCard).join('');
 
   document.getElementById('teamTrust').innerHTML = [
     ['shield', 1], ['swap', 2], ['chat', 3], ['guide', 4]

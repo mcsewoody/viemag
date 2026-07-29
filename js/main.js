@@ -331,8 +331,16 @@
     </a>`;
   }
   function personaCard(pe) {
-    const picks = pe.picks.map((id) => catById(id)).filter(Boolean)
-      .map((c) => `<a class="chip" href="products.html?cat=${c.id}">${esc(tf(c.name))}</a>`).join(' ');
+    /* Prefer this persona's OWN products — products.persona is a multi-select in
+       /admin and was read by nobody until 2026-07-29. Fall back to the persona's
+       hand-picked categories when no product carries the tag yet, so the card is
+       never empty while staff are still tagging the catalogue. */
+    const tagged = published.filter((p) => (p.personas || []).includes(pe.id));
+    const picks = tagged.length
+      ? `<a class="chip" href="products.html?persona=${encodeURIComponent(pe.id)}">${
+          esc(t('personas.see'))} (${tagged.length})</a>`
+      : pe.picks.map((id) => catById(id)).filter(Boolean)
+          .map((c) => `<a class="chip" href="products.html?cat=${c.id}">${esc(tf(c.name))}</a>`).join(' ');
     return `
     <div class="persona-card">
       <div class="avatar">${icon(pe.icon)}</div>

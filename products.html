@@ -22,6 +22,8 @@
     <div class="container">
       <p class="filter-label" data-i18n="filter.byCat"></p>
       <div class="filter-bar" id="catFilter"></div>
+      <p class="filter-label" data-i18n="filter.byPersona"></p>
+      <div class="filter-bar" id="personaFilter"></div>
       <p class="filter-label" data-i18n="filter.byScn"></p>
       <div class="filter-bar" id="scnFilter"></div>
       <div class="prod-grid" id="prodGrid" style="margin-top:24px"></div>
@@ -38,8 +40,14 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   const params = new URLSearchParams(location.search);
   let curCat = params.get('cat') || 'all';
   let curScn = params.get('scn') || 'all';
+  /* Persona is the third axis of the information architecture (CLAUDE.md), and
+     products carry their own persona tags. Until 2026-07-29 that column was
+     editable in /admin and read by nobody: the persona cards linked to a
+     hard-coded list of categories instead. */
+  let curPersona = params.get('persona') || 'all';
 
   const catBar = document.getElementById('catFilter');
+  const personaBar = document.getElementById('personaFilter');
   const scnBar = document.getElementById('scnFilter');
   const grid = document.getElementById('prodGrid');
   const empty = document.getElementById('emptyState');
@@ -48,10 +56,14 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
     catBar.innerHTML = `<button data-v="all" class="${curCat === 'all' ? 'active' : ''}">${t('filter.all')}</button>` +
       DB.categories.map((c) =>
         `<button data-v="${c.id}" class="${curCat === c.id ? 'active' : ''}">${tf(c.name)}</button>`).join('');
+    personaBar.innerHTML = `<button data-v="all" class="${curPersona === 'all' ? 'active' : ''}">${t('filter.all')}</button>` +
+      DB.personas.map((pe) =>
+        `<button data-v="${pe.id}" class="${curPersona === pe.id ? 'active' : ''}">${tf(pe.name)}</button>`).join('');
     scnBar.innerHTML = `<button data-v="all" class="${curScn === 'all' ? 'active' : ''}">${t('filter.all')}</button>` +
       DB.scenarios.map((s) =>
         `<button data-v="${s.code}" class="${curScn === s.code ? 'active' : ''}">${s.code} · ${tf(s.name)}</button>`).join('');
     catBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curCat = b.dataset.v; sync(); });
+    personaBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curPersona = b.dataset.v; sync(); });
     scnBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curScn = b.dataset.v; sync(); });
   }
 
@@ -71,6 +83,7 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   function sync() {
     const p = new URLSearchParams();
     if (curCat !== 'all') p.set('cat', curCat);
+    if (curPersona !== 'all') p.set('persona', curPersona);
     if (curScn !== 'all') p.set('scn', curScn);
     history.replaceState(null, '', 'products.html' + (p.toString() ? '?' + p : ''));
     drawFilters(); draw(); applyCategoryMeta();
@@ -79,6 +92,7 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   function draw() {
     const list = DB.products.filter((p) =>
       (curCat === 'all' || p.category === curCat) &&
+      (curPersona === 'all' || (p.personas || []).includes(curPersona)) &&
       (curScn === 'all' || (p.scenarios || []).includes(curScn)));
     /* published first, future last */
     list.sort((a, b) => (a.status === 'future') - (b.status === 'future'));

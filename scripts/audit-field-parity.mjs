@@ -1,0 +1,142 @@
+#!/usr/bin/env node
+/**
+ * VIEMAG — field parity audit
+ *
+ * Enforces the rule agreed on 2026-07-29: every field a colleague can edit in
+ * /admin must either reach the public site or say plainly that it does not. A
+ * field that saves happily and changes nothing is worse than a missing field,
+ * because the person who filled it in believes the work is done.
+ *
+ * Run it after adding or removing ANY column:
+ *     node scripts/audit-field-parity.mjs
+ * Exit code 0 = clean, 1 = something needs a decision.
+ *
+ * It checks three directions, and the third is the one that is easy to forget:
+ *   A. /admin field  -> is it exported, internal, or on an inbox/not-wired table?
+ *   B. exported col  -> is there anywhere in /admin to edit it?
+ *   C. data.js key   -> does any front-end file actually read it?
+ *
+ * Direction C is how `tier` was caught: it was published to js/data.js, read by
+ * nothing, and its values ('B - Test', 'C - Display') exposed an internal
+ * commercial classification to anyone who opened the file.
+ *
+ * Table categories, declared by `note:` in admin/schema.js:
+ *   (none)         catalogue content — published on save
+ *   noteInbox      filled by a public form, triaged by staff, never published
+ *   noteNotWired   the editor exists but nothing consumes it yet (declared gap)
+ * admin_users is managed by the Accounts panel, not by a schema.js table.
+ *
+ * Reading DB columns needs a live connection, so that part is optional: pass a
+ * JSON file of [{table_name, cols}] as argv[2] to include direction B fully.
+ */
+import fs from 'fs';
+
+const w = {};
+global.window = w;
+eval(fs.readFileSync('admin/schema.js', 'utf8'));
+const SCHEMA = w.VIEMAG_SCHEMA;
+const ORDER = w.VIEMAG_TABLE_ORDER;
+
+const exporter = fs.readFileSync('supabase/functions/export-site-data/index.ts', 'utf8');
+const WHITELIST = {};
+for (const [table, constant] of [
+  ['products', 'PRODUCT'], ['categories', 'CATEGORY'], ['scenarios', 'SCENARIO'],
+  ['faq', 'FAQ'], ['test_reports', 'TEST_REPORT'], ['guides', 'GUIDE'],
+]) {
+  const m = exporter.match(new RegExp(`${constant}_COLS = \\[([\\s\\S]*?)\\]\\.join`));
+  if (!m) { console.error(`cannot find ${constant}_COLS in the export function`); process.exit(2); }
+  WHITELIST[table] = new Set([...m[1].matchAll(/'([\w ]+)'/g)].map((x) => x[1]));
+}
+
+const FRONT_END = [
+  'js/main.js', 'index.html', 'products.html', 'product.html', 'about.html',
+  'why-viemag.html', 'scenarios.html', 'insights.html', 'insight.html',
+  'dealers.html', 'support.html',
+];
+const frontSrc = FRONT_END.map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+
+let problems = 0;
+const fail = (msg) => { console.log(`   ✗ ${msg}`); problems++; };
+
+/* ---------- A. every /admin field has a purpose ---------- */
+console.log('A. /admin fields\n');
+for (const table of ORDER) {
+  const def = SCHEMA[table];
+  const exported = WHITELIST[table] || new Set();
+  if (def.note === 'noteNotWired') {
+    console.log(`   ~ ${table}: declared not wired (${def.fields.length} fields) — expected while the product library is undesigned`);
+    continue;
+  }
+  if (def.note === 'noteInbox') { console.log(`   · ${table}: inbox, nothing published — skipped`); continue; }
+
+  const dead = def.fields
+    .filter((f) => !exported.has(f.name) && !f.internal && !f.name.endsWith('_ids'))
+    .map((f) => f.name);
+  if (dead.length) fail(`${table}: editable, not exported, not tagged internal → ${dead.join(', ')}`);
+  else console.log(`   ✓ ${table}`);
+}
+
+/* ---------- B. every exported column is editable ---------- */
+console.log('\nB. exported columns\n');
+for (const [table, cols] of Object.entries(WHITELIST)) {
+  const names = new Set(SCHEMA[table].fields.map((f) => f.name));
+  const orphan = [...cols].filter((c) => !names.has(c) && c !== 'id');
+  if (orphan.length) fail(`${table}: exported but nowhere to edit → ${orphan.join(', ')}`);
+  else console.log(`   ✓ ${table}`);
+}
+
+/* ---------- C. every data.js key is read by the front end ---------- */
+console.log('\nC. js/data.js keys\n');
+const dw = {};
+global.window = dw;
+eval(fs.readFileSync('js/data.js', 'utf8'));
+const DB = dw.DB;
+
+/* reports/insights are empty until staff publish some, so derive their shape
+   from the export function rather than from a sample row. */
+const shapeFromExporter = (marker) => {
+  const start = exporter.indexOf(marker);
+  const block = exporter.slice(start, exporter.indexOf('}))', start));
+  return Object.fromEntries([...block.matchAll(/^\s{4}(\w+):/gm)].map((m) => [m[1], null]));
+};
+const shapes = {
+  'products[]': DB.products[0],
+  'categories[]': DB.categories[0],
+  'scenarios[]': DB.scenarios[0],
+  'personas[]': DB.personas[0],
+  'tests[]': DB.tests[0],
+  'faqs[]': DB.faqs[0],
+  config: DB.config,
+  'reports[]': shapeFromExporter('const reports = (reportRows'),
+  'insights[]': shapeFromExporter('const insights = (guideRows'),
+};
+/* Conditionally-emitted product keys are absent from a sample row. */
+for (const k of ['spec', 'faqs', 'related', 'img', 'shopee']) shapes['products[]'][k] ??= null;
+
+/* `slug` on a product is deliberately carried unused: it is the natural key for
+   the per-language URLs that are still on the backlog. Everything else must be
+   read by something. */
+const ALLOWED_UNUSED = new Set(['products[].slug']);
+
+for (const [label, obj] of Object.entries(shapes)) {
+  const unused = Object.keys(obj || {}).filter((k) => {
+    if (ALLOWED_UNUSED.has(`${label}.${k}`)) return false;
+    /* A bare `.key` match would count Array#sort as a read of a `sort` field, so
+       require either an accessor on a short variable, a destructure, or a
+       DB.<key> reference. */
+    const root = label.replace('[]', '');
+    return ![
+      new RegExp(`\\b(?:p|x|a|b|c|s|f|pe|r|prod|item|target)\\.${k}\\b`),
+      new RegExp(`\\{[^}]*\\b${k}\\b[^}]*\\}\\s*=`),
+      new RegExp(`DB\\.${k}\\b`),
+      /* Singular objects (config) are reached through their own name:
+         DB.config.shopeeUrl, not <var>.shopeeUrl. */
+      new RegExp(`\\b${root}\\.${k}\\b`),
+    ].some((re) => re.test(frontSrc));
+  });
+  if (unused.length) fail(`${label}: exported but no front-end reads it → ${unused.join(', ')}`);
+  else console.log(`   ✓ ${label}`);
+}
+
+console.log(problems ? `\n${problems} item(s) need a decision.` : '\nClean: every field either reaches the site or says it does not.');
+process.exit(problems ? 1 : 0);

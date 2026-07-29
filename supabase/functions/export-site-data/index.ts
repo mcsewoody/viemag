@@ -250,26 +250,30 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     relatedSkusByProduct.set(l.product_id, arr);
   });
 
+  /* Sort keys (sort_order / priority) are applied to the ROWS and then dropped:
+     the array order in js/data.js is the contract, and the front end never read
+     the numbers. Sorting before mapping instead of after is what lets them go. */
   const categories = (catRows || [])
     .filter((r: any) => r.status !== 'Hidden' && r.slug)
+    .slice()
+    .sort((a: any, b: any) => (a.sort_order || 0) - (b.sort_order || 0))
     .map((r: any) => ({
       id: r.slug,
       cat: r.internal_cat_mapping,
       status: r.visibility === 'Future' ? 'future' : 'published',
-      sort: r.sort_order || 0,
       art: r.art_key || '',
       name: langObj(r, 'name'),
       desc: langObj(r, 'desc'),
       seoTitle: langObj(r, 'seo_title'),
       seoDesc: langObj(r, 'seo_description'),
-    }))
-    .sort((a: any, b: any) => a.sort - b.sort);
+    }));
 
   const scenarios = (scnRows || [])
+    .slice()
+    .sort((a: any, b: any) => (a.priority || 0) - (b.priority || 0))
     .map((r: any) => ({
       code: r.scenario_code,
       id: r.slug,
-      priority: r.priority || 0,
       status: (r.status || 'Future').toLowerCase(),
       icon: r.icon || '',
       name: langObj(r, 'name'),
@@ -278,8 +282,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       img: r.hero_image_url || null,
       combo: (r.combo_skus || '').split(',').map((s: string) => s.trim()).filter(Boolean),
     }))
-    .filter((s: any) => s.status !== 'hidden')
-    .sort((a: any, b: any) => a.priority - b.priority);
+    .filter((s: any) => s.status !== 'hidden');
 
   /* Built from the *published* category set only. A product pointing at a
      Hidden or deleted category must not emit a slug that isn't in
@@ -307,7 +310,11 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         sku: r.official_sku_code || r.product_id,
         slug: r.slug,
         status: r.launch_tier === 'Future' ? 'future' : 'published',
-        tier: r.launch_tier || 'Future',
+        /* launch_tier itself is NOT emitted. Nothing on the site read it, and its
+           values ('A - Core', 'B - Test', 'C - Display') are an internal
+           commercial classification that told anyone reading js/data.js which
+           SKUs are trials or showroom-only. `status` above carries the only part
+           the site needs. */
         category: catSlug && publishedCategorySlugs.has(catSlug) ? catSlug : null,
         scenarios: (scenariosByProduct.get(r.id) || []).slice().sort(),
         personas: r.persona || [],
@@ -386,7 +393,6 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     slug: r.slug,
     cat: r.category || '',
     date: r.published_date || null,
-    sort: r.sort_order || 0,
     img: r.hero_image_url || null,
     art: r.art_key || '',
     title: langObj(r, 'title'),

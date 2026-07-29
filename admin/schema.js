@@ -150,7 +150,11 @@ window.VIEMAG_SCHEMA = {
     ],
   },
 
+  /* Not wired to the site: reserved for the planned 產品庫 (product library for
+     planning-stage SKUs). Note that /admin does not even WRITE this table today —
+     image upload goes straight to Storage and puts the URL on the product. */
   assets: {
+    note: 'noteNotWired',
     title: 'asset_name',
     fields: [
       { name: 'asset_name', type: 'text', required: true },
@@ -212,7 +216,10 @@ window.VIEMAG_SCHEMA = {
     ],
   },
 
+  /* Inbox: the public dealers.html form inserts the first ten columns; the rest
+     are the staff triage record. Nothing here is ever published. */
   dealer_leads: {
+    note: 'noteInbox',
     title: 'company_name',
     fields: [
       { name: 'company_name', type: 'text', required: true },
@@ -232,7 +239,10 @@ window.VIEMAG_SCHEMA = {
     ],
   },
 
+  /* Inbox: support.html inserts the customer's report; the rest is the staff
+     handling record. Nothing here is ever published. */
   support_cases: {
+    note: 'noteInbox',
     title: 'case_id',
     fields: [
       { name: 'case_id', type: 'text' },

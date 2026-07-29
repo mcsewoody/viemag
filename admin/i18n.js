@@ -47,6 +47,8 @@ window.VIEMAG_ADMIN_I18N = {
     /* ---- 帳號管理 ---- */
     accounts: '帳號管理',
     newPassword: '新密碼',
+    noteInbox: '這是收件匣：前台表單送進來的資料存在這裡，其餘欄位是你的處理紀錄。這張表的內容不會出現在網站上。',
+    noteNotWired: '⚠️ 這張表目前還沒有接到網站——填了不會有任何前台效果。保留給規劃中的「產品庫」（企劃階段產品）使用。',
     accountsNote: '擁有者可以新增、編輯、刪除員工帳號，並直接為對方設定密碼。編輯者只能管理內容。系統不會寄送邀請信或密碼重設信，請在此設好密碼後私下轉告對方。',
     editAccount: '編輯帳號',
     emailReadOnlyNote: '登入用的電子郵件建立後不可修改。若要更換，請刪除後重新建立。',
@@ -121,6 +123,8 @@ window.VIEMAG_ADMIN_I18N = {
     /* ---- 账号管理 ---- */
     accounts: '账号管理',
     newPassword: '新密码',
+    noteInbox: '这是收件匣：前台表单送进来的数据存在这里，其余字段是你的处理记录。这张表的内容不会出现在网站上。',
+    noteNotWired: '⚠️ 这张表目前还没有接到网站——填了不会有任何前台效果。保留给规划中的「产品库」（企划阶段产品）使用。',
     accountsNote: '拥有者可以新增、编辑、删除员工账号，并直接为对方设定密码。编辑者只能管理内容。系统不会发送邀请邮件或密码重置邮件，请在此设好密码后私下告知对方。',
     editAccount: '编辑账号',
     emailReadOnlyNote: '登录用的电子邮件创建后不可修改。若要更换，请删除后重新创建。',
@@ -195,6 +199,8 @@ window.VIEMAG_ADMIN_I18N = {
     /* ---- account management ---- */
     accounts: 'Accounts',
     newPassword: 'New password',
+    noteInbox: 'This is an inbox: the public form on the site inserts the submission, and the remaining fields are your handling record. Nothing in this table is ever published.',
+    noteNotWired: '⚠️ This table is not connected to the site yet — filling it in has no front-end effect. Reserved for the planned product library (planning-stage SKUs).',
     accountsNote: 'Owners can add, edit and remove staff accounts and set passwords for them directly. Editors manage content only. No invitation or password-reset email is sent — set the password here and pass it on privately.',
     editAccount: 'Edit account',
     emailReadOnlyNote: 'The sign-in email cannot be changed after the account is created. To change it, delete the account and create it again.',
@@ -269,6 +275,8 @@ window.VIEMAG_ADMIN_I18N = {
     /* ---- quản lý tài khoản ---- */
     accounts: 'Tài khoản',
     newPassword: 'Mật khẩu mới',
+    noteInbox: 'Đây là hộp thư đến: biểu mẫu trên trang web ghi dữ liệu vào đây, các trường còn lại là hồ sơ xử lý của bạn. Không có gì trong bảng này được công bố.',
+    noteNotWired: '⚠️ Bảng này chưa kết nối với trang web — điền vào không có tác dụng gì. Dành cho thư viện sản phẩm đang lên kế hoạch.',
     accountsNote: 'Chủ sở hữu có thể thêm, sửa, xóa tài khoản nhân viên và đặt mật khẩu trực tiếp cho họ. Biên tập viên chỉ quản lý nội dung. Hệ thống không gửi email mời hay email đặt lại mật khẩu — hãy đặt mật khẩu ở đây rồi gửi riêng cho họ.',
     editAccount: 'Sửa tài khoản',
     emailReadOnlyNote: 'Email đăng nhập không thể thay đổi sau khi tạo tài khoản. Muốn đổi, hãy xóa và tạo lại.',
