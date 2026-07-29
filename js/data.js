@@ -490,7 +490,7 @@ window.DB = {
         "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — a dependable companion for driving and everyday recording.",
         "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
         "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman yang andal untuk berkendara dan merekam keseharian.",
-        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄生活好夥伴。"
+        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
       },
       "img": "assets/products/VB001DSH1_BK.png"
     },
