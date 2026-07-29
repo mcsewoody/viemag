@@ -129,7 +129,8 @@
     close: '<path d="M6 6l12 12M18 6L6 18"/>',
     chevron: '<path d="M8 10l4 4 4-4"/>',
     box: '<path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5v-9z"/><path d="M3.5 7.5L12 12l8.5-4.5M12 12v9"/>',
-    users: '<circle cx="9" cy="8.5" r="3.5"/><path d="M3 20c.5-3.5 3-5.5 6-5.5s5.5 2 6 5.5"/><path d="M16 5.5a3.5 3.5 0 010 6M18.5 20c-.2-2.3-1.2-4-2.8-4.9"/>'
+    users: '<circle cx="9" cy="8.5" r="3.5"/><path d="M3 20c.5-3.5 3-5.5 6-5.5s5.5 2 6 5.5"/><path d="M16 5.5a3.5 3.5 0 010 6M18.5 20c-.2-2.3-1.2-4-2.8-4.9"/>',
+    external: '<path d="M14 4h6v6M20 4l-8.5 8.5"/><path d="M18 14v4.5A1.5 1.5 0 0116.5 20h-11A1.5 1.5 0 014 18.5v-11A1.5 1.5 0 015.5 6H10"/>'
   };
   const icon = (name, cls) =>
     `<svg class="${cls || ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[name] || ''}</svg>`;
@@ -185,6 +186,7 @@
       ['products', 'products.html', 'nav.products'],
       ['scenarios', 'scenarios.html', 'nav.scenarios'],
       ['why', 'why-viemag.html', 'nav.why'],
+      ['insights', 'insights.html', 'nav.insights'],
       ['support', 'support.html', 'nav.support'],
       ['dealers', 'dealers.html', 'nav.dealers'],
       ['about', 'about.html', 'nav.about']
@@ -238,6 +240,7 @@
               <li><a href="about.html">${t('footer.about')}</a></li>
               <li><a href="dealers.html">${t('footer.dealer')}</a></li>
               <li><a href="scenarios.html">${t('nav.scenarios')}</a></li>
+              <li><a href="insights.html">${t('nav.insights')}</a></li>
             </ul>
           </div>
         </div>
@@ -324,6 +327,110 @@
       <div class="meta-chips">${picks}</div>
     </div>`;
   }
+  /* The five Insights categories. These strings are the DB's `category` values,
+     so they must match the check constraint in
+     supabase/migrations/*_insights_and_test_reports.sql exactly. Labels come
+     from js/i18n.js under insights.cat.<value>. */
+  const INSIGHT_CATS = [
+    'Magnetic Technology',
+    'Charging Standards',
+    'Apple Ecosystem',
+    'Industry Trends',
+    'Tech Explained',
+  ];
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    /* A date-only string is parsed as UTC midnight by `new Date()`, so west of
+       Greenwich it renders as the PREVIOUS day. Build it in local time instead:
+       these are editorial dates, not instants. */
+    const parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso).trim());
+    const d = parts ? new Date(+parts[1], +parts[2] - 1, +parts[3]) : new Date(iso);
+    if (isNaN(d.getTime())) return String(iso);
+    /* Follow the chosen content language, not the browser's locale — otherwise a
+       Vietnamese page on an en-US browser prints an American date. */
+    const locale = { en: 'en-GB', vi: 'vi-VN', id: 'id-ID', zh: 'zh-TW', 'zh-Hans': 'zh-CN' }[lang] || 'en-GB';
+    return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  /* Minimal article formatting for staff-authored bodies. Everything is escaped
+     FIRST and only a fixed set of markers is then turned into markup, so no
+     amount of HTML in the database can inject anything — /admin is trusted, but
+     "trusted" is not a reason to hand it an XSS primitive on the public site.
+     Supported: "## " headings, "- " list items, blank-line or heading-delimited
+     paragraphs, **bold**.
+     Processed line by line, NOT block by block: an author will write a heading
+     immediately above its paragraph with no blank line between them, and a
+     block-based reader emits that heading as literal "## " text. */
+  function richText(src) {
+    if (!src) return '';
+    const inline = (str) => esc(str).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    const out = [];
+    let para = [];   // pending plain lines
+    let list = [];   // pending list items
+    const flushPara = () => { if (para.length) { out.push(`<p>${para.map(inline).join('<br>')}</p>`); para = []; } };
+    const flushList = () => { if (list.length) { out.push('<ul>' + list.map((l) => `<li>${inline(l)}</li>`).join('') + '</ul>'); list = []; } };
+    const flush = () => { flushPara(); flushList(); };
+
+    String(src).split('\n').forEach((raw) => {
+      const line = raw.trim();
+      if (!line) { flush(); return; }
+      if (/^##\s+/.test(line)) { flush(); out.push(`<h2>${inline(line.replace(/^##\s+/, ''))}</h2>`); return; }
+      if (/^[-*]\s+/.test(line)) { flushPara(); list.push(line.replace(/^[-*]\s+/, '')); return; }
+      flushList(); para.push(line);
+    });
+    flush();
+    return out.join('');
+  }
+
+  function insightCard(a) {
+    const excerpt = tf(a.excerpt);
+    return `
+    <a class="insight-card reveal" href="insight.html?slug=${encodeURIComponent(a.slug)}" aria-label="${esc(tf(a.title))}">
+      <div class="thumb">${a.img ? `<img src="${esc(a.img)}" alt="" loading="lazy">` : art(a.art || 'ring')}</div>
+      <div class="body">
+        <span class="cat-label">${esc(t('insights.cat.' + a.cat))}</span>
+        <h3>${esc(tf(a.title))}</h3>
+        ${excerpt ? `<p class="claim">${esc(excerpt)}</p>` : ''}
+        <div class="foot">
+          ${a.date ? `<time datetime="${esc(a.date)}">${esc(formatDate(a.date))}</time>` : '<span></span>'}
+          <span class="btn btn-ghost btn-sm">${t('insights.read')}</span>
+        </div>
+      </div>
+    </a>`;
+  }
+
+  /* Test evidence for one product. Reports live in DB.reports and are referenced
+     by id from p.reports, because one report can cover many SKUs — embedding it
+     per product would duplicate the same prose into data.js repeatedly.
+     A report with no file is still listed: the evidence claim is the content,
+     the PDF is a bonus. Only reports that passed Public + approved_for_marketing
+     are in DB.reports at all (gated in the export function). */
+  function reportList(p) {
+    const byId = new Map((window.DB.reports || []).map((r) => [r.id, r]));
+    const rows = (p.reports || []).map((id) => byId.get(id)).filter(Boolean);
+    if (!rows.length) return `<p class="evidence-empty">${t('pdp.evidenceNote')}</p>`;
+    return `<ul class="evidence-list">${rows.map((r) => {
+      const title = esc(tf(r.title));
+      const meta = [
+        r.type ? esc(t('test.type.' + r.type)) : '',
+        r.level ? esc(t('test.level.' + r.level)) : '',
+        r.date ? esc(formatDate(r.date)) : '',
+      ].filter(Boolean).join(' · ');
+      const summary = tf(r.summary);
+      const limits = tf(r.limits);
+      const head = r.file
+        ? `<a class="evidence-title" href="${esc(r.file)}" target="_blank" rel="noopener">${title}${icon('external')}</a>`
+        : `<span class="evidence-title">${title}</span>`;
+      return `<li>
+        ${head}
+        ${meta ? `<span class="evidence-meta">${meta}</span>` : ''}
+        ${summary ? `<p class="evidence-summary">${esc(summary)}</p>` : ''}
+        ${limits ? `<p class="evidence-limits"><b>${t('pdp.limitations')}</b> ${esc(limits)}</p>` : ''}
+      </li>`;
+    }).join('')}</ul>`;
+  }
+
   function faqItem(f) {
     return `
     <details class="faq-item">
@@ -369,7 +476,7 @@
     applyI18nAttrs(document);
 
     /* per-page render hook (injects dynamic .reveal content) */
-    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, personaCard, faqItem, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
+    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, personaCard, faqItem, insightCard, reportList, formatDate, richText, INSIGHT_CATS, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
 
     /* scroll reveal — observe AFTER dynamic content exists so injected cards animate in */
     const io = new IntersectionObserver((es) => es.forEach((e) => {

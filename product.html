@@ -23,7 +23,7 @@
 <script src="js/data-loader.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, scnByCode, esc, stars, money }) {
+window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, scnByCode, esc, stars, money, reportList }) {
   const DB = window.DB;
   const sku = new URLSearchParams(location.search).get('sku');
   /* An unknown ?sku= must NOT silently fall back to some other product: a stale
@@ -94,9 +94,9 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
         <h3>${t('pdp.compat')}</h3>
         <table><tr><td colspan="2" style="color:var(--ink)">${t('pdp.compatText')}</td></tr></table>
       </div>
-      <div class="spec-block">
+      <div class="spec-block evidence-block">
         <h3>${t('pdp.evidence')}</h3>
-        <table><tr><td colspan="2" style="color:var(--muted)">${t('pdp.evidenceNote')}</td></tr></table>
+        ${reportList(p)}
       </div>
     </div>
   </div>`;

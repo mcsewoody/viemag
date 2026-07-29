@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights — VIEMAG</title>
+  <meta name="description" content="VIEMAG Insights article.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="insights">
+
+<main>
+  <div id="articleHost"></div>
+</main>
+
+<script src="js/data-loader.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+window.renderPage = function ({ t, tf, esc, art, insightCard, formatDate, richText }) {
+  const DB = window.DB;
+  const slug = new URLSearchParams(location.search).get('slug');
+  const a = DB.insights.find((x) => x.slug === slug);
+  const host = document.getElementById('articleHost');
+
+  /* Unknown or missing slug must say so, not silently show the first article —
+     a stale link would otherwise present unrelated content as the thing the
+     visitor asked for. Same rule as product.html's unknown-sku state. */
+  if (!a) {
+    host.innerHTML = `
+      <section class="page-hero"><div class="container">
+        <h1>${t('insights.notFound')}</h1>
+        <p><a class="btn btn-ghost btn-sm" href="insights.html">${t('insights.backToList')}</a></p>
+      </div></section>`;
+    return;
+  }
+
+  document.title = tf(a.title) + ' — VIEMAG';
+  const desc = tf(a.excerpt);
+  if (desc) {
+    const m = document.querySelector('meta[name="description"]');
+    if (m) m.setAttribute('content', desc);
+  }
+
+  const hero = a.img
+    ? `<img class="insight-hero-img" src="${esc(a.img)}" alt="${esc(tf(a.title))}" loading="lazy">`
+    : `<div class="insight-hero-art">${art(a.art || 'ring')}</div>`;
+
+  host.innerHTML = `
+  <article>
+    <section class="page-hero insight-head">
+      <div class="container">
+        <p class="insight-meta">
+          <a href="insights.html?cat=${encodeURIComponent(a.cat)}">${esc(t('insights.cat.' + a.cat))}</a>
+          ${a.date ? ` · <time datetime="${esc(a.date)}">${esc(formatDate(a.date))}</time>` : ''}
+        </p>
+        <h1>${esc(tf(a.title))}</h1>
+        ${desc ? `<p>${esc(desc)}</p>` : ''}
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container insight-body-wrap">
+        ${hero}
+        <div class="insight-body">${richText(tf(a.body))}</div>
+        <p class="insight-back"><a class="btn btn-ghost btn-sm" href="insights.html">${t('insights.backToList')}</a></p>
+      </div>
+    </section>
+  </article>`;
+
+  /* Same-category reads, newest first, current article excluded. */
+  const more = DB.insights.filter((x) => x.slug !== a.slug && x.cat === a.cat).slice(0, 3);
+  if (more.length) {
+    host.insertAdjacentHTML('beforeend', `
+      <section class="section-tight alt-bg">
+        <div class="container">
+          <h2>${t('insights.more')}</h2>
+          <div class="insight-grid">${more.map(insightCard).join('')}</div>
+        </div>
+      </section>`);
+  }
+};
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -25,8 +25,12 @@
   };
 
   /* Tables that actually feed js/data.js (see supabase/functions/export-site-data).
-     Saving/deleting a row in one of these triggers a re-export + GitHub commit. */
-  var EXPORT_TRIGGER_TABLES = ['products', 'categories', 'scenarios', 'faq'];
+     Saving/deleting a row in one of these triggers a re-export + GitHub commit.
+     test_reports and guides joined this list on 2026-07-29 when they were wired
+     to the product pages and the Insights section — without that, editing an
+     article would save to Postgres and never reach the site, which is exactly
+     the "I saved it but nothing happened" trap. */
+  var EXPORT_TRIGGER_TABLES = ['products', 'categories', 'scenarios', 'faq', 'test_reports', 'guides'];
 
   function callExportFunction() {
     /* Raw fetch with keepalive:true instead of sb.functions.invoke(), which

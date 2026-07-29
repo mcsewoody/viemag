@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights — VIEMAG</title>
+  <meta name="description" content="VIEMAG Insights: magnetic technology, charging standards, the Apple ecosystem, industry trends and plain-language technical explainers.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="insights">
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="insights.title"></h1>
+      <p data-i18n="insights.sub"></p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <p class="filter-label" data-i18n="insights.byCat"></p>
+      <div class="filter-bar" id="catFilter"></div>
+      <div class="insight-grid" id="grid" style="margin-top:24px"></div>
+      <div class="empty-state" id="emptyState" style="display:none" data-i18n="insights.empty"></div>
+    </div>
+  </section>
+</main>
+
+<script src="js/data-loader.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+window.renderPage = function ({ t, tf, esc, art, insightCard, INSIGHT_CATS }) {
+  const DB = window.DB;
+  const params = new URLSearchParams(location.search);
+  let active = params.get('cat') || 'all';
+  /* An unknown ?cat= would otherwise render an empty page with no filter
+     highlighted, looking broken rather than simply empty. */
+  if (active !== 'all' && !INSIGHT_CATS.includes(active)) active = 'all';
+
+  const filterHost = document.getElementById('catFilter');
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('emptyState');
+
+  function draw() {
+    filterHost.innerHTML = ['all'].concat(INSIGHT_CATS).map((c) =>
+      `<button class="chip${c === active ? ' active' : ''}" data-cat="${esc(c)}">${
+        c === 'all' ? t('insights.all') : esc(t('insights.cat.' + c))
+      }</button>`).join('');
+
+    const rows = DB.insights.filter((a) => active === 'all' || a.cat === active);
+    grid.innerHTML = rows.map(insightCard).join('');
+    empty.style.display = rows.length ? 'none' : '';
+
+    filterHost.querySelectorAll('button').forEach((b) => {
+      b.addEventListener('click', () => {
+        active = b.dataset.cat;
+        /* Keep the URL shareable without a reload — same behaviour as the
+           product listing's category filter. */
+        const u = new URL(location.href);
+        if (active === 'all') u.searchParams.delete('cat'); else u.searchParams.set('cat', active);
+        history.replaceState(null, '', u);
+        draw();
+      });
+    });
+  }
+  draw();
+};
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -14,8 +14,7 @@ window.VIEMAG_ADMIN_I18N = {
     tables: {
       products: '產品', categories: '分類', scenarios: '使用情境',
       test_reports: '測試報告', assets: '素材庫', faq: '常見問題',
-      guides: '文章指南', dealer_leads: '經銷商申請', support_cases: '售後案件',
-      site_settings: '頁面設定',
+      guides: '科技洞察', dealer_leads: '經銷商申請', support_cases: '售後案件',
     },
     addNew: '新增一筆',
     edit: '編輯',
@@ -89,8 +88,7 @@ window.VIEMAG_ADMIN_I18N = {
     tables: {
       products: '产品', categories: '分类', scenarios: '使用情境',
       test_reports: '测试报告', assets: '素材库', faq: '常见问题',
-      guides: '文章指南', dealer_leads: '经销商申请', support_cases: '售后案件',
-      site_settings: '页面设置',
+      guides: '科技洞察', dealer_leads: '经销商申请', support_cases: '售后案件',
     },
     addNew: '新增一笔',
     edit: '编辑',
@@ -164,8 +162,7 @@ window.VIEMAG_ADMIN_I18N = {
     tables: {
       products: 'Products', categories: 'Categories', scenarios: 'Scenarios',
       test_reports: 'Test Reports', assets: 'Assets', faq: 'FAQ',
-      guides: 'Guides', dealer_leads: 'Dealer Leads', support_cases: 'Support Cases',
-      site_settings: 'Site Settings',
+      guides: 'Insights', dealer_leads: 'Dealer Leads', support_cases: 'Support Cases',
     },
     addNew: 'Add new',
     edit: 'Edit',
@@ -239,8 +236,7 @@ window.VIEMAG_ADMIN_I18N = {
     tables: {
       products: 'Sản phẩm', categories: 'Danh mục', scenarios: 'Tình huống sử dụng',
       test_reports: 'Báo cáo kiểm định', assets: 'Kho tài sản', faq: 'Câu hỏi thường gặp',
-      guides: 'Bài viết hướng dẫn', dealer_leads: 'Đăng ký đại lý', support_cases: 'Hồ sơ hỗ trợ',
-      site_settings: 'Cài đặt trang',
+      guides: 'Góc công nghệ', dealer_leads: 'Đăng ký đại lý', support_cases: 'Hồ sơ hỗ trợ',
     },
     addNew: 'Thêm mới',
     edit: 'Sửa',

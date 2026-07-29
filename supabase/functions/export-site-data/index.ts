@@ -102,6 +102,28 @@ const SCENARIO_COLS = [
   'id', 'scenario_code', 'slug', 'priority', 'status', 'icon', 'combo_skus',
   'name_en', 'name_vi', 'name_id', 'name_zh', 'desc_en', 'desc_vi', 'desc_id', 'desc_zh',
 ].join(',');
+/* Test reports shown on product pages. `limitations` travels with the result on
+   purpose: under Vietnam's advertising rules a performance claim has to carry
+   the conditions it was measured under. Internal fields (certification_notes,
+   owner) are not in this list and must not be added. */
+const TEST_REPORT_COLS = [
+  'id', 'test_type', 'public_status', 'evidence_level', 'report_file_url',
+  'tested_date', 'approved_for_marketing', 'sort_order',
+  'title_en', 'title_vi', 'title_id', 'title_zh',
+  'summary_en', 'summary_vi', 'summary_id', 'summary_zh',
+  'limitations_en', 'limitations_vi', 'limitations_id', 'limitations_zh',
+].join(', ');
+
+/* Insights articles. funnel_stage and cta stay OUT — they are internal
+   marketing-planning fields with no public meaning. */
+const GUIDE_COLS = [
+  'id', 'slug', 'category', 'status', 'published_date', 'sort_order',
+  'hero_image_url', 'art_key',
+  'title_en', 'title_vi', 'title_id', 'title_zh',
+  'excerpt_en', 'excerpt_vi', 'excerpt_id', 'excerpt_zh',
+  'body_en', 'body_vi', 'body_id', 'body_zh',
+].join(', ');
+
 const FAQ_COLS = [
   'id', 'faq_key', 'status',
   'question_en', 'question_vi', 'question_id', 'question_zh',
@@ -130,14 +152,27 @@ async function selectAll(sb: any, table: string, cols: string, tweak?: (q: any) 
 async function buildDataJs(): Promise<{ content: string; counts: Record<string, number>; skipped: string[]; withheld: string[] }> {
   const sb = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
-  const [catRows, scnRows, prodRows, faqRows, linkRows] = await Promise.all([
-    selectAll(sb, 'categories', CATEGORY_COLS, (q: any) => q.order('sort_order').order('slug')),
-    selectAll(sb, 'scenarios', SCENARIO_COLS, (q: any) => q.order('priority').order('scenario_code')),
-    selectAll(sb, 'products', PRODUCT_COLS, (q: any) => q.order('product_id')),
-    selectAll(sb, 'faq', FAQ_COLS, (q: any) => q.eq('status', 'Published').order('faq_key')),
-    selectAll(sb, 'product_scenarios', 'product_id, scenario_id',
-      (q: any) => q.order('product_id').order('scenario_id')),
-  ]);
+  const [catRows, scnRows, prodRows, faqRows, linkRows, reportRows, reportLinkRows, guideRows] =
+    await Promise.all([
+      selectAll(sb, 'categories', CATEGORY_COLS, (q: any) => q.order('sort_order').order('slug')),
+      selectAll(sb, 'scenarios', SCENARIO_COLS, (q: any) => q.order('priority').order('scenario_code')),
+      selectAll(sb, 'products', PRODUCT_COLS, (q: any) => q.order('product_id')),
+      selectAll(sb, 'faq', FAQ_COLS, (q: any) => q.eq('status', 'Published').order('faq_key')),
+      selectAll(sb, 'product_scenarios', 'product_id, scenario_id',
+        (q: any) => q.order('product_id').order('scenario_id')),
+      /* TWO gates, both required, and both filtered in Postgres rather than here
+         so an un-approved report can never reach this function's memory: a
+         report is public evidence only if it is marked Public AND signed off for
+         marketing use. Until 2026-07-29 neither column did anything, because
+         nothing consumed this table. */
+      selectAll(sb, 'test_reports', TEST_REPORT_COLS, (q: any) =>
+        q.eq('public_status', 'Public').eq('approved_for_marketing', true)
+          .order('sort_order').order('tested_date', { ascending: false })),
+      selectAll(sb, 'product_test_reports', 'product_id, test_report_id',
+        (q: any) => q.order('product_id').order('test_report_id')),
+      selectAll(sb, 'guides', GUIDE_COLS, (q: any) =>
+        q.eq('status', 'Published').order('sort_order').order('published_date', { ascending: false })),
+    ]);
 
   const scenarioById = new Map((scnRows || []).map((r: any) => [r.id, r]));
   const scenariosByProduct = new Map<string, string[]>();
@@ -147,6 +182,20 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     const arr = scenariosByProduct.get(l.product_id) || [];
     arr.push(scn.scenario_code);
     scenariosByProduct.set(l.product_id, arr);
+  });
+
+  /* Many-to-many, in both directions (Woody, 2026-07-29): one report can cover
+     several SKUs and one SKU can carry several reports. Only reports that
+     survived the two gates above are in `reportById`, so a link pointing at an
+     internal or unapproved report simply produces nothing — the gate cannot be
+     bypassed by adding a link in /admin. */
+  const reportById = new Map((reportRows || []).map((r: any) => [r.id, r]));
+  const reportKeysByProduct = new Map<string, string[]>();
+  (reportLinkRows || []).forEach((l: any) => {
+    if (!reportById.has(l.test_report_id)) return;
+    const arr = reportKeysByProduct.get(l.product_id) || [];
+    arr.push(l.test_report_id);
+    reportKeysByProduct.set(l.product_id, arr);
   });
 
   const categories = (catRows || [])
@@ -216,6 +265,10 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         badge: r.badge,
         name: langObj(r, 'name'),
         claim: langObj(r, 'claim'),
+        /* Report ids, resolved against DB.reports by the product page. Ids rather
+           than embedded copies because a report covering 8 SKUs would otherwise
+           be serialised 8 times into data.js. */
+        reports: (reportKeysByProduct.get(r.id) || []).slice(),
       };
       if (r.hero_image_url) out.img = r.hero_image_url;
       /* Per-product Shopee link, falling back to the store-level URL. Without
@@ -242,6 +295,31 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     }))
     .filter((f: any) => f.id);
 
+  /* Reports are emitted in the order the query returned (sort_order, then newest
+     tested_date), and the product page preserves it. */
+  const reports = (reportRows || []).map((r: any) => ({
+    id: r.id,
+    type: r.test_type || '',
+    level: r.evidence_level || '',
+    date: r.tested_date || null,
+    file: r.report_file_url || null,
+    title: langObj(r, 'title'),
+    summary: langObj(r, 'summary'),
+    limits: langObj(r, 'limitations'),
+  })).filter((r: any) => r.title.en || r.title.vi || r.title.id || r.title.zh);
+
+  const insights = (guideRows || []).map((r: any) => ({
+    slug: r.slug,
+    cat: r.category || '',
+    date: r.published_date || null,
+    sort: r.sort_order || 0,
+    img: r.hero_image_url || null,
+    art: r.art_key || '',
+    title: langObj(r, 'title'),
+    excerpt: langObj(r, 'excerpt'),
+    body: langObj(r, 'body'),
+  })).filter((a: any) => a.slug && (a.title.en || a.title.vi || a.title.id || a.title.zh));
+
   /* Refuse to publish an obviously-broken catalog. Without this, one failed
      query or one bad filter would push an empty products array live and blank
      out the homepage, the product listing and every product page. */
@@ -249,7 +327,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     throw new Error('refusing to export: 0 publishable products (would blank the live site)');
   }
 
-  const dbOut = { categories, scenarios, personas: STATIC.personas, products, tests: STATIC.tests, faqs, config: STATIC.config };
+  const dbOut = { categories, scenarios, personas: STATIC.personas, products, tests: STATIC.tests, reports, insights, faqs, config: STATIC.config };
 
   const header = `/* ============================================================
    VIEMAG — Data Layer  (AUTO-GENERATED by supabase/functions/export-site-data)
@@ -265,7 +343,10 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       scenarios: scenarios.length,
       products: products.length,
       faqs: faqs.length,
+      reports: reports.length,
+      insights: insights.length,
       productScenarioLinks: (linkRows || []).length,
+      productReportLinks: (reportLinkRows || []).length,
     },
     skipped,
     /* Answers "why isn't my product on the site?" without needing DB access —

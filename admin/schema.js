@@ -101,24 +101,38 @@ window.VIEMAG_SCHEMA = {
       { name: 'last_reviewed', type: 'date' },
       { name: 'owner', type: 'text' },
       { name: 'scenario_ids', type: 'relation_many', joinTable: 'product_scenarios', joinKey: 'product_id', joinTargetKey: 'scenario_id', table: 'scenarios', labelField: 'scenario_name' },
-      { name: 'test_report_ids', type: 'relation_many', joinTable: 'product_test_reports', joinKey: 'product_id', joinTargetKey: 'test_report_id', table: 'test_reports', labelField: 'report_name' },
+      { name: 'test_report_ids', type: 'relation_many', joinTable: 'product_test_reports', joinKey: 'product_id', joinTargetKey: 'test_report_id', table: 'test_reports', labelField: 'title_en' },
       { name: 'faq_ids', type: 'relation_many', joinTable: 'product_faqs', joinKey: 'product_id', joinTargetKey: 'faq_id', table: 'faq', labelField: 'faq_key' },
       { name: 'related_product_ids', type: 'relation_many', joinTable: 'product_related_products', joinKey: 'product_id', joinTargetKey: 'related_product_id', table: 'products', labelField: 'product_id' },
     ],
   },
 
+  /* Published on product pages when public_status = Public AND
+     approved_for_marketing = true. BOTH are required — the export function
+     filters on both in Postgres, so ticking only one publishes nothing. */
   test_reports: {
-    title: 'report_name',
+    title: 'title_en',
+    order: 'sort_order',
     fields: [
-      { name: 'report_name', type: 'text', required: true },
+      { name: 'title_en', type: 'text', required: true },
+      { name: 'title_vi', type: 'text' },
+      { name: 'title_id', type: 'text' },
+      { name: 'title_zh', type: 'text' },
       { name: 'test_type', type: 'select', options: ['Vibration', 'Heat', 'Drop', 'Magnetic Force', 'Lifecycle', 'Qi'] },
-      { name: 'public_status', type: 'select', options: ['Public', 'Internal Only', 'Pending'] },
       { name: 'evidence_level', type: 'select', options: ['Third-party', 'Internal Lab', 'Factory Test', 'Pending'] },
-      { name: 'result_summary_vi', type: 'textarea' },
-      { name: 'limitations', type: 'textarea' },
-      { name: 'report_file_url', type: 'image' },
-      { name: 'tested_date', type: 'date' },
+      { name: 'public_status', type: 'select', options: ['Public', 'Internal Only', 'Pending'] },
       { name: 'approved_for_marketing', type: 'boolean' },
+      { name: 'tested_date', type: 'date' },
+      { name: 'sort_order', type: 'number' },
+      { name: 'report_file_url', type: 'image' },
+      { name: 'summary_en', type: 'textarea' },
+      { name: 'summary_vi', type: 'textarea' },
+      { name: 'summary_id', type: 'textarea' },
+      { name: 'summary_zh', type: 'textarea' },
+      { name: 'limitations_en', type: 'textarea' },
+      { name: 'limitations_vi', type: 'textarea' },
+      { name: 'limitations_id', type: 'textarea' },
+      { name: 'limitations_zh', type: 'textarea' },
     ],
   },
 
@@ -150,19 +164,37 @@ window.VIEMAG_SCHEMA = {
     ],
   },
 
+  /* The public Insights section (VIEMAG 科技洞察 / VIEMAG Insights).
+     Published only when status = Published. `category` must stay in step with
+     the DB check constraint AND the insights.cat.* labels in js/i18n.js. */
   guides: {
-    title: 'article_title',
+    title: 'title_en',
+    order: 'sort_order',
+    thumb: 'hero_image_url',
+    thumbFallback: 'art_key',
     fields: [
-      { name: 'article_title', type: 'text', required: true },
-      { name: 'slug', type: 'text' },
-      { name: 'language', type: 'select', options: ['VI', 'EN', 'ZH'] },
-      { name: 'topic', type: 'select', options: ['Buying Guide', 'Installation', 'Qi2', 'Comparison', 'Dealer'] },
-      { name: 'funnel_stage', type: 'select', options: ['Awareness', 'Consideration', 'Conversion', 'Support'] },
+      { name: 'slug', type: 'text', required: true },
+      { name: 'category', type: 'select', options: ['Magnetic Technology', 'Charging Standards', 'Apple Ecosystem', 'Industry Trends', 'Tech Explained'] },
       { name: 'status', type: 'select', options: ['Idea', 'Draft', 'Review', 'Published'] },
-      { name: 'seo_title', type: 'text' },
-      { name: 'seo_description', type: 'textarea' },
-      { name: 'cta', type: 'select', options: ['Shopee', 'Product', 'Dealer', 'Support'] },
-      { name: 'content_body', type: 'textarea', large: true },
+      { name: 'published_date', type: 'date' },
+      { name: 'sort_order', type: 'number' },
+      { name: 'hero_image_url', type: 'image' },
+      { name: 'art_key', type: 'text' },
+      { name: 'title_en', type: 'text', required: true },
+      { name: 'title_vi', type: 'text' },
+      { name: 'title_id', type: 'text' },
+      { name: 'title_zh', type: 'text' },
+      { name: 'excerpt_en', type: 'textarea' },
+      { name: 'excerpt_vi', type: 'textarea' },
+      { name: 'excerpt_id', type: 'textarea' },
+      { name: 'excerpt_zh', type: 'textarea' },
+      { name: 'body_en', type: 'textarea', large: true },
+      { name: 'body_vi', type: 'textarea', large: true },
+      { name: 'body_id', type: 'textarea', large: true },
+      { name: 'body_zh', type: 'textarea', large: true },
+      /* Internal planning only — never exported to the site. */
+      { name: 'funnel_stage', type: 'select', options: ['Awareness', 'Consideration', 'Conversion', 'Support'], internal: true },
+      { name: 'cta', type: 'select', options: ['Shopee', 'Product', 'Dealer', 'Support'], internal: true },
     ],
   },
 
@@ -207,28 +239,10 @@ window.VIEMAG_SCHEMA = {
     ],
   },
 
-  site_settings: {
-    title: 'page_name',
-    order: 'sort_order',
-    fields: [
-      { name: 'page_name', type: 'text', required: true },
-      { name: 'slug', type: 'text' },
-      { name: 'page_type', type: 'select', options: ['Home', 'Category', 'Static', 'Landing', 'Support'] },
-      { name: 'language', type: 'select', options: ['VI', 'EN', 'ZH'] },
-      { name: 'status', type: 'select', options: ['Draft', 'Published', 'Hidden'] },
-      { name: 'seo_title', type: 'text' },
-      { name: 'seo_description', type: 'textarea' },
-      { name: 'hero_title', type: 'text' },
-      { name: 'hero_copy', type: 'textarea' },
-      { name: 'cta_label', type: 'text' },
-      { name: 'cta_url', type: 'text' },
-      { name: 'sort_order', type: 'number' },
-    ],
-  },
 };
 
 /* Table display order + nav grouping in the sidebar */
 window.VIEMAG_TABLE_ORDER = [
-  'products', 'categories', 'scenarios', 'test_reports', 'assets',
-  'faq', 'guides', 'dealer_leads', 'support_cases', 'site_settings',
+  'products', 'categories', 'scenarios', 'test_reports', 'guides',
+  'assets', 'faq', 'dealer_leads', 'support_cases',
 ];
