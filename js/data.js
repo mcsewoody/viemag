@@ -481,7 +481,10 @@ window.DB = {
       "reports": [],
       "pains": [],
       "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372809399-in83rofm7rc-VB004DSH-SV_0.jpg"
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372809399-in83rofm7rc-VB004DSH-SV_0.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785383051174-9hioxqtm0k7-VD001CLP_0.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785383057208-gdw4mq8m1jb-VB005DSH_0.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785383069841-2699o30dcq4-VB001DSH1_BK.png"
       ],
       "warranty": 12,
       "exchange": 14,
@@ -497,7 +500,7 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372815814-cq54s74wqeb-VB001DSH1_0.jpg",
+      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785375670852-9ezhm4i0t0v-VD001CLP_0.jpg",
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372794376-7bv5no1uwry-VB001DSH1_BK.png"
     },
     {
