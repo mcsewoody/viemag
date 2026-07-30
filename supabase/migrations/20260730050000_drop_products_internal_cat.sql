@@ -1,0 +1,21 @@
+-- VIEMAG — remove products.internal_cat: a duplicate that was never used
+--
+-- Woody flagged (2026-07-30) that this field's description and scenario_ids'
+-- description read as "the same concept" — both answer "which axis-group does
+-- this product belong to". scenario_ids answers that correctly, through a
+-- relation to scenarios. internal_cat answered it the wrong way: a second,
+-- disconnected CAT-A..E value stored directly on the product, duplicating what
+-- products.category_id -> categories.internal_cat_mapping already determines.
+--
+-- Verified before writing this migration: 0 of 19 products have ever had this
+-- column filled in. Nobody synced the duplicate, because the real answer was
+-- always available through the category relation — exactly the "two fields
+-- for one job is worse than one" pattern categories.hero_copy_vi was removed
+-- for on 2026-07-29.
+--
+-- If a product ever needs to DISPLAY under a different CAT than its assigned
+-- category implies, the right fix is a new, explicitly-named override field
+-- (e.g. display_cat_override) decided at that time — not reviving this column,
+-- which carries no history worth keeping (it was always empty).
+
+alter table public.products drop column internal_cat;
