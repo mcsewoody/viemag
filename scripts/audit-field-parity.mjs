@@ -184,5 +184,40 @@ for (const [table] of ownerOnly) {
   }
 }
 
+/* ---------- F. every view in public strips its default grants ---------- */
+/* Supabase grants ALL on every new object in `public` to anon and authenticated.
+   For a VIEW that is worse than for a table, because a view with
+   security_invoker left at its default runs with its OWNER's privileges and
+   therefore reads and writes straight past the base table's RLS. A leftover
+   DELETE grant on such a view is a way around the policy, not a formality.
+
+   20260730120000 created product_sales_cost, revoked the defaults from anon, and
+   forgot authenticated — leaving an editor able to DELETE the cost record it was
+   only ever supposed to read one number from. Fixed in 20260730140000; this
+   check is here so the next view cannot repeat it.
+
+   Only views are checked. Catalogue TABLES intentionally leave authenticated
+   with full CRUD (see 20260728035523) and RLS is what constrains them, so the
+   same rule applied to tables would fail on fourteen correct migrations. */
+console.log('\nF. views strip their default grants\n');
+const migDir = 'supabase/migrations';
+const views = [];
+for (const file of fs.readdirSync(migDir).sort()) {
+  const sqlText = fs.readFileSync(`${migDir}/${file}`, 'utf8');
+  for (const m of sqlText.matchAll(/create\s+(?:or\s+replace\s+)?view\s+public\.(\w+)/gi)) {
+    views.push({ view: m[1], file });
+  }
+}
+if (!views.length) console.log('   · no views in public');
+for (const { view } of views) {
+  /* The revoke may land in a later migration than the create — that is a valid
+     fix, so search every migration rather than only the creating one. */
+  const all = fs.readdirSync(migDir).map((f) => fs.readFileSync(`${migDir}/${f}`, 'utf8')).join('\n');
+  const missing = ['anon', 'authenticated'].filter(
+    (role) => !new RegExp(`revoke\\s+all\\s+on\\s+public\\.${view}\\s+from\\s+${role}`, 'i').test(all));
+  if (missing.length) fail(`view public.${view}: never revokes default grants from ${missing.join(' and ')} — a view bypasses the base table's RLS, so a leftover write grant is a way around it`);
+  else console.log(`   ✓ public.${view} revokes anon and authenticated defaults`);
+}
+
 console.log(problems ? `\n${problems} item(s) need a decision.` : '\nClean: every field either reaches the site or says it does not.');
 process.exit(problems ? 1 : 0);
