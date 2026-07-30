@@ -99,7 +99,7 @@ window.I18N_DICT = {
     'pdp.evidenceNote': 'Báo cáo chi tiết của mẫu này sẽ hiển thị tại đây sau khi được phê duyệt công bố.',
     /* ---- Insights (Góc công nghệ) ---- */
     'insights.title': 'VIEMAG Insights',
-    'insights.sub': 'Nam châm, chuẩn sạc và hệ sinh thái Apple — giải thích bằng ngôn ngữ dễ hiểu, không phóng đại.',
+    'insights.sub': 'Nam châm, chuẩn sạc và hệ sinh thái Apple — chia sẻ xu hướng, đón đầu tương lai.',
     'insights.byCat': 'Theo chủ đề',
     'insights.all': 'Tất cả',
     'insights.read': 'Đọc tiếp',
@@ -348,7 +348,7 @@ window.I18N_DICT = {
     'pdp.evidenceNote': 'Detailed test reports for this model will appear here once approved for publication.',
     /* ---- Insights ---- */
     'insights.title': 'VIEMAG Insights',
-    'insights.sub': 'Magnets, charging standards and the Apple ecosystem — explained plainly, without the hype.',
+    'insights.sub': 'Magnets, charging standards and the Apple ecosystem — trends worth sharing, moving toward what’s next.',
     'insights.byCat': 'By topic',
     'insights.all': 'All',
     'insights.read': 'Read',
@@ -597,7 +597,7 @@ window.I18N_DICT = {
     'pdp.evidenceNote': '本型號的詳細測試報告將於審核通過後在此公開。',
     /* ---- 科技洞察 ---- */
     'insights.title': 'VIEMAG 科技洞察',
-    'insights.sub': '磁吸、充電標準與 Apple 生態——用聽得懂的話講清楚，不誇大。',
+    'insights.sub': '磁吸、充電標準與 Apple 生態——趨勢分享、迎向未來。',
     'insights.byCat': '依主題',
     'insights.all': '全部',
     'insights.read': '閱讀',
@@ -1055,7 +1055,7 @@ window.I18N_DICT = {
     'pdp.evidenceNote': 'Laporan uji rinci untuk model ini akan muncul di sini setelah disetujui untuk publikasi.',
     /* ---- Insights ---- */
     'insights.title': 'VIEMAG Insights',
-    'insights.sub': 'Magnet, standar pengisian daya, dan ekosistem Apple — dijelaskan dengan bahasa yang mudah, tanpa berlebihan.',
+    'insights.sub': 'Magnet, standar pengisian daya, dan ekosistem Apple — berbagi tren, menyambut masa depan.',
     'insights.byCat': 'Menurut topik',
     'insights.all': 'Semua',
     'insights.read': 'Baca',
