@@ -20,6 +20,7 @@ window.VIEMAG_SCHEMA = {
     order: 'product_id',
     thumb: 'hero_image_url',
     thumbFallback: 'art_key',   // no photo yet → show which illustration the site uses
+    listCols: ['name_en'],      // extra list-view columns beyond title/status
     fields: [
       { name: 'product_id', type: 'text', required: true, desc: 'Internal SKU code, unique per product. If official_sku_code is blank, the front end uses this value as the SKU shown to visitors.' },
       { name: 'official_sku_code', type: 'text', desc: 'The SKU shown to customers and used in the product page URL (?sku=). Do not put an internal-only code here.' },

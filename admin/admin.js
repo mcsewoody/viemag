@@ -604,9 +604,11 @@
       if (!rows.length) {
         html += '<div class="empty-state">' + esc(t('noRecords')) + '</div>';
       } else {
+        var listCols = def.listCols || [];
         html += '<table class="grid"><thead><tr>';
         if (def.thumb || def.thumbFallback) html += '<th class="thumb-col"></th>';
         html += '<th>' + esc(def.title) + '</th>';
+        listCols.forEach(function (c) { html += '<th>' + esc(c) + '</th>'; });
         if (statusField) html += '<th>status</th>';
         html += '<th></th></tr></thead><tbody id="listBody">';
         rows.forEach(function (r) {
@@ -626,6 +628,7 @@
             html += '</td>';
           }
           html += '<td>' + esc(r[def.title]) + '</td>';
+          listCols.forEach(function (c) { html += '<td>' + esc(r[c]) + '</td>'; });
           if (statusField) html += '<td><span class="badge-status">' + esc(r.status || '—') + '</span></td>';
           html += '<td class="row-actions">';
           html += '<button class="btn edit-btn">' + esc(t('edit')) + '</button>';

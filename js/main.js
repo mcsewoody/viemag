@@ -296,7 +296,7 @@
     <a class="prod-card" href="product.html?sku=${encodeURIComponent(p.sku)}" aria-label="${esc(tf(p.name))}">
       <div class="thumb">${badge}${thumb(p)}</div>
       <div class="body">
-        <span class="cat-label">${cat ? esc(tf(cat.name)) : ''}</span>
+        <span class="cat-label">${cat ? esc(tf(cat.name)) + ' · ' : ''}${esc(p.sku)}</span>
         <h3>${esc(tf(p.name))}</h3>
         <p class="claim">${esc(tf(p.claim))}</p>
         <div class="meta-chips">${qiChip(p)}${(p.mount || []).slice(0, 2).map((m) => `<span class="chip">${t('mount.' + m)}</span>`).join('')}</div>
