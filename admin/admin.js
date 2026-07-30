@@ -8,6 +8,7 @@
   var TABLE_ORDER = window.VIEMAG_TABLE_ORDER;
   var I18N = window.VIEMAG_ADMIN_I18N;
   var LANGS = window.VIEMAG_ADMIN_LANGS;
+  var FIELD_I18N = window.VIEMAG_FIELD_I18N || {};
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -91,6 +92,38 @@
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* English lives on the field itself (f.desc, the master copy in schema.js).
+     Other languages are a translation OVERLAY in field-i18n.js, keyed by
+     table + field name; a language missing a given key falls back to the
+     English desc rather than showing nothing. */
+  function fieldDesc(table, f) {
+    if (state.lang !== 'en') {
+      var dict = FIELD_I18N[state.lang] && FIELD_I18N[state.lang][table];
+      if (dict && dict[f.name]) return dict[f.name];
+    }
+    return f.desc || '';
+  }
+
+  /* Escape FIRST, then apply a fixed, safe set of markers — same discipline as
+     the public site's richText(): this text is staff-authored prose, but
+     "trusted" is not a reason to hand a stray `<` or `>` a way into the DOM.
+     Backtick spans are pulled out to an ASCII placeholder before **bold** runs,
+     and restored after, so a literal example like `**bold**` (used in the
+     guides.body_* description to show the syntax it supports) renders as code,
+     not as actual bold. */
+  function fieldDescHtml(table, f) {
+    var raw = fieldDesc(table, f);
+    if (!raw) return '';
+    var codes = [];
+    var withCodes = esc(raw).replace(/`([^`]+)`/g, function (m, inner) {
+      return '@@CODE' + (codes.push(inner) - 1) + '@@';
+    });
+    var withBold = withCodes.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+    return withBold.replace(/@@CODE(\d+)@@/g, function (m, i) {
+      return '<code>' + codes[+i] + '</code>';
     });
   }
 
@@ -733,6 +766,8 @@
       var wideTypes = ['textarea', 'multiselect', 'relation_many', 'image', 'images'];
       html += '<div class="field' + (wideTypes.indexOf(f.type) !== -1 ? ' wide' : '') + '" data-field="' + f.name + '">';
       html += '<label>' + esc(f.name) + (f.internal ? ' <span class="internal-tag">' + esc(t('internalField')) + '</span>' : '') + '</label>';
+      var descHtml = fieldDescHtml(tableName, f);
+      if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
       html += renderFieldInput(f, value, relOptions, joinValues);
       html += '</div>';
     });

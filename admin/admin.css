@@ -97,6 +97,10 @@ table.grid .row-actions button { margin-left: 6px; }
 .field input:disabled, .field select:disabled { background: var(--ivory); color: var(--muted); }
 /* Helper text under a field needs air, or it reads as part of the next row. */
 .field .hint { margin-top: 6px; line-height: 1.5; }
+/* What this field actually does, between the label and the input — read this
+   BEFORE typing, not after, so it sits above the control rather than below it. */
+.field-desc { margin: -2px 0 6px; font-size: .78rem; line-height: 1.45; color: var(--muted); }
+.field-desc b { color: var(--ink); font-weight: 600; }
 .field textarea { resize: vertical; min-height: 70px; }
 .field textarea.large { min-height: 200px; }
 .field.checkbox { flex-direction: row; align-items: center; gap: 8px; }
