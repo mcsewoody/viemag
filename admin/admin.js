@@ -23,6 +23,7 @@
     view: { table: TABLE_ORDER[0], mode: 'list', id: null },
     relationCache: {},
     myRole: 'editor', // re-read from admin_users on every showApp(); never trusted for enforcement
+    formDirty: false, // set by any input in the open form; gates the "leave anyway?" prompt
   };
 
   /* Tables that actually feed js/data.js (see supabase/functions/export-site-data).
@@ -168,12 +169,24 @@
        demotion made by someone else takes effect on the next navigation rather
        than only after a re-login. This only decides what the UI OFFERS — the
        manage-admins function re-checks the role server-side on every call. */
-    sb.from('admin_users').select('role').eq('user_id', state.session.user.id).maybeSingle()
+    var before = state.myRole;
+    fetchMyRole().then(function (role) {
+      if (role === before) return;
+      if (state.view.table === ACCOUNTS_VIEW) renderContent();
+    });
+  }
+
+  /* Always queries rather than reading state.myRole, because showApp() fetches
+     the role AFTER its first renderContent(): a form opened on that first paint
+     would otherwise be built with the 'editor' default and show an owner the
+     locked panel on their own data. One indexed row per form open.
+     This governs the UI only. Enforcement is the RLS policy on
+     product_development (supabase/migrations/20260730120000). */
+  function fetchMyRole() {
+    return sb.from('admin_users').select('role').eq('user_id', state.session.user.id).maybeSingle()
       .then(function (res) {
-        var role = (res.data && res.data.role) === 'owner' ? 'owner' : 'editor';
-        if (role === state.myRole) return;
-        state.myRole = role;
-        if (state.view.table === ACCOUNTS_VIEW) renderContent();
+        state.myRole = (res.data && res.data.role) === 'owner' ? 'owner' : 'editor';
+        return state.myRole;
       });
   }
 
@@ -601,6 +614,24 @@
       html += '<input type="search" id="listSearch" placeholder="' + esc(t('search')) + '">';
       html += '<button class="btn btn-primary" id="addNewBtn">+ ' + esc(t('addNew')) + '</button>';
       html += '</div>';
+      /* Status filter (products only, via def.statusFilter). products.status now
+         also marks pipeline items — 'Development' means the product does not
+         exist yet — so this list mixes shipped SKUs with projects and needs
+         filtering. Counts are shown for EVERY option, including the zeroes: "0"
+         is information ("nothing is in review"), and an option that vanishes
+         when empty is an option nobody remembers exists.
+         Default is All, deliberately. Filtering to Published by default would
+         hide exactly the rows someone is about to add. */
+      if (statusField && def.statusFilter) {
+        var counts = {};
+        rows.forEach(function (r) { counts[r.status] = (counts[r.status] || 0) + 1; });
+        html += '<div class="status-filter">';
+        html += '<button class="chip active" data-status="">' + esc(t('statusAll')) + ' ' + rows.length + '</button>';
+        statusField.options.forEach(function (o) {
+          html += '<button class="chip" data-status="' + esc(o) + '">' + esc(o) + ' ' + (counts[o] || 0) + '</button>';
+        });
+        html += '</div>';
+      }
       if (!rows.length) {
         html += '<div class="empty-state">' + esc(t('noRecords')) + '</div>';
       } else {
@@ -612,7 +643,7 @@
         if (statusField) html += '<th>status</th>';
         html += '<th></th></tr></thead><tbody id="listBody">';
         rows.forEach(function (r) {
-          html += '<tr data-id="' + esc(r.id) + '">';
+          html += '<tr data-id="' + esc(r.id) + '" data-status="' + esc(r.status || '') + '">';
           if (def.thumb || def.thumbFallback) {
             var img = mediaUrl(def.thumb ? r[def.thumb] : null);
             var fb = def.thumbFallback ? r[def.thumbFallback] : null;
@@ -644,11 +675,27 @@
         state.view = { table: tableName, mode: 'edit', id: null };
         renderContent();
       });
+      /* Search and the status filter both hide rows, so they share one pass —
+         applying them independently would let whichever ran last un-hide rows
+         the other had just excluded. */
       var search = document.getElementById('listSearch');
-      search.addEventListener('input', function () {
+      var activeStatus = '';
+      function applyFilters() {
         var q = search.value.toLowerCase();
         Array.prototype.forEach.call(document.querySelectorAll('#listBody tr'), function (tr) {
-          tr.style.display = tr.textContent.toLowerCase().indexOf(q) === -1 ? 'none' : '';
+          var matchesText = tr.textContent.toLowerCase().indexOf(q) !== -1;
+          var matchesStatus = !activeStatus || tr.dataset.status === activeStatus;
+          tr.style.display = (matchesText && matchesStatus) ? '' : 'none';
+        });
+      }
+      search.addEventListener('input', applyFilters);
+      Array.prototype.forEach.call(root.querySelectorAll('.status-filter .chip'), function (btn) {
+        btn.addEventListener('click', function () {
+          activeStatus = btn.dataset.status;
+          Array.prototype.forEach.call(root.querySelectorAll('.status-filter .chip'), function (b) {
+            b.classList.toggle('active', b === btn);
+          });
+          applyFilters();
         });
       });
       Array.prototype.forEach.call(root.querySelectorAll('.edit-btn'), function (btn) {
@@ -741,55 +788,186 @@
           return map;
         });
 
-    Promise.all([rowPromise, relOptionsPromise, joinValuesPromise]).catch(function (err) {
-      // Never render a half-loaded form — it would be a loaded gun for Save.
-      root.innerHTML = '<div class="empty-state"><p class="save-status error">' + esc(t('loadFailed') + err.message) + '</p>' +
-        '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button></div>';
-      var b = document.getElementById('backBtn');
-      if (b) b.addEventListener('click', function () {
-        state.view = { table: tableName, mode: 'list', id: null };
-        renderContent();
-      });
-      return null;
-    }).then(function (results) {
-      if (!results) return;
-      var row = results[0], relOptions = results[1], joinValues = results[2];
-      root.innerHTML = buildFormHtml(tableName, def, row, relOptions, joinValues, isNew);
-      wireFormEvents(tableName, def, id, isNew, joinFields);
+    /* The owner-only sub-record behind the third tab, plus the single number
+       that is allowed across the wall. The VIEW is read for both roles: an
+       editor cannot touch product_development at all, and product_sales_cost is
+       how the sales tab still gets a cost basis to compute margin against. */
+    var subTab = (def.tabs || []).filter(function (tb) { return tb.table; })[0] || null;
+    var rolePromise = subTab ? fetchMyRole() : Promise.resolve(state.myRole);
+    var subPromise = rolePromise.then(function (role) {
+      if (!subTab || isNew || role !== 'owner') return null;
+      return must(sb.from(subTab.table).select('*').eq('product_id', id).maybeSingle(), 'load ' + subTab.table);
     });
+    var costPromise = (!subTab || isNew)
+      ? Promise.resolve(null)
+      : must(sb.from('product_sales_cost').select('sales_cost_usd').eq('product_id', id).maybeSingle(), 'load sales cost')
+          .then(function (r) { return r ? r.sales_cost_usd : null; });
+
+    Promise.all([rowPromise, relOptionsPromise, joinValuesPromise, subPromise, costPromise, rolePromise])
+      .catch(function (err) {
+        // Never render a half-loaded form — it would be a loaded gun for Save.
+        root.innerHTML = '<div class="empty-state"><p class="save-status error">' + esc(t('loadFailed') + err.message) + '</p>' +
+          '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button></div>';
+        var b = document.getElementById('backBtn');
+        if (b) b.addEventListener('click', function () {
+          state.view = { table: tableName, mode: 'list', id: null };
+          renderContent();
+        });
+        return null;
+      }).then(function (results) {
+        if (!results) return;
+        var ctx = {
+          tableName: tableName, def: def, isNew: isNew, subTab: subTab,
+          row: results[0], relOptions: results[1], joinValues: results[2],
+          subRow: results[3], viewCost: results[4], role: results[5],
+        };
+        root.innerHTML = buildFormHtml(ctx);
+        wireFormEvents(ctx, id, joinFields);
+      });
   }
 
-  function buildFormHtml(tableName, def, row, relOptions, joinValues, isNew) {
-    var html = '<h2>' + esc(tTable(tableName)) + ' — ' + (isNew ? esc(t('addNew')) : esc(row[def.title] || '')) + '</h2>';
-    html += '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button>';
-    html += '<div class="form-card" style="margin-top:14px"><div class="form-grid">';
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-    def.fields.forEach(function (f) {
-      var value = row[f.name];
-      var wideTypes = ['textarea', 'multiselect', 'relation_many', 'image', 'images'];
-      html += '<div class="field' + (wideTypes.indexOf(f.type) !== -1 ? ' wide' : '') + '" data-field="' + f.name + '">';
-      html += '<label>' + esc(f.name) + (f.internal ? ' <span class="internal-tag">' + esc(t('internalField')) + '</span>' : '') + '</label>';
-      var descHtml = fieldDescHtml(tableName, f);
-      if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
-      html += renderFieldInput(f, value, relOptions, joinValues);
+  function formActionsHtml() {
+    return '<div class="form-actions">'
+      + '<button class="btn btn-primary" id="saveBtn">' + esc(t('save')) + '</button>'
+      + '<button class="btn" id="cancelBtn">' + esc(t('cancel')) + '</button>'
+      + '<span id="saveStatus" class="save-status"></span>'
+      + '</div>';
+  }
+
+  function buildFormHtml(ctx) {
+    var def = ctx.def;
+    var html = '<h2>' + esc(tTable(ctx.tableName)) + ' — ' + (ctx.isNew ? esc(t('addNew')) : esc(ctx.row[def.title] || '')) + '</h2>';
+    html += '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button>';
+
+    // Every table except products: one flat grid, exactly as before.
+    if (!def.tabs) {
+      html += '<div class="form-card" style="margin-top:14px"><div class="form-grid">';
+      def.fields.forEach(function (f) { html += fieldBlockHtml(ctx, ctx.tableName, ctx.row, f); });
+      html += '</div>' + formActionsHtml() + '</div>';
+      return html;
+    }
+
+    var dict = I18N[state.lang] || I18N.en;
+    html += '<div class="tabbar">' + def.tabs.map(function (tb, i) {
+      return '<button type="button" class="tab-btn' + (i === 0 ? ' active' : '') + '" data-tab="' + esc(tb.key) + '">'
+        + esc((dict.productTabs && dict.productTabs[tb.key]) || tb.key) + '</button>';
+    }).join('') + '</div>';
+
+    html += '<div class="form-card">';
+    def.tabs.forEach(function (tb, i) {
+      /* All panels stay in the DOM; switching tabs only toggles `hidden`. That is
+         why a tab switch cannot lose what was typed on another tab — there is no
+         re-render to lose it in, so no "unsaved changes" warning is needed here. */
+      html += '<div class="tab-panel" data-tab="' + esc(tb.key) + '"' + (i === 0 ? '' : ' hidden') + '>';
+      html += '<p class="tab-note' + (tb.ownerOnly ? ' owner' : '') + '">' + esc(t('tabNote' + cap(tb.key))) + '</p>';
+      if (tb.ownerOnly && ctx.role !== 'owner') {
+        /* No inputs at all — not even disabled ones. Rendering the fields and
+           letting RLS hand back nothing would show an editor a page of blank
+           boxes, and the first thing they would do is fill them in and press
+           Save, losing the typing to a permission error they cannot interpret. */
+        html += '<div class="locked-panel">' + esc(t('tabLocked')) + '</div>';
+      } else {
+        var srcName = tb.table || ctx.tableName;
+        var srcRow = tb.table ? (ctx.subRow || {}) : ctx.row;
+        tb.groups.forEach(function (g) { html += groupHtml(ctx, srcName, srcRow, g); });
+      }
       html += '</div>';
     });
-
+    html += formActionsHtml();
     html += '</div>';
-    html += '<div class="form-actions">';
-    html += '<button class="btn btn-primary" id="saveBtn">' + esc(t('save')) + '</button>';
-    html += '<button class="btn" id="cancelBtn">' + esc(t('cancel')) + '</button>';
-    html += '<span id="saveStatus" class="save-status"></span>';
+    return html;
+  }
+
+  /* Every group folds; the ones marked collapsed in schema.js simply start
+     folded. SEO is the only one that does — its eight fields are all optional
+     and the site composes a fallback when they are blank, so eight open empty
+     boxes only manufacture anxiety. */
+  function groupHtml(ctx, srcName, srcRow, g) {
+    var dict = I18N[state.lang] || I18N.en;
+    var title = (dict.fieldGroups && dict.fieldGroups[g.key]) || g.key;
+    var folded = !!g.collapsed;
+    var html = '<section class="group' + (folded ? ' collapsed' : '') + '" data-group="' + esc(g.key) + '">';
+    html += '<h3 class="group-title"><button type="button" class="group-toggle">' + esc(title)
+          + '<span class="group-caret">' + (folded ? '+' : '−') + '</span></button></h3>';
+    html += '<div class="form-grid group-body"' + (folded ? ' hidden' : '') + '>';
+    var srcDef = SCHEMA[srcName];
+    g.fields.forEach(function (entry) {
+      if (Array.isArray(entry)) { html += langRowHtml(ctx, srcName, srcRow, entry); return; }
+      var f = srcDef.fields.filter(function (x) { return x.name === entry; })[0];
+      if (f) html += fieldBlockHtml(ctx, srcName, srcRow, f);
+    });
+    html += '</div></section>';
+    return html;
+  }
+
+  /* One row of side-by-side language inputs sharing the first field's
+     description. Stacked vertically you had to scroll to notice name_id was
+     empty; side by side the gap sits next to its filled siblings, which for a
+     five-language site is a working difference, not a cosmetic one. */
+  function langRowHtml(ctx, srcName, srcRow, names) {
+    var srcDef = SCHEMA[srcName];
+    var fields = names.map(function (n) {
+      return srcDef.fields.filter(function (x) { return x.name === n; })[0];
+    }).filter(Boolean);
+    if (!fields.length) return '';
+    var prefix = fields[0].name.replace(/_(en|vi|id|zh)$/, '');
+    var html = '<div class="field wide lang-row" data-field="' + esc(prefix) + '">';
+    html += '<label>' + esc(prefix) + '_*</label>';
+    var descHtml = fieldDescHtml(srcName, fields[0]);
+    if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
+    html += '<div class="lang-inputs">';
+    fields.forEach(function (f) {
+      var code = (f.name.match(/_(en|vi|id|zh)$/) || ['', ''])[1].toUpperCase();
+      var v = srcRow[f.name];
+      html += '<div class="lang-cell' + (v ? '' : ' empty') + '">';
+      html += '<span class="lang-tag">' + esc(code) + '</span>';
+      html += f.type === 'textarea'
+        ? '<textarea data-name="' + f.name + '" rows="3">' + esc(v) + '</textarea>'
+        : '<input type="text" data-name="' + f.name + '" value="' + esc(v) + '">';
+      html += '</div>';
+    });
     html += '</div></div>';
     return html;
   }
 
+  function fieldBlockHtml(ctx, srcName, srcRow, f) {
+    var value = srcRow[f.name];
+    var wideTypes = ['textarea', 'multiselect', 'relation_many', 'image', 'images'];
+    var html = '<div class="field' + (wideTypes.indexOf(f.type) !== -1 ? ' wide' : '') + '" data-field="' + f.name + '">';
+    html += '<label>' + esc(f.name);
+    /* products states the internal/visibility rule once per TAB instead of once
+       per field: every field on two of its three tabs is internal, so the
+       per-field tag stopped distinguishing anything — a marker that appears on
+       everything marks nothing. Other tables are genuinely mixed and keep it. */
+    if (f.internal && !ctx.def.tabs) html += ' <span class="internal-tag">' + esc(t('internalField')) + '</span>';
+    if (f.type === 'computed' || f.readOnly) html += ' <span class="calc-tag">' + esc(t('calculated')) + '</span>';
+    html += '</label>';
+    var descHtml = fieldDescHtml(srcName, f);
+    if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
+    html += renderFieldInput(f, value, ctx.relOptions, ctx.joinValues);
+    html += '</div>';
+    return html;
+  }
+
   function renderFieldInput(f, value, relOptions, joinValues) {
+    /* Read-only because the DATABASE computes it (a generated column). It gets
+       data-readonly-name, never data-name, so collectFormValues cannot pick it up
+       and try to write a value Postgres would reject. */
+    if (f.readOnly) {
+      return '<input type="number" disabled data-readonly-name="' + f.name + '" value="' + (value == null ? '' : esc(value)) + '">';
+    }
     switch (f.type) {
+      /* Not a column at all — calculated in the browser and stored nowhere, so it
+         cannot go stale. refreshComputed() fills these in. */
+      case 'computed':
+        return '<div class="computed-value muted" data-compute="' + esc(f.compute) + '">—</div>';
       case 'textarea':
         return '<textarea class="' + (f.large ? 'large' : '') + '" data-name="' + f.name + '">' + esc(value) + '</textarea>';
       case 'number':
-        return '<input type="number" step="any" data-name="' + f.name + '" value="' + (value == null ? '' : esc(value)) + '">';
+        return '<div class="num-wrap"><input type="number" step="any" data-name="' + f.name + '" value="' + (value == null ? '' : esc(value)) + '">'
+          + (f.unit ? '<span class="num-unit">' + esc(f.unit) + '</span>' : '') + '</div>';
       case 'date':
         return '<input type="date" data-name="' + f.name + '" value="' + esc(value || '') + '">';
       case 'boolean':
@@ -840,22 +1018,115 @@
     return html;
   }
 
-  function wireFormEvents(tableName, def, id, isNew, joinFields) {
-    document.getElementById('backBtn').addEventListener('click', function () {
-      state.view = { table: tableName, mode: 'list', id: null };
+  /* The eight components summed into product_development.sales_cost_usd, read
+     from the schema so adding a ninth fee never needs a second edit here. */
+  function costFieldNames() {
+    return SCHEMA.product_development.fields
+      .filter(function (f) { return /_usd$/.test(f.name) && !f.readOnly; })
+      .map(function (f) { return f.name; });
+  }
+
+  /* The generated sales cost is stale the moment an owner edits a component, so
+     recompute from the inputs when they exist. When they do not, the signed-in
+     user is an editor and the only reachable source is the product_sales_cost
+     view — which is exactly what that view is for. */
+  function refreshComputed(ctx) {
+    var inputs = costFieldNames().map(function (n) { return document.querySelector('[data-name="' + n + '"]'); });
+    var salesCost = inputs[0]
+      ? inputs.reduce(function (sum, el) { return sum + (el && el.value !== '' ? Number(el.value) : 0); }, 0)
+      : (ctx.viewCost == null ? null : Number(ctx.viewCost));
+
+    var generatedEl = document.querySelector('[data-readonly-name="sales_cost_usd"]');
+    if (generatedEl) generatedEl.value = salesCost == null ? '' : salesCost.toFixed(2);
+
+    var costEl = document.querySelector('[data-compute="salesCost"]');
+    if (costEl) {
+      costEl.textContent = salesCost ? salesCost.toFixed(2) : '—';
+      costEl.className = 'computed-value' + (salesCost ? '' : ' muted');
+    }
+
+    var marginEl = document.querySelector('[data-compute="actualMargin"]');
+    if (!marginEl) return;
+    var priceEl = document.querySelector('[data-name="price_usd"]');
+    var price = priceEl && priceEl.value !== '' ? Number(priceEl.value) : null;
+    /* A zero cost means "nothing entered", not a free product: all eight
+       components coalesce to 0 in the generated column, and today 19 of 19
+       products have no cost data at all. Reporting a flattering 100% margin
+       would make the default state of the system a lie. */
+    if (!salesCost || !price) {
+      marginEl.className = 'computed-value muted';
+      marginEl.textContent = t('marginNoCost');
+      return;
+    }
+    var pct = (price - salesCost) / price * 100;
+    var floorEl = document.querySelector('[data-name="minimum_gross_margin"]');
+    var floor = floorEl && floorEl.value !== '' ? Number(floorEl.value) : null;
+    var txt = pct.toFixed(1) + '%';
+    var cls = 'computed-value';
+    if (floor != null) {
+      var under = pct < floor;
+      txt += ' — ' + tf(under ? 'marginBelowFloor' : 'marginOk', { min: floor });
+      cls += under ? ' warn' : ' ok';
+    }
+    marginEl.className = cls;
+    marginEl.textContent = txt;
+  }
+
+  function wireFormEvents(ctx, id, joinFields) {
+    /* The three tabs make losing work easier, not harder: you can edit the sales
+       tab, switch back to the site tab and forget you touched it. The flat form
+       never needed this guard; the tabbed one does. */
+    function leave() {
+      if (state.formDirty && !confirm(t('unsavedLeave'))) return;
+      state.formDirty = false;
+      state.view = { table: ctx.tableName, mode: 'list', id: null };
       renderContent();
-    });
-    document.getElementById('cancelBtn').addEventListener('click', function () {
-      state.view = { table: tableName, mode: 'list', id: null };
-      renderContent();
-    });
+    }
+    document.getElementById('backBtn').addEventListener('click', leave);
+    document.getElementById('cancelBtn').addEventListener('click', leave);
 
     Array.prototype.forEach.call(document.querySelectorAll('.image-field'), function (wrap) {
-      wireImageField(wrap, tableName);
+      wireImageField(wrap, ctx.tableName);
     });
 
     document.getElementById('saveBtn').addEventListener('click', function () {
-      saveForm(tableName, def, id, isNew, joinFields);
+      saveForm(ctx, id, joinFields);
+    });
+
+    // Show/hide only — see the comment on the panels in buildFormHtml.
+    var tabBtns = document.querySelectorAll('.tab-btn');
+    Array.prototype.forEach.call(tabBtns, function (btn) {
+      btn.addEventListener('click', function () {
+        Array.prototype.forEach.call(tabBtns, function (b) { b.classList.toggle('active', b === btn); });
+        Array.prototype.forEach.call(document.querySelectorAll('.tab-panel'), function (p) {
+          p.hidden = p.dataset.tab !== btn.dataset.tab;
+        });
+      });
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll('.group-toggle'), function (btn) {
+      btn.addEventListener('click', function () {
+        var section = btn.parentNode.parentNode;
+        var body = section.querySelector('.group-body');
+        body.hidden = !body.hidden;
+        section.classList.toggle('collapsed', body.hidden);
+        btn.querySelector('.group-caret').textContent = body.hidden ? '+' : '−';
+      });
+    });
+
+    var card = document.querySelector('.form-card');
+    state.formDirty = false;
+    if (card) {
+      card.addEventListener('input', function () { state.formDirty = true; });
+      card.addEventListener('change', function () { state.formDirty = true; });
+    }
+
+    if (!ctx.subTab) return;
+    refreshComputed(ctx);
+    var live = ['price_usd', 'minimum_gross_margin', 'target_gross_margin'].concat(costFieldNames());
+    live.forEach(function (n) {
+      var el = document.querySelector('[data-name="' + n + '"]');
+      if (el) el.addEventListener('input', function () { refreshComputed(ctx); });
     });
   }
 
@@ -913,6 +1184,7 @@
     var out = {};
     def.fields.forEach(function (f) {
       if (f.type === 'relation_many') return; // handled separately via join tables
+      if (f.type === 'computed' || f.readOnly) return; // not columns we may write
       if (f.type === 'multiselect') {
         var checked = document.querySelectorAll('input[data-name="' + f.name + '"][data-multi-value]:checked');
         var vals = Array.prototype.map.call(checked, function (c) { return c.dataset.multiValue; });
@@ -940,7 +1212,28 @@
     return out;
   }
 
-  function saveForm(tableName, def, id, isNew, joinFields) {
+  /* Tab 3 is a different table, so Save writes twice. There is deliberately ONE
+     Save button: the tabs are a view of one record, and three buttons would make
+     people believe saving one tab discards the others — a belief that loses real
+     work. Skipped entirely for editors, who had no inputs rendered and so have
+     nothing of theirs to lose. Resolves to null on success, or to a message. */
+  function saveSubRecord(ctx, rowId) {
+    if (!ctx.subTab || ctx.role !== 'owner') return Promise.resolve(null);
+    var subDef = SCHEMA[ctx.subTab.table];
+    var values = collectFormValues(subDef, false);
+    var hasAny = Object.keys(values).some(function (k) {
+      return values[k] !== null && values[k] !== '';
+    });
+    /* Don't create an all-null row for a product nobody has costed yet — it
+       would make "has a development record" useless as a signal. */
+    if (!hasAny && !ctx.subRow) return Promise.resolve(null);
+    values.product_id = rowId;
+    return sb.from(ctx.subTab.table).upsert(values, { onConflict: 'product_id' })
+      .then(function (res) { return res.error ? res.error.message : null; });
+  }
+
+  function saveForm(ctx, id, joinFields) {
+    var tableName = ctx.tableName, def = ctx.def, isNew = ctx.isNew;
     var statusEl = document.getElementById('saveStatus');
     var saveBtn = document.getElementById('saveBtn');
     statusEl.className = 'save-status';
@@ -985,6 +1278,23 @@
       });
 
       Promise.all(joinOps).then(function () {
+        return saveSubRecord(ctx, rowId);
+      }).then(function (subError) {
+        /* Two tables, two writes, no shared transaction — the same shape the join
+           rewrite above already has, and the same rule applies: report the real
+           state instead of printing "Saved". Recovery is just pressing Save
+           again, because the two tables do not depend on each other. The form is
+           left open, and formDirty stays true, because the development inputs
+           genuinely still hold unsaved values. */
+        if (subError) {
+          saveBtn.disabled = false;
+          statusEl.className = 'save-status error';
+          statusEl.textContent = t('savedPartialDev') + subError;
+          state.relationCache = {};
+          triggerExportIfNeeded(tableName, document.getElementById('syncStatus'));
+          return;
+        }
+        state.formDirty = false;
         statusEl.textContent = t('saved');
         // A renamed/created row changes relation labels elsewhere; drop the cache
         // so other forms don't keep showing stale options for the whole session.

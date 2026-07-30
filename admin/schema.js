@@ -15,64 +15,145 @@
    anything the brand rules say to keep private. Login protects the DATA, not
    this file. */
 window.VIEMAG_SCHEMA = {
+  /* The product editor is the only three-tab form in /admin, and the tabs are a
+     permission boundary, not decoration:
+       front  fields that reach viemag.biz            — all staff
+       sales  internal sales reference                — all staff
+       dev    development + cost (product_development) — OWNERS ONLY, via RLS
+     Because every field in `sales` is internal and every field in `dev` is
+     internal, the per-field red "internal" tag would appear on all of them and
+     stop carrying information — the tab itself now says it. `internal: true`
+     stays in the data because scripts/audit-field-parity.mjs reads it; only the
+     DISPLAY moved up to the tab. Other tables are still mixed, so they keep the
+     per-field tag.
+
+     A group's `fields` entry may be a NAME or an ARRAY of names. An array is
+     laid out as one row of side-by-side inputs sharing the first field's
+     description — used for the four-language sets, so a missing translation sits
+     visibly next to its filled siblings instead of being three scrolls away. */
   products: {
     title: 'product_id',
     order: 'product_id',
     thumb: 'hero_image_url',
     thumbFallback: 'art_key',   // no photo yet → show which illustration the site uses
     listCols: ['name_en'],      // extra list-view columns beyond title/status
+    statusFilter: true,         // status now also marks pipeline items, so the list needs filtering
+    tabs: [
+      { key: 'front', groups: [
+        { key: 'ident',     fields: ['product_id', 'official_sku_code', 'slug', 'status', 'launch_tier', 'category_id'] },
+        { key: 'naming',    fields: [['name_en', 'name_vi', 'name_id', 'name_zh'],
+                                    ['claim_en', 'claim_vi', 'claim_id', 'claim_zh']] },
+        { key: 'commerce',  fields: ['price_usd', 'shopee_url'] },
+        { key: 'targeting', fields: ['persona', 'consumer_pain_point', 'scenario_ids'] },
+        { key: 'spec',      fields: ['mount_type', 'charging_watt', 'qi_status', 'warranty_months', 'defect_exchange_days'] },
+        { key: 'media',     fields: ['hero_image_url', 'gallery_urls', 'spec_sheet_url', 'art_key'] },
+        { key: 'card',      fields: ['badge', 'rating', 'review_count'] },
+        { key: 'links',     fields: ['test_report_ids', 'faq_ids', 'related_product_ids'] },
+        /* Collapsed by default: all eight are optional and the site composes a
+           sensible fallback from the product name and claim when they are blank,
+           so an open block of eight empty fields only manufactures anxiety.
+           `card` is deliberately NOT collapsed — misusing `badge` (bestseller
+           with no review data behind it) is something the brand rules forbid
+           outright, so that group stays in plain sight. */
+        { key: 'seo', collapsed: true, fields: [['seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh'],
+                                                ['seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh']] },
+      ] },
+      { key: 'sales', groups: [
+        { key: 'priceBand', fields: ['msrp_usd_min', 'msrp_usd_max', 'map_usd', 'wsp_usd'] },
+        { key: 'margin',    fields: ['sales_cost_usd', 'target_gross_margin', 'minimum_gross_margin', 'actual_gross_margin'] },
+        { key: 'channel',   fields: ['distributor'] },
+        { key: 'record',    fields: ['owner', 'last_reviewed'] },
+      ] },
+      { key: 'dev', table: 'product_development', ownerOnly: true, groups: [
+        { key: 'costStack', fields: ['purchase_cost_usd', 'packaging_cost_usd', 'inspection_cost_usd', 'freight_cost_usd',
+                                     'licensing_fee_usd', 'patent_fee_usd', 'tooling_amortization_usd', 'other_cost_usd',
+                                     'cost_note', 'sales_cost_usd'] },
+        { key: 'project',   fields: ['supplier', 'design_link', 'inventory_first_batch', 'certification_notes'] },
+      ] },
+    ],
     fields: [
       { name: 'product_id', type: 'text', required: true, desc: 'Internal SKU code, unique per product. If official_sku_code is blank, the front end uses this value as the SKU shown to visitors.' },
       { name: 'official_sku_code', type: 'text', desc: 'The SKU shown to customers and used in the product page URL (?sku=). Do not put an internal-only code here.' },
       { name: 'slug', type: 'text', required: true, desc: 'URL-friendly short name. The site currently links products by ?sku=, so this is reserved for future per-language URLs; changing it will not break anything yet, but will once those exist.' },
-      { name: 'status', type: 'select', options: ['Draft', 'Review', 'Published', 'Hidden', 'Discontinued'], desc: 'Controls whether this product appears on the site at all. Only Published is shown; Draft, Review, Hidden and Discontinued are all withheld.' },
+      { name: 'status', type: 'select', options: ['Development', 'Draft', 'Review', 'Published', 'Hidden', 'Discontinued'], desc: 'Controls whether this product appears on the site at all — only Published is shown. Development means the product does not exist yet and is still being sourced or tooled; Draft means it exists but its copy is unfinished. Keeping those apart is what lets the list answer "how many projects are running".' },
       { name: 'launch_tier', type: 'select', options: ['A - Core', 'B - Test', 'C - Display', 'Future'], desc: 'Controls whether the product can be bought yet. Future shows as a "coming soon" card with no price or buy button. The other three values are an internal launch classification.' },
-      { name: 'category_id', type: 'relation', table: 'categories', labelField: 'category_name', desc: 'Which product category this belongs to. Decides the breadcrumb, the category page listing, and the ?cat= filter result.' },
+      { name: 'category_id', type: 'relation', table: 'categories', labelField: 'category_name', desc: 'Which product category this belongs to. Decides the breadcrumb, the category page listing, and the ?cat= filter result. Also the single source of this product’s CAT-A to CAT-E classification, through the category’s internal_cat_mapping.' },
       { name: 'persona', type: 'multiselect', options: ['commuter', 'homeoffice', 'traveler', 'creator'], desc: 'Which customer types this product suits. Drives the "by who you are" filter on the product listing and the count shown on each persona card.' },
-      { name: 'name_en', type: 'text', desc: 'Product name (English). Shown on the product card, the product page title, the breadcrumb and the browser tab title.' },
+      { name: 'name_en', type: 'text', desc: 'Product name. Shown on the product card, the product page title, the breadcrumb and the browser tab title. All four languages sit side by side — an empty box here is a missing translation on a live page.' },
       { name: 'name_vi', type: 'text', desc: 'Product name (Vietnamese).' },
       { name: 'name_id', type: 'text', desc: 'Product name (Indonesian).' },
       { name: 'name_zh', type: 'text', desc: 'Product name (Traditional Chinese).' },
-      { name: 'claim_en', type: 'textarea', desc: 'One-line selling point (English). Shown under the name on the product card and product page — the single most-seen piece of copy on the whole site.' },
+      { name: 'claim_en', type: 'textarea', desc: 'One-line selling point — the single most-seen piece of copy on the whole site. Shown under the name on the product card and product page.' },
       { name: 'claim_vi', type: 'textarea', desc: 'One-line selling point (Vietnamese).' },
       { name: 'claim_id', type: 'textarea', desc: 'One-line selling point (Indonesian).' },
       { name: 'claim_zh', type: 'textarea', desc: 'One-line selling point (Traditional Chinese).' },
       { name: 'consumer_pain_point', type: 'multiselect', options: ['Dropping', 'Heat', 'Loose', 'Compatibility', 'Cable Mess'], desc: 'Which problems this product solves, picked from a fixed set of five tags. Shown as chips in a "Solves" section on the product page.' },
       { name: 'shopee_url', type: 'text', desc: 'Link to this product on Shopee — the destination of the "Buy on Shopee" button. Leave blank and the button points at a dead link (#).' },
-      { name: 'price_usd', type: 'number', desc: 'Price shown on the site.' },
-      { name: 'msrp_usd_min', type: 'number', internal: true, desc: 'Internal suggested retail price, lower bound.' },
-      { name: 'msrp_usd_max', type: 'number', internal: true, desc: 'Internal suggested retail price, upper bound.' },
-      { name: 'promo_floor', type: 'number', internal: true, desc: 'Internal floor price below which this product may not be promoted.' },
-      { name: 'target_gross_margin', type: 'number', internal: true, desc: 'Internal target gross margin.' },
-      { name: 'minimum_gross_margin', type: 'number', internal: true, desc: 'Internal minimum acceptable gross margin.' },
-      { name: 'inventory_first_batch', type: 'number', internal: true, desc: 'Internal first-batch stock quantity.' },
+      { name: 'price_usd', type: 'number', desc: 'Price shown on the site. Also the basis of the gross-margin figure in the sales tab.' },
+      { name: 'msrp_usd_min', type: 'number', internal: true, desc: 'Suggested retail price, lower bound of the band.' },
+      { name: 'msrp_usd_max', type: 'number', internal: true, desc: 'Suggested retail price, upper bound of the band.' },
+      { name: 'map_usd', type: 'number', internal: true, desc: 'Minimum Advertised Price: the lowest price this product may be advertised or promoted at. Replaces the old promo_floor, which was documented as a price but typed as a ratio, so any realistic value was rejected.' },
+      { name: 'wsp_usd', type: 'number', internal: true, desc: 'Wholesale Selling Price offered to distributors.' },
+      { name: 'sales_cost_usd', type: 'computed', compute: 'salesCost', internal: true, desc: 'The sum of the eight cost components on the development tab, shown here read-only. Sales needs a cost basis to quote against; the breakdown itself stays behind the owner-only wall. Blank means no cost has been entered yet.' },
+      { name: 'target_gross_margin', type: 'number', unit: '%', internal: true, desc: 'Target gross margin as a PERCENT — enter 35, not 0.35 — measured against the sales cost above.' },
+      { name: 'minimum_gross_margin', type: 'number', unit: '%', internal: true, desc: 'Lowest gross margin considered acceptable, also a PERCENT. The actual margin below is flagged when it falls under this, but saving is never blocked: a clearance price under the floor is a business decision, and blocking it would only produce fake numbers.' },
+      { name: 'actual_gross_margin', type: 'computed', compute: 'actualMargin', internal: true, desc: 'Calculated live from the site price and the sales cost, and stored nowhere — so it can never go stale. Shows nothing when no cost has been entered, rather than a flattering 100%.' },
+      { name: 'distributor', type: 'text', internal: true, desc: 'Which distributor or channel partner handles this product.' },
       { name: 'mount_type', type: 'multiselect', options: ['Vent', 'Dashboard', 'Suction', 'Tape', 'Screen', 'Desktop'], desc: 'How the product mounts. Shown as chips on the product card and as a row in the spec table.' },
       { name: 'charging_watt', type: 'select', options: ['None', '15W', '25W', 'TBD'], desc: 'Charging wattage, shown in the spec table. Leave blank or set to None and that spec row does not appear.' },
       { name: 'qi_status', type: 'select', options: ['Not applicable', 'Compatible', 'Testing', 'Certified', 'Pending'], desc: 'Qi / Qi2 status. Only Certified displays a certification mark — never select it unless certification has actually been obtained.' },
-      { name: 'certification_notes', type: 'textarea', internal: true, desc: 'Internal notes on certification progress.' },
       { name: 'warranty_months', type: 'number', desc: 'Warranty length in months. Feeds directly into the warranty copy on the site in all five languages. Leave blank to use the site-wide default (12).' },
       { name: 'defect_exchange_days', type: 'number', desc: 'Defect-exchange window in days. Also feeds the site copy in all five languages. Leave blank to use the site-wide default (14).' },
       { name: 'hero_image_url', type: 'image', desc: 'Main product photo. Leave blank and the site shows the built-in illustration for art_key instead — nothing breaks.' },
-      { name: 'gallery_urls', type: 'images', desc: 'Additional product photos. A thumbnail strip only appears on the product page once there are 2 or more photos including the main one.' },
-      { name: 'spec_sheet_url', type: 'image', desc: 'Spec sheet file. When filled, a "Download spec sheet" link appears in the specs section — useful for dealer inquiries.' },
+      { name: 'gallery_urls', type: 'images', desc: 'Additional product photos. There is no limit on how many. A thumbnail strip only appears on the product page once there are 2 or more photos including the main one.' },
+      { name: 'spec_sheet_url', type: 'image', desc: 'Spec sheet file. When filled, a "Download spec sheet" link appears in the specs section — useful for dealer inquiries. This file is PUBLIC, so check the document’s title block carries no manufacturing-side information before uploading it.' },
       { name: 'art_key', type: 'select', options: ['vent', 'dash', 'suction', 'clip', 'tape', 'pro', 'carcharge', 'dashcharge', 'fancharge', 'suctioncharge', 'deskcharge', 'stand2in1', 'fold', 'ring', 'case', 'powerbank', 'stand', 'tripod'], desc: 'Which built-in illustration to show when there is no real photo. A wrong code means the site shows a blank image for this product.' },
       { name: 'badge', type: 'select', options: ['bestseller', 'new', 'soon'], desc: 'Corner badge on the product card. Do not use bestseller without real review data behind it.' },
       { name: 'rating', type: 'number', desc: 'Star rating. Leave blank and neither the card nor the product page shows a rating at all.' },
       { name: 'review_count', type: 'number', desc: 'Number of reviews, shown alongside the rating.' },
-      { name: 'seo_title_en', type: 'text', desc: 'Search-result and browser-tab title (English). Leave blank and the site composes one from the product name automatically.' },
+      { name: 'seo_title_en', type: 'text', desc: 'Search-result and browser-tab title. Leave any of the four blank and the site composes one from the product name automatically.' },
       { name: 'seo_title_vi', type: 'text', desc: 'Search-result and browser-tab title (Vietnamese). Leave blank to auto-compose.' },
       { name: 'seo_title_id', type: 'text', desc: 'Search-result and browser-tab title (Indonesian). Leave blank to auto-compose.' },
       { name: 'seo_title_zh', type: 'text', desc: 'Search-result and browser-tab title (Traditional Chinese). Leave blank to auto-compose.' },
-      { name: 'seo_description_en', type: 'textarea', desc: 'Search-result summary (English). Leave blank and the site uses the selling point instead.' },
+      { name: 'seo_description_en', type: 'textarea', desc: 'Search-result summary. Leave any of the four blank and the site uses the selling point instead.' },
       { name: 'seo_description_vi', type: 'textarea', desc: 'Search-result summary (Vietnamese). Leave blank to fall back automatically.' },
       { name: 'seo_description_id', type: 'textarea', desc: 'Search-result summary (Indonesian). Leave blank to fall back automatically.' },
       { name: 'seo_description_zh', type: 'textarea', desc: 'Search-result summary (Traditional Chinese). Leave blank to fall back automatically.' },
-      { name: 'last_reviewed', type: 'date', internal: true, desc: 'Internal: date this record was last checked.' },
-      { name: 'owner', type: 'text', internal: true, desc: 'Internal: who owns this product record.' },
+      { name: 'last_reviewed', type: 'date', internal: true, desc: 'Date this record was last checked. Not published; it is here so anyone reading the record knows how current it is.' },
+      { name: 'owner', type: 'text', internal: true, desc: 'Who owns this product record — the person to ask about it. Not published.' },
       { name: 'scenario_ids', type: 'relation_many', table: 'scenarios', labelField: 'scenario_name', joinTable: 'product_scenarios', joinKey: 'product_id', joinTargetKey: 'scenario_id', desc: 'Which usage scenarios this product belongs to. Decides which scenario pages it appears on, the ?scn= filter, and is also the basis for automatic "related products".' },
       { name: 'test_report_ids', type: 'relation_many', table: 'test_reports', labelField: 'title_en', joinTable: 'product_test_reports', joinKey: 'product_id', joinTargetKey: 'test_report_id', desc: 'Which test reports to show on this product page. Many-to-many — one report can be attached to several products. A report that has not cleared both publish gates will not appear even if selected here.' },
       { name: 'faq_ids', type: 'relation_many', table: 'faq', labelField: 'faq_key', joinTable: 'product_faqs', joinKey: 'product_id', joinTargetKey: 'faq_id', desc: 'This product’s own FAQ, shown as a dedicated section on the product page. Leave empty and visitors instead see the site-wide FAQ list on the support page.' },
       { name: 'related_product_ids', type: 'relation_many', table: 'products', labelField: 'product_id', joinTable: 'product_related_products', joinKey: 'product_id', joinTargetKey: 'related_product_id', desc: 'Manually chosen related products shown below this one. Leave empty and the site picks related products automatically by shared scenario, so most SKUs need no maintenance here.' },
+    ],
+  },
+
+  /* Owner-only, 1:1 with products, edited as the product form's third tab —
+     deliberately NOT in VIEMAG_TABLE_ORDER, so it never becomes a sidebar item
+     an editor can browse. Enforcement is the RLS policy in
+     supabase/migrations/20260730120000, not this file.
+
+     Descriptions here are PUBLIC (https://viemag.biz/admin/schema.js is
+     fetchable by anyone), so no description in this table may contain a real
+     company name, even as an example. */
+  product_development: {
+    note: 'noteOwnerOnly',
+    title: 'product_id',
+    fields: [
+      { name: 'purchase_cost_usd', type: 'number', internal: true, desc: 'What the product itself costs to buy in, per unit, in USD. This is only one part of the cost the sales side works from.' },
+      { name: 'packaging_cost_usd', type: 'number', internal: true, desc: 'Packaging cost per unit, USD.' },
+      { name: 'inspection_cost_usd', type: 'number', internal: true, desc: 'Inspection and quality-control cost per unit, USD.' },
+      { name: 'freight_cost_usd', type: 'number', internal: true, desc: 'Freight and logistics cost per unit, USD.' },
+      { name: 'licensing_fee_usd', type: 'number', internal: true, desc: 'Licensing fee per unit, USD.' },
+      { name: 'patent_fee_usd', type: 'number', internal: true, desc: 'Patent or royalty fee per unit, USD.' },
+      { name: 'tooling_amortization_usd', type: 'number', internal: true, desc: 'Tooling cost amortised per unit, USD. Entered by hand rather than derived, because amortisation is not always a straight division — it can be shared with the customer, already complete, or spread over a period instead of a quantity. Record which of those applies in the cost note.' },
+      { name: 'other_cost_usd', type: 'number', internal: true, desc: 'Anything else that belongs in the per-unit cost, USD.' },
+      { name: 'cost_note', type: 'textarea', internal: true, desc: 'Where the numbers above came from. Everything here is USD while quotes usually are not, so record the source and the rate used — one line such as "July quote, converted at 7.2" is enough. Without it, nobody can tell six months from now whether a figure is still current. This one note covers all eight components.' },
+      { name: 'sales_cost_usd', type: 'number', readOnly: true, internal: true, desc: 'The eight components above, added up by the database. This is the only number from this tab that the sales tab can see; the breakdown stays here.' },
+      { name: 'supplier', type: 'text', internal: true, desc: 'Who supplies this product. The most confidentiality-sensitive field in the whole system — it is the one piece of data that could link the brand back to a manufacturing origin, so it lives behind the owner-only wall and is never exported.' },
+      { name: 'design_link', type: 'text', internal: true, desc: 'A LINK to the drawings, not an upload. Files uploaded through the normal image widget land in a public bucket and are fetchable by URL without logging in, and a drawing’s title block routinely names the manufacturer. Keep the files on the company drive and share the link to named people only — never "anyone with the link".' },
+      { name: 'inventory_first_batch', type: 'number', internal: true, desc: 'First-batch quantity planned at project kick-off. Note this is a planning figure, not current sellable stock — if someone needs current stock, that is a different field that does not exist yet, so do not reuse this one for it.' },
+      { name: 'certification_notes', type: 'textarea', internal: true, desc: 'Progress notes on certification. Kept behind the wall because in-progress notes ("submitted, expecting approval next quarter") are exactly what must not become a promise to a customer — the site already refuses to show a certification mark unless qi_status is Certified.' },
     ],
   },
 

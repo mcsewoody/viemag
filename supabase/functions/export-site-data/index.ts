@@ -88,11 +88,16 @@ async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: strin
 }
 
 /* Explicit column whitelists. NOT cosmetic: with select('*') the confidential
-   pricing columns (promo_floor, target/minimum_gross_margin,
-   inventory_first_batch) plus certification_notes/owner would be pulled into
-   this function's memory and its logs on every run, one careless `...r` away
-   from a public repo. Listing columns makes Postgres enforce the boundary
-   instead of relying on whoever edits this file next. */
+   sales columns still on products (map_usd, wsp_usd, target/minimum_gross_margin,
+   distributor, owner) would be pulled into this function's memory and its logs
+   on every run, one careless `...r` away from a public repo. Listing columns
+   makes Postgres enforce the boundary instead of relying on whoever edits this
+   file next.
+
+   The development and cost fields moved out of products entirely on 2026-07-30,
+   into a separate owner-only table this function must never name — see
+   scripts/audit-field-parity.mjs direction E, which fails the build if the
+   table's name appears anywhere in this file, comments included. */
 const PRODUCT_COLS = [
   'id', 'product_id', 'official_sku_code', 'slug', 'status', 'launch_tier',
   'category_id', 'persona', 'name_en', 'name_vi', 'name_id', 'name_zh',
@@ -119,8 +124,13 @@ const SCENARIO_COLS = [
 ].join(',');
 /* Test reports shown on product pages. `limitations` travels with the result on
    purpose: under Vietnam's advertising rules a performance claim has to carry
-   the conditions it was measured under. Internal fields (certification_notes,
-   owner) are not in this list and must not be added. */
+   the conditions it was measured under.
+   This list is every content column the table has — the two publish gates
+   included, because the filter below needs them. The previous version of this
+   comment warned about withholding certification_notes and owner; neither column
+   has ever existed on test_reports (they were products columns, and as of
+   2026-07-30 certification_notes is not even that). Corrected rather than
+   deleted, so nobody re-adds the phantom warning. */
 const TEST_REPORT_COLS = [
   'id', 'test_type', 'public_status', 'evidence_level', 'report_file_url',
   'tested_date', 'approved_for_marketing', 'sort_order',

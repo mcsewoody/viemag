@@ -132,3 +132,75 @@ table.grid td:last-child { white-space: nowrap; }
 .pw-rules li.ok::before { content: '✓'; }
 .pw-rules li.bad { color: var(--danger); }
 .pw-rules li.bad::before { content: '✕'; }
+
+/* ---------- product form: three tabs, grouped fields (2026-07-30) ----------
+   The tabs are a permission boundary, not a layout choice: the third one is
+   owner-only and enforced in Postgres. Its note is tinted differently so the
+   difference between "internal" and "internal AND restricted" is visible without
+   reading the sentence. */
+.tabbar { display: flex; gap: 4px; margin: 14px 0 0; max-width: 900px; }
+.tab-btn {
+  padding: 10px 20px; border: 1px solid var(--line); border-bottom: none;
+  border-radius: 8px 8px 0 0; background: var(--ivory); color: var(--muted);
+  font-size: .9rem; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+.tab-btn:hover { color: var(--navy); }
+.tab-btn.active { background: var(--card); color: var(--navy); box-shadow: 0 -1px 0 var(--card) inset; }
+.tabbar + .form-card { border-top-left-radius: 0; }
+.tab-note {
+  margin: 0 0 22px; padding: 9px 13px; border-radius: 6px; font-size: .82rem; line-height: 1.5;
+  background: var(--ivory); color: var(--muted); border-left: 3px solid var(--line);
+}
+.tab-note.owner { border-left-color: var(--danger); color: #7a2f28; background: #fdf3f2; }
+.locked-panel {
+  padding: 32px 24px; text-align: center; font-size: .88rem; line-height: 1.6;
+  color: var(--muted); background: var(--ivory); border: 1px dashed var(--line); border-radius: var(--radius);
+}
+
+/* groups */
+.group { border-top: 1px solid var(--line); padding: 16px 0 4px; }
+.group:first-of-type { border-top: none; padding-top: 0; }
+.group-title { margin: 0 0 16px; }
+.group-toggle {
+  display: flex; align-items: center; gap: 8px; width: 100%; padding: 0;
+  background: none; border: none; cursor: pointer; font-family: inherit;
+  font-size: .95rem; font-weight: 700; color: var(--navy); text-align: left;
+}
+.group-caret {
+  margin-left: auto; width: 20px; height: 20px; line-height: 19px; text-align: center;
+  border: 1px solid var(--line); border-radius: 5px; color: var(--muted); font-weight: 400; font-size: .9rem;
+}
+.group.collapsed .group-title { margin-bottom: 4px; }
+.group.collapsed .group-toggle { color: var(--muted); }
+
+/* four languages side by side, so a missing translation sits next to its filled
+   siblings instead of three scrolls away */
+.lang-inputs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.lang-cell { display: flex; flex-direction: column; gap: 4px; }
+.lang-tag { font-size: .68rem; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
+.lang-cell.empty .lang-tag { color: var(--copper); }
+.lang-cell.empty input, .lang-cell.empty textarea { background: #fffdf5; border-color: #E8D9A8; }
+.lang-cell textarea { min-height: 58px; }
+@media (max-width: 900px) { .lang-inputs { grid-template-columns: repeat(2, 1fr); } }
+
+/* calculated, never typed */
+.num-wrap { display: flex; align-items: center; gap: 6px; }
+.num-wrap input { flex: 1; min-width: 0; }
+.num-unit { font-size: .85rem; color: var(--muted); }
+.calc-tag { color: var(--teal); font-size: .7rem; border: 1px solid var(--teal); border-radius: 4px; padding: 0 4px; }
+.computed-value {
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--ivory);
+  font-size: .92rem; font-weight: 700; color: var(--navy);
+}
+.computed-value.muted { font-weight: 400; color: var(--muted); }
+.computed-value.ok { color: #1F7A4D; border-color: #BFDCCB; background: #F3FAF6; }
+.computed-value.warn { color: var(--danger); border-color: #E7C2BE; background: #FDF3F2; }
+
+/* status filter on the product list */
+.status-filter { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; }
+.status-filter .chip {
+  padding: 5px 12px; border: 1px solid var(--line); border-radius: 20px; background: #fff;
+  font-size: .78rem; color: var(--muted); cursor: pointer; font-family: inherit;
+}
+.status-filter .chip:hover { border-color: var(--navy); color: var(--navy); }
+.status-filter .chip.active { background: var(--navy); border-color: var(--navy); color: #fff; font-weight: 700; }
