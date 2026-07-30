@@ -464,7 +464,7 @@ window.DB = {
       ],
       "price": 35.9,
       "rating": 4.7,
-      "reviews": 66,
+      "reviews": 65,
       "badge": null,
       "name": {
         "en": "VIEMAG Desktop Wireless Charger",
@@ -480,7 +480,9 @@ window.DB = {
       },
       "reports": [],
       "pains": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372809399-in83rofm7rc-VB004DSH-SV_0.jpg"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
@@ -494,7 +496,9 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
-      }
+      },
+      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372815814-cq54s74wqeb-VB001DSH1_0.jpg",
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372794376-7bv5no1uwry-VB001DSH1_BK.png"
     },
     {
       "sku": "VA002DSK",
