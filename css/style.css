@@ -464,11 +464,16 @@ a.evidence-title:hover{text-decoration:underline}
 .pdp-pains .filter-label{margin-bottom:6px}
 
 /* ---------- spec sheet download ---------- */
-.spec-download{margin:var(--s3) 0 0}
+/* Sits after .spec-block's <table>, so it needs the SAME 18px inset and
+   top-border-as-row-divider the table's own <td>s use (.spec-block td above) —
+   otherwise it reads as a stray line pressed against the box's edge rather
+   than a genuine extra row in the spec box. .spec-block's own overflow:hidden
+   + border-radius already clips this correctly since it's the last child. */
+.spec-download{margin:0;padding:11px 18px;border-top:1px solid var(--line)}
 .spec-download a{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.88rem;
   color:var(--navy);text-decoration:none}
 .spec-download a:hover{text-decoration:underline}
-.spec-download svg{width:15px;height:15px}
+.spec-download svg{width:15px;height:15px;flex:none}
 
 /* ---------- FAQ groups ---------- */
 .faq-group{margin-bottom:var(--s6)}
