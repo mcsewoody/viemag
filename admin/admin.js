@@ -1014,7 +1014,12 @@
     html += '<div class="image-field-preview">' + urls.map(function (u) {
       return '<div class="thumb-wrap"><img src="' + esc(mediaUrl(u)) + '"><button type="button" class="thumb-remove" data-remove-url="' + esc(u) + '">&times;</button></div>';
     }).join('') + '</div>';
-    html += '<input type="file" accept="image/*,.pdf" ' + (multi ? 'multiple' : '') + '>';
+    /* Must stay in step with viemag-media's allowed_mime_types
+       (supabase/migrations/20260730180000). `image/*` used to be offered here,
+       which included svg, gif, bmp and tiff — all of them rejected by the bucket
+       now. A dialog that lets someone pick a file the server will refuse is worse
+       than no limit, because the failure lands after they have done the work. */
+    html += '<input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" ' + (multi ? 'multiple' : '') + '>';
     html += '<span class="upload-status" style="font-size:.8rem;color:var(--muted)"></span>';
     html += '</div>';
     return html;
