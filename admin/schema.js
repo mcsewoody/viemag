@@ -280,9 +280,14 @@ window.VIEMAG_SCHEMA = {
     ],
   },
 
-  /* Not wired to the site: reserved for the planned 產品庫 (product library for
-     planning-stage SKUs). Note that /admin does not even WRITE this table today —
-     image upload goes straight to Storage and puts the URL on the product. */
+  /* Not wired to the site, and as of 2026-07-30 not reserved for anything either:
+     the 產品庫 it was held for was cancelled in favour of marking pipeline items
+     with products.status = 'Development'. Woody chose to keep the table rather
+     than drop it, so it stays declared noteNotWired — an editor who opens it must
+     be told plainly that nothing consumes it, because "kept for later" and "wired
+     up" look identical from inside a form. Note /admin does not even WRITE this
+     table today: image upload goes straight to Storage and puts the URL on the
+     product. */
   assets: {
     note: 'noteNotWired',
     title: 'asset_name',

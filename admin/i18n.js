@@ -48,7 +48,7 @@ window.VIEMAG_ADMIN_I18N = {
     accounts: '帳號管理',
     newPassword: '新密碼',
     noteInbox: '這是收件匣：前台表單送進來的資料存在這裡，其餘欄位是你的處理紀錄。這張表的內容不會出現在網站上。',
-    noteNotWired: '⚠️ 這張表目前還沒有接到網站——填了不會有任何前台效果。保留給規劃中的「產品庫」（企劃階段產品）使用。',
+    noteNotWired: '⚠️ 這張表目前沒有接到網站——填了不會有任何前台效果。原本保留給「產品庫」，該計畫已於 2026-07-30 取消（改用產品的 Development 狀態），所以它現在沒有預定用途。Woody 決定保留這張表，等想清楚要拿它做什麼之前，先不要往裡面填東西。',
     /* ---- 產品三頁籤（2026-07-30）----
        頁籤本身就是權限與可見性的說明，所以 products 不再逐欄顯示紅色「內部欄位」標籤。 */
     noteOwnerOnly: '這張表只有擁有者讀得到、寫得到（由資料庫的權限規則強制，不是介面上藏起來而已），而且永不發佈到網站。',
@@ -147,7 +147,7 @@ window.VIEMAG_ADMIN_I18N = {
     accounts: '账号管理',
     newPassword: '新密码',
     noteInbox: '这是收件匣：前台表单送进来的数据存在这里，其余字段是你的处理记录。这张表的内容不会出现在网站上。',
-    noteNotWired: '⚠️ 这张表目前还没有接到网站——填了不会有任何前台效果。保留给规划中的「产品库」（企划阶段产品）使用。',
+    noteNotWired: '⚠️ 这张表目前没有接到网站——填了不会有任何前台效果。原本保留给「产品库」，该计划已于 2026-07-30 取消（改用产品的 Development 状态），所以它现在没有预定用途。Woody 决定保留这张表，等想清楚要拿它做什么之前，先不要往里面填东西。',
     /* ---- 产品三页签（2026-07-30）---- */
     noteOwnerOnly: '这张表只有拥有者读得到、写得到（由数据库的权限规则强制，不是界面上藏起来而已），而且永不发布到网站。',
     productTabs: { front: '前台', sales: '业务', dev: '开案' },
@@ -245,7 +245,7 @@ window.VIEMAG_ADMIN_I18N = {
     accounts: 'Accounts',
     newPassword: 'New password',
     noteInbox: 'This is an inbox: the public form on the site inserts the submission, and the remaining fields are your handling record. Nothing in this table is ever published.',
-    noteNotWired: '⚠️ This table is not connected to the site yet — filling it in has no front-end effect. Reserved for the planned product library (planning-stage SKUs).',
+    noteNotWired: '⚠️ This table is not connected to the site — filling it in has no front-end effect. It was reserved for a product library; that plan was cancelled on 2026-07-30 in favour of the Development product status, so the table currently has no intended purpose. Woody chose to keep it, but do not put anything in it until there is a decision about what it is for.',
     /* ---- product form tabs (2026-07-30) ----
        The tab itself states the visibility rule, which is why products no longer
        shows a per-field "internal" tag: every field in two of the three tabs is
@@ -346,7 +346,7 @@ window.VIEMAG_ADMIN_I18N = {
     accounts: 'Tài khoản',
     newPassword: 'Mật khẩu mới',
     noteInbox: 'Đây là hộp thư đến: biểu mẫu trên trang web ghi dữ liệu vào đây, các trường còn lại là hồ sơ xử lý của bạn. Không có gì trong bảng này được công bố.',
-    noteNotWired: '⚠️ Bảng này chưa kết nối với trang web — điền vào không có tác dụng gì. Dành cho thư viện sản phẩm đang lên kế hoạch.',
+    noteNotWired: '⚠️ Bảng này không kết nối với trang web — điền vào không có tác dụng gì. Nó từng được dành cho một thư viện sản phẩm; kế hoạch đó đã bị hủy ngày 30/07/2026, thay bằng trạng thái sản phẩm Development, nên hiện bảng này không có mục đích nào. Woody quyết định giữ lại, nhưng đừng điền gì vào cho tới khi có quyết định về mục đích của nó.',
     /* ---- ba thẻ của biểu mẫu sản phẩm (2026-07-30) ---- */
     noteOwnerOnly: 'Chỉ chủ sở hữu đọc và ghi được bảng này — do chính sách của cơ sở dữ liệu bắt buộc, không phải chỉ ẩn trên giao diện — và bảng này không bao giờ được công bố lên trang web.',
     productTabs: { front: 'Trang web', sales: 'Kinh doanh', dev: 'Phát triển' },

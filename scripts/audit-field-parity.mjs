@@ -88,7 +88,7 @@ for (const table of Object.keys(SCHEMA)) {
     continue;
   }
   if (def.note === 'noteNotWired') {
-    console.log(`   ~ ${table}: declared not wired (${def.fields.length} fields) — expected while the product library is undesigned`);
+    console.log(`   ~ ${table}: declared not wired (${def.fields.length} fields) — kept deliberately, with no consumer planned since the product library was dropped on 2026-07-30`);
     continue;
   }
   if (def.note === 'noteInbox') { console.log(`   · ${table}: inbox, nothing published — skipped`); continue; }
