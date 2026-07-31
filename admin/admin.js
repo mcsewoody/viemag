@@ -934,7 +934,7 @@
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
-    var wideTypes = ['textarea', 'multiselect', 'relation_many', 'image', 'images'];
+    var wideTypes = ['textarea', 'multiselect', 'relation_many', 'image', 'images', 'files_private'];
     var html = '<div class="field' + (wideTypes.indexOf(f.type) !== -1 ? ' wide' : '') + '" data-field="' + f.name + '">';
     html += '<label>' + esc(f.name);
     /* products states the internal/visibility rule once per TAB instead of once
@@ -1001,6 +1001,8 @@
         return renderImageField(f.name, value ? [value] : [], false);
       case 'images':
         return renderImageField(f.name, value || [], true);
+      case 'files_private':
+        return renderPrivateFileField(f.name, value || []);
       default:
         return '<input type="text" data-name="' + f.name + '" value="' + esc(value) + '">';
     }
@@ -1088,6 +1090,9 @@
     Array.prototype.forEach.call(document.querySelectorAll('.image-field'), function (wrap) {
       wireImageField(wrap, ctx.tableName);
     });
+    Array.prototype.forEach.call(document.querySelectorAll('.file-field'), function (wrap) {
+      wirePrivateFileField(wrap);
+    });
 
     document.getElementById('saveBtn').addEventListener('click', function () {
       saveForm(ctx, id, joinFields);
@@ -1127,6 +1132,95 @@
     live.forEach(function (n) {
       var el = document.querySelector('[data-name="' + n + '"]');
       if (el) el.addEventListener('input', function () { refreshComputed(ctx); });
+    });
+  }
+
+  /* Private files. Three things differ from renderImageField, all of them on
+     purpose:
+       1. The hidden input holds storage PATHS, not URLs. A signed URL expires, so
+          storing one would rot; the path is the stable identifier.
+       2. Nothing is signed at render time. Signing every file on every form open
+          would fire N requests and leave live URLs sitting in the DOM; the link is
+          minted when someone actually clicks Open.
+       3. No <img> preview. These are drawings and PDFs, and an <img> would need a
+          signed URL per file for the very reason above. */
+  function renderPrivateFileField(name, paths) {
+    var html = '<div class="file-field" data-file-field="' + name + '">';
+    html += '<p class="private-note">' + esc(t('privateFileNote')) + '</p>';
+    html += '<input type="hidden" data-name="' + name + '" value="' + esc(JSON.stringify(paths || [])) + '">';
+    html += '<ul class="file-list"></ul>';
+    html += '<label class="file-pick">' + esc(t('uploadFiles'))
+         +  '<input type="file" multiple></label>';
+    html += '<span class="upload-status"></span>';
+    html += '</div>';
+    return html;
+  }
+
+  function wirePrivateFileField(wrap) {
+    var hidden = wrap.querySelector('input[type=hidden]');
+    var fileInput = wrap.querySelector('input[type=file]');
+    var listEl = wrap.querySelector('.file-list');
+    var statusEl = wrap.querySelector('.upload-status');
+
+    function paths() {
+      try { return JSON.parse(hidden.value || '[]'); } catch (e) { return []; }
+    }
+    function setPaths(next) {
+      hidden.value = JSON.stringify(next);
+      listEl.innerHTML = next.map(function (p) {
+        // Upload writes "<table>/<stamp>/<original name>", so the last segment is
+        // the filename a human recognises.
+        var label = p.split('/').pop();
+        return '<li><span class="file-name">' + esc(label) + '</span>'
+          + '<button type="button" class="btn file-open" data-path="' + esc(p) + '">' + esc(t('openFile')) + '</button>'
+          + '<button type="button" class="btn btn-danger file-del" data-path="' + esc(p) + '">' + esc(t('removeFile')) + '</button></li>';
+      }).join('');
+      Array.prototype.forEach.call(listEl.querySelectorAll('.file-open'), function (btn) {
+        btn.addEventListener('click', function () {
+          statusEl.textContent = '';
+          /* Signed, not public: createSignedUrl checks the caller's storage
+             permission at signing time, so an editor cannot mint one even if they
+             somehow reached this button. 120s is deliberately short — once signed,
+             the URL works for whoever holds it until it expires. */
+          sb.storage.from(CFG.privateBucket).createSignedUrl(btn.dataset.path, 120)
+            .then(function (res) {
+              if (res.error) { statusEl.textContent = t('signFailed') + res.error.message; return; }
+              window.open(res.data.signedUrl, '_blank', 'noopener');
+            });
+        });
+      });
+      Array.prototype.forEach.call(listEl.querySelectorAll('.file-del'), function (btn) {
+        btn.addEventListener('click', function () {
+          /* Drops the reference only; the stored object is left alone. Deleting
+             here would destroy the file even if the operator then cancelled the
+             form, and the bucket is private so an orphan is clutter, not exposure. */
+          setPaths(paths().filter(function (p) { return p !== btn.dataset.path; }));
+          state.formDirty = true;
+        });
+      });
+    }
+    setPaths(paths());
+
+    fileInput.addEventListener('change', function () {
+      var files = Array.prototype.slice.call(fileInput.files || []);
+      if (!files.length) return;
+      statusEl.textContent = t('uploading');
+      Promise.all(files.map(function (file) {
+        var stamp = Date.now() + '-' + Math.random().toString(36).slice(2);
+        var safe = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        var path = 'product_development/' + stamp + '/' + safe;
+        return sb.storage.from(CFG.privateBucket).upload(path, file).then(function (res) {
+          if (res.error) throw res.error;
+          return path; // the PATH, never a URL — see renderPrivateFileField
+        });
+      })).then(function (added) {
+        statusEl.textContent = '';
+        setPaths(paths().concat(added));
+        state.formDirty = true;
+        fileInput.value = '';
+      }).catch(function (err) {
+        statusEl.textContent = err.message || String(err);
+      });
     });
   }
 
@@ -1200,7 +1294,7 @@
         out[f.name] = Number(el.value);
         return;
       }
-      if (f.type === 'images') {
+      if (f.type === 'images' || f.type === 'files_private') {
         var arr = el.value ? JSON.parse(el.value) : [];
         if (omitEmpty && !arr.length) return;
         out[f.name] = arr;

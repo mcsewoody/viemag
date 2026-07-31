@@ -64,11 +64,15 @@ window.VIEMAG_SCHEMA = {
         { key: 'channel',   fields: ['distributor'] },
         { key: 'record',    fields: ['owner', 'last_reviewed'] },
       ] },
+      /* Who and what first, money second (Woody, 2026-07-30). Opening a project
+         record on a wall of eight cost boxes says nothing about which product it
+         is; the supplier and the drawings do. */
       { key: 'dev', table: 'product_development', ownerOnly: true, groups: [
-        { key: 'costStack', fields: ['purchase_cost_usd', 'packaging_cost_usd', 'inspection_cost_usd', 'freight_cost_usd',
-                                     'licensing_fee_usd', 'patent_fee_usd', 'tooling_amortization_usd', 'other_cost_usd',
-                                     'cost_note', 'sales_cost_usd'] },
-        { key: 'project',   fields: ['supplier', 'design_link', 'inventory_first_batch', 'certification_notes'] },
+        { key: 'supplierInfo', fields: ['supplier', 'reference_files'] },
+        { key: 'productInfo',  fields: ['design_files', 'inventory_first_batch', 'certification_notes'] },
+        { key: 'costStack',    fields: ['purchase_cost_usd', 'packaging_cost_usd', 'inspection_cost_usd', 'freight_cost_usd',
+                                        'licensing_fee_usd', 'patent_fee_usd', 'tooling_amortization_usd', 'other_cost_usd',
+                                        'cost_note', 'sales_cost_usd'] },
       ] },
     ],
     fields: [
@@ -151,7 +155,8 @@ window.VIEMAG_SCHEMA = {
       { name: 'cost_note', type: 'textarea', internal: true, desc: 'Where the numbers above came from. Everything here is USD while quotes usually are not, so record the source and the rate used — one line such as "July quote, converted at 7.2" is enough. Without it, nobody can tell six months from now whether a figure is still current. This one note covers all eight components.' },
       { name: 'sales_cost_usd', type: 'number', readOnly: true, internal: true, desc: 'The eight components above, added up by the database. This is the only number from this tab that the sales tab can see; the breakdown stays here.' },
       { name: 'supplier', type: 'text', internal: true, desc: 'Who supplies this product. The most confidentiality-sensitive field in the whole system — it is the one piece of data that could link the brand back to a manufacturing origin, so it lives behind the owner-only wall and is never exported.' },
-      { name: 'design_link', type: 'text', internal: true, desc: 'A LINK to the drawings, not an upload. Files uploaded through the normal image widget land in a public bucket and are fetchable by URL without logging in, and a drawing’s title block routinely names the manufacturer. Keep the files on the company drive and share the link to named people only — never "anyone with the link".' },
+      { name: 'design_files', type: 'files_private', internal: true, desc: 'Drawings and design files, as many as needed. These upload to a PRIVATE bucket, not the one product photos use — that one is public, and a drawing’s title block routinely names the manufacturer. Only owners can open these, through links that expire.' },
+      { name: 'reference_files', type: 'files_private', internal: true, desc: 'Supplier-side documents: quotations, catalogues, certificates, anything worth keeping with the project. Same private storage and same owner-only access as the design files. A quotation letterhead is exactly the kind of document that must never sit at a public URL.' },
       { name: 'inventory_first_batch', type: 'number', internal: true, desc: 'First-batch quantity planned at project kick-off. Note this is a planning figure, not current sellable stock — if someone needs current stock, that is a different field that does not exist yet, so do not reuse this one for it.' },
       { name: 'certification_notes', type: 'textarea', internal: true, desc: 'Progress notes on certification. Kept behind the wall because in-progress notes ("submitted, expecting approval next quarter") are exactly what must not become a promise to a customer — the site already refuses to show a certification mark unless qi_status is Certified.' },
     ],
