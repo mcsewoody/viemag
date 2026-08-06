@@ -893,15 +893,15 @@ window.DB = {
       "badge": null,
       "name": {
         "en": "Slim Suction Cup Magsafe Mount",
-        "vi": "Slim Suction Cup Magsafe Mount",
-        "id": "Slim Suction Cup Magsafe Mount",
-        "zh": "Slim Suction Cup Magsafe Mount"
+        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng",
+        "id": "Dudukan Magsafe Berbentuk Cangkir Hisap yang Ramping",
+        "zh": "超薄吸盤式 MagSafe 支架"
       },
       "claim": {
-        "en": "Most Slim Suction Cup",
-        "vi": "Most Slim Suction Cup",
-        "id": "Most Slim Suction Cup",
-        "zh": "Most Slim Suction Cup"
+        "en": "The Thinnest and Lightest MagSafe Suction Cup Stand",
+        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
+        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
+        "zh": "最輕薄的吸盤 Magsafe 支架"
       },
       "reports": [],
       "pains": [],
