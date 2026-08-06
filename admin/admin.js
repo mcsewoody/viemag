@@ -54,14 +54,39 @@
     });
   }
 
+  /* Calls translate-text with the CURRENT text of one language cell and gets
+     the other three back. No keepalive here (unlike callExportFunction) — the
+     operator is actively waiting on this result to fill the form, not
+     navigating away, so there is nothing to protect against a page unload. */
+  function callTranslateFunction(text, source) {
+    return sb.auth.getSession().then(function (sessionRes) {
+      var token = (sessionRes.data.session && sessionRes.data.session.access_token) || CFG.supabaseAnonKey;
+      return fetch(CFG.supabaseUrl + '/functions/v1/translate-text', {
+        method: 'POST',
+        headers: { apikey: CFG.supabaseAnonKey, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, source: source }),
+      }).then(function (res) {
+        return res.json().then(function (data) { return { httpOk: res.ok, data: data }; });
+      });
+    });
+  }
+
   function triggerExportIfNeeded(tableName, statusEl) {
     if (EXPORT_TRIGGER_TABLES.indexOf(tableName) === -1) return;
     callExportFunction().then(function (result) {
       if (!statusEl) return;
-      if (!result.httpOk) { statusEl.textContent += ' (' + t('exportFailed') + (result.data.error || 'HTTP error') + ')'; return; }
-      if (result.data.committed) statusEl.textContent += ' · ' + t('exported');
+      /* SET, never append. statusEl is the topbar's persistent syncStatus, which
+         is never cleared between saves — the previous code used += so a second
+         save in the same session left the FIRST save's "已同步到網站" message
+         sitting there and appended a second copy after it (" · 已同步到網站... ·
+         已同步到網站..."), compounding with every subsequent save. This is
+         unrelated to i18n: the string already goes through t() and is correct in
+         all four admin languages — the bug was purely the += accumulating raw
+         text objects, regardless of which language it was in. */
+      if (!result.httpOk) { statusEl.textContent = t('exportFailed') + (result.data.error || 'HTTP error'); return; }
+      statusEl.textContent = result.data.committed ? t('exported') : '';
     }).catch(function (err) {
-      if (statusEl) statusEl.textContent += ' (' + t('exportFailed') + err.message + ')';
+      if (statusEl) statusEl.textContent = t('exportFailed') + err.message;
     });
   }
 
@@ -905,7 +930,14 @@
   /* One row of side-by-side language inputs sharing the first field's
      description. Stacked vertically you had to scroll to notice name_id was
      empty; side by side the gap sits next to its filled siblings, which for a
-     five-language site is a working difference, not a cosmetic one. */
+     five-language site is a working difference, not a cosmetic one.
+
+     Only name_* and claim_* get the translate button (2026-08-05, Woody's
+     request) — schema.js marks which prefixes qualify via TRANSLATABLE_PREFIXES
+     below, rather than turning it on for every four-language row site-wide.
+     seo_title/seo_description are deliberately excluded: those already have an
+     automatic fallback (the site composes them from name/claim when blank), so
+     a translate button there would be solving a problem that does not exist. */
   function langRowHtml(ctx, srcName, srcRow, names) {
     var srcDef = SCHEMA[srcName];
     var fields = names.map(function (n) {
@@ -913,6 +945,7 @@
     }).filter(Boolean);
     if (!fields.length) return '';
     var prefix = fields[0].name.replace(/_(en|vi|id|zh)$/, '');
+    var canTranslate = TRANSLATABLE_PREFIXES.indexOf(prefix) !== -1;
     var html = '<div class="field wide lang-row" data-field="' + esc(prefix) + '">';
     html += '<label>' + esc(prefix) + '_*</label>';
     var descHtml = fieldDescHtml(srcName, fields[0]);
@@ -922,15 +955,31 @@
       var code = (f.name.match(/_(en|vi|id|zh)$/) || ['', ''])[1].toUpperCase();
       var v = srcRow[f.name];
       html += '<div class="lang-cell' + (v ? '' : ' empty') + '">';
-      html += '<span class="lang-tag">' + esc(code) + '</span>';
+      html += '<div class="lang-cell-head"><span class="lang-tag">' + esc(code) + '</span>';
+      if (canTranslate) {
+        /* data-target, NOT data-name: collectFormValues() and every other form
+           reader select real fields by [data-name="..."]. Giving this button
+           the same attribute made it a second match for that selector — and
+           because it renders BEFORE the <input> in the DOM, querySelector
+           picked the BUTTON (value always '') over the real field on every
+           read, including at Save. That would have silently blanked
+           name_en/claim_en (and vi/id/zh) on every save. Caught by an actual
+           browser round-trip, not the API-only test — worth remembering: a
+           feature that only touches the DOM needs a DOM test. */
+        html += '<button type="button" class="lang-translate-btn" data-target="' + esc(f.name) + '" data-lang="' + esc(code.toLowerCase()) + '" title="' + esc(t('translateHint')) + '">' + esc(t('translateBtn')) + '</button>';
+      }
+      html += '</div>';
       html += f.type === 'textarea'
         ? '<textarea data-name="' + f.name + '" rows="3">' + esc(v) + '</textarea>'
         : '<input type="text" data-name="' + f.name + '" value="' + esc(v) + '">';
       html += '</div>';
     });
-    html += '</div></div>';
+    html += '</div>';
+    if (canTranslate) html += '<span class="translate-status" data-translate-status="' + esc(prefix) + '"></span>';
+    html += '</div>';
     return html;
   }
+  var TRANSLATABLE_PREFIXES = ['name', 'claim'];
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
@@ -1131,12 +1180,61 @@
       card.addEventListener('change', function () { state.formDirty = true; });
     }
 
+    Array.prototype.forEach.call(document.querySelectorAll('.lang-translate-btn'), function (btn) {
+      btn.addEventListener('click', function () { runTranslateButton(btn); });
+    });
+
     if (!ctx.subTab) return;
     refreshComputed(ctx);
     var live = ['price_usd', 'minimum_gross_margin', 'target_gross_margin'].concat(costFieldNames());
     live.forEach(function (n) {
       var el = document.querySelector('[data-name="' + n + '"]');
       if (el) el.addEventListener('input', function () { refreshComputed(ctx); });
+    });
+  }
+
+  /* Take whichever language cell's button was clicked, send its current text to
+     translate-text, and fill the other three fields in the same lang-row. All
+     four buttons in the row are disabled for the round trip so a second click
+     (on this cell or a sibling) cannot fire a second call while the first is
+     still in flight and land results in the wrong order. */
+  function runTranslateButton(btn) {
+    var name = btn.dataset.target;
+    var source = btn.dataset.lang;
+    var input = document.querySelector('[data-name="' + name + '"]');
+    var row = btn.closest('.lang-row');
+    var prefix = row ? row.dataset.field : name.replace(/_(en|vi|id|zh)$/, '');
+    var statusEl = row ? row.querySelector('[data-translate-status="' + prefix + '"]') : null;
+    var rowBtns = row ? row.querySelectorAll('.lang-translate-btn') : [btn];
+
+    var text = input ? input.value.trim() : '';
+    if (!text) {
+      if (statusEl) { statusEl.className = 'translate-status error'; statusEl.textContent = t('translateEmpty'); }
+      return;
+    }
+
+    Array.prototype.forEach.call(rowBtns, function (b) { b.disabled = true; });
+    if (statusEl) { statusEl.className = 'translate-status'; statusEl.textContent = t('translating'); }
+
+    callTranslateFunction(text, source).then(function (result) {
+      Array.prototype.forEach.call(rowBtns, function (b) { b.disabled = false; });
+      if (!result.httpOk) {
+        if (statusEl) { statusEl.className = 'translate-status error'; statusEl.textContent = t('translateFailed') + (result.data.error || 'HTTP error'); }
+        return;
+      }
+      var translations = result.data.translations || {};
+      Object.keys(translations).forEach(function (lang) {
+        var targetEl = document.querySelector('[data-name="' + prefix + '_' + lang + '"]');
+        if (!targetEl) return;
+        targetEl.value = translations[lang];
+        var cell = targetEl.closest('.lang-cell');
+        if (cell) cell.classList.toggle('empty', !translations[lang]);
+      });
+      state.formDirty = true;
+      if (statusEl) { statusEl.className = 'translate-status'; statusEl.textContent = ''; }
+    }).catch(function (err) {
+      Array.prototype.forEach.call(rowBtns, function (b) { b.disabled = false; });
+      if (statusEl) { statusEl.className = 'translate-status error'; statusEl.textContent = t('translateFailed') + err.message; }
     });
   }
 

@@ -205,6 +205,17 @@ table.grid td:last-child { white-space: nowrap; }
 .lang-cell textarea { min-height: 58px; }
 @media (max-width: 900px) { .lang-inputs { grid-template-columns: repeat(2, 1fr); } }
 
+/* translate button (2026-08-05): name/claim only, see TRANSLATABLE_PREFIXES */
+.lang-cell-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.lang-translate-btn {
+  padding: 1px 7px; border: 1px solid var(--line); border-radius: 5px; background: var(--panel);
+  color: var(--muted); font-size: .68rem; cursor: pointer; font-family: inherit; line-height: 1.6;
+}
+.lang-translate-btn:hover:not(:disabled) { border-color: var(--copper); color: #E0AE3E; }
+.lang-translate-btn:disabled { opacity: .5; cursor: default; }
+.translate-status { display: block; margin-top: 6px; font-size: .78rem; color: var(--muted); min-height: 1.2em; }
+.translate-status.error { color: var(--danger); }
+
 /* calculated, never typed */
 .num-wrap { display: flex; align-items: center; gap: 6px; }
 .num-wrap input { flex: 1; min-width: 0; }
