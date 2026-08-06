@@ -875,6 +875,53 @@ window.DB = {
       }
     },
     {
+      "sku": "VB005DSH",
+      "slug": "VB005DSH",
+      "status": "published",
+      "category": "car-mounts",
+      "scenarios": [],
+      "personas": [
+        "commuter"
+      ],
+      "art": "",
+      "qi": "none",
+      "watt": null,
+      "mount": [],
+      "price": 19.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Slim Suction Cup Magsafe Mount",
+        "vi": "Slim Suction Cup Magsafe Mount",
+        "id": "Slim Suction Cup Magsafe Mount",
+        "zh": "Slim Suction Cup Magsafe Mount"
+      },
+      "claim": {
+        "en": "Most Slim Suction Cup",
+        "vi": "Most Slim Suction Cup",
+        "id": "Most Slim Suction Cup",
+        "zh": "Most Slim Suction Cup"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
       "sku": "VB005TAP",
       "slug": "tape-magnetic-car-mount",
       "status": "published",
