@@ -9,6 +9,7 @@
   var I18N = window.VIEMAG_ADMIN_I18N;
   var LANGS = window.VIEMAG_ADMIN_LANGS;
   var FIELD_I18N = window.VIEMAG_FIELD_I18N || {};
+  var OPTION_I18N = window.VIEMAG_OPTION_I18N || {};
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -131,6 +132,19 @@
       if (dict && dict[f.name]) return dict[f.name];
     }
     return f.desc || '';
+  }
+
+  /* Same overlay-with-fallback discipline as fieldDesc(), one level deeper: a
+     SELECT/MULTISELECT's option VALUES (the literal strings stored in
+     Postgres, e.g. 'Draft', 'Vent', 'bestseller') had no translation layer at
+     all until 2026-08-06 — renderFieldInput showed esc(o) directly, so every
+     dropdown and checkbox list was English regardless of admin UI language
+     even though labels and descriptions were fully translated. option-i18n.js
+     supplies the overlay; falling back to the raw value here is exactly the
+     English case, since the raw stored value already IS the English label. */
+  function optionLabel(table, fieldName, value) {
+    var dict = OPTION_I18N[state.lang] && OPTION_I18N[state.lang][table] && OPTION_I18N[state.lang][table][fieldName];
+    return (dict && dict[value]) || value;
   }
 
   /* Escape FIRST, then apply a fixed, safe set of markers — same discipline as
@@ -653,7 +667,9 @@
         html += '<div class="status-filter">';
         html += '<button class="chip active" data-status="">' + esc(t('statusAll')) + ' ' + rows.length + '</button>';
         statusField.options.forEach(function (o) {
-          html += '<button class="chip" data-status="' + esc(o) + '">' + esc(o) + ' ' + (counts[o] || 0) + '</button>';
+          // data-status stays the raw value (that's what applyFilters() compares
+          // against); only the visible label is translated.
+          html += '<button class="chip" data-status="' + esc(o) + '">' + esc(optionLabel(tableName, statusField.name, o)) + ' ' + (counts[o] || 0) + '</button>';
         });
         html += '</div>';
       }
@@ -685,7 +701,7 @@
           }
           html += '<td>' + esc(r[def.title]) + '</td>';
           listCols.forEach(function (c) { html += '<td>' + esc(r[c]) + '</td>'; });
-          if (statusField) html += '<td><span class="badge-status">' + esc(r.status || '—') + '</span></td>';
+          if (statusField) html += '<td><span class="badge-status">' + esc(r.status ? optionLabel(tableName, statusField.name, r.status) : '—') + '</span></td>';
           html += '<td class="row-actions">';
           html += '<button class="btn edit-btn">' + esc(t('edit')) + '</button>';
           html += '<button class="btn btn-danger del-btn">' + esc(t('delete')) + '</button>';
@@ -995,12 +1011,12 @@
     html += '</label>';
     var descHtml = fieldDescHtml(srcName, f);
     if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
-    html += renderFieldInput(f, value, ctx.relOptions, ctx.joinValues);
+    html += renderFieldInput(f, value, ctx.relOptions, ctx.joinValues, srcName);
     html += '</div>';
     return html;
   }
 
-  function renderFieldInput(f, value, relOptions, joinValues) {
+  function renderFieldInput(f, value, relOptions, joinValues, tableName) {
     /* Read-only because the DATABASE computes it (a generated column). It gets
        data-readonly-name, never data-name, so collectFormValues cannot pick it up
        and try to write a value Postgres would reject. */
@@ -1022,14 +1038,16 @@
       case 'boolean':
         return '<div class="field checkbox"><input type="checkbox" data-name="' + f.name + '" ' + (value ? 'checked' : '') + '></div>';
       case 'select':
+        /* value= is always the raw stored string (required for save/compare);
+           only the VISIBLE label is translated, via optionLabel(). */
         return '<select data-name="' + f.name + '"><option value="">—</option>' + f.options.map(function (o) {
-          return '<option value="' + esc(o) + '"' + (value === o ? ' selected' : '') + '>' + esc(o) + '</option>';
+          return '<option value="' + esc(o) + '"' + (value === o ? ' selected' : '') + '>' + esc(optionLabel(tableName, f.name, o)) + '</option>';
         }).join('') + '</select>';
       case 'multiselect': {
         var arr = value || [];
         return '<div class="multiselect-options">' + f.options.map(function (o) {
           var checked = arr.indexOf(o) !== -1 ? ' checked' : '';
-          return '<label><input type="checkbox" data-name="' + f.name + '" data-multi-value="' + esc(o) + '"' + checked + '>' + esc(o) + '</label>';
+          return '<label><input type="checkbox" data-name="' + f.name + '" data-multi-value="' + esc(o) + '"' + checked + '>' + esc(optionLabel(tableName, f.name, o)) + '</label>';
         }).join('') + '</div>';
       }
       case 'relation': {

@@ -11,12 +11,24 @@
  *     node scripts/audit-field-parity.mjs
  * Exit code 0 = clean, 1 = something needs a decision.
  *
- * It checks five directions, and C, D and E are the ones easy to forget:
+ * It checks seven directions, and C, D, E and G are the ones easy to forget:
  *   A. /admin field  -> is it exported, internal, or on an inbox/not-wired table?
  *   B. exported col  -> is there anywhere in /admin to edit it?
  *   C. data.js key   -> does any front-end file actually read it?
  *   D. internal field-> is it absent from every export whitelist?
  *   E. owner-only tbl-> is it absent from the export function entirely?
+ *   F. every view    -> does it revoke default grants from anon AND authenticated?
+ *   G. every option  -> does every select/multiselect value have a label in
+ *                       option-i18n.js for zh-Hant, zh-Hans and vi?
+ *
+ * Direction G is how a whole missing translation LAYER was caught (2026-08-06):
+ * renderFieldInput() showed every select/multiselect option as its raw stored
+ * value with no translation at all, so every dropdown and checkbox list was
+ * English regardless of admin UI language — even though field labels and
+ * descriptions were fully translated. Field-level i18n coverage (this script's
+ * original job) said nothing about it, because the gap was one level deeper:
+ * inside the options of already-covered fields. A field can pass every other
+ * direction here and still fail G.
  *
  * Direction C is how `tier` was caught: it was published to js/data.js, read by
  * nothing, and its values ('B - Test', 'C - Display') exposed an internal
@@ -47,8 +59,10 @@ import fs from 'fs';
 const w = {};
 global.window = w;
 eval(fs.readFileSync('admin/schema.js', 'utf8'));
+eval(fs.readFileSync('admin/option-i18n.js', 'utf8'));
 const SCHEMA = w.VIEMAG_SCHEMA;
 const ORDER = w.VIEMAG_TABLE_ORDER;
+const OPTION_I18N = w.VIEMAG_OPTION_I18N;
 
 const exporter = fs.readFileSync('supabase/functions/export-site-data/index.ts', 'utf8');
 const WHITELIST = {};
@@ -218,6 +232,32 @@ for (const { view } of views) {
   if (missing.length) fail(`view public.${view}: never revokes default grants from ${missing.join(' and ')} — a view bypasses the base table's RLS, so a leftover write grant is a way around it`);
   else console.log(`   ✓ public.${view} revokes anon and authenticated defaults`);
 }
+
+/* ---------- G. every select/multiselect option is translated ---------- */
+/* Codes, not labels — translating them would make them harder to match
+   against source documents, so option-i18n.js deliberately omits them and this
+   direction must not flag their absence. Keep this list in sync with the
+   "DELIBERATELY NOT translated" comment at the top of option-i18n.js. */
+const OPTION_EXCLUDED = {
+  products: new Set(['art_key']),
+  categories: new Set(['internal_cat_mapping']),
+  scenarios: new Set(['scenario_code']),
+};
+const OPTION_LANGS = ['zh-Hant', 'zh-Hans', 'vi'];
+console.log('\nG. select/multiselect options are translated\n');
+for (const table of Object.keys(SCHEMA)) {
+  const fields = SCHEMA[table].fields.filter((f) => (f.type === 'select' || f.type === 'multiselect') && f.options);
+  for (const f of fields) {
+    if ((OPTION_EXCLUDED[table] || new Set()).has(f.name)) continue;
+    for (const lang of OPTION_LANGS) {
+      const dict = (OPTION_I18N[lang] && OPTION_I18N[lang][table] && OPTION_I18N[lang][table][f.name]) || {};
+      // A bare wattage number ('15W') is language-neutral and needs no entry.
+      const missing = f.options.filter((o) => !(o in dict) && !/^\d+W$/.test(o));
+      if (missing.length) fail(`${table}.${f.name} [${lang}]: missing option label(s) → ${missing.join(', ')}`);
+    }
+  }
+}
+if (!problems) console.log('   ✓ every translatable option covered in zh-Hant, zh-Hans and vi');
 
 console.log(problems ? `\n${problems} item(s) need a decision.` : '\nClean: every field either reaches the site or says it does not.');
 process.exit(problems ? 1 : 0);
