@@ -5,7 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>VIEMAG Admin</title>
-<link rel="stylesheet" href="admin.css">
+<!-- Cache-busting: GitHub Pages/Cloudflare cache every file under /admin for
+     4 hours (Cache-Control: max-age=14400), so without a version query string
+     staff can keep running yesterday's admin.js for up to 4h after a deploy —
+     this is what made the version number in the brand label invisible right
+     after it shipped. Bump every "?v=" below to match ADMIN_VERSION (in
+     admin.js) whenever admin.js/schema.js/i18n.js/field-i18n.js/option-i18n.js/
+     admin.css change — a different query string is a different cached URL, so
+     this forces a fresh fetch instead of waiting out the 4-hour cache. -->
+<link rel="stylesheet" href="admin.css?v=1.01">
 </head>
 <body>
 
@@ -44,11 +52,11 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.js" integrity="sha384-faMlYZUtkJj+Sh6Bmu/L0GzPcraRWN6CW+9RH3GUrK/Z0WS9tgaNNt0tHiLxsbdb" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="config.js"></script>
-<script src="i18n.js"></script>
-<script src="schema.js"></script>
-<script src="field-i18n.js"></script>
-<script src="option-i18n.js"></script>
-<script src="admin.js"></script>
+<script src="config.js?v=1.01"></script>
+<script src="i18n.js?v=1.01"></script>
+<script src="schema.js?v=1.01"></script>
+<script src="field-i18n.js?v=1.01"></script>
+<script src="option-i18n.js?v=1.01"></script>
+<script src="admin.js?v=1.01"></script>
 </body>
 </html>
