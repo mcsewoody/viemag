@@ -566,8 +566,8 @@ window.DB = {
         "S5"
       ],
       "personas": [
-        "traveler",
-        "homeoffice"
+        "homeoffice",
+        "traveler"
       ],
       "art": "fold",
       "qi": "testing",
@@ -607,7 +607,8 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
-      }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786002546583-401gt153n14-___03.jpg"
     },
     {
       "sku": "VB001DSH1_BK",
