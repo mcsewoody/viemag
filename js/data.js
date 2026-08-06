@@ -553,7 +553,8 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
-      }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786002161293-gade8yryxjc-05-1.png"
     },
     {
       "sku": "VA003FLD",
