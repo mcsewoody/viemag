@@ -11,6 +11,11 @@
   var FIELD_I18N = window.VIEMAG_FIELD_I18N || {};
   var OPTION_I18N = window.VIEMAG_OPTION_I18N || {};
 
+  /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
+     後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
+     is the only place to edit; showApp() reads it on every render/lang switch. */
+  var ADMIN_VERSION = '1.01';
+
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
   /* The account panel is not a Postgres table, so it rides in view.table as a
@@ -197,7 +202,7 @@
   function showApp() {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('app').style.display = 'grid';
-    document.getElementById('brandLabel').textContent = t('appTitle');
+    document.getElementById('brandLabel').textContent = t('appTitle') + ' v' + ADMIN_VERSION;
     document.getElementById('userEmail').textContent = state.session.user.email;
     document.getElementById('signOutBtn').textContent = t('signOut');
     document.getElementById('syncNowBtn').textContent = t('syncNow');
