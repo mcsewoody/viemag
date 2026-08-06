@@ -919,7 +919,8 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
-      }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785987079597-xohr4um18sb-VB005DSH_0.jpg"
     },
     {
       "sku": "VB005TAP",
