@@ -1284,6 +1284,59 @@ window.DB = {
       }
     },
     {
+      "sku": "VD001MDS",
+      "slug": "desktop-magnetic-dual stand",
+      "status": "future",
+      "category": "stands-display",
+      "scenarios": [
+        "S3",
+        "S4"
+      ],
+      "personas": [
+        "homeoffice",
+        "creator"
+      ],
+      "art": "stand",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": "soon",
+      "name": {
+        "en": "VIEMAG Magnetic Dual Device Stand",
+        "vi": "Giá đỡ từ tính hai thiết bị VIEMAG",
+        "id": "VIEMAG Dudukan Perangkat Ganda Magnetik",
+        "zh": "VIEMAG 磁吸式雙裝置支架"
+      },
+      "claim": {
+        "en": "One stand, two devices, maximum efficiency.",
+        "vi": "Một giá đỡ, hai thiết bị, hiệu quả tối đa.",
+        "id": "Satu dudukan, dua perangkat, efisiensi maksimal.",
+        "zh": "一個底座，兩台裝置，效率最大化。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 7,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
       "sku": "VD001STD",
       "slug": "desktop-magnetic-stand",
       "status": "future",
