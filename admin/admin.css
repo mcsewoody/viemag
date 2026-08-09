@@ -104,6 +104,30 @@ table.grid th.thumb-col, table.grid td.thumb-col { width: 56px; padding-right: 0
 table.grid .row-actions button { margin-left: 6px; }
 .badge-status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .75rem; font-weight: 700; background: var(--panel); color: var(--heading); white-space: nowrap; }
 .empty-state { padding: 40px; text-align: center; color: var(--muted); background: var(--card); border-radius: var(--radius); }
+/* Money columns: right-aligned and tabular so the decimal points line up and a
+   column of costs can be scanned vertically. */
+table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- password confirmation dialog ---------- */
+.modal-backdrop { position: fixed; inset: 0; z-index: 100; display: flex;
+  align-items: center; justify-content: center; padding: 20px;
+  background: rgba(0,0,0,.6); }
+.modal { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px; width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+.modal h3 { margin: 0 0 6px; color: var(--heading); }
+.modal p { margin: 0 0 12px; color: var(--muted); font-size: .88rem; line-height: 1.5; }
+/* The row being deleted, stated back verbatim — the dialog has to name what it
+   is about to destroy, not just say "this record". */
+.modal-target { font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--heading) !important; font-size: .95rem !important; word-break: break-all; }
+.modal-warn { color: var(--copper) !important; }
+.modal label { display: block; margin-bottom: 6px; font-size: .82rem; color: var(--heading); }
+/* Matches the .field input rule; the dialog sits outside .field, so it cannot
+   inherit it and would otherwise render as a white box in a dark panel. */
+.modal input[type="password"] { width: 100%; padding: 10px 12px; border: 1px solid var(--line);
+  border-radius: 6px; font-size: .92rem; font-family: inherit; background: var(--panel); color: var(--text); }
+.modal-error { color: var(--danger) !important; margin-top: 10px !important; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
 
 /* ---------- edit form ---------- */
 .form-card { background: var(--card); border-radius: var(--radius); padding: 24px; max-width: 900px;

@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.01';
+  var ADMIN_VERSION = '1.02';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -636,14 +636,132 @@
       });
     });
   }
+  /* ---------------- delete confirmation ----------------
+     Deleting a row is unrecoverable — there is no trash and no undo — so it
+     asks for the account password, not just an OK.
+
+     What this actually buys: it stops an unattended, already-logged-in session
+     from being used to wipe records, and it makes the action deliberate. It is
+     NOT the permission boundary. The boundary is the RLS policy that only
+     grants DELETE to owners; this dialog runs in the browser and anyone who
+     can edit the page can skip it. Both layers exist because they stop
+     different things — the policy stops the wrong person, the password stops
+     the right person acting carelessly.
+
+     Verification is a signInWithPassword() against the session's own email:
+     Supabase has no "check this password" endpoint, and re-authenticating is
+     the standard substitute. It refreshes the tokens for this tab, which is
+     harmless here — onAuthStateChange only stores the new session and does not
+     re-render, so the open dialog survives it. */
+  function confirmWithPassword(opts) {
+    return new Promise(function (resolve) {
+      var wrap = document.createElement('div');
+      wrap.className = 'modal-backdrop';
+      var h = '';
+      h += '<div class="modal" role="dialog" aria-modal="true" aria-labelledby="pwTitle">';
+      h += '<h3 id="pwTitle">' + esc(t('confirmDeleteTitle')) + '</h3>';
+      h += '<p class="modal-target">' + esc(opts.what || '') + '</p>';
+      h += '<p>' + esc(t('confirmDelete')) + '</p>';
+      if (opts.warn) h += '<p class="modal-warn">' + esc(opts.warn) + '</p>';
+      h += '<label for="pwInput">' + esc(t('reenterPassword')) + '</label>';
+      // type=password, and autocomplete off: this is a re-auth check, not a login,
+      // and offering to save it here would be nonsense.
+      h += '<input type="password" id="pwInput" autocomplete="current-password">';
+      h += '<p class="modal-error" id="pwError" hidden></p>';
+      h += '<div class="modal-actions">';
+      h += '<button type="button" class="btn" id="pwCancel">' + esc(t('cancel')) + '</button>';
+      h += '<button type="button" class="btn btn-danger" id="pwOk">' + esc(t('confirmDeleteBtn')) + '</button>';
+      h += '</div></div>';
+      wrap.innerHTML = h;
+      document.body.appendChild(wrap);
+
+      var input = wrap.querySelector('#pwInput');
+      var okBtn = wrap.querySelector('#pwOk');
+      var errEl = wrap.querySelector('#pwError');
+      input.focus();
+
+      function close(result) { document.removeEventListener('keydown', onKey); wrap.remove(); resolve(result); }
+      function onKey(e) {
+        if (e.key === 'Escape') close(false);
+        if (e.key === 'Enter' && document.activeElement === input) submit();
+      }
+      function fail(msg) {
+        errEl.textContent = msg;
+        errEl.hidden = false;
+        okBtn.disabled = false;
+        input.value = '';
+        input.focus();
+      }
+      function submit() {
+        var pw = input.value;
+        if (!pw) { fail(t('passwordRequired')); return; }
+        okBtn.disabled = true;
+        errEl.hidden = true;
+        sb.auth.signInWithPassword({ email: state.session.user.email, password: pw })
+          .then(function (res) {
+            if (res.error) {
+              /* Only a credential rejection means "wrong password". Rate
+                 limiting and network failures also land here, and reporting
+                 those as a bad password sends the operator off to reset a
+                 password that was never the problem. */
+              var m = res.error.message || '';
+              fail(/invalid login credentials/i.test(m) ? t('passwordWrong') : m);
+              return;
+            }
+            close(true);
+          })
+          .catch(function (e) { fail((e && e.message) || t('passwordWrong')); });
+      }
+      okBtn.addEventListener('click', submit);
+      wrap.querySelector('#pwCancel').addEventListener('click', function () { close(false); });
+      // Click the backdrop (not the panel) to cancel.
+      wrap.addEventListener('click', function (e) { if (e.target === wrap) close(false); });
+      document.addEventListener('keydown', onKey);
+    });
+  }
+
   /* ---------------- list view ---------------- */
   function renderList(root) {
     var tableName = state.view.table;
     var def = SCHEMA[tableName];
     var orderCol = def.order || def.title;
-    sb.from(tableName).select('*').order(orderCol, { ascending: true }).then(function (res) {
+    /* Some list columns do not live on the table being listed. products shows
+       sales_cost_usd, which is a column of the product_sales_cost view. Fetch
+       each extra source once and index it by its key, rather than issuing one
+       request per row.
+       A failed extra must NOT take the list down with it: the rows themselves
+       are the point, and an extra column that renders blank is a far better
+       outcome than an empty screen. So these resolve to {} on error. */
+    var extras = def.listExtras || [];
+    var extraPromise = Promise.all(extras.map(function (x) {
+      return sb.from(x.table).select([x.key].concat(x.cols).join(',')).then(function (r) {
+        var byKey = {};
+        if (!r.error) (r.data || []).forEach(function (row) { byKey[row[x.key]] = row; });
+        return byKey;
+      });
+    }));
+    /* Ask the server for the role rather than reading state.myRole: on the very
+       first paint after login the cached value is still the 'editor' default,
+       and an owner would get a list with no delete buttons until something
+       happened to re-render it. renderForm() resolves the same race the same
+       way. */
+    Promise.all([
+      sb.from(tableName).select('*').order(orderCol, { ascending: true }),
+      extraPromise,
+      fetchMyRole(),
+    ]).then(function (both) {
+      var res = both[0];
+      var extraMaps = both[1];
+      var canDelete = both[2] === 'owner';
       if (res.error) { root.innerHTML = '<p class="save-status error">' + esc(res.error.message) + '</p>'; return; }
       var rows = res.data || [];
+      // Fold the extra sources onto each row so the column loop below stays uniform.
+      rows.forEach(function (r) {
+        extras.forEach(function (x, i) {
+          var hit = extraMaps[i][r.id];
+          x.cols.forEach(function (c) { r[c] = hit ? hit[c] : null; });
+        });
+      });
       var statusField = def.fields.find(function (f) { return f.name === 'status'; });
       var html = '';
       html += '<h2>' + esc(tTable(tableName)) + '</h2>';
@@ -682,6 +800,17 @@
         html += '<div class="empty-state">' + esc(t('noRecords')) + '</div>';
       } else {
         var listCols = def.listCols || [];
+        /* Which of those columns are money, so the cell can be right-aligned
+           and formatted to two decimals. A cost of null means "nothing entered
+           yet", which must read as "—" and never as 0.00 — a zero cost is a
+           claim about the product, an em dash is an admission about the data. */
+        var moneyCols = {};
+        extras.forEach(function (x) { if (x.money) x.cols.forEach(function (c) { moneyCols[c] = true; }); });
+        function cellText(c, v) {
+          if (!moneyCols[c]) return v;
+          if (v == null || v === '') return '—';
+          return Number(v).toFixed(2);
+        }
         html += '<table class="grid"><thead><tr>';
         if (def.thumb || def.thumbFallback) html += '<th class="thumb-col"></th>';
         html += '<th>' + esc(def.title) + '</th>';
@@ -705,15 +834,23 @@
             html += '</td>';
           }
           html += '<td>' + esc(r[def.title]) + '</td>';
-          listCols.forEach(function (c) { html += '<td>' + esc(r[c]) + '</td>'; });
+          listCols.forEach(function (c) { html += '<td' + (moneyCols[c] ? ' class="num-col"' : '') + '>' + esc(cellText(c, r[c])) + '</td>'; });
           if (statusField) html += '<td><span class="badge-status">' + esc(r.status ? optionLabel(tableName, statusField.name, r.status) : '—') + '</span></td>';
           html += '<td class="row-actions">';
           html += '<button class="btn edit-btn">' + esc(t('edit')) + '</button>';
-          html += '<button class="btn btn-danger del-btn">' + esc(t('delete')) + '</button>';
+          /* Delete is owner-only. Hiding the button is courtesy, not the
+             control: the real gate is the RLS policy added in
+             20260809*_owner_only_deletes.sql, which rejects an editor's DELETE
+             even if they reach past this UI. */
+          if (canDelete) html += '<button class="btn btn-danger del-btn">' + esc(t('delete')) + '</button>';
           html += '</td></tr>';
         });
         html += '</tbody></table>';
         html += '<p class="row-count">' + t('rowCount')(rows.length) + '</p>';
+        /* An editor sees no delete buttons. Say why — a control that silently
+           is not there reads as a bug, and the first guess is "the page is
+           broken", not "I am not allowed". */
+        if (!canDelete) html += '<p class="panel-note">' + esc(t('editorCannotDelete')) + '</p>';
       }
       root.innerHTML = html;
 
@@ -763,15 +900,19 @@
             : Promise.resolve(0);
 
           preflight.then(function (affected) {
-            var msg = t('confirmDelete');
-            if (affected > 0) msg += '\n\n' + t('confirmDeleteCategory').replace('{n}', affected);
-            if (!confirm(msg)) return;
-            sb.from(tableName).delete().eq('id', id).then(function (res) {
-              if (res.error) { alert(t('deleteFailed') + res.error.message); return; }
-              // Labels/options may have changed — don't serve them from a stale cache.
-              state.relationCache = {};
-              triggerExportIfNeeded(tableName, document.getElementById('syncStatus'));
-              renderContent();
+            var warn = affected > 0 ? t('confirmDeleteCategory').replace('{n}', affected) : '';
+            var label = btn.closest('tr').children[def.thumb || def.thumbFallback ? 1 : 0].textContent;
+            /* Not confirm(): the operator has to type their password, and a
+               browser prompt() would render it in clear text. */
+            confirmWithPassword({ what: label, warn: warn }).then(function (ok) {
+              if (!ok) return;
+              sb.from(tableName).delete().eq('id', id).then(function (res) {
+                if (res.error) { alert(t('deleteFailed') + res.error.message); return; }
+                // Labels/options may have changed — don't serve them from a stale cache.
+                state.relationCache = {};
+                triggerExportIfNeeded(tableName, document.getElementById('syncStatus'));
+                renderContent();
+              });
             });
           });
         });

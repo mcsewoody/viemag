@@ -36,7 +36,14 @@ window.VIEMAG_SCHEMA = {
     order: 'product_id',
     thumb: 'hero_image_url',
     thumbFallback: 'art_key',   // no photo yet → show which illustration the site uses
-    listCols: ['name_en'],      // extra list-view columns beyond title/status
+    listCols: ['official_sku_code', 'name_en', 'art_key', 'sales_cost_usd'], // extra list-view columns beyond title/status
+    /* sales_cost_usd is not a column of products. It is the one number allowed
+       across the owner-only wall, read from the product_sales_cost view and
+       merged in by renderList(). purchase_cost_usd and supplier deliberately
+       stay OUT of this list: they live one tab deeper for a reason, and a
+       supplier name on the default screen is a name in every screenshot and
+       screen share. */
+    listExtras: [{ table: 'product_sales_cost', key: 'product_id', cols: ['sales_cost_usd'], money: true }],
     statusFilter: true,         // status now also marks pipeline items, so the list needs filtering
     tabs: [
       { key: 'front', groups: [
