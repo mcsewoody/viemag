@@ -1,0 +1,111 @@
+#!/bin/sh
+# Keep /admin's cache-busting version honest, automatically.
+#
+# Why this exists: GitHub Pages serves every file under /admin with
+# Cache-Control: max-age=14400, so a colleague's browser will keep running
+# yesterday's admin.js for up to four hours after a deploy. The escape hatch is
+# the ?v= query string in admin/index.html — a different URL is a different
+# cache entry — but that means EIGHT numbers (ADMIN_VERSION plus seven ?v=
+# strings) have to stay in step by hand.
+#
+# Forgetting produces no error anywhere. The push succeeds, the Action goes
+# green, the site looks fine, and the only symptom is that other people see old
+# code — which reads as "the feature is broken", not "the cache is stale". That
+# is the failure this hook removes.
+#
+# It bumps rather than merely checking, because a check that only asks "did
+# ADMIN_VERSION change?" still lets a half-done manual edit through (version
+# bumped, one of the seven ?v= missed) and lands you back at the same silent
+# failure. Anything able to verify all eight can just as easily set all eight.
+#
+# Install once per machine:  git config core.hooksPath scripts/hooks
+# Skip deliberately:         git commit --no-verify
+
+set -e
+
+JS=admin/admin.js
+HTML=admin/index.html
+PAT="var ADMIN_VERSION = '\([0-9]\+\.[0-9]\{2\}\)';"
+
+# Nothing under admin/ in this commit → not our business.
+if [ -z "$(git diff --cached --name-only --diff-filter=ACMR -- admin/)" ]; then
+  exit 0
+fi
+
+read_ver() { perl -ne "if (/ADMIN_VERSION = '([0-9]+\.[0-9]{2})'/) { print \$1; last }"; }
+
+cur=$(read_ver < "$JS")
+if [ -z "$cur" ]; then
+  echo "pre-commit: 在 $JS 找不到 ADMIN_VERSION，略過版本號處理。" >&2
+  exit 0
+fi
+head_ver=$(git show "HEAD:$JS" 2>/dev/null | read_ver || true)
+
+# Already moved since HEAD? Then it was bumped by hand before committing. Take
+# that number as given and only make the seven ?v= strings agree with it —
+# bumping on top of a deliberate edit would override a decision someone made.
+#
+# `git commit --amend` needs no special case, verified rather than assumed: at
+# amend time HEAD is still the commit being replaced, so an amend that stages no
+# new work shows no staged diff under admin/ and the hook returns at the very
+# first check. An amend that DOES stage new admin/ changes bumps again, which is
+# what should happen — that is a new deploy.
+#
+# Braces around ${cur} are load-bearing: `$cur（` makes the shell read the first
+# byte of the full-width bracket as part of the variable NAME, yielding an empty
+# expansion and two stray bytes in the output.
+if [ -n "$head_ver" ] && [ "$cur" != "$head_ver" ]; then
+  new="$cur"
+  note="版本號已由你手動設為 ${cur}，不再 bump"
+else
+  new=$(echo "$cur" | awk -F. '{ h = $1*100 + $2 + 1; printf "%d.%02d", int(h/100), h%100 }')
+  note="版本號 $cur → $new"
+fi
+
+# What actually needs rewriting.
+#
+# Everything here goes through perl rather than grep on purpose. `grep` is not
+# one program: this repo's own machine resolves it to ugrep, whose handling of
+# BRE quantifiers differs, and a hook that works on one laptop and silently
+# misbehaves on the other is worse than no hook. perl is the same everywhere.
+#
+# The pattern also requires a version NUMBER after ?v=. index.html's own comment
+# contains the bare string "?v=", so a looser match counts eight occurrences
+# where there are seven real ones, and reports a mismatch on every single run.
+vers=$(perl -ne 'while (/\?v=([0-9]+\.[0-9]{2})/g) { print "$1\n" }' "$HTML" | sort -u | tr '\n' ' ')
+count=$(perl -ne 'while (/\?v=([0-9]+\.[0-9]{2})/g) { $n++ } END { print $n+0 }' "$HTML")
+
+# Written as if-blocks, not `[ ... ] && x=y`: under `set -e` such a list exits
+# the script when the test is false, so the no-op case would abort the commit.
+todo=""
+if [ "$cur" != "$new" ]; then todo="$JS"; fi
+if [ "$vers" != "$new " ]; then todo="$todo $HTML"; fi
+if [ -z "$todo" ]; then exit 0; fi
+
+# The one way this hook could do harm: it has to `git add` what it rewrites, and
+# `git add` takes the WHOLE file. If a file has unstaged changes, adding it
+# would sweep work into the commit that was deliberately left out — silently.
+# Refuse instead of guessing.
+for f in $todo; do
+  if ! git diff --quiet -- "$f"; then
+    echo "" >&2
+    echo "pre-commit 中止：$f 有未暫存的修改。" >&2
+    echo "" >&2
+    echo "  這個 hook 需要改寫它來更新版本號，而 git add 會把整個檔案加進 commit," >&2
+    echo "  連同你刻意沒有暫存的那些修改。這一步不該由腳本替你決定。" >&2
+    echo "" >&2
+    echo "  請先處理該檔的未暫存修改（git add 或 git stash），再 commit 一次。" >&2
+    echo "" >&2
+    exit 1
+  fi
+done
+
+for f in $todo; do
+  case "$f" in
+    "$JS")   perl -pi -e "s/ADMIN_VERSION = '[0-9]+\.[0-9]{2}'/ADMIN_VERSION = '$new'/" "$f" ;;
+    "$HTML") perl -pi -e "s/\?v=[0-9]+\.[0-9]{2}/?v=$new/g" "$f" ;;
+  esac
+  git add "$f"
+done
+
+echo "pre-commit: ${note}，已同步 ${count} 個 ?v= 並加入本次 commit。"
