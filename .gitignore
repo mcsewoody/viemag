@@ -11,6 +11,15 @@ planning/
 後台.md
 CLAUDE.md
 .claude/
+# AGENTS.md 是 CLAUDE.md 的同內容副本（給 Codex 讀），機密等級一樣：
+# 品牌憲法、機密邊界、成本欄位與權限牆設計。兩份要一起排除，
+# 只擋一份等於沒擋（2026-08-09 補，當時 AGENTS.md 已存在但未被 ignore）。
+AGENTS.md
+.codex/
+
+# 待處理的產品照原始檔（尚未進 assets/、不是網站要用的檔案）。
+# 網站實際使用的產品圖在 assets/products/<sku>，由匯出流程下載產生。
+products/
 
 # Supabase 後端（schema migrations + Edge Function）**納入版控**（2026-07-28 定案）。
 # 原本整個 supabase/ 被排除，理由是 migration SQL 含內部欄位名稱（毛利/備貨）。
