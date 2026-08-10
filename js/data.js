@@ -564,6 +564,54 @@ window.DB = {
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
+      "sku": "S4",
+      "slug": "S4",
+      "status": "published",
+      "category": "car-mounts",
+      "scenarios": [],
+      "personas": [
+        "commuter"
+      ],
+      "art": "",
+      "qi": "none",
+      "watt": null,
+      "mount": [],
+      "price": 19.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Slim Suction Cup Magsafe Mount",
+        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng",
+        "id": "Dudukan Magsafe Berbentuk Cangkir Hisap yang Ramping",
+        "zh": "超薄吸盤式 MagSafe 支架"
+      },
+      "claim": {
+        "en": "The Thinnest and Lightest MagSafe Suction Cup Stand",
+        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
+        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
+        "zh": "最輕薄的吸盤 Magsafe 支架"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785987079597-xohr4um18sb-VB005DSH_0.jpg"
+    },
+    {
       "sku": "VB001VNT",
       "slug": "vent-magnetic-car-mount",
       "status": "published",
@@ -766,54 +814,6 @@ window.DB = {
         "id": "",
         "zh": ""
       }
-    },
-    {
-      "sku": "VB005DSH",
-      "slug": "VB005DSH",
-      "status": "published",
-      "category": "car-mounts",
-      "scenarios": [],
-      "personas": [
-        "commuter"
-      ],
-      "art": "",
-      "qi": "none",
-      "watt": null,
-      "mount": [],
-      "price": 19.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Slim Suction Cup Magsafe Mount",
-        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng",
-        "id": "Dudukan Magsafe Berbentuk Cangkir Hisap yang Ramping",
-        "zh": "超薄吸盤式 MagSafe 支架"
-      },
-      "claim": {
-        "en": "The Thinnest and Lightest MagSafe Suction Cup Stand",
-        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
-        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
-        "zh": "最輕薄的吸盤 Magsafe 支架"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785987079597-xohr4um18sb-VB005DSH_0.jpg"
     },
     {
       "sku": "VB005TAP",
