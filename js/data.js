@@ -614,8 +614,8 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350505820-ybpvjmf34bm-hero_appleGray_1200_20260810_1527.webp"
     },
     {
-      "sku": "VB001DSH1_BK",
-      "slug": "VB001DSH1_BK",
+      "sku": "VB001DSH",
+      "slug": "VB001DSH",
       "status": "published",
       "category": "accessories",
       "scenarios": [
