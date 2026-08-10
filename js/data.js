@@ -445,65 +445,6 @@ window.DB = {
   ],
   "products": [
     {
-      "sku": "VA00115W",
-      "slug": "qi2-desktop-charger",
-      "status": "published",
-      "category": "desk-travel",
-      "scenarios": [
-        "S1",
-        "S3"
-      ],
-      "personas": [
-        "homeoffice"
-      ],
-      "art": "deskcharge",
-      "qi": "compatible",
-      "watt": "15W",
-      "mount": [
-        "desktop"
-      ],
-      "price": 35.9,
-      "rating": 4.7,
-      "reviews": 65,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG Desktop Wireless Charger",
-        "vi": "Sạc để bàn VIEMAG",
-        "id": "Pengisi Nirkabel Meja VIEMAG",
-        "zh": "VIEMAG 單機桌面充電器"
-      },
-      "claim": {
-        "en": "One fixed charging spot on your desk — set the phone down, it charges.",
-        "vi": "Một điểm sạc cố định trên bàn, đặt xuống là sạc.",
-        "id": "Satu titik pengisian tetap di meja — letakkan ponsel, langsung mengisi.",
-        "zh": "桌面固定充電點，放下即充。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372809399-in83rofm7rc-VB004DSH-SV_0.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785383051174-9hioxqtm0k7-VD001CLP_0.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785383057208-gdw4mq8m1jb-VB005DSH_0.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785383069841-2699o30dcq4-VB001DSH1_BK.png"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785375670852-9ezhm4i0t0v-VD001CLP_0.jpg",
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350945299-l65l91emboq-hero_appleGray_1200_20260810_1535.webp"
-    },
-    {
       "sku": "VA002DSK",
       "slug": "2in1-desk-charging-stand",
       "status": "published",
