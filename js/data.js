@@ -445,6 +445,63 @@ window.DB = {
   ],
   "products": [
     {
+      "sku": "L1",
+      "slug": "L1",
+      "status": "published",
+      "category": "desk-travel",
+      "scenarios": [
+        "S3",
+        "S5"
+      ],
+      "personas": [
+        "homeoffice",
+        "traveler"
+      ],
+      "art": "fold",
+      "qi": "testing",
+      "watt": "15W",
+      "mount": [
+        "desktop"
+      ],
+      "price": 52.9,
+      "rating": 4.8,
+      "reviews": 58,
+      "badge": "new",
+      "name": {
+        "en": "VIEMAG Folding Travel Charger",
+        "vi": "Sạc du lịch gập VIEMAG",
+        "id": "Pengisi Perjalanan Lipat VIEMAG",
+        "zh": "VIEMAG 折疊旅行充電器"
+      },
+      "claim": {
+        "en": "Folds to palm size, opens into your hotel charging station.",
+        "vi": "Gập lại bằng lòng bàn tay, mở ra là trạm sạc khách sạn.",
+        "id": "Terlipat seukuran telapak tangan, terbuka jadi stasiun pengisian hotel Anda.",
+        "zh": "折起一掌大小，展開就是飯店充電站。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831361-phu3kg49n8a-hero_appleGray_1200_20260810_1533.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831363-3h7k9n453dd-hero_appleGray_1200_20260810_1531.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350505820-ybpvjmf34bm-hero_appleGray_1200_20260810_1527.webp"
+    },
+    {
       "sku": "S1",
       "slug": "S1",
       "status": "published",
@@ -505,63 +562,6 @@ window.DB = {
         "zh": ""
       },
       "img": "assets/products/VB001DSH1_BK.png"
-    },
-    {
-      "sku": "VA003FLD",
-      "slug": "folding-travel-qi2-charger",
-      "status": "published",
-      "category": "desk-travel",
-      "scenarios": [
-        "S3",
-        "S5"
-      ],
-      "personas": [
-        "homeoffice",
-        "traveler"
-      ],
-      "art": "fold",
-      "qi": "testing",
-      "watt": "15W",
-      "mount": [
-        "desktop"
-      ],
-      "price": 52.9,
-      "rating": 4.8,
-      "reviews": 58,
-      "badge": "new",
-      "name": {
-        "en": "VIEMAG Folding Travel Charger",
-        "vi": "Sạc du lịch gập VIEMAG",
-        "id": "Pengisi Perjalanan Lipat VIEMAG",
-        "zh": "VIEMAG 折疊旅行充電器"
-      },
-      "claim": {
-        "en": "Folds to palm size, opens into your hotel charging station.",
-        "vi": "Gập lại bằng lòng bàn tay, mở ra là trạm sạc khách sạn.",
-        "id": "Terlipat seukuran telapak tangan, terbuka jadi stasiun pengisian hotel Anda.",
-        "zh": "折起一掌大小，展開就是飯店充電站。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831361-phu3kg49n8a-hero_appleGray_1200_20260810_1533.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831363-3h7k9n453dd-hero_appleGray_1200_20260810_1531.webp"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350505820-ybpvjmf34bm-hero_appleGray_1200_20260810_1527.webp"
     },
     {
       "sku": "VB001VNT",
