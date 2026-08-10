@@ -501,7 +501,7 @@ window.DB = {
         "zh": ""
       },
       "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785375670852-9ezhm4i0t0v-VD001CLP_0.jpg",
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785372794376-7bv5no1uwry-VB001DSH1_BK.png"
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350945299-l65l91emboq-hero_appleGray_1200_20260810_1535.webp"
     },
     {
       "sku": "VA002DSK",
