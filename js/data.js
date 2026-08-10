@@ -507,59 +507,6 @@ window.DB = {
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
-      "sku": "VA002DSK",
-      "slug": "2in1-desk-charging-stand",
-      "status": "published",
-      "category": "desk-travel",
-      "scenarios": [
-        "S3",
-        "S4"
-      ],
-      "personas": [
-        "homeoffice"
-      ],
-      "art": "stand2in1",
-      "qi": "compatible",
-      "watt": "15W",
-      "mount": [
-        "desktop"
-      ],
-      "price": 45.9,
-      "rating": 4.8,
-      "reviews": 112,
-      "badge": "bestseller",
-      "name": {
-        "en": "VIEMAG 2-in-1 Desk Charging Stand",
-        "vi": "Đế sạc 2 trong 1 VIEMAG",
-        "id": "Dudukan Pengisi Meja 2-in-1 VIEMAG",
-        "zh": "VIEMAG 二合一充電座"
-      },
-      "claim": {
-        "en": "Phone upright for video calls, earbuds charging below.",
-        "vi": "Điện thoại dựng đứng họp video, tai nghe sạc bên dưới.",
-        "id": "Ponsel tegak untuk panggilan video, earbud mengisi di bawah.",
-        "zh": "手機立式視訊，耳機在下方同步充電。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786002161293-gade8yryxjc-05-1.png"
-    },
-    {
       "sku": "VA003FLD",
       "slug": "folding-travel-qi2-charger",
       "status": "published",
