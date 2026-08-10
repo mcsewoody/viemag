@@ -28,3 +28,8 @@ products/
 # 既然隱藏沒達到效果，就換取版本控制的實質好處——後端程式碼原本完全沒有歷史紀錄。
 # 前提：只有欄位「名稱」會公開，任何實際數值都不在 SQL 裡；密鑰一律走
 # Supabase Function Secrets，不進檔案（supabase/.gitignore 另有排除 .env*、.temp）。
+
+# 網域與雲端架構操作手冊：含 DNS、Cloudflare、Supabase 專案設定等基礎架構細節。
+# 2026-08-11 補：先前未被 ignore，若有人把它從 OneDrive 複製到 repo 根目錄就會外洩
+# （planning/ 底下的副本本來就被上面的 planning/ 擋住，這行擋的是放在根目錄的情況）。
+網域與雲端架構操作手冊.md
