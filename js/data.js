@@ -445,6 +445,68 @@ window.DB = {
   ],
   "products": [
     {
+      "sku": "S1",
+      "slug": "S1",
+      "status": "published",
+      "category": "accessories",
+      "scenarios": [
+        "S2",
+        "S4",
+        "S5",
+        "S6"
+      ],
+      "personas": [
+        "traveler",
+        "creator"
+      ],
+      "art": "suction",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "dashboard",
+        "suction",
+        "screen",
+        "desktop"
+      ],
+      "price": 24.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": "bestseller",
+      "name": {
+        "en": "Extended Aluminum Alloy Universal Magnetic Mount",
+        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm",
+        "id": "Dudukan Magnetik Serbaguna Aluminium Alloy Versi Panjang",
+        "zh": "鋁合金加長型萬用磁吸支架"
+      },
+      "claim": {
+        "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — a dependable companion for driving and everyday recording.",
+        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
+        "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman yang andal untuk berkendara dan merekam keseharian.",
+        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
+      },
+      "reports": [],
+      "pains": [
+        "Dropping",
+        "Loose"
+      ],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "assets/products/VB001DSH1_BK.png"
+    },
+    {
       "sku": "VA002DSK",
       "slug": "2in1-desk-charging-stand",
       "status": "published",
@@ -553,68 +615,6 @@ window.DB = {
         "zh": ""
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350505820-ybpvjmf34bm-hero_appleGray_1200_20260810_1527.webp"
-    },
-    {
-      "sku": "VB001DSH",
-      "slug": "VB001DSH",
-      "status": "published",
-      "category": "accessories",
-      "scenarios": [
-        "S2",
-        "S4",
-        "S5",
-        "S6"
-      ],
-      "personas": [
-        "traveler",
-        "creator"
-      ],
-      "art": "suction",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "dashboard",
-        "suction",
-        "screen",
-        "desktop"
-      ],
-      "price": 24.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "bestseller",
-      "name": {
-        "en": "Extended Aluminum Alloy Universal Magnetic Mount",
-        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm",
-        "id": "Dudukan Magnetik Serbaguna Aluminium Alloy Versi Panjang",
-        "zh": "鋁合金加長型萬用磁吸支架"
-      },
-      "claim": {
-        "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — a dependable companion for driving and everyday recording.",
-        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
-        "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman yang andal untuk berkendara dan merekam keseharian.",
-        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
-      },
-      "reports": [],
-      "pains": [
-        "Dropping",
-        "Loose"
-      ],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "assets/products/VB001DSH1_BK.png"
     },
     {
       "sku": "VB001VNT",
