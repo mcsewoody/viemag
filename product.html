@@ -74,6 +74,25 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
     d: p.exchange || DB.config.exchangeDays,
   }));
 
+  /* What ships in the box. Absent for most SKUs — a mount that ships on its own
+     has nothing to list — so the whole block disappears rather than rendering an
+     empty heading, the same rule the FAQ and related sections follow.
+     tf() picks the active language and falls back the same way every other
+     translatable field does, so a product translated into only some languages
+     still shows something rather than nothing. Simplified Chinese arrives via
+     the runtime T2S pass over the rendered text, not from a fifth column. */
+  function accessoryBlock(p) {
+    const items = tf(p.accessories);
+    if (!items || !items.length) return '';
+    return `
+      <div class="spec-block">
+        <h3>${t('pdp.accessories')}</h3>
+        <ul class="bullet-list accessory-list">
+          ${items.map((x) => `<li>${icon('check')}<span>${esc(x)}</span></li>`).join('')}
+        </ul>
+      </div>`;
+  }
+
   const specRows = [
     [t('pdp.spec.sku'), p.sku],
     [t('pdp.spec.mount'), (p.mount || []).map((m) => t('mount.' + m)).join(' · ') || '—'],
@@ -109,6 +128,7 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
         <table>${specRows}</table>
         ${p.spec ? `<p class="spec-download"><a href="${esc(p.spec)}" target="_blank" rel="noopener">${icon('external')}${t('pdp.specSheet')}</a></p>` : ''}
       </div>
+      ${accessoryBlock(p)}
       <div class="spec-block">
         <h3>${t('pdp.compat')}</h3>
         <table><tr><td colspan="2" style="color:var(--ink)">${t('pdp.compatText')}</td></tr></table>

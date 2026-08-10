@@ -49,7 +49,8 @@ window.VIEMAG_SCHEMA = {
       { key: 'front', groups: [
         { key: 'ident',     fields: ['product_id', 'official_sku_code', 'slug', 'status', 'launch_tier', 'category_id'] },
         { key: 'naming',    fields: [['name_en', 'name_vi', 'name_id', 'name_zh'],
-                                    ['claim_en', 'claim_vi', 'claim_id', 'claim_zh']] },
+                                    ['claim_en', 'claim_vi', 'claim_id', 'claim_zh'],
+                                    ['accessories_en', 'accessories_vi', 'accessories_id', 'accessories_zh']] },
         { key: 'commerce',  fields: ['price_usd', 'shopee_url'] },
         { key: 'targeting', fields: ['persona', 'consumer_pain_point', 'scenario_ids'] },
         { key: 'spec',      fields: ['mount_type', 'charging_watt', 'qi_status', 'warranty_months', 'defect_exchange_days'] },
@@ -75,7 +76,7 @@ window.VIEMAG_SCHEMA = {
          record on a wall of eight cost boxes says nothing about which product it
          is; the supplier and the drawings do. */
       { key: 'dev', table: 'product_development', ownerOnly: true, groups: [
-        { key: 'supplierInfo', fields: ['supplier', 'reference_files'] },
+        { key: 'supplierInfo', fields: ['supplier', 'supplier_part_number', 'reference_files'] },
         { key: 'productInfo',  fields: ['design_files', 'inventory_first_batch', 'certification_notes'] },
         { key: 'costStack',    fields: ['purchase_cost_usd', 'packaging_cost_usd', 'inspection_cost_usd', 'freight_cost_usd',
                                         'licensing_fee_usd', 'patent_fee_usd', 'tooling_amortization_usd', 'other_cost_usd',
@@ -98,6 +99,10 @@ window.VIEMAG_SCHEMA = {
       { name: 'claim_vi', type: 'textarea', desc: 'One-line selling point (Vietnamese).' },
       { name: 'claim_id', type: 'textarea', desc: 'One-line selling point (Indonesian).' },
       { name: 'claim_zh', type: 'textarea', desc: 'One-line selling point (Traditional Chinese).' },
+      { name: 'accessories_en', type: 'textarea', desc: 'What ships in the box, ONE ITEM PER LINE. Shown as its own list on the product page. Line breaks are what make the list — putting everything on one line produces one long run-on entry. Leave blank and the section does not appear at all, which is the right outcome for a product that ships on its own.' },
+      { name: 'accessories_vi', type: 'textarea', desc: 'What is in the box, one item per line (Vietnamese).' },
+      { name: 'accessories_id', type: 'textarea', desc: 'What is in the box, one item per line (Indonesian).' },
+      { name: 'accessories_zh', type: 'textarea', desc: 'What is in the box, one item per line (Traditional Chinese). Simplified is converted automatically.' },
       { name: 'consumer_pain_point', type: 'multiselect', options: ['Dropping', 'Heat', 'Loose', 'Compatibility', 'Cable Mess'], desc: 'Which problems this product solves, picked from a fixed set of five tags. Shown as chips in a "Solves" section on the product page.' },
       { name: 'shopee_url', type: 'text', desc: 'Link to this product on Shopee — the destination of the "Buy on Shopee" button. Leave blank and the button points at a dead link (#).' },
       { name: 'price_usd', type: 'number', desc: 'Price shown on the site. Also the basis of the gross-margin figure in the sales tab.' },
@@ -162,6 +167,7 @@ window.VIEMAG_SCHEMA = {
       { name: 'cost_note', type: 'textarea', internal: true, desc: 'Where the numbers above came from. Everything here is USD while quotes usually are not, so record the source and the rate used — one line such as "July quote, converted at 7.2" is enough. Without it, nobody can tell six months from now whether a figure is still current. This one note covers all eight components.' },
       { name: 'sales_cost_usd', type: 'number', readOnly: true, internal: true, desc: 'The eight components above, added up by the database. This is the only number from this tab that the sales tab can see; the breakdown stays here.' },
       { name: 'supplier', type: 'text', internal: true, desc: 'Who supplies this product. The most confidentiality-sensitive field in the whole system — it is the one piece of data that could link the brand back to a manufacturing origin, so it lives behind the owner-only wall and is never exported.' },
+      { name: 'supplier_part_number', type: 'text', internal: true, desc: 'The item code the supplier uses for this product, for quoting and reordering. Owner-only and never exported, for the same reason as the field above: a part number is a lookup key into one specific catalogue, so publishing it gives away much of what publishing the name would.' },
       { name: 'design_files', type: 'files_private', internal: true, desc: 'Drawings and design files, as many as needed. These upload to a PRIVATE bucket, not the one product photos use — that one is public, and a drawing’s title block routinely names the manufacturer. Only owners can open these, through links that expire.' },
       { name: 'reference_files', type: 'files_private', internal: true, desc: 'Supplier-side documents: quotations, catalogues, certificates, anything worth keeping with the project. Same private storage and same owner-only access as the design files. A quotation letterhead is exactly the kind of document that must never sit at a public URL.' },
       { name: 'inventory_first_batch', type: 'number', internal: true, desc: 'First-batch quantity planned at project kick-off. Note this is a planning figure, not current sellable stock — if someone needs current stock, that is a different field that does not exist yet, so do not reuse this one for it.' },

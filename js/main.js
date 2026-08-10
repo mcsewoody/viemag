@@ -105,13 +105,30 @@
     return (DICT[lang] && DICT[lang][key]) || (DICT.en && DICT.en[key]) || key;
   };
   const t = (key, vars) => interp(tRaw(key), vars);
+  /* Translatable field → the active language's value, falling back to English.
+     Values are usually strings; `accessories` is a LIST, which forces two extra
+     rules. Both are traps rather than preferences:
+
+     1. An empty array must count as missing. `[] || fallback` returns [],
+        because an empty array is truthy — so a list left untranslated would
+        render as nothing while a filled English one sat right there, the exact
+        opposite of how every string field behaves.
+     2. toSimp() coerces with String(). Handing it an array returns one
+        comma-joined string, which then breaks every caller expecting a list —
+        and only in Simplified Chinese, which is not the default, so it would
+        ship unnoticed. Convert item by item instead.
+
+     String behaviour is deliberately left byte-for-byte as it was. */
+  const gone = (v) => Array.isArray(v) && !v.length;
   const tf = (obj) => {
     if (!obj) return '';
     if (lang === 'zh-Hans') {
-      if (obj['zh-Hans'] != null) return obj['zh-Hans']; // per-field override wins verbatim
-      return toSimp(obj.zh || obj.en || '');             // no override → auto-convert
+      // hand-tuned seed/override wins verbatim
+      if (obj['zh-Hans'] != null && !gone(obj['zh-Hans'])) return obj['zh-Hans'];
+      const src = (gone(obj.zh) ? null : obj.zh) || obj.en || ''; // no override → auto-convert
+      return Array.isArray(src) ? src.map(toSimp) : toSimp(src);
     }
-    return obj[lang] || obj.en || '';
+    return (gone(obj[lang]) ? null : obj[lang]) || obj.en || '';
   };
   window.VIEMAG = { t, tf, get lang() { return lang; } };
 

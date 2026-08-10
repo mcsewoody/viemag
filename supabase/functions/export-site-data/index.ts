@@ -110,6 +110,8 @@ const PRODUCT_COLS = [
   'warranty_months', 'defect_exchange_days',
   'seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh',
   'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
+  /* Added 2026-08-10. What ships in the box, one item per line. */
+  'accessories_en', 'accessories_vi', 'accessories_id', 'accessories_zh',
 ].join(',');
 const CATEGORY_COLS = [
   'id', 'slug', 'internal_cat_mapping', 'visibility', 'status', 'sort_order', 'art_key',
@@ -353,6 +355,19 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         seoTitle: langObj(r, 'seo_title'),
         seoDesc: langObj(r, 'seo_description'),
       };
+      /* One item per line, split here rather than in the browser so the shape in
+         data.js is already the list the page renders. Omitted entirely when
+         blank: most products ship on their own, and an empty array per SKU is
+         19 lines of noise that the front end would have to check for anyway. */
+      const acc = langObj(r, 'accessories');
+      const accLines: Record<string, string[]> = {};
+      let accAny = false;
+      for (const k of ['en', 'vi', 'id', 'zh'] as const) {
+        const lines = String(acc[k] || '').split(/\r?\n/).map((x) => x.trim()).filter(Boolean);
+        accLines[k] = lines;
+        if (lines.length) accAny = true;
+      }
+      if (accAny) out.accessories = accLines;
       if (r.spec_sheet_url) out.spec = r.spec_sheet_url;
       /* Empty arrays are the common case; omit them so data.js does not carry 19
          copies of `"faqs": []` and `"related": []`. */

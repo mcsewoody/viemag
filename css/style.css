@@ -317,6 +317,9 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 .spec-block table{width:100%;border-collapse:collapse;font-size:.9rem}
 .spec-block td{padding:11px 18px;border-top:1px solid var(--line)}
 .spec-block td:first-child{color:var(--muted);width:42%}
+/* The accessory list is the only spec-block whose body is a <ul>, not a table,
+   so it has to supply the padding the table cells would otherwise give it. */
+.spec-block .accessory-list{padding:14px 18px;margin:0}
 .pdp-section{margin-top:var(--s7)}
 .pdp-section h2{font-size:1.3rem;margin-bottom:var(--s4)}
 .bullet-list{display:grid;gap:10px}
