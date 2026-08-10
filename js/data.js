@@ -445,6 +445,58 @@ window.DB = {
   ],
   "products": [
     {
+      "sku": "A1",
+      "slug": "A1",
+      "status": "published",
+      "category": "car-mounts",
+      "scenarios": [
+        "S2"
+      ],
+      "personas": [
+        "commuter"
+      ],
+      "art": "tape",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "tape"
+      ],
+      "price": 17.9,
+      "rating": 4.6,
+      "reviews": 52,
+      "badge": null,
+      "name": {
+        "en": "VIEMAG 3M Tape Magnetic Mount",
+        "vi": "Giá đỡ nam châm dán 3M VIEMAG",
+        "id": "Dudukan Magnetik Perekat 3M VIEMAG",
+        "zh": "VIEMAG 3M 膠貼磁吸支架"
+      },
+      "claim": {
+        "en": "Mounts on any flat surface with 3M adhesive in 30 seconds.",
+        "vi": "Dán phẳng mọi bề mặt bằng keo 3M, lắp trong 30 giây.",
+        "id": "Terpasang di permukaan rata mana pun dengan perekat 3M dalam 30 detik.",
+        "zh": "3M 背膠貼平任何平面，30 秒完成安裝。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786406134095-hvy6lmh1b39-A1.jpg"
+    },
+    {
       "sku": "L1",
       "slug": "L1",
       "status": "published",
@@ -843,57 +895,6 @@ window.DB = {
         "vi": "Kẹp cạnh màn hình trung tâm, không che cửa gió, không dán keo.",
         "id": "Menjepit tepi layar tengah — tanpa menutup kisi AC, tanpa perekat.",
         "zh": "夾在中控螢幕邊，不擋出風口、不用貼膠。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "sku": "VB005TAP",
-      "slug": "tape-magnetic-car-mount",
-      "status": "published",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
-      ],
-      "personas": [
-        "commuter"
-      ],
-      "art": "tape",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "tape"
-      ],
-      "price": 17.9,
-      "rating": 4.6,
-      "reviews": 52,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG 3M Tape Magnetic Mount",
-        "vi": "Giá đỡ nam châm dán 3M VIEMAG",
-        "id": "Dudukan Magnetik Perekat 3M VIEMAG",
-        "zh": "VIEMAG 3M 膠貼磁吸支架"
-      },
-      "claim": {
-        "en": "Mounts on any flat surface with 3M adhesive in 30 seconds.",
-        "vi": "Dán phẳng mọi bề mặt bằng keo 3M, lắp trong 30 giây.",
-        "id": "Terpasang di permukaan rata mana pun dengan perekat 3M dalam 30 detik.",
-        "zh": "3M 背膠貼平任何平面，30 秒完成安裝。"
       },
       "reports": [],
       "pains": [],
