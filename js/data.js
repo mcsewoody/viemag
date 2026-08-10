@@ -593,7 +593,10 @@ window.DB = {
       },
       "reports": [],
       "pains": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831361-phu3kg49n8a-hero_appleGray_1200_20260810_1533.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831363-3h7k9n453dd-hero_appleGray_1200_20260810_1531.webp"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
