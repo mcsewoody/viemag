@@ -612,6 +612,52 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785987079597-xohr4um18sb-VB005DSH_0.jpg"
     },
     {
+      "sku": "T1",
+      "slug": "T1",
+      "status": "future",
+      "category": "portable-power",
+      "scenarios": [],
+      "personas": [],
+      "art": "",
+      "qi": "none",
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Magsafe Travel Mount",
+        "vi": "Giá đỡ du lịch Magsafe",
+        "id": "Dudukan Perjalanan MagSafe",
+        "zh": "MagSafe 旅行支架"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405913114-3hglyg9knw2-___1.png"
+    },
+    {
       "sku": "V1",
       "slug": "V1",
       "status": "published",
