@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.03';
+  var ADMIN_VERSION = '1.04';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1023,9 +1023,34 @@
       + '</div>';
   }
 
+  /* Inner markup of the header thumbnail. Shared by the initial render and by
+     the live refresh in wireImageField(), so an upload cannot leave the header
+     showing one photo while the field below shows another. */
+  function formThumbInner(url, fallback) {
+    var img = mediaUrl(url);
+    if (img) return '<img src="' + esc(img) + '" alt="" loading="lazy">';
+    // No photo yet — name the illustration the site will use, exactly as the list does.
+    if (fallback) return '<span class="form-thumb-ph" title="' + esc(t('noPhotoUsesArt')) + '">' + esc(fallback) + '</span>';
+    return '<span class="form-thumb-ph">—</span>';
+  }
+
   function buildFormHtml(ctx) {
     var def = ctx.def;
-    var html = '<h2>' + esc(tTable(ctx.tableName)) + ' — ' + (ctx.isNew ? esc(t('addNew')) : esc(ctx.row[def.title] || '')) + '</h2>';
+    /* Which record am I editing? The form is long enough that the answer scrolls
+       away, and product_id alone ("VB004DSH-SV") does not distinguish two colours
+       of the same mount at a glance. Driven by def.thumb, so every table that
+       shows a thumbnail in its list shows the same one here — nothing is
+       products-specific about wanting to see what you opened.
+       Not rendered when adding: there is no record to picture yet. */
+    var head = '<h2>' + esc(tTable(ctx.tableName)) + ' — ' + (ctx.isNew ? esc(t('addNew')) : esc(ctx.row[def.title] || '')) + '</h2>';
+    var html;
+    if (!ctx.isNew && (def.thumb || def.thumbFallback)) {
+      html = '<div class="form-head"><div class="form-thumb" id="formHeadThumb">'
+        + formThumbInner(def.thumb ? ctx.row[def.thumb] : null, def.thumbFallback ? ctx.row[def.thumbFallback] : null)
+        + '</div>' + head + '</div>';
+    } else {
+      html = head;
+    }
     html += '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button>';
 
     // Every table except products: one flat grid, exactly as before.
@@ -1512,6 +1537,20 @@
           setUrls(currentUrls().filter(function (u) { return u !== btn.dataset.removeUrl; }));
         });
       });
+      /* If this field IS the record's thumbnail, keep the header picture in step.
+         Otherwise an upload leaves two pictures of the same product on screen
+         disagreeing with each other until the next save-and-reload — and the
+         stale one is the bigger, higher-up one.
+         Compared against state.view.table rather than the tableName argument:
+         the product form's third tab writes to product_development, whose
+         images are not this record's thumbnail. */
+      var headDef = SCHEMA[state.view.table];
+      var headEl = document.getElementById('formHeadThumb');
+      if (headEl && headDef && wrap.dataset.imageField === headDef.thumb) {
+        var fbInput = headDef.thumbFallback
+          ? document.querySelector('[data-name="' + headDef.thumbFallback + '"]') : null;
+        headEl.innerHTML = formThumbInner(urls[0] || null, fbInput ? fbInput.value : null);
+      }
     }
     setUrls(currentUrls());
 

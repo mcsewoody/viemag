@@ -104,6 +104,22 @@ table.grid th.thumb-col, table.grid td.thumb-col { width: 56px; padding-right: 0
 table.grid .row-actions button { margin-left: 6px; }
 .badge-status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .75rem; font-weight: 700; background: var(--panel); color: var(--heading); white-space: nowrap; }
 .empty-state { padding: 40px; text-align: center; color: var(--muted); background: var(--card); border-radius: var(--radius); }
+/* ---------- form header: which record am I editing ---------- */
+/* 20px matches the bottom margin a bare <h2> gets by default. The header has to
+   carry it because the h2's own margin is zeroed below — and without it the
+   "back to list" button sits flush under a thumbnailed header and 20px lower on
+   a table with no thumbnail, which reads as two different layouts. */
+.form-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+/* Zeroed because align-items:center centres the h2's MARGIN box: a bottom-only
+   default margin would push the title visibly above the thumbnail's midline. */
+.form-head h2 { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.form-thumb { width: 60px; height: 60px; flex: none; border: 1px solid var(--line);
+  border-radius: 10px; background: var(--panel); overflow: hidden;
+  display: flex; align-items: center; justify-content: center; }
+.form-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.form-thumb-ph { font-size: .58rem; line-height: 1.1; text-align: center; color: var(--muted);
+  word-break: break-all; padding: 3px; cursor: help; }
+
 /* Money columns: right-aligned and tabular so the decimal points line up and a
    column of costs can be scanned vertically. */
 table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
