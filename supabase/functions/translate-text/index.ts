@@ -42,11 +42,14 @@ const DEEPL_TARGET: Record<string, string> = { en: 'EN', vi: 'VI', id: 'ID', zh:
 const DEEPL_SOURCE: Record<string, string> = { en: 'EN', vi: 'VI', id: 'ID', zh: 'ZH' };
 
 const LANGS = ['en', 'vi', 'id', 'zh'];
-// A name or claim is a short line, never a paragraph. Capped well above any
-// real use so a future accidental reuse of this button on a large textarea
-// (e.g. article body) fails loudly instead of quietly burning the monthly
-// character quota on one call.
+// A name or claim is one short line; accessories is a handful of short lines.
+// Neither is a paragraph. Capped well above any real use so a future accidental
+// reuse of this button on a large textarea (e.g. article body) fails loudly
+// instead of quietly burning the monthly character quota on one call.
 const MAX_INPUT_LENGTH = 2000;
+// DeepL accepts up to 50 text elements per request. Lines beyond that mean the
+// button is being used on something it was not designed for.
+const DEEPL_MAX_TEXTS = 50;
 
 async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: string }> {
   const authHeader = req.headers.get('Authorization') || '';
@@ -58,21 +61,52 @@ async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: strin
   return { ok: true };
 }
 
+/* One DeepL text element PER LINE, not one blob for the whole field.
+   `accessories` is a list: the line breaks are what make it a list, and the
+   product page splits on them. DeepL's default split_sentences treats newlines
+   as sentence boundaries, and whether they survive into the response is not
+   something worth betting a live page on — if they are dropped, three
+   accessories silently become one run-on entry, and the failure shows up on
+   viemag.biz rather than here. N elements in, N results out, asserted below.
+
+   For a single-line name or claim this is an array of one, so the request and
+   the result are byte-for-byte what they were before.
+
+   Blank lines keep their position and are never sent: DeepL has nothing to do
+   with an empty string, and sending one would just consume an element slot. */
 async function deeplTranslate(text: string, sourceLang: string, targetLang: string): Promise<string> {
+  const lines = text.split('\n');
+  const sendAt: number[] = [];
+  const payload: string[] = [];
+  lines.forEach((line, i) => {
+    if (line.trim()) { sendAt.push(i); payload.push(line); }
+  });
+  if (!payload.length) return '';
+  if (payload.length > DEEPL_MAX_TEXTS) {
+    throw new Error(`too many lines to translate (${payload.length} > ${DEEPL_MAX_TEXTS})`);
+  }
+
   const res = await fetch(`${DEEPL_API_HOST}/v2/translate`, {
     method: 'POST',
     headers: {
       'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ text: [text], source_lang: sourceLang, target_lang: targetLang }),
+    body: JSON.stringify({ text: payload, source_lang: sourceLang, target_lang: targetLang }),
   });
   if (!res.ok) {
     const errText = await res.text();
     throw new Error(`DeepL ${targetLang} failed: ${res.status} ${errText.slice(0, 200)}`);
   }
   const data = await res.json();
-  return data.translations?.[0]?.text ?? '';
+  const out = data.translations ?? [];
+  /* A mismatch means the line-to-line mapping is not what this code assumes, so
+     writing the results back would scramble which item is which. Fail instead. */
+  if (out.length !== payload.length) {
+    throw new Error(`DeepL ${targetLang} returned ${out.length} results for ${payload.length} lines`);
+  }
+  sendAt.forEach((lineNo, k) => { lines[lineNo] = out[k]?.text ?? ''; });
+  return lines.join('\n');
 }
 
 Deno.serve(async (req: Request) => {

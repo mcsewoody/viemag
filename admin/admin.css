@@ -268,7 +268,7 @@ table.grid td:last-child { white-space: nowrap; }
 .lang-cell textarea { min-height: 58px; }
 @media (max-width: 900px) { .lang-inputs { grid-template-columns: repeat(2, 1fr); } }
 
-/* translate button (2026-08-05): name/claim only, see TRANSLATABLE_PREFIXES */
+/* translate button (2026-08-05): only the rows listed in TRANSLATABLE_PREFIXES */
 .lang-cell-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .lang-translate-btn {
   padding: 1px 7px; border: 1px solid var(--line); border-radius: 5px; background: var(--panel);

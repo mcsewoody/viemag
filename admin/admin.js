@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.06';
+  var ADMIN_VERSION = '1.07';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1125,12 +1125,9 @@
      empty; side by side the gap sits next to its filled siblings, which for a
      five-language site is a working difference, not a cosmetic one.
 
-     Only name_* and claim_* get the translate button (2026-08-05, Woody's
-     request) — schema.js marks which prefixes qualify via TRANSLATABLE_PREFIXES
-     below, rather than turning it on for every four-language row site-wide.
-     seo_title/seo_description are deliberately excluded: those already have an
-     automatic fallback (the site composes them from name/claim when blank), so
-     a translate button there would be solving a problem that does not exist. */
+     Not every four-language row gets a translate button — TRANSLATABLE_PREFIXES
+     (in this file, further down) lists the ones that do, rather than turning it
+     on site-wide. */
   function langRowHtml(ctx, srcName, srcRow, names) {
     var srcDef = SCHEMA[srcName];
     var fields = names.map(function (n) {
@@ -1172,7 +1169,14 @@
     html += '</div>';
     return html;
   }
-  var TRANSLATABLE_PREFIXES = ['name', 'claim'];
+  /* Which four-language rows get a translate button. Not every such row: the
+     seo_* pair is deliberately excluded because the site already composes those
+     from name/claim when they are blank, so translating them solves a problem
+     that does not exist.
+     accessories joined on 2026-08-11. It is the first MULTI-LINE field here, and
+     the Edge Function had to learn to translate line by line before this was
+     safe — the line breaks are what make it a list on the product page. */
+  var TRANSLATABLE_PREFIXES = ['name', 'claim', 'accessories'];
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
