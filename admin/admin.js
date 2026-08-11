@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.04';
+  var ADMIN_VERSION = '1.05';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1043,15 +1043,21 @@
        products-specific about wanting to see what you opened.
        Not rendered when adding: there is no record to picture yet. */
     var head = '<h2>' + esc(tTable(ctx.tableName)) + ' — ' + (ctx.isNew ? esc(t('addNew')) : esc(ctx.row[def.title] || '')) + '</h2>';
-    var html;
+    /* Title and the back button share a left COLUMN, with the picture beside it.
+       The button has to live inside the header rather than after it: a 150-190px
+       photo makes the header that tall, and a button below the whole block gets
+       pushed down past the bottom of the photo with nothing beside it.
+       Title first, picture second in the DOM, matching the order the CSS lays
+       them out, so a screen reader and the screen agree. The refresh in
+       wireImageField() finds the box by id, not by position. */
+    var html = '<div class="form-head"><div class="form-head-main">' + head
+      + '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button></div>';
     if (!ctx.isNew && (def.thumb || def.thumbFallback)) {
-      html = '<div class="form-head"><div class="form-thumb" id="formHeadThumb">'
+      html += '<div class="form-thumb" id="formHeadThumb">'
         + formThumbInner(def.thumb ? ctx.row[def.thumb] : null, def.thumbFallback ? ctx.row[def.thumbFallback] : null)
-        + '</div>' + head + '</div>';
-    } else {
-      html = head;
+        + '</div>';
     }
-    html += '<button class="btn" id="backBtn">&larr; ' + esc(t('backToList')) + '</button>';
+    html += '</div>';
 
     // Every table except products: one flat grid, exactly as before.
     if (!def.tabs) {

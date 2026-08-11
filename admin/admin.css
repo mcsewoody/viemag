@@ -105,20 +105,34 @@ table.grid .row-actions button { margin-left: 6px; }
 .badge-status { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .75rem; font-weight: 700; background: var(--panel); color: var(--heading); white-space: nowrap; }
 .empty-state { padding: 40px; text-align: center; color: var(--muted); background: var(--card); border-radius: var(--radius); }
 /* ---------- form header: which record am I editing ---------- */
-/* 20px matches the bottom margin a bare <h2> gets by default. The header has to
-   carry it because the h2's own margin is zeroed below — and without it the
-   "back to list" button sits flush under a thumbnailed header and 20px lower on
-   a table with no thumbnail, which reads as two different layouts. */
-.form-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-/* Zeroed because align-items:center centres the h2's MARGIN box: a bottom-only
-   default margin would push the title visibly above the thumbnail's midline. */
+/* ---------- form header: which record am I editing ----------
+   flex-start, not center: the photo makes this row 150-190px tall, and centring
+   left 79px of blank space above the title — measured, and it reads as a
+   rendering fault rather than as breathing room.
+   The 20px bottom margin is the gap down to the tab bar, and it has to live here
+   because the h2's own margin is zeroed below. */
+.form-head { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+/* Title and back button stacked, so the photo sits beside BOTH of them instead
+   of shoving the button below the full height of the image. */
+.form-head-main { display: flex; flex-direction: column; align-items: flex-start;
+  gap: 14px; min-width: 0; }
+/* Zeroed because the column spaces its children with `gap`; the h2's default
+   ~20px bottom margin would stack on top of that and only under the title. */
 .form-head h2 { margin: 0; min-width: 0; overflow-wrap: anywhere; }
-.form-thumb { width: 60px; height: 60px; flex: none; border: 1px solid var(--line);
+/* Parked on the right, where the header row was empty anyway, and big enough to
+   actually read the product off — at 60px beside the title it identified the
+   record but you still could not tell two similar mounts apart.
+   clamp() rather than media queries: the box has no breakpoint of its own, it
+   just needs to stop eating the title on a phone and stop growing on a monitor. */
+.form-thumb { width: clamp(84px, 16vw, 190px); aspect-ratio: 1; margin-left: auto;
+  flex: none; border: 1px solid var(--line);
   border-radius: 10px; background: var(--panel); overflow: hidden;
   display: flex; align-items: center; justify-content: center; }
-.form-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.form-thumb-ph { font-size: .58rem; line-height: 1.1; text-align: center; color: var(--muted);
-  word-break: break-all; padding: 3px; cursor: help; }
+/* contain, not cover: at this size the point is to SEE the product, and a square
+   crop of a portrait pack shot cuts off exactly the part you were checking. */
+.form-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.form-thumb-ph { font-size: .78rem; line-height: 1.25; text-align: center; color: var(--muted);
+  word-break: break-all; padding: 8px; cursor: help; }
 
 /* Money columns: right-aligned and tabular so the decimal points line up and a
    column of costs can be scanned vertically. */
