@@ -21,7 +21,7 @@
    DELIBERATELY NOT translated — these are codes, not labels, and translating
    them would make them harder to match against source documents, not easier:
      products.art_key              (illustration slugs — internal asset keys)
-     categories.internal_cat_mapping (CAT-A..E — the White Paper's own codes)
+     categories.internal_cat_mapping (V/D/R/S/B/P/A — the ecosystem letters themselves)
      scenarios.scenario_code        (S1..S6 — the IA's own codes)
      products.charging_watt's 15W/25W (a wattage number, language-neutral)
 */
@@ -32,6 +32,8 @@ window.VIEMAG_OPTION_I18N = {
       launch_tier: { 'A - Core': 'A - 核心', 'B - Test': 'B - 測試', 'C - Display': 'C - 展示', Future: '即將推出' },
       persona: { commuter: '科技通勤族', homeoffice: '居家辦公專業者', traveler: '差旅商務人士', creator: '戶外/影像創作者' },
       consumer_pain_point: { Dropping: '手機掉落', Heat: '充電發熱', Loose: '吸不牢', Compatibility: '相容性問題', 'Cable Mess': '線材雜亂' },
+      sub_category: { mounts: '支架', 'charging-mounts': '充電支架', stands: '立架', travel: '旅行攜帶', power: '行動電源', creator: '創作', interface: '介面件' },
+      use_cases: { car: '車上', desk: '桌面', home: '居家', travel: '差旅', outdoor: '戶外', ride: '騎行' },
       mount_type: { Vent: '出風口', Dashboard: '儀表板', Suction: '吸盤', Tape: '3M 貼片', Screen: '螢幕邊夾', Desktop: '桌面' },
       charging_watt: { None: '無', TBD: '待定' },
       qi_status: { 'Not applicable': '無充電功能', Compatible: '依 Qi2 標準設計', Testing: '依 Qi2.2 標準設計（認證進行中）', Certified: 'Qi2 認證', Pending: '待定' },
@@ -87,6 +89,8 @@ window.VIEMAG_OPTION_I18N = {
       launch_tier: { 'A - Core': 'A - 核心', 'B - Test': 'B - 测试', 'C - Display': 'C - 展示', Future: '即将推出' },
       persona: { commuter: '科技通勤族', homeoffice: '居家办公专业者', traveler: '差旅商务人士', creator: '户外/影像创作者' },
       consumer_pain_point: { Dropping: '手机掉落', Heat: '充电发热', Loose: '吸不牢', Compatibility: '兼容性问题', 'Cable Mess': '线材杂乱' },
+      sub_category: { mounts: '支架', 'charging-mounts': '充电支架', stands: '立架', travel: '旅行携带', power: '移动电源', creator: '创作', interface: '接口件' },
+      use_cases: { car: '车上', desk: '桌面', home: '居家', travel: '差旅', outdoor: '户外', ride: '骑行' },
       mount_type: { Vent: '出风口', Dashboard: '仪表板', Suction: '吸盘', Tape: '3M 贴片', Screen: '屏幕边夹', Desktop: '桌面' },
       charging_watt: { None: '无', TBD: '待定' },
       qi_status: { 'Not applicable': '无充电功能', Compatible: '依 Qi2 标准设计', Testing: '依 Qi2.2 标准设计（认证进行中）', Certified: 'Qi2 认证', Pending: '待定' },
@@ -142,6 +146,8 @@ window.VIEMAG_OPTION_I18N = {
       launch_tier: { 'A - Core': 'A - Cốt lõi', 'B - Test': 'B - Thử nghiệm', 'C - Display': 'C - Trưng bày', Future: 'Sắp ra mắt' },
       persona: { commuter: 'Người đi làm yêu công nghệ', homeoffice: 'Chuyên gia làm việc tại nhà', traveler: 'Doanh nhân hay công tác', creator: 'Nhà sáng tạo ngoài trời' },
       consumer_pain_point: { Dropping: 'Điện thoại bị rơi', Heat: 'Nóng khi sạc', Loose: 'Giữ không chắc', Compatibility: 'Không tương thích', 'Cable Mess': 'Dây cáp rối' },
+      sub_category: { mounts: 'Giá đỡ', 'charging-mounts': 'Giá sạc', stands: 'Đế đứng', travel: 'Du lịch', power: 'Sạc dự phòng', creator: 'Sáng tạo', interface: 'Phụ kiện kết nối' },
+      use_cases: { car: 'Trên ô tô', desk: 'Để bàn', home: 'Tại nhà', travel: 'Du lịch', outdoor: 'Ngoài trời', ride: 'Xe máy' },
       mount_type: { Vent: 'Cửa gió', Dashboard: 'Táp-lô', Suction: 'Đế hút', Tape: 'Dán 3M', Screen: 'Kẹp màn hình', Desktop: 'Để bàn' },
       charging_watt: { None: 'Không có', TBD: 'Chưa xác định' },
       qi_status: { 'Not applicable': 'Không sạc', Compatible: 'Thiết kế theo chuẩn Qi2', Testing: 'Thiết kế theo chuẩn Qi2.2 (đang kiểm định)', Certified: 'Chứng nhận Qi2', Pending: 'Đang chờ' },

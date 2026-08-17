@@ -26,6 +26,13 @@
 <script src="js/data-loader.js"></script>
 <script src="js/i18n.js"></script>
 <script>
+/* Curated editorial page, 2026-08-16 onwards.
+   Scenarios used to be a per-product field that also drove a `?scn=` filter on
+   the listing. That collapsed in practice — 14 of 20 products sat in S2, S1 held
+   none — so with the V3 coding scheme the field went away and scenarios became
+   what they were always better at: hand-picked stories with a hand-picked combo.
+   Everything on this page now comes from the scenarios table alone; nothing here
+   reads a product's own scenario tags, because products no longer have any. */
 window.renderPage = function ({ t, tf, icon, esc, prodBySku }) {
   const DB = window.DB;
   document.getElementById('scnRows').innerHTML = DB.scenarios.map((s) => {
@@ -45,7 +52,7 @@ window.renderPage = function ({ t, tf, icon, esc, prodBySku }) {
         <p>${esc(tf(s.desc))}</p>
         ${tf(s.pain) ? `<p class="scn-pain"><b>${t('scns.pain')}</b> ${esc(tf(s.pain))}</p>` : ''}
         ${combo ? `<p class="filter-label" style="margin-bottom:8px">${t('scns.combo')}</p><div class="combo">${combo}</div>` : ''}
-        <a class="btn btn-ghost btn-sm" href="products.html?scn=${s.code}">${t('cta.explore')}</a>
+        <a class="btn btn-ghost btn-sm" href="products.html">${t('cta.explore')}</a>
       </div>
     </article>`;
   }).join('');

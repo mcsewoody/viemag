@@ -24,8 +24,6 @@
       <div class="filter-bar" id="catFilter"></div>
       <p class="filter-label" data-i18n="filter.byPersona"></p>
       <div class="filter-bar" id="personaFilter"></div>
-      <p class="filter-label" data-i18n="filter.byScn"></p>
-      <div class="filter-bar" id="scnFilter"></div>
       <div class="prod-grid" id="prodGrid" style="margin-top:24px"></div>
       <div class="empty-state" id="emptyState" style="display:none" data-i18n="products.empty"></div>
     </div>
@@ -39,16 +37,21 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   const DB = window.DB;
   const params = new URLSearchParams(location.search);
   let curCat = params.get('cat') || 'all';
-  let curScn = params.get('scn') || 'all';
-  /* Persona is the third axis of the information architecture (CLAUDE.md), and
+  /* Persona is the second axis of the information architecture (CLAUDE.md), and
      products carry their own persona tags. Until 2026-07-29 that column was
      editable in /admin and read by nobody: the persona cards linked to a
-     hard-coded list of categories instead. */
+     hard-coded list of categories instead.
+
+     There was a third filter here — by scenario — removed 2026-08-16 with the V3
+     coding scheme. It filtered on a product field whose values had collapsed:
+     14 of 20 products sat in S2 (so `?scn=S2` returned nearly the whole
+     catalogue), S1 held none (so its page was always empty), and two products
+     had been left blank entirely. Scenarios now live only as curated editorial
+     on scenarios.html. */
   let curPersona = params.get('persona') || 'all';
 
   const catBar = document.getElementById('catFilter');
   const personaBar = document.getElementById('personaFilter');
-  const scnBar = document.getElementById('scnFilter');
   const grid = document.getElementById('prodGrid');
   const empty = document.getElementById('emptyState');
 
@@ -59,12 +62,8 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
     personaBar.innerHTML = `<button data-v="all" class="${curPersona === 'all' ? 'active' : ''}">${t('filter.all')}</button>` +
       DB.personas.map((pe) =>
         `<button data-v="${pe.id}" class="${curPersona === pe.id ? 'active' : ''}">${tf(pe.name)}</button>`).join('');
-    scnBar.innerHTML = `<button data-v="all" class="${curScn === 'all' ? 'active' : ''}">${t('filter.all')}</button>` +
-      DB.scenarios.map((s) =>
-        `<button data-v="${s.code}" class="${curScn === s.code ? 'active' : ''}">${s.code} · ${tf(s.name)}</button>`).join('');
     catBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curCat = b.dataset.v; sync(); });
     personaBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curPersona = b.dataset.v; sync(); });
-    scnBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curScn = b.dataset.v; sync(); });
   }
 
   /* When the listing is filtered to one category, use that category's own title
@@ -84,7 +83,6 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
     const p = new URLSearchParams();
     if (curCat !== 'all') p.set('cat', curCat);
     if (curPersona !== 'all') p.set('persona', curPersona);
-    if (curScn !== 'all') p.set('scn', curScn);
     history.replaceState(null, '', 'products.html' + (p.toString() ? '?' + p : ''));
     drawFilters(); draw(); applyCategoryMeta();
   }
@@ -92,8 +90,7 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   function draw() {
     const list = DB.products.filter((p) =>
       (curCat === 'all' || p.category === curCat) &&
-      (curPersona === 'all' || (p.personas || []).includes(curPersona)) &&
-      (curScn === 'all' || (p.scenarios || []).includes(curScn)));
+      (curPersona === 'all' || (p.personas || []).includes(curPersona)));
     /* published first, future last */
     list.sort((a, b) => (a.status === 'future') - (b.status === 'future'));
     grid.innerHTML = list.map(productCard).join('');

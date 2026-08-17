@@ -194,7 +194,11 @@
     case: `<g>${phone(36, 18, 56, 100, 12)}<circle cx="64" cy="68" r="20" fill="none" stroke="${C.copper}" stroke-width="4"/><rect x="98" y="34" width="18" height="34" rx="6" fill="${C.navy}"/><circle cx="107" cy="44" r="4.5" fill="${C.ivory}"/></g>`,
     powerbank: `<g><rect x="30" y="34" width="52" height="88" rx="10" fill="${C.mid}"/><rect x="34" y="38" width="44" height="80" rx="7" fill="#fff"/><rect x="58" y="26" width="52" height="88" rx="10" fill="${C.navy}"/><circle cx="84" cy="70" r="18" fill="none" stroke="${C.copper}" stroke-width="3.5"/>${bolt(78, 58, 2.2)}</g>`,
     stand: `<g><rect x="24" y="112" width="92" height="8" rx="4" fill="${C.ivory}" stroke="${C.line}"/><path d="M70 112V84" stroke="${C.navy}" stroke-width="9" stroke-linecap="round"/><circle cx="70" cy="80" r="10" fill="${C.copper}"/>${phone(46, 10, 48, 72, 9)}</g>`,
-    tripod: `<g><path d="M70 74L44 118M70 74l26 44M70 74v44" stroke="${C.navy}" stroke-width="7" stroke-linecap="round"/><circle cx="70" cy="66" r="11" fill="${C.copper}"/>${phone(48, 6, 44, 60, 8)}</g>`
+    tripod: `<g><path d="M70 74L44 118M70 74l26 44M70 74v44" stroke="${C.navy}" stroke-width="7" stroke-linecap="round"/><circle cx="70" cy="66" r="11" fill="${C.copper}"/>${phone(48, 6, 44, 60, 8)}</g>`,
+    /* Added 2026-08-16 for the R (Ride) ecosystem — handlebar with grips and a
+       mount clamped to the middle. The other keys all pre-date the V3 scheme;
+       this is the first ecosystem that arrived without artwork already drawn. */
+    ride: `<g><path d="M18 108q22-16 52-16t52 16" fill="none" stroke="${C.navy}" stroke-width="8" stroke-linecap="round"/><rect x="14" y="100" width="22" height="12" rx="6" fill="${C.mid}"/><rect x="104" y="100" width="22" height="12" rx="6" fill="${C.mid}"/><path d="M70 92V78" stroke="${C.navy}" stroke-width="9" stroke-linecap="round"/><circle cx="70" cy="74" r="10" fill="${C.copper}"/>${phone(48, 12, 44, 58, 8)}</g>`
   };
   const art = (key, label) =>
     `<svg viewBox="0 0 140 140" role="img" aria-label="${label || ''}">${ART[key] || ART.ring}</svg>`;

@@ -8,15 +8,15 @@
 window.DB = {
   "categories": [
     {
-      "id": "car-mounts",
-      "cat": "CAT-B",
+      "id": "vehicle",
+      "cat": "V",
       "status": "published",
       "art": "dash",
       "name": {
-        "en": "Car Magnetic Mounts",
-        "vi": "Giá đỡ nam châm ô tô",
-        "id": "Dudukan Magnetik Mobil",
-        "zh": "車用磁吸支架"
+        "en": "Vehicle",
+        "vi": "Ô tô",
+        "id": "Mobil",
+        "zh": "車用生態"
       },
       "desc": {
         "en": "Drive, navigate, one-hand dock. The flagship line built for daily commutes.",
@@ -38,45 +38,15 @@ window.DB = {
       }
     },
     {
-      "id": "car-chargers",
-      "cat": "CAT-B",
-      "status": "published",
-      "art": "carcharge",
-      "name": {
-        "en": "Qi2 Car Charging Mounts",
-        "vi": "Giá sạc ô tô chuẩn Qi2",
-        "id": "Dudukan Pengisi Qi2 Mobil",
-        "zh": "Qi2 車用充電支架"
-      },
-      "desc": {
-        "en": "Hold firm and fast-charge at 15W–25W with managed heat while navigating.",
-        "vi": "Vừa giữ chắc vừa sạc nhanh 15W–25W, kiểm soát nhiệt khi dẫn đường.",
-        "id": "Menahan kuat sekaligus mengisi cepat 15W–25W dengan panas terkendali saat navigasi.",
-        "zh": "穩固支撐同時 15W–25W 快充，導航時溫度受控。"
-      },
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "id": "desk-travel",
-      "cat": "CAT-A",
+      "id": "desk",
+      "cat": "D",
       "status": "published",
       "art": "deskcharge",
       "name": {
-        "en": "Desk & Travel Qi2 Chargers",
-        "vi": "Sạc Qi2 để bàn & du lịch",
-        "id": "Pengisi Qi2 Meja & Perjalanan",
-        "zh": "桌面/旅行 Qi2 充電器"
+        "en": "Desk",
+        "vi": "Để bàn",
+        "id": "Meja",
+        "zh": "桌面生態"
       },
       "desc": {
         "en": "A tidier desk at work, a lighter bag on the road.",
@@ -98,21 +68,21 @@ window.DB = {
       }
     },
     {
-      "id": "accessories",
-      "cat": "CAT-E",
-      "status": "published",
-      "art": "ring",
+      "id": "ride",
+      "cat": "R",
+      "status": "future",
+      "art": "ride",
       "name": {
-        "en": "Magnetic Accessories",
-        "vi": "Phụ kiện nam châm",
-        "id": "Aksesori Magnetik",
-        "zh": "磁吸擴充配件"
+        "en": "Ride",
+        "vi": "Xe máy",
+        "id": "Motor",
+        "zh": "騎行生態"
       },
       "desc": {
-        "en": "Adapter rings and cases that bring any phone into the magnetic system.",
-        "vi": "Vòng chuyển đổi và ốp lưng giúp mọi điện thoại dùng được hệ nam châm.",
-        "id": "Cincin adaptor dan casing yang membawa ponsel apa pun ke sistem magnetik.",
-        "zh": "轉接環與手機殼，讓任何手機都能進入磁吸系統。"
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
       },
       "seoTitle": {
         "en": "",
@@ -128,15 +98,45 @@ window.DB = {
       }
     },
     {
-      "id": "portable-power",
-      "cat": "CAT-C",
-      "status": "future",
+      "id": "studio",
+      "cat": "S",
+      "status": "published",
+      "art": "tripod",
+      "name": {
+        "en": "Studio",
+        "vi": "Sáng tạo",
+        "id": "Studio",
+        "zh": "創作生態"
+      },
+      "desc": {
+        "en": "Desk, bedside and creator stands — coming soon.",
+        "vi": "Giá đỡ bàn làm việc, đầu giường và quay video — sắp ra mắt.",
+        "id": "Dudukan meja, samping ranjang, dan kreator — segera hadir.",
+        "zh": "桌面、床邊與創作立架，即將推出。"
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "battery",
+      "cat": "B",
+      "status": "published",
       "art": "powerbank",
       "name": {
-        "en": "Portable Magnetic Power",
-        "vi": "Nguồn di động nam châm",
-        "id": "Daya Magnetik Portabel",
-        "zh": "隨身磁吸行動電源"
+        "en": "Battery",
+        "vi": "Sạc dự phòng",
+        "id": "Power Bank",
+        "zh": "行動電源生態"
       },
       "desc": {
         "en": "Snap-on power banks for the road — coming soon.",
@@ -158,21 +158,51 @@ window.DB = {
       }
     },
     {
-      "id": "stands-display",
-      "cat": "CAT-D",
-      "status": "future",
-      "art": "stand",
+      "id": "portable",
+      "cat": "P",
+      "status": "published",
+      "art": "fold",
       "name": {
-        "en": "Stands & Display",
-        "vi": "Giá đỡ & hiển thị",
-        "id": "Dudukan & Display",
-        "zh": "立架影音生態"
+        "en": "Portable",
+        "vi": "Di động",
+        "id": "Portabel",
+        "zh": "隨身行動生態"
       },
       "desc": {
-        "en": "Desk, bedside and creator stands — coming soon.",
-        "vi": "Giá đỡ bàn làm việc, đầu giường và quay video — sắp ra mắt.",
-        "id": "Dudukan meja, samping ranjang, dan kreator — segera hadir.",
-        "zh": "桌面、床邊與創作立架，即將推出。"
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "accessory",
+      "cat": "A",
+      "status": "published",
+      "art": "ring",
+      "name": {
+        "en": "Accessory",
+        "vi": "Phụ kiện",
+        "id": "Aksesori",
+        "zh": "擴充配件生態"
+      },
+      "desc": {
+        "en": "Adapter rings and cases that bring any phone into the magnetic system.",
+        "vi": "Vòng chuyển đổi và ốp lưng giúp mọi điện thoại dùng được hệ nam châm.",
+        "id": "Cincin adaptor dan casing yang membawa ponsel apa pun ke sistem magnetik.",
+        "zh": "轉接環與手機殼，讓任何手機都能進入磁吸系統。"
       },
       "seoTitle": {
         "en": "",
@@ -214,9 +244,9 @@ window.DB = {
       },
       "img": null,
       "combo": [
-        "VB002DSH",
-        "VB00815W",
-        "VE001RNG"
+        "V02",
+        "VQ10",
+        "A01"
       ]
     },
     {
@@ -244,9 +274,9 @@ window.DB = {
       },
       "img": null,
       "combo": [
-        "VA002DSK",
-        "VA00115W",
-        "VE002KIT"
+        "D01",
+        "D02",
+        "A02"
       ]
     },
     {
@@ -274,8 +304,9 @@ window.DB = {
       },
       "img": null,
       "combo": [
-        "VA003FLD",
-        "VE001RNG"
+        "PQ02",
+        "P01",
+        "A01"
       ]
     },
     {
@@ -302,7 +333,10 @@ window.DB = {
         "zh": ""
       },
       "img": null,
-      "combo": []
+      "combo": [
+        "BQ01",
+        "A01"
+      ]
     },
     {
       "code": "S4",
@@ -328,7 +362,10 @@ window.DB = {
         "zh": ""
       },
       "img": null,
-      "combo": []
+      "combo": [
+        "D01",
+        "BQ01"
+      ]
     },
     {
       "code": "S6",
@@ -354,7 +391,10 @@ window.DB = {
         "zh": ""
       },
       "img": null,
-      "combo": []
+      "combo": [
+        "S01",
+        "A01"
+      ]
     }
   ],
   "personas": [
@@ -375,8 +415,7 @@ window.DB = {
         "zh": "每換一個場景就要重新固定手機，磁吸把每次 3 秒省回來。"
       },
       "picks": [
-        "car-mounts",
-        "car-chargers"
+        "vehicle"
       ]
     },
     {
@@ -396,8 +435,8 @@ window.DB = {
         "zh": "桌面整潔是生產力的一部分，立式充電、視訊零線材。"
       },
       "picks": [
-        "desk-travel",
-        "stands-display"
+        "desk",
+        "studio"
       ]
     },
     {
@@ -417,8 +456,8 @@ window.DB = {
         "zh": "行李越輕越好，折疊充電器與磁吸電源是必備。"
       },
       "picks": [
-        "desk-travel",
-        "portable-power"
+        "portable",
+        "battery"
       ]
     },
     {
@@ -438,19 +477,125 @@ window.DB = {
         "zh": "Vlog、運動攝影、露營，看重磁吸生態的擴充性。"
       },
       "picks": [
-        "accessories",
-        "stands-display"
+        "studio",
+        "accessory"
       ]
     }
   ],
   "products": [
     {
-      "sku": "A1",
-      "slug": "A1",
+      "sku": "V01",
+      "slug": "v01",
       "status": "published",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car"
+      ],
+      "personas": [
+        "commuter"
+      ],
+      "art": "vent",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "vent"
+      ],
+      "price": 15.9,
+      "rating": 4.6,
+      "reviews": 87,
+      "badge": null,
+      "name": {
+        "en": "VIEMAG Vent Magnetic Mount",
+        "vi": "Giá đỡ nam châm cửa gió VIEMAG",
+        "id": "Dudukan Magnetik Kisi AC VIEMAG",
+        "zh": "VIEMAG 出風口磁吸支架"
+      },
+      "claim": {
+        "en": "Locks into the vent, docks your phone the moment you get in.",
+        "vi": "Kẹp cửa gió chắc chắn, gắn máy một chạm khi lên xe.",
+        "id": "Terkunci di kisi AC, memasang ponsel begitu Anda masuk mobil.",
+        "zh": "穩固卡入出風口，上車一吸即定位。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405775804-9gdnkkxg5yn-___1.png"
+    },
+    {
+      "sku": "V02",
+      "slug": "v02",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car"
+      ],
+      "personas": [
+        "commuter"
+      ],
+      "art": "dash",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "dashboard"
+      ],
+      "price": 19.9,
+      "rating": 4.8,
+      "reviews": 214,
+      "badge": "bestseller",
+      "name": {
+        "en": "VIEMAG Dashboard Magnetic Mount",
+        "vi": "Giá đỡ nam châm táp-lô VIEMAG",
+        "id": "Dudukan Magnetik Dasbor VIEMAG",
+        "zh": "VIEMAG 儀表板磁吸支架"
+      },
+      "claim": {
+        "en": "All-day navigation on the dash that stays put under hard braking.",
+        "vi": "Dẫn đường cả ngày trên táp-lô, phanh gấp vẫn đứng yên.",
+        "id": "Navigasi seharian di dasbor yang tetap diam saat mengerem mendadak.",
+        "zh": "儀表板全日導航，急煞依然穩固。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "sku": "V03",
+      "slug": "v03",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car"
       ],
       "personas": [
         "commuter"
@@ -497,46 +642,92 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786406134095-hvy6lmh1b39-A1.jpg"
     },
     {
-      "sku": "L1",
-      "slug": "L1",
+      "sku": "V04",
+      "slug": "v04",
       "status": "published",
-      "category": "desk-travel",
-      "scenarios": [
-        "S3",
-        "S5"
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car"
       ],
       "personas": [
-        "homeoffice",
-        "traveler"
+        "commuter"
       ],
-      "art": "fold",
-      "qi": "testing",
-      "watt": "15W",
+      "art": "suction",
+      "qi": "none",
+      "watt": null,
       "mount": [
-        "desktop"
+        "suction"
       ],
-      "price": 52.9,
-      "rating": 4.8,
-      "reviews": 58,
-      "badge": "new",
+      "price": 22.9,
+      "rating": 4.7,
+      "reviews": 63,
+      "badge": null,
       "name": {
-        "en": "VIEMAG Folding Travel Charger",
-        "vi": "Sạc du lịch gập VIEMAG",
-        "id": "Pengisi Perjalanan Lipat VIEMAG",
-        "zh": "VIEMAG 折疊旅行充電器"
+        "en": "VIEMAG Suction Long-Arm Mount",
+        "vi": "Giá đỡ tay dài đế hút chân không VIEMAG",
+        "id": "Dudukan Lengan Panjang Vakum VIEMAG",
+        "zh": "VIEMAG 吸盤長臂磁吸支架"
       },
       "claim": {
-        "en": "Folds to palm size, opens into your hotel charging station.",
-        "vi": "Gập lại bằng lòng bàn tay, mở ra là trạm sạc khách sạn.",
-        "id": "Terlipat seukuran telapak tangan, terbuka jadi stasiun pengisian hotel Anda.",
-        "zh": "折起一掌大小，展開就是飯店充電站。"
+        "en": "A long arm for any viewing angle, vacuum base grips glass and dash.",
+        "vi": "Tay đòn dài chỉnh mọi góc nhìn, đế hút bám chắc kính và táp-lô.",
+        "id": "Lengan panjang untuk segala sudut pandang, dasar vakum mencengkeram kaca dan dasbor.",
+        "zh": "長臂調整任何視角，吸盤緊咬玻璃與儀表板。"
       },
       "reports": [],
       "pains": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831361-phu3kg49n8a-hero_appleGray_1200_20260810_1533.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831363-3h7k9n453dd-hero_appleGray_1200_20260810_1531.webp"
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "sku": "V05",
+      "slug": "v05",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car"
       ],
+      "personas": [
+        "commuter"
+      ],
+      "art": "",
+      "qi": "none",
+      "watt": null,
+      "mount": [],
+      "price": 19.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Slim Suction Cup Magsafe Mount",
+        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng",
+        "id": "Dudukan Magsafe Berbentuk Cangkir Hisap yang Ramping",
+        "zh": "超薄吸盤式 MagSafe 支架"
+      },
+      "claim": {
+        "en": "The Thinnest and Lightest MagSafe Suction Cup Stand",
+        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
+        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
+        "zh": "最輕薄的吸盤 Magsafe 支架"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
@@ -551,18 +742,122 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350505820-ybpvjmf34bm-hero_appleGray_1200_20260810_1527.webp"
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785987079597-xohr4um18sb-VB005DSH_0.jpg"
     },
     {
-      "sku": "S1",
-      "slug": "S1",
+      "sku": "V06",
+      "slug": "v06",
       "status": "published",
-      "category": "accessories",
-      "scenarios": [
-        "S2",
-        "S4",
-        "S5",
-        "S6"
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car"
+      ],
+      "personas": [
+        "commuter"
+      ],
+      "art": "clip",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "screen"
+      ],
+      "price": 24.9,
+      "rating": 4.5,
+      "reviews": 41,
+      "badge": "new",
+      "name": {
+        "en": "VIEMAG Screen-Edge Magnetic Mount",
+        "vi": "Giá kẹp màn hình trung tâm VIEMAG",
+        "id": "Dudukan Magnetik Tepi Layar VIEMAG",
+        "zh": "VIEMAG 螢幕邊磁吸支架"
+      },
+      "claim": {
+        "en": "Clips to the center screen edge — no vents blocked, no adhesive.",
+        "vi": "Kẹp cạnh màn hình trung tâm, không che cửa gió, không dán keo.",
+        "id": "Menjepit tepi layar tengah — tanpa menutup kisi AC, tanpa perekat.",
+        "zh": "夾在中控螢幕邊，不擋出風口、不用貼膠。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "sku": "V07",
+      "slug": "v07",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car"
+      ],
+      "personas": [
+        "commuter"
+      ],
+      "art": "pro",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "vent",
+        "dashboard"
+      ],
+      "price": 24.9,
+      "rating": 4.9,
+      "reviews": 98,
+      "badge": "bestseller",
+      "name": {
+        "en": "VIEMAG Pro Anti-Vibration Strong Mount",
+        "vi": "Giá đỡ chống rung lực hút mạnh VIEMAG Pro",
+        "id": "Dudukan Kuat Anti-Getar VIEMAG Pro",
+        "zh": "VIEMAG Pro 強磁耐震支架"
+      },
+      "claim": {
+        "en": "N52 magnets and an anti-vibration build — the proof piece of the lineup.",
+        "vi": "Nam châm N52 và kết cấu chống rung — bằng chứng chất lượng của cả dòng sản phẩm.",
+        "id": "Magnet N52 dan konstruksi anti-getar — bukti kualitas seluruh lini.",
+        "zh": "N52 強磁與耐震結構，整條產品線的品質證據款。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "sku": "V08",
+      "slug": "v08",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "useCases": [
+        "car",
+        "desk"
       ],
       "personas": [
         "traveler",
@@ -616,363 +911,13 @@ window.DB = {
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
-      "sku": "S4",
-      "slug": "S4",
+      "sku": "VQ09",
+      "slug": "vq09",
       "status": "published",
-      "category": "car-mounts",
-      "scenarios": [],
-      "personas": [
-        "commuter"
-      ],
-      "art": "",
-      "qi": "none",
-      "watt": null,
-      "mount": [],
-      "price": 19.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Slim Suction Cup Magsafe Mount",
-        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng",
-        "id": "Dudukan Magsafe Berbentuk Cangkir Hisap yang Ramping",
-        "zh": "超薄吸盤式 MagSafe 支架"
-      },
-      "claim": {
-        "en": "The Thinnest and Lightest MagSafe Suction Cup Stand",
-        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
-        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
-        "zh": "最輕薄的吸盤 Magsafe 支架"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785987079597-xohr4um18sb-VB005DSH_0.jpg"
-    },
-    {
-      "sku": "T1",
-      "slug": "T1",
-      "status": "future",
-      "category": "portable-power",
-      "scenarios": [],
-      "personas": [],
-      "art": "",
-      "qi": "none",
-      "watt": null,
-      "mount": [],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Magsafe Travel Mount",
-        "vi": "Giá đỡ du lịch Magsafe",
-        "id": "Dudukan Perjalanan MagSafe",
-        "zh": "MagSafe 旅行支架"
-      },
-      "claim": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405913114-3hglyg9knw2-___1.png"
-    },
-    {
-      "sku": "V1",
-      "slug": "V1",
-      "status": "published",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
-      ],
-      "personas": [
-        "commuter"
-      ],
-      "art": "vent",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "vent"
-      ],
-      "price": 15.9,
-      "rating": 4.6,
-      "reviews": 87,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG Vent Magnetic Mount",
-        "vi": "Giá đỡ nam châm cửa gió VIEMAG",
-        "id": "Dudukan Magnetik Kisi AC VIEMAG",
-        "zh": "VIEMAG 出風口磁吸支架"
-      },
-      "claim": {
-        "en": "Locks into the vent, docks your phone the moment you get in.",
-        "vi": "Kẹp cửa gió chắc chắn, gắn máy một chạm khi lên xe.",
-        "id": "Terkunci di kisi AC, memasang ponsel begitu Anda masuk mobil.",
-        "zh": "穩固卡入出風口，上車一吸即定位。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405775804-9gdnkkxg5yn-___1.png"
-    },
-    {
-      "sku": "VB002DSH",
-      "slug": "dashboard-magnetic-car-mount",
-      "status": "published",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
-      ],
-      "personas": [
-        "commuter"
-      ],
-      "art": "dash",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "dashboard"
-      ],
-      "price": 19.9,
-      "rating": 4.8,
-      "reviews": 214,
-      "badge": "bestseller",
-      "name": {
-        "en": "VIEMAG Dashboard Magnetic Mount",
-        "vi": "Giá đỡ nam châm táp-lô VIEMAG",
-        "id": "Dudukan Magnetik Dasbor VIEMAG",
-        "zh": "VIEMAG 儀表板磁吸支架"
-      },
-      "claim": {
-        "en": "All-day navigation on the dash that stays put under hard braking.",
-        "vi": "Dẫn đường cả ngày trên táp-lô, phanh gấp vẫn đứng yên.",
-        "id": "Navigasi seharian di dasbor yang tetap diam saat mengerem mendadak.",
-        "zh": "儀表板全日導航，急煞依然穩固。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "sku": "VB003SUC",
-      "slug": "suction-arm-magnetic-mount",
-      "status": "published",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
-      ],
-      "personas": [
-        "commuter"
-      ],
-      "art": "suction",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "suction"
-      ],
-      "price": 22.9,
-      "rating": 4.7,
-      "reviews": 63,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG Suction Long-Arm Mount",
-        "vi": "Giá đỡ tay dài đế hút chân không VIEMAG",
-        "id": "Dudukan Lengan Panjang Vakum VIEMAG",
-        "zh": "VIEMAG 吸盤長臂磁吸支架"
-      },
-      "claim": {
-        "en": "A long arm for any viewing angle, vacuum base grips glass and dash.",
-        "vi": "Tay đòn dài chỉnh mọi góc nhìn, đế hút bám chắc kính và táp-lô.",
-        "id": "Lengan panjang untuk segala sudut pandang, dasar vakum mencengkeram kaca dan dasbor.",
-        "zh": "長臂調整任何視角，吸盤緊咬玻璃與儀表板。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "sku": "VB004CLP",
-      "slug": "screen-clip-magnetic-mount",
-      "status": "published",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
-      ],
-      "personas": [
-        "commuter"
-      ],
-      "art": "clip",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "screen"
-      ],
-      "price": 24.9,
-      "rating": 4.5,
-      "reviews": 41,
-      "badge": "new",
-      "name": {
-        "en": "VIEMAG Screen-Edge Magnetic Mount",
-        "vi": "Giá kẹp màn hình trung tâm VIEMAG",
-        "id": "Dudukan Magnetik Tepi Layar VIEMAG",
-        "zh": "VIEMAG 螢幕邊磁吸支架"
-      },
-      "claim": {
-        "en": "Clips to the center screen edge — no vents blocked, no adhesive.",
-        "vi": "Kẹp cạnh màn hình trung tâm, không che cửa gió, không dán keo.",
-        "id": "Menjepit tepi layar tengah — tanpa menutup kisi AC, tanpa perekat.",
-        "zh": "夾在中控螢幕邊，不擋出風口、不用貼膠。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "sku": "VB006PRO",
-      "slug": "pro-antivibration-magnetic-mount",
-      "status": "published",
-      "category": "car-mounts",
-      "scenarios": [
-        "S2"
-      ],
-      "personas": [
-        "commuter"
-      ],
-      "art": "pro",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "vent",
-        "dashboard"
-      ],
-      "price": 24.9,
-      "rating": 4.9,
-      "reviews": 98,
-      "badge": "bestseller",
-      "name": {
-        "en": "VIEMAG Pro Anti-Vibration Strong Mount",
-        "vi": "Giá đỡ chống rung lực hút mạnh VIEMAG Pro",
-        "id": "Dudukan Kuat Anti-Getar VIEMAG Pro",
-        "zh": "VIEMAG Pro 強磁耐震支架"
-      },
-      "claim": {
-        "en": "N52 magnets and an anti-vibration build — the proof piece of the lineup.",
-        "vi": "Nam châm N52 và kết cấu chống rung — bằng chứng chất lượng của cả dòng sản phẩm.",
-        "id": "Magnet N52 dan konstruksi anti-getar — bukti kualitas seluruh lini.",
-        "zh": "N52 強磁與耐震結構，整條產品線的品質證據款。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "sku": "VB00715W",
-      "slug": "vent-qi2-15w-car-charger",
-      "status": "published",
-      "category": "car-chargers",
-      "scenarios": [
-        "S2"
+      "category": "vehicle",
+      "subCategory": "charging-mounts",
+      "useCases": [
+        "car"
       ],
       "personas": [
         "commuter"
@@ -1018,12 +963,13 @@ window.DB = {
       }
     },
     {
-      "sku": "VB00815W",
-      "slug": "dashboard-qi2-15w-car-charger",
+      "sku": "VQ10",
+      "slug": "vq10",
       "status": "published",
-      "category": "car-chargers",
-      "scenarios": [
-        "S2"
+      "category": "vehicle",
+      "subCategory": "charging-mounts",
+      "useCases": [
+        "car"
       ],
       "personas": [
         "commuter"
@@ -1069,12 +1015,13 @@ window.DB = {
       }
     },
     {
-      "sku": "VB00925W",
-      "slug": "qi2-25w-cooled-car-charger",
+      "sku": "VQ11",
+      "slug": "vq11",
       "status": "published",
-      "category": "car-chargers",
-      "scenarios": [
-        "S2"
+      "category": "vehicle",
+      "subCategory": "charging-mounts",
+      "useCases": [
+        "car"
       ],
       "personas": [
         "commuter",
@@ -1122,12 +1069,13 @@ window.DB = {
       }
     },
     {
-      "sku": "VB010ARM",
-      "slug": "long-arm-qi2-car-charger",
+      "sku": "VQ12",
+      "slug": "vq12",
       "status": "published",
-      "category": "car-chargers",
-      "scenarios": [
-        "S2"
+      "category": "vehicle",
+      "subCategory": "charging-mounts",
+      "useCases": [
+        "car"
       ],
       "personas": [
         "commuter"
@@ -1173,116 +1121,14 @@ window.DB = {
       }
     },
     {
-      "sku": "VC00110K",
-      "slug": "magnetic-power-bank-10k",
+      "sku": "D01",
+      "slug": "d01",
       "status": "future",
-      "category": "portable-power",
-      "scenarios": [
-        "S2",
-        "S5"
-      ],
-      "personas": [
-        "traveler"
-      ],
-      "art": "powerbank",
-      "qi": "compatible",
-      "watt": "15W",
-      "mount": [],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": "soon",
-      "name": {
-        "en": "VIEMAG Magnetic Power Bank 10K",
-        "vi": "Pin nam châm VIEMAG 10.000mAh",
-        "id": "Power Bank Magnetik VIEMAG 10K",
-        "zh": "VIEMAG 磁吸行動電源 10K"
-      },
-      "claim": {
-        "en": "Snaps to the back and charges wirelessly on the move — coming soon.",
-        "vi": "Hút dán sau máy, sạc không dây khi đang di chuyển — sắp ra mắt.",
-        "id": "Menempel di belakang dan mengisi nirkabel saat bergerak — segera hadir.",
-        "zh": "吸附機背、行進間無線充電，即將推出。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "sku": "VD001MDS",
-      "slug": "desktop-magnetic-dual stand",
-      "status": "future",
-      "category": "stands-display",
-      "scenarios": [
-        "S3",
-        "S4"
-      ],
-      "personas": [
-        "homeoffice",
-        "creator"
-      ],
-      "art": "stand",
-      "qi": "none",
-      "watt": null,
-      "mount": [
-        "desktop"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": "soon",
-      "name": {
-        "en": "VIEMAG Magnetic Dual Device Stand",
-        "vi": "Giá đỡ từ tính hai thiết bị VIEMAG",
-        "id": "VIEMAG Dudukan Perangkat Ganda Magnetik",
-        "zh": "VIEMAG 磁吸式雙裝置支架"
-      },
-      "claim": {
-        "en": "One stand, two devices, maximum efficiency.",
-        "vi": "Một giá đỡ, hai thiết bị, hiệu quả tối đa.",
-        "id": "Satu dudukan, dua perangkat, efisiensi maksimal.",
-        "zh": "一個底座，兩台裝置，效率最大化。"
-      },
-      "reports": [],
-      "pains": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 7,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
-      "sku": "VD001STD",
-      "slug": "desktop-magnetic-stand",
-      "status": "future",
-      "category": "stands-display",
-      "scenarios": [
-        "S3",
-        "S4"
+      "category": "desk",
+      "subCategory": "stands",
+      "useCases": [
+        "desk",
+        "home"
       ],
       "personas": [
         "homeoffice",
@@ -1329,12 +1175,67 @@ window.DB = {
       }
     },
     {
-      "sku": "VD002TRP",
-      "slug": "creator-tripod-adapter",
+      "sku": "D02",
+      "slug": "d02",
       "status": "future",
-      "category": "stands-display",
-      "scenarios": [
-        "S6"
+      "category": "desk",
+      "subCategory": "stands",
+      "useCases": [
+        "desk",
+        "home"
+      ],
+      "personas": [
+        "homeoffice",
+        "creator"
+      ],
+      "art": "stand",
+      "qi": "none",
+      "watt": null,
+      "mount": [
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": "soon",
+      "name": {
+        "en": "VIEMAG Magnetic Dual Device Stand",
+        "vi": "Giá đỡ từ tính hai thiết bị VIEMAG",
+        "id": "VIEMAG Dudukan Perangkat Ganda Magnetik",
+        "zh": "VIEMAG 磁吸式雙裝置支架"
+      },
+      "claim": {
+        "en": "One stand, two devices, maximum efficiency.",
+        "vi": "Một giá đỡ, hai thiết bị, hiệu quả tối đa.",
+        "id": "Satu dudukan, dua perangkat, efisiensi maksimal.",
+        "zh": "一個底座，兩台裝置，效率最大化。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 7,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "sku": "S01",
+      "slug": "s01",
+      "status": "future",
+      "category": "studio",
+      "subCategory": "creator",
+      "useCases": [
+        "outdoor"
       ],
       "personas": [
         "creator"
@@ -1378,14 +1279,174 @@ window.DB = {
       }
     },
     {
-      "sku": "VE001RNG",
-      "slug": "magnetic-adapter-ring-kit",
+      "sku": "BQ01",
+      "slug": "bq01",
+      "status": "future",
+      "category": "battery",
+      "subCategory": "power",
+      "useCases": [
+        "travel",
+        "outdoor",
+        "car"
+      ],
+      "personas": [
+        "traveler"
+      ],
+      "art": "powerbank",
+      "qi": "compatible",
+      "watt": "15W",
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": "soon",
+      "name": {
+        "en": "VIEMAG Magnetic Power Bank 10K",
+        "vi": "Pin nam châm VIEMAG 10.000mAh",
+        "id": "Power Bank Magnetik VIEMAG 10K",
+        "zh": "VIEMAG 磁吸行動電源 10K"
+      },
+      "claim": {
+        "en": "Snaps to the back and charges wirelessly on the move — coming soon.",
+        "vi": "Hút dán sau máy, sạc không dây khi đang di chuyển — sắp ra mắt.",
+        "id": "Menempel di belakang dan mengisi nirkabel saat bergerak — segera hadir.",
+        "zh": "吸附機背、行進間無線充電，即將推出。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
+      "sku": "P01",
+      "slug": "p01",
+      "status": "future",
+      "category": "portable",
+      "subCategory": "travel",
+      "useCases": [
+        "travel"
+      ],
+      "personas": [],
+      "art": "",
+      "qi": "none",
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Magsafe Travel Mount",
+        "vi": "Giá đỡ du lịch Magsafe",
+        "id": "Dudukan Perjalanan MagSafe",
+        "zh": "MagSafe 旅行支架"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405913114-3hglyg9knw2-___1.png"
+    },
+    {
+      "sku": "PQ02",
+      "slug": "pq02",
       "status": "published",
-      "category": "accessories",
-      "scenarios": [
-        "S2",
-        "S3",
-        "S5"
+      "category": "portable",
+      "subCategory": "travel",
+      "useCases": [
+        "travel",
+        "desk"
+      ],
+      "personas": [
+        "homeoffice",
+        "traveler"
+      ],
+      "art": "fold",
+      "qi": "testing",
+      "watt": "15W",
+      "mount": [
+        "desktop"
+      ],
+      "price": 52.9,
+      "rating": 4.8,
+      "reviews": 58,
+      "badge": "new",
+      "name": {
+        "en": "VIEMAG Folding Travel Charger",
+        "vi": "Sạc du lịch gập VIEMAG",
+        "id": "Pengisi Perjalanan Lipat VIEMAG",
+        "zh": "VIEMAG 折疊旅行充電器"
+      },
+      "claim": {
+        "en": "Folds to palm size, opens into your hotel charging station.",
+        "vi": "Gập lại bằng lòng bàn tay, mở ra là trạm sạc khách sạn.",
+        "id": "Terlipat seukuran telapak tangan, terbuka jadi stasiun pengisian hotel Anda.",
+        "zh": "折起一掌大小，展開就是飯店充電站。"
+      },
+      "reports": [],
+      "pains": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831361-phu3kg49n8a-hero_appleGray_1200_20260810_1533.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831363-3h7k9n453dd-hero_appleGray_1200_20260810_1531.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350505820-ybpvjmf34bm-hero_appleGray_1200_20260810_1527.webp"
+    },
+    {
+      "sku": "A01",
+      "slug": "a01",
+      "status": "published",
+      "category": "accessory",
+      "subCategory": "interface",
+      "useCases": [
+        "car",
+        "desk",
+        "travel"
       ],
       "personas": [
         "commuter",
@@ -1430,13 +1491,14 @@ window.DB = {
       }
     },
     {
-      "sku": "VE002KIT",
-      "slug": "magnetic-case-ring-bundle",
+      "sku": "A02",
+      "slug": "a02",
       "status": "published",
-      "category": "accessories",
-      "scenarios": [
-        "S2",
-        "S3"
+      "category": "accessory",
+      "subCategory": "interface",
+      "useCases": [
+        "car",
+        "desk"
       ],
       "personas": [
         "commuter",

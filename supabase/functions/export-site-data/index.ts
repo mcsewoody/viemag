@@ -112,6 +112,18 @@ const PRODUCT_COLS = [
   'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
   /* Added 2026-08-10. What ships in the box, one item per line. */
   'accessories_en', 'accessories_vi', 'accessories_id', 'accessories_zh',
+  /* Added 2026-08-16 with the V3 coding scheme. `sub_category` is the site's
+     mid-level nav bucket — the SKU only encodes the ecosystem, so re-organising
+     nav never touches a part number. `use_cases` is the escape hatch for the
+     now single-valued, frozen category: a product that genuinely spans several
+     situations carries them here, where they stay editable. */
+  'sub_category', 'use_cases',
+  /* The WPC certification number. Public on purpose: a certification mark the
+     visitor cannot check is just a picture, and the brand's own promise is that
+     every claim carries its evidence. It only ever renders when qi_status is
+     Certified, so an ID typed against a product that is still in testing shows
+     nothing. */
+  'qi_id',
 ].join(',');
 const CATEGORY_COLS = [
   'id', 'slug', 'internal_cat_mapping', 'visibility', 'status', 'sort_order', 'art_key',
@@ -179,15 +191,16 @@ async function selectAll(sb: any, table: string, cols: string, tweak?: (q: any) 
 async function buildDataJs(): Promise<{ content: string; counts: Record<string, number>; skipped: string[]; withheld: string[] }> {
   const sb = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
-  const [catRows, scnRows, prodRows, faqRows, linkRows, reportRows, reportLinkRows, guideRows,
+  const [catRows, scnRows, prodRows, faqRows, reportRows, reportLinkRows, guideRows,
          faqLinkRows, relatedLinkRows] =
     await Promise.all([
       selectAll(sb, 'categories', CATEGORY_COLS, (q: any) => q.order('sort_order').order('slug')),
+      /* Scenarios survive the V3 change as an EDITORIAL surface only — the
+         curated combos on scenarios.html. They are no longer a per-product
+         field, so there is no product_scenarios query here any more. */
       selectAll(sb, 'scenarios', SCENARIO_COLS, (q: any) => q.order('priority').order('scenario_code')),
       selectAll(sb, 'products', PRODUCT_COLS, (q: any) => q.order('product_id')),
       selectAll(sb, 'faq', FAQ_COLS, (q: any) => q.eq('status', 'Published').order('faq_key')),
-      selectAll(sb, 'product_scenarios', 'product_id, scenario_id',
-        (q: any) => q.order('product_id').order('scenario_id')),
       /* TWO gates, both required, and both filtered in Postgres rather than here
          so an un-approved report can never reach this function's memory: a
          report is public evidence only if it is marked Public AND signed off for
@@ -203,23 +216,15 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       /* Both were editable in /admin and read by nobody, so ticking them
          achieved exactly nothing. Now they OVERRIDE the automatic behaviour:
          per-product FAQs replace the global list, hand-picked related products
-         replace the scenario-overlap guess. Leaving them empty keeps the
-         automatic behaviour, so no SKU has to be maintained by hand. */
+         replace the same-ecosystem guess (it was a scenario-overlap guess until
+         2026-08-16; scenarios stopped being a product field with V3). Leaving
+         them empty keeps the automatic behaviour, so no SKU has to be
+         maintained by hand. */
       selectAll(sb, 'product_faqs', 'product_id, faq_id',
         (q: any) => q.order('product_id').order('faq_id')),
       selectAll(sb, 'product_related_products', 'product_id, related_product_id',
         (q: any) => q.order('product_id').order('related_product_id')),
     ]);
-
-  const scenarioById = new Map((scnRows || []).map((r: any) => [r.id, r]));
-  const scenariosByProduct = new Map<string, string[]>();
-  (linkRows || []).forEach((l: any) => {
-    const scn = scenarioById.get(l.scenario_id);
-    if (!scn) return;
-    const arr = scenariosByProduct.get(l.product_id) || [];
-    arr.push(scn.scenario_code);
-    scenariosByProduct.set(l.product_id, arr);
-  });
 
   /* Many-to-many, in both directions (Woody, 2026-07-29): one report can cover
      several SKUs and one SKU can carry several reports. Only reports that
@@ -328,10 +333,18 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
            SKUs are trials or showroom-only. `status` above carries the only part
            the site needs. */
         category: catSlug && publishedCategorySlugs.has(catSlug) ? catSlug : null,
-        scenarios: (scenariosByProduct.get(r.id) || []).slice().sort(),
+        /* Mid-level nav bucket inside the ecosystem. Kept out of the SKU on
+           purpose so nav can be reorganised without reissuing part numbers. */
+        subCategory: r.sub_category || null,
+        /* Editable, many-to-many, never frozen — the counterweight to a
+           category that is single-valued and permanent once the code ships. */
+        useCases: r.use_cases || [],
         personas: r.persona || [],
         art: r.art_key || '',
         qi: QI_MAP[r.qi_status] || 'none',
+        /* Withheld unless the status is actually Certified — the ID must never
+           be the thing that implies certification. */
+        qiId: r.qi_status === 'Certified' ? (r.qi_id || null) : null,
         watt: r.charging_watt === 'None' || !r.charging_watt ? null : r.charging_watt,
         mount: (r.mount_type || []).map((m: string) => m.toLowerCase()),
         price: r.price_usd,
@@ -450,7 +463,6 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       faqs: faqs.length,
       reports: reports.length,
       insights: insights.length,
-      productScenarioLinks: (linkRows || []).length,
       productReportLinks: (reportLinkRows || []).length,
       productFaqLinks: (faqLinkRows || []).length,
       productRelatedLinks: (relatedLinkRows || []).length,

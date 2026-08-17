@@ -56,10 +56,13 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
     `<span>${esc(tf(p.name))}</span>`;
 
   const future = p.status === 'future';
-  const scnChips = (p.scenarios || []).map((code) => {
-    const s = scnByCode(code);
-    return s ? `<a class="chip" href="scenarios.html#${s.id}">${s.code} · ${esc(tf(s.name))}</a>` : '';
-  }).join(' ');
+  /* Use-case chips replaced scenario chips on 2026-08-16. Scenarios stopped
+     being a product field with the V3 coding scheme; `useCases` carries the same
+     "where would I actually use this" signal but stays editable and many-to-many,
+     which is what the frozen single-valued category cannot be. Blank stays blank
+     — no chip row rather than an empty one. */
+  const useChips = (p.useCases || []).map((u) =>
+    `<span class="chip">${esc(t('use.' + u))}</span>`).join(' ');
 
   /* Highlights: claim + per-type generic engineering bullets (mock copy) */
   const hl = [];
@@ -93,11 +96,16 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
       </div>`;
   }
 
+  /* The Qi ID row only exists when there is an ID to show, and the exporter
+     already withholds it unless qi_status is Certified — so a visitor never sees
+     a certification number on a product that is merely compatible. An empty row
+     would be worse than no row: it reads as "certified, number pending". */
   const specRows = [
     [t('pdp.spec.sku'), p.sku],
     [t('pdp.spec.mount'), (p.mount || []).map((m) => t('mount.' + m)).join(' · ') || '—'],
     [t('pdp.spec.watt'), p.watt || '—'],
-    [t('pdp.spec.qi'), t('qi.' + (p.qi || 'none'))]
+    [t('pdp.spec.qi'), t('qi.' + (p.qi || 'none'))],
+    ...(p.qiId ? [[t('pdp.spec.qiId'), p.qiId]] : []),
   ].map(([k, v]) => `<tr><td>${k}</td><td>${esc(v)}</td></tr>`).join('');
 
   box.innerHTML = `
@@ -112,7 +120,7 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
       ${p.rating ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : ''}
       <p class="claim">${esc(tf(p.claim))}</p>
       ${painChips(p)}
-      <div class="meta-chips">${scnChips}</div>
+      ${useChips ? `<div class="meta-chips">${useChips}</div>` : ''}
       ${future
         ? `<div class="notice" style="margin:20px 0">${t('cats.soon')}</div>`
         : `<div class="price">${money(p.price)}</div>
@@ -161,12 +169,19 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, s
   }
 
   /* Related products: hand-picked in /admin wins; with none set, fall back to
-     products sharing a scenario. The manual list was editable but ignored until
-     2026-07-29. */
+     the same ecosystem. The manual list was editable but ignored until
+     2026-07-29, and the fallback matched on shared scenarios until 2026-08-16 —
+     which stopped working when scenarios ceased to be a product field. Same
+     ecosystem is a closer match anyway: it is what the SKU itself encodes, so
+     two products that share it are genuinely the same kind of thing. Products in
+     the same sub-category sort first, so a vent mount suggests other mounts
+     before it suggests charging mounts. */
   const manual = (p.related || []).map((s) => DB.products.find((x) => x.sku === s && x.status === 'published')).filter(Boolean);
   const rel = manual.length ? manual.slice(0, 4)
-    : DB.products.filter((x) => x.sku !== p.sku && x.status === 'published' &&
-        (x.scenarios || []).some((s) => (p.scenarios || []).includes(s))).slice(0, 4);
+    : DB.products
+        .filter((x) => x.sku !== p.sku && x.status === 'published' && x.category === p.category)
+        .sort((a, b) => (b.subCategory === p.subCategory) - (a.subCategory === p.subCategory))
+        .slice(0, 4);
   if (rel.length) {
     document.getElementById('relatedWrap').style.display = '';
     document.getElementById('relatedGrid').innerHTML = rel.map(productCard).join('');
