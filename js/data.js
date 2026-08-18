@@ -312,7 +312,7 @@ window.DB = {
     {
       "code": "S1",
       "id": "morning",
-      "status": "future",
+      "status": "primary",
       "icon": "sun",
       "name": {
         "en": "Morning & Bedside",
