@@ -628,11 +628,13 @@ window.DB = {
       "status": "future",
       "category": "portable",
       "subCategory": "travel",
-      "art": "",
+      "art": "dash",
       "qi": "none",
       "qiId": null,
       "watt": null,
-      "mount": [],
+      "mount": [
+        "suction"
+      ],
       "price": null,
       "rating": null,
       "reviews": 0,
@@ -644,13 +646,15 @@ window.DB = {
         "zh": "MagSafe 旅行支架"
       },
       "claim": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
+        "en": "Magsafe Travel Mount, slim design, ,good for travel and aircraft.",
+        "vi": "Giá đỡ du lịch Magsafe, thiết kế mỏng gọn, rất tiện lợi khi đi du lịch và trên máy bay.",
+        "id": "Magsafe Travel Mount, desain ramping, cocok untuk bepergian dan di pesawat.",
+        "zh": "Magsafe 旅行支架，纖薄設計，適合旅行及搭乘飛機時使用。"
       },
       "reports": [],
-      "pains": [],
+      "pains": [
+        "Loose"
+      ],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -666,6 +670,27 @@ window.DB = {
         "id": "",
         "zh": ""
       },
+      "accessories": {
+        "en": [
+          "Magnetic Plate"
+        ],
+        "vi": [
+          "Tấm từ tính"
+        ],
+        "id": [
+          "Pelat Magnetik"
+        ],
+        "zh": [
+          "磁性板"
+        ]
+      },
+      "faqs": [
+        "no-magnet"
+      ],
+      "related": [
+        "D01",
+        "D02"
+      ],
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405913114-3hglyg9knw2-___1.png"
     },
     {
