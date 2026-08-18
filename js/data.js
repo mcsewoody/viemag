@@ -307,6 +307,34 @@ window.DB = {
       ]
     },
     {
+      "id": "home",
+      "status": "future",
+      "icon": "home",
+      "name": {
+        "en": "Home & Leisure",
+        "vi": "Ở nhà & Thư giãn",
+        "id": "Rumah & Santai",
+        "zh": "居家・休憩"
+      },
+      "desc": {
+        "en": "Movies, kitchen, family charging — one magnetic system shared at home.",
+        "vi": "Xem phim, vào bếp, cả nhà dùng chung một hệ nam châm.",
+        "id": "Film, dapur, pengisian keluarga — satu sistem magnetik dibagi di rumah.",
+        "zh": "追劇、下廚，全家共用同一套磁吸系統。"
+      },
+      "pain": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": null,
+      "combo": [
+        "D01",
+        "BQ01"
+      ]
+    },
+    {
       "id": "outdoor",
       "status": "supporting",
       "icon": "sun",
@@ -333,34 +361,6 @@ window.DB = {
         "BQ01",
         "V08",
         "A01"
-      ]
-    },
-    {
-      "id": "home",
-      "status": "future",
-      "icon": "home",
-      "name": {
-        "en": "Home & Leisure",
-        "vi": "Ở nhà & Thư giãn",
-        "id": "Rumah & Santai",
-        "zh": "居家・休憩"
-      },
-      "desc": {
-        "en": "Movies, kitchen, family charging — one magnetic system shared at home.",
-        "vi": "Xem phim, vào bếp, cả nhà dùng chung một hệ nam châm.",
-        "id": "Film, dapur, pengisian keluarga — satu sistem magnetik dibagi di rumah.",
-        "zh": "追劇、下廚，全家共用同一套磁吸系統。"
-      },
-      "pain": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": null,
-      "combo": [
-        "D01",
-        "BQ01"
       ]
     },
     {
@@ -397,9 +397,9 @@ window.DB = {
       "sku": "A01",
       "slug": "a01",
       "status": "published",
-      "category": "accessory",
+      "category": "battery",
       "subCategory": "interface",
-      "art": "ring",
+      "art": "fold",
       "qi": "none",
       "qiId": null,
       "watt": null,
