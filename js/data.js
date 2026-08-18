@@ -646,10 +646,10 @@ window.DB = {
         "zh": "MagSafe 旅行支架"
       },
       "claim": {
-        "en": "Magsafe Travel Mount, slim design, ,good for travel and aircraft.",
-        "vi": "Giá đỡ du lịch Magsafe, thiết kế mỏng gọn, rất tiện lợi khi đi du lịch và trên máy bay.",
-        "id": "Magsafe Travel Mount, desain ramping, cocok untuk bepergian dan di pesawat.",
-        "zh": "Magsafe 旅行支架，纖薄設計，適合旅行及搭乘飛機時使用。"
+        "en": "Magsafe Travel Stand, featuring a slim design, is ideal for travel and use on airplanes. The Ultra Max magnetic stand features a multi-axis design that extends up to 10 cm when unfolded.\nIt features three adjustable hinges, all of which can be flexibly adjusted to the most suitable height and angle, ensuring an optimal viewing experience at all times.",
+        "vi": "Giá đỡ du lịch Magsafe, thiết kế siêu mỏng, phù hợp để sử dụng khi đi du lịch và đi máy bay. Giá đỡ từ tính Ultra Max được thiết kế theo cấu trúc đa trục, có thể kéo dài tối đa 10 cm khi mở ra.\nVới 3 trục xoay, tất cả đều có thể điều chỉnh linh hoạt để đạt được chiều cao và góc độ phù hợp nhất, giúp luôn mang lại trải nghiệm xem tốt nhất",
+        "id": "Dudukan Perjalanan Magsafe, dengan desain tipis, cocok untuk digunakan saat bepergian dan naik pesawat. Dudukan magnetik Ultra Max dirancang dengan struktur multi-sumbu, sehingga dapat diperpanjang hingga 10 cm saat dibuka.\nDilengkapi dengan 3 engsel yang dapat disesuaikan secara fleksibel ke ketinggian dan sudut yang paling sesuai, sehingga selalu memberikan pengalaman menonton yang optimal",
+        "zh": "Magsafe 旅行支架，纖薄設計，適合旅行及搭乘飛機時使用。Ultra Max 磁吸支架採用多軸結構設計，展開最多可延長 10 cm。\n自帶 3 個轉軸處，皆能靈活調整至最適合的高度與角度，時時保持最佳觀看體驗"
       },
       "reports": [],
       "pains": [
