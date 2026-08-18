@@ -397,16 +397,16 @@ window.DB = {
       "sku": "A01",
       "slug": "a01",
       "status": "published",
-      "category": "battery",
+      "category": "accessory",
       "subCategory": "interface",
-      "art": "fold",
+      "art": "ring",
       "qi": "none",
       "qiId": null,
       "watt": null,
       "mount": [],
       "price": 9.9,
-      "rating": 4.6,
-      "reviews": 143,
+      "rating": null,
+      "reviews": 0,
       "badge": null,
       "name": {
         "en": "VIEMAG Magnetic Adapter Ring Kit",
@@ -450,8 +450,8 @@ window.DB = {
       "watt": null,
       "mount": [],
       "price": 14.9,
-      "rating": 4.7,
-      "reviews": 71,
+      "rating": null,
+      "reviews": 0,
       "badge": null,
       "name": {
         "en": "VIEMAG Case + Ring Bundle",
@@ -628,7 +628,7 @@ window.DB = {
       "status": "future",
       "category": "portable",
       "subCategory": "travel",
-      "art": "dash",
+      "art": "suction",
       "qi": "none",
       "qiId": null,
       "watt": null,
@@ -707,8 +707,8 @@ window.DB = {
         "desktop"
       ],
       "price": 52.9,
-      "rating": 4.8,
-      "reviews": 58,
+      "rating": null,
+      "reviews": 0,
       "badge": "new",
       "name": {
         "en": "VIEMAG Folding Travel Charger",
@@ -803,8 +803,8 @@ window.DB = {
         "vent"
       ],
       "price": 15.9,
-      "rating": 4.6,
-      "reviews": 87,
+      "rating": null,
+      "reviews": 0,
       "badge": null,
       "name": {
         "en": "VIEMAG Vent Magnetic Mount",
@@ -851,8 +851,8 @@ window.DB = {
         "dashboard"
       ],
       "price": 19.9,
-      "rating": 4.8,
-      "reviews": 214,
+      "rating": null,
+      "reviews": 0,
       "badge": "bestseller",
       "name": {
         "en": "VIEMAG Dashboard Magnetic Mount",
@@ -890,7 +890,7 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "art": "dashcharge",
+      "art": "tape",
       "qi": "none",
       "qiId": null,
       "watt": null,
@@ -898,8 +898,8 @@ window.DB = {
         "tape"
       ],
       "price": 17.9,
-      "rating": 4.6,
-      "reviews": 52,
+      "rating": null,
+      "reviews": 0,
       "badge": null,
       "name": {
         "en": "VIEMAG 3M Tape Magnetic Mount",
@@ -946,8 +946,8 @@ window.DB = {
         "suction"
       ],
       "price": 22.9,
-      "rating": 4.7,
-      "reviews": 63,
+      "rating": null,
+      "reviews": 0,
       "badge": null,
       "name": {
         "en": "VIEMAG Suction Long-Arm Mount",
@@ -1039,8 +1039,8 @@ window.DB = {
         "screen"
       ],
       "price": 24.9,
-      "rating": 4.5,
-      "reviews": 41,
+      "rating": null,
+      "reviews": 0,
       "badge": "new",
       "name": {
         "en": "VIEMAG Screen-Edge Magnetic Mount",
@@ -1087,8 +1087,8 @@ window.DB = {
         "dashboard"
       ],
       "price": 24.9,
-      "rating": 4.9,
-      "reviews": 98,
+      "rating": null,
+      "reviews": 0,
       "badge": "bestseller",
       "name": {
         "en": "VIEMAG Pro Anti-Vibration Strong Mount",
@@ -1188,8 +1188,8 @@ window.DB = {
         "vent"
       ],
       "price": 35.9,
-      "rating": 4.7,
-      "reviews": 76,
+      "rating": null,
+      "reviews": 0,
       "badge": null,
       "name": {
         "en": "VIEMAG Vent 15W Wireless Charging Mount",
@@ -1235,8 +1235,8 @@ window.DB = {
         "dashboard"
       ],
       "price": 39.9,
-      "rating": 4.8,
-      "reviews": 158,
+      "rating": null,
+      "reviews": 0,
       "badge": "bestseller",
       "name": {
         "en": "VIEMAG Dashboard 15W Wireless Charging Mount",
@@ -1283,8 +1283,8 @@ window.DB = {
         "dashboard"
       ],
       "price": 55.9,
-      "rating": 4.9,
-      "reviews": 34,
+      "rating": null,
+      "reviews": 0,
       "badge": "new",
       "name": {
         "en": "VIEMAG 25W Active-Cooling Charging Mount",
@@ -1330,8 +1330,8 @@ window.DB = {
         "suction"
       ],
       "price": 45.9,
-      "rating": 4.6,
-      "reviews": 29,
+      "rating": null,
+      "reviews": 0,
       "badge": null,
       "name": {
         "en": "VIEMAG Long-Arm Adjustable Charging Mount",
