@@ -890,7 +890,7 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "art": "tape",
+      "art": "dashcharge",
       "qi": "none",
       "qiId": null,
       "watt": null,
