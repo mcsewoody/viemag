@@ -277,18 +277,21 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 @media (max-width:880px){.proof-inner{grid-template-columns:1fr;padding:var(--s6)}.proof-list{grid-template-columns:1fr}}
 
 /* ---------- personas ---------- */
-.persona-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4)}
-.persona-card{border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--s5);background:#fff;box-shadow:var(--shadow-sm);
+/* Generic 4-up card grid. Named .persona-grid until 2026-08-18, when Persona
+   stopped being part of the information architecture; about.html was the only
+   remaining user and never showed a persona. */
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4)}
+.info-card{border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--s5);background:#fff;box-shadow:var(--shadow-sm);
   display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
-.persona-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.persona-card .avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--ivory)}
-.persona-card .avatar svg{width:28px;height:28px;color:var(--navy)}
-.persona-card .age{font-size:.72rem;font-weight:700;color:var(--copper-strong);letter-spacing:.08em}
-.persona-card h3{font-size:1rem}
-.persona-card p{font-size:.86rem;color:var(--muted);flex:1}
-.persona-card .picks{font-size:.78rem;font-weight:700;color:var(--navy)}
-@media (max-width:960px){.persona-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:540px){.persona-grid{grid-template-columns:1fr}}
+.info-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.info-card .avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--ivory)}
+.info-card .avatar svg{width:28px;height:28px;color:var(--navy)}
+.info-card .age{font-size:.72rem;font-weight:700;color:var(--copper-strong);letter-spacing:.08em}
+.info-card h3{font-size:1rem}
+.info-card p{font-size:.86rem;color:var(--muted);flex:1}
+.info-card .picks{font-size:.78rem;font-weight:700;color:var(--navy)}
+@media (max-width:960px){.info-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.info-grid{grid-template-columns:1fr}}
 
 /* ---------- warranty strip ---------- */
 .trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4)}

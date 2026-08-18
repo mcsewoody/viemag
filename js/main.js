@@ -209,7 +209,6 @@
   const stars = (r) => { const f = Math.round(r); return '★★★★★'.slice(0, f) + '☆☆☆☆☆'.slice(0, 5 - f); };
   const money = (v) => v == null ? '' : `<small>US$</small>${v.toFixed(2).replace(/\.00$/, '')}`;
   const catById = (id) => DB.categories.find((c) => c.id === id);
-  const scnByCode = (code) => DB.scenarios.find((s) => s.code === code);
   const prodBySku = (sku) => DB.products.find((p) => p.sku === sku);
   const published = DB.products.filter((p) => p.status === 'published');
 
@@ -361,27 +360,6 @@
       <h3>${esc(tf(s.name))}</h3>
       <p>${esc(tf(s.desc))}</p>
     </a>`;
-  }
-  function personaCard(pe) {
-    /* Prefer this persona's OWN products — products.persona is a multi-select in
-       /admin and was read by nobody until 2026-07-29. Fall back to the persona's
-       hand-picked categories when no product carries the tag yet, so the card is
-       never empty while staff are still tagging the catalogue. */
-    const tagged = published.filter((p) => (p.personas || []).includes(pe.id));
-    const picks = tagged.length
-      ? `<a class="chip" href="products.html?persona=${encodeURIComponent(pe.id)}">${
-          esc(t('personas.see'))} (${tagged.length})</a>`
-      : pe.picks.map((id) => catById(id)).filter(Boolean)
-          .map((c) => `<a class="chip" href="products.html?cat=${c.id}">${esc(tf(c.name))}</a>`).join(' ');
-    return `
-    <div class="persona-card">
-      <div class="avatar">${icon(pe.icon)}</div>
-      <div class="age">${pe.age}</div>
-      <h3>${esc(tf(pe.name))}</h3>
-      <p>${esc(tf(pe.desc))}</p>
-      <div class="picks">${t('personas.picks')}</div>
-      <div class="meta-chips">${picks}</div>
-    </div>`;
   }
   /* The five Insights categories. These strings are the DB's `category` values,
      so they must match the check constraint in
@@ -612,7 +590,7 @@
     applyI18nAttrs(document);
 
     /* per-page render hook (injects dynamic .reveal content) */
-    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, personaCard, faqItem, faqGroups, insightCard, reportList, gallery, painChips, formatDate, richText, stripTags, INSIGHT_CATS, stars, money, esc, catById, scnByCode, prodBySku, published, applyI18nAttrs });
+    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, faqItem, faqGroups, insightCard, reportList, gallery, painChips, formatDate, richText, stripTags, INSIGHT_CATS, stars, money, esc, catById, prodBySku, published, applyI18nAttrs });
 
     /* scroll reveal — observe AFTER dynamic content exists so injected cards animate in */
     const io = new IntersectionObserver((es) => es.forEach((e) => {

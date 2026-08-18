@@ -143,7 +143,6 @@ const shapes = {
   'products[]': DB.products[0],
   'categories[]': DB.categories[0],
   'scenarios[]': DB.scenarios[0],
-  'personas[]': DB.personas[0],
   'tests[]': DB.tests[0],
   'faqs[]': DB.faqs[0],
   config: DB.config,

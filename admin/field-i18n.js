@@ -15,7 +15,6 @@ window.VIEMAG_FIELD_I18N = {
       status: '控制「這款要不要出現在網站上」，只有 `Published` 會上架。`Development` 表示產品還不存在、還在找料或開模；`Draft` 表示產品存在但文案還沒寫完。分開這兩個狀態，列表才回答得出「現在有幾個案子在跑」',
       launch_tier: '控制「能不能買」。`Future` 顯示為即將推出、不顯示價格與購買鈕；其餘三個值是內部上市分級',
       category_id: '這款屬於哪個產品分類，決定麵包屑、分類頁歸屬與 `?cat=` 篩選結果。也是這款 CAT-A～E 分級的唯一來源（經由分類的 `internal_cat_mapping`）',
-      persona: '這款適合哪些使用者類型，驅動產品列表的「依使用者類型」篩選，以及 persona 卡片上的產品數量',
       name_en: '產品名稱。顯示在產品卡、產品頁標題、麵包屑與瀏覽器分頁標題。四種語言並排，這裡空一格就是上線頁面上少一個翻譯',
       name_vi: '產品名稱（越南文）',
       name_id: '產品名稱（印尼文）',
@@ -111,7 +110,6 @@ window.VIEMAG_FIELD_I18N = {
     },
     scenarios: {
       scenario_name: '後台辨識用的內部名稱，只出現在後台清單。網站顯示的是四語 `name_*`',
-      scenario_code: '情境代號 S1～S6，顯示在情境頁與篩選按鈕上',
       slug: '情境的網址錨點（`scenarios.html#<slug>`）',
       priority: '情境在頁面上的排列順序，數字小的在前',
       status: '控制這個情境要不要出現。`Hidden` 不出現',
@@ -242,7 +240,6 @@ window.VIEMAG_FIELD_I18N = {
       status: '控制「这款要不要出现在网站上」，只有 `Published` 会上架。`Development` 表示产品还不存在、还在找料或开模；`Draft` 表示产品存在但文案还没写完。分开这两个状态，列表才回答得出「现在有几个案子在跑」',
       launch_tier: '控制「能不能买」。`Future` 显示为即将推出、不显示价格与购买钮；其余三个值是内部上市分级',
       category_id: '这款属于哪个产品分类，决定面包屑、分类页归属与 `?cat=` 筛选结果。也是这款 CAT-A～E 分级的唯一来源（经由分类的 `internal_cat_mapping`）',
-      persona: '这款适合哪些使用者类型，驱动产品列表的「依使用者类型」筛选，以及 persona 卡片上的产品数量',
       name_en: '产品名称。显示在产品卡、产品页标题、面包屑与浏览器分页标题。四种语言并排，这里空一格就是上线页面上少一个翻译',
       name_vi: '产品名称（越南文）',
       name_id: '产品名称（印尼文）',
@@ -338,7 +335,6 @@ window.VIEMAG_FIELD_I18N = {
     },
     scenarios: {
       scenario_name: '后台辨识用的内部名称，只出现在后台清单。网站显示的是四语 `name_*`',
-      scenario_code: '情境代号 S1～S6，显示在情境页与筛选按钮上',
       slug: '情境的网址锚点（`scenarios.html#<slug>`）',
       priority: '情境在页面上的排列顺序，数字小的在前',
       status: '控制这个情境要不要出现。`Hidden` 不出现',
@@ -469,7 +465,6 @@ window.VIEMAG_FIELD_I18N = {
       status: 'Quyết định sản phẩm có xuất hiện trên trang web hay không — chỉ `Published` được đăng. `Development` nghĩa là sản phẩm chưa tồn tại, còn đang tìm nguồn hoặc làm khuôn; `Draft` nghĩa là sản phẩm đã có nhưng nội dung chưa xong. Tách hai trạng thái này là cách để danh sách trả lời được "có bao nhiêu dự án đang chạy"',
       launch_tier: 'Quyết định có mua được chưa. Future hiển thị thẻ "sắp ra mắt", không có giá và nút mua. Ba giá trị còn lại là phân loại giai đoạn ra mắt nội bộ.',
       category_id: 'Sản phẩm này thuộc danh mục nào — quyết định breadcrumb, trang danh mục và kết quả lọc `?cat=`. Đây cũng là nguồn duy nhất cho phân loại CAT-A đến CAT-E của sản phẩm, qua `internal_cat_mapping` của danh mục',
-      persona: 'Sản phẩm phù hợp với những nhóm khách hàng nào. Điều khiển bộ lọc "theo nhu cầu" trên trang sản phẩm và số lượng hiển thị trên mỗi thẻ persona.',
       name_en: 'Tên sản phẩm. Hiển thị trên thẻ sản phẩm, tiêu đề trang sản phẩm, breadcrumb và tiêu đề tab trình duyệt. Bốn ngôn ngữ nằm cạnh nhau, nên một ô trống ở đây là một bản dịch bị thiếu trên trang đang chạy',
       name_vi: 'Tên sản phẩm (tiếng Việt).',
       name_id: 'Tên sản phẩm (tiếng Indonesia).',
@@ -565,7 +560,6 @@ window.VIEMAG_FIELD_I18N = {
     },
     scenarios: {
       scenario_name: 'Tên nội bộ chỉ dùng trong danh sách hậu trường. Trang web công khai hiển thị name_en/vi/id/zh.',
-      scenario_code: 'Mã tình huống S1–S6, hiển thị trên trang tình huống và nút lọc.',
       slug: 'Giá trị neo cho tình huống này (scenarios.html#<slug>).',
       priority: 'Thứ tự hiển thị trên trang tình huống. Số nhỏ hơn đứng trước.',
       status: 'Quyết định tình huống có xuất hiện hay không. Hidden nghĩa là không hiển thị.',

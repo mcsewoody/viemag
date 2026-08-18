@@ -29,28 +29,18 @@ const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY')!;
 
-/* ---- static blocks with no Supabase source: personas, tests, config.
-   Hand-maintained here, carried through unchanged on every export
-   (mirrors scripts/export-notion.mjs — not in scope of the migration). ---- */
+/* ---- static blocks with no Supabase source: tests, config.
+   Hand-maintained here, carried through unchanged on every export.
+
+   `personas` used to live here too. Persona was the third axis of the
+   information architecture until 2026-08-18, when the site collapsed to two:
+   ecosystem (what the product is) and scenario (what occasion it is for).
+   Persona turned out to be the scenario axis wearing a different hat — a
+   "commuter" is not a personality, it is a person in the commuting situation —
+   and the data agreed: knowing the ecosystem predicted the persona 79-100% of
+   the time. The research itself still matters, for copy and ad targeting; it
+   just is not a product field or a filter. It lives in the White Paper now. ---- */
 const STATIC = {
-  personas: [
-    { id: 'commuter', icon: 'car', age: '25–40',
-      name: { vi: 'Người đi làm yêu công nghệ', en: 'Tech Commuter', id: 'Komuter Melek Teknologi', zh: '科技通勤族' },
-      desc: { vi: 'Mỗi lần đổi bối cảnh là một lần tháo – gắn. Nam châm giúp tiết kiệm 3 giây mỗi lần, cả ngày là hàng chục lần.', en: 'Every scene change means re-docking the phone. Magnets give those 3 seconds back, dozens of times a day.', id: 'Setiap ganti tempat berarti memasang ulang ponsel. Magnet mengembalikan 3 detik itu, puluhan kali sehari.', zh: '每換一個場景就要重新固定手機，磁吸把每次 3 秒省回來。' },
-      picks: ['car-mounts', 'car-chargers'] },
-    { id: 'homeoffice', icon: 'desk', age: '30–50',
-      name: { vi: 'Chuyên gia làm việc tại nhà', en: 'Home-Office Professional', id: 'Profesional Kerja dari Rumah', zh: '居家辦公專業者' },
-      desc: { vi: 'Bàn làm việc gọn là một phần của năng suất. Sạc đứng, họp video, không dây rối.', en: 'A tidy desk is part of productivity. Upright charging through every call, zero cable mess.', id: 'Meja rapi adalah bagian dari produktivitas. Mengisi tegak sepanjang panggilan, tanpa kabel semrawut.', zh: '桌面整潔是生產力的一部分，立式充電、視訊零線材。' },
-      picks: ['desk-travel', 'stands-display'] },
-    { id: 'traveler', icon: 'plane', age: '35–55',
-      name: { vi: 'Doanh nhân hay công tác', en: 'Business Traveler', id: 'Pelancong Bisnis', zh: '差旅商務人士' },
-      desc: { vi: 'Hành lý càng nhẹ càng tốt. Sạc gập 3 trong 1 và pin nam châm là vật bất ly thân.', en: 'The lighter the bag, the better. Folding chargers and snap-on power are the essentials.', id: 'Makin ringan tas makin baik. Pengisi lipat dan daya tempel adalah barang wajib.', zh: '行李越輕越好，折疊充電器與磁吸電源是必備。' },
-      picks: ['desk-travel', 'portable-power'] },
-    { id: 'creator', icon: 'camera', age: '25–45',
-      name: { vi: 'Nhà sáng tạo ngoài trời', en: 'Outdoor Creator', id: 'Kreator Luar Ruang', zh: '戶外/影像創作者' },
-      desc: { vi: 'Vlog, thể thao, cắm trại. Giá trị cốt lõi là khả năng mở rộng của hệ nam châm.', en: 'Vlogs, action shots, camping. The core value is how far the magnetic system extends.', id: 'Vlog, aksi, berkemah. Nilai intinya adalah seberapa jauh sistem magnetik bisa diperluas.', zh: 'Vlog、運動攝影、露營，看重磁吸生態的擴充性。' },
-      picks: ['accessories', 'stands-display'] },
-  ],
   tests: [
     { id: 'vibration', icon: 'wave', name: { vi: 'Kiểm tra rung xóc', en: 'Vibration Testing', id: 'Uji Getaran', zh: '震動測試' }, desc: { vi: 'Mô phỏng mặt đường xấu và phanh gấp trước khi xuất xưởng.', en: 'Simulates rough roads and hard braking before any unit ships.', id: 'Mensimulasikan jalan rusak dan pengereman mendadak sebelum unit dikirim.', zh: '出貨前模擬爛路與急煞情境。' } },
     { id: 'thermal', icon: 'thermo', name: { vi: 'Kiểm tra tăng nhiệt', en: 'Thermal-Rise Testing', id: 'Uji Kenaikan Suhu', zh: '溫升測試' }, desc: { vi: 'Theo dõi nhiệt độ suốt chu kỳ sạc — bảo vệ điện thoại của bạn khi sạc.', en: 'Charge-cycle temperature profiling — protects your phone while charging.', id: 'Pemantauan suhu sepanjang siklus pengisian — melindungi ponsel Anda saat mengisi daya.', zh: '全充電週期溫度監控，充電時更保護您的手機。' } },
@@ -100,7 +90,7 @@ async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: strin
    table's name appears anywhere in this file, comments included. */
 const PRODUCT_COLS = [
   'id', 'product_id', 'official_sku_code', 'slug', 'status', 'launch_tier',
-  'category_id', 'persona', 'name_en', 'name_vi', 'name_id', 'name_zh',
+  'category_id', 'name_en', 'name_vi', 'name_id', 'name_zh',
   'claim_en', 'claim_vi', 'claim_id', 'claim_zh', 'shopee_url', 'price_usd',
   'mount_type', 'charging_watt', 'qi_status', 'hero_image_url', 'art_key',
   'badge', 'rating', 'review_count',
@@ -114,10 +104,16 @@ const PRODUCT_COLS = [
   'accessories_en', 'accessories_vi', 'accessories_id', 'accessories_zh',
   /* Added 2026-08-16 with the V3 coding scheme. `sub_category` is the site's
      mid-level nav bucket — the SKU only encodes the ecosystem, so re-organising
-     nav never touches a part number. `use_cases` is the escape hatch for the
-     now single-valued, frozen category: a product that genuinely spans several
-     situations carries them here, where they stay editable. */
-  'sub_category', 'use_cases',
+     nav never touches a part number.
+
+     There was a `use_cases` column beside it, added the same day and dropped on
+     2026-08-18 with 0 of 20 products filled in. Tagging each product with its
+     situations had already failed once as a join table (14 of 20 crammed into one
+     value, two left blank); asking for the same judgement in a different shape
+     produced nothing at all. The situation axis now lives entirely in
+     scenarios.combo_skus — six curated sets one person maintains, instead of
+     twenty products nobody tags. */
+  'sub_category',
   /* The WPC certification number. Public on purpose: a certification mark the
      visitor cannot check is just a picture, and the brand's own promise is that
      every claim carries its evidence. It only ever renders when qi_status is
@@ -132,7 +128,7 @@ const CATEGORY_COLS = [
   'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
 ].join(',');
 const SCENARIO_COLS = [
-  'id', 'scenario_code', 'slug', 'priority', 'status', 'icon', 'combo_skus',
+  'id', 'slug', 'priority', 'status', 'icon', 'combo_skus',
   'name_en', 'name_vi', 'name_id', 'name_zh', 'desc_en', 'desc_vi', 'desc_id', 'desc_zh',
   'hero_image_url', 'pain_point_en', 'pain_point_vi', 'pain_point_id', 'pain_point_zh',
 ].join(',');
@@ -198,7 +194,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       /* Scenarios survive the V3 change as an EDITORIAL surface only — the
          curated combos on scenarios.html. They are no longer a per-product
          field, so there is no product_scenarios query here any more. */
-      selectAll(sb, 'scenarios', SCENARIO_COLS, (q: any) => q.order('priority').order('scenario_code')),
+      selectAll(sb, 'scenarios', SCENARIO_COLS, (q: any) => q.order('priority').order('slug')),
       selectAll(sb, 'products', PRODUCT_COLS, (q: any) => q.order('product_id')),
       selectAll(sb, 'faq', FAQ_COLS, (q: any) => q.eq('status', 'Published').order('faq_key')),
       /* TWO gates, both required, and both filtered in Postgres rather than here
@@ -289,7 +285,6 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     .slice()
     .sort((a: any, b: any) => (a.priority || 0) - (b.priority || 0))
     .map((r: any) => ({
-      code: r.scenario_code,
       id: r.slug,
       status: (r.status || 'Future').toLowerCase(),
       icon: r.icon || '',
@@ -336,10 +331,6 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         /* Mid-level nav bucket inside the ecosystem. Kept out of the SKU on
            purpose so nav can be reorganised without reissuing part numbers. */
         subCategory: r.sub_category || null,
-        /* Editable, many-to-many, never frozen — the counterweight to a
-           category that is single-valued and permanent once the code ships. */
-        useCases: r.use_cases || [],
-        personas: r.persona || [],
         art: r.art_key || '',
         qi: QI_MAP[r.qi_status] || 'none',
         /* Withheld unless the status is actually Certified — the ID must never
@@ -445,7 +436,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
     throw new Error('refusing to export: 0 publishable products (would blank the live site)');
   }
 
-  const dbOut = { categories, scenarios, personas: STATIC.personas, products, tests: STATIC.tests, reports, insights, faqs, config: STATIC.config };
+  const dbOut = { categories, scenarios, products, tests: STATIC.tests, reports, insights, faqs, config: STATIC.config };
 
   const header = `/* ============================================================
    VIEMAG — Data Layer  (AUTO-GENERATED by supabase/functions/export-site-data)

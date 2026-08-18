@@ -220,7 +220,6 @@ window.DB = {
   ],
   "scenarios": [
     {
-      "code": "S2",
       "id": "driving",
       "status": "primary",
       "icon": "car",
@@ -250,7 +249,6 @@ window.DB = {
       ]
     },
     {
-      "code": "S3",
       "id": "deskwork",
       "status": "secondary",
       "icon": "desk",
@@ -280,7 +278,6 @@ window.DB = {
       ]
     },
     {
-      "code": "S5",
       "id": "travel",
       "status": "supporting",
       "icon": "plane",
@@ -310,21 +307,20 @@ window.DB = {
       ]
     },
     {
-      "code": "S1",
-      "id": "morning",
-      "status": "primary",
+      "id": "outdoor",
+      "status": "supporting",
       "icon": "sun",
       "name": {
-        "en": "Morning & Bedside",
-        "vi": "Buổi sáng & Đầu giường",
-        "id": "Pagi & Samping Ranjang",
-        "zh": "晨起・梳妝"
+        "en": "Outdoors & trips",
+        "vi": "Ngoài trời & du ngoạn",
+        "id": "Luar ruang & jalan-jalan",
+        "zh": "戶外・出遊"
       },
       "desc": {
-        "en": "Overnight charging and morning routines — lineup expanding.",
-        "vi": "Sạc qua đêm, báo thức và bắt đầu ngày mới — hệ sản phẩm đang mở rộng.",
-        "id": "Pengisian semalaman dan rutinitas pagi — lini sedang berkembang.",
-        "zh": "夜間充電與晨間節奏，產品線擴充中。"
+        "en": "No power outlet for hours — the difference from business travel is bringing your own.",
+        "vi": "Không có ổ điện trong nhiều giờ — khác với công tác, bạn phải tự mang điện theo.",
+        "id": "Tanpa colokan listrik berjam-jam — bedanya dengan perjalanan bisnis: bawa daya sendiri.",
+        "zh": "一整天沒有插座可用——與差旅的差別就在於電要自己帶。"
       },
       "pain": {
         "en": "",
@@ -335,11 +331,11 @@ window.DB = {
       "img": null,
       "combo": [
         "BQ01",
+        "V08",
         "A01"
       ]
     },
     {
-      "code": "S4",
       "id": "home",
       "status": "future",
       "icon": "home",
@@ -368,21 +364,20 @@ window.DB = {
       ]
     },
     {
-      "code": "S6",
       "id": "creator",
       "status": "future",
       "icon": "camera",
       "name": {
-        "en": "Outdoor & Creator",
-        "vi": "Ngoài trời & Sáng tạo",
-        "id": "Luar Ruang & Kreator",
-        "zh": "戶外・創作"
+        "en": "Record & create",
+        "vi": "Ghi lại & sáng tạo",
+        "id": "Rekam & berkarya",
+        "zh": "紀錄・創作"
       },
       "desc": {
-        "en": "Vlogging, tripods and creator modules — the expandable system.",
-        "vi": "Vlog, quay chụp, chân máy chuyển đổi — hệ mở rộng cho nhà sáng tạo.",
-        "id": "Vlog, tripod, dan modul kreator — sistem yang bisa diperluas.",
-        "zh": "Vlog 拍攝、腳架轉接，創作者的擴充系統。"
+        "en": "Filming, livestreaming and tripod work — for anyone recording, not just professionals.",
+        "vi": "Quay phim, livestream và chân máy — cho bất kỳ ai muốn ghi lại, không chỉ dân chuyên.",
+        "id": "Merekam, livestream, dan tripod — untuk siapa saja, bukan hanya profesional.",
+        "zh": "拍攝、直播與腳架應用。「紀錄」不限專業創作者——拍小孩、錄一趟路程都算。"
       },
       "pain": {
         "en": "",
@@ -397,92 +392,6 @@ window.DB = {
       ]
     }
   ],
-  "personas": [
-    {
-      "id": "commuter",
-      "icon": "car",
-      "age": "25–40",
-      "name": {
-        "vi": "Người đi làm yêu công nghệ",
-        "en": "Tech Commuter",
-        "id": "Komuter Melek Teknologi",
-        "zh": "科技通勤族"
-      },
-      "desc": {
-        "vi": "Mỗi lần đổi bối cảnh là một lần tháo – gắn. Nam châm giúp tiết kiệm 3 giây mỗi lần, cả ngày là hàng chục lần.",
-        "en": "Every scene change means re-docking the phone. Magnets give those 3 seconds back, dozens of times a day.",
-        "id": "Setiap ganti tempat berarti memasang ulang ponsel. Magnet mengembalikan 3 detik itu, puluhan kali sehari.",
-        "zh": "每換一個場景就要重新固定手機，磁吸把每次 3 秒省回來。"
-      },
-      "picks": [
-        "car-mounts",
-        "car-chargers"
-      ]
-    },
-    {
-      "id": "homeoffice",
-      "icon": "desk",
-      "age": "30–50",
-      "name": {
-        "vi": "Chuyên gia làm việc tại nhà",
-        "en": "Home-Office Professional",
-        "id": "Profesional Kerja dari Rumah",
-        "zh": "居家辦公專業者"
-      },
-      "desc": {
-        "vi": "Bàn làm việc gọn là một phần của năng suất. Sạc đứng, họp video, không dây rối.",
-        "en": "A tidy desk is part of productivity. Upright charging through every call, zero cable mess.",
-        "id": "Meja rapi adalah bagian dari produktivitas. Mengisi tegak sepanjang panggilan, tanpa kabel semrawut.",
-        "zh": "桌面整潔是生產力的一部分，立式充電、視訊零線材。"
-      },
-      "picks": [
-        "desk-travel",
-        "stands-display"
-      ]
-    },
-    {
-      "id": "traveler",
-      "icon": "plane",
-      "age": "35–55",
-      "name": {
-        "vi": "Doanh nhân hay công tác",
-        "en": "Business Traveler",
-        "id": "Pelancong Bisnis",
-        "zh": "差旅商務人士"
-      },
-      "desc": {
-        "vi": "Hành lý càng nhẹ càng tốt. Sạc gập 3 trong 1 và pin nam châm là vật bất ly thân.",
-        "en": "The lighter the bag, the better. Folding chargers and snap-on power are the essentials.",
-        "id": "Makin ringan tas makin baik. Pengisi lipat dan daya tempel adalah barang wajib.",
-        "zh": "行李越輕越好，折疊充電器與磁吸電源是必備。"
-      },
-      "picks": [
-        "desk-travel",
-        "portable-power"
-      ]
-    },
-    {
-      "id": "creator",
-      "icon": "camera",
-      "age": "25–45",
-      "name": {
-        "vi": "Nhà sáng tạo ngoài trời",
-        "en": "Outdoor Creator",
-        "id": "Kreator Luar Ruang",
-        "zh": "戶外/影像創作者"
-      },
-      "desc": {
-        "vi": "Vlog, thể thao, cắm trại. Giá trị cốt lõi là khả năng mở rộng của hệ nam châm.",
-        "en": "Vlogs, action shots, camping. The core value is how far the magnetic system extends.",
-        "id": "Vlog, aksi, berkemah. Nilai intinya adalah seberapa jauh sistem magnetik bisa diperluas.",
-        "zh": "Vlog、運動攝影、露營，看重磁吸生態的擴充性。"
-      },
-      "picks": [
-        "accessories",
-        "stands-display"
-      ]
-    }
-  ],
   "products": [
     {
       "sku": "A01",
@@ -490,11 +399,6 @@ window.DB = {
       "status": "published",
       "category": "accessory",
       "subCategory": "interface",
-      "useCases": [],
-      "personas": [
-        "commuter",
-        "creator"
-      ],
       "art": "ring",
       "qi": "none",
       "qiId": null,
@@ -540,11 +444,6 @@ window.DB = {
       "status": "published",
       "category": "accessory",
       "subCategory": "interface",
-      "useCases": [],
-      "personas": [
-        "commuter",
-        "homeoffice"
-      ],
       "art": "case",
       "qi": "none",
       "qiId": null,
@@ -590,10 +489,6 @@ window.DB = {
       "status": "future",
       "category": "battery",
       "subCategory": "power",
-      "useCases": [],
-      "personas": [
-        "traveler"
-      ],
       "art": "powerbank",
       "qi": "compatible",
       "qiId": null,
@@ -639,11 +534,6 @@ window.DB = {
       "status": "future",
       "category": "desk",
       "subCategory": "stands",
-      "useCases": [],
-      "personas": [
-        "homeoffice",
-        "creator"
-      ],
       "art": "stand",
       "qi": "none",
       "qiId": null,
@@ -691,11 +581,6 @@ window.DB = {
       "status": "future",
       "category": "desk",
       "subCategory": "stands",
-      "useCases": [],
-      "personas": [
-        "homeoffice",
-        "creator"
-      ],
       "art": "stand",
       "qi": "none",
       "qiId": null,
@@ -743,8 +628,6 @@ window.DB = {
       "status": "future",
       "category": "portable",
       "subCategory": "travel",
-      "useCases": [],
-      "personas": [],
       "art": "",
       "qi": "none",
       "qiId": null,
@@ -791,11 +674,6 @@ window.DB = {
       "status": "published",
       "category": "portable",
       "subCategory": "travel",
-      "useCases": [],
-      "personas": [
-        "homeoffice",
-        "traveler"
-      ],
       "art": "fold",
       "qi": "testing",
       "qiId": null,
@@ -847,10 +725,6 @@ window.DB = {
       "status": "future",
       "category": "studio",
       "subCategory": "creator",
-      "useCases": [],
-      "personas": [
-        "creator"
-      ],
       "art": "tripod",
       "qi": "none",
       "qiId": null,
@@ -896,10 +770,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "vent",
       "qi": "none",
       "qiId": null,
@@ -948,10 +818,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "dash",
       "qi": "none",
       "qiId": null,
@@ -999,10 +865,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "tape",
       "qi": "none",
       "qiId": null,
@@ -1051,10 +913,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "suction",
       "qi": "none",
       "qiId": null,
@@ -1102,10 +960,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "",
       "qi": "none",
       "qiId": null,
@@ -1152,10 +1006,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "clip",
       "qi": "none",
       "qiId": null,
@@ -1203,10 +1053,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "pro",
       "qi": "none",
       "qiId": null,
@@ -1255,11 +1101,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "mounts",
-      "useCases": [],
-      "personas": [
-        "traveler",
-        "creator"
-      ],
       "art": "suction",
       "qi": "none",
       "qiId": null,
@@ -1314,10 +1155,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "charging-mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "carcharge",
       "qi": "compatible",
       "qiId": null,
@@ -1365,10 +1202,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "charging-mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "dashcharge",
       "qi": "compatible",
       "qiId": null,
@@ -1416,11 +1249,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "charging-mounts",
-      "useCases": [],
-      "personas": [
-        "commuter",
-        "traveler"
-      ],
       "art": "fancharge",
       "qi": "testing",
       "qiId": null,
@@ -1469,10 +1297,6 @@ window.DB = {
       "status": "published",
       "category": "vehicle",
       "subCategory": "charging-mounts",
-      "useCases": [],
-      "personas": [
-        "commuter"
-      ],
       "art": "suctioncharge",
       "qi": "compatible",
       "qiId": null,

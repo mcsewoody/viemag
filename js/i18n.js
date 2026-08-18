@@ -1,6 +1,6 @@
 /* ============================================================
    VIEMAG i18n — UI copy dictionaries (vi default → en → zh)
-   Product/scenario/persona/FAQ strings live in js/data.js.
+   Product/scenario/FAQ strings live in js/data.js.
    ============================================================ */
 window.I18N_DICT = {
 
@@ -49,9 +49,9 @@ window.I18N_DICT = {
     'cats.soon': 'Sắp ra mắt',
     'badge.new': 'Mới', 'badge.popular': 'Được chọn nhiều',
 
-    'scns.kicker': 'Sáu tình huống sử dụng',
+    'scns.kicker': 'Gợi ý kết hợp',
     'scns.title': 'Thiết kế cho cuộc sống di động của bạn',
-    'scns.lede': 'Không bán theo thông số — VIEMAG quy hoạch sản phẩm theo sáu tình huống mỗi ngày.',
+    'scns.lede': 'Những bộ sản phẩm đi cùng nhau, chọn theo tình huống bạn thật sự gặp.',
     'scns.tag.primary': 'Chủ lực',
     'scns.tag.secondary': 'Trọng tâm',
     'scns.tag.supporting': 'Bổ trợ',
@@ -66,11 +66,6 @@ window.I18N_DICT = {
     'proof.desc': 'Mỗi sản phẩm VIEMAG xuất xưởng đều đi qua bốn nhóm kiểm tra. Báo cáo kiểm tra của từng mẫu sẽ được công bố tại trang này khi sản phẩm lên kệ.',
     'proof.note': 'VIEMAG tương thích các phụ kiện chuẩn MagSafe và được thiết kế theo chuẩn Qi2. MagSafe là thương hiệu của Apple Inc.; Qi2 là thương hiệu của Wireless Power Consortium.',
     'proof.cta': 'Xem quy trình kiểm tra',
-
-    'personas.kicker': 'Bạn là ai trong bốn người này?',
-    'personas.title': 'Thiết kế cho bốn kiểu người dùng',
-    'personas.lede': 'Mỗi dòng sản phẩm VIEMAG bắt đầu từ một chân dung người dùng cụ thể, không phải từ bảng thông số.',
-    'personas.picks': 'Dòng phù hợp:',
 
     'trust.title': 'Cam kết sau bán hàng',
     'trust.1.t': 'Bảo hành {m} tháng',
@@ -87,9 +82,7 @@ window.I18N_DICT = {
     'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': 'Tất cả sản phẩm',
-    'products.sub': 'Lọc theo dòng sản phẩm hoặc kiểu người dùng.',
-    'use.car': 'Trên ô tô', 'use.desk': 'Để bàn', 'use.home': 'Tại nhà',
-    'use.travel': 'Du lịch', 'use.outdoor': 'Ngoài trời', 'use.ride': 'Xe máy',
+    'products.sub': 'Lọc theo dòng sản phẩm — toàn bộ danh mục nam châm VIEMAG.',
     'filter.byCat': 'Dòng sản phẩm',
     'filter.all': 'Tất cả',
     'products.empty': 'Chưa có sản phẩm trong nhóm này — hệ sản phẩm đang mở rộng.',
@@ -117,8 +110,6 @@ window.I18N_DICT = {
     'pdp.limitations': 'Điều kiện đo:',
     /* ---- pain-point tags (fixed 5-value set on products) ---- */
     'pdp.solves': 'Giải quyết vấn đề',
-    'filter.byPersona': 'Theo nhu cầu',
-    'personas.see': 'Xem sản phẩm phù hợp',
     'pain.Dropping': 'Điện thoại bị rơi',
     'pain.Heat': 'Nóng khi sạc',
     'pain.Loose': 'Giữ không chắc',
@@ -301,9 +292,9 @@ window.I18N_DICT = {
     'cats.soon': 'Coming soon',
     'badge.new': 'New', 'badge.popular': 'Popular',
 
-    'scns.kicker': 'Six life scenarios',
+    'scns.kicker': 'Pairing guide',
     'scns.title': 'Designed for life on the move',
-    'scns.lede': 'We don’t sell spec sheets — VIEMAG plans products around six everyday scenarios.',
+    'scns.lede': 'Sets that work together, chosen by the situation you are actually in.',
     'scns.tag.primary': 'Flagship',
     'scns.tag.secondary': 'Core',
     'scns.tag.supporting': 'Supporting',
@@ -318,11 +309,6 @@ window.I18N_DICT = {
     'proof.desc': 'Every VIEMAG product passes four groups of tests before it ships. Per-model test reports will be published here as products launch.',
     'proof.note': 'VIEMAG works with MagSafe-standard accessories and is built to the Qi2 standard. MagSafe is a trademark of Apple Inc.; Qi2 is a trademark of the Wireless Power Consortium.',
     'proof.cta': 'See our testing process',
-
-    'personas.kicker': 'Which one is you?',
-    'personas.title': 'Built for four kinds of users',
-    'personas.lede': 'Every VIEMAG line starts from a real user portrait, not a spec sheet.',
-    'personas.picks': 'Suitable lines:',
 
     'trust.title': 'After-sales promise',
     'trust.1.t': '{m}-month warranty',
@@ -339,9 +325,7 @@ window.I18N_DICT = {
     'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': 'All products',
-    'products.sub': 'Filter by product line or by the kind of user you are.',
-    'use.car': 'In the car', 'use.desk': 'At the desk', 'use.home': 'At home',
-    'use.travel': 'Travelling', 'use.outdoor': 'Outdoors', 'use.ride': 'On a motorbike',
+    'products.sub': 'Filter by product line — the complete VIEMAG magnetic lineup.',
     'filter.byCat': 'Product line',
     'filter.all': 'All',
     'products.empty': 'No products here yet — the lineup is expanding.',
@@ -369,8 +353,6 @@ window.I18N_DICT = {
     'pdp.limitations': 'Test conditions:',
     /* ---- pain-point tags (fixed 5-value set on products) ---- */
     'pdp.solves': 'Solves',
-    'filter.byPersona': 'By who you are',
-    'personas.see': 'See suitable products',
     'pain.Dropping': 'Phone falling off',
     'pain.Heat': 'Heat while charging',
     'pain.Loose': 'Loose hold',
@@ -553,9 +535,9 @@ window.I18N_DICT = {
     'cats.soon': '即將推出',
     'badge.new': '新品', 'badge.popular': '人氣',
 
-    'scns.kicker': '六大生活情境',
+    'scns.kicker': '情境搭配',
     'scns.title': '為你的行動生活而設計',
-    'scns.lede': '我們不賣規格表——VIEMAG 以六個日常情境規劃產品。',
+    'scns.lede': '搭配得起來的組合，按你真正遇到的場合來選。',
     'scns.tag.primary': '主力',
     'scns.tag.secondary': '重點',
     'scns.tag.supporting': '輔助',
@@ -570,11 +552,6 @@ window.I18N_DICT = {
     'proof.desc': '每一件 VIEMAG 產品出廠前都通過四大類測試。各型號的測試報告將隨產品上市陸續公開。',
     'proof.note': 'VIEMAG 相容 MagSafe 標準配件，並依 Qi2 標準設計。MagSafe 為 Apple Inc. 商標；Qi2 為 Wireless Power Consortium 商標。',
     'proof.cta': '了解測試流程',
-
-    'personas.kicker': '你是哪一種人？',
-    'personas.title': '為四種使用者而設計',
-    'personas.lede': '每條 VIEMAG 產品線都從真實的使用者輪廓出發，而不是規格表。',
-    'personas.picks': '適合產品線：',
 
     'trust.title': '售後承諾',
     'trust.1.t': '{m} 個月保固',
@@ -591,9 +568,7 @@ window.I18N_DICT = {
     'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': '全部產品',
-    'products.sub': '依產品線或使用者類型篩選。',
-    'use.car': '車上', 'use.desk': '桌面', 'use.home': '居家',
-    'use.travel': '差旅', 'use.outdoor': '戶外', 'use.ride': '騎行',
+    'products.sub': '依產品線篩選——VIEMAG 磁吸系統的完整型錄。',
     'filter.byCat': '產品線',
     'filter.all': '全部',
     'products.empty': '此分類暫無產品——產品線擴充中。',
@@ -621,8 +596,6 @@ window.I18N_DICT = {
     'pdp.limitations': '測試條件：',
     /* ---- 痛點標籤（產品的五個固定標籤） ---- */
     'pdp.solves': '解決的問題',
-    'filter.byPersona': '依使用者類型',
-    'personas.see': '看適合的產品',
     'pain.Dropping': '手機掉落',
     'pain.Heat': '充電發熱',
     'pain.Loose': '吸不牢',
@@ -804,9 +777,9 @@ window.I18N_DICT = {
     'cats.count': '款产品',
     'cats.soon': '即将推出',
     'badge.new': '新品', 'badge.popular': '人气',
-    'scns.kicker': '六大生活情境',
+    'scns.kicker': '情境搭配',
     'scns.title': '为你的行动生活而设计',
-    'scns.lede': '我们不卖规格表——VIEMAG 以六个日常情境规划产品。',
+    'scns.lede': '搭配得起来的组合，按你真正遇到的场合来选。',
     'scns.tag.primary': '主力',
     'scns.tag.secondary': '重点',
     'scns.tag.supporting': '辅助',
@@ -819,10 +792,6 @@ window.I18N_DICT = {
     'proof.desc': '每一件 VIEMAG 产品出厂前都通过四大类测试。各型号的测试报告将随产品上市陆续公开。',
     'proof.note': 'VIEMAG 兼容 MagSafe 标准配件，并依 Qi2 标准设计。MagSafe 为 Apple Inc. 商标；Qi2 为 Wireless Power Consortium 商标。',
     'proof.cta': '了解测试流程',
-    'personas.kicker': '你是哪一种人？',
-    'personas.title': '为四种使用者而设计',
-    'personas.lede': '每条 VIEMAG 产品线都从真实的使用者轮廓出发，而不是规格表。',
-    'personas.picks': '适合产品线：',
     'trust.title': '售后承诺',
     'trust.1.t': '{m} 个月保修',
     'trust.1.d': '正常使用下的材料与制造瑕疵。',
@@ -836,9 +805,7 @@ window.I18N_DICT = {
     'dealer.desc': 'VIEMAG 正在建立全国经销网络：完整产品线、有纪律的价格政策、售后支持与透明的销售数据。',
     'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
     'products.title': '全部产品',
-    'products.sub': '依产品线或使用者类型筛选。',
-    'use.car': '车上', 'use.desk': '桌面', 'use.home': '居家',
-    'use.travel': '差旅', 'use.outdoor': '户外', 'use.ride': '骑行',
+    'products.sub': '依产品线筛选——VIEMAG 磁吸系统的完整型录。',
     'filter.byCat': '产品线',
     'filter.all': '全部',
     'products.empty': '此分类暂无产品——产品线扩充中。',
@@ -1017,9 +984,9 @@ window.I18N_DICT = {
     'cats.soon': 'Segera hadir',
     'badge.new': 'Baru', 'badge.popular': 'Populer',
 
-    'scns.kicker': 'Enam skenario harian',
+    'scns.kicker': 'Panduan kombinasi',
     'scns.title': 'Dirancang untuk hidup Anda yang bergerak',
-    'scns.lede': 'Kami tidak menjual lembar spesifikasi — VIEMAG merancang produk berdasarkan enam skenario sehari-hari.',
+    'scns.lede': 'Set yang saling melengkapi, dipilih menurut situasi yang benar-benar Anda hadapi.',
     'scns.tag.primary': 'Utama',
     'scns.tag.secondary': 'Inti',
     'scns.tag.supporting': 'Pendukung',
@@ -1034,11 +1001,6 @@ window.I18N_DICT = {
     'proof.desc': 'Setiap produk VIEMAG melewati empat kelompok pengujian sebelum dikirim. Laporan uji tiap model akan dipublikasikan di sini saat produk diluncurkan.',
     'proof.note': 'VIEMAG bekerja dengan aksesori berstandar MagSafe dan dibuat sesuai standar Qi2. MagSafe adalah merek dagang Apple Inc.; Qi2 adalah merek dagang Wireless Power Consortium.',
     'proof.cta': 'Lihat proses pengujian',
-
-    'personas.kicker': 'Anda yang mana?',
-    'personas.title': 'Dibuat untuk empat tipe pengguna',
-    'personas.lede': 'Setiap lini VIEMAG berawal dari potret pengguna nyata, bukan lembar spesifikasi.',
-    'personas.picks': 'Lini yang cocok:',
 
     'trust.title': 'Janji purnajual',
     'trust.1.t': 'Garansi {m} bulan',
@@ -1055,9 +1017,7 @@ window.I18N_DICT = {
     'dealer.tagline': 'VIEMAG — Value . Innovation . Excellence.',
 
     'products.title': 'Semua produk',
-    'products.sub': 'Saring berdasarkan lini produk atau tipe pengguna.',
-    'use.car': 'Di mobil', 'use.desk': 'Di meja', 'use.home': 'Di rumah',
-    'use.travel': 'Perjalanan', 'use.outdoor': 'Luar ruang', 'use.ride': 'Motor',
+    'products.sub': 'Saring berdasarkan lini produk — seluruh jajaran magnetik VIEMAG.',
     'filter.byCat': 'Lini produk',
     'filter.all': 'Semua',
     'products.empty': 'Belum ada produk di kategori ini — lini sedang berkembang.',
@@ -1085,8 +1045,6 @@ window.I18N_DICT = {
     'pdp.limitations': 'Kondisi pengujian:',
     /* ---- pain-point tags (fixed 5-value set on products) ---- */
     'pdp.solves': 'Mengatasi',
-    'filter.byPersona': 'Berdasarkan kebutuhan',
-    'personas.see': 'Lihat produk yang sesuai',
     'pain.Dropping': 'Ponsel terjatuh',
     'pain.Heat': 'Panas saat mengisi daya',
     'pain.Loose': 'Tidak menempel kuat',
