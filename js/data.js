@@ -635,7 +635,7 @@ window.DB = {
       "mount": [
         "suction"
       ],
-      "price": null,
+      "price": 8.9,
       "rating": null,
       "reviews": 0,
       "badge": null,
