@@ -1,5 +1,7 @@
 #!/bin/sh
-# Keep /admin's cache-busting version honest, automatically.
+# Keep the cache-busting versions honest, automatically — /admin and the public
+# site, which are versioned separately because they change for different reasons
+# and a shared number would churn both whenever either moved.
 #
 # Why this exists: GitHub Pages serves every file under /admin with
 # Cache-Control: max-age=14400, so a colleague's browser will keep running
@@ -18,18 +20,32 @@
 # bumped, one of the seven ?v= missed) and lands you back at the same silent
 # failure. Anything able to verify all eight can just as easily set all eight.
 #
+# The public site has the same disease with a shorter fuse: GitHub Pages serves
+# css/style.css, js/i18n.js, js/main.js and friends with Cache-Control:
+# max-age=600, and browsers routinely hold them longer than that on their own
+# heuristics. Until 2026-08-18 only js/data.js was protected (js/data-loader.js
+# appends a per-minute token to it), so product data appeared immediately while
+# copy, layout and styling did not — which reads as "my edit didn't work".
+# Confirmed the hard way: a title changed on the live site while the browser
+# still showed the old one.
+#
 # Install once per machine:  git config core.hooksPath scripts/hooks
 # Skip deliberately:         git commit --no-verify
 
 set -e
 
+# ---------------------------------------------------------------------------
+# Part 1 — /admin
+# ---------------------------------------------------------------------------
+
+admin_version() {
 JS=admin/admin.js
 HTML=admin/index.html
 PAT="var ADMIN_VERSION = '\([0-9]\+\.[0-9]\{2\}\)';"
 
 # Nothing under admin/ in this commit → not our business.
 if [ -z "$(git diff --cached --name-only --diff-filter=ACMR -- admin/)" ]; then
-  exit 0
+  return 0
 fi
 
 read_ver() { perl -ne "if (/ADMIN_VERSION = '([0-9]+\.[0-9]{2})'/) { print \$1; last }"; }
@@ -37,7 +53,7 @@ read_ver() { perl -ne "if (/ADMIN_VERSION = '([0-9]+\.[0-9]{2})'/) { print \$1; 
 cur=$(read_ver < "$JS")
 if [ -z "$cur" ]; then
   echo "pre-commit: 在 $JS 找不到 ADMIN_VERSION，略過版本號處理。" >&2
-  exit 0
+  return 0
 fi
 head_ver=$(git show "HEAD:$JS" 2>/dev/null | read_ver || true)
 
@@ -80,7 +96,7 @@ count=$(perl -ne 'while (/\?v=([0-9]+\.[0-9]{2})/g) { $n++ } END { print $n+0 }'
 todo=""
 if [ "$cur" != "$new" ]; then todo="$JS"; fi
 if [ "$vers" != "$new " ]; then todo="$todo $HTML"; fi
-if [ -z "$todo" ]; then exit 0; fi
+if [ -z "$todo" ]; then return 0; fi
 
 # The one way this hook could do harm: it has to `git add` what it rewrites, and
 # `git add` takes the WHOLE file. If a file has unstaged changes, adding it
@@ -109,3 +125,59 @@ for f in $todo; do
 done
 
 echo "pre-commit: ${note}，已同步 ${count} 個 ?v= 並加入本次 commit。"
+}
+
+# ---------------------------------------------------------------------------
+# Part 2 — the public site
+# ---------------------------------------------------------------------------
+#
+# A plain integer, not admin's X.YY. The two never appear in the same file and
+# nothing compares them, so matching formats would only invite someone to assume
+# they move together.
+#
+# The number lives in the HTML and nowhere else. Admin's version has a second
+# home because /admin displays it in the UI; this one has no reader other than
+# the browser cache, and a constant that exists solely for a hook to increment is
+# a second place to get out of step for no gain.
+site_version() {
+  FRONT_HTML=$(ls *.html 2>/dev/null || true)
+  [ -z "$FRONT_HTML" ] && return 0
+
+  # Only when the commit touches something the pages actually load. Editing a
+  # .md or a migration must not roll the token — every bump costs every visitor
+  # a fresh download of all five assets.
+  staged=$(git diff --cached --name-only --diff-filter=ACMR \
+           -- css/ js/ '*.html' | grep -v '^admin/' || true)
+  [ -z "$staged" ] && return 0
+
+  cur=$(perl -ne 'while (/\?v=([0-9]+)(?!\.)/g) { print "$1\n" }' $FRONT_HTML \
+        | sort -n | tail -1)
+  if [ -z "$cur" ]; then
+    echo "pre-commit: 前台 HTML 找不到 ?v= 版本號，略過前台快取版本處理。" >&2
+    return 0
+  fi
+  new=$((cur + 1))
+
+  # Same refusal as above, and for the same reason: this rewrites whole files.
+  for f in $FRONT_HTML; do
+    if ! git diff --quiet -- "$f"; then
+      echo "" >&2
+      echo "pre-commit 中止：$f 有未暫存的修改。" >&2
+      echo "  hook 需要改寫它來更新前台版本號，而 git add 會把整個檔案帶進 commit。" >&2
+      echo "  請先 git add 或 git stash 該檔，再 commit 一次。" >&2
+      echo "" >&2
+      exit 1
+    fi
+  done
+
+  n=0
+  for f in $FRONT_HTML; do
+    perl -pi -e "s/\?v=[0-9]+(?!\.)/?v=$new/g" "$f"
+    git add "$f"
+    n=$((n + 1))
+  done
+  echo "pre-commit: 前台快取版本 $cur → $new，已更新 $n 個 HTML 並加入本次 commit。"
+}
+
+admin_version
+site_version
