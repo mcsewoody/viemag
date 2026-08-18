@@ -341,12 +341,15 @@
       </div>
     </a>`;
   }
+  /* The status badge ("Flagship" / "Expanding") and the S1..S6 code were dropped
+     on 2026-08-17: they were leftovers from when scenarios were a product axis.
+     To a visitor they said nothing — an internal priority label and an internal
+     code — so the card now leads with the picture and the name. `scns.tag.*` stays
+     in i18n.js in case the labels are wanted for an internal view. */
   function scenarioCard(s) {
     return `
     <a class="scn-card" href="scenarios.html#${s.id}">
-      <span class="tag">${t('scns.tag.' + s.status)}</span>
       <div class="scn-icon">${icon(s.icon)}</div>
-      <div class="scn-code">${s.code}</div>
       <h3>${esc(tf(s.name))}</h3>
       <p>${esc(tf(s.desc))}</p>
     </a>`;

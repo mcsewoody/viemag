@@ -47,7 +47,6 @@ window.renderPage = function ({ t, tf, icon, esc, prodBySku }) {
         s.img ? `<img src="${esc(s.img)}" alt="${esc(tf(s.name))}" loading="lazy">` : icon(s.icon)
       }</div>
       <div>
-        <div class="scn-code">${s.code} · ${t('scns.tag.' + s.status)}</div>
         <h2>${esc(tf(s.name))}</h2>
         <p>${esc(tf(s.desc))}</p>
         ${tf(s.pain) ? `<p class="scn-pain"><b>${t('scns.pain')}</b> ${esc(tf(s.pain))}</p>` : ''}

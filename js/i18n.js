@@ -7,7 +7,7 @@ window.I18N_DICT = {
   vi: {
     'meta.title': 'VIEMAG — Phụ kiện nam châm cho lái xe & bàn làm việc',
     'nav.products': 'Sản phẩm',
-    'nav.scenarios': 'Tình huống',
+    'nav.scenarios': 'Gợi ý kết hợp',
     'nav.why': 'Vì sao VIEMAG',
     'nav.insights': 'Góc công nghệ',
     'nav.support': 'Hỗ trợ',
@@ -238,8 +238,8 @@ window.I18N_DICT = {
     'about.e': 'Theo đuổi từng chi tiết và chất lượng.',
     'about.m': 'Lấy công nghệ nam châm làm cốt lõi, xây dựng hệ sinh thái nam châm hoàn chỉnh.',
 
-    'scenarios.title': 'Sáu tình huống, một hệ nam châm',
-    'scenarios.sub': 'Chọn theo cách bạn sống, không theo bảng thông số.',
+    'scenarios.title': 'Gợi ý kết hợp theo tình huống',
+    'scenarios.sub': 'Những bộ sản phẩm đi cùng nhau — chọn theo cách bạn sống, không theo bảng thông số.',
 
     'footer.desc': 'Hệ phụ kiện nam châm cho lái xe và bàn làm việc — ổn định hơn, chắc chắn hơn, bền bỉ hơn.',
     'footer.products': 'Sản phẩm',
@@ -259,7 +259,7 @@ window.I18N_DICT = {
   en: {
     'meta.title': 'VIEMAG — Magnetic accessories for driving & desk work',
     'nav.products': 'Products',
-    'nav.scenarios': 'Scenarios',
+    'nav.scenarios': 'Pairing guide',
     'nav.why': 'Why VIEMAG',
     'nav.insights': 'Insights',
     'nav.support': 'Support',
@@ -490,8 +490,8 @@ window.I18N_DICT = {
     'about.e': 'The pursuit of every detail and of quality.',
     'about.m': 'Magnetic tech at the core, building a complete Magnetic Ecosystem.',
 
-    'scenarios.title': 'Six scenarios, one magnetic system',
-    'scenarios.sub': 'Choose by how you live, not by a spec sheet.',
+    'scenarios.title': 'Pairing guide',
+    'scenarios.sub': 'Sets that work together — chosen by how you live, not by a spec sheet.',
 
     'footer.desc': 'The magnetic accessory system for driving and desk work — steadier, more secure, longer-lasting.',
     'footer.products': 'Products',
@@ -511,7 +511,7 @@ window.I18N_DICT = {
   zh: {
     'meta.title': 'VIEMAG — 為開車與桌面工作而生的磁吸配件系統',
     'nav.products': '產品',
-    'nav.scenarios': '使用情境',
+    'nav.scenarios': '情境搭配',
     'nav.why': '為什麼選 VIEMAG',
     'nav.insights': '科技洞察',
     'nav.support': '售後支援',
@@ -742,8 +742,8 @@ window.I18N_DICT = {
     'about.e': '追求每個細節與品質。',
     'about.m': '以磁吸技術為核心，建構完整的 Magnetic Ecosystem（磁吸生態圈）。',
 
-    'scenarios.title': '六大情境，一套磁吸系統',
-    'scenarios.sub': '按你的生活方式選擇，而不是按規格表。',
+    'scenarios.title': '情境搭配指南',
+    'scenarios.sub': '搭配得起來的組合——按你的生活方式選擇，而不是按規格表。',
 
     'footer.desc': '為開車與桌面工作而生的磁吸配件系統<br>——更穩固、更牢靠、更耐用。',
     'footer.products': '產品',
@@ -766,7 +766,7 @@ window.I18N_DICT = {
   'zh-Hans': {
     'meta.title': 'VIEMAG — 为开车与桌面工作而生的磁吸配件系统',
     'nav.products': '产品',
-    'nav.scenarios': '使用情境',
+    'nav.scenarios': '情境搭配',
     'nav.why': '为什么选 VIEMAG',
     'nav.insights': '科技洞察',
     'nav.support': '售后支持',
@@ -955,8 +955,8 @@ window.I18N_DICT = {
     'about.i': '洞察并满足您的需求。',
     'about.e': '追求每个细节与品质。',
     'about.m': '以磁吸技术为核心，建构完整的 Magnetic Ecosystem（磁吸生态圈）。',
-    'scenarios.title': '六大情境，一套磁吸系统',
-    'scenarios.sub': '按你的生活方式选择，而不是按规格表。',
+    'scenarios.title': '情境搭配指南',
+    'scenarios.sub': '搭配得起来的组合——按你的生活方式选择，而不是按规格表。',
     'footer.desc': '为开车与桌面工作而生的磁吸配件系统<br>——更稳固、更牢靠、更耐用。',
     'footer.products': '产品',
     'footer.support': '售后支持',
@@ -975,7 +975,7 @@ window.I18N_DICT = {
   id: {
     'meta.title': 'VIEMAG — Aksesori magnetik untuk berkendara & meja kerja',
     'nav.products': 'Produk',
-    'nav.scenarios': 'Skenario',
+    'nav.scenarios': 'Panduan kombinasi',
     'nav.why': 'Kenapa VIEMAG',
     'nav.insights': 'Wawasan Teknologi',
     'nav.support': 'Dukungan',
@@ -1206,8 +1206,8 @@ window.I18N_DICT = {
     'about.e': 'Mengejar setiap detail dan kualitas.',
     'about.m': 'Teknologi magnetik sebagai inti, membangun Magnetic Ecosystem yang lengkap.',
 
-    'scenarios.title': 'Enam skenario, satu sistem magnetik',
-    'scenarios.sub': 'Pilih sesuai cara hidup Anda, bukan lembar spesifikasi.',
+    'scenarios.title': 'Panduan kombinasi',
+    'scenarios.sub': 'Set yang saling melengkapi — pilih sesuai cara hidup Anda, bukan lembar spesifikasi.',
 
     'footer.desc': 'Sistem aksesori magnetik untuk berkendara dan meja kerja — lebih stabil, lebih kokoh, lebih awet.',
     'footer.products': 'Produk',
