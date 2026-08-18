@@ -218,6 +218,14 @@
     <circle cx="13" cy="13" r="9.5" fill="none" stroke="${C.navy}" stroke-width="4"/>
     <path d="M13 3.5a9.5 9.5 0 019.5 9.5" fill="none" stroke="${C.copper}" stroke-width="4" stroke-linecap="round"/></svg>`;
 
+  /* The approved wordmark, outlined from VIEMAG_logo.ai (2026-08-18). Kept inline
+     rather than <img src="assets/viemag-wordmark.svg"> for one reason: an <img>
+     cannot inherit currentColor, and the footer needs the mark reversed to white
+     on the dark background. Inline, one CSS colour drives both placements.
+     assets/viemag-wordmark.svg holds the same paths for use outside the site —
+     change one and change the other. */
+  const wordmarkSvg = `<svg class="wordmark" viewBox="0 0 511.945 82.888" role="img" aria-label="VIEMAG"><path transform="matrix(1,0,0,-1,48.978,63.152006)" d="M0 0-30.141 63.152H-48.978L-9.419-19.735H9.419L48.978 63.152H30.141Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,-37.676099,113.016307)" d="M143.168 30.129H162.006V113.015H143.168Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,207.311,15.070602)" d="M0 0 3.672 15.07H-67.911V-67.816H3.672V-52.746H-49.074V-33.908H-11.303L-7.63-18.838H-49.074V0Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,320.24284,.00030517579)" d="M0 0H-18.838L-48.978-45.928-79.119 0H-97.957V-82.887H-79.119V-28.705L-48.978-74.635-18.838-28.705V-82.887H0V0Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,361.0003,52.747705)" d="M0 0 15.756 33.013 31.512 0ZM6.337 52.747-33.222-30.139H-14.385L-7.193-15.07H38.705L45.897-30.139H64.734L25.175 52.747Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,470.5024,48.978906)" d="M0 0H22.605V-18.838H-3.748-3.787C-24.295-18.823-39.326 4.598-23.606 26.158-19.977 31.135-14.039 33.907-7.88 33.907H38.214L41.443 48.978H-7.535C-20.404 48.978-31.903 43.111-39.505 33.907-45.422 26.742-48.978 17.554-48.978 7.535-48.978-2.484-45.423-11.672-39.505-18.838-31.908-28.037-20.417-33.902-7.555-33.908H-7.516 .424C.43-33.908 .437-33.909 .443-33.909 .45-33.909 .456-33.908 .462-33.908H41.443V15.071H3.768Z" fill="currentColor"/></svg>`;
+
   function header(active) {
     const nav = [
       ['products', 'products.html', 'nav.products'],
@@ -234,7 +242,7 @@
     return `
     <header class="site-header">
       <div class="container header-inner">
-        <a class="logo" href="index.html" aria-label="VIEMAG home">${logoSvg}VIEMAG</a>
+        <a class="logo" href="index.html" aria-label="VIEMAG home">${logoSvg}${wordmarkSvg}</a>
         <nav class="main-nav" id="mainNav" aria-label="Main">${nav}</nav>
         <div class="header-actions">
           <div class="lang-switch">
@@ -254,7 +262,7 @@
       <div class="container">
         <div class="footer-top">
           <div class="footer-brand">
-            <a class="logo" href="index.html">${logoSvg.replace(C.navy, '#F8F5EF')}VIEMAG</a>
+            <a class="logo" href="index.html">${logoSvg.replace(C.navy, '#F8F5EF')}${wordmarkSvg}</a>
             <p>${t('footer.desc')}</p>
             <div class="tagline">VIEMAG — Value . Innovation . Excellence.</div>
           </div>

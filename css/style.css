@@ -97,8 +97,15 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 /* ---------- header ---------- */
 .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .header-inner{display:flex;align-items:center;gap:var(--s4);height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.28rem;letter-spacing:.06em;color:var(--midnight)}
+/* The logo is now the approved wordmark (SVG), not styled text, so the old
+   font-weight/letter-spacing rules are gone — they shaped a word that is no
+   longer typeset here. `color` still matters: both marks fill with currentColor,
+   which is what lets .footer-brand .logo{color:#fff} reverse them on the dark
+   footer without a second copy of the artwork. #231916 is the wordmark's own
+   ink from VIEMAG_logo.ai, deliberately not --midnight. */
+.logo{display:flex;align-items:center;gap:10px;color:#231916}
 .logo .ring{width:26px;height:26px;flex:none}
+.logo .wordmark{height:19px;width:auto;flex:none;display:block}
 .main-nav{display:flex;gap:var(--s1);margin-left:var(--s4);flex:1}
 .main-nav a{padding:10px 14px;border-radius:999px;font-weight:600;font-size:.9rem;color:var(--ink);transition:background .15s;white-space:nowrap}
 .main-nav a:hover{background:var(--ivory)}
