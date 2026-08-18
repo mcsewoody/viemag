@@ -210,6 +210,9 @@
   const money = (v) => v == null ? '' : `<small>US$</small>${v.toFixed(2).replace(/\.00$/, '')}`;
   const catById = (id) => DB.categories.find((c) => c.id === id);
   const prodBySku = (sku) => DB.products.find((p) => p.sku === sku);
+  /* Products that can actually be bought. Discontinued ones are excluded on
+     purpose: they still have pages, but recommending them or counting them as
+     available would send someone to a dead end. */
   const published = DB.products.filter((p) => p.status === 'published');
 
   /* ---------- shared header / footer ---------- */
@@ -317,9 +320,14 @@
     const badge = p.badge ? `<span class="badge ${p.badge}">${p.badge === 'soon' ? t('cats.soon') : p.badge === 'new' ? t('badge.new') : t('badge.popular')}</span>` : '';
     const ratingHtml = p.rating
       ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : '';
-    const foot = future
-      ? `<div class="foot"><span class="chip">${t('cats.soon')}</span></div>`
-      : `<div class="foot"><span class="price">${money(p.price)}</span><span class="btn btn-ghost btn-sm">${t('cta.view')}</span></div>`;
+    /* Three states, not two. A discontinued product keeps its card and page but
+       shows no price — quoting a price for something that cannot be bought is
+       worse than showing nothing. */
+    const foot = p.status === 'discontinued'
+      ? `<div class="foot"><span class="chip">${t('cats.discontinued')}</span></div>`
+      : future
+        ? `<div class="foot"><span class="chip">${t('cats.soon')}</span></div>`
+        : `<div class="foot"><span class="price">${money(p.price)}</span><span class="btn btn-ghost btn-sm">${t('cta.view')}</span></div>`;
     return `
     <a class="prod-card" href="product.html?sku=${encodeURIComponent(p.sku)}" aria-label="${esc(tf(p.name))}">
       <div class="thumb">${badge}${thumb(p)}</div>
@@ -516,17 +524,6 @@
     }</div>`;
   }
 
-  /* consumer_pain_point is a fixed 5-value tag set, not free text, so the labels
-     are translated once here rather than per SKU. */
-  function painChips(p) {
-    const pains = (p.pains || []).filter(Boolean);
-    if (!pains.length) return '';
-    return `<div class="pdp-pains">
-      <span class="filter-label">${esc(t('pdp.solves'))}</span>
-      <div class="meta-chips">${pains.map((k) => `<span class="chip">${esc(t('pain.' + k))}</span>`).join('')}</div>
-    </div>`;
-  }
-
   /* ---------- boot ---------- */
   /* i18n copy may contain markup (<br>, <b>) because it is injected with
      innerHTML. A <title> and a meta description are plain text. */
@@ -590,7 +587,7 @@
     applyI18nAttrs(document);
 
     /* per-page render hook (injects dynamic .reveal content) */
-    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, faqItem, faqGroups, insightCard, reportList, gallery, painChips, formatDate, richText, stripTags, INSIGHT_CATS, stars, money, esc, catById, prodBySku, published, applyI18nAttrs });
+    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, faqItem, faqGroups, insightCard, reportList, gallery, formatDate, richText, stripTags, INSIGHT_CATS, stars, money, esc, catById, prodBySku, published, applyI18nAttrs });
 
     /* scroll reveal — observe AFTER dynamic content exists so injected cards animate in */
     const io = new IntersectionObserver((es) => es.forEach((e) => {

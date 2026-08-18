@@ -96,7 +96,7 @@ const PRODUCT_COLS = [
   'badge', 'rating', 'review_count',
   /* Added 2026-07-29. All of these were editable in /admin with no effect on the
      site — staff could fill them in and nothing happened. */
-  'gallery_urls', 'spec_sheet_url', 'consumer_pain_point',
+  'gallery_urls', 'spec_sheet_url',
   'warranty_months', 'defect_exchange_days',
   'seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh',
   'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
@@ -321,7 +321,14 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       const out: any = {
         sku: r.official_sku_code || r.product_id,
         slug: r.slug,
-        status: r.launch_tier === 'Future' ? 'future' : 'published',
+        /* Three states since 2026-08-18, from a launch_tier that no longer carries
+           dead values. `discontinued` keeps the page reachable — existing owners
+           still need the specs, and the URL may be linked from elsewhere — while
+           the price and buy button come off. Taking a product off the site
+           entirely is products.status = 'Discontinued', filtered above. */
+        status: r.launch_tier === 'Future' ? 'future'
+              : r.launch_tier === 'Discontinued' ? 'discontinued'
+              : 'published',
         /* launch_tier itself is NOT emitted. Nothing on the site read it, and its
            values ('A - Core', 'B - Test', 'C - Display') are an internal
            commercial classification that told anyone reading js/data.js which
@@ -350,7 +357,6 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         reports: (reportKeysByProduct.get(r.id) || []).slice(),
         /* Fixed tag set (5 options), not prose — rendered through i18n labels, so
            adding a SKU costs no translation work. */
-        pains: r.consumer_pain_point || [],
         gallery: r.gallery_urls || [],
         /* Per-product terms, falling back to config.warrantyMonths/exchangeDays
            in the front end when blank. */

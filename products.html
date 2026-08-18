@@ -6,7 +6,7 @@
   <title>Products — VIEMAG</title>
   <meta name="description" content="Browse the full VIEMAG magnetic accessory lineup: car mounts, Qi2-standard charging mounts, desk and travel chargers, magnetic accessories.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body data-page="products">
 
@@ -28,8 +28,8 @@
   </section>
 </main>
 
-<script src="js/data-loader.js?v=5"></script>
-<script src="js/i18n.js?v=5"></script>
+<script src="js/data-loader.js?v=6"></script>
+<script src="js/i18n.js?v=6"></script>
 <script>
 window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   const DB = window.DB;
@@ -77,8 +77,9 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   function draw() {
     const list = DB.products.filter((p) =>
       curCat === 'all' || p.category === curCat);
-    /* published first, future last */
-    list.sort((a, b) => (a.status === 'future') - (b.status === 'future'));
+    /* buyable first, then coming-soon, then discontinued last */
+    const rank = (x) => x.status === 'published' ? 0 : x.status === 'future' ? 1 : 2;
+    list.sort((a, b) => rank(a) - rank(b));
     grid.innerHTML = list.map(productCard).join('');
     empty.style.display = list.length ? 'none' : 'block';
   }
@@ -86,6 +87,6 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   drawFilters(); draw(); applyCategoryMeta();
 };
 </script>
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>

@@ -421,7 +421,6 @@ window.DB = {
         "zh": "貼上一枚轉接環，任何手機都能進入磁吸系統。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -466,7 +465,6 @@ window.DB = {
         "zh": "保護殼內建對位磁環，相容性一次到位。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -511,7 +509,6 @@ window.DB = {
         "zh": "吸附機背、行進間無線充電，即將推出。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -558,7 +555,6 @@ window.DB = {
         "zh": "手機抬升至視線高度、直橫向自由旋轉，即將推出。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -605,7 +601,6 @@ window.DB = {
         "zh": "一個底座，兩台裝置，效率最大化。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 7,
@@ -652,9 +647,6 @@ window.DB = {
         "zh": "Magsafe 旅行支架，纖薄設計，適合旅行及搭乘飛機時使用。Ultra Max 磁吸支架採用多軸結構設計，展開最多可延長 10 cm。\n自帶 3 個轉軸處，皆能靈活調整至最適合的高度與角度，時時保持最佳觀看體驗"
       },
       "reports": [],
-      "pains": [
-        "Loose"
-      ],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -723,7 +715,6 @@ window.DB = {
         "zh": "折起一掌大小，展開就是飯店充電站。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831361-phu3kg49n8a-hero_appleGray_1200_20260810_1533.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831363-3h7k9n453dd-hero_appleGray_1200_20260810_1531.webp"
@@ -772,7 +763,6 @@ window.DB = {
         "zh": "一顆磁吸頭，接上任何 1/4\" 腳架，即將推出。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -819,7 +809,6 @@ window.DB = {
         "zh": "穩固卡入出風口，上車一吸即定位。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -867,7 +856,6 @@ window.DB = {
         "zh": "儀表板全日導航，急煞依然穩固。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -914,7 +902,6 @@ window.DB = {
         "zh": "3M 背膠貼平任何平面，30 秒完成安裝。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -962,7 +949,6 @@ window.DB = {
         "zh": "長臂調整任何視角，吸盤緊咬玻璃與儀表板。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1007,7 +993,6 @@ window.DB = {
         "zh": "最輕薄的吸盤 Magsafe 支架"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1055,7 +1040,6 @@ window.DB = {
         "zh": "夾在中控螢幕邊，不擋出風口、不用貼膠。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1103,7 +1087,6 @@ window.DB = {
         "zh": "N52 強磁與耐震結構，整條產品線的品質證據款。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1153,10 +1136,6 @@ window.DB = {
         "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
       },
       "reports": [],
-      "pains": [
-        "Dropping",
-        "Loose"
-      ],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1204,7 +1183,6 @@ window.DB = {
         "zh": "一吸即充 15W，依 Qi2 標準設計，出風口氣流輔助散熱。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1251,7 +1229,6 @@ window.DB = {
         "zh": "車充主力款：全日導航，15W 充電不過熱。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1299,7 +1276,6 @@ window.DB = {
         "zh": "依 Qi2.2 標準設計的 25W 快充＋主動散熱風扇，旗艦款。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
@@ -1346,7 +1322,6 @@ window.DB = {
         "zh": "深儀表板車型的長臂解法，支撐與充電一次到位。"
       },
       "reports": [],
-      "pains": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,

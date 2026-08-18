@@ -27,10 +27,9 @@ window.VIEMAG_OPTION_I18N = {
   'zh-Hant': {
     products: {
       status: { Development: '開發中', Draft: '草稿', Review: '審核中', Published: '已發佈', Hidden: '隱藏', Discontinued: '已停產' },
-      launch_tier: { 'A - Core': 'A - 核心', 'B - Test': 'B - 測試', 'C - Display': 'C - 展示', Future: '即將推出' },
-      consumer_pain_point: { Dropping: '手機掉落', Heat: '充電發熱', Loose: '吸不牢', Compatibility: '相容性問題', 'Cable Mess': '線材雜亂' },
+      launch_tier: { Buyable: '可販售', Future: '即將推出', Discontinued: '已停售（頁面保留）' },
       sub_category: { mounts: '支架', 'charging-mounts': '充電支架', stands: '立架', travel: '旅行攜帶', power: '行動電源', creator: '創作', interface: '介面件' },
-      mount_type: { Vent: '出風口', Dashboard: '儀表板', Suction: '吸盤', Tape: '3M 貼片', Screen: '螢幕邊夾', Desktop: '桌面' },
+      mount_type: { Vent: '出風口', Dashboard: '儀表板', Suction: '真空吸盤', 'PU-Suction': '奈米膠吸盤', Tape: '3M 貼片', Screen: '螢幕邊夾', Clip: '彈簧夾', Clamp: '旋轉夾持', Screw: '螺絲鎖固', 'Quarter-Inch': '1/4" 相機螺牙', Magnetic: '磁吸底座', Magsafe: '相容 MagSafe', Desktop: '桌面' },
       charging_watt: { None: '無', TBD: '待定' },
       qi_status: { 'Not applicable': '無充電功能', Compatible: '依 Qi2 標準設計', Testing: '依 Qi2.2 標準設計（認證進行中）', Certified: 'Qi2 認證', Pending: '待定' },
       badge: { bestseller: '人氣', new: '新品', soon: '即將推出' },
@@ -82,10 +81,9 @@ window.VIEMAG_OPTION_I18N = {
   'zh-Hans': {
     products: {
       status: { Development: '开发中', Draft: '草稿', Review: '审核中', Published: '已发布', Hidden: '隐藏', Discontinued: '已停产' },
-      launch_tier: { 'A - Core': 'A - 核心', 'B - Test': 'B - 测试', 'C - Display': 'C - 展示', Future: '即将推出' },
-      consumer_pain_point: { Dropping: '手机掉落', Heat: '充电发热', Loose: '吸不牢', Compatibility: '兼容性问题', 'Cable Mess': '线材杂乱' },
+      launch_tier: { Buyable: '可销售', Future: '即将推出', Discontinued: '已停售（页面保留）' },
       sub_category: { mounts: '支架', 'charging-mounts': '充电支架', stands: '立架', travel: '旅行携带', power: '移动电源', creator: '创作', interface: '接口件' },
-      mount_type: { Vent: '出风口', Dashboard: '仪表板', Suction: '吸盘', Tape: '3M 贴片', Screen: '屏幕边夹', Desktop: '桌面' },
+      mount_type: { Vent: '出风口', Dashboard: '仪表板', Suction: '真空吸盘', 'PU-Suction': '纳米胶吸盘', Tape: '3M 贴片', Screen: '屏幕边夹', Clip: '弹簧夹', Clamp: '旋转夹持', Screw: '螺丝锁固', 'Quarter-Inch': '1/4" 相机螺牙', Magnetic: '磁吸底座', Magsafe: '兼容 MagSafe', Desktop: '桌面' },
       charging_watt: { None: '无', TBD: '待定' },
       qi_status: { 'Not applicable': '无充电功能', Compatible: '依 Qi2 标准设计', Testing: '依 Qi2.2 标准设计（认证进行中）', Certified: 'Qi2 认证', Pending: '待定' },
       badge: { bestseller: '人气', new: '新品', soon: '即将推出' },
@@ -137,10 +135,9 @@ window.VIEMAG_OPTION_I18N = {
   vi: {
     products: {
       status: { Development: 'Đang phát triển', Draft: 'Bản nháp', Review: 'Đang xét duyệt', Published: 'Đã xuất bản', Hidden: 'Đã ẩn', Discontinued: 'Ngừng kinh doanh' },
-      launch_tier: { 'A - Core': 'A - Cốt lõi', 'B - Test': 'B - Thử nghiệm', 'C - Display': 'C - Trưng bày', Future: 'Sắp ra mắt' },
-      consumer_pain_point: { Dropping: 'Điện thoại bị rơi', Heat: 'Nóng khi sạc', Loose: 'Giữ không chắc', Compatibility: 'Không tương thích', 'Cable Mess': 'Dây cáp rối' },
+      launch_tier: { Buyable: 'Đang bán', Future: 'Sắp ra mắt', Discontinued: 'Ngừng bán (vẫn giữ trang)' },
       sub_category: { mounts: 'Giá đỡ', 'charging-mounts': 'Giá sạc', stands: 'Đế đứng', travel: 'Du lịch', power: 'Sạc dự phòng', creator: 'Sáng tạo', interface: 'Phụ kiện kết nối' },
-      mount_type: { Vent: 'Cửa gió', Dashboard: 'Táp-lô', Suction: 'Đế hút', Tape: 'Dán 3M', Screen: 'Kẹp màn hình', Desktop: 'Để bàn' },
+      mount_type: { Vent: 'Cửa gió', Dashboard: 'Táp-lô', Suction: 'Đế hút chân không', 'PU-Suction': 'Đế hút keo nano', Tape: 'Dán 3M', Screen: 'Kẹp màn hình', Clip: 'Kẹp lò xo', Clamp: 'Kẹp xoay', Screw: 'Cố định bằng vít', 'Quarter-Inch': 'Ren 1/4" cho chân máy', Magnetic: 'Đế nam châm', Magsafe: 'Tương thích MagSafe', Desktop: 'Để bàn' },
       charging_watt: { None: 'Không có', TBD: 'Chưa xác định' },
       qi_status: { 'Not applicable': 'Không sạc', Compatible: 'Thiết kế theo chuẩn Qi2', Testing: 'Thiết kế theo chuẩn Qi2.2 (đang kiểm định)', Certified: 'Chứng nhận Qi2', Pending: 'Đang chờ' },
       badge: { bestseller: 'Được chọn nhiều', new: 'Mới', soon: 'Sắp ra mắt' },

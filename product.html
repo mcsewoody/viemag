@@ -6,7 +6,7 @@
   <title>Product — VIEMAG</title>
   <meta name="description" content="">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body data-page="products" data-keep-title="1">
 
@@ -25,10 +25,10 @@
   </div>
 </main>
 
-<script src="js/data-loader.js?v=5"></script>
-<script src="js/i18n.js?v=5"></script>
+<script src="js/data-loader.js?v=6"></script>
+<script src="js/i18n.js?v=6"></script>
 <script>
-window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, esc, stars, money, reportList, gallery, painChips, faqItem, stripTags }) {
+window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, esc, stars, money, reportList, gallery, faqItem, stripTags }) {
   const DB = window.DB;
   const sku = new URLSearchParams(location.search).get('sku');
   /* An unknown ?sku= must NOT silently fall back to some other product: a stale
@@ -95,7 +95,9 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, e
      would be worse than no row: it reads as "certified, number pending". */
   const specRows = [
     [t('pdp.spec.sku'), p.sku],
-    [t('pdp.spec.mount'), (p.mount || []).map((m) => t('mount.' + m)).join(' · ') || '—'],
+    /* Omitted entirely when the product mounts to nothing. A power bank showing
+       "Mounting: —" reads as a missing spec rather than an inapplicable one. */
+    ...((p.mount || []).length ? [[t('pdp.spec.mount'), p.mount.map((m) => t('mount.' + m)).join(' · ')]] : []),
     [t('pdp.spec.watt'), p.watt || '—'],
     [t('pdp.spec.qi'), t('qi.' + (p.qi || 'none'))],
     ...(p.qiId ? [[t('pdp.spec.qiId'), p.qiId]] : []),
@@ -112,8 +114,9 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, e
       <h1>${esc(tf(p.name))}</h1>
       ${p.rating ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : ''}
       <p class="claim">${esc(tf(p.claim))}</p>
-      ${painChips(p)}
-      ${future
+      ${p.status === 'discontinued'
+        ? `<div class="notice" style="margin:20px 0">${t('pdp.discontinued')}</div>`
+        : future
         ? `<div class="notice" style="margin:20px 0">${t('cats.soon')}</div>`
         : `<div class="price">${money(p.price)}</div>
            <div class="pdp-ctas">
@@ -180,6 +183,6 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, e
   }
 };
 </script>
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>
