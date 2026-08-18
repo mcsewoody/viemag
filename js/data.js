@@ -68,6 +68,36 @@ window.DB = {
       }
     },
     {
+      "id": "ride",
+      "cat": "R",
+      "status": "future",
+      "art": "ride",
+      "name": {
+        "en": "Ride",
+        "vi": "Xe máy",
+        "id": "Motor",
+        "zh": "騎行生態"
+      },
+      "desc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      }
+    },
+    {
       "id": "studio",
       "cat": "S",
       "status": "future",
