@@ -1039,7 +1039,7 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1785987079597-xohr4um18sb-VB005DSH_0.jpg"
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787385364682-1n14m9fxwpe-S4.png"
     },
     {
       "sku": "V06",
