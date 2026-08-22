@@ -623,7 +623,7 @@ window.DB = {
       "status": "future",
       "category": "portable",
       "subCategory": "travel",
-      "art": "suction",
+      "art": "stand",
       "qi": "none",
       "qiId": null,
       "watt": null,
@@ -635,30 +635,30 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "Magsafe Travel Mount",
-        "vi": "Giá đỡ du lịch Magsafe",
-        "id": "Dudukan Perjalanan MagSafe",
-        "zh": "MagSafe 旅行支架"
+        "en": "VIEMAG Magnetic Travel Phone Holder with Multi-Functional Clip",
+        "vi": "VIEMAG Giá Đỡ Điện Thoại Từ Tính Du Lịch Kẹp Đa Năng",
+        "id": "VIEMAG Dudukan Ponsel Magnetik untuk Perjalanan dengan Penjepit Serbaguna",
+        "zh": "VIEMAG 磁吸式旅行手機支架 多功能夾式"
       },
       "claim": {
-        "en": "Magsafe Travel Stand, featuring a slim design, is ideal for travel and use on airplanes. The Ultra Max magnetic stand features a multi-axis design that extends up to 10 cm when unfolded.\nIt features three adjustable hinges, all of which can be flexibly adjusted to the most suitable height and angle, ensuring an optimal viewing experience at all times.",
-        "vi": "Giá đỡ du lịch Magsafe, thiết kế siêu mỏng, phù hợp để sử dụng khi đi du lịch và đi máy bay. Giá đỡ từ tính Ultra Max được thiết kế theo cấu trúc đa trục, có thể kéo dài tối đa 10 cm khi mở ra.\nVới 3 trục xoay, tất cả đều có thể điều chỉnh linh hoạt để đạt được chiều cao và góc độ phù hợp nhất, giúp luôn mang lại trải nghiệm xem tốt nhất",
-        "id": "Dudukan Perjalanan Magsafe, dengan desain tipis, cocok untuk digunakan saat bepergian dan naik pesawat. Dudukan magnetik Ultra Max dirancang dengan struktur multi-sumbu, sehingga dapat diperpanjang hingga 10 cm saat dibuka.\nDilengkapi dengan 3 engsel yang dapat disesuaikan secara fleksibel ke ketinggian dan sudut yang paling sesuai, sehingga selalu memberikan pengalaman menonton yang optimal",
-        "zh": "Magsafe 旅行支架，纖薄設計，適合旅行及搭乘飛機時使用。Ultra Max 磁吸支架採用多軸結構設計，展開最多可延長 10 cm。\n自帶 3 個轉軸處，皆能靈活調整至最適合的高度與角度，時時保持最佳觀看體驗"
+        "en": "Multi-surface quick-release clamp — pull the D-ring to secure it to a table, tray, or handle.  Multi-angle adjustment — two rotating axes and 360° rotation.  Expandable — features a built-in 1/4”-20 tripod thread and a rear magnet.",
+        "vi": "Kẹp nhanh đa bề mặt — kéo vòng chữ D để cố định lên bàn, khay hoặc tay cầm.\tĐiều chỉnh đa góc — hai trục xoay và khả năng xoay 360°.\tMở rộng thiết bị — tích hợp ren tripod 1/4”-20 và nam châm mặt sau.",
+        "id": "Penjepit cepat serbaguna — tarik cincin berbentuk D untuk mengencangkannya pada meja, baki, atau pegangan.  Penyesuaian sudut serbaguna — dua sumbu putar dan kemampuan berputar 360°.  Perluasan perangkat — dilengkapi ulir tripod 1/4”-20 dan magnet di bagian belakang.",
+        "zh": "多表面快拆夾 — 拉動 D 形環即可固定於桌面、托盤或握把上。 多角度調整 — 配備兩組旋轉軸，並可 360° 旋轉。 擴充配件 — 內建 1/4”-20 三腳架螺紋及背面磁鐵。"
       },
       "reports": [],
       "gallery": [],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
-        "en": "",
-        "vi": "",
+        "en": "Giá Đỡ Điện Thoại Từ Tính Du Lịch Kẹp Đa Năng | VIEMAG",
+        "vi": "Giá đỡ điện thoại từ tính du lịch với ngàm kẹp, hai trục xoay 360°, nam châm mặt sau và ren tripod 1/4 inch cho nhiều tình huống sử dụng.",
         "id": "",
         "zh": ""
       },
       "seoDesc": {
         "en": "",
-        "vi": "",
+        "vi": "Giá đỡ điện thoại từ tính du lịch với ngàm kẹp, hai trục xoay 360°, nam châm mặt sau và ren tripod 1/4 inch cho nhiều tình huống sử dụng.\tMột giá đỡ nhỏ gọn dùng trên bàn ăn, khay máy bay, tay cầm, bề mặt kim loại hoặc tripod.\n",
         "id": "",
         "zh": ""
       },
@@ -683,7 +683,7 @@ window.DB = {
         "D01",
         "D02"
       ],
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405913114-3hglyg9knw2-___1.png"
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787379873107-cfjbo84epfh-K_p_du_l_ch.png"
     },
     {
       "sku": "PQ02",
