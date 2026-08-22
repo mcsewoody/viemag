@@ -931,7 +931,9 @@ window.DB = {
         "zh": "柔軟的 TPU 底座結合吸附結構，可讓手機在合適的表面上靈活定位。"
       },
       "reports": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787384270413-k24pewvj84s-___A1_ZF162_N52________.jpeg"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
