@@ -797,19 +797,23 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "VIEMAG Vent Magnetic Mount",
+        "en": "360° Magnetic Phone Mount for Air Vents | VIEMAG",
         "vi": "Giá Đỡ Điện Thoại Từ Tính Gắn Cửa Gió 360° | VIEMAG",
-        "id": "Dudukan Magnetik Kisi AC VIEMAG",
-        "zh": "VIEMAG 出風口磁吸支架"
+        "id": "Dudukan Ponsel Magnetik yang Dapat Dipasang di Ventilasi 360° | VIEMAG",
+        "zh": "360° 磁吸式車門通風口手機支架 | VIEMAG"
       },
       "claim": {
-        "en": "Locks into the vent, docks your phone the moment you get in.",
+        "en": "A magnetic phone mount that attaches to the air vent, rotates 360°, and uses a 17-mm ball joint, allowing for flexible adjustment of the viewing angle while driving.",
         "vi": "Giá đỡ điện thoại từ tính gắn cửa gió, xoay 360° và dùng chuẩn khớp bi 17 mm, giúp điều chỉnh góc nhìn linh hoạt khi lái xe.",
-        "id": "Terkunci di kisi AC, memasang ponsel begitu Anda masuk mobil.",
-        "zh": "穩固卡入出風口，上車一吸即定位。"
+        "id": "Dudukan ponsel magnetik yang dipasang pada ventilasi udara, dapat berputar 360°, dan menggunakan sambungan bola berdiameter 17 mm, sehingga memungkinkan penyesuaian sudut pandang secara fleksibel saat mengemudi.",
+        "zh": "這款磁吸式手機支架可安裝於通風口，支援 360° 旋轉，並採用 17 毫米球接頭規格，讓您在駕駛時能靈活調整觀看角度。"
       },
       "reports": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374715296-h20gr8j5085-K_p_c_a_gi___i_u_h_a_01.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374720745-3ofnj4wc58p-K_p_c_a_gi___i_u_h_a_01.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374720746-gt4agab1yym-K_p_c_a_gi___i_u_h_a_02.png"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
@@ -820,18 +824,27 @@ window.DB = {
       },
       "seoDesc": {
         "en": "",
-        "vi": "",
+        "vi": "Giá đỡ điện thoại từ tính gắn cửa gió, xoay 360° và dùng chuẩn khớp bi 17 mm, giúp điều chỉnh góc nhìn linh hoạt khi lái xe.",
         "id": "",
         "zh": ""
       },
       "accessories": {
-        "en": [],
+        "en": [
+          "Alcohol-soaked wipes",
+          "Magnetic Support Ring"
+        ],
         "vi": [
           "Khăn tẩm cồn",
           "Vòng kim loại dán hỗ trợ từ tính"
         ],
-        "id": [],
-        "zh": []
+        "id": [
+          "Kain yang dibasahi alkohol",
+          "Cincin logam tempel dengan dukungan magnetik"
+        ],
+        "zh": [
+          "酒精濕巾",
+          "磁性支撐貼片金屬環"
+        ]
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
     },
