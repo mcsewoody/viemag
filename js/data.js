@@ -635,19 +635,22 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "VIEMAG Magnetic Travel Phone Holder with Multi-Functional Clip",
-        "vi": "VIEMAG Giá Đỡ Điện Thoại Từ Tính Du Lịch Kẹp Đa Năng",
-        "id": "VIEMAG Dudukan Ponsel Magnetik untuk Perjalanan dengan Penjepit Serbaguna",
-        "zh": "VIEMAG 磁吸式旅行手機支架 多功能夾式"
+        "en": "360° Multi-Purpose Magnetic Travel Phone Mount | VIEMAG",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Kẹp Đa Năng Du Lịch 360° | VIEMAG",
+        "id": "Dudukan Ponsel Magnetik Serbaguna dengan Penjepit untuk Perjalanan 360° | VIEMAG",
+        "zh": "360° 多功能磁吸式旅行手機支架 | VIEMAG"
       },
       "claim": {
-        "en": "Multi-surface quick-release clamp — pull the D-ring to secure it to a table, tray, or handle.  Multi-angle adjustment — two rotating axes and 360° rotation.  Expandable — features a built-in 1/4”-20 tripod thread and a rear magnet.",
-        "vi": "Kẹp nhanh đa bề mặt — kéo vòng chữ D để cố định lên bàn, khay hoặc tay cầm.\tĐiều chỉnh đa góc — hai trục xoay và khả năng xoay 360°.\tMở rộng thiết bị — tích hợp ren tripod 1/4”-20 và nam châm mặt sau.",
-        "id": "Penjepit cepat serbaguna — tarik cincin berbentuk D untuk mengencangkannya pada meja, baki, atau pegangan.  Penyesuaian sudut serbaguna — dua sumbu putar dan kemampuan berputar 360°.  Perluasan perangkat — dilengkapi ulir tripod 1/4”-20 dan magnet di bagian belakang.",
-        "zh": "多表面快拆夾 — 拉動 D 形環即可固定於桌面、托盤或握把上。 多角度調整 — 配備兩組旋轉軸，並可 360° 旋轉。 擴充配件 — 內建 1/4”-20 三腳架螺紋及背面磁鐵。"
+        "en": "Compatible with many types of smartphones.\nCompatible with iPhones and Apple-branded MagSafe cases.\nDual-swivel design, allowing for flexible adjustment to multiple angles of use.\nRotates 360°, making it easy to switch between portrait and landscape modes.\nPull the D-ring at the bottom to quickly clip it to a dining table, tray table, handle, and many other surfaces; ideal for use on airplanes, high-speed trains, cars, and outdoors.\nFeatures a powerful magnet on the back that attaches to iron-containing metal surfaces, making it convenient for navigation, taking selfies, livestreaming, or watching videos hands-free.\nFeatures a standard 1/4\"-20 camera thread, compatible with tripods and selfie sticks.\nCompact, lightweight, and easy to carry—perfect for work, travel, or everyday use.",
+        "vi": "Phù hợp với nhiều loại điện thoại thông minh.\nTương thích với iPhone và ốp lưng MagSafe chính hãng Apple.\nThiết kế trục xoay kép, linh hoạt điều chỉnh nhiều góc sử dụng.\nXoay 360°, dễ dàng chuyển đổi giữa chế độ dọc và ngang.\nKéo vòng chữ D phía dưới để kẹp nhanh vào bàn ăn, bàn khay, tay cầm và nhiều vị trí khác; phù hợp sử dụng trên máy bay, tàu cao tốc, ô tô và ngoài trời.\nTích hợp nam châm mạnh ở mặt sau, có thể gắn lên bề mặt kim loại có chứa sắt, tiện lợi khi dẫn đường, selfie/livestream hoặc xem video rảnh tay.\nTích hợp ren máy ảnh tiêu chuẩn 1/4\"-20, tương thích với tripod và gậy selfie.\nThiết kế gập gọn, nhẹ và dễ mang theo khi làm việc, du lịch hoặc sử dụng hằng ngày.",
+        "id": "Cocok untuk berbagai jenis ponsel pintar.\nKompatibel dengan iPhone dan casing MagSafe asli dari Apple.\nDesain poros putar ganda, dapat disesuaikan secara fleksibel untuk berbagai sudut penggunaan.\nDapat diputar 360°, sehingga mudah beralih antara mode potret dan lanskap.\nTarik cincin berbentuk huruf D di bagian bawah untuk menjepitnya dengan cepat ke meja makan, meja baki, pegangan, dan berbagai tempat lainnya; cocok digunakan di pesawat terbang, kereta api cepat, mobil, dan di luar ruangan.\nDilengkapi magnet kuat di bagian belakang, dapat dipasang pada permukaan logam yang mengandung besi, sehingga praktis untuk navigasi, selfie/livestream, atau menonton video tanpa perlu memegang perangkat.\nDilengkapi ulir kamera standar 1/4\"-20, kompatibel dengan tripod dan tongkat selfie.\nDesainnya ringkas, ringan, dan mudah dibawa saat bekerja, bepergian, atau digunakan sehari-hari.",
+        "zh": "適用於多種智慧型手機。\n相容於 iPhone 及 Apple 原廠 MagSafe 保護殼。\n採用雙旋轉軸設計，可靈活調整多種使用角度。\n可旋轉 360°，輕鬆在直式與橫式模式之間切換。\n拉動下方的 D 形環，即可快速夾在餐桌、托盤、把手等各種位置；適合在飛機、高鐵、汽車及戶外使用。\n背面內建強力磁鐵，可吸附於含鐵的金屬表面，方便進行導航、自拍／直播或免持觀看影片。\n配備 1/4\"-20 標準相機螺紋，可與三腳架及自拍桿搭配使用。\n採用可摺疊設計，輕巧且便於攜帶，無論是工作、旅遊或日常使用都十分方便。"
       },
       "reports": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910939-6m0vh5fs0rf-K_p_du__l_ch_1.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910940-8bres3fa6dk-K_p_du_l_ch_2.png"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
