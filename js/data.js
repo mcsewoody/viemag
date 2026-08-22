@@ -803,17 +803,13 @@ window.DB = {
         "zh": "360° 磁吸式車門通風口手機支架 | VIEMAG"
       },
       "claim": {
-        "en": "A magnetic phone mount that attaches to the air vent, rotates 360°, and uses a 17-mm ball joint, allowing for flexible adjustment of the viewing angle while driving.",
-        "vi": "Giá đỡ điện thoại từ tính gắn cửa gió, xoay 360° và dùng chuẩn khớp bi 17 mm, giúp điều chỉnh góc nhìn linh hoạt khi lái xe.",
-        "id": "Dudukan ponsel magnetik yang dipasang pada ventilasi udara, dapat berputar 360°, dan menggunakan sambungan bola berdiameter 17 mm, sehingga memungkinkan penyesuaian sudut pandang secara fleksibel saat mengemudi.",
-        "zh": "這款磁吸式手機支架可安裝於通風口，支援 360° 旋轉，並採用 17 毫米球接頭規格，讓您在駕駛時能靈活調整觀看角度。"
+        "en": "360° rotation — flexibly switch between portrait and landscape orientations.\n17 mm ball joint — easily attaches to compatible phone mounts.\nProtective rubber layer — minimizes scratches in contact areas.",
+        "vi": "Xoay 360° — linh hoạt chuyển góc nhìn dọc hoặc ngang.\nKhớp bi 17 mm — dễ kết hợp với các đầu giữ điện thoại tương thích.\nLớp cao su bảo vệ — hạn chế trầy xước tại vùng tiếp xúc.",
+        "id": "Berputar 360° — fleksibel untuk mengubah sudut pandang secara vertikal atau horizontal.\nSendi bola 17 mm — mudah dipasangkan dengan dudukan ponsel yang kompatibel.\nLapisan karet pelindung — mengurangi goresan pada area yang bersentuhan.",
+        "zh": "360°旋轉 — 可靈活切換縱向或橫向視角。\n17 公釐球形關節 — 輕鬆搭配相容的手機固定座。\n保護性橡膠層——可減少接觸處的刮痕。"
       },
       "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374715296-h20gr8j5085-K_p_c_a_gi___i_u_h_a_01.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374720745-3ofnj4wc58p-K_p_c_a_gi___i_u_h_a_01.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374720746-gt4agab1yym-K_p_c_a_gi___i_u_h_a_02.png"
-      ],
+      "gallery": [],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
