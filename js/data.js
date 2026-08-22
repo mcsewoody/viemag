@@ -798,13 +798,13 @@ window.DB = {
       "badge": null,
       "name": {
         "en": "VIEMAG Vent Magnetic Mount",
-        "vi": "Giá đỡ nam châm cửa gió VIEMAG",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Gắn Cửa Gió 360° | VIEMAG",
         "id": "Dudukan Magnetik Kisi AC VIEMAG",
         "zh": "VIEMAG 出風口磁吸支架"
       },
       "claim": {
         "en": "Locks into the vent, docks your phone the moment you get in.",
-        "vi": "Kẹp cửa gió chắc chắn, gắn máy một chạm khi lên xe.",
+        "vi": "Giá đỡ điện thoại từ tính gắn cửa gió, xoay 360° và dùng chuẩn khớp bi 17 mm, giúp điều chỉnh góc nhìn linh hoạt khi lái xe.",
         "id": "Terkunci di kisi AC, memasang ponsel begitu Anda masuk mobil.",
         "zh": "穩固卡入出風口，上車一吸即定位。"
       },
@@ -824,7 +824,16 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786405775804-9gdnkkxg5yn-___1.png"
+      "accessories": {
+        "en": [],
+        "vi": [
+          "Khăn tẩm cồn",
+          "Vòng kim loại dán hỗ trợ từ tính"
+        ],
+        "id": [],
+        "zh": []
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
     },
     {
       "sku": "V02",
