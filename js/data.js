@@ -720,7 +720,11 @@ window.DB = {
         "zh": "相容於支援 MagSafe 的手機及手機殼。\n適用於播客、自拍及內容創作。\n採用登山扣設計，方便隨身攜帶。\n兩側均配備磁吸式配件支架，可靈活加裝配件。\n採用可摺疊設計，方便收納與攜帶。"
       },
       "reports": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880530-aky2hp439c-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_1.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-pp2hu4kc49-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_2.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-5uoxxpbr3ik-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_3.png"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
