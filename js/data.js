@@ -708,22 +708,19 @@ window.DB = {
       "reviews": 0,
       "badge": "new",
       "name": {
-        "en": "VIEMAG Folding Travel Charger",
-        "vi": "Sạc du lịch gập VIEMAG",
-        "id": "Pengisi Perjalanan Lipat VIEMAG",
-        "zh": "VIEMAG 折疊旅行充電器"
+        "en": "Compact Folding Tripod Magnetic Phone Mount with Carabiner Hook | VIEMAG",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Tripod Gập Gọn Kèm Móc Carabiner | VIEMAG",
+        "id": "Dudukan Ponsel Magnetik dengan Tripod yang Dapat Dilipat, Dilengkapi dengan Karabiner | VIEMAG",
+        "zh": "可摺疊三腳架式磁吸手機支架，附登山扣 | VIEMAG"
       },
       "claim": {
-        "en": "Folds to palm size, opens into your hotel charging station.",
-        "vi": "Gập lại bằng lòng bàn tay, mở ra là trạm sạc khách sạn.",
-        "id": "Terlipat seukuran telapak tangan, terbuka jadi stasiun pengisian hotel Anda.",
-        "zh": "折起一掌大小，展開就是飯店充電站。"
+        "en": "Compatible with MagSafe-enabled phones and cases.\nGreat for podcasts, taking selfies, and creating content.\nCarabiner design—convenient to carry with you.\nMagnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\nCompact, foldable design—easy to store and carry.",
+        "vi": "Tương thích với điện thoại và ốp lưng hỗ trợ MagSafe.\nPhù hợp cho podcast, chụp selfie và sáng tạo nội dung.\nThiết kế móc carabiner, tiện lợi mang theo bên mình.\nGiá đỡ phụ kiện từ tính hai bên, linh hoạt gắn thêm phụ kiện.\nThiết kế gập gọn, dễ dàng cất giữ và mang theo.",
+        "id": "Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\nCocok untuk podcast, selfie, dan pembuatan konten.\nDesain pengait carabiner, praktis untuk dibawa-bawa.\nDudukan aksesori magnetik di kedua sisi, memungkinkan pemasangan aksesori tambahan secara fleksibel.\nDesainnya dapat dilipat sehingga ringkas, mudah disimpan, dan dibawa-bawa.",
+        "zh": "相容於支援 MagSafe 的手機及手機殼。\n適用於播客、自拍及內容創作。\n採用登山扣設計，方便隨身攜帶。\n兩側均配備磁吸式配件支架，可靈活加裝配件。\n採用可摺疊設計，方便收納與攜帶。"
       },
       "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831361-phu3kg49n8a-hero_appleGray_1200_20260810_1533.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350831363-3h7k9n453dd-hero_appleGray_1200_20260810_1531.webp"
-      ],
+      "gallery": [],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
@@ -738,7 +735,16 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786350505820-ybpvjmf34bm-hero_appleGray_1200_20260810_1527.webp"
+      "accessories": {
+        "en": [],
+        "vi": [
+          "Bộ vệ sinh × 1",
+          "Vòng kim loại × 1"
+        ],
+        "id": [],
+        "zh": []
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381998941-gmpiox4ht3r-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner.png"
     },
     {
       "sku": "S01",
