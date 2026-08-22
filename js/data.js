@@ -649,7 +649,9 @@ window.DB = {
       "reports": [],
       "gallery": [
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910939-6m0vh5fs0rf-K_p_du__l_ch_1.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910940-8bres3fa6dk-K_p_du_l_ch_2.png"
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910940-8bres3fa6dk-K_p_du_l_ch_2.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381198433-sxnr80tre7-K_p_du_l_ch_3.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381198434-i4mqy5shzj-K_p_du_l_ch_4.png"
       ],
       "warranty": 12,
       "exchange": 14,
