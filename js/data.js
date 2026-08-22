@@ -919,16 +919,16 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "VIEMAG 3M Tape Magnetic Mount",
-        "vi": "Giá đỡ nam châm dán 3M VIEMAG",
-        "id": "Dudukan Magnetik Perekat 3M VIEMAG",
-        "zh": "VIEMAG 3M 膠貼磁吸支架"
+        "en": "N52 Magnetic Phone Mount with Vacuum Suction and 360° Rotation | VIEMAG",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính N52 Hút Chân Không Xoay 360° | VIEMAG",
+        "id": "Dudukan Ponsel Magnetik N52 dengan Hisap Vakum dan Dapat Berputar 360° | VIEMAG",
+        "zh": "N52 磁吸式 360° 旋轉 真空吸盤手機支架 | VIEMAG"
       },
       "claim": {
-        "en": "Mounts on any flat surface with 3M adhesive in 30 seconds.",
-        "vi": "Dán phẳng mọi bề mặt bằng keo 3M, lắp trong 30 giây.",
-        "id": "Terpasang di permukaan rata mana pun dengan perekat 3M dalam 30 detik.",
-        "zh": "3M 背膠貼平任何平面，30 秒完成安裝。"
+        "en": "The soft TPU base, combined with a suction mechanism, allows for flexible placement of the phone on a suitable surface.",
+        "vi": "Đế TPU mềm kết hợp cơ cấu hút giúp tạo điểm đặt điện thoại linh hoạt trên bề mặt phù hợp.",
+        "id": "Basis TPU yang lembut dipadukan dengan mekanisme hisap memungkinkan penempatan ponsel secara fleksibel pada permukaan yang sesuai.",
+        "zh": "柔軟的 TPU 底座結合吸附結構，可讓手機在合適的表面上靈活定位。"
       },
       "reports": [],
       "gallery": [],
@@ -946,7 +946,7 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1786406134095-hvy6lmh1b39-A1.jpg"
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787383375551-8rc6siqagt8-A1.png"
     },
     {
       "sku": "V04",
