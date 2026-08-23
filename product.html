@@ -6,7 +6,7 @@
   <title>Product — VIEMAG</title>
   <meta name="description" content="">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body data-page="products" data-keep-title="1">
 
@@ -25,10 +25,10 @@
   </div>
 </main>
 
-<script src="js/data-loader.js?v=6"></script>
-<script src="js/i18n.js?v=6"></script>
+<script src="js/data-loader.js?v=8"></script>
+<script src="js/i18n.js?v=8"></script>
 <script>
-window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, esc, stars, money, reportList, gallery, faqItem, stripTags }) {
+window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml, lines, catById, esc, stars, money, reportList, gallery, faqItem, stripTags }) {
   const DB = window.DB;
   const sku = new URLSearchParams(location.search).get('sku');
   /* An unknown ?sku= must NOT silently fall back to some other product: a stale
@@ -57,9 +57,13 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, e
 
   const future = p.status === 'future';
 
-  /* Highlights: claim + per-type generic engineering bullets (mock copy) */
+  /* Highlights are the checkable facts only. The claim used to lead this list
+     as well as sitting in the hero above it — tolerable while every claim was
+     one line, but once claims became multi-line (one selling point per line in
+     /admin) the same five sentences appeared twice on one screen, separated
+     only by the price. The hero now carries the selling copy; this list carries
+     Qi status, mounting and warranty terms. */
   const hl = [];
-  hl.push(tf(p.claim));
   if (p.qi !== 'none') hl.push(t('qi.' + p.qi));
   if ((p.mount || []).length) hl.push(`${t('pdp.spec.mount')}: ${(p.mount).map((m) => t('mount.' + m)).join(' · ')}`);
   /* This SKU's own terms, falling back to the site-wide policy. Before
@@ -78,8 +82,12 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, e
      still shows something rather than nothing. Simplified Chinese arrives via
      the runtime T2S pass over the rendered text, not from a fifth column. */
   function accessoryBlock(p) {
-    const items = tf(p.accessories);
-    if (!items || !items.length) return '';
+    /* The exporter already split these on newlines, but a staffer who typed
+       "• Adapter ring x1" left the bullet character in the text — and the list
+       below draws its own check icon. lines() strips it so the row shows one
+       marker, not two. */
+    const items = (tf(p.accessories) || []).map((x) => lines(x)[0] || '').filter(Boolean);
+    if (!items.length) return '';
     return `
       <div class="spec-block">
         <h3>${t('pdp.accessories')}</h3>
@@ -113,7 +121,7 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, e
       <span class="sku">${cat ? esc(tf(cat.name)) + ' · ' : ''}${p.sku}</span>
       <h1>${esc(tf(p.name))}</h1>
       ${p.rating ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : ''}
-      <p class="claim">${esc(tf(p.claim))}</p>
+      ${claimHtml(tf(p.claim))}
       ${p.status === 'discontinued'
         ? `<div class="notice" style="margin:20px 0">${t('pdp.discontinued')}</div>`
         : future
@@ -183,6 +191,6 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, catById, e
   }
 };
 </script>
-<script src="js/main.js?v=6"></script>
+<script src="js/main.js?v=8"></script>
 </body>
 </html>

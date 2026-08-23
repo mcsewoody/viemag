@@ -332,6 +332,15 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 .spec-block .accessory-list{padding:14px 18px;margin:0}
 .pdp-section{margin-top:var(--s7)}
 .pdp-section h2{font-size:1.3rem;margin-bottom:var(--s4)}
+/* A claim written as several lines in /admin renders as a list rather than one
+   run-on paragraph. Deliberately not .bullet-list: that one carries check icons
+   and states verifiable facts (Qi status, mounting, warranty). This is selling
+   copy, so it gets a quieter marker in the muted colour it already inherits. */
+.claim-list{list-style:none;display:grid;gap:6px}
+.claim-list li{position:relative;padding-left:1.05em}
+.claim-list li::before{content:"•";position:absolute;left:0;top:0}
+.prod-card .claim-list{gap:4px}
+
 .bullet-list{display:grid;gap:10px}
 .bullet-list li{display:flex;gap:10px;align-items:flex-start;list-style:none;font-size:.95rem}
 .bullet-list li svg{width:19px;height:19px;color:var(--teal);flex:none;margin-top:3px}

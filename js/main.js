@@ -206,6 +206,33 @@
 
   /* ---------- helpers ---------- */
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  /* Multi-line copy → the lines the author actually typed.
+     `claim` and `accessories` are textareas in /admin where staff write one
+     selling point (or one boxed item) per line. HTML collapses newlines, so
+     rendering the raw value inside a <p> turned five selling points into one
+     run-on sentence — the shape the author saw in the textarea was lost between
+     the backend and the page.
+     A leading bullet character is stripped because the markup supplies its own
+     marker: a line typed as "• Magnetic ring x1" would otherwise show two
+     bullets on one row. Only a bullet FOLLOWED BY WHITESPACE counts, so a dash
+     used inside a sentence ("360° rotation — switch orientation") and a value
+     like "-40°C" are both left alone. */
+  const BULLET = /^\s*(?:[•·▪‣∙◦]|[-–—*])\s+/;
+  const lines = (v) => String(v == null ? '' : v)
+    .split(/\r?\n/)
+    .map((s) => s.replace(BULLET, '').trim())
+    .filter(Boolean);
+  /* One line stays a <p>: most SKUs have a single claim, and their markup and
+     spacing are unchanged by this. Two or more become a list.
+     `max` caps the card teaser so a six-line claim cannot stretch one grid cell
+     past its neighbours; the product page passes no cap and shows every line. */
+  const claimHtml = (v, max) => {
+    const ls = lines(v);
+    if (!ls.length) return '';
+    if (ls.length === 1) return `<p class="claim">${esc(ls[0])}</p>`;
+    const shown = max ? ls.slice(0, max) : ls;
+    return `<ul class="claim claim-list">${shown.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`;
+  };
   const stars = (r) => { const f = Math.round(r); return '★★★★★'.slice(0, f) + '☆☆☆☆☆'.slice(0, 5 - f); };
   const money = (v) => v == null ? '' : `<small>US$</small>${v.toFixed(2).replace(/\.00$/, '')}`;
   const catById = (id) => DB.categories.find((c) => c.id === id);
@@ -334,7 +361,7 @@
       <div class="body">
         <span class="cat-label">${cat ? esc(tf(cat.name)) + ' · ' : ''}${esc(p.sku)}</span>
         <h3>${esc(tf(p.name))}</h3>
-        <p class="claim">${esc(tf(p.claim))}</p>
+        ${claimHtml(tf(p.claim), 3)}
         <div class="meta-chips">${qiChip(p)}${(p.mount || []).slice(0, 2).map((m) => `<span class="chip">${t('mount.' + m)}</span>`).join('')}</div>
         ${ratingHtml}
         ${foot}
@@ -587,7 +614,7 @@
     applyI18nAttrs(document);
 
     /* per-page render hook (injects dynamic .reveal content) */
-    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, categoryCard, scenarioCard, faqItem, faqGroups, insightCard, reportList, gallery, formatDate, richText, stripTags, INSIGHT_CATS, stars, money, esc, catById, prodBySku, published, applyI18nAttrs });
+    if (typeof window.renderPage === 'function') window.renderPage({ t, tf, icon, art, thumb, productCard, claimHtml, lines, categoryCard, scenarioCard, faqItem, faqGroups, insightCard, reportList, gallery, formatDate, richText, stripTags, INSIGHT_CATS, stars, money, esc, catById, prodBySku, published, applyI18nAttrs });
 
     /* scroll reveal — observe AFTER dynamic content exists so injected cards animate in */
     const io = new IntersectionObserver((es) => es.forEach((e) => {
