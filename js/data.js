@@ -741,8 +741,8 @@ window.DB = {
       },
       "accessories": {
         "en": [
-          ". Toiletries set × 1",
-          ". Metal ring × 1"
+          "Toiletries set × 1",
+          "Metal ring × 1"
         ],
         "vi": [
           "Bộ vệ sinh × 1",
