@@ -714,10 +714,10 @@ window.DB = {
         "zh": "可摺疊三腳架式磁吸手機支架，附登山扣 | VIEMAG"
       },
       "claim": {
-        "en": ". Compatible with MagSafe-enabled phones and cases.\n. Great for podcasts, taking selfies, and creating content.\n. Carabiner design—convenient to carry with you.\n. Magnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\n. Compact, foldable design—easy to store and carry.",
-        "vi": ". Tương thích với các điện thoại và ốp lưng hỗ trợ MagSafe.\n. Rất phù hợp để nghe podcast, chụp ảnh tự sướng và sáng tạo nội dung.\n. Thiết kế dạng móc karabiner — rất tiện lợi để mang theo bên mình.\n. Các giá đỡ phụ kiện từ tính ở cả hai bên, cho phép gắn thêm các phụ kiện khác một cách linh hoạt.\n. Thiết kế nhỏ gọn, có thể gập lại — dễ cất giữ và mang theo.",
-        "id": ". Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\n. Cocok banget buat podcast, selfie, dan bikin konten.\n. Desain karabiner—praktis untuk dibawa-bawa.\n. Tempat penyimpanan aksesori magnetik di kedua sisi, sehingga memungkinkan pemasangan aksesori tambahan secara fleksibel.\n. Desain yang ringkas dan dapat dilipat—mudah disimpan dan dibawa.",
-        "zh": ". 適用於支援 MagSafe 的手機及手機殼。\n. 非常適合製作播客、拍攝自拍以及創作內容。\n. 登山扣設計——方便隨身攜帶。\n. 兩側均設有磁吸式配件支架，可靈活安裝其他配件。\n. 輕巧、可摺疊的設計——方便收納與攜帶。"
+        "en": "Compatible with MagSafe-enabled phones and cases.\nGreat for podcasts, taking selfies, and creating content.\nCarabiner design—convenient to carry with you.\nMagnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\nCompact, foldable design—easy to store and carry.",
+        "vi": "Tương thích với các điện thoại và ốp lưng hỗ trợ MagSafe.\nRất phù hợp để nghe podcast, chụp ảnh tự sướng và sáng tạo nội dung.\nThiết kế móc carabiner — rất tiện lợi để mang theo bên mình.\nCác giá đỡ phụ kiện từ tính ở cả hai bên, cho phép gắn thêm các phụ kiện khác một cách linh hoạt.\nThiết kế nhỏ gọn, có thể gập lại — dễ dàng cất giữ và mang theo.",
+        "id": "Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\nSangat cocok untuk podcast, berfoto selfie, dan membuat konten.\nDesain karabiner—praktis untuk dibawa kemana-mana.\nTempat aksesori magnetik di kedua sisi, sehingga memungkinkan pemasangan aksesori tambahan secara fleksibel.\nDesain ringkas dan dapat dilipat—mudah disimpan dan dibawa.",
+        "zh": "相容於支援 MagSafe 的手機及手機殼。\n非常適合製作播客、拍攝自拍照以及創作內容。\n登山扣設計——方便隨身攜帶。\n兩側均設有磁吸式配件支架，可靈活安裝其他配件。\n輕巧、可摺疊的設計——收納與攜帶皆十分方便。"
       },
       "reports": [],
       "gallery": [
