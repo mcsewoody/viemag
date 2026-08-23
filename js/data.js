@@ -714,10 +714,10 @@ window.DB = {
         "zh": "可摺疊三腳架式磁吸手機支架，附登山扣 | VIEMAG"
       },
       "claim": {
-        "en": "Compatible with MagSafe-enabled phones and cases.\nGreat for podcasts, taking selfies, and creating content.\nCarabiner design—convenient to carry with you.\nMagnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\nCompact, foldable design—easy to store and carry.",
-        "vi": "Tương thích với điện thoại và ốp lưng hỗ trợ MagSafe.\nPhù hợp cho podcast, chụp selfie và sáng tạo nội dung.\nThiết kế móc carabiner, tiện lợi mang theo bên mình.\nGiá đỡ phụ kiện từ tính hai bên, linh hoạt gắn thêm phụ kiện.\nThiết kế gập gọn, dễ dàng cất giữ và mang theo.",
-        "id": "Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\nCocok untuk podcast, selfie, dan pembuatan konten.\nDesain pengait carabiner, praktis untuk dibawa-bawa.\nDudukan aksesori magnetik di kedua sisi, memungkinkan pemasangan aksesori tambahan secara fleksibel.\nDesainnya dapat dilipat sehingga ringkas, mudah disimpan, dan dibawa-bawa.",
-        "zh": "相容於支援 MagSafe 的手機及手機殼。\n適用於播客、自拍及內容創作。\n採用登山扣設計，方便隨身攜帶。\n兩側均配備磁吸式配件支架，可靈活加裝配件。\n採用可摺疊設計，方便收納與攜帶。"
+        "en": ". Compatible with MagSafe-enabled phones and cases.\n. Great for podcasts, taking selfies, and creating content.\n. Carabiner design—convenient to carry with you.\n. Magnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\n. Compact, foldable design—easy to store and carry.",
+        "vi": ". Tương thích với các điện thoại và ốp lưng hỗ trợ MagSafe.\n. Rất phù hợp để nghe podcast, chụp ảnh tự sướng và sáng tạo nội dung.\n. Thiết kế dạng móc karabiner — rất tiện lợi để mang theo bên mình.\n. Các giá đỡ phụ kiện từ tính ở cả hai bên, cho phép gắn thêm các phụ kiện khác một cách linh hoạt.\n. Thiết kế nhỏ gọn, có thể gập lại — dễ cất giữ và mang theo.",
+        "id": ". Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\n. Cocok banget buat podcast, selfie, dan bikin konten.\n. Desain karabiner—praktis untuk dibawa-bawa.\n. Tempat penyimpanan aksesori magnetik di kedua sisi, sehingga memungkinkan pemasangan aksesori tambahan secara fleksibel.\n. Desain yang ringkas dan dapat dilipat—mudah disimpan dan dibawa.",
+        "zh": ". 適用於支援 MagSafe 的手機及手機殼。\n. 非常適合製作播客、拍攝自拍以及創作內容。\n. 登山扣設計——方便隨身攜帶。\n. 兩側均設有磁吸式配件支架，可靈活安裝其他配件。\n. 輕巧、可摺疊的設計——方便收納與攜帶。"
       },
       "reports": [],
       "gallery": [
@@ -740,13 +740,22 @@ window.DB = {
         "zh": ""
       },
       "accessories": {
-        "en": [],
+        "en": [
+          ". Toiletries set × 1",
+          ". Metal ring × 1"
+        ],
         "vi": [
           "Bộ vệ sinh × 1",
           "Vòng kim loại × 1"
         ],
-        "id": [],
-        "zh": []
+        "id": [
+          "Set perlengkapan mandi × 1",
+          "Cincin logam × 1"
+        ],
+        "zh": [
+          "衛生套組 × 1",
+          "金屬圈 × 1"
+        ]
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381998941-gmpiox4ht3r-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner.png"
     },
