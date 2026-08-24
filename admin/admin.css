@@ -28,8 +28,15 @@
      the card's right edge. One value, so they cannot drift apart again.
      Note the 900px in the @media rule further down is a viewport breakpoint,
      unrelated to this and deliberately left literal — media queries cannot read
-     custom properties anyway. */
-  --form-w: 900px;
+     custom properties anyway.
+
+     Widened from 900px to 1400px (2026-08-25, Woody's call). This is a max-width,
+     not a width: on a 14" laptop the sidebar and padding leave ~1240px, so the
+     card simply fills what is there and nothing changes. It is the large monitor
+     that gains. 900px left the four-language row at ~205px per cell, which is
+     narrow for a claim now that claims run to eight lines. The cap stays because
+     a two-column form stretched across an ultrawide is worse, not better. */
+  --form-w: 1400px;
   font-family: -apple-system, "Segoe UI", "Noto Sans TC", "Noto Sans", sans-serif;
 }
 /* Browsers pick native control colours (scrollbars, date pickers, the file
@@ -265,6 +272,10 @@ table.grid td:last-child { white-space: nowrap; }
 .lang-tag { font-size: .68rem; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
 .lang-cell.empty .lang-tag { color: #E0AE3E; }
 .lang-cell.empty input, .lang-cell.empty textarea { background: rgba(200,148,26,.09); border-color: rgba(200,148,26,.45); }
+/* The default for a one-line translation. A field marked `large` in schema.js
+   (claim_*) is taller and gets its height from `.field textarea.large`
+   above — a more specific selector, so there is still only one place that
+   decides how tall a large textarea is. */
 .lang-cell textarea { min-height: 58px; }
 @media (max-width: 900px) { .lang-inputs { grid-template-columns: repeat(2, 1fr); } }
 

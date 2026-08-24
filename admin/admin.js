@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.10';
+  var ADMIN_VERSION = '1.11';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1159,8 +1159,12 @@
         html += '<button type="button" class="lang-translate-btn" data-target="' + esc(f.name) + '" data-lang="' + esc(code.toLowerCase()) + '" title="' + esc(t('translateHint')) + '">' + esc(t('translateBtn')) + '</button>';
       }
       html += '</div>';
+      /* A four-language row honours schema's `large` flag just like a standalone
+         field does. It did not before, so claim_* — where staff write one selling
+         point per line, eight of them on P01 — was stuck at the same three rows as
+         a one-line field, and you edited the eighth line through a scrollbar. */
       html += f.type === 'textarea'
-        ? '<textarea data-name="' + f.name + '" rows="3">' + esc(v) + '</textarea>'
+        ? '<textarea class="' + (f.large ? 'large' : '') + '" data-name="' + f.name + '" rows="' + (f.large ? 8 : 3) + '">' + esc(v) + '</textarea>'
         : '<input type="text" data-name="' + f.name + '" value="' + esc(v) + '">';
       html += '</div>';
     });
