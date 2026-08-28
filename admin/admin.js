@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.13';
+  var ADMIN_VERSION = '1.14';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1293,7 +1293,7 @@
       + '<option value="right">' + esc(t('imageLayoutRight')) + '</option>'
       + '</select>'
       + '<input type="text" class="rich-image-url" placeholder="' + esc(t('imageUrl')) + '">'
-      + '<button type="button" data-format="image" title="' + esc(t('insertImage')) + '">' + esc(t('insertImage')) + '</button>'
+      + '<button type="button" data-format="image" title="' + esc(t('insertImage')) + '">Img</button>'
       + '</div>'
       + textarea
       + '<p class="rich-help">' + esc(t('formatHelp')) + '</p>'

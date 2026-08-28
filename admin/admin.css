@@ -1,3 +1,5 @@
+@import url('../css/fonts.css');
+
 :root {
   /* Dark UI (2026-07-30, Woody's call). /admin is an internal tool people sit in
      for long stretches; the PUBLIC site stays white — that is a brand rule and is
@@ -36,15 +38,23 @@
      that gains. 900px left the four-language row at ~205px per cell, which is
      narrow for a claim now that claims run to eight lines. The cap stays because
      a two-column form stretched across an ultrawide is worse, not better. */
-  --form-w: 1400px;
-  font-family: -apple-system, "Segoe UI", "Noto Sans TC", "Noto Sans", sans-serif;
+  --form-w: 1180px;
+  font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Noto Sans TC", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei",
+    "Noto Sans", sans-serif;
 }
 /* Browsers pick native control colours (scrollbars, date pickers, the file
    dialog) from this. Without it a dark form still gets a white date-picker
    panel and light scrollbars. */
 :root { color-scheme: dark; }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--text); }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Noto Sans TC", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei",
+    "Noto Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 a { color: var(--heading); }
 
 /* ---------- login screen ---------- */
@@ -197,7 +207,9 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
 .field textarea.large { min-height: 200px; }
 .rich-editor { display: grid; gap: 8px; }
 .rich-toolbar {
-  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, auto) minmax(112px, max-content) minmax(180px, 1fr) auto;
+  align-items: center; gap: 6px;
   padding: 8px; border: 1px solid var(--line); border-radius: 6px;
   background: rgba(255,255,255,.025);
 }
@@ -208,8 +220,8 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
 .rich-toolbar button { padding: 5px 9px; cursor: pointer; }
 .rich-toolbar button:hover { border-color: var(--heading); color: var(--heading); }
 .rich-toolbar select { padding: 5px 8px; }
-.rich-toolbar input { padding: 5px 8px; flex: 1 1 220px; min-width: 160px; }
-.rich-editor textarea { min-height: 280px; }
+.rich-toolbar input { padding: 5px 8px; min-width: 0; }
+.rich-editor textarea { min-height: 220px; }
 .rich-help { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
 .field.checkbox { flex-direction: row; align-items: center; gap: 8px; }
 .field.checkbox label { margin-bottom: 0; }
@@ -294,6 +306,32 @@ table.grid td:last-child { white-space: nowrap; }
    decides how tall a large textarea is. */
 .lang-cell textarea { min-height: 58px; }
 @media (max-width: 900px) { .lang-inputs { grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 780px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { padding: 12px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .sidebar .brand { padding: 0 4px 10px; margin-bottom: 8px; border-bottom: 0; }
+  .sidebar nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+  .sidebar nav a { flex: none; padding: 8px 12px; border-radius: 8px; white-space: nowrap; }
+  .topbar { justify-content: flex-start; flex-wrap: wrap; padding: 10px 12px; }
+  .content { padding: 14px; }
+  .toolbar { align-items: stretch; flex-direction: column; }
+  .toolbar input[type=search] { max-width: none; }
+  .form-head { gap: 12px; margin-bottom: 14px; }
+  .form-thumb { width: clamp(72px, 24vw, 120px); }
+  .form-card { padding: 14px; }
+  .form-grid { grid-template-columns: 1fr; gap: 16px; }
+  .tabbar { overflow-x: auto; }
+  .tab-btn { flex: none; padding: 9px 12px; white-space: nowrap; }
+  .lang-inputs { grid-template-columns: 1fr; }
+  .rich-toolbar { grid-template-columns: repeat(4, minmax(34px, auto)); }
+  .rich-toolbar select,
+  .rich-toolbar input,
+  .rich-toolbar button[data-format="image"] { grid-column: 1 / -1; width: 100%; }
+  .rich-editor textarea { min-height: 190px; }
+  .form-actions { align-items: stretch; flex-direction: column; }
+  .form-actions .btn { width: 100%; }
+}
 
 /* translate button (2026-08-05): only the rows listed in TRANSLATABLE_PREFIXES */
 .lang-cell-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
