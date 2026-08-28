@@ -195,6 +195,22 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
 .field-desc b { color: var(--text); font-weight: 600; }
 .field textarea { resize: vertical; min-height: 70px; }
 .field textarea.large { min-height: 200px; }
+.rich-editor { display: grid; gap: 8px; }
+.rich-toolbar {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  padding: 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: rgba(255,255,255,.025);
+}
+.rich-toolbar button, .rich-toolbar select, .rich-toolbar input {
+  min-height: 32px; border: 1px solid var(--line); border-radius: 5px;
+  background: var(--panel); color: var(--text); font-family: inherit; font-size: .82rem;
+}
+.rich-toolbar button { padding: 5px 9px; cursor: pointer; }
+.rich-toolbar button:hover { border-color: var(--heading); color: var(--heading); }
+.rich-toolbar select { padding: 5px 8px; }
+.rich-toolbar input { padding: 5px 8px; flex: 1 1 220px; min-width: 160px; }
+.rich-editor textarea { min-height: 280px; }
+.rich-help { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
 .field.checkbox { flex-direction: row; align-items: center; gap: 8px; }
 .field.checkbox label { margin-bottom: 0; }
 .internal-tag { color: var(--danger); font-size: .7rem; border: 1px solid var(--danger); border-radius: 4px; padding: 0 4px; }

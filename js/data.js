@@ -739,6 +739,13 @@ window.DB = {
         "id": "",
         "zh": ""
       },
+      "article": {
+        "en": "## Built for travel and quick content moments\nFold it down for the bag, open it when you need a stable angle for **video calls**, selfies, filming, or watching content *hands-free*.\n\n![Tripod angle](https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-pp2hu4kc49-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_2.png){right}\n\n## Magnetic hold, tripod stance\nThe magnetic face keeps compatible phones centered, while the folding tripod base gives the phone a steadier position than leaning it against a cup, laptop, or seat-back tray.\n\n- Compact folding body with carabiner-style carry hook\n- Side magnetic accessory points for flexible add-ons\n- Works with MagSafe phones and compatible magnetic cases",
+        "vi": "## Sinh ra cho di chuyển và sáng tạo nhanh\nGập gọn để bỏ túi, mở ra khi cần một góc đặt ổn định để **gọi video**, selfie, quay nội dung hoặc xem *rảnh tay*.\n\n![Góc dựng tripod](https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-pp2hu4kc49-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_2.png){right}\n\n## Hút nam châm, đứng kiểu tripod\nMặt nam châm giữ điện thoại tương thích đúng tâm, còn chân tripod gập mở giúp máy đứng chắc hơn so với tựa vào ly, laptop hoặc bàn khay.\n\n- Thân gập gọn kèm móc carabiner để mang theo\n- Hai bên có điểm giữ phụ kiện từ tính để gắn thêm linh hoạt\n- Dùng với điện thoại MagSafe và ốp lưng nam châm tương thích",
+        "id": "## Dibuat untuk bepergian dan membuat konten cepat\nLipat untuk masuk ke tas, lalu buka saat Anda membutuhkan sudut yang stabil untuk panggilan video, selfie, merekam konten, atau menonton tanpa dipegang.\n\n## Dudukan magnetik dengan kaki tripod\nPermukaan magnetik menjaga ponsel kompatibel tetap di tengah, sementara kaki tripod lipat membuat posisi ponsel lebih stabil daripada disandarkan ke gelas, laptop, atau meja baki.\n\n- Bodi lipat ringkas dengan kait carabiner untuk dibawa\n- Titik aksesori magnetik di kedua sisi untuk tambahan yang fleksibel\n- Cocok untuk ponsel MagSafe dan casing magnetik kompatibel",
+        "zh": "## 為移動與快速創作而生\n收合後方便放入包中，需要視訊、自拍、拍攝內容或免手持觀看時，打開即可得到穩定角度。\n\n## 磁吸固定，三腳架站姿\n磁吸面可讓相容手機保持置中，摺疊三腳架底座則比倚靠杯子、筆電或小桌板更穩定。\n\n- 輕巧可摺疊機身，附登山扣便於攜帶\n- 兩側磁吸配件點，可彈性加裝配件\n- 適用於 MagSafe 手機與相容磁吸手機殼"
+      },
+      "articleImage": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880530-aky2hp439c-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_1.png",
       "accessories": {
         "en": [
           "Toiletries set × 1",

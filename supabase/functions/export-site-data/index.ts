@@ -97,6 +97,8 @@ const PRODUCT_COLS = [
   /* Added 2026-07-29. All of these were editable in /admin with no effect on the
      site — staff could fill them in and nothing happened. */
   'gallery_urls', 'spec_sheet_url',
+  'product_article_image_url',
+  'product_article_en', 'product_article_vi', 'product_article_id', 'product_article_zh',
   'warranty_months', 'defect_exchange_days',
   'seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh',
   'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
@@ -378,6 +380,10 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         if (lines.length) accAny = true;
       }
       if (accAny) out.accessories = accLines;
+      const article = langObj(r, 'product_article');
+      const hasArticle = article.en || article.vi || article.id || article.zh;
+      if (hasArticle) out.article = article;
+      if (r.product_article_image_url) out.articleImage = r.product_article_image_url;
       if (r.spec_sheet_url) out.spec = r.spec_sheet_url;
       /* Empty arrays are the common case; omit them so data.js does not carry 19
          copies of `"faqs": []` and `"related": []`. */

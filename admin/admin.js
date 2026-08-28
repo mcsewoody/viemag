@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.11';
+  var ADMIN_VERSION = '1.13';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1164,7 +1164,7 @@
          point per line, eight of them on P01 — was stuck at the same three rows as
          a one-line field, and you edited the eighth line through a scrollbar. */
       html += f.type === 'textarea'
-        ? '<textarea class="' + (f.large ? 'large' : '') + '" data-name="' + f.name + '" rows="' + (f.large ? 8 : 3) + '">' + esc(v) + '</textarea>'
+        ? textareaHtml(f, v, f.large ? 8 : 3)
         : '<input type="text" data-name="' + f.name + '" value="' + esc(v) + '">';
       html += '</div>';
     });
@@ -1180,7 +1180,7 @@
      accessories joined on 2026-08-11. It is the first MULTI-LINE field here, and
      the Edge Function had to learn to translate line by line before this was
      safe — the line breaks are what make it a list on the product page. */
-  var TRANSLATABLE_PREFIXES = ['name', 'claim', 'accessories'];
+  var TRANSLATABLE_PREFIXES = ['name', 'claim', 'accessories', 'product_article'];
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
@@ -1214,7 +1214,7 @@
       case 'computed':
         return '<div class="computed-value muted" data-compute="' + esc(f.compute) + '">—</div>';
       case 'textarea':
-        return '<textarea class="' + (f.large ? 'large' : '') + '" data-name="' + f.name + '">' + esc(value) + '</textarea>';
+        return textareaHtml(f, value);
       case 'number':
         return '<div class="num-wrap"><input type="number" step="any" data-name="' + f.name + '" value="' + (value == null ? '' : esc(value)) + '">'
           + (f.unit ? '<span class="num-unit">' + esc(f.unit) + '</span>' : '') + '</div>';
@@ -1275,6 +1275,80 @@
     html += '<span class="upload-status" style="font-size:.8rem;color:var(--muted)"></span>';
     html += '</div>';
     return html;
+  }
+
+  function textareaHtml(f, value, rows) {
+    var attrs = 'class="' + (f.large ? 'large' : '') + '" data-name="' + f.name + '"' + (rows ? ' rows="' + rows + '"' : '');
+    var textarea = '<textarea ' + attrs + '>' + esc(value) + '</textarea>';
+    if (f.editor !== 'productArticle') return textarea;
+    return '<div class="rich-editor" data-rich-editor="' + esc(f.name) + '">'
+      + '<div class="rich-toolbar" aria-label="' + esc(t('formatToolbar')) + '">'
+      + '<button type="button" data-format="bold" title="' + esc(t('formatBold')) + '"><b>B</b></button>'
+      + '<button type="button" data-format="italic" title="' + esc(t('formatItalic')) + '"><i>I</i></button>'
+      + '<button type="button" data-format="heading" title="' + esc(t('formatHeading')) + '">H2</button>'
+      + '<button type="button" data-format="bullet" title="' + esc(t('formatBullet')) + '">List</button>'
+      + '<select class="rich-image-layout" title="' + esc(t('imageLayout')) + '">'
+      + '<option value="wide">' + esc(t('imageLayoutWide')) + '</option>'
+      + '<option value="left">' + esc(t('imageLayoutLeft')) + '</option>'
+      + '<option value="right">' + esc(t('imageLayoutRight')) + '</option>'
+      + '</select>'
+      + '<input type="text" class="rich-image-url" placeholder="' + esc(t('imageUrl')) + '">'
+      + '<button type="button" data-format="image" title="' + esc(t('insertImage')) + '">' + esc(t('insertImage')) + '</button>'
+      + '</div>'
+      + textarea
+      + '<p class="rich-help">' + esc(t('formatHelp')) + '</p>'
+      + '</div>';
+  }
+
+  function wireRichEditor(wrap) {
+    var textarea = wrap.querySelector('textarea[data-name]');
+    if (!textarea) return;
+    function touch() {
+      state.formDirty = true;
+      textarea.dispatchEvent(new Event('input', { bubbles: true }));
+      textarea.focus();
+    }
+    function replaceSelection(text) {
+      var start = textarea.selectionStart || 0;
+      var end = textarea.selectionEnd || 0;
+      textarea.setRangeText(text, start, end, 'end');
+      touch();
+    }
+    function wrapSelection(before, after, fallback) {
+      var start = textarea.selectionStart || 0;
+      var end = textarea.selectionEnd || 0;
+      var selected = textarea.value.slice(start, end) || fallback;
+      textarea.setRangeText(before + selected + after, start, end, 'select');
+      touch();
+    }
+    function prefixLines(prefix, fallback) {
+      var start = textarea.selectionStart || 0;
+      var end = textarea.selectionEnd || 0;
+      var selected = textarea.value.slice(start, end) || fallback;
+      var next = selected.split(/\r?\n/).map(function (line) {
+        return line.trim() ? prefix + line.replace(/^(##\s+|[-*]\s+)/, '') : line;
+      }).join('\n');
+      textarea.setRangeText(next, start, end, 'select');
+      touch();
+    }
+    Array.prototype.forEach.call(wrap.querySelectorAll('[data-format]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var kind = btn.dataset.format;
+        if (kind === 'bold') { wrapSelection('**', '**', t('formatSample')); return; }
+        if (kind === 'italic') { wrapSelection('*', '*', t('formatSample')); return; }
+        if (kind === 'heading') { prefixLines('## ', t('headingSample')); return; }
+        if (kind === 'bullet') { prefixLines('- ', t('bulletSample')); return; }
+        if (kind === 'image') {
+          var input = wrap.querySelector('.rich-image-url');
+          var url = input ? input.value.trim() : '';
+          if (!url) { if (input) input.focus(); return; }
+          var layoutEl = wrap.querySelector('.rich-image-layout');
+          var layout = layoutEl ? layoutEl.value : 'wide';
+          replaceSelection('\n![' + t('imageAltSample') + '](' + url + '){' + layout + '}\n');
+          if (input) input.value = '';
+        }
+      });
+    });
   }
 
   /* The eight components summed into product_development.sales_cost_usd, read
@@ -1349,6 +1423,9 @@
     });
     Array.prototype.forEach.call(document.querySelectorAll('.file-field'), function (wrap) {
       wirePrivateFileField(wrap);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.rich-editor'), function (wrap) {
+      wireRichEditor(wrap);
     });
 
     document.getElementById('saveBtn').addEventListener('click', function () {

@@ -92,6 +92,7 @@ window.I18N_DICT = {
     'pdp.highlights': 'Điểm nổi bật',
     'pdp.evidence': 'Kiểm chứng chất lượng',
     'pdp.evidenceNote': 'Báo cáo chi tiết của mẫu này sẽ hiển thị tại đây sau khi được phê duyệt công bố.',
+    'pdp.article': 'Mô tả sản phẩm',
     /* ---- Insights (Góc công nghệ) ---- */
     'insights.title': 'VIEMAG Insights',
     'insights.sub': 'Nam châm, chuẩn sạc và hệ sinh thái Apple — chia sẻ xu hướng, đón đầu tương lai.',
@@ -335,6 +336,7 @@ window.I18N_DICT = {
     'pdp.highlights': 'Highlights',
     'pdp.evidence': 'Quality evidence',
     'pdp.evidenceNote': 'Detailed test reports for this model will appear here once approved for publication.',
+    'pdp.article': 'Product details',
     /* ---- Insights ---- */
     'insights.title': 'VIEMAG Insights',
     'insights.sub': 'Magnets, charging standards and the Apple ecosystem — trends worth sharing, moving toward what’s next.',
@@ -578,6 +580,7 @@ window.I18N_DICT = {
     'pdp.highlights': '產品亮點',
     'pdp.evidence': '品質證據',
     'pdp.evidenceNote': '本型號的詳細測試報告將於審核通過後在此公開。',
+    'pdp.article': '產品介紹',
     /* ---- 科技洞察 ---- */
     'insights.title': 'VIEMAG 科技洞察',
     'insights.sub': '磁吸、充電標準與 Apple 生態——趨勢分享、迎向未來。',
@@ -814,6 +817,7 @@ window.I18N_DICT = {
     'pdp.highlights': '产品亮点',
     'pdp.evidence': '品质证据',
     'pdp.evidenceNote': '本型号的详细测试报告将于审核通过后在此公开。',
+    'pdp.article': '产品介绍',
     'pdp.compat': '兼容性',
     'pdp.compatText': 'iPhone 与 Android 手机皆可使用；无磁吸手机搭配 VIEMAG 转接环或磁吸壳即可。',
     'pdp.specs': '规格',
@@ -1032,6 +1036,7 @@ window.I18N_DICT = {
     'pdp.highlights': 'Sorotan',
     'pdp.evidence': 'Bukti kualitas',
     'pdp.evidenceNote': 'Laporan uji rinci untuk model ini akan muncul di sini setelah disetujui untuk publikasi.',
+    'pdp.article': 'Detail produk',
     /* ---- Insights ---- */
     'insights.title': 'VIEMAG Insights',
     'insights.sub': 'Magnet, standar pengisian daya, dan ekosistem Apple — berbagi tren, menyambut masa depan.',

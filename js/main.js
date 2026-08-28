@@ -427,13 +427,21 @@
      amount of HTML in the database can inject anything — /admin is trusted, but
      "trusted" is not a reason to hand it an XSS primitive on the public site.
      Supported: "## " headings, "- " list items, blank-line or heading-delimited
-     paragraphs, **bold**.
+     paragraphs, **bold**, *italic*, and image lines:
+     ![alt](https://example.com/photo.jpg){wide|left|right}.
      Processed line by line, NOT block by block: an author will write a heading
      immediately above its paragraph with no blank line between them, and a
      block-based reader emits that heading as literal "## " text. */
   function richText(src) {
     if (!src) return '';
-    const inline = (str) => esc(str).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    const safeImageUrl = (url) => {
+      const u = String(url || '').trim();
+      if (/^(https?:)?\/\//i.test(u) || u.charAt(0) === '/' || /^(?:\.\.?\/)?(?:assets|image)\//i.test(u)) return esc(u);
+      return '';
+    };
+    const inline = (str) => esc(str)
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
     const out = [];
     let para = [];   // pending plain lines
     let list = [];   // pending list items
@@ -444,6 +452,15 @@
     String(src).split('\n').forEach((raw) => {
       const line = raw.trim();
       if (!line) { flush(); return; }
+      const img = /^!\[([^\]]*)\]\(([^)]+)\)(?:\{(wide|left|right)\})?$/i.exec(line);
+      if (img) {
+        flush();
+        const src = safeImageUrl(img[2]);
+        if (!src) return;
+        const layout = img[3] || 'wide';
+        out.push(`<figure class="rich-image ${layout}"><img src="${src}" alt="${esc(img[1])}" loading="lazy"></figure>`);
+        return;
+      }
       if (/^##\s+/.test(line)) { flush(); out.push(`<h2>${inline(line.replace(/^##\s+/, ''))}</h2>`); return; }
       if (/^[-*]\s+/.test(line)) { flushPara(); list.push(line.replace(/^[-*]\s+/, '')); return; }
       flushList(); para.push(line);

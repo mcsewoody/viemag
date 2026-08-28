@@ -28,7 +28,7 @@
 <script src="js/data-loader.js?v=8"></script>
 <script src="js/i18n.js?v=8"></script>
 <script>
-window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml, lines, catById, esc, stars, money, reportList, gallery, faqItem, stripTags }) {
+window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml, lines, catById, esc, stars, money, reportList, gallery, faqItem, richText, stripTags }) {
   const DB = window.DB;
   const sku = new URLSearchParams(location.search).get('sku');
   /* An unknown ?sku= must NOT silently fall back to some other product: a stale
@@ -97,6 +97,18 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
       </div>`;
   }
 
+  function productArticleBlock(p) {
+    const body = richText(tf(p.article));
+    const img = p.articleImage || '';
+    if (!body && !img) return '';
+    return `
+      <section class="pdp-section pdp-article reveal">
+        <h2>${t('pdp.article')}</h2>
+        ${img ? `<figure class="pdp-article-media"><img src="${esc(img)}" alt="${esc(tf(p.name))}" loading="lazy"></figure>` : ''}
+        ${body ? `<div class="rich-text">${body}</div>` : ''}
+      </section>`;
+  }
+
   /* The Qi ID row only exists when there is an ID to show, and the exporter
      already withholds it unless qi_status is Certified — so a visitor never sees
      a certification number on a product that is merely compatible. An empty row
@@ -149,7 +161,8 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
         ${reportList(p)}
       </div>
     </div>
-  </div>`;
+  </div>
+  ${productArticleBlock(p)}`;
 
   /* Thumbnail strip: swap the main image. Bound after innerHTML, and only when
      the strip actually exists (a single-photo product has no strip). */

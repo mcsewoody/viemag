@@ -332,6 +332,26 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 .spec-block .accessory-list{padding:14px 18px;margin:0}
 .pdp-section{margin-top:var(--s7)}
 .pdp-section h2{font-size:1.3rem;margin-bottom:var(--s4)}
+.pdp-article{border-top:1px solid var(--line);padding-top:var(--s7)}
+.pdp-article-media{margin:0 0 var(--s5);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+.pdp-article-media img{display:block;width:100%;max-height:620px;object-fit:contain;background:#fff}
+.rich-text{max-width:820px;color:var(--ink);font-size:1rem;line-height:1.75}
+.rich-text h2{font-size:1.35rem;margin:var(--s6) 0 var(--s3)}
+.rich-text h2:first-child{margin-top:0}
+.rich-text p{margin:0 0 var(--s4);color:var(--muted)}
+.rich-text ul{margin:0 0 var(--s4);padding-left:1.2rem;color:var(--muted)}
+.rich-text li{margin-bottom:6px}
+.rich-text strong{color:var(--ink)}
+.rich-text em{font-style:italic;color:var(--ink)}
+.rich-image{margin:var(--s5) 0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+.rich-image img{display:block;width:100%;height:auto}
+.rich-image.left,.rich-image.right{width:min(42%,320px);margin-top:6px}
+.rich-image.left{float:left;margin-right:var(--s4)}
+.rich-image.right{float:right;margin-left:var(--s4)}
+.rich-text::after{content:"";display:block;clear:both}
+@media (max-width:720px){
+  .rich-image.left,.rich-image.right{float:none;width:100%;margin-left:0;margin-right:0}
+}
 /* A claim written as several lines in /admin renders as a list rather than one
    run-on paragraph. Deliberately not .bullet-list: that one carries check icons
    and states verifiable facts (Qi status, mounting, warranty). This is selling

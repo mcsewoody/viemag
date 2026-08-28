@@ -150,7 +150,7 @@ const shapes = {
   'insights[]': shapeFromExporter('const insights = (guideRows'),
 };
 /* Conditionally-emitted product keys are absent from a sample row. */
-for (const k of ['spec', 'faqs', 'related', 'img', 'shopee']) shapes['products[]'][k] ??= null;
+for (const k of ['spec', 'faqs', 'related', 'img', 'shopee', 'article', 'articleImage']) shapes['products[]'][k] ??= null;
 
 /* `slug` on a product is deliberately carried unused: it is the natural key for
    the per-language URLs that are still on the backlog. Everything else must be
