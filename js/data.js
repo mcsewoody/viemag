@@ -415,10 +415,10 @@ window.DB = {
         "zh": "VIEMAG 磁吸轉接環套組"
       },
       "claim": {
-        "en": "Just attach an adapter ring, and any phone can be used with the magnetic charging system.",
-        "vi": "Chỉ cần gắn một vòng chuyển đổi là bất kỳ chiếc điện thoại nào cũng có thể kết nối với hệ thống sạc từ tính dành cho điện thoại.",
-        "id": "Dengan memasang cincin adaptor, ponsel apa pun dapat terhubung ke sistem pengisian daya nirkabel.",
-        "zh": "貼上一枚轉接環，任何手機都能進入手機磁吸系統。"
+        "en": "Just attach an adapter ring, and any phone can be integrated into the magnetic mounting system.",
+        "vi": "Chỉ cần gắn một vòng chuyển đổi là bất kỳ chiếc điện thoại nào cũng có thể kết nối với hệ thống hút từ tính.",
+        "id": "Dengan memasang cincin adaptor, ponsel apa pun dapat terhubung ke sistem pengisian daya magnetik.",
+        "zh": "貼上一枚轉接環，任何手機都能進入磁吸系統。"
       },
       "reports": [],
       "gallery": [],
