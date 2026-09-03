@@ -415,10 +415,10 @@ window.DB = {
         "zh": "VIEMAG 磁吸轉接環套組"
       },
       "claim": {
-        "en": "Stick on one ring and any phone joins the magnetic system.",
-        "vi": "Dán một vòng, điện thoại nào cũng vào được hệ nam châm.",
-        "id": "Tempel satu cincin dan ponsel apa pun bergabung ke sistem magnetik.",
-        "zh": "貼上一枚轉接環，任何手機都能進入磁吸系統。"
+        "en": "Just attach an adapter ring, and any phone can be used with the magnetic charging system.",
+        "vi": "Chỉ cần gắn một vòng chuyển đổi là bất kỳ chiếc điện thoại nào cũng có thể kết nối với hệ thống sạc từ tính dành cho điện thoại.",
+        "id": "Dengan memasang cincin adaptor, ponsel apa pun dapat terhubung ke sistem pengisian daya nirkabel.",
+        "zh": "貼上一枚轉接環，任何手機都能進入手機磁吸系統。"
       },
       "reports": [],
       "gallery": [],
@@ -739,13 +739,6 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "article": {
-        "en": "## Built for travel and quick content moments\nFold it down for the bag, open it when you need a stable angle for **video calls**, selfies, filming, or watching content *hands-free*.\n\n![Tripod angle](https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-pp2hu4kc49-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_2.png){right}\n\n## Magnetic hold, tripod stance\nThe magnetic face keeps compatible phones centered, while the folding tripod base gives the phone a steadier position than leaning it against a cup, laptop, or seat-back tray.\n\n- Compact folding body with carabiner-style carry hook\n- Side magnetic accessory points for flexible add-ons\n- Works with MagSafe phones and compatible magnetic cases",
-        "vi": "## Sinh ra cho di chuyển và sáng tạo nhanh\nGập gọn để bỏ túi, mở ra khi cần một góc đặt ổn định để **gọi video**, selfie, quay nội dung hoặc xem *rảnh tay*.\n\n![Góc dựng tripod](https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-pp2hu4kc49-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_2.png){right}\n\n## Hút nam châm, đứng kiểu tripod\nMặt nam châm giữ điện thoại tương thích đúng tâm, còn chân tripod gập mở giúp máy đứng chắc hơn so với tựa vào ly, laptop hoặc bàn khay.\n\n- Thân gập gọn kèm móc carabiner để mang theo\n- Hai bên có điểm giữ phụ kiện từ tính để gắn thêm linh hoạt\n- Dùng với điện thoại MagSafe và ốp lưng nam châm tương thích",
-        "id": "## Dibuat untuk bepergian dan membuat konten cepat\nLipat untuk masuk ke tas, lalu buka saat Anda membutuhkan sudut yang stabil untuk panggilan video, selfie, merekam konten, atau menonton tanpa dipegang.\n\n## Dudukan magnetik dengan kaki tripod\nPermukaan magnetik menjaga ponsel kompatibel tetap di tengah, sementara kaki tripod lipat membuat posisi ponsel lebih stabil daripada disandarkan ke gelas, laptop, atau meja baki.\n\n- Bodi lipat ringkas dengan kait carabiner untuk dibawa\n- Titik aksesori magnetik di kedua sisi untuk tambahan yang fleksibel\n- Cocok untuk ponsel MagSafe dan casing magnetik kompatibel",
-        "zh": "## 為移動與快速創作而生\n收合後方便放入包中，需要視訊、自拍、拍攝內容或免手持觀看時，打開即可得到穩定角度。\n\n## 磁吸固定，三腳架站姿\n磁吸面可讓相容手機保持置中，摺疊三腳架底座則比倚靠杯子、筆電或小桌板更穩定。\n\n- 輕巧可摺疊機身，附登山扣便於攜帶\n- 兩側磁吸配件點，可彈性加裝配件\n- 適用於 MagSafe 手機與相容磁吸手機殼"
-      },
-      "articleImage": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880530-aky2hp439c-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_1.png",
       "accessories": {
         "en": [
           "Toiletries set × 1",
@@ -809,6 +802,77 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "sku": "T3",
+      "slug": "t3",
+      "status": "future",
+      "category": "portable",
+      "subCategory": null,
+      "art": "tripod",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "magnetic",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": "new",
+      "name": {
+        "en": "Foldable Mini Tripod Magnetic Phone Stand with Carabiner Hook | VIEMAG",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Tripod Mini Gập Gọn Kèm Móc Carabiner | VIEMAG",
+        "id": "Dudukan Ponsel Magnetik Tripod Mini Lipat dengan Kait Carabiner | VIEMAG",
+        "zh": "迷你摺疊三腳架磁吸手機支架，附登山扣 | VIEMAG"
+      },
+      "claim": {
+        "en": "Uses an N52 magnet for a secure magnetic hold.\nFully foldable frame — adjust the viewing angle freely.\nRotates 360°, easily switch between portrait and landscape.\nMini tripod design keeps desktop shots steady, no wobble.\nWorks as a phone stand, selfie stand, and shooting tripod.\nCarabiner hook design clips onto bags and straps — compact and easy to carry.\nIncludes a magnetic plate, so non-MagSafe phones can use it too.",
+        "vi": "Nam châm N52, hút chắc điện thoại.\nKhung gập toàn phần, tự do điều chỉnh góc nhìn.\nXoay 360°, dễ dàng chuyển dọc/ngang.\nThiết kế tripod mini, đặt bàn ổn định không rung.\nDùng được như giá đỡ điện thoại, gậy tự sướng và tripod quay phim.\nThiết kế móc carabiner, dễ móc vào túi/dây đeo, gọn nhẹ dễ mang.\nKèm tấm sắt từ tính, điện thoại không hỗ trợ MagSafe vẫn dùng được.",
+        "id": "Magnet N52, cengkeraman magnetik kuat untuk ponsel.\nRangka lipat penuh, sesuaikan sudut pandang bebas.\nBerputar 360°, mudah beralih potret/lanskap.\nDesain tripod mini, pengambilan gambar di meja stabil tanpa goyang.\nBisa jadi dudukan ponsel, tongkat selfie, dan tripod syuting.\nDesain kait carabiner, mudah dikaitkan ke tas/tali, ringkas dan mudah dibawa.\nTermasuk pelat magnetik, ponsel non-MagSafe pun bisa pakai.",
+        "zh": "採用 N52 磁鐵，穩固吸附手機。\n全折疊結構，自由調整觀看角度。\n360 度旋轉，輕鬆切換直向與橫向。\n迷你三腳架設計，桌面拍攝穩定不晃動。\n可作為手機支架、自拍支架及拍攝三腳架。\n掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。\n隨附引磁片，不支援 MagSafe 的裝置也能使用。"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-0yquq5jenppj-1.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-jfrqv4rpw8b-2.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-p8jtzzhtg8g-3.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-47w1lhl92wg-4.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-4n81zri07bl-5.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394516-vym0qaf50e-6.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394516-28bfbzcmeli-7.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394516-xkqzukipsqm-8.jpg"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Adhesive Magnetic Ring"
+        ],
+        "vi": [
+          "Vòng từ tính dạng dán"
+        ],
+        "id": [
+          "Cincin Magnetik Tempel"
+        ],
+        "zh": [
+          "黏貼式磁吸環"
+        ]
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909508461-ncwjllzoyh-___.jpg"
     },
     {
       "sku": "V01",
