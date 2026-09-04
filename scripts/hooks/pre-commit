@@ -181,3 +181,66 @@ site_version() {
 
 admin_version
 site_version
+
+# ---------------------------------------------------------------------------
+# Part 3 — Edge Functions: warn that committing is not deploying
+# ---------------------------------------------------------------------------
+#
+# Why this exists: on 2026-08-28 a colleague merged product_article support into
+# supabase/functions/export-site-data and pushed it to main. The deployed
+# function stayed on the version from 2026-08-18 for a week. Nothing failed —
+# the push succeeded, the site built, /admin saved happily — and the only
+# symptom was that staff could fill in the new article fields and watch them
+# never appear on the site, with no error anywhere. Found on 2026-09-04 only
+# because an unrelated token expiry sent us digging through the function.
+#
+# This is the same failure this repo already guards against at the field level
+# ("a field that saves but does nothing is worse than no field"): work that looks
+# done, produces no error, and quietly has no effect. Git is simply not the
+# deploy path for Edge Functions — `supabase functions deploy` is, and it is a
+# separate manual step that leaves no trace in the commit.
+#
+# It WARNS rather than blocking, deliberately:
+#   - Committing before deploying is legitimate and common (review first, deploy
+#     after merge). Blocking would punish the normal workflow.
+#   - The hook cannot deploy for you: that needs network access and Supabase
+#     credentials, neither of which belongs in a pre-commit hook running on
+#     whatever machine happens to be committing.
+# So it prints the exact command instead, and gets out of the way.
+edge_function_reminder() {
+  staged=$(git diff --cached --name-only --diff-filter=ACMR -- supabase/functions/ || true)
+  if [ -z "$staged" ]; then return 0; fi
+
+  # supabase/functions/<name>/... -> <name>. Anything directly under
+  # supabase/functions/ (or in _shared/) is not a deployable unit on its own;
+  # _shared is called out separately because a change there affects EVERY
+  # function, which is exactly the case someone is most likely to under-deploy.
+  names=$(echo "$staged" | awk -F/ 'NF>3 && $3 != "_shared" { print $3 }' | sort -u)
+  shared=$(echo "$staged" | awk -F/ '$3 == "_shared" { print "yes"; exit }')
+
+  echo "" >&2
+  echo "⚠️  pre-commit 提醒：這次 commit 動到了 Edge Function。" >&2
+  echo "" >&2
+  echo "   commit 跟 push 都不會部署 Edge Function——線上跑的仍然是舊版," >&2
+  echo "   而且不會有任何錯誤訊息。症狀會是「後台存得進去，網站上永遠不出現」。" >&2
+  echo "" >&2
+
+  if [ -n "$shared" ]; then
+    echo "   偵測到 _shared/ 有異動：這會影響所有 Edge Function，請全部重新部署。" >&2
+    echo "" >&2
+  fi
+
+  if [ -n "$names" ]; then
+    echo "   合併進 main 之後，請執行：" >&2
+    echo "" >&2
+    for n in $names; do
+      echo "     supabase functions deploy $n --project-ref zqmpjenlpzmeozoufvzy" >&2
+    done
+    echo "" >&2
+  fi
+
+  echo "   部署後建議實際呼叫一次確認新版真的生效，不要只看指令有沒有跑完。" >&2
+  echo "" >&2
+}
+
+edge_function_reminder
