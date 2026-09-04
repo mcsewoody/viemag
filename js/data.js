@@ -681,6 +681,12 @@ window.DB = {
           "磁性板"
         ]
       },
+      "article": {
+        "en": "aaa",
+        "vi": "aaa",
+        "id": "aaa",
+        "zh": "aaa"
+      },
       "faqs": [
         "no-magnet"
       ],
@@ -871,6 +877,12 @@ window.DB = {
         "zh": [
           "黏貼式磁吸環"
         ]
+      },
+      "article": {
+        "en": "## A pocket tripod that doubles as a phone stand\nUnfold it on a desk for hands-free video calls and content shoots, or clip the carabiner hook to a bag strap for the walk over.\n\n## N52 magnet, mini tripod stance\nThe magnetic face holds compatible phones centered and steady, while the three-leg tripod base keeps the angle fixed — no leaning against a cup or laptop lid.\n\n- Fully foldable frame, rotates 360° for portrait or landscape\n- Carabiner hook clips onto bags and straps for the walk over\n- Ships with a magnetic plate, so non-MagSafe phones work too",
+        "vi": "## Tripod bỏ túi, kiêm luôn giá đỡ điện thoại\nMở ra trên bàn khi cần gọi video hoặc quay nội dung rảnh tay, gập lại và móc carabiner vào dây balo khi di chuyển.\n\n## Nam châm N52, dáng đứng tripod mini\nMặt nam châm giữ điện thoại tương thích đúng tâm và chắc chắn, ba chân tripod giữ góc cố định — không cần tựa vào ly hay nắp laptop.\n\n- Khung gập toàn phần, xoay 360° cho cả dọc lẫn ngang\n- Móc carabiner gắn vào túi/dây đeo khi di chuyển\n- Kèm tấm từ tính, điện thoại không hỗ trợ MagSafe vẫn dùng được",
+        "id": "## Tripod saku yang juga jadi dudukan ponsel\nBuka di meja saat butuh panggilan video atau merekam konten tanpa pegang tangan, lipat dan kaitkan carabiner ke tali tas saat bepergian.\n\n## Magnet N52, posisi tripod mini\nPermukaan magnetik menahan ponsel kompatibel tetap di tengah dan stabil, tiga kaki tripod menjaga sudut tetap — tanpa perlu disandarkan ke gelas atau tutup laptop.\n\n- Rangka lipat penuh, berputar 360° untuk potret maupun lanskap\n- Kait carabiner terpasang ke tas/tali saat bepergian\n- Termasuk pelat magnetik, ponsel non-MagSafe pun bisa pakai",
+        "zh": "## 口袋三腳架，也是手機支架\n放在桌上即可免持視訊或拍攝內容，收合後用登山扣掛在背包背帶上就能出門。\n\n## N52 磁吸，迷你三腳架站姿\n磁吸面讓相容手機穩固置中，三腳底座維持角度固定，不必再倚靠杯子或筆電上蓋。\n\n- 全折疊機身，可 360° 旋轉切換直向橫向\n- 登山扣可掛在包包或背帶上方便攜帶\n- 隨附引磁片，不支援 MagSafe 的手機也能使用"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909508461-ncwjllzoyh-___.jpg"
     },
