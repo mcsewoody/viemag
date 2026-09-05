@@ -399,26 +399,26 @@ window.DB = {
       "status": "published",
       "category": "accessory",
       "subCategory": "interface",
-      "art": "ring",
+      "art": "suction",
       "qi": "none",
       "qiId": null,
       "watt": null,
       "mount": [],
-      "price": 9.9,
+      "price": null,
       "rating": null,
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "VIEMAG Magnetic Adapter Ring Kit",
-        "vi": "Bộ vòng nam châm chuyển đổi VIEMAG",
-        "id": "Set Cincin Adaptor Magnetik VIEMAG",
-        "zh": "VIEMAG 磁吸轉接環套組"
+        "en": "Vacuum-Mounted Magnetic Holder",
+        "vi": "Giá đỡ từ tính dán chân không",
+        "id": "Dudukan Magnetik yang Menempel dengan Vakum",
+        "zh": "真空黏貼磁吸支架"
       },
       "claim": {
-        "en": "Just attach an adapter ring, and any phone can be integrated into the magnetic mounting system.",
-        "vi": "Chỉ cần gắn một vòng chuyển đổi là bất kỳ chiếc điện thoại nào cũng có thể kết nối với hệ thống hút từ tính.",
-        "id": "Dengan memasang cincin adaptor, ponsel apa pun dapat terhubung ke sistem pengisian daya magnetik.",
-        "zh": "貼上一枚轉接環，任何手機都能進入磁吸系統。"
+        "en": "1. TPU Soft Leather Base\n2. N52 Magnetic Clasp\n3. Foldable\n4. 360-degree rotation + dual 180-degree rotation",
+        "vi": "1. Đế bằng da mềm TPU\n2. Nam châm N52\n3. Có thể gập lại được\n4. Có thể xoay 360 độ + xoay kép 180 độ",
+        "id": "1. Alas dari bahan TPU yang lembut\n2. Penahan magnetik N52\n3. Dapat dilipat\n4. Dapat berputar 360 derajat + dua putaran 180 derajat",
+        "zh": "1.TPU 軟皮底座\n2.N52磁吸\n3.可折疊\n4.可 360 度+雙 180 旋轉"
       },
       "reports": [],
       "gallery": [],
@@ -435,7 +435,9 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
-      }
+      },
+      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788598902990-zfonzq2q7ae-A1__6_.jpg",
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788598873187-9wo98mugx57-A1__3_.jpg"
     },
     {
       "sku": "A02",
