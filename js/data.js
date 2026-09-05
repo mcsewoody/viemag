@@ -620,6 +620,73 @@ window.DB = {
       }
     },
     {
+      "sku": "D06",
+      "slug": "d06",
+      "status": "future",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "stand",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "magsafe",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "E1 | VIEMAG",
+        "vi": "",
+        "id": "",
+        "zh": "超薄磁吸手機座 | VIEMAG"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "磁吸\n270度旋轉支架，多角度調節觀看。\n可折疊"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600879748-C9-006-std-Perspective.PNG",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600881946-C9-_-016-std-Perspective.denoiser.PNG",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600883925-C9-020-std-Perspective-1.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600887998-C9-020-std-Perspective.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600891814-C9-022-1.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600896386-C9-022.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "酒精棉片",
+          "黏貼式磁吸環*1",
+          "保護貼",
+          "定位卡",
+          "3M金屬座"
+        ]
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600877443-C9-008-std-Perspective-0.png"
+    },
+    {
       "sku": "P01",
       "slug": "p01",
       "status": "future",
