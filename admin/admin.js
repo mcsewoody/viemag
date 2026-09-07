@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.24';
+  var ADMIN_VERSION = '1.25';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1282,37 +1282,12 @@
     var textarea = '<textarea ' + attrs + '>' + esc(value) + '</textarea>';
     if (f.editor !== 'productArticle') return textarea;
     return '<div class="rich-editor" data-rich-editor="' + esc(f.name) + '">'
-      + '<div class="article-section-builder">'
-      + '<div class="builder-title">' + esc(t('sectionBuilder')) + '</div>'
-      + '<div class="builder-grid">'
-      + '<input type="text" class="builder-heading" placeholder="' + esc(t('sectionHeading')) + '">'
-      + '<input type="text" class="builder-heading-link" placeholder="' + esc(t('headingUrl')) + '">'
-      + '<select class="builder-media-type" title="' + esc(t('sectionMediaType')) + '">'
-      + '<option value="image">' + esc(t('sectionImage')) + '</option>'
-      + '<option value="youtube">' + esc(t('sectionYoutube')) + '</option>'
-      + '<option value="none">' + esc(t('sectionNoMedia')) + '</option>'
-      + '</select>'
-      + '<select class="builder-layout" title="' + esc(t('sectionLayout')) + '">'
-      + '<option value="media-top">' + esc(t('layoutMediaTop')) + '</option>'
-      + '<option value="media-bottom">' + esc(t('layoutMediaBottom')) + '</option>'
-      + '<option value="image-left">' + esc(t('layoutImageLeft')) + '</option>'
-      + '<option value="image-right">' + esc(t('layoutImageRight')) + '</option>'
-      + '</select>'
-      + '<input type="text" class="builder-media-url" placeholder="' + esc(t('sectionMediaUrl')) + '">'
-      + '<label class="rich-file-pick builder-upload" title="' + esc(t('uploadArticleImage')) + '">' + esc(t('uploadArticleImage')) + '<input type="file" class="builder-image-file" accept="image/jpeg,image/png,image/webp"></label>'
-      + '</div>'
-      + '<textarea class="builder-body" placeholder="' + esc(t('sectionBody')) + '"></textarea>'
-      + '<div class="builder-actions">'
-      + '<button type="button" class="btn" data-format="insert-section">' + esc(t('insertSection')) + '</button>'
-      + '<button type="button" class="btn" data-format="insert-divider">' + esc(t('insertDivider')) + '</button>'
-      + '<span class="builder-status"></span>'
-      + '</div>'
-      + '</div>'
       + '<div class="rich-toolbar" aria-label="' + esc(t('formatToolbar')) + '">'
       + '<button type="button" data-format="bold" title="' + esc(t('formatBold')) + '"><b>B</b></button>'
       + '<button type="button" data-format="italic" title="' + esc(t('formatItalic')) + '"><i>I</i></button>'
       + '<button type="button" data-format="heading" title="' + esc(t('formatHeading')) + '">H2</button>'
       + '<button type="button" data-format="bullet" title="' + esc(t('formatBullet')) + '">List</button>'
+      + '<button type="button" data-format="insert-divider" title="' + esc(t('insertDivider')) + '">Line</button>'
       + '<button type="button" data-format="block-up" title="' + esc(t('blockUp')) + '">Up</button>'
       + '<button type="button" data-format="block-down" title="' + esc(t('blockDown')) + '">Down</button>'
       + '<input type="text" class="rich-heading-url" placeholder="' + esc(t('headingUrl')) + '">'
@@ -1477,61 +1452,6 @@
       var layout = layoutEl ? layoutEl.value : 'wide';
       replaceSelection('\n![' + t('imageAltSample') + '](' + url + '){' + layout + '}\n');
     }
-    function headingMarkdown(text, url) {
-      var title = String(text || '').trim() || t('headingSample');
-      var href = String(url || '').trim();
-      return href ? '## [' + title + '](' + href + ')' : '## ' + title;
-    }
-    function imageMarkdown(url, layout) {
-      if (!url) return '';
-      return '![' + t('imageAltSample') + '](' + url + '){' + (layout || 'wide') + '}';
-    }
-    function youtubeMarkdown(url) {
-      return url ? '![youtube](' + url + ')' : '';
-    }
-    function insertSection() {
-      var heading = wrap.querySelector('.builder-heading');
-      var link = wrap.querySelector('.builder-heading-link');
-      var body = wrap.querySelector('.builder-body');
-      var mediaType = wrap.querySelector('.builder-media-type');
-      var layout = wrap.querySelector('.builder-layout');
-      var mediaUrl = wrap.querySelector('.builder-media-url');
-      var type = mediaType ? mediaType.value : 'image';
-      var mode = layout ? layout.value : 'media-top';
-      var url = mediaUrl ? mediaUrl.value.trim() : '';
-      var title = headingMarkdown(heading ? heading.value : '', link ? link.value : '');
-      var copy = body ? body.value.trim() : '';
-      var media = '';
-      if (type === 'youtube') media = youtubeMarkdown(url);
-      else if (type === 'image') media = imageMarkdown(url, mode === 'image-left' ? 'left' : mode === 'image-right' ? 'right' : 'wide');
-      var parts = [];
-      if ((mode === 'media-top' || mode === 'image-left' || mode === 'image-right') && media) parts.push(media);
-      parts.push(title);
-      if (copy) parts.push(copy);
-      if (mode === 'media-bottom' && media) parts.push(media);
-      replaceSelection('\n' + parts.filter(Boolean).join('\n\n') + '\n\n---\n');
-      [heading, link, body, mediaUrl].forEach(function (el) { if (el) el.value = ''; });
-    }
-    function uploadToBuilder(input) {
-      var file = input.files && input.files[0];
-      if (!file) return;
-      var statusEl = wrap.querySelector('.builder-status');
-      if (statusEl) statusEl.textContent = t('uploading');
-      var safe = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-      var path = 'products/article-' + Date.now() + '-' + Math.random().toString(36).slice(2) + '-' + safe;
-      sb.storage.from(CFG.mediaBucket).upload(path, file).then(function (res) {
-        if (res.error) throw res.error;
-        var url = sb.storage.from(CFG.mediaBucket).getPublicUrl(path).data.publicUrl;
-        var urlInput = wrap.querySelector('.builder-media-url');
-        var typeInput = wrap.querySelector('.builder-media-type');
-        if (urlInput) urlInput.value = url;
-        if (typeInput) typeInput.value = 'image';
-        input.value = '';
-        if (statusEl) statusEl.textContent = t('uploadedReady');
-      }).catch(function (err) {
-        if (statusEl) statusEl.textContent = err.message || String(err);
-      });
-    }
     Array.prototype.forEach.call(wrap.querySelectorAll('[data-format]'), function (btn) {
       btn.addEventListener('click', function () {
         var kind = btn.dataset.format;
@@ -1549,7 +1469,6 @@
         if (kind === 'bullet') { prefixLines('- ', t('bulletSample')); return; }
         if (kind === 'block-up') { moveBlock(-1); return; }
         if (kind === 'block-down') { moveBlock(1); return; }
-        if (kind === 'insert-section') { insertSection(); return; }
         if (kind === 'insert-divider') { replaceSelection('\n---\n'); return; }
         if (kind === 'image') {
           var input = wrap.querySelector('.rich-image-url');
@@ -1587,10 +1506,6 @@
           if (statusEl) statusEl.textContent = err.message || String(err);
         });
       });
-    }
-    var builderFile = wrap.querySelector('.builder-image-file');
-    if (builderFile) {
-      builderFile.addEventListener('change', function () { uploadToBuilder(builderFile); });
     }
     textarea.addEventListener('input', updatePreview);
     updatePreview();

@@ -206,19 +206,6 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
 .field textarea { resize: vertical; min-height: 70px; }
 .field textarea.large { min-height: 200px; }
 .rich-editor { display: grid; gap: 8px; }
-.article-section-builder {
-  display: grid; gap: 8px; padding: 10px; border: 1px solid var(--line);
-  border-radius: 8px; background: rgba(255,255,255,.025);
-}
-.builder-title { color: var(--heading); font-size: .82rem; font-weight: 800; }
-.builder-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
-.builder-grid input, .builder-grid select, .builder-body {
-  min-height: 34px; border: 1px solid var(--line); border-radius: 5px;
-  background: var(--panel); color: var(--text); font-family: inherit; font-size: .84rem; padding: 7px 9px;
-}
-.builder-body { min-height: 96px; resize: vertical; }
-.builder-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.builder-status { color: var(--muted); font-size: .78rem; }
 .rich-toolbar {
   display: flex; flex-wrap: wrap;
   align-items: center; gap: 6px;
@@ -382,7 +369,6 @@ table.grid td:last-child { white-space: nowrap; }
   .tab-btn { flex: none; padding: 9px 12px; white-space: nowrap; }
   .lang-inputs { grid-template-columns: 1fr; }
   .rich-toolbar { grid-template-columns: repeat(4, minmax(34px, auto)); }
-  .builder-grid { grid-template-columns: 1fr; }
   .rich-toolbar select,
   .rich-toolbar input,
   .rich-toolbar button[data-format="image"],
