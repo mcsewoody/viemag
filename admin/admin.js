@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.14';
+  var ADMIN_VERSION = '1.19';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1294,6 +1294,8 @@
       + '</select>'
       + '<input type="text" class="rich-image-url" placeholder="' + esc(t('imageUrl')) + '">'
       + '<button type="button" data-format="image" title="' + esc(t('insertImage')) + '">Img</button>'
+      + '<input type="text" class="rich-youtube-url" placeholder="' + esc(t('youtubeUrl')) + '">'
+      + '<button type="button" data-format="youtube" title="' + esc(t('insertYoutube')) + '">YT</button>'
       + '</div>'
       + textarea
       + '<p class="rich-help">' + esc(t('formatHelp')) + '</p>'
@@ -1346,6 +1348,14 @@
           var layout = layoutEl ? layoutEl.value : 'wide';
           replaceSelection('\n![' + t('imageAltSample') + '](' + url + '){' + layout + '}\n');
           if (input) input.value = '';
+          return;
+        }
+        if (kind === 'youtube') {
+          var youtubeInput = wrap.querySelector('.rich-youtube-url');
+          var youtubeUrl = youtubeInput ? youtubeInput.value.trim() : '';
+          if (!youtubeUrl) { if (youtubeInput) youtubeInput.focus(); return; }
+          replaceSelection('\n![youtube](' + youtubeUrl + ')\n');
+          if (youtubeInput) youtubeInput.value = '';
         }
       });
     });

@@ -92,7 +92,7 @@ const PRODUCT_COLS = [
   'id', 'product_id', 'official_sku_code', 'slug', 'status', 'launch_tier',
   'category_id', 'name_en', 'name_vi', 'name_id', 'name_zh',
   'claim_en', 'claim_vi', 'claim_id', 'claim_zh', 'shopee_url', 'price_usd',
-  'mount_type', 'charging_watt', 'qi_status', 'hero_image_url', 'art_key',
+  'mount_type', 'product_dimensions', 'charging_watt', 'qi_status', 'hero_image_url', 'art_key',
   'badge', 'rating', 'review_count',
   /* Added 2026-07-29. All of these were editable in /admin with no effect on the
      site — staff could fill them in and nothing happened. */
@@ -125,6 +125,7 @@ const PRODUCT_COLS = [
 ].join(',');
 const CATEGORY_COLS = [
   'id', 'slug', 'internal_cat_mapping', 'visibility', 'status', 'sort_order', 'art_key',
+  'hero_image_url',
   'name_en', 'name_vi', 'name_id', 'name_zh', 'desc_en', 'desc_vi', 'desc_id', 'desc_zh',
   'seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh',
   'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
@@ -277,6 +278,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       cat: r.internal_cat_mapping,
       status: r.visibility === 'Future' ? 'future' : 'published',
       art: r.art_key || '',
+      img: r.hero_image_url || null,
       name: langObj(r, 'name'),
       desc: langObj(r, 'desc'),
       seoTitle: langObj(r, 'seo_title'),
@@ -346,6 +348,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
            be the thing that implies certification. */
         qiId: r.qi_status === 'Certified' ? (r.qi_id || null) : null,
         watt: r.charging_watt === 'None' || !r.charging_watt ? null : r.charging_watt,
+        dimensions: r.product_dimensions || null,
         mount: (r.mount_type || []).map((m: string) => m.toLowerCase()),
         price: r.price_usd,
         rating: r.rating,

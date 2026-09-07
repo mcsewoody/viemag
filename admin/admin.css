@@ -39,7 +39,7 @@
      narrow for a claim now that claims run to eight lines. The cap stays because
      a two-column form stretched across an ultrawide is worse, not better. */
   --form-w: 1180px;
-  font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Be Vietnam Pro", "Helvetica Neue", Arial,
     "Noto Sans TC", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei",
     "Noto Sans", sans-serif;
 }
@@ -50,7 +50,7 @@
 * { box-sizing: border-box; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
-  font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Be Vietnam Pro", "Helvetica Neue", Arial,
     "Noto Sans TC", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei",
     "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -327,7 +327,8 @@ table.grid td:last-child { white-space: nowrap; }
   .rich-toolbar { grid-template-columns: repeat(4, minmax(34px, auto)); }
   .rich-toolbar select,
   .rich-toolbar input,
-  .rich-toolbar button[data-format="image"] { grid-column: 1 / -1; width: 100%; }
+  .rich-toolbar button[data-format="image"],
+  .rich-toolbar button[data-format="youtube"] { grid-column: 1 / -1; width: 100%; }
   .rich-editor textarea { min-height: 190px; }
   .form-actions { align-items: stretch; flex-direction: column; }
   .form-actions .btn { width: 100%; }

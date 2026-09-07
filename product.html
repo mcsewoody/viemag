@@ -6,7 +6,7 @@
   <title>Product — VIEMAG</title>
   <meta name="description" content="">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=9">
+  <link rel="stylesheet" href="css/style.css?v=17">
 </head>
 <body data-page="products" data-keep-title="1">
 
@@ -25,8 +25,8 @@
   </div>
 </main>
 
-<script src="js/data-loader.js?v=9"></script>
-<script src="js/i18n.js?v=9"></script>
+<script src="js/data-loader.js?v=17"></script>
+<script src="js/i18n.js?v=17"></script>
 <script>
 window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml, lines, catById, esc, stars, money, reportList, gallery, faqItem, richText, stripTags }) {
   const DB = window.DB;
@@ -64,15 +64,13 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
      only by the price. The hero now carries the selling copy; this list carries
      Qi status, mounting and warranty terms. */
   const hl = [];
-  if (p.qi !== 'none') hl.push(t('qi.' + p.qi));
-  if ((p.mount || []).length) hl.push(`${t('pdp.spec.mount')}: ${(p.mount).map((m) => t('mount.' + m)).join(' · ')}`);
+  if (p.qi !== 'none') hl.push({ icon: 'bolt', cls: 'highlight-charge', text: t('qi.' + p.qi) });
+  if ((p.mount || []).length) hl.push({ icon: 'magnet', cls: 'highlight-mount', text: `${t('pdp.spec.mount')}: ${(p.mount).map((m) => t('mount.' + m)).join(' · ')}` });
   /* This SKU's own terms, falling back to the site-wide policy. Before
      2026-07-29 the numbers were hard-coded into five languages, so the
      warranty_months / defect_exchange_days fields in /admin did nothing. */
-  hl.push(t('pdp.warranty', {
-    m: p.warranty || DB.config.warrantyMonths,
-    d: p.exchange || DB.config.exchangeDays,
-  }));
+  hl.push({ icon: 'shield', cls: 'highlight-warranty', text: t('hero.trust1', { m: p.warranty || DB.config.warrantyMonths }) });
+  hl.push({ icon: 'swap', cls: 'highlight-exchange', text: t('hero.trust2', { d: p.exchange || DB.config.exchangeDays }) });
 
   /* What ships in the box. Absent for most SKUs — a mount that ships on its own
      has nothing to list — so the whole block disappears rather than rendering an
@@ -97,16 +95,60 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
       </div>`;
   }
 
-  function productArticleBlock(p) {
+  function productInfoContent(p) {
     const body = richText(tf(p.article));
     const img = p.articleImage || '';
-    if (!body && !img) return '';
+    if (!body && !img) return `<p class="pdp-tab-empty"></p>`;
     return `
-      <section class="pdp-section pdp-article reveal">
-        <h2>${t('pdp.article')}</h2>
-        ${img ? `<figure class="pdp-article-media"><img src="${esc(img)}" alt="${esc(tf(p.name))}" loading="lazy"></figure>` : ''}
-        ${body ? `<div class="rich-text">${body}</div>` : ''}
+      ${img ? `<figure class="pdp-article-media"><img src="${esc(img)}" alt="${esc(tf(p.name))}" loading="lazy"></figure>` : ''}
+      ${body ? `<div class="rich-text">${body}</div>` : ''}`;
+  }
+
+  function technicalDetailsContent(p, specRows) {
+    return `
+      <div class="pdp-technical-grid">
+        <div class="spec-block">
+          <h3>${t('pdp.specs')}</h3>
+          <table>${specRows}</table>
+          ${p.spec ? `<p class="spec-download"><a href="${esc(p.spec)}" target="_blank" rel="noopener">${icon('external')}${t('pdp.specSheet')}</a></p>` : ''}
+        </div>
+        ${accessoryBlock(p)}
+        <div class="spec-block">
+          <h3>${t('pdp.compat')}</h3>
+          <table><tr><td colspan="2" style="color:var(--ink)">${t('pdp.compatText')}</td></tr></table>
+        </div>
+        <div class="spec-block evidence-block">
+          <h3>${t('pdp.evidence')}</h3>
+          ${reportList(p)}
+        </div>
+      </div>`;
+  }
+
+  function productTabsBlock(p, specRows) {
+    return `
+      <section class="pdp-section pdp-tabs reveal" aria-label="${esc(t('pdp.article'))}">
+        <div class="pdp-tabbar" role="tablist">
+          <button type="button" class="pdp-tab-btn active" role="tab" id="pdpTabInfo" aria-selected="true" aria-controls="pdpPanelInfo" data-tab="info">${t('pdp.article')}</button>
+          <button type="button" class="pdp-tab-btn" role="tab" id="pdpTabSpecs" aria-selected="false" aria-controls="pdpPanelSpecs" data-tab="specs">${t('pdp.specs')}</button>
+        </div>
+        <div class="pdp-tab-panel active" role="tabpanel" id="pdpPanelInfo" aria-labelledby="pdpTabInfo" data-panel="info">
+          ${productInfoContent(p)}
+        </div>
+        <div class="pdp-tab-panel" role="tabpanel" id="pdpPanelSpecs" aria-labelledby="pdpTabSpecs" data-panel="specs" hidden>
+          ${technicalDetailsContent(p, specRows)}
+        </div>
       </section>`;
+  }
+
+  function productFeatureHtml(value) {
+    const rows = lines(value);
+    if (!rows.length) return '';
+    const parsed = rows.map((row) => {
+      const m = /^(\d+)[.)]\s*(.+)$/.exec(row);
+      return m ? m[2] : row;
+    });
+    if (parsed.length === 1) return `<p class="feature-copy">${esc(parsed[0])}</p>`;
+    return `<ul class="feature-list bullets">${parsed.map((row) => `<li>${esc(row)}</li>`).join('')}</ul>`;
   }
 
   /* The Qi ID row only exists when there is an ID to show, and the exporter
@@ -118,10 +160,12 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
     /* Omitted entirely when the product mounts to nothing. A power bank showing
        "Mounting: —" reads as a missing spec rather than an inapplicable one. */
     ...((p.mount || []).length ? [[t('pdp.spec.mount'), p.mount.map((m) => t('mount.' + m)).join(' · ')]] : []),
+    ...(p.dimensions ? [[t('pdp.spec.dimensions'), p.dimensions]] : []),
     [t('pdp.spec.watt'), p.watt || '—'],
     [t('pdp.spec.qi'), t('qi.' + (p.qi || 'none'))],
     ...(p.qiId ? [[t('pdp.spec.qiId'), p.qiId]] : []),
   ].map(([k, v]) => `<tr><td>${k}</td><td>${esc(v)}</td></tr>`).join('');
+  const featureHtml = productFeatureHtml(tf(p.claim));
 
   box.innerHTML = `
   <div class="pdp">
@@ -133,36 +177,22 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
       <span class="sku">${cat ? esc(tf(cat.name)) + ' · ' : ''}${p.sku}</span>
       <h1>${esc(tf(p.name))}</h1>
       ${p.rating ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : ''}
-      ${claimHtml(tf(p.claim))}
+      ${featureHtml ? `<div class="pdp-features">${featureHtml}</div>` : ''}
       ${p.status === 'discontinued'
         ? `<div class="notice" style="margin:20px 0">${t('pdp.discontinued')}</div>`
         : future
         ? `<div class="notice" style="margin:20px 0">${t('cats.soon')}</div>`
         : `<div class="price">${money(p.price)}</div>
            <div class="pdp-ctas">
-             <a class="btn btn-primary" href="${p.shopee || DB.config.shopeeUrl}" target="_blank" rel="noopener">${t('cta.shopee')}</a>
-             <a class="btn btn-ghost" href="dealers.html">${t('pdp.askDealer')}</a>
+             <a class="btn btn-primary btn-shopee" href="${p.shopee || DB.config.shopeeUrl}" target="_blank" rel="noopener">${icon('cart')}${t('cta.shopee')}</a>
+             <a class="btn btn-ghost btn-dealer" href="dealers.html">${icon('phonecall')}${t('pdp.askDealer')}</a>
            </div>`}
       <ul class="bullet-list" aria-label="${t('pdp.highlights')}">
-        ${hl.map((x) => `<li>${icon('check')}<span>${esc(x)}</span></li>`).join('')}
+        ${hl.map((x) => `<li class="${esc(x.cls)}">${icon(x.icon)}<span>${esc(x.text)}</span></li>`).join('')}
       </ul>
-      <div class="spec-block">
-        <h3>${t('pdp.specs')}</h3>
-        <table>${specRows}</table>
-        ${p.spec ? `<p class="spec-download"><a href="${esc(p.spec)}" target="_blank" rel="noopener">${icon('external')}${t('pdp.specSheet')}</a></p>` : ''}
-      </div>
-      ${accessoryBlock(p)}
-      <div class="spec-block">
-        <h3>${t('pdp.compat')}</h3>
-        <table><tr><td colspan="2" style="color:var(--ink)">${t('pdp.compatText')}</td></tr></table>
-      </div>
-      <div class="spec-block evidence-block">
-        <h3>${t('pdp.evidence')}</h3>
-        ${reportList(p)}
-      </div>
     </div>
   </div>
-  ${productArticleBlock(p)}`;
+  ${productTabsBlock(p, specRows)}`;
 
   /* Thumbnail strip: swap the main image. Bound after innerHTML, and only when
      the strip actually exists (a single-photo product has no strip). */
@@ -174,6 +204,20 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
       shots.forEach((b) => b.classList.toggle('active', b === btn));
     }));
   }
+
+  box.querySelectorAll('.pdp-tab-btn').forEach((btn) => btn.addEventListener('click', () => {
+    const name = btn.dataset.tab;
+    box.querySelectorAll('.pdp-tab-btn').forEach((b) => {
+      const active = b === btn;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    box.querySelectorAll('.pdp-tab-panel').forEach((panel) => {
+      const active = panel.dataset.panel === name;
+      panel.classList.toggle('active', active);
+      panel.hidden = !active;
+    });
+  }));
 
   /* Product-specific FAQ. p.faqs holds faq_keys picked in /admin; unset means
      this product has no questions of its own and the global list on the support
@@ -204,6 +248,6 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
   }
 };
 </script>
-<script src="js/main.js?v=9"></script>
+<script src="js/main.js?v=17"></script>
 </body>
 </html>

@@ -161,6 +161,8 @@
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
     close: '<path d="M6 6l12 12M18 6L6 18"/>',
     chevron: '<path d="M8 10l4 4 4-4"/>',
+    cart: '<circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M3 4h2.4l2.1 11.2a2 2 0 002 1.6h8.7a2 2 0 001.9-1.4L22 8H7"/>',
+    phonecall: '<rect x="7" y="2.8" width="10" height="18.4" rx="2.6"/><path d="M10 18h4M17 7.5c2 .8 3 2.3 3 4.5s-1 3.7-3 4.5"/>',
     box: '<path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5v-9z"/><path d="M3.5 7.5L12 12l8.5-4.5M12 12v9"/>',
     users: '<circle cx="9" cy="8.5" r="3.5"/><path d="M3 20c.5-3.5 3-5.5 6-5.5s5.5 2 6 5.5"/><path d="M16 5.5a3.5 3.5 0 010 6M18.5 20c-.2-2.3-1.2-4-2.8-4.9"/>',
     external: '<path d="M14 4h6v6M20 4l-8.5 8.5"/><path d="M18 14v4.5A1.5 1.5 0 0116.5 20h-11A1.5 1.5 0 014 18.5v-11A1.5 1.5 0 015.5 6H10"/>'
@@ -278,7 +280,7 @@
             <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">${icon('globe')}${(LANGS.find((l) => l.code === lang) || {}).short || lang.toUpperCase()}${icon('chevron')}</button>
             <div class="lang-menu" id="langMenu" role="menu">${langBtns}</div>
           </div>
-          <a class="btn btn-primary btn-sm header-cta" href="${DB.config.shopeeUrl}" target="_blank" rel="noopener">${t('cta.shopee')}</a>
+          <a class="btn btn-primary btn-shopee btn-sm header-cta" href="${DB.config.shopeeUrl}" target="_blank" rel="noopener">${icon('cart')}${t('cta.shopee')}</a>
           <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">${icon('menu')}</button>
         </div>
       </div>
@@ -338,15 +340,12 @@
   }
   /* real photo (Notion Hero Image → assets/products/…) if present, else SVG art */
   const thumb = (p) => p.img
-    ? `<img class="thumb-img" src="${p.img}" alt="${esc(tf(p.name))}" loading="lazy" style="width:100%;height:100%;object-fit:contain">`
+    ? `<img class="thumb-img" src="${p.img}" alt="${esc(tf(p.name))}" loading="lazy">`
     : art(p.art, tf(p.name));
 
   function productCard(p) {
-    const cat = catById(p.category);
     const future = p.status === 'future';
     const badge = p.badge ? `<span class="badge ${p.badge}">${p.badge === 'soon' ? t('cats.soon') : p.badge === 'new' ? t('badge.new') : t('badge.popular')}</span>` : '';
-    const ratingHtml = p.rating
-      ? `<div class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span><b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span></div>` : '';
     /* Three states, not two. A discontinued product keeps its card and page but
        shows no price — quoting a price for something that cannot be bought is
        worse than showing nothing. */
@@ -365,27 +364,22 @@
     <a class="prod-card" href="product.html?sku=${encodeURIComponent(p.sku)}" aria-label="${esc(tf(p.name))}">
       <div class="thumb">${badge}${thumb(p)}${altImg}</div>
       <div class="body">
-        <span class="cat-label">${cat ? esc(tf(cat.name)) + ' · ' : ''}${esc(p.sku)}</span>
         <h3>${esc(tf(p.name))}</h3>
-        ${claimHtml(tf(p.claim), 2)}
-        <div class="meta-chips">${qiChip(p)}${(p.mount || []).slice(0, 2).map((m) => `<span class="chip">${t('mount.' + m)}</span>`).join('')}</div>
-        ${ratingHtml}
         ${foot}
       </div>
     </a>`;
   }
   function categoryCard(c) {
-    const count = published.filter((p) => p.category === c.id).length;
     const future = c.status === 'future';
+    const img = c.img
+      ? `<img src="${esc(c.img)}" alt="${esc(tf(c.name))}" loading="lazy">`
+      : art(c.art, tf(c.name));
     return `
     <a class="cat-card" href="products.html?cat=${c.id}">
       ${future ? `<span class="soon">${t('cats.soon')}</span>` : ''}
-      <div class="cat-art">${art(c.art, tf(c.name))}</div>
-      <div>
-        <div class="code">${c.cat}</div>
+      <div class="cat-art">${img}</div>
+      <div class="cat-copy">
         <h3>${esc(tf(c.name))}</h3>
-        <p>${esc(tf(c.desc))}</p>
-        <div class="count">${future ? '' : `${count} ${t('cats.count')}`} ${icon('arrow')}</div>
       </div>
     </a>`;
   }
@@ -432,9 +426,10 @@
      FIRST and only a fixed set of markers is then turned into markup, so no
      amount of HTML in the database can inject anything — /admin is trusted, but
      "trusted" is not a reason to hand it an XSS primitive on the public site.
-     Supported: "## " headings, "- " list items, blank-line or heading-delimited
-     paragraphs, **bold**, *italic*, and image lines:
-     ![alt](https://example.com/photo.jpg){wide|left|right}.
+     paragraphs, **bold**, *italic*, linked headings, image lines:
+     ![alt](https://example.com/photo.jpg){wide|left|right}, local video lines:
+     ![video](https://example.com/demo.mp4), and YouTube lines:
+     ![youtube](https://www.youtube.com/watch?v=...).
      Processed line by line, NOT block by block: an author will write a heading
      immediately above its paragraph with no blank line between them, and a
      block-based reader emits that heading as literal "## " text. */
@@ -445,7 +440,34 @@
       if (/^(https?:)?\/\//i.test(u) || u.charAt(0) === '/' || /^(?:\.\.?\/)?(?:assets|image)\//i.test(u)) return esc(u);
       return '';
     };
+    const safeVideoUrl = (url) => {
+      const u = String(url || '').trim();
+      if (!/\.(mp4|webm|ogg)(?:[?#].*)?$/i.test(u)) return '';
+      return safeImageUrl(u);
+    };
+    const safeHttpUrl = (url) => {
+      const u = String(url || '').trim();
+      if (!/^https?:\/\//i.test(u)) return '';
+      try { return esc(new URL(u).href); } catch { return ''; }
+    };
+    const youtubeEmbedUrl = (url) => {
+      let u;
+      try { u = new URL(String(url || '').trim()); } catch { return ''; }
+      const host = u.hostname.toLowerCase().replace(/^www\./, '');
+      let id = '';
+      if (host === 'youtu.be') id = u.pathname.split('/').filter(Boolean)[0] || '';
+      if (host === 'youtube.com' || host === 'm.youtube.com') {
+        if (u.pathname === '/watch') id = u.searchParams.get('v') || '';
+        else if (/^\/(?:embed|shorts)\//.test(u.pathname)) id = u.pathname.split('/').filter(Boolean)[1] || '';
+      }
+      if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return '';
+      return `https://www.youtube.com/embed/${esc(id)}`;
+    };
     const inline = (str) => esc(str)
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, (_, text, url) => {
+        const href = safeHttpUrl(url);
+        return href ? `<a href="${href}" target="_blank" rel="noopener">${text}</a>` : text;
+      })
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
     const out = [];
@@ -461,6 +483,19 @@
       const img = /^!\[([^\]]*)\]\(([^)]+)\)(?:\{(wide|left|right)\})?$/i.exec(line);
       if (img) {
         flush();
+        const mediaType = img[1].trim().toLowerCase();
+        if (mediaType === 'youtube') {
+          const src = youtubeEmbedUrl(img[2]);
+          if (!src) return;
+          out.push(`<figure class="rich-youtube"><iframe src="${src}" title="YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></figure>`);
+          return;
+        }
+        if (mediaType === 'video') {
+          const src = safeVideoUrl(img[2]);
+          if (!src) return;
+          out.push(`<figure class="rich-video"><video src="${src}" controls playsinline preload="metadata"></video></figure>`);
+          return;
+        }
         const src = safeImageUrl(img[2]);
         if (!src) return;
         const layout = img[3] || 'wide';
