@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.20';
+  var ADMIN_VERSION = '1.21';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1287,6 +1287,10 @@
       + '<button type="button" data-format="italic" title="' + esc(t('formatItalic')) + '"><i>I</i></button>'
       + '<button type="button" data-format="heading" title="' + esc(t('formatHeading')) + '">H2</button>'
       + '<button type="button" data-format="bullet" title="' + esc(t('formatBullet')) + '">List</button>'
+      + '<button type="button" data-format="block-up" title="' + esc(t('blockUp')) + '">Up</button>'
+      + '<button type="button" data-format="block-down" title="' + esc(t('blockDown')) + '">Down</button>'
+      + '<input type="text" class="rich-heading-url" placeholder="' + esc(t('headingUrl')) + '">'
+      + '<button type="button" data-format="heading-link" title="' + esc(t('insertLinkedHeading')) + '">H2 Link</button>'
       + '<select class="rich-image-layout" title="' + esc(t('imageLayout')) + '">'
       + '<option value="wide">' + esc(t('imageLayoutWide')) + '</option>'
       + '<option value="left">' + esc(t('imageLayoutLeft')) + '</option>'
@@ -1297,14 +1301,99 @@
       + '<input type="text" class="rich-youtube-url" placeholder="' + esc(t('youtubeUrl')) + '">'
       + '<button type="button" data-format="youtube" title="' + esc(t('insertYoutube')) + '">YT</button>'
       + '</div>'
+      + '<div class="rich-editor-body">'
       + textarea
+      + '<div class="rich-preview-wrap">'
+      + '<div class="rich-preview-title">' + esc(t('articlePreview')) + '</div>'
+      + '<div class="rich-preview" data-rich-preview></div>'
+      + '</div>'
+      + '</div>'
       + '<p class="rich-help">' + esc(t('formatHelp')) + '</p>'
       + '</div>';
+  }
+
+  function richPreviewHtml(src) {
+    function safeMediaUrl(url) {
+      var u = String(url || '').trim();
+      if (/^(https?:)?\/\//i.test(u) || u.charAt(0) === '/' || /^(?:\.\.?\/)?(?:assets|image)\//i.test(u)) return esc(u);
+      return '';
+    }
+    function safeVideoUrl(url) {
+      var u = String(url || '').trim();
+      if (!/\.(mp4|webm|ogg)(?:[?#].*)?$/i.test(u)) return '';
+      return safeMediaUrl(u);
+    }
+    function safeHttpUrl(url) {
+      var u = String(url || '').trim();
+      if (!/^https?:\/\//i.test(u)) return '';
+      try { return esc(new URL(u).href); } catch (e) { return ''; }
+    }
+    function youtubeEmbedUrl(url) {
+      var u;
+      try { u = new URL(String(url || '').trim()); } catch (e) { return ''; }
+      var host = u.hostname.toLowerCase().replace(/^www\./, '');
+      var id = '';
+      if (host === 'youtu.be') id = u.pathname.split('/').filter(Boolean)[0] || '';
+      if (host === 'youtube.com' || host === 'm.youtube.com') {
+        if (u.pathname === '/watch') id = u.searchParams.get('v') || '';
+        else if (/^\/(?:embed|shorts)\//.test(u.pathname)) id = u.pathname.split('/').filter(Boolean)[1] || '';
+      }
+      if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return '';
+      return 'https://www.youtube.com/embed/' + esc(id);
+    }
+    function inline(str) {
+      return esc(str)
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, function (m, text, url) {
+          var href = safeHttpUrl(url);
+          return href ? '<a href="' + href + '" target="_blank" rel="noopener">' + text + '</a>' : text;
+        })
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+    }
+    var out = [];
+    var para = [];
+    var list = [];
+    function flushPara() { if (para.length) { out.push('<p>' + para.map(inline).join('<br>') + '</p>'); para = []; } }
+    function flushList() { if (list.length) { out.push('<ul>' + list.map(function (l) { return '<li>' + inline(l) + '</li>'; }).join('') + '</ul>'); list = []; } }
+    function flush() { flushPara(); flushList(); }
+    String(src || '').split('\n').forEach(function (raw) {
+      var line = raw.trim();
+      if (!line) { flush(); return; }
+      var media = /^!\[([^\]]*)\]\(([^)]+)\)(?:\{(wide|left|right)\})?$/i.exec(line);
+      if (media) {
+        flush();
+        var type = media[1].trim().toLowerCase();
+        if (type === 'youtube') {
+          var youtube = youtubeEmbedUrl(media[2]);
+          if (youtube) out.push('<figure class="rich-youtube"><iframe src="' + youtube + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></figure>');
+          return;
+        }
+        if (type === 'video') {
+          var video = safeVideoUrl(media[2]);
+          if (video) out.push('<figure class="rich-video"><video src="' + video + '" controls playsinline preload="metadata"></video></figure>');
+          return;
+        }
+        var img = safeMediaUrl(media[2]);
+        if (img) out.push('<figure class="rich-image ' + (media[3] || 'wide') + '"><img src="' + img + '" alt="' + esc(media[1]) + '"></figure>');
+        return;
+      }
+      if (/^##\s+/.test(line)) { flush(); out.push('<h2>' + inline(line.replace(/^##\s+/, '')) + '</h2>'); return; }
+      if (/^[-*]\s+/.test(line)) { flushPara(); list.push(line.replace(/^[-*]\s+/, '')); return; }
+      flushList(); para.push(line);
+    });
+    flush();
+    return out.join('');
   }
 
   function wireRichEditor(wrap) {
     var textarea = wrap.querySelector('textarea[data-name]');
     if (!textarea) return;
+    var preview = wrap.querySelector('[data-rich-preview]');
+    function updatePreview() {
+      if (!preview) return;
+      var html = richPreviewHtml(textarea.value);
+      preview.innerHTML = html || '<p class="empty-preview">' + esc(t('articlePreviewEmpty')) + '</p>';
+    }
     function touch() {
       state.formDirty = true;
       textarea.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1333,13 +1422,44 @@
       textarea.setRangeText(next, start, end, 'select');
       touch();
     }
+    function moveBlock(delta) {
+      var blocks = textarea.value.split(/\n\s*\n/);
+      if (blocks.length < 2) return;
+      var pos = textarea.selectionStart || 0;
+      var cursor = 0;
+      var current = 0;
+      for (var i = 0; i < blocks.length; i++) {
+        var end = cursor + blocks[i].length;
+        if (pos <= end) { current = i; break; }
+        cursor = end + 2;
+      }
+      var next = current + delta;
+      if (next < 0 || next >= blocks.length) return;
+      var tmp = blocks[current];
+      blocks[current] = blocks[next];
+      blocks[next] = tmp;
+      textarea.value = blocks.join('\n\n');
+      var start = blocks.slice(0, next).join('\n\n').length + (next ? 2 : 0);
+      textarea.setSelectionRange(start, start + blocks[next].length);
+      touch();
+    }
     Array.prototype.forEach.call(wrap.querySelectorAll('[data-format]'), function (btn) {
       btn.addEventListener('click', function () {
         var kind = btn.dataset.format;
         if (kind === 'bold') { wrapSelection('**', '**', t('formatSample')); return; }
         if (kind === 'italic') { wrapSelection('*', '*', t('formatSample')); return; }
         if (kind === 'heading') { prefixLines('## ', t('headingSample')); return; }
+        if (kind === 'heading-link') {
+          var headingInput = wrap.querySelector('.rich-heading-url');
+          var headingUrl = headingInput ? headingInput.value.trim() : '';
+          if (!headingUrl) { if (headingInput) headingInput.focus(); return; }
+          wrapSelection('## [', '](' + headingUrl + ')', t('headingSample'));
+          if (headingInput) headingInput.value = '';
+          return;
+        }
         if (kind === 'bullet') { prefixLines('- ', t('bulletSample')); return; }
+        if (kind === 'block-up') { moveBlock(-1); return; }
+        if (kind === 'block-down') { moveBlock(1); return; }
         if (kind === 'image') {
           var input = wrap.querySelector('.rich-image-url');
           var url = input ? input.value.trim() : '';
@@ -1359,6 +1479,8 @@
         }
       });
     });
+    textarea.addEventListener('input', updatePreview);
+    updatePreview();
   }
 
   /* The eight components summed into product_development.sales_cost_usd, read

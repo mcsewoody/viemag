@@ -207,8 +207,7 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
 .field textarea.large { min-height: 200px; }
 .rich-editor { display: grid; gap: 8px; }
 .rich-toolbar {
-  display: grid;
-  grid-template-columns: repeat(4, auto) minmax(112px, max-content) minmax(180px, 1fr) auto;
+  display: flex; flex-wrap: wrap;
   align-items: center; gap: 6px;
   padding: 8px; border: 1px solid var(--line); border-radius: 6px;
   background: rgba(255,255,255,.025);
@@ -219,9 +218,43 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
 }
 .rich-toolbar button { padding: 5px 9px; cursor: pointer; }
 .rich-toolbar button:hover { border-color: var(--heading); color: var(--heading); }
-.rich-toolbar select { padding: 5px 8px; }
-.rich-toolbar input { padding: 5px 8px; min-width: 0; }
-.rich-editor textarea { min-height: 220px; }
+.rich-toolbar select { padding: 5px 8px; flex: 0 1 150px; }
+.rich-toolbar input { padding: 5px 8px; min-width: 150px; flex: 1 1 170px; }
+.rich-editor-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .82fr); gap: 10px; align-items: stretch; }
+.rich-editor textarea { min-height: 260px; }
+.rich-preview-wrap {
+  min-height: 260px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); overflow: hidden;
+}
+.rich-preview-title {
+  padding: 8px 10px; border-bottom: 1px solid var(--line);
+  color: var(--muted); font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+}
+.rich-preview {
+  padding: 12px; max-height: 420px; overflow: auto;
+  color: var(--text); font-size: .86rem; line-height: 1.55;
+}
+.rich-preview h2 { margin: 14px 0 8px; font-size: 1.05rem; line-height: 1.25; color: var(--heading); }
+.rich-preview h2:first-child { margin-top: 0; }
+.rich-preview h2 a { color: inherit; text-decoration: none; }
+.rich-preview h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.rich-preview p { margin: 0 0 10px; color: var(--muted); }
+.rich-preview ul { margin: 0 0 10px; padding-left: 1.1rem; color: var(--muted); }
+.rich-preview li { margin-bottom: 4px; }
+.rich-preview strong { color: var(--text); }
+.rich-preview .rich-image, .rich-preview .rich-video, .rich-preview .rich-youtube {
+  margin: 10px 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #0b1220;
+}
+.rich-preview .rich-image { background: #fff; }
+.rich-preview .rich-image img { display: block; width: 100%; height: auto; }
+.rich-preview .rich-image.left, .rich-preview .rich-image.right { width: min(45%, 220px); margin-top: 4px; }
+.rich-preview .rich-image.left { float: left; margin-right: 10px; }
+.rich-preview .rich-image.right { float: right; margin-left: 10px; }
+.rich-preview .rich-video video { display: block; width: 100%; max-height: 260px; }
+.rich-preview .rich-youtube { position: relative; aspect-ratio: 16 / 9; }
+.rich-preview .rich-youtube iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.rich-preview::after { content: ""; display: block; clear: both; }
+.empty-preview { color: var(--muted); font-style: italic; }
 .rich-help { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
 .field.checkbox { flex-direction: row; align-items: center; gap: 8px; }
 .field.checkbox label { margin-bottom: 0; }
@@ -328,7 +361,11 @@ table.grid td:last-child { white-space: nowrap; }
   .rich-toolbar select,
   .rich-toolbar input,
   .rich-toolbar button[data-format="image"],
-  .rich-toolbar button[data-format="youtube"] { grid-column: 1 / -1; width: 100%; }
+  .rich-toolbar button[data-format="youtube"],
+  .rich-toolbar button[data-format="heading-link"] { grid-column: 1 / -1; width: 100%; }
+  .rich-editor-body { grid-template-columns: 1fr; }
+  .rich-preview .rich-image.left,
+  .rich-preview .rich-image.right { float: none; width: 100%; margin-left: 0; margin-right: 0; }
   .rich-editor textarea { min-height: 190px; }
   .form-actions { align-items: stretch; flex-direction: column; }
   .form-actions .btn { width: 100%; }
