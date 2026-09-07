@@ -465,6 +465,7 @@ h2.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:var(--s2)}
 .rich-text h2 a{color:inherit;text-decoration:none}
 .rich-text h2 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .rich-text p{margin:0 0 var(--s4);color:var(--muted)}
+.rich-divider{clear:both;border:0;border-top:1px solid var(--line);margin:var(--s6) 0}
 .rich-text ul{margin:0 0 var(--s4);padding-left:1.2rem;color:var(--muted)}
 .rich-text li{margin-bottom:6px}
 .rich-text strong{color:var(--ink)}

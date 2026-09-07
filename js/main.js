@@ -480,6 +480,7 @@
     String(src).split('\n').forEach((raw) => {
       const line = raw.trim();
       if (!line) { flush(); return; }
+      if (/^(?:---|\*\s*\*\s*\*)$/.test(line)) { flush(); out.push('<hr class="rich-divider">'); return; }
       const img = /^!\[([^\]]*)\]\(([^)]+)\)(?:\{(wide|left|right)\})?$/i.exec(line);
       if (img) {
         flush();
