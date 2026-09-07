@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.21';
+  var ADMIN_VERSION = '1.22';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1140,7 +1140,7 @@
     html += '<label>' + esc(prefix) + '_*</label>';
     var descHtml = fieldDescHtml(srcName, fields[0]);
     if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
-    html += '<div class="lang-inputs">';
+    html += '<div class="lang-inputs' + (prefix === 'product_article' ? ' article-lang-inputs' : '') + '">';
     fields.forEach(function (f) {
       var code = (f.name.match(/_(en|vi|id|zh)$/) || ['', ''])[1].toUpperCase();
       var v = srcRow[f.name];

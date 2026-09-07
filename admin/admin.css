@@ -329,6 +329,8 @@ table.grid td:last-child { white-space: nowrap; }
 /* four languages side by side, so a missing translation sits next to its filled
    siblings instead of three scrolls away */
 .lang-inputs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.article-lang-inputs { grid-template-columns: 1fr; gap: 18px; }
+.article-lang-inputs .lang-cell { padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.018); }
 .lang-cell { display: flex; flex-direction: column; gap: 4px; }
 .lang-tag { font-size: .68rem; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
 .lang-cell.empty .lang-tag { color: #E0AE3E; }
