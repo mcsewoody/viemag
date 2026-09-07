@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.22';
+  var ADMIN_VERSION = '1.23';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1298,6 +1298,8 @@
       + '</select>'
       + '<input type="text" class="rich-image-url" placeholder="' + esc(t('imageUrl')) + '">'
       + '<button type="button" data-format="image" title="' + esc(t('insertImage')) + '">Img</button>'
+      + '<label class="rich-file-pick" title="' + esc(t('uploadArticleImage')) + '">' + esc(t('uploadArticleImage')) + '<input type="file" class="rich-article-image-file" accept="image/jpeg,image/png,image/webp"></label>'
+      + '<span class="rich-upload-status"></span>'
       + '<input type="text" class="rich-youtube-url" placeholder="' + esc(t('youtubeUrl')) + '">'
       + '<button type="button" data-format="youtube" title="' + esc(t('insertYoutube')) + '">YT</button>'
       + '</div>'
@@ -1443,6 +1445,11 @@
       textarea.setSelectionRange(start, start + blocks[next].length);
       touch();
     }
+    function insertImageUrl(url) {
+      var layoutEl = wrap.querySelector('.rich-image-layout');
+      var layout = layoutEl ? layoutEl.value : 'wide';
+      replaceSelection('\n![' + t('imageAltSample') + '](' + url + '){' + layout + '}\n');
+    }
     Array.prototype.forEach.call(wrap.querySelectorAll('[data-format]'), function (btn) {
       btn.addEventListener('click', function () {
         var kind = btn.dataset.format;
@@ -1464,9 +1471,7 @@
           var input = wrap.querySelector('.rich-image-url');
           var url = input ? input.value.trim() : '';
           if (!url) { if (input) input.focus(); return; }
-          var layoutEl = wrap.querySelector('.rich-image-layout');
-          var layout = layoutEl ? layoutEl.value : 'wide';
-          replaceSelection('\n![' + t('imageAltSample') + '](' + url + '){' + layout + '}\n');
+          insertImageUrl(url);
           if (input) input.value = '';
           return;
         }
@@ -1479,6 +1484,26 @@
         }
       });
     });
+    var articleFile = wrap.querySelector('.rich-article-image-file');
+    if (articleFile) {
+      articleFile.addEventListener('change', function () {
+        var file = articleFile.files && articleFile.files[0];
+        if (!file) return;
+        var statusEl = wrap.querySelector('.rich-upload-status');
+        if (statusEl) statusEl.textContent = t('uploading');
+        var safe = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        var path = 'products/article-' + Date.now() + '-' + Math.random().toString(36).slice(2) + '-' + safe;
+        sb.storage.from(CFG.mediaBucket).upload(path, file).then(function (res) {
+          if (res.error) throw res.error;
+          var url = sb.storage.from(CFG.mediaBucket).getPublicUrl(path).data.publicUrl;
+          insertImageUrl(url);
+          articleFile.value = '';
+          if (statusEl) statusEl.textContent = '';
+        }).catch(function (err) {
+          if (statusEl) statusEl.textContent = err.message || String(err);
+        });
+      });
+    }
     textarea.addEventListener('input', updatePreview);
     updatePreview();
   }

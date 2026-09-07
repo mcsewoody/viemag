@@ -216,6 +216,14 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
   min-height: 32px; border: 1px solid var(--line); border-radius: 5px;
   background: var(--panel); color: var(--text); font-family: inherit; font-size: .82rem;
 }
+.rich-file-pick {
+  min-height: 32px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 5px 9px; border: 1px dashed var(--line); border-radius: 5px;
+  background: var(--panel); color: var(--text); font-size: .82rem; cursor: pointer;
+}
+.rich-file-pick:hover { border-color: var(--heading); color: var(--heading); }
+.rich-file-pick input { display: none; }
+.rich-upload-status { min-width: 72px; color: var(--muted); font-size: .78rem; }
 .rich-toolbar button { padding: 5px 9px; cursor: pointer; }
 .rich-toolbar button:hover { border-color: var(--heading); color: var(--heading); }
 .rich-toolbar select { padding: 5px 8px; flex: 0 1 150px; }
