@@ -355,13 +355,19 @@
       : future
         ? `<div class="foot"><span class="chip">${t('cats.soon')}</span></div>`
         : `<div class="foot"><span class="price">${money(p.price)}</span><span class="btn btn-ghost btn-sm">${t('cta.view')}</span></div>`;
+    /* Second shot on hover, desktop only (see the (hover:hover) rule in CSS).
+       Only the first gallery image is used: a card is a glance, not a gallery,
+       and preloading every shot of every SKU on a 22-card grid is not worth a
+       fade the visitor sees for half a second. */
+    const alt = (p.gallery || [])[0];
+    const altImg = alt ? `<img class="thumb-alt" src="${esc(alt)}" alt="" loading="lazy" aria-hidden="true">` : '';
     return `
     <a class="prod-card" href="product.html?sku=${encodeURIComponent(p.sku)}" aria-label="${esc(tf(p.name))}">
-      <div class="thumb">${badge}${thumb(p)}</div>
+      <div class="thumb">${badge}${thumb(p)}${altImg}</div>
       <div class="body">
         <span class="cat-label">${cat ? esc(tf(cat.name)) + ' · ' : ''}${esc(p.sku)}</span>
         <h3>${esc(tf(p.name))}</h3>
-        ${claimHtml(tf(p.claim), 3)}
+        ${claimHtml(tf(p.claim), 2)}
         <div class="meta-chips">${qiChip(p)}${(p.mount || []).slice(0, 2).map((m) => `<span class="chip">${t('mount.' + m)}</span>`).join('')}</div>
         ${ratingHtml}
         ${foot}

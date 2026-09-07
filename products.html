@@ -6,33 +6,82 @@
   <title>Products — VIEMAG</title>
   <meta name="description" content="Browse the full VIEMAG magnetic accessory lineup: car mounts, Qi2-standard charging mounts, desk and travel chargers, magnetic accessories.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body data-page="products">
 
 <main>
-  <section class="page-hero">
+  <!-- Intro is deliberately short. On a listing page the products are the
+       content; a full-height hero only delays them. -->
+  <section class="products-intro">
     <div class="container">
       <h1 data-i18n="products.title"></h1>
       <p data-i18n="products.sub"></p>
     </div>
   </section>
 
-  <section class="section-tight">
+  <section class="products-main">
     <div class="container">
       <p class="filter-label" data-i18n="filter.byCat"></p>
-      <div class="filter-bar" id="catFilter"></div>
-      <div class="prod-grid" id="prodGrid" style="margin-top:24px"></div>
+      <div class="filter-scroll">
+        <div class="filter-bar" id="catFilter"></div>
+      </div>
+
+      <div class="prod-toolbar">
+        <span class="prod-count" id="prodCount"></span>
+        <div class="toolbar-actions">
+          <button type="button" class="toolbar-btn" id="filterBtn" aria-expanded="false" aria-controls="filterDrawer"></button>
+          <label class="toolbar-sort">
+            <span data-i18n="products.sort"></span>
+            <select id="sortSel" aria-label="Sort"></select>
+          </label>
+        </div>
+      </div>
+
+      <div class="prod-grid" id="prodGrid"></div>
       <div class="empty-state" id="emptyState" style="display:none" data-i18n="products.empty"></div>
+      <nav class="pager" id="pager" aria-label="Pagination"></nav>
+    </div>
+  </section>
+
+  <section class="section products-seo">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="products.about"></h2>
+      </div>
+      <p data-i18n="products.aboutBody"></p>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head center">
+        <h2 class="section-title" data-i18n="support.faq"></h2>
+      </div>
+      <div class="faq-list" id="faqList"></div>
     </div>
   </section>
 </main>
 
-<script src="js/data-loader.js?v=8"></script>
-<script src="js/i18n.js?v=8"></script>
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="filterDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="drawer-head">
+    <h2 id="drawerTitle" data-i18n="products.filter"></h2>
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="Close"></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <button type="button" class="btn btn-ghost" id="drawerClear" data-i18n="products.clear"></button>
+    <button type="button" class="btn btn-primary" id="drawerApply" data-i18n="products.applyFilter"></button>
+  </div>
+</aside>
+
+<script src="js/data-loader.js?v=9"></script>
+<script src="js/i18n.js?v=9"></script>
 <script>
-window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
+window.renderPage = function ({ t, tf, icon, productCard, catById, stripTags, esc, faqGroups }) {
   const DB = window.DB;
+  const PER_PAGE = 12;
   const params = new URLSearchParams(location.search);
   let curCat = params.get('cat') || 'all';
   /* One axis of navigation, deliberately. Persona was removed on 2026-08-18: it
@@ -41,17 +90,46 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
      already predicted it 79-100% of the time. A second filter that mostly
      restates the first only makes the page look more capable than it is.
      Situations now live as curated sets on scenarios.html, which can do the one
-     thing a filter cannot: cross ecosystems. */
+     thing a filter cannot: cross ecosystems.
+
+     The drawer added on 2026-09-07 is NOT a second axis. Product line stays the
+     only way the catalogue is divided; the drawer narrows whatever line is
+     showing by attributes the SKUs already carry (charging standard, mounting
+     type), and it never changes which lines exist. */
+
+  /* Attribute filters, read out of the data rather than hard-coded, so a new
+     mounting value in /admin shows up here without a code change. `qi: 'none'`
+     is left out on purpose: "no charging" is the absence of the attribute, not
+     a thing to filter for. */
+  const FACETS = [
+    { key: 'qi',    label: 'filter.qi',    values: (p) => (p.qi && p.qi !== 'none' ? [p.qi] : []), text: (v) => t('qi.' + v) },
+    { key: 'mount', label: 'filter.mount', values: (p) => p.mount || [],                           text: (v) => t('mount.' + v) },
+  ];
+  const SORTS = ['featured', 'name', 'priceLow', 'priceHigh'];
+
+  const readSet = (k) => new Set((params.get(k) || '').split(',').filter(Boolean));
+  const sel = { qi: readSet('qi'), mount: readSet('mount') };
+  let curSort = SORTS.includes(params.get('sort')) ? params.get('sort') : 'featured';
+  let page = Math.max(1, parseInt(params.get('p'), 10) || 1);
 
   const catBar = document.getElementById('catFilter');
   const grid = document.getElementById('prodGrid');
   const empty = document.getElementById('emptyState');
+  const countEl = document.getElementById('prodCount');
+  const pagerEl = document.getElementById('pager');
+  const sortSel = document.getElementById('sortSel');
+  const filterBtn = document.getElementById('filterBtn');
+  const drawer = document.getElementById('filterDrawer');
+  const backdrop = document.getElementById('drawerBackdrop');
+  const drawerBody = document.getElementById('drawerBody');
+
+  const activeFilters = () => sel.qi.size + sel.mount.size;
 
   function drawFilters() {
     catBar.innerHTML = `<button data-v="all" class="${curCat === 'all' ? 'active' : ''}">${t('filter.all')}</button>` +
       DB.categories.map((c) =>
         `<button data-v="${c.id}" class="${curCat === c.id ? 'active' : ''}">${tf(c.name)}</button>`).join('');
-    catBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curCat = b.dataset.v; sync(); });
+    catBar.querySelectorAll('button').forEach((b) => b.onclick = () => { curCat = b.dataset.v; page = 1; sync(); });
   }
 
   /* When the listing is filtered to one category, use that category's own title
@@ -70,23 +148,121 @@ window.renderPage = function ({ t, tf, productCard, catById, stripTags }) {
   function sync() {
     const p = new URLSearchParams();
     if (curCat !== 'all') p.set('cat', curCat);
+    if (curSort !== 'featured') p.set('sort', curSort);
+    FACETS.forEach((f) => { if (sel[f.key].size) p.set(f.key, [...sel[f.key]].join(',')); });
+    if (page > 1) p.set('p', page);
     history.replaceState(null, '', 'products.html' + (p.toString() ? '?' + p : ''));
-    drawFilters(); draw(); applyCategoryMeta();
+    drawFilters(); drawToolbar(); draw(); applyCategoryMeta();
+  }
+
+  /* Cheap: everything in the DB, then the two filters, in that order. 22 SKUs
+     is not a data set that needs an index. */
+  function matches(p) {
+    if (curCat !== 'all' && p.category !== curCat) return false;
+    return FACETS.every((f) => !sel[f.key].size || f.values(p).some((v) => sel[f.key].has(v)));
+  }
+
+  function sorted(list) {
+    /* buyable first, then coming-soon, then discontinued last */
+    const rank = (x) => x.status === 'published' ? 0 : x.status === 'future' ? 1 : 2;
+    const byRank = (a, b) => rank(a) - rank(b);
+    /* A SKU with no price goes last in either price direction — "cheapest
+       first" should not open with the products that have no price at all. */
+    const byPrice = (dir) => (a, b) => {
+      if (a.price == null || b.price == null) return (a.price == null) - (b.price == null);
+      return (a.price - b.price) * dir;
+    };
+    const cmp = curSort === 'name' ? (a, b) => tf(a.name).localeCompare(tf(b.name))
+      : curSort === 'priceLow' ? byPrice(1)
+        : curSort === 'priceHigh' ? byPrice(-1)
+          : byRank;
+    return list.slice().sort((a, b) => cmp(a, b) || byRank(a, b) || a.sku.localeCompare(b.sku));
+  }
+
+  function drawToolbar() {
+    sortSel.innerHTML = SORTS.map((s) =>
+      `<option value="${s}"${s === curSort ? ' selected' : ''}>${esc(t('sort.' + s))}</option>`).join('');
+    const n = activeFilters();
+    filterBtn.innerHTML = `${icon('menu')}${esc(t('products.filter'))}${n ? `<span class="count">${n}</span>` : ''}`;
+  }
+
+  function drawPager(pages) {
+    if (pages < 2) { pagerEl.innerHTML = ''; return; }
+    const btn = (label, p, opts) => `<button type="button" data-p="${p}"${opts || ''}>${label}</button>`;
+    pagerEl.innerHTML =
+      btn(`<span style="display:inline-block;transform:rotate(180deg)">${icon('arrow')}</span>`, page - 1,
+        ` aria-label="${esc(t('page.prev'))}"${page === 1 ? ' disabled' : ''}`) +
+      Array.from({ length: pages }, (_, i) =>
+        btn(i + 1, i + 1, i + 1 === page ? ' class="active" aria-current="page"' : '')).join('') +
+      btn(icon('arrow'), page + 1, ` aria-label="${esc(t('page.next'))}"${page === pages ? ' disabled' : ''}`);
+    pagerEl.querySelectorAll('button').forEach((b) => b.onclick = () => {
+      page = +b.dataset.p; sync();
+      document.querySelector('.prod-toolbar').scrollIntoView({ block: 'start' });
+    });
   }
 
   function draw() {
-    const list = DB.products.filter((p) =>
-      curCat === 'all' || p.category === curCat);
-    /* buyable first, then coming-soon, then discontinued last */
-    const rank = (x) => x.status === 'published' ? 0 : x.status === 'future' ? 1 : 2;
-    list.sort((a, b) => rank(a) - rank(b));
-    grid.innerHTML = list.map(productCard).join('');
+    const list = sorted(DB.products.filter(matches));
+    const pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+    if (page > pages) page = pages;
+    countEl.textContent = `${list.length} ${t('cats.count')}`;
+    grid.innerHTML = list.slice((page - 1) * PER_PAGE, page * PER_PAGE).map(productCard).join('');
     empty.style.display = list.length ? 'none' : 'block';
+    drawPager(pages);
   }
 
-  drawFilters(); draw(); applyCategoryMeta();
+  /* ---------- filter drawer ---------- */
+  function drawDrawer() {
+    /* Counts are for the current product line, so an option that would return
+       nothing is simply not offered. */
+    const scope = DB.products.filter((p) => curCat === 'all' || p.category === curCat);
+    drawerBody.innerHTML = FACETS.map((f) => {
+      const counts = {};
+      scope.forEach((p) => f.values(p).forEach((v) => { counts[v] = (counts[v] || 0) + 1; }));
+      const vals = Object.keys(counts).sort((a, b) => f.text(a).localeCompare(f.text(b)));
+      if (!vals.length) return '';
+      return `
+        <div class="drawer-group">
+          <h3>${esc(t(f.label))}</h3>
+          ${vals.map((v) => `
+            <label class="drawer-opt">
+              <input type="checkbox" data-f="${f.key}" value="${esc(v)}"${sel[f.key].has(v) ? ' checked' : ''}>
+              <span>${esc(f.text(v))}</span><span class="n">${counts[v]}</span>
+            </label>`).join('')}
+        </div>`;
+    }).join('');
+    drawerBody.querySelectorAll('input').forEach((i) => i.onchange = () => {
+      const s = sel[i.dataset.f];
+      i.checked ? s.add(i.value) : s.delete(i.value);
+      page = 1; sync();
+    });
+  }
+
+  const setDrawer = (open) => {
+    drawer.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    filterBtn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) drawDrawer();
+  };
+  filterBtn.onclick = () => setDrawer(!drawer.classList.contains('open'));
+  backdrop.onclick = () => setDrawer(false);
+  document.getElementById('drawerClose').innerHTML = icon('close');
+  document.getElementById('drawerClose').onclick = () => setDrawer(false);
+  document.getElementById('drawerApply').onclick = () => setDrawer(false);
+  document.getElementById('drawerClear').onclick = () => {
+    FACETS.forEach((f) => sel[f.key].clear());
+    page = 1; sync(); drawDrawer();
+  };
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setDrawer(false); });
+
+  sortSel.onchange = () => { curSort = sortSel.value; page = 1; sync(); };
+
+  document.getElementById('faqList').innerHTML = faqGroups(DB.faqs);
+
+  drawFilters(); drawToolbar(); draw(); applyCategoryMeta();
 };
 </script>
-<script src="js/main.js?v=8"></script>
+<script src="js/main.js?v=9"></script>
 </body>
 </html>
