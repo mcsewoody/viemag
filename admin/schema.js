@@ -55,7 +55,7 @@ window.VIEMAG_SCHEMA = {
         { key: 'media',     fields: ['hero_image_url', 'gallery_urls', 'spec_sheet_url', 'art_key'] },
         { key: 'article',   fields: ['product_article_image_url',
                                     ['product_article_en', 'product_article_vi', 'product_article_id', 'product_article_zh']] },
-        { key: 'spec',      fields: ['mount_type', 'product_dimensions', 'charging_watt', 'qi_status', 'warranty_months', 'defect_exchange_days'] },
+        { key: 'spec',      fields: ['mount_type', 'charging_watt', 'qi_status', 'warranty_months', 'defect_exchange_days'] },
         { key: 'card',      fields: ['badge', 'rating', 'review_count'] },
         { key: 'links',     fields: ['test_report_ids', 'faq_ids', 'related_product_ids'] },
         /* Collapsed by default: all eight are optional and the site composes a
@@ -116,7 +116,6 @@ window.VIEMAG_SCHEMA = {
       { name: 'distributor', type: 'text', internal: true, desc: 'Which distributor or channel partner handles this product.' },
       { name: 'sub_category', type: 'select', options: ['mounts', 'charging-mounts', 'stands', 'travel', 'power', 'creator', 'interface'], desc: 'Mid-level nav bucket inside the ecosystem. The SKU only encodes the ecosystem, so this can be reorganised without reissuing any part number.' },
       { name: 'mount_type', type: 'multiselect', options: ['Vent', 'Dashboard', 'Suction', 'PU-Suction', 'Tape', 'Screen', 'Clip', 'Clamp', 'Screw', 'Quarter-Inch', 'Magnetic', 'Magsafe', 'Desktop'], desc: 'How the product attaches, multi-select. Shown as chips on the product card and as a row in the spec table — the row disappears entirely for products that mount to nothing, such as a power bank. Suction is a vacuum cup and PU-Suction is a nano-adhesive pad; Clip is a spring clip and Clamp is a screw-tightened one; Quarter-Inch is the 1/4" camera thread. Magsafe describes how the phone attaches and always displays as "MagSafe-compatible", never as a bare trademark.' },
-      { name: 'product_dimensions', type: 'text', desc: 'Physical product size, shown in the Specifications tab. Use a compact format such as 68 × 48 × 35 mm; leave blank and the row disappears.' },
       { name: 'charging_watt', type: 'select', options: ['None', '15W', '25W', 'TBD'], desc: 'Charging wattage, shown in the spec table. Leave blank or set to None and that spec row does not appear.' },
       { name: 'qi_status', type: 'select', options: ['Not applicable', 'Compatible', 'Testing', 'Certified', 'Pending'], desc: 'Qi / Qi2 status. Only Certified displays a certification mark — never select it unless certification has actually been obtained.' },
       { name: 'qi_id', type: 'text', desc: 'The Qi certification ID issued by the WPC. Required whenever Qi Status is Certified — the code itself no longer carries a certification marker, so this field plus Qi Status is the only record that a product may print the Qi logo.' },

@@ -92,7 +92,7 @@ const PRODUCT_COLS = [
   'id', 'product_id', 'official_sku_code', 'slug', 'status', 'launch_tier',
   'category_id', 'name_en', 'name_vi', 'name_id', 'name_zh',
   'claim_en', 'claim_vi', 'claim_id', 'claim_zh', 'shopee_url', 'price_usd',
-  'mount_type', 'product_dimensions', 'charging_watt', 'qi_status', 'hero_image_url', 'art_key',
+  'mount_type', 'charging_watt', 'qi_status', 'hero_image_url', 'art_key',
   'badge', 'rating', 'review_count',
   /* Added 2026-07-29. All of these were editable in /admin with no effect on the
      site — staff could fill them in and nothing happened. */
@@ -348,7 +348,6 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
            be the thing that implies certification. */
         qiId: r.qi_status === 'Certified' ? (r.qi_id || null) : null,
         watt: r.charging_watt === 'None' || !r.charging_watt ? null : r.charging_watt,
-        dimensions: r.product_dimensions || null,
         mount: (r.mount_type || []).map((m: string) => m.toLowerCase()),
         price: r.price_usd,
         rating: r.rating,
