@@ -64,12 +64,9 @@ const MAX_INPUT_LENGTH = 2000;
 // button is being used on something it was not designed for.
 const DEEPL_MAX_TEXTS = 50;
 // The separate ceiling for `html: true` (the product_article_* editor, which
-// stores sanitized HTML). This one is a REQUEST-SIZE guard, not a quota guard:
-// with tag_handling set, DeepL bills only the text between the tags, so the
-// markup in an article — every class, every storage URL — is free. The longest
-// real article today is ~5500 characters. Two things to keep in mind before
-// raising it: DeepL's request body limit is 128 KiB, and Vietnamese in UTF-8
-// runs 2-3 bytes per character.
+// stores sanitized HTML). This is applied AFTER media blocks are protected, so
+// long Supabase image URLs and YouTube/video embeds do not make an otherwise
+// reasonable article fail the size guard.
 const MAX_HTML_LENGTH = 12000;
 
 /* The HTML path sends the whole article as ONE text element, so the N-in/N-out
@@ -94,6 +91,8 @@ const MAX_HTML_LENGTH = 12000;
    one `<img`, and the unchanged example.com URL. If tag_handling stops being
    sent, the reply comes back with those translated into prose instead. */
 const STRUCT_TAGS = /<(?:figure|img|iframe|video|hr)\b/gi;
+const MEDIA_HTML = /<figure\b(?=[^>]*\b(?:rich-image|rich-youtube|rich-video)\b)[^>]*>[\s\S]*?<\/figure>|<video\b[\s\S]*?<\/video>|<iframe\b[\s\S]*?<\/iframe>|<img\b[^>]*>/gi;
+const MEDIA_PLACEHOLDER = /<x-viemag-skip\b[^>]*\bdata-i=(?:"|')?(\d+)(?:"|')?[^>]*>\s*<\/x-viemag-skip>/gi;
 
 /* "Is there anything to translate here?" — asked of the text CONTENT, not the
    string length. An empty article is not '': the rich editor stores the literal
@@ -105,6 +104,33 @@ const STRUCT_TAGS = /<(?:figure|img|iframe|video|hr)\b/gi;
    trip; kept here too because the guard has to hold for any caller. */
 function hasTranslatableText(text: string): boolean {
   return /\S/.test(text.replace(/<[^>]*>/g, ' ').replace(/&nbsp;|&#160;/gi, ' '));
+}
+
+function protectMediaHtml(html: string): { text: string; blocks: string[] } {
+  const blocks: string[] = [];
+  const text = html.replace(MEDIA_HTML, (block) => {
+    const i = blocks.push(block) - 1;
+    return `<x-viemag-skip data-i="${i}"></x-viemag-skip>`;
+  });
+  return { text, blocks };
+}
+
+function restoreMediaHtml(html: string, blocks: string[]): string {
+  const seen = new Set<number>();
+  const restored = html.replace(MEDIA_PLACEHOLDER, (_match, rawIndex) => {
+    const i = Number(rawIndex);
+    if (!Number.isInteger(i) || i < 0 || i >= blocks.length) return '';
+    seen.add(i);
+    return blocks[i];
+  });
+  if (seen.size !== blocks.length) {
+    throw new Error(`DeepL returned ${seen.size} protected media blocks for ${blocks.length} in the source`);
+  }
+  return restored;
+}
+
+function translatableRequestLength(text: string, asHtml: boolean): number {
+  return asHtml ? protectMediaHtml(text).text.length : text.length;
 }
 
 async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: string }> {
@@ -135,13 +161,12 @@ async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: strin
    splitting HTML on newlines would hand DeepL fragments of markup: the line
    boundaries there are incidental (real articles carry stray \n inside a <p>),
    while the tags are the structure. So the whole article goes as ONE element
-   with tag_handling, which is what tells DeepL to pull the text out of the
-   markup, translate that, and put it back — leaving classes, URLs and
-   attributes alone. One element is also, conveniently, under both the
-   50-element and the 128 KiB request limits, so the article path needs no
-   batching at all. */
+   with tag_handling, with media blocks replaced by ignored placeholder tags.
+   Images and video embeds do not need translation, and keeping their URLs out
+   of DeepL reduces quota risk and prevents accidental media markup edits. */
 async function deeplTranslate(text: string, sourceLang: string, targetLang: string, asHtml: boolean): Promise<string> {
-  const lines = asHtml ? [text] : text.split('\n');
+  const protectedHtml = asHtml ? protectMediaHtml(text) : null;
+  const lines = asHtml ? [protectedHtml!.text] : text.split('\n');
   const sendAt: number[] = [];
   const payload: string[] = [];
   lines.forEach((line, i) => {
@@ -167,7 +192,7 @@ async function deeplTranslate(text: string, sourceLang: string, targetLang: stri
       text: payload,
       source_lang: sourceLang,
       target_lang: targetLang,
-      ...(asHtml ? { tag_handling: 'html', tag_handling_version: 'v2' } : {}),
+      ...(asHtml ? { tag_handling: 'html', tag_handling_version: 'v2', ignore_tags: ['x-viemag-skip'] } : {}),
     }),
   });
   if (!res.ok) {
@@ -182,7 +207,7 @@ async function deeplTranslate(text: string, sourceLang: string, targetLang: stri
     throw new Error(`DeepL ${targetLang} returned ${out.length} results for ${payload.length} lines`);
   }
   sendAt.forEach((lineNo, k) => { lines[lineNo] = out[k]?.text ?? ''; });
-  const result = lines.join('\n');
+  const result = asHtml ? restoreMediaHtml(lines.join('\n'), protectedHtml!.blocks) : lines.join('\n');
 
   if (asHtml) {
     const before = (text.match(STRUCT_TAGS) || []).length;
@@ -226,7 +251,7 @@ Deno.serve(async (req: Request) => {
     if (typeof text !== 'string' || !hasTranslatableText(text)) return json({ error: 'text is required' }, 400);
     if (typeof asHtml !== 'boolean') return json({ error: 'html must be true or false' }, 400);
     const cap = asHtml ? MAX_HTML_LENGTH : MAX_INPUT_LENGTH;
-    if (text.length > cap) return json({ error: `text exceeds ${cap} characters` }, 400);
+    if (translatableRequestLength(text, asHtml) > cap) return json({ error: `text exceeds ${cap} characters` }, 400);
     if (typeof source !== 'string' || !LANGS.includes(source)) return json({ error: `source must be one of ${LANGS.join(', ')}` }, 400);
 
     const targets = LANGS.filter((l) => l !== source);
