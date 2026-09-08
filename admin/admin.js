@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.25';
+  var ADMIN_VERSION = '1.26';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1281,17 +1281,26 @@
     var attrs = 'class="' + (f.large ? 'large' : '') + '" data-name="' + f.name + '"' + (rows ? ' rows="' + rows + '"' : '');
     var textarea = '<textarea ' + attrs + '>' + esc(value) + '</textarea>';
     if (f.editor !== 'productArticle') return textarea;
+    var hiddenTextarea = '<textarea class="rich-source ' + (f.large ? 'large' : '') + '" data-name="' + f.name + '"' + (rows ? ' rows="' + rows + '"' : '') + '>' + esc(value) + '</textarea>';
     return '<div class="rich-editor" data-rich-editor="' + esc(f.name) + '">'
       + '<div class="rich-toolbar" aria-label="' + esc(t('formatToolbar')) + '">'
+      + '<button type="button" data-format="undo" title="' + esc(t('formatUndo')) + '">Undo</button>'
+      + '<button type="button" data-format="redo" title="' + esc(t('formatRedo')) + '">Redo</button>'
+      + '<select class="rich-block-format" title="' + esc(t('formatBlock')) + '">'
+      + '<option value="p">' + esc(t('formatParagraph')) + '</option>'
+      + '<option value="h2">' + esc(t('formatHeading')) + '</option>'
+      + '<option value="h3">' + esc(t('formatSubheading')) + '</option>'
+      + '</select>'
       + '<button type="button" data-format="bold" title="' + esc(t('formatBold')) + '"><b>B</b></button>'
       + '<button type="button" data-format="italic" title="' + esc(t('formatItalic')) + '"><i>I</i></button>'
-      + '<button type="button" data-format="heading" title="' + esc(t('formatHeading')) + '">H2</button>'
-      + '<button type="button" data-format="bullet" title="' + esc(t('formatBullet')) + '">List</button>'
+      + '<button type="button" data-format="bullet" title="' + esc(t('formatBullet')) + '">• List</button>'
+      + '<button type="button" data-format="number" title="' + esc(t('formatNumber')) + '">1. List</button>'
+      + '<button type="button" data-format="align-left" title="' + esc(t('alignLeft')) + '">Left</button>'
+      + '<button type="button" data-format="align-center" title="' + esc(t('alignCenter')) + '">Center</button>'
+      + '<button type="button" data-format="align-right" title="' + esc(t('alignRight')) + '">Right</button>'
       + '<button type="button" data-format="insert-divider" title="' + esc(t('insertDivider')) + '">Line</button>'
-      + '<button type="button" data-format="block-up" title="' + esc(t('blockUp')) + '">Up</button>'
-      + '<button type="button" data-format="block-down" title="' + esc(t('blockDown')) + '">Down</button>'
-      + '<input type="text" class="rich-heading-url" placeholder="' + esc(t('headingUrl')) + '">'
-      + '<button type="button" data-format="heading-link" title="' + esc(t('insertLinkedHeading')) + '">H2 Link</button>'
+      + '<input type="text" class="rich-link-url" placeholder="' + esc(t('linkUrl')) + '">'
+      + '<button type="button" data-format="link" title="' + esc(t('insertLink')) + '">Link</button>'
       + '<select class="rich-image-layout" title="' + esc(t('imageLayout')) + '">'
       + '<option value="wide">' + esc(t('imageLayoutWide')) + '</option>'
       + '<option value="left">' + esc(t('imageLayoutLeft')) + '</option>'
@@ -1305,11 +1314,8 @@
       + '<button type="button" data-format="youtube" title="' + esc(t('insertYoutube')) + '">YT</button>'
       + '</div>'
       + '<div class="rich-editor-body">'
-      + textarea
-      + '<div class="rich-preview-wrap">'
-      + '<div class="rich-preview-title">' + esc(t('articlePreview')) + '</div>'
-      + '<div class="rich-preview" data-rich-preview></div>'
-      + '</div>'
+      + '<div class="rich-visual-editor" contenteditable="true" data-rich-visual spellcheck="true" aria-label="' + esc(t('articleEditor')) + '"></div>'
+      + hiddenTextarea
       + '</div>'
       + '<p class="rich-help">' + esc(t('formatHelp')) + '</p>'
       + '</div>';
@@ -1392,97 +1398,192 @@
   function wireRichEditor(wrap) {
     var textarea = wrap.querySelector('textarea[data-name]');
     if (!textarea) return;
-    var preview = wrap.querySelector('[data-rich-preview]');
-    function updatePreview() {
-      if (!preview) return;
-      var html = richPreviewHtml(textarea.value);
-      preview.innerHTML = html || '<p class="empty-preview">' + esc(t('articlePreviewEmpty')) + '</p>';
+    var visual = wrap.querySelector('[data-rich-visual]');
+    if (!visual) return;
+    var savedRange = null;
+    var hasHtml = /<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|br|hr)\b/i;
+
+    function safeUrl(url, media) {
+      var u = String(url || '').trim();
+      if (!u) return '';
+      if (media && (u.charAt(0) === '/' || /^(?:\.\.?\/)?(?:assets|image)\//i.test(u))) return u;
+      if (!/^https?:\/\//i.test(u)) return '';
+      try { return new URL(u).href; } catch (e) { return ''; }
     }
-    function touch() {
+    function youtubeEmbedUrl(url) {
+      var u;
+      try { u = new URL(String(url || '').trim()); } catch (e) { return ''; }
+      var host = u.hostname.toLowerCase().replace(/^www\./, '');
+      var id = '';
+      if (host === 'youtu.be') id = u.pathname.split('/').filter(Boolean)[0] || '';
+      if (host === 'youtube.com' || host === 'm.youtube.com') {
+        if (u.pathname === '/watch') id = u.searchParams.get('v') || '';
+        else if (/^\/(?:embed|shorts)\//.test(u.pathname)) id = u.pathname.split('/').filter(Boolean)[1] || '';
+      }
+      return /^[A-Za-z0-9_-]{11}$/.test(id) ? 'https://www.youtube.com/embed/' + id : '';
+    }
+    function cleanArticleHtml(src) {
+      if (!src) return '';
+      var doc = new DOMParser().parseFromString('<div>' + src + '</div>', 'text/html');
+      function clean(node) {
+        if (node.nodeType === Node.TEXT_NODE) return esc(node.nodeValue);
+        if (node.nodeType !== Node.ELEMENT_NODE) return '';
+        var tag = node.tagName.toLowerCase();
+        if (tag === 'script' || tag === 'style') return '';
+        var children = Array.prototype.map.call(node.childNodes, clean).join('');
+        if (tag === 'b') tag = 'strong';
+        if (tag === 'i') tag = 'em';
+        if (tag === 'strong' || tag === 'em' || tag === 'br') return tag === 'br' ? '<br>' : '<' + tag + '>' + children + '</' + tag + '>';
+        if (tag === 'p' || tag === 'div') {
+          var align = node.style && node.style.textAlign ? node.style.textAlign : '';
+          var cls = /^(center|right)$/i.test(align) ? ' class="align-' + align.toLowerCase() + '"' : '';
+          return '<p' + cls + '>' + (children || '<br>') + '</p>';
+        }
+        if (tag === 'h1' || tag === 'h2' || tag === 'h3') {
+          return '<' + (tag === 'h3' ? 'h3' : 'h2') + '>' + children + '</' + (tag === 'h3' ? 'h3' : 'h2') + '>';
+        }
+        if (tag === 'ul' || tag === 'ol') return '<' + tag + '>' + children + '</' + tag + '>';
+        if (tag === 'li') return '<li>' + children + '</li>';
+        if (tag === 'a') {
+          var href = safeUrl(node.getAttribute('href'), false);
+          return href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener">' + children + '</a>' : children;
+        }
+        if (tag === 'img') {
+          var src = safeUrl(node.getAttribute('src'), true);
+          var alt = node.getAttribute('alt') || '';
+          return src ? '<img src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy">' : '';
+        }
+        if (tag === 'figure') {
+          var clsRaw = node.getAttribute('class') || '';
+          var classes = [];
+          if (/\brich-youtube\b/.test(clsRaw)) {
+            var yt = youtubeEmbedUrl(node.getAttribute('data-youtube') || (node.querySelector('iframe') && node.querySelector('iframe').getAttribute('src')) || '');
+            return yt ? '<figure class="rich-youtube" data-youtube="' + esc(yt) + '"><iframe src="' + esc(yt) + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></figure>' : '';
+          }
+          if (/\brich-video\b/.test(clsRaw)) classes.push('rich-video');
+          else classes.push('rich-image');
+          if (/\bleft\b/.test(clsRaw)) classes.push('left');
+          else if (/\bright\b/.test(clsRaw)) classes.push('right');
+          else classes.push('wide');
+          return '<figure class="' + classes.join(' ') + '">' + children + '</figure>';
+        }
+        if (tag === 'iframe') {
+          var ytSrc = youtubeEmbedUrl(node.getAttribute('src') || '');
+          return ytSrc ? '<figure class="rich-youtube" data-youtube="' + esc(ytSrc) + '"><iframe src="' + esc(ytSrc) + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></figure>' : '';
+        }
+        if (tag === 'hr') return '<hr class="rich-divider">';
+        return children;
+      }
+      return Array.prototype.map.call(doc.body.firstChild.childNodes, clean).join('');
+    }
+    function saveSelection() {
+      var sel = window.getSelection();
+      if (sel && sel.rangeCount && visual.contains(sel.anchorNode)) savedRange = sel.getRangeAt(0).cloneRange();
+    }
+    function restoreSelection() {
+      visual.focus();
+      var sel = window.getSelection();
+      if (!sel) return;
+      sel.removeAllRanges();
+      if (savedRange) sel.addRange(savedRange);
+    }
+    function syncFromVisual() {
+      textarea.value = cleanArticleHtml(visual.innerHTML).trim();
       state.formDirty = true;
       textarea.dispatchEvent(new Event('input', { bubbles: true }));
-      textarea.focus();
     }
-    function replaceSelection(text) {
-      var start = textarea.selectionStart || 0;
-      var end = textarea.selectionEnd || 0;
-      textarea.setRangeText(text, start, end, 'end');
+    function touch() {
+      syncFromVisual();
+      saveSelection();
+    }
+    function exec(command, value) {
+      restoreSelection();
+      document.execCommand(command, false, value || null);
       touch();
     }
-    function wrapSelection(before, after, fallback) {
-      var start = textarea.selectionStart || 0;
-      var end = textarea.selectionEnd || 0;
-      var selected = textarea.value.slice(start, end) || fallback;
-      textarea.setRangeText(before + selected + after, start, end, 'select');
-      touch();
-    }
-    function prefixLines(prefix, fallback) {
-      var start = textarea.selectionStart || 0;
-      var end = textarea.selectionEnd || 0;
-      var selected = textarea.value.slice(start, end) || fallback;
-      var next = selected.split(/\r?\n/).map(function (line) {
-        return line.trim() ? prefix + line.replace(/^(##\s+|[-*]\s+)/, '') : line;
-      }).join('\n');
-      textarea.setRangeText(next, start, end, 'select');
-      touch();
-    }
-    function moveBlock(delta) {
-      var blocks = textarea.value.split(/\n\s*\n/);
-      if (blocks.length < 2) return;
-      var pos = textarea.selectionStart || 0;
-      var cursor = 0;
-      var current = 0;
-      for (var i = 0; i < blocks.length; i++) {
-        var end = cursor + blocks[i].length;
-        if (pos <= end) { current = i; break; }
-        cursor = end + 2;
-      }
-      var next = current + delta;
-      if (next < 0 || next >= blocks.length) return;
-      var tmp = blocks[current];
-      blocks[current] = blocks[next];
-      blocks[next] = tmp;
-      textarea.value = blocks.join('\n\n');
-      var start = blocks.slice(0, next).join('\n\n').length + (next ? 2 : 0);
-      textarea.setSelectionRange(start, start + blocks[next].length);
+    function insertHtml(html) {
+      restoreSelection();
+      document.execCommand('insertHTML', false, html);
       touch();
     }
     function insertImageUrl(url) {
+      var src = safeUrl(url, true);
+      if (!src) return false;
       var layoutEl = wrap.querySelector('.rich-image-layout');
       var layout = layoutEl ? layoutEl.value : 'wide';
-      replaceSelection('\n![' + t('imageAltSample') + '](' + url + '){' + layout + '}\n');
+      insertHtml('<figure class="rich-image ' + esc(layout) + '"><img src="' + esc(src) + '" alt=""></figure><p><br></p>');
+      return true;
     }
+
+    visual.innerHTML = hasHtml.test(textarea.value) ? cleanArticleHtml(textarea.value) : richPreviewHtml(textarea.value);
+    if (!visual.innerHTML.trim()) visual.innerHTML = '<p><br></p>';
+    textarea.value = cleanArticleHtml(visual.innerHTML).trim();
+    visual.addEventListener('keyup', saveSelection);
+    visual.addEventListener('mouseup', saveSelection);
+    visual.addEventListener('input', syncFromVisual);
+    visual.addEventListener('paste', function () {
+      window.setTimeout(function () {
+        visual.innerHTML = cleanArticleHtml(visual.innerHTML) || '<p><br></p>';
+        touch();
+      }, 0);
+    });
+
+    var formatSelect = wrap.querySelector('.rich-block-format');
+    if (formatSelect) {
+      formatSelect.addEventListener('change', function () {
+        exec('formatBlock', formatSelect.value);
+        formatSelect.value = 'p';
+      });
+    }
+
+    function selectedAnchor() {
+      var sel = window.getSelection();
+      if (!sel || !sel.rangeCount) return null;
+      var node = sel.anchorNode;
+      while (node && node !== visual) {
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'a') return node;
+        node = node.parentNode;
+      }
+      return null;
+    }
+
     Array.prototype.forEach.call(wrap.querySelectorAll('[data-format]'), function (btn) {
+      btn.addEventListener('mousedown', function () { saveSelection(); });
       btn.addEventListener('click', function () {
         var kind = btn.dataset.format;
-        if (kind === 'bold') { wrapSelection('**', '**', t('formatSample')); return; }
-        if (kind === 'italic') { wrapSelection('*', '*', t('formatSample')); return; }
-        if (kind === 'heading') { prefixLines('## ', t('headingSample')); return; }
-        if (kind === 'heading-link') {
-          var headingInput = wrap.querySelector('.rich-heading-url');
-          var headingUrl = headingInput ? headingInput.value.trim() : '';
-          if (!headingUrl) { if (headingInput) headingInput.focus(); return; }
-          wrapSelection('## [', '](' + headingUrl + ')', t('headingSample'));
-          if (headingInput) headingInput.value = '';
+        if (kind === 'undo' || kind === 'redo') { exec(kind); return; }
+        if (kind === 'bold') { exec('bold'); return; }
+        if (kind === 'italic') { exec('italic'); return; }
+        if (kind === 'bullet') { exec('insertUnorderedList'); return; }
+        if (kind === 'number') { exec('insertOrderedList'); return; }
+        if (kind === 'align-left') { exec('justifyLeft'); return; }
+        if (kind === 'align-center') { exec('justifyCenter'); return; }
+        if (kind === 'align-right') { exec('justifyRight'); return; }
+        if (kind === 'insert-divider') { insertHtml('<hr class="rich-divider"><p><br></p>'); return; }
+        if (kind === 'link') {
+          var linkInput = wrap.querySelector('.rich-link-url');
+          var href = safeUrl(linkInput ? linkInput.value : '', false);
+          if (!href) { if (linkInput) linkInput.focus(); return; }
+          exec('createLink', href);
+          var a = selectedAnchor();
+          if (a) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener'); }
+          if (linkInput) linkInput.value = '';
+          touch();
           return;
         }
-        if (kind === 'bullet') { prefixLines('- ', t('bulletSample')); return; }
-        if (kind === 'block-up') { moveBlock(-1); return; }
-        if (kind === 'block-down') { moveBlock(1); return; }
-        if (kind === 'insert-divider') { replaceSelection('\n---\n'); return; }
         if (kind === 'image') {
           var input = wrap.querySelector('.rich-image-url');
           var url = input ? input.value.trim() : '';
           if (!url) { if (input) input.focus(); return; }
-          insertImageUrl(url);
-          if (input) input.value = '';
+          if (insertImageUrl(url) && input) input.value = '';
           return;
         }
         if (kind === 'youtube') {
           var youtubeInput = wrap.querySelector('.rich-youtube-url');
           var youtubeUrl = youtubeInput ? youtubeInput.value.trim() : '';
-          if (!youtubeUrl) { if (youtubeInput) youtubeInput.focus(); return; }
-          replaceSelection('\n![youtube](' + youtubeUrl + ')\n');
+          var embed = youtubeEmbedUrl(youtubeUrl);
+          if (!embed) { if (youtubeInput) youtubeInput.focus(); return; }
+          insertHtml('<figure class="rich-youtube" data-youtube="' + esc(embed) + '"><iframe src="' + esc(embed) + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></figure><p><br></p>');
           if (youtubeInput) youtubeInput.value = '';
         }
       });
@@ -1507,8 +1608,6 @@
         });
       });
     }
-    textarea.addEventListener('input', updatePreview);
-    updatePreview();
   }
 
   /* The eight components summed into product_development.sales_cost_usd, read
