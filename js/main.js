@@ -476,7 +476,12 @@
         if (tag === 'hr') return '<hr class="rich-divider">';
         const children = Array.from(node.childNodes).map(clean).join('');
         if (tag === 'strong' || tag === 'em') return `<${tag}>${children}</${tag}>`;
+        if (tag === 'section' || (tag === 'div' && node.classList.contains('rich-split'))) {
+          const splitClass = node.classList.contains('image-left') ? 'image-left' : 'image-right';
+          return `<section class="rich-split ${splitClass}">${children}</section>`;
+        }
         if (tag === 'p' || tag === 'div') {
+          if (node.classList.contains('rich-copy')) return `<div class="rich-copy">${children}</div>`;
           const align = (node.classList.contains('align-center') || node.style.textAlign === 'center') ? 'center'
             : (node.classList.contains('align-right') || node.style.textAlign === 'right') ? 'right' : '';
           const cls = align ? ` class="align-${align}"` : '';
@@ -529,7 +534,7 @@
       };
       return Array.from(doc.body.firstChild.childNodes).map(clean).join('');
     };
-    if (/<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|br|hr)\b/i.test(String(src))) {
+    if (/<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|section|br|hr)\b/i.test(String(src))) {
       return cleanRichHtml(src);
     }
     const inline = (str) => esc(str)

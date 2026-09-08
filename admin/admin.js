@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.26';
+  var ADMIN_VERSION = '1.27';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1303,8 +1303,8 @@
       + '<button type="button" data-format="link" title="' + esc(t('insertLink')) + '">Link</button>'
       + '<select class="rich-image-layout" title="' + esc(t('imageLayout')) + '">'
       + '<option value="wide">' + esc(t('imageLayoutWide')) + '</option>'
-      + '<option value="left">' + esc(t('imageLayoutLeft')) + '</option>'
-      + '<option value="right">' + esc(t('imageLayoutRight')) + '</option>'
+      + '<option value="right">' + esc(t('imageLayoutTextLeft')) + '</option>'
+      + '<option value="left">' + esc(t('imageLayoutTextRight')) + '</option>'
       + '</select>'
       + '<input type="text" class="rich-image-url" placeholder="' + esc(t('imageUrl')) + '">'
       + '<button type="button" data-format="image" title="' + esc(t('insertImage')) + '">Img</button>'
@@ -1401,7 +1401,7 @@
     var visual = wrap.querySelector('[data-rich-visual]');
     if (!visual) return;
     var savedRange = null;
-    var hasHtml = /<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|br|hr)\b/i;
+    var hasHtml = /<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|section|br|hr)\b/i;
 
     function safeUrl(url, media) {
       var u = String(url || '').trim();
@@ -1434,7 +1434,12 @@
         if (tag === 'b') tag = 'strong';
         if (tag === 'i') tag = 'em';
         if (tag === 'strong' || tag === 'em' || tag === 'br') return tag === 'br' ? '<br>' : '<' + tag + '>' + children + '</' + tag + '>';
+        if (tag === 'section' || (tag === 'div' && node.classList.contains('rich-split'))) {
+          var splitClass = node.classList.contains('image-left') ? 'image-left' : 'image-right';
+          return '<section class="rich-split ' + splitClass + '">' + children + '</section>';
+        }
         if (tag === 'p' || tag === 'div') {
+          if (node.classList.contains('rich-copy')) return '<div class="rich-copy">' + children + '</div>';
           var align = node.style && node.style.textAlign ? node.style.textAlign : '';
           var cls = /^(center|right)$/i.test(align) ? ' class="align-' + align.toLowerCase() + '"' : '';
           return '<p' + cls + '>' + (children || '<br>') + '</p>';
@@ -1506,12 +1511,40 @@
       document.execCommand('insertHTML', false, html);
       touch();
     }
-    function insertImageUrl(url) {
-      var src = safeUrl(url, true);
+    function selectedHtml() {
+      var range = savedRange;
+      if (!range || range.collapsed) return '';
+      var box = document.createElement('div');
+      box.appendChild(range.cloneContents());
+      return cleanArticleHtml(box.innerHTML).trim();
+    }
+    function mediaFigureHtml(kind, src) {
+      if (kind === 'youtube') {
+        return '<figure class="rich-youtube" data-youtube="' + esc(src) + '"><iframe src="' + esc(src) + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></figure>';
+      }
+      return '<figure class="rich-image"><img src="' + esc(src) + '" alt=""></figure>';
+    }
+    function insertMedia(kind, url) {
+      var src = kind === 'youtube' ? youtubeEmbedUrl(url) : safeUrl(url, true);
       if (!src) return false;
       var layoutEl = wrap.querySelector('.rich-image-layout');
       var layout = layoutEl ? layoutEl.value : 'wide';
-      insertHtml('<figure class="rich-image ' + esc(layout) + '"><img src="' + esc(src) + '" alt=""></figure><p><br></p>');
+      var figure = mediaFigureHtml(kind, src);
+      if (layout === 'wide') {
+        insertHtml(figure.replace('class="rich-image"', 'class="rich-image wide"') + '<p><br></p>');
+        return true;
+      }
+      var copy = selectedHtml() || '<p><br></p>';
+      var splitClass = layout === 'left' ? 'image-left' : 'image-right';
+      var media = figure.replace('class="rich-image"', 'class="rich-image wide"');
+      var body = layout === 'left'
+        ? media + '<div class="rich-copy">' + copy + '</div>'
+        : '<div class="rich-copy">' + copy + '</div>' + media;
+      insertHtml('<section class="rich-split ' + splitClass + '">' + body + '</section><p><br></p>');
+      return true;
+    }
+    function insertImageUrl(url) {
+      if (!insertMedia('image', url)) return false;
       return true;
     }
 
@@ -1581,9 +1614,7 @@
         if (kind === 'youtube') {
           var youtubeInput = wrap.querySelector('.rich-youtube-url');
           var youtubeUrl = youtubeInput ? youtubeInput.value.trim() : '';
-          var embed = youtubeEmbedUrl(youtubeUrl);
-          if (!embed) { if (youtubeInput) youtubeInput.focus(); return; }
-          insertHtml('<figure class="rich-youtube" data-youtube="' + esc(embed) + '"><iframe src="' + esc(embed) + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></figure><p><br></p>');
+          if (!insertMedia('youtube', youtubeUrl)) { if (youtubeInput) youtubeInput.focus(); return; }
           if (youtubeInput) youtubeInput.value = '';
         }
       });
