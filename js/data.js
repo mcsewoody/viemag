@@ -495,6 +495,75 @@ window.DB = {
       }
     },
     {
+      "sku": "P03",
+      "slug": "p03",
+      "status": "future",
+      "category": "portable",
+      "subCategory": "travel",
+      "art": "fold",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "magsafe"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "All-in-One Magnetic Phone Mount | VIEMAG",
+        "vi": "Giá đỡ điện thoại đa năng có nam châm | VIEMAG",
+        "id": "Dudukan Ponsel Magnetik Serbaguna | VIEMAG",
+        "zh": "多合一磁吸手機支架 | VIEMAG"
+      },
+      "claim": {
+        "en": "Compatible with MagSafe-enabled phones and phone cases\n360 degrees\nThe hook-style design makes it easy to hang bags and straps; it’s lightweight, portable, and easy to store.",
+        "vi": "Dùng cho điện thoại và ốp lưng hỗ trợ MagSafe\nCó thể xoay 360 độ\nThiết kế dạng móc treo, thuận tiện để treo túi xách và dây đeo, nhẹ nhàng, dễ mang theo và cất giữ.",
+        "id": "Cocok untuk ponsel dan casing ponsel yang mendukung MagSafe\n360 derajat\nDesain dengan kait, memudahkan untuk menggantung tas dan tali ransel, ringan, mudah dibawa, dan praktis untuk disimpan.",
+        "zh": "適用於支援 MagSafe 的手機和手機殼\n可 360 度\n掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788853082632-ws236koftq-R_nh_tay.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788853082633-spznwasnn8-G_n_m_i_b__m_t.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788853082633-292huz5kjit-Hai_m_t_nam_ch_m.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788853082633-pyh9d0dvx9b-M_c_g_n_mang__i.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788853082633-uwcabxlh1e-Xoay_Linh_ho_t.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788853082633-akh5s0zn2nn-_a_n_ng.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788853082634-e0fxcz5lrut-1.png"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "清潔包*1、引磁片*1"
+        ]
+      },
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<h2>Giá đỡ điện thoại MagSafe gập gọn 360° đa năng</h2><p><strong>Giá đỡ điện thoại MagSafe gập gọn</strong> tích hợp nam châm, tay đỡ đa khớp và móc treo trong một thiết kế nhỏ gọn. Sản phẩm phù hợp cho nhiều tình huống như làm việc, quay video, tập gym, du lịch hoặc sử dụng trên các bề mặt kim loại.</p><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788853596341-vo9peqmn7ab-G_n_m_i_b__m_t.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Tương thích với điện thoại và ốp lưng MagSafe</h2><p>Vòng nam châm được thiết kế để sử dụng với <strong>điện thoại và ốp lưng hỗ trợ MagSafe</strong>, giúp gắn và tháo thiết bị nhanh chóng. Người dùng không cần sử dụng kẹp điện thoại truyền thống, tạo trải nghiệm gọn gàng và thuận tiện hơn.</p><p>Thiết kế này đặc biệt phù hợp với các dòng phụ kiện di động hướng đến người dùng iPhone và hệ sinh thái MagSafe.</p></div></section><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Điều chỉnh góc linh hoạt 360°</h2><p>Cấu trúc tay đỡ nhiều khớp cho phép điều chỉnh điện thoại theo nhiều góc sử dụng khác nhau. Phần khớp xoay hỗ trợ <strong>điều chỉnh 360°</strong>, thuận tiện khi chuyển đổi giữa chế độ dọc, ngang hoặc thay đổi góc quan sát.</p><p>Người dùng có thể dễ dàng điều chỉnh vị trí điện thoại khi gọi video, xem nội dung, quay phim hoặc làm việc rảnh tay.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788853633044-tmwai9mh2b-Xoay_Linh_ho_t.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788853694076-8acffg9mkup-Hai_m_t_nam_ch_m.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Nam châm N52 hai mặt</h2><p>Sản phẩm sử dụng <strong>nam châm N52 hai mặt</strong>, vừa giữ điện thoại ở phía trước vừa có thể gắn phần thân giá đỡ lên các bề mặt sắt.</p><p>Nhờ đó, sản phẩm có thể được sử dụng tại phòng gym, tủ lạnh, bảng dụng cụ hoặc các kết cấu kim loại phù hợp mà không cần thêm bộ kẹp cố định.</p></div></section><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Thiết kế gập gọn, dễ mang theo</h2><p>Khi không sử dụng, toàn bộ tay đỡ có thể <strong>gập lại thành kích thước nhỏ gọn</strong>, thuận tiện cất trong túi hoặc mang theo khi di chuyển.</p><p>Thiết kế này giúp sản phẩm phù hợp cho người dùng thường xuyên đi công tác, du lịch, tập luyện hoặc cần một giá đỡ điện thoại có tính cơ động cao.</p><p>Ngoài chức năng mang theo, phần móc còn có thể hỗ trợ treo vật dụng nhẹ trong một số tình huống sử dụng, tăng tính đa dụng cho sản phẩm.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788853734157-dj9qbxpeg8v-M_c_g_n_mang__i.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788854129318-9f0txgc2xav-R_nh_tay.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Một sản phẩm cho nhiều tình huống sử dụng</h2><p>Giá đỡ có thể sử dụng như <strong>giá đỡ bàn, tay cầm quay video, giá đỡ tại phòng gym hoặc giá đỡ trên bề mặt kim loại</strong>. Thiết kế linh hoạt giúp người dùng chuyển đổi nhanh giữa nhiều cách sử dụng mà không cần mang theo nhiều phụ kiện riêng biệt.</p><p>Đây cũng là điểm phù hợp cho các thương hiệu muốn phát triển dòng phụ kiện đa năng có giá trị sử dụng cao.</p></div></section><p><br></p><p><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788854196455-4t0smpyd8ur-_a_n_ng.png\" alt=\"\" loading=\"lazy\"></p><p><br></p><h2>Phù hợp cho B2B, OEM và ODM</h2><p>Với thiết kế gập gọn, khả năng xoay linh hoạt, tương thích MagSafe và nhiều cách sử dụng, sản phẩm phù hợp cho <strong>thương hiệu phụ kiện điện thoại, nhà phân phối, nhà bán lẻ và khách hàng OEM/ODM</strong>.</p><p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</p><p>Sản phẩm có thể được phát triển theo nhu cầu thị trường về màu sắc, bao bì, logo và phương án thương hiệu riêng.</p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788852564427-ilmb6k3zn5-hero_appleGray_1200_20260908_1427.webp"
+    },
+    {
       "sku": "BQ01",
       "slug": "bq01",
       "status": "future",
