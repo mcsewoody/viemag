@@ -6,7 +6,7 @@
   <title>Product — VIEMAG</title>
   <meta name="description" content="">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=17">
+  <link rel="stylesheet" href="css/style.css?v=19">
 </head>
 <body data-page="products" data-keep-title="1">
 
@@ -106,21 +106,20 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
 
   function technicalDetailsContent(p, specRows) {
     return `
-      <div class="pdp-technical-grid">
-        <div class="spec-block">
-          <h3>${t('pdp.specs')}</h3>
-          <table>${specRows}</table>
+      <div class="pdp-technical-grid pdp-spec-simple">
+        <div class="spec-block spec-main">
+          <table aria-label="${esc(t('pdp.specs'))}">${specRows}</table>
           ${p.spec ? `<p class="spec-download"><a href="${esc(p.spec)}" target="_blank" rel="noopener">${icon('external')}${t('pdp.specSheet')}</a></p>` : ''}
         </div>
         ${accessoryBlock(p)}
-        <div class="spec-block">
-          <h3>${t('pdp.compat')}</h3>
-          <table><tr><td colspan="2" style="color:var(--ink)">${t('pdp.compatText')}</td></tr></table>
-        </div>
-        <div class="spec-block evidence-block">
-          <h3>${t('pdp.evidence')}</h3>
+        <details class="spec-extra">
+          <summary>${t('pdp.compat')}</summary>
+          <p>${t('pdp.compatText')}</p>
+        </details>
+        <details class="spec-extra evidence-block">
+          <summary>${t('pdp.evidence')}</summary>
           ${reportList(p)}
-        </div>
+        </details>
       </div>`;
   }
 
@@ -247,6 +246,6 @@ window.renderPage = function ({ t, tf, icon, art, thumb, productCard, claimHtml,
   }
 };
 </script>
-<script src="js/main.js?v=18"></script>
+<script src="js/main.js?v=19"></script>
 </body>
 </html>

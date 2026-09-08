@@ -437,7 +437,7 @@
     if (!src) return '';
     const safeImageUrl = (url) => {
       const u = String(url || '').trim();
-      if (/^(https?:)?\/\//i.test(u) || u.charAt(0) === '/' || /^(?:\.\.?\/)?(?:assets|image)\//i.test(u)) return esc(u);
+      if (/^(https?:)?\/\//i.test(u) || u.charAt(0) === '/' || /^(?:\.\.?\/)?(?:assets|image)\//i.test(u)) return u;
       return '';
     };
     const safeVideoUrl = (url) => {
@@ -461,8 +461,77 @@
         else if (/^\/(?:embed|shorts)\//.test(u.pathname)) id = u.pathname.split('/').filter(Boolean)[1] || '';
       }
       if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return '';
-      return `https://www.youtube.com/embed/${esc(id)}`;
+      return `https://www.youtube.com/embed/${id}`;
     };
+    const cleanRichHtml = (html) => {
+      const doc = new DOMParser().parseFromString(`<div>${html}</div>`, 'text/html');
+      const clean = (node) => {
+        if (node.nodeType === Node.TEXT_NODE) return esc(node.nodeValue);
+        if (node.nodeType !== Node.ELEMENT_NODE) return '';
+        let tag = node.tagName.toLowerCase();
+        if (tag === 'script' || tag === 'style') return '';
+        if (tag === 'b') tag = 'strong';
+        if (tag === 'i') tag = 'em';
+        if (tag === 'br') return '<br>';
+        if (tag === 'hr') return '<hr class="rich-divider">';
+        const children = Array.from(node.childNodes).map(clean).join('');
+        if (tag === 'strong' || tag === 'em') return `<${tag}>${children}</${tag}>`;
+        if (tag === 'p' || tag === 'div') {
+          const align = (node.classList.contains('align-center') || node.style.textAlign === 'center') ? 'center'
+            : (node.classList.contains('align-right') || node.style.textAlign === 'right') ? 'right' : '';
+          const cls = align ? ` class="align-${align}"` : '';
+          return `<p${cls}>${children || '<br>'}</p>`;
+        }
+        if (tag === 'h1' || tag === 'h2' || tag === 'h3') {
+          const outTag = tag === 'h3' ? 'h3' : 'h2';
+          return `<${outTag}>${children}</${outTag}>`;
+        }
+        if (tag === 'ul' || tag === 'ol') return `<${tag}>${children}</${tag}>`;
+        if (tag === 'li') return `<li>${children}</li>`;
+        if (tag === 'a') {
+          const href = safeHttpUrl(node.getAttribute('href'));
+          return href ? `<a href="${href}" target="_blank" rel="noopener">${children}</a>` : children;
+        }
+        if (tag === 'img') {
+          const src = safeImageUrl(node.getAttribute('src'));
+          const alt = node.getAttribute('alt') || '';
+          return src ? `<figure class="rich-image wide"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></figure>` : '';
+        }
+        if (tag === 'iframe') {
+          const src = youtubeEmbedUrl(node.getAttribute('src') || '');
+          return src ? `<figure class="rich-youtube"><iframe src="${esc(src)}" title="YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></figure>` : '';
+        }
+        if (tag === 'figure') {
+          const clsRaw = node.getAttribute('class') || '';
+          if (/\brich-youtube\b/.test(clsRaw)) {
+            const src = youtubeEmbedUrl(node.getAttribute('data-youtube') || (node.querySelector('iframe') && node.querySelector('iframe').getAttribute('src')) || '');
+            return src ? `<figure class="rich-youtube"><iframe src="${esc(src)}" title="YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></figure>` : '';
+          }
+          const img = node.querySelector('img');
+          if (img) {
+            const src = safeImageUrl(img.getAttribute('src'));
+            const alt = img.getAttribute('alt') || '';
+            const layout = /\bleft\b/.test(clsRaw) ? 'left' : /\bright\b/.test(clsRaw) ? 'right' : 'wide';
+            return src ? `<figure class="rich-image ${layout}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></figure>` : '';
+          }
+          const video = node.querySelector('video');
+          if (video) {
+            const src = safeVideoUrl(video.getAttribute('src'));
+            return src ? `<figure class="rich-video"><video src="${esc(src)}" controls playsinline preload="metadata"></video></figure>` : '';
+          }
+          return children;
+        }
+        if (tag === 'video') {
+          const src = safeVideoUrl(node.getAttribute('src'));
+          return src ? `<figure class="rich-video"><video src="${esc(src)}" controls playsinline preload="metadata"></video></figure>` : '';
+        }
+        return children;
+      };
+      return Array.from(doc.body.firstChild.childNodes).map(clean).join('');
+    };
+    if (/<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|br|hr)\b/i.test(String(src))) {
+      return cleanRichHtml(src);
+    }
     const inline = (str) => esc(str)
       .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, (_, text, url) => {
         const href = safeHttpUrl(url);
@@ -480,6 +549,7 @@
     String(src).split('\n').forEach((raw) => {
       const line = raw.trim();
       if (!line) { flush(); return; }
+      if (/^(?:---|\*\s*\*\s*\*)$/.test(line)) { flush(); out.push('<hr class="rich-divider">'); return; }
       const img = /^!\[([^\]]*)\]\(([^)]+)\)(?:\{(wide|left|right)\})?$/i.exec(line);
       if (img) {
         flush();
@@ -487,19 +557,19 @@
         if (mediaType === 'youtube') {
           const src = youtubeEmbedUrl(img[2]);
           if (!src) return;
-          out.push(`<figure class="rich-youtube"><iframe src="${src}" title="YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></figure>`);
+          out.push(`<figure class="rich-youtube"><iframe src="${esc(src)}" title="YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></figure>`);
           return;
         }
         if (mediaType === 'video') {
           const src = safeVideoUrl(img[2]);
           if (!src) return;
-          out.push(`<figure class="rich-video"><video src="${src}" controls playsinline preload="metadata"></video></figure>`);
+          out.push(`<figure class="rich-video"><video src="${esc(src)}" controls playsinline preload="metadata"></video></figure>`);
           return;
         }
         const src = safeImageUrl(img[2]);
         if (!src) return;
         const layout = img[3] || 'wide';
-        out.push(`<figure class="rich-image ${layout}"><img src="${src}" alt="${esc(img[1])}" loading="lazy"></figure>`);
+        out.push(`<figure class="rich-image ${layout}"><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy"></figure>`);
         return;
       }
       if (/^##\s+/.test(line)) { flush(); out.push(`<h2>${inline(line.replace(/^##\s+/, ''))}</h2>`); return; }
