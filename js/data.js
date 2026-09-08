@@ -773,6 +773,84 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788854674264-dpj1r37f0n-hero_appleGray_1200_20260908_1502.webp"
     },
     {
+      "sku": "DQ04",
+      "slug": "dq04",
+      "status": "future",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "deskcharge",
+      "qi": "testing",
+      "qiId": null,
+      "watt": "15W",
+      "mount": [
+        "magsafe",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "充電超薄磁吸手機座 | VIEMAG"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "支援15W無線快充。\n磁吸\n270度旋轉支架，多角度調節觀看。\n可折疊"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600772578-C9W-013.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600775058-C9W-025P-std-Perspective.PNG",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600778065-C9W-024P-std-Perspective.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600779751-C9W-022P-std-Perspective.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600781011-C9W-021P-std-Perspective.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600782233-C9W-020P-std-Perspective.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600783528-C9W-023P-std-Perspective.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600784752-C9W-018P-std-Perspective.PNG",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600787115-C9W-018P-std-Perspective-1.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600789692-C9W-024P-std-Perspective-1.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "酒精棉片",
+          "黏貼式磁吸環*1",
+          "保護貼",
+          "定位卡",
+          "3M金屬座*2",
+          "充電線"
+        ]
+      },
+      "article": {
+        "en": "<h2>15W Magnetic Wireless Charging Stand—Foldable and Adjustable Up to 270°</h2><h3><p><strong>15W Magnetic Wireless Charging Stand</strong> combines charging and phone mounting in a compact, lightweight design. This product is suitable for installation on a car dashboard, supports multiple viewing angles, and is ideal for <strong>B2B, OEM/ODM automotive and smartphone accessory projects</strong>.</p></h3><h3>15W Fast Wireless Charging</h3><h3><p>Supports <strong>wireless charging at up to 15W</strong>, helping to maintain battery life while using the phone for navigation, making calls, or viewing information in the car.<br>\nThe integrated design keeps the dashboard area neat and makes it more convenient to use.</p></h3><h3>Strong magnetic hold, quick placement</h3><h3><p>The <strong>magnetic attachment mechanism</strong> keeps your phone securely in place on the mount and allows you to easily place or remove it with a single motion.<br>\nIdeal for frequent use in a car without the need for a traditional mount.</p></h3><h3>Adjustable up to 270°, offering flexible viewing angles</h3><h3><p>The mount can <strong>open and adjust within a range of up to 270°</strong>, making it easy to choose the right viewing angle for your installation location.<br>\nThe phone can be used flexibly in <strong>portrait or landscape mode</strong> when navigating or viewing content.</p></h3><h3>Folds away neatly when not in use</h3><h3><p>The design allows it to <strong>fold flat against the dashboard</strong>, saving space and keeping the car’s interior tidy.<br>\nSlim, minimalist design that complements a variety of cockpit styles.</p></h3><h3>Suitable for B2B &amp; OEM/ODM</h3><h3><p>\n\n\n\n\n\n\n\n\n\n\n</p><p>This product combines <strong>15W fast charging, magnetic attachment, multi-angle adjustment, and a compact folding design</strong>, making it ideal for automotive accessory brands, distributors, and <strong>OEM/ODM</strong> projects.</p></h3>",
+        "vi": "<h2>Giá đỡ sạc không dây từ tính 15W gập gọn điều chỉnh 270°</h2><h3><p><strong>Giá đỡ sạc không dây từ tính 15W</strong> kết hợp sạc và giữ điện thoại trong thiết kế gọn nhẹ. Sản phẩm phù hợp lắp trên taplo ô tô, hỗ trợ điều chỉnh nhiều góc nhìn và phù hợp cho các dự án <strong>B2B, OEM/ODM phụ kiện ô tô và điện thoại</strong>.</p></h3><h3>Sạc nhanh không dây 15W</h3><h3><p>Hỗ trợ <strong>sạc không dây công suất lên đến 15W</strong>, giúp duy trì pin khi sử dụng điện thoại để dẫn đường, nghe gọi hoặc xem thông tin trên xe.<br>\nThiết kế tích hợp giúp khu vực taplo gọn gàng và thuận tiện hơn khi sử dụng.</p></h3><h3>Hít từ chắc chắn, đặt máy nhanh</h3><h3><p>Cơ chế <strong>hút từ</strong> giúp điện thoại bám ổn định trên giá đỡ và dễ dàng đặt hoặc lấy máy chỉ với một thao tác.<br>\nPhù hợp cho nhu cầu sử dụng thường xuyên trên ô tô mà không cần kẹp giữ truyền thống.</p></h3><h3>Điều chỉnh đến 270°, linh hoạt nhiều góc nhìn</h3><h3><p>Phần giá đỡ có thể <strong>mở và điều chỉnh trong phạm vi đến 270°</strong>, giúp dễ dàng lựa chọn góc nhìn phù hợp với vị trí lắp đặt.<br>\nĐiện thoại có thể sử dụng linh hoạt theo <strong>chiều dọc hoặc ngang</strong> khi dẫn đường hoặc xem nội dung.</p></h3><h3>Gập gọn khi không sử dụng</h3><h3><p>Thiết kế có thể <strong>gập phẳng xuống taplo</strong>, giúp tiết kiệm không gian và giữ nội thất xe gọn gàng.<br>\nKiểu dáng mỏng, tối giản, phù hợp với nhiều phong cách khoang lái.</p></h3><h3>Phù hợp cho B2B &amp; OEM/ODM</h3><h3><p>\n\n\n\n\n\n\n\n\n\n\n</p><p>Sản phẩm kết hợp <strong>sạc nhanh 15W, hút từ, điều chỉnh đa góc và thiết kế gập gọn</strong>, phù hợp với thương hiệu phụ kiện ô tô, nhà phân phối và các dự án <strong>OEM/ODM</strong>.</p></h3>",
+        "id": "<h2>Dudukan pengisi daya nirkabel magnetik 15W yang dapat dilipat dan disesuaikan hingga 270°</h2><h3><p><strong>Dudukan pengisi daya nirkabel magnetik 15W</strong> yang menggabungkan fungsi pengisian daya dan penahan ponsel dalam desain yang ringkas dan ringan. Produk ini cocok dipasang di dasbor mobil, mendukung penyesuaian berbagai sudut pandang, dan cocok untuk proyek <strong>B2B, OEM/ODM aksesori mobil dan ponsel</strong>.</p></h3><h3>Pengisian daya nirkabel cepat 15W</h3><h3><p>Mendukung <strong>pengisian daya nirkabel dengan daya hingga 15W</strong>, membantu menjaga daya baterai saat menggunakan ponsel untuk navigasi, menelepon, atau melihat informasi di dalam mobil.<br>\nDesain terintegrasi membuat area dasbor lebih rapi dan nyaman saat digunakan.</p></h3><h3>Magnet yang kuat, pemasangan cepat</h3><h3><p>Mekanisme <strong>magnet</strong> membantu ponsel menempel dengan stabil pada dudukan dan memudahkan pemasangan atau pengambilan ponsel hanya dengan satu gerakan.<br>\nCocok untuk penggunaan rutin di dalam mobil tanpa perlu penjepit tradisional.</p></h3><h3>Dapat disesuaikan hingga 270°, fleksibel untuk berbagai sudut pandang</h3><h3><p>Bagian dudukannya dapat <strong>dibuka dan disesuaikan hingga 270°</strong>, sehingga memudahkan pemilihan sudut pandang yang sesuai dengan lokasi pemasangan.<br>\nPonsel ini dapat digunakan secara fleksibel dalam <strong>posisi vertikal atau horizontal</strong> saat navigasi atau menonton konten.</p></h3><h3>Dapat dilipat rapi saat tidak digunakan</h3><h3><p>Desainnya memungkinkan <strong>dilipat rata ke dasbor</strong>, sehingga menghemat ruang dan menjaga interior mobil tetap rapi.<br>\nDesain ramping dan minimalis, cocok untuk berbagai gaya kabin pengemudi.</p></h3><h3>Cocok untuk B2B &amp; OEM/ODM</h3><h3><p>\n\n\n\n\n\n\n\n\n\n\n</p><p>Produk ini menggabungkan <strong>pengisian cepat 15W, daya tarik magnetik, penyesuaian sudut yang fleksibel, dan desain yang dapat dilipat dengan ringkas</strong>, cocok untuk merek aksesori mobil, distributor, dan proyek <strong>OEM/ODM</strong>.</p></h3>",
+        "zh": "<h2>15W 磁吸式無線充電支架，可折疊設計，支持 270° 角度調節</h2><h3><p><strong>15W 磁吸式無線充電支架</strong>，採用輕巧設計，兼具充電與手機固定功能。 本產品適合安裝於汽車儀表板，支援多角度調節，並適用於 <strong>B2B、OEM/ODM 汽車及手機配件專案</strong>。</p></h3><h3>15W 無線快充</h3><h3><p>支援 <strong>最高 15W 的無線充電</strong>，讓您在車上使用手機導航、通話或查看資訊時，仍能維持電池電量。<br>\n一體化設計讓儀表板區域更整潔，使用起來也更方便。</p></h3><h3>強勁磁吸，快速固定手機</h3><h3><p><strong>磁吸機制</strong>可讓手機穩固地吸附在支架上，只需一個動作即可輕鬆放置或取下手機。<br>\n適合在車上經常使用，無需傳統的夾具固定。</p></h3><h3>可調整至 270°，提供多種靈活的視角</h3><h3><p>支架部分可 <strong>展開並在 270° 範圍內調整</strong>，便於根據安裝位置選擇合適的視角。<br>\n在導航或瀏覽內容時，手機可靈活地以<strong>直立或橫向</strong>模式使用。</p></h3><h3>不使用時可摺疊收納</h3><h3><p>設計可<strong>平放摺疊於儀表板上</strong>，有助於節省空間並保持車內整潔。<br>\n輕薄、極簡的設計，適合多種駕駛艙風格。</p></h3><h3>適用於 B2B 及 OEM/ODM</h3><h3><p>\n\n\n\n\n\n\n\n\n\n\n</p><p>此產品結合了 <strong>15W 快充、磁吸功能、多角度調節及可折疊設計</strong>，適合汽車配件品牌、經銷商以及 <strong>OEM/ODM</strong> 專案。</p></h3>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788855186633-jv5vfy6uj9o-hero_appleGray_1200_20260908_1502.webp"
+    },
+    {
       "sku": "P01",
       "slug": "p01",
       "status": "future",
