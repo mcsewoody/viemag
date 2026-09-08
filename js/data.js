@@ -495,8 +495,8 @@ window.DB = {
       }
     },
     {
-      "sku": "P03",
-      "slug": "p03",
+      "sku": "B07",
+      "slug": "B07",
       "status": "future",
       "category": "portable",
       "subCategory": "travel",
