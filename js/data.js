@@ -700,8 +700,8 @@ window.DB = {
       }
     },
     {
-      "sku": "D06",
-      "slug": "d06",
+      "sku": "E1",
+      "slug": "E1",
       "status": "future",
       "category": "desk",
       "subCategory": "stands",
@@ -718,10 +718,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "E1 | VIEMAG",
-        "vi": "",
-        "id": "",
-        "zh": "超薄磁吸手機座 | VIEMAG"
+        "en": "Foldable Magnetic Phone Mount with 270° Rotation | VIEMAG",
+        "vi": "Giá đỡ điện thoại nam châm gập gọn xoay 270°| VIEMAG",
+        "id": "Dudukan ponsel magnetik yang dapat dilipat dan diputar 270° | VIEMAG",
+        "zh": "可摺疊、270°旋轉的磁吸式手機支架 | VIEMAG"
       },
       "claim": {
         "en": "",
