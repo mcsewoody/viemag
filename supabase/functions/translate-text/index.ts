@@ -10,6 +10,15 @@
 // longer content (Insights articles) if that's ever built, but is overkill
 // here.
 //
+// 2026-09-08: the button now also serves product_article_*, which is long-form
+// HTML from a WYSIWYG editor rather than a short line of plain text. That is
+// the `html: true` path — see deeplTranslate. The reasoning above is worth
+// revisiting for it: an article is exactly the "longer content" the last
+// paragraph says an LLM would suit better, and it is the one field here where
+// brand voice is a real risk. Left on DeepL for now because it is what already
+// works and costs nothing; if article translations start reading flat, that is
+// the trade-off talking, not a bug.
+//
 // Secrets required (Supabase Function secrets, never client-side):
 //   DEEPL_API_KEY    the API key from your DeepL account
 //   DEEPL_API_HOST    optional, defaults to the Free-tier host below. Set this
@@ -46,10 +55,57 @@ const LANGS = ['en', 'vi', 'id', 'zh'];
 // Neither is a paragraph. Capped well above any real use so a future accidental
 // reuse of this button on a large textarea (e.g. article body) fails loudly
 // instead of quietly burning the monthly character quota on one call.
+// Still true of every PLAIN-TEXT field. The article body stopped being the
+// accident this was written to catch and became a supported case, but it takes
+// the `html: true` path and MAX_HTML_LENGTH below — so this number keeps doing
+// its original job here, and raising it would give that job up for nothing.
 const MAX_INPUT_LENGTH = 2000;
 // DeepL accepts up to 50 text elements per request. Lines beyond that mean the
 // button is being used on something it was not designed for.
 const DEEPL_MAX_TEXTS = 50;
+// The separate ceiling for `html: true` (the product_article_* editor, which
+// stores sanitized HTML). This one is a REQUEST-SIZE guard, not a quota guard:
+// with tag_handling set, DeepL bills only the text between the tags, so the
+// markup in an article — every class, every storage URL — is free. The longest
+// real article today is ~5500 characters. Two things to keep in mind before
+// raising it: DeepL's request body limit is 128 KiB, and Vietnamese in UTF-8
+// runs 2-3 bytes per character.
+const MAX_HTML_LENGTH = 12000;
+
+/* The HTML path sends the whole article as ONE text element, so the N-in/N-out
+   assertion below degenerates to 1 === 1 and stops asserting anything. The
+   failure it guards against has not gone away — it moved from line count to tag
+   structure. DeepL's HTML handler is known to occasionally drop or relocate
+   elements, and outline_detection is free to reorder tags to suit the target
+   language's word order. A translated paragraph landing in the wrong place is
+   an edit; a silently deleted <figure> is an image gone from viemag.biz that
+   nobody notices until a customer does.
+
+   Counted with String.match, never .test() — this literal is shared and /g
+   regexes carry lastIndex across .test() calls.
+
+   The one check for this file, against a deployed function:
+
+     curl -sS -X POST "$SUPABASE_URL/functions/v1/translate-text" \
+       -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' \
+       -d '{"source":"vi","html":true,"text":"<p>Xin chào</p><figure class=\"rich-image wide\"><img src=\"https://example.com/a.png\" alt=\"\"></figure>"}'
+
+   Every translation in the reply must still contain `rich-image wide`, exactly
+   one `<img`, and the unchanged example.com URL. If tag_handling stops being
+   sent, the reply comes back with those translated into prose instead. */
+const STRUCT_TAGS = /<(?:figure|img|iframe|video|hr)\b/gi;
+
+/* "Is there anything to translate here?" — asked of the text CONTENT, not the
+   string length. An empty article is not '': the rich editor stores the literal
+   `<p><br></p>` (admin/admin.js), which is 11 truthy characters. Without this,
+   translating an empty cell overwrites the other three languages — which may be
+   thousands of characters of real, hand-checked copy — with the translation of
+   nothing. Also covers `<p></p>` and `<p>&nbsp;</p>`. Mirrored in
+   admin/admin.js's runTranslateButton so the operator is told before the round
+   trip; kept here too because the guard has to hold for any caller. */
+function hasTranslatableText(text: string): boolean {
+  return /\S/.test(text.replace(/<[^>]*>/g, ' ').replace(/&nbsp;|&#160;/gi, ' '));
+}
 
 async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: string }> {
   const authHeader = req.headers.get('Authorization') || '';
@@ -73,9 +129,19 @@ async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: strin
    the result are byte-for-byte what they were before.
 
    Blank lines keep their position and are never sent: DeepL has nothing to do
-   with an empty string, and sending one would just consume an element slot. */
-async function deeplTranslate(text: string, sourceLang: string, targetLang: string): Promise<string> {
-  const lines = text.split('\n');
+   with an empty string, and sending one would just consume an element slot.
+
+   None of that applies to `asHtml`. A product article is sanitized HTML, and
+   splitting HTML on newlines would hand DeepL fragments of markup: the line
+   boundaries there are incidental (real articles carry stray \n inside a <p>),
+   while the tags are the structure. So the whole article goes as ONE element
+   with tag_handling, which is what tells DeepL to pull the text out of the
+   markup, translate that, and put it back — leaving classes, URLs and
+   attributes alone. One element is also, conveniently, under both the
+   50-element and the 128 KiB request limits, so the article path needs no
+   batching at all. */
+async function deeplTranslate(text: string, sourceLang: string, targetLang: string, asHtml: boolean): Promise<string> {
+  const lines = asHtml ? [text] : text.split('\n');
   const sendAt: number[] = [];
   const payload: string[] = [];
   lines.forEach((line, i) => {
@@ -92,7 +158,17 @@ async function deeplTranslate(text: string, sourceLang: string, targetLang: stri
       'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ text: payload, source_lang: sourceLang, target_lang: targetLang }),
+    /* tag_handling_version defaults to v1, so v2 has to be asked for by name —
+       it is not the redundant belt-and-braces it looks like. split_sentences is
+       deliberately left off: html mode already defaults it to `nonewlines`,
+       which is the right choice here precisely because article HTML carries
+       stray literal newlines that mean nothing. */
+    body: JSON.stringify({
+      text: payload,
+      source_lang: sourceLang,
+      target_lang: targetLang,
+      ...(asHtml ? { tag_handling: 'html', tag_handling_version: 'v2' } : {}),
+    }),
   });
   if (!res.ok) {
     const errText = await res.text();
@@ -106,7 +182,16 @@ async function deeplTranslate(text: string, sourceLang: string, targetLang: stri
     throw new Error(`DeepL ${targetLang} returned ${out.length} results for ${payload.length} lines`);
   }
   sendAt.forEach((lineNo, k) => { lines[lineNo] = out[k]?.text ?? ''; });
-  return lines.join('\n');
+  const result = lines.join('\n');
+
+  if (asHtml) {
+    const before = (text.match(STRUCT_TAGS) || []).length;
+    const after = (result.match(STRUCT_TAGS) || []).length;
+    if (before !== after) {
+      throw new Error(`DeepL ${targetLang} returned ${after} media/structural tags for ${before} in the source`);
+    }
+  }
+  return result;
 }
 
 Deno.serve(async (req: Request) => {
@@ -129,13 +214,24 @@ Deno.serve(async (req: Request) => {
     const body = await req.json().catch(() => null);
     const text = body?.text;
     const source = body?.source;
-    if (typeof text !== 'string' || !text.trim()) return json({ error: 'text is required' }, 400);
-    if (text.length > MAX_INPUT_LENGTH) return json({ error: `text exceeds ${MAX_INPUT_LENGTH} characters` }, 400);
+    /* Whether this field holds HTML is the CALLER's answer, not something to
+       sniff for here. /admin knows for certain — the article editor's textarea
+       carries a `rich-source` class — and sniffing would need a third copy of
+       the HTML-detection regex that already lives in admin/admin.js and
+       js/main.js. That regex also has a false positive this path cannot afford:
+       a claim reading "Charges <a phone> in 30 min" matches `<a\b` and would be
+       handed to DeepL as markup instead of being translated. Defaults to false,
+       so an older caller that does not send the flag behaves exactly as before. */
+    const asHtml = body?.html === undefined ? false : body.html;
+    if (typeof text !== 'string' || !hasTranslatableText(text)) return json({ error: 'text is required' }, 400);
+    if (typeof asHtml !== 'boolean') return json({ error: 'html must be true or false' }, 400);
+    const cap = asHtml ? MAX_HTML_LENGTH : MAX_INPUT_LENGTH;
+    if (text.length > cap) return json({ error: `text exceeds ${cap} characters` }, 400);
     if (typeof source !== 'string' || !LANGS.includes(source)) return json({ error: `source must be one of ${LANGS.join(', ')}` }, 400);
 
     const targets = LANGS.filter((l) => l !== source);
     const results = await Promise.all(
-      targets.map((l) => deeplTranslate(text, DEEPL_SOURCE[source], DEEPL_TARGET[l]).then((t) => [l, t] as const)),
+      targets.map((l) => deeplTranslate(text, DEEPL_SOURCE[source], DEEPL_TARGET[l], asHtml).then((t) => [l, t] as const)),
     );
 
     const out: Record<string, string> = {};

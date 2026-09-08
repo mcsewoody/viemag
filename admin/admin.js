@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.28';
+  var ADMIN_VERSION = '1.29';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -63,18 +63,42 @@
   /* Calls translate-text with the CURRENT text of one language cell and gets
      the other three back. No keepalive here (unlike callExportFunction) — the
      operator is actively waiting on this result to fill the form, not
-     navigating away, so there is nothing to protect against a page unload. */
-  function callTranslateFunction(text, source) {
+     navigating away, so there is nothing to protect against a page unload.
+
+     `asHtml` tells the function to use DeepL's tag_handling instead of treating
+     the value as prose. We say so explicitly rather than letting the function
+     guess, because only this side knows for certain: the product-article editor
+     is the one field backed by a `rich-source` textarea.
+
+     The timeout is not decoration. runTranslateButton disables all four buttons
+     in the row for the round trip and re-enables them in .then()/.catch(); a
+     request that hangs settles neither, so without an abort the row stays dead
+     until the operator reloads the form and loses whatever they had typed in
+     the other three languages. 90s is under Supabase's 150s wall clock, so the
+     browser gives up first and can say why. */
+  function callTranslateFunction(text, source, asHtml) {
     return sb.auth.getSession().then(function (sessionRes) {
       var token = (sessionRes.data.session && sessionRes.data.session.access_token) || CFG.supabaseAnonKey;
       return fetch(CFG.supabaseUrl + '/functions/v1/translate-text', {
         method: 'POST',
         headers: { apikey: CFG.supabaseAnonKey, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text, source: source }),
+        body: JSON.stringify({ text: text, source: source, html: !!asHtml }),
+        signal: AbortSignal.timeout(90000),
       }).then(function (res) {
         return res.json().then(function (data) { return { httpOk: res.ok, data: data }; });
       });
     });
+  }
+
+  /* "Is there anything in this field?" asked of the text CONTENT, not the string
+     length. An empty product article is not '': the rich editor stores the
+     literal '<p><br></p>' (see wireRichEditor), which is 11 truthy characters.
+     Without this, pressing Translate on an empty cell sails past the empty
+     check and overwrites the other three languages — potentially thousands of
+     characters of checked copy — with the translation of nothing. The same
+     check runs server-side in translate-text. */
+  function hasTranslatableText(value) {
+    return /\S/.test(String(value || '').replace(/<[^>]*>/g, ' ').replace(/&nbsp;|&#160;/gi, ' '));
   }
 
   function triggerExportIfNeeded(tableName, statusEl) {
@@ -1548,9 +1572,29 @@
       return true;
     }
 
-    visual.innerHTML = hasHtml.test(textarea.value) ? cleanArticleHtml(textarea.value) : richPreviewHtml(textarea.value);
-    if (!visual.innerHTML.trim()) visual.innerHTML = '<p><br></p>';
-    textarea.value = cleanArticleHtml(visual.innerHTML).trim();
+    /* Read the textarea into the visual pane, upgrading legacy markdown on the
+       way, and write the sanitized result back. Called at open, and again
+       whenever something replaces the textarea's value behind the editor's back
+       — today that means runTranslateButton landing a translation.
+
+       The third line is a SANITIZER, not a formatting nicety: a translation
+       arrives as raw HTML from DeepL and would otherwise go straight to the
+       database, because collectFormValues() reads this textarea verbatim.
+       cleanArticleHtml is the allowlist that stops that.
+
+       Listen for a custom event, not 'input' — syncFromVisual dispatches
+       'input' on this same textarea, so that would loop. */
+    function loadFromSource() {
+      visual.innerHTML = hasHtml.test(textarea.value) ? cleanArticleHtml(textarea.value) : richPreviewHtml(textarea.value);
+      if (!visual.innerHTML.trim()) visual.innerHTML = '<p><br></p>';
+      textarea.value = cleanArticleHtml(visual.innerHTML).trim();
+      /* Every node the saved range pointed at just became detached. Left alone,
+         the next toolbar click restores a selection into nowhere and applies
+         the format at an unpredictable caret. */
+      savedRange = null;
+    }
+    loadFromSource();
+    textarea.addEventListener('rich-source-changed', loadFromSource);
     visual.addEventListener('keyup', saveSelection);
     visual.addEventListener('mouseup', saveSelection);
     visual.addEventListener('input', syncFromVisual);
@@ -1778,15 +1822,30 @@
     var rowBtns = row ? row.querySelectorAll('.lang-translate-btn') : [btn];
 
     var text = input ? input.value.trim() : '';
-    if (!text) {
+    if (!hasTranslatableText(text)) {
       if (statusEl) { statusEl.className = 'translate-status error'; statusEl.textContent = t('translateEmpty'); }
       return;
     }
+    /* The product article is HTML from the visual editor, not prose. Nothing
+       else that reaches this button is. */
+    var asHtml = !!(input && input.classList.contains('rich-source'));
+
+    /* This button replaces all three other languages, and for an article that
+       can be thousands of characters somebody translated by hand. Once it is
+       saved there is no undo. Name the languages about to go, and let the
+       operator back out — but only ask when there is really something to lose,
+       so filling in three empty cells stays a single click. */
+    var occupied = Array.prototype.filter.call(rowBtns, function (b) {
+      if (b.dataset.lang === source) return false;
+      var el = document.querySelector('[data-name="' + prefix + '_' + b.dataset.lang + '"]');
+      return el && hasTranslatableText(el.value);
+    }).map(function (b) { return b.dataset.lang.toUpperCase(); });
+    if (occupied.length && !window.confirm(tf('confirmTranslateOverwrite', { langs: occupied.join(', ') }))) return;
 
     Array.prototype.forEach.call(rowBtns, function (b) { b.disabled = true; });
     if (statusEl) { statusEl.className = 'translate-status'; statusEl.textContent = t('translating'); }
 
-    callTranslateFunction(text, source).then(function (result) {
+    callTranslateFunction(text, source, asHtml).then(function (result) {
       Array.prototype.forEach.call(rowBtns, function (b) { b.disabled = false; });
       if (!result.httpOk) {
         if (statusEl) { statusEl.className = 'translate-status error'; statusEl.textContent = t('translateFailed') + (result.data.error || 'HTTP error'); }
@@ -1797,6 +1856,14 @@
         var targetEl = document.querySelector('[data-name="' + prefix + '_' + lang + '"]');
         if (!targetEl) return;
         targetEl.value = translations[lang];
+        /* NOT cosmetic — do not remove this as a redundant UI refresh. What we
+           just wrote is DeepL's raw HTML, and collectFormValues() reads this
+           very element verbatim at Save. wireRichEditor's listener runs it back
+           through cleanArticleHtml, which is the only thing standing between an
+           external service's markup and the database. It repaints the visual
+           pane as a side effect; that is the smaller half of the job. Fields
+           with no rich editor have no listener and ignore this. */
+        targetEl.dispatchEvent(new Event('rich-source-changed'));
         var cell = targetEl.closest('.lang-cell');
         if (cell) cell.classList.toggle('empty', !translations[lang]);
       });
