@@ -1128,52 +1128,6 @@ window.DB = {
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
-      "sku": "VQ10",
-      "slug": "vq10",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "charging-mounts",
-      "art": "dashcharge",
-      "qi": "compatible",
-      "qiId": null,
-      "watt": "15W",
-      "mount": [
-        "dashboard"
-      ],
-      "price": 39.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "bestseller",
-      "name": {
-        "en": "VIEMAG Dashboard 15W Wireless Charging Mount",
-        "vi": "Giá sạc táp-lô 15W VIEMAG",
-        "id": "Dudukan Pengisi Dasbor 15W VIEMAG",
-        "zh": "VIEMAG 儀表板 15W 車充支架"
-      },
-      "claim": {
-        "en": "The workhorse: all-day navigation with 15W charging that keeps its cool.",
-        "vi": "Chủ lực của dòng sạc xe: dẫn đường cả ngày, sạc 15W không quá nóng.",
-        "id": "Andalan: navigasi seharian dengan pengisian 15W yang tetap adem.",
-        "zh": "車充主力款：全日導航，15W 充電不過熱。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "VQ11",
       "slug": "vq11",
       "status": "published",
