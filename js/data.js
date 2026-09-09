@@ -930,50 +930,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381998941-gmpiox4ht3r-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner.png"
     },
     {
-      "sku": "S01",
-      "slug": "s01",
-      "status": "future",
-      "category": "studio",
-      "subCategory": "creator",
-      "art": "tripod",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": "soon",
-      "name": {
-        "en": "VIEMAG Magnetic Tripod Adapter",
-        "vi": "Ngàm chân máy nam châm VIEMAG",
-        "id": "Adaptor Tripod Magnetik VIEMAG",
-        "zh": "VIEMAG 磁吸腳架轉接座"
-      },
-      "claim": {
-        "en": "One magnetic head connects your phone to any 1/4\" tripod — coming soon.",
-        "vi": "Một ngàm nam châm nối điện thoại với mọi chân máy 1/4\" — sắp ra mắt.",
-        "id": "Satu kepala magnetik menghubungkan ponsel ke tripod 1/4\" mana pun — segera hadir.",
-        "zh": "一顆磁吸頭，接上任何 1/4\" 腳架，即將推出。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "T3",
       "slug": "t3",
       "status": "future",
