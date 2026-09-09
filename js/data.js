@@ -1116,52 +1116,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
     },
     {
-      "sku": "V02",
-      "slug": "v02",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "dash",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "dashboard"
-      ],
-      "price": 19.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "bestseller",
-      "name": {
-        "en": "VIEMAG Dashboard Magnetic Mount",
-        "vi": "Giá đỡ nam châm táp-lô VIEMAG",
-        "id": "Dudukan Magnetik Dasbor VIEMAG",
-        "zh": "VIEMAG 儀表板磁吸支架"
-      },
-      "claim": {
-        "en": "All-day navigation on the dash that stays put under hard braking.",
-        "vi": "Dẫn đường cả ngày trên táp-lô, phanh gấp vẫn đứng yên.",
-        "id": "Navigasi seharian di dasbor yang tetap diam saat mengerem mendadak.",
-        "zh": "儀表板全日導航，急煞依然穩固。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "V03",
       "slug": "v03",
       "status": "published",
