@@ -943,14 +943,14 @@ window.DB = {
       },
       "reports": [],
       "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-0yquq5jenppj-1.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-jfrqv4rpw8b-2.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-p8jtzzhtg8g-3.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-47w1lhl92wg-4.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394515-4n81zri07bl-5.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394516-vym0qaf50e-6.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394516-28bfbzcmeli-7.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909394516-xkqzukipsqm-8.jpg"
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-ku9lm1prpx-M_c_balo_ti_n.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-7hibehib3wi-_a_c_ch_d_ng.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-rykudskl109-Tr_c_xoay_ch_c_ch_n.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-u7t5u2cj0oa-L_p___t_d__d_ng.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-95ifil44qc8-Nam_ch_m_h_t_m_nh.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-5sbcxzfagzj-_m_thanh_vui_tau.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-8fj539jev9-H_p_kim_nh_m_cao_c_p.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-akns03bnpbw-_nh_tripod_mini.png"
       ],
       "warranty": 12,
       "exchange": 14,
@@ -981,12 +981,12 @@ window.DB = {
         ]
       },
       "article": {
-        "en": "## A pocket tripod that doubles as a phone stand\nUnfold it on a desk for hands-free video calls and content shoots, or clip the carabiner hook to a bag strap for the walk over.\n\n## N52 magnet, mini tripod stance\nThe magnetic face holds compatible phones centered and steady, while the three-leg tripod base keeps the angle fixed — no leaning against a cup or laptop lid.\n\n- Fully foldable frame, rotates 360° for portrait or landscape\n- Carabiner hook clips onto bags and straps for the walk over\n- Ships with a magnetic plate, so non-MagSafe phones work too",
-        "vi": "## Tripod bỏ túi, kiêm luôn giá đỡ điện thoại\nMở ra trên bàn khi cần gọi video hoặc quay nội dung rảnh tay, gập lại và móc carabiner vào dây balo khi di chuyển.\n\n## Nam châm N52, dáng đứng tripod mini\nMặt nam châm giữ điện thoại tương thích đúng tâm và chắc chắn, ba chân tripod giữ góc cố định — không cần tựa vào ly hay nắp laptop.\n\n- Khung gập toàn phần, xoay 360° cho cả dọc lẫn ngang\n- Móc carabiner gắn vào túi/dây đeo khi di chuyển\n- Kèm tấm từ tính, điện thoại không hỗ trợ MagSafe vẫn dùng được",
-        "id": "## Tripod saku yang juga jadi dudukan ponsel\nBuka di meja saat butuh panggilan video atau merekam konten tanpa pegang tangan, lipat dan kaitkan carabiner ke tali tas saat bepergian.\n\n## Magnet N52, posisi tripod mini\nPermukaan magnetik menahan ponsel kompatibel tetap di tengah dan stabil, tiga kaki tripod menjaga sudut tetap — tanpa perlu disandarkan ke gelas atau tutup laptop.\n\n- Rangka lipat penuh, berputar 360° untuk potret maupun lanskap\n- Kait carabiner terpasang ke tas/tali saat bepergian\n- Termasuk pelat magnetik, ponsel non-MagSafe pun bisa pakai",
-        "zh": "## 口袋三腳架，也是手機支架\n放在桌上即可免持視訊或拍攝內容，收合後用登山扣掛在背包背帶上就能出門。\n\n## N52 磁吸，迷你三腳架站姿\n磁吸面讓相容手機穩固置中，三腳底座維持角度固定，不必再倚靠杯子或筆電上蓋。\n\n- 全折疊機身，可 360° 旋轉切換直向橫向\n- 登山扣可掛在包包或背帶上方便攜帶\n- 隨附引磁片，不支援 MagSafe 的手機也能使用"
+        "en": "<h2><br></h2>",
+        "vi": "<h2>Giá đỡ tripod nam châm mini N52 gập gọn 360°</h2>\n<p><strong>Giá đỡ tripod nam châm mini VIEMAG</strong> dành cho người thường xuyên dùng điện thoại khi làm việc, di chuyển hoặc quay chụp nhanh. Thiết kế gập gọn kết hợp <strong>nam châm N52, xoay 360° và tripod 3 chân</strong>, giúp giữ máy chắc, đổi góc linh hoạt và mang theo dễ dàng.</p>\n<h2>Nam châm N52, gắn nhanh và chắc</h2>\n<p>Sử dụng <strong>nam châm N52</strong> giúp điện thoại bám ổn định khi đặt trên giá. Chỉ cần đưa máy lại gần để gắn, thuận tiện khi xem nội dung, họp video hoặc quay chụp rảnh tay.</p>\n<h2>Gập gọn, điều chỉnh góc linh hoạt</h2>\n<p>Toàn bộ thân giá có thể <strong>gập và điều chỉnh theo nhiều góc</strong>, phù hợp khi đặt trên bàn làm việc, bàn ăn, khách sạn hoặc mang theo khi công tác.</p>\n<h2>Xoay 360°, dùng ngang dọc tùy ý</h2>\n<p>Đầu giữ hỗ trợ <strong>xoay 360°</strong>, giúp chuyển nhanh giữa chế độ dọc và ngang khi xem video, gọi video, livestream hoặc chụp ảnh.</p>\n<h2>Tripod mini ổn định khi quay chụp</h2>\n<p>Mở phần chân đế để sử dụng như <strong>tripod mini để bàn</strong>, tạo điểm tựa ổn định hơn khi quay video, selfie nhóm hoặc ghi lại nội dung mà không cần cầm điện thoại liên tục.</p>\n<h2>Một phụ kiện, nhiều cách dùng</h2>\n<p>Có thể chuyển đổi linh hoạt giữa <strong>giá đỡ điện thoại, tay cầm selfie và tripod quay chụp</strong>. Phù hợp cho người muốn mang ít phụ kiện hơn nhưng vẫn đáp ứng nhiều tình huống sử dụng.</p>\n<h2>Có móc treo, tiện mang theo</h2>\n<p>Thiết kế <strong>móc treo tích hợp</strong> cho phép gắn vào balo hoặc dây đeo. Khi gập lại, sản phẩm nhỏ gọn và dễ cất trong túi khi đi làm hoặc du lịch.</p>\n<h2>Hỗ trợ cả điện thoại không có MagSafe</h2>\n<p>Sản phẩm đi kèm <strong>miếng kim loại hỗ trợ từ tính</strong>, giúp các thiết bị hoặc ốp lưng không hỗ trợ MagSafe vẫn có thể sử dụng với giá đỡ.</p>\n<h3>Gọn hơn cho công việc và hành trình hằng ngày</h3>\n<p>Một lựa chọn phù hợp cho người thường xuyên <strong>làm việc bằng điện thoại, công tác, du lịch hoặc quay nội dung nhanh</strong>, cần một giá đỡ nam châm chắc chắn nhưng không muốn mang theo nhiều thiết bị riêng lẻ.</p><p><br></p>",
+        "id": "<h2><br></h2>",
+        "zh": "<h2><br></h2>"
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787909508461-ncwjllzoyh-___.jpg"
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930062472-8t79pwh2q78-Hero.png"
     },
     {
       "sku": "V01",
