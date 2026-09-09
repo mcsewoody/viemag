@@ -1128,52 +1128,6 @@ window.DB = {
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
-      "sku": "VQ09",
-      "slug": "vq09",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "charging-mounts",
-      "art": "carcharge",
-      "qi": "compatible",
-      "qiId": null,
-      "watt": "15W",
-      "mount": [
-        "vent"
-      ],
-      "price": 35.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG Vent 15W Wireless Charging Mount",
-        "vi": "Giá sạc cửa gió 15W VIEMAG",
-        "id": "Dudukan Pengisi Kisi AC 15W VIEMAG",
-        "zh": "VIEMAG 出風口 15W 車充支架"
-      },
-      "claim": {
-        "en": "Dock and charge at 15W, built to the Qi2 standard, cooled by the vent airflow.",
-        "vi": "Gắn là sạc 15W, thiết kế theo chuẩn Qi2, gió điều hoà hỗ trợ tản nhiệt.",
-        "id": "Tempel dan isi 15W, dibuat sesuai standar Qi2, didinginkan aliran udara kisi AC.",
-        "zh": "一吸即充 15W，依 Qi2 標準設計，出風口氣流輔助散熱。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "VQ10",
       "slug": "vq10",
       "status": "published",
