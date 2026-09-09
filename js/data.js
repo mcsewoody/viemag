@@ -608,52 +608,6 @@ window.DB = {
       }
     },
     {
-      "sku": "D01",
-      "slug": "d01",
-      "status": "future",
-      "category": "desk",
-      "subCategory": "stands",
-      "art": "stand",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "desktop"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": "soon",
-      "name": {
-        "en": "VIEMAG Desktop Magnetic Stand",
-        "vi": "Giá đỡ bàn nam châm VIEMAG",
-        "id": "Dudukan Magnetik Meja VIEMAG",
-        "zh": "VIEMAG 桌面磁吸立架"
-      },
-      "claim": {
-        "en": "Raises the phone to eye level, rotates portrait to landscape — coming soon.",
-        "vi": "Nâng máy lên tầm mắt, xoay dọc ngang tuỳ ý — sắp ra mắt.",
-        "id": "Mengangkat ponsel setinggi mata, memutar potret ke lanskap — segera hadir.",
-        "zh": "手機抬升至視線高度、直橫向自由旋轉，即將推出。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "E1",
       "slug": "E1",
       "status": "future",
@@ -897,9 +851,6 @@ window.DB = {
       },
       "faqs": [
         "no-magnet"
-      ],
-      "related": [
-        "D01"
       ],
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787379873107-cfjbo84epfh-K_p_du_l_ch.png"
     },
