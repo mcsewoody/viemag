@@ -1078,53 +1078,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787385364682-1n14m9fxwpe-S4.png"
     },
     {
-      "sku": "V07",
-      "slug": "v07",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "pro",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "vent",
-        "dashboard"
-      ],
-      "price": 24.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "bestseller",
-      "name": {
-        "en": "VIEMAG Pro Anti-Vibration Strong Mount",
-        "vi": "Giá đỡ chống rung lực hút mạnh VIEMAG Pro",
-        "id": "Dudukan Kuat Anti-Getar VIEMAG Pro",
-        "zh": "VIEMAG Pro 強磁耐震支架"
-      },
-      "claim": {
-        "en": "N52 magnets and an anti-vibration build — the proof piece of the lineup.",
-        "vi": "Nam châm N52 và kết cấu chống rung — bằng chứng chất lượng của cả dòng sản phẩm.",
-        "id": "Magnet N52 dan konstruksi anti-getar — bukti kualitas seluruh lini.",
-        "zh": "N52 強磁與耐震結構，整條產品線的品質證據款。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "V08",
       "slug": "v08",
       "status": "published",
