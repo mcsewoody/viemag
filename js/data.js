@@ -564,50 +564,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788852564427-ilmb6k3zn5-hero_appleGray_1200_20260908_1427.webp"
     },
     {
-      "sku": "BQ01",
-      "slug": "bq01",
-      "status": "future",
-      "category": "battery",
-      "subCategory": "power",
-      "art": "powerbank",
-      "qi": "compatible",
-      "qiId": null,
-      "watt": "15W",
-      "mount": [],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": "soon",
-      "name": {
-        "en": "VIEMAG Magnetic Power Bank 10K",
-        "vi": "Pin nam châm VIEMAG 10.000mAh",
-        "id": "Power Bank Magnetik VIEMAG 10K",
-        "zh": "VIEMAG 磁吸行動電源 10K"
-      },
-      "claim": {
-        "en": "Snaps to the back and charges wirelessly on the move — coming soon.",
-        "vi": "Hút dán sau máy, sạc không dây khi đang di chuyển — sắp ra mắt.",
-        "id": "Menempel di belakang dan mengisi nirkabel saat bergerak — segera hadir.",
-        "zh": "吸附機背、行進間無線充電，即將推出。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "E1",
       "slug": "E1",
       "status": "future",
