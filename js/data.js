@@ -451,50 +451,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
-      "sku": "A02",
-      "slug": "a02",
-      "status": "published",
-      "category": "accessory",
-      "subCategory": "interface",
-      "art": "case",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [],
-      "price": 14.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG Case + Ring Bundle",
-        "vi": "Combo ốp lưng + vòng nam châm VIEMAG",
-        "id": "Bundel Casing + Cincin VIEMAG",
-        "zh": "VIEMAG 手機殼＋轉接環組合"
-      },
-      "claim": {
-        "en": "A protective case with the magnet ring pre-aligned for maximum grip.",
-        "vi": "Ốp bảo vệ kèm vòng nam châm định vị sẵn — tương thích tối đa.",
-        "id": "Casing pelindung dengan cincin magnet yang sudah presisi untuk cengkeraman maksimal.",
-        "zh": "保護殼內建對位磁環，相容性一次到位。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "B07",
       "slug": "B07",
       "status": "future",
