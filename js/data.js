@@ -1033,52 +1033,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787383375551-8rc6siqagt8-A1.png"
     },
     {
-      "sku": "V04",
-      "slug": "v04",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "suction",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "suction"
-      ],
-      "price": 22.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG Suction Long-Arm Mount",
-        "vi": "Giá đỡ tay dài đế hút chân không VIEMAG",
-        "id": "Dudukan Lengan Panjang Vakum VIEMAG",
-        "zh": "VIEMAG 吸盤長臂磁吸支架"
-      },
-      "claim": {
-        "en": "A long arm for any viewing angle, vacuum base grips glass and dash.",
-        "vi": "Tay đòn dài chỉnh mọi góc nhìn, đế hút bám chắc kính và táp-lô.",
-        "id": "Lengan panjang untuk segala sudut pandang, dasar vakum mencengkeram kaca dan dasbor.",
-        "zh": "長臂調整任何視角，吸盤緊咬玻璃與儀表板。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "V05",
       "slug": "v05",
       "status": "published",
