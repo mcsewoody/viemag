@@ -1126,52 +1126,6 @@ window.DB = {
         "zh": ""
       },
       "img": "assets/products/VB001DSH1_BK.png"
-    },
-    {
-      "sku": "VQ12",
-      "slug": "vq12",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "charging-mounts",
-      "art": "suctioncharge",
-      "qi": "compatible",
-      "qiId": null,
-      "watt": "15W",
-      "mount": [
-        "suction"
-      ],
-      "price": 45.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "VIEMAG Long-Arm Adjustable Charging Mount",
-        "vi": "Giá sạc tay dài điều chỉnh VIEMAG",
-        "id": "Dudukan Pengisi Lengan Panjang VIEMAG",
-        "zh": "VIEMAG 長臂可調車充支架"
-      },
-      "claim": {
-        "en": "A long adjustable arm for deep dashboards — hold and charge in one.",
-        "vi": "Tay đòn dài cho xe có táp-lô sâu, vừa giữ vừa sạc.",
-        "id": "Lengan panjang yang bisa disetel untuk dasbor dalam — menahan dan mengisi sekaligus.",
-        "zh": "深儀表板車型的長臂解法，支撐與充電一次到位。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
     }
   ],
   "tests": [
