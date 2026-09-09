@@ -301,7 +301,7 @@ window.DB = {
       },
       "img": null,
       "combo": [
-        "PQ02",
+        "S01",
         "P01",
         "A01"
       ]
@@ -451,11 +451,403 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
-      "sku": "B07",
-      "slug": "B07",
+      "sku": "D01",
+      "slug": "d01",
+      "status": "published",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [],
+      "price": 19.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Slim Suction Cup Magsafe Mount | D01",
+        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng | D01",
+        "id": "Dudukan Magsafe Berbentuk Cangkir Hisap yang Ramping | D01",
+        "zh": "超薄吸盤式 MagSafe 支架 | D01"
+      },
+      "claim": {
+        "en": "The Thinnest and Lightest MagSafe Suction Cup Stand",
+        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
+        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
+        "zh": "最輕薄的吸盤 Magsafe 支架"
+      },
+      "reports": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787385364682-1n14m9fxwpe-S4.png"
+    },
+    {
+      "sku": "D05",
+      "slug": "d05",
+      "status": "published",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "dashboard",
+        "suction",
+        "screen",
+        "desktop"
+      ],
+      "price": 24.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": "bestseller",
+      "name": {
+        "en": "Extended Aluminum Alloy Universal Magnetic Mount | D05",
+        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm | D05",
+        "id": "Dudukan Magnetik Serbaguna Aluminium Alloy Versi Panjang | D05",
+        "zh": "鋁合金加長型萬用磁吸支架 | D05"
+      },
+      "claim": {
+        "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — a dependable companion for driving and everyday recording.",
+        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
+        "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman yang andal untuk berkendara dan merekam keseharian.",
+        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
+      },
+      "reports": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "assets/products/VB001DSH1_BK.png"
+    },
+    {
+      "sku": "P01",
+      "slug": "p01",
       "status": "future",
       "category": "portable",
       "subCategory": "travel",
+      "art": "stand",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "suction"
+      ],
+      "price": 8.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "360° Multi-Purpose Magnetic Travel Phone Mount | VIEMAG | P01",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Kẹp Đa Năng Du Lịch 360° | VIEMAG | P01",
+        "id": "Dudukan Ponsel Magnetik Serbaguna dengan Penjepit untuk Perjalanan 360° | VIEMAG | P01",
+        "zh": "360° 多功能磁吸式旅行手機支架 | VIEMAG | P01"
+      },
+      "claim": {
+        "en": "Compatible with many types of smartphones.\nCompatible with iPhones and Apple-branded MagSafe cases.\nDual-swivel design, allowing for flexible adjustment to multiple angles of use.\nRotates 360°, making it easy to switch between portrait and landscape modes.\nPull the D-ring at the bottom to quickly clip it to a dining table, tray table, handle, and many other surfaces; ideal for use on airplanes, high-speed trains, cars, and outdoors.\nFeatures a powerful magnet on the back that attaches to iron-containing metal surfaces, making it convenient for navigation, taking selfies, livestreaming, or watching videos hands-free.\nFeatures a standard 1/4\"-20 camera thread, compatible with tripods and selfie sticks.\nCompact, lightweight, and easy to carry—perfect for work, travel, or everyday use.",
+        "vi": "Phù hợp với nhiều loại điện thoại thông minh.\nTương thích với iPhone và ốp lưng MagSafe chính hãng Apple.\nThiết kế trục xoay kép, linh hoạt điều chỉnh nhiều góc sử dụng.\nXoay 360°, dễ dàng chuyển đổi giữa chế độ dọc và ngang.\nKéo vòng chữ D phía dưới để kẹp nhanh vào bàn ăn, bàn khay, tay cầm và nhiều vị trí khác; phù hợp sử dụng trên máy bay, tàu cao tốc, ô tô và ngoài trời.\nTích hợp nam châm mạnh ở mặt sau, có thể gắn lên bề mặt kim loại có chứa sắt, tiện lợi khi dẫn đường, selfie/livestream hoặc xem video rảnh tay.\nTích hợp ren máy ảnh tiêu chuẩn 1/4\"-20, tương thích với tripod và gậy selfie.\nThiết kế gập gọn, nhẹ và dễ mang theo khi làm việc, du lịch hoặc sử dụng hằng ngày.",
+        "id": "Cocok untuk berbagai jenis ponsel pintar.\nKompatibel dengan iPhone dan casing MagSafe asli dari Apple.\nDesain poros putar ganda, dapat disesuaikan secara fleksibel untuk berbagai sudut penggunaan.\nDapat diputar 360°, sehingga mudah beralih antara mode potret dan lanskap.\nTarik cincin berbentuk huruf D di bagian bawah untuk menjepitnya dengan cepat ke meja makan, meja baki, pegangan, dan berbagai tempat lainnya; cocok digunakan di pesawat terbang, kereta api cepat, mobil, dan di luar ruangan.\nDilengkapi magnet kuat di bagian belakang, dapat dipasang pada permukaan logam yang mengandung besi, sehingga praktis untuk navigasi, selfie/livestream, atau menonton video tanpa perlu memegang perangkat.\nDilengkapi ulir kamera standar 1/4\"-20, kompatibel dengan tripod dan tongkat selfie.\nDesainnya ringkas, ringan, dan mudah dibawa saat bekerja, bepergian, atau digunakan sehari-hari.",
+        "zh": "適用於多種智慧型手機。\n相容於 iPhone 及 Apple 原廠 MagSafe 保護殼。\n採用雙旋轉軸設計，可靈活調整多種使用角度。\n可旋轉 360°，輕鬆在直式與橫式模式之間切換。\n拉動下方的 D 形環，即可快速夾在餐桌、托盤、把手等各種位置；適合在飛機、高鐵、汽車及戶外使用。\n背面內建強力磁鐵，可吸附於含鐵的金屬表面，方便進行導航、自拍／直播或免持觀看影片。\n配備 1/4\"-20 標準相機螺紋，可與三腳架及自拍桿搭配使用。\n採用可摺疊設計，輕巧且便於攜帶，無論是工作、旅遊或日常使用都十分方便。"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910939-6m0vh5fs0rf-K_p_du__l_ch_1.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910940-8bres3fa6dk-K_p_du_l_ch_2.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381198433-sxnr80tre7-K_p_du_l_ch_3.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381198434-i4mqy5shzj-K_p_du_l_ch_4.png"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "Giá Đỡ Điện Thoại Từ Tính Du Lịch Kẹp Đa Năng | VIEMAG",
+        "vi": "Giá đỡ điện thoại từ tính du lịch với ngàm kẹp, hai trục xoay 360°, nam châm mặt sau và ren tripod 1/4 inch cho nhiều tình huống sử dụng.",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "Giá đỡ điện thoại từ tính du lịch với ngàm kẹp, hai trục xoay 360°, nam châm mặt sau và ren tripod 1/4 inch cho nhiều tình huống sử dụng.\tMột giá đỡ nhỏ gọn dùng trên bàn ăn, khay máy bay, tay cầm, bề mặt kim loại hoặc tripod.\n",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Magnetic Plate"
+        ],
+        "vi": [
+          "Tấm từ tính"
+        ],
+        "id": [
+          "Pelat Magnetik"
+        ],
+        "zh": [
+          "磁性板"
+        ]
+      },
+      "article": {
+        "en": "aaa",
+        "vi": "aaa",
+        "id": "aaa",
+        "zh": "aaa"
+      },
+      "faqs": [
+        "no-magnet"
+      ],
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787379873107-cfjbo84epfh-K_p_du_l_ch.png"
+    },
+    {
+      "sku": "P03",
+      "slug": "p03",
+      "status": "published",
+      "category": "portable",
+      "subCategory": "stands",
+      "art": "stand",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "magsafe",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "3-in-1 Magnetic Mount for Phones, Tablets, and Laptops | VIEMAG | P03",
+        "vi": "Giá đỡ nam châm 3 trong 1 cho điện thoại, tablet và laptop | VIEMAG | P03",
+        "id": "Dudukan magnetik 3-in-1 untuk ponsel, tablet, dan laptop | VIEMAG | P03",
+        "zh": "適用於手機、平板電腦及筆記型電腦的 3 合 1 磁吸支架 | VIEMAG | P03"
+      },
+      "claim": {
+        "en": "Multifunctional stand for multiple devices – Compatible with smartphones, tablets, and laptops; flexibly adapts to various usage scenarios at home, in the office, and for creative projects\n8 flexible height adjustment levels – Precisely adjust to the optimal viewing angle, ensuring comfort during extended use and helping to reduce fatigue\nAviation-grade aluminum・Lightweight and durable - Crafted from a high-strength aluminum alloy, it is rock-solid and elevates the standard of quality\nPowerful magnetic hold・Quick attachment -- Just place it and it sticks right away, making one-handed use smoother and letting you capture wonderful moments with ease\nFoldable・Easy to Carry - Compact and foldable, making it convenient to take along on business trips, vacations, or for creative projects anytime",
+        "vi": "Giá đỡ đa năng cho nhiều thiết bị – Phù hợp với điện thoại di động, máy tính bảng và máy tính xách tay, linh hoạt chuyển đổi giữa các tình huống sử dụng tại nhà, văn phòng và sáng tạo\n8 mức điều chỉnh độ cao linh hoạt – Điều chỉnh chính xác góc nhìn tối ưu, mang lại sự thoải mái khi sử dụng trong thời gian dài và giúp giảm mệt mỏi\nChất liệu nhôm hàng không・Nhẹ và bền - Được chế tạo từ hợp kim nhôm có độ bền cao, chắc chắn không lung lay, nâng tầm chất lượng\nLực hút từ mạnh mẽ・Định vị nhanh chóng -- Chỉ cần đặt là dính ngay, thao tác bằng một tay mượt mà hơn, ghi lại những khoảnh khắc tuyệt vời một cách dễ dàng\nGấp gọn・Dễ dàng mang theo - Nhỏ gọn và có thể gấp lại, thuận tiện mang theo khi đi công tác, du lịch hay sáng tạo bất cứ lúc nào",
+        "id": "Dudukan serbaguna untuk berbagai perangkat – Cocok untuk ponsel, tablet, dan laptop, serta fleksibel untuk digunakan dalam berbagai situasi, baik di rumah, kantor, maupun saat berkreasi\n8 tingkat penyesuaian ketinggian yang fleksibel – Menyesuaikan sudut pandang optimal secara tepat, memberikan kenyamanan saat digunakan dalam waktu lama dan membantu mengurangi kelelahan\nBahan aluminium pesawat terbang・Ringan dan tahan lama - Dibuat dari paduan aluminium berkekuatan tinggi, kokoh dan tidak goyah, sehingga meningkatkan kualitasnya\nDaya hisap yang kuat・Pemasangan cepat -- Cukup tempelkan dan langsung menempel, pengoperasian dengan satu tangan lebih lancar, abadikan momen-momen indah dengan mudah\nDapat dilipat・Mudah dibawa - Ringkas dan dapat dilipat, sehingga praktis untuk dibawa saat bepergian dinas, berwisata, atau berkreasi kapan saja",
+        "zh": "多功能裝置支架——適用於手機、平板電腦和筆記型電腦，可靈活適應居家、辦公室及創意創作等各種使用情境\n8 段靈活的高度調節 – 精準調整至最佳視角，確保長時間使用時的舒適感，並有助於減輕疲勞\n航空級鋁材・輕盈且堅固 — 採用高強度鋁合金製成，穩固不搖晃，提升產品品質\n強勁磁吸力・快速定位——只需輕放即可吸附，單手操作更順暢，輕鬆捕捉精彩瞬間\n可摺疊・便於攜帶 - 體積小巧且可摺疊，無論是出差、旅遊，或是隨時進行創作，攜帶都很方便"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099230-cxp8tzh9c0q-Tr__th__cho_ho_t___ng_s_ng_t_o.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099231-6nwsza82zw7-G_n_nh__chuy_n_c_ng_t_c.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-b2mk0xfpry-_i_u_ch_nh_8_m_c.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-aafabpr0rrq-Gi______a_n_ng_nhi_u_ch____.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-xu1epivdyg-G_p_g_n.png"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "酒精棉片",
+          "黏貼式磁吸環"
+        ]
+      },
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<p>\n</p><h2>Giá đỡ đa năng 3 trong 1 cho điện thoại, tablet và laptop</h2>\n<p><strong>Giá đỡ đa năng tích hợp nam châm giữ điện thoại</strong>, đồng thời có thể mở rộng để sử dụng với tablet và laptop. Thiết kế gập gọn, thân hợp kim nhôm chắc chắn, phù hợp cho làm việc, giải trí, sáng tạo nội dung và sử dụng khi di chuyển.</p><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923945584-rr2w0vxiu0c-Tr__th__cho_ho_t___ng_s_ng_t_o.png\" alt=\"\" loading=\"lazy\"></figure><p><br></p><figure class=\"rich-image wide\"></figure><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h3>Nam châm giữ điện thoại</h3><p>Tích hợp <strong>cụm nam châm lực hút mạnh</strong>, giúp điện thoại bám nhanh và ổn định, thuận tiện khi xem video, chụp ảnh hoặc sử dụng rảnh tay.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923481623-r6sufvvcy58-Nam_ch_m_h_t_m_nh.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923872205-fkr2ls6sg7e-Gi______a_n_ng_nhi_u_ch____.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h3>Hỗ trợ nhiều thiết bị</h3><p>Ngoài chế độ nam châm dành cho điện thoại, các tay đỡ có thể mở rộng để sử dụng với <strong>tablet và laptop</strong>, đáp ứng nhiều nhu cầu trên cùng một sản phẩm.</p></div></section><h3>Điều chỉnh 8 mức</h3><section class=\"rich-split image-right\"><div class=\"rich-copy\"><p>Hỗ trợ <strong>8 mức điều chỉnh độ cao và góc nhìn</strong>, giúp người dùng dễ chọn tư thế phù hợp khi làm việc hoặc giải trí.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923661740-beorvdyuuj-_i_u_ch_nh_8_m_c.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923757317-7cfjml8izd5-G_n_nh__chuy_n_c_ng_t_c.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h3>Thân hợp kim nhôm nhẹ, bền, gập gọn, dễ mang theo</h3><p>Kết cấu <strong>hợp kim nhôm</strong> mang lại độ chắc chắn, trọng lượng gọn nhẹ và cảm giác sản phẩm cao cấp hơn.</p><p>Có thể <strong>gập lại nhỏ gọn</strong> để cất trong túi hoặc hành lý, phù hợp cho công tác, du lịch và làm việc linh hoạt.</p></div></section><p><strong>Phù hợp B2B:</strong> Một sản phẩm kết hợp <strong>giá đỡ điện thoại nam châm + giá đỡ tablet + giá đỡ laptop</strong>, phù hợp cho đại lý phụ kiện, nhà phân phối và các thương hiệu cần phát triển dòng sản phẩm đa năng.</p><p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923118618-p0i5et1m2eg-Th_ng_s__s_n_ph_m.png",
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788920961370-kw7xo4lypsf-hero_appleGray_1200_20260909_0927.webp"
+    },
+    {
+      "sku": "P04",
+      "slug": "p04",
+      "status": "future",
+      "category": "portable",
+      "subCategory": "travel",
+      "art": "tripod",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "magnetic",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": "new",
+      "name": {
+        "en": "Foldable Mini Tripod Magnetic Phone Stand with Carabiner Hook | VIEMAG | P04",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Tripod Mini Gập Gọn Kèm Móc Carabiner | VIEMAG | P04",
+        "id": "Dudukan Ponsel Magnetik Tripod Mini Lipat dengan Kait Carabiner | VIEMAG | P04",
+        "zh": "迷你摺疊三腳架磁吸手機支架，附登山扣 | VIEMAG | P04"
+      },
+      "claim": {
+        "en": "Uses an N52 magnet for a secure magnetic hold.\nFully foldable frame — adjust the viewing angle freely.\nRotates 360°, easily switch between portrait and landscape.\nMini tripod design keeps desktop shots steady, no wobble.\nWorks as a phone stand, selfie stand, and shooting tripod.\nCarabiner hook design clips onto bags and straps — compact and easy to carry.\nIncludes a magnetic plate, so non-MagSafe phones can use it too.",
+        "vi": "Nam châm N52, hút chắc điện thoại.\nKhung gập toàn phần, tự do điều chỉnh góc nhìn.\nXoay 360°, dễ dàng chuyển dọc/ngang.\nThiết kế tripod mini, đặt bàn ổn định không rung.\nDùng được như giá đỡ điện thoại, gậy tự sướng và tripod quay phim.\nThiết kế móc carabiner, dễ móc vào túi/dây đeo, gọn nhẹ dễ mang.\nKèm tấm sắt từ tính, điện thoại không hỗ trợ MagSafe vẫn dùng được.",
+        "id": "Magnet N52, cengkeraman magnetik kuat untuk ponsel.\nRangka lipat penuh, sesuaikan sudut pandang bebas.\nBerputar 360°, mudah beralih potret/lanskap.\nDesain tripod mini, pengambilan gambar di meja stabil tanpa goyang.\nBisa jadi dudukan ponsel, tongkat selfie, dan tripod syuting.\nDesain kait carabiner, mudah dikaitkan ke tas/tali, ringkas dan mudah dibawa.\nTermasuk pelat magnetik, ponsel non-MagSafe pun bisa pakai.",
+        "zh": "採用 N52 磁鐵，穩固吸附手機。\n全折疊結構，自由調整觀看角度。\n360 度旋轉，輕鬆切換直向與橫向。\n迷你三腳架設計，桌面拍攝穩定不晃動。\n可作為手機支架、自拍支架及拍攝三腳架。\n掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。\n隨附引磁片，不支援 MagSafe 的裝置也能使用。"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-ku9lm1prpx-M_c_balo_ti_n.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-7hibehib3wi-_a_c_ch_d_ng.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-rykudskl109-Tr_c_xoay_ch_c_ch_n.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-u7t5u2cj0oa-L_p___t_d__d_ng.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-95ifil44qc8-Nam_ch_m_h_t_m_nh.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-5sbcxzfagzj-_m_thanh_vui_tau.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-8fj539jev9-H_p_kim_nh_m_cao_c_p.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-akns03bnpbw-_nh_tripod_mini.png"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Adhesive Magnetic Ring"
+        ],
+        "vi": [
+          "Vòng từ tính dạng dán"
+        ],
+        "id": [
+          "Cincin Magnetik Tempel"
+        ],
+        "zh": [
+          "黏貼式磁吸環"
+        ]
+      },
+      "article": {
+        "en": "<h2><br></h2>",
+        "vi": "<h2>Giá đỡ tripod nam châm mini N52 gập gọn 360°</h2>\n<p><strong>Giá đỡ tripod nam châm mini VIEMAG</strong> dành cho người thường xuyên dùng điện thoại khi làm việc, di chuyển hoặc quay chụp nhanh. Thiết kế gập gọn kết hợp <strong>nam châm N52, xoay 360° và tripod 3 chân</strong>, giúp giữ máy chắc, đổi góc linh hoạt và mang theo dễ dàng.</p>\n<h2>Nam châm N52, gắn nhanh và chắc</h2>\n<p>Sử dụng <strong>nam châm N52</strong> giúp điện thoại bám ổn định khi đặt trên giá. Chỉ cần đưa máy lại gần để gắn, thuận tiện khi xem nội dung, họp video hoặc quay chụp rảnh tay.</p>\n<h2>Gập gọn, điều chỉnh góc linh hoạt</h2>\n<p>Toàn bộ thân giá có thể <strong>gập và điều chỉnh theo nhiều góc</strong>, phù hợp khi đặt trên bàn làm việc, bàn ăn, khách sạn hoặc mang theo khi công tác.</p>\n<h2>Xoay 360°, dùng ngang dọc tùy ý</h2>\n<p>Đầu giữ hỗ trợ <strong>xoay 360°</strong>, giúp chuyển nhanh giữa chế độ dọc và ngang khi xem video, gọi video, livestream hoặc chụp ảnh.</p>\n<h2>Tripod mini ổn định khi quay chụp</h2>\n<p>Mở phần chân đế để sử dụng như <strong>tripod mini để bàn</strong>, tạo điểm tựa ổn định hơn khi quay video, selfie nhóm hoặc ghi lại nội dung mà không cần cầm điện thoại liên tục.</p>\n<h2>Một phụ kiện, nhiều cách dùng</h2>\n<p>Có thể chuyển đổi linh hoạt giữa <strong>giá đỡ điện thoại, tay cầm selfie và tripod quay chụp</strong>. Phù hợp cho người muốn mang ít phụ kiện hơn nhưng vẫn đáp ứng nhiều tình huống sử dụng.</p>\n<h2>Có móc treo, tiện mang theo</h2>\n<p>Thiết kế <strong>móc treo tích hợp</strong> cho phép gắn vào balo hoặc dây đeo. Khi gập lại, sản phẩm nhỏ gọn và dễ cất trong túi khi đi làm hoặc du lịch.</p>\n<h2>Hỗ trợ cả điện thoại không có MagSafe</h2>\n<p>Sản phẩm đi kèm <strong>miếng kim loại hỗ trợ từ tính</strong>, giúp các thiết bị hoặc ốp lưng không hỗ trợ MagSafe vẫn có thể sử dụng với giá đỡ.</p>\n<h3>Gọn hơn cho công việc và hành trình hằng ngày</h3>\n<p>Một lựa chọn phù hợp cho người thường xuyên <strong>làm việc bằng điện thoại, công tác, du lịch hoặc quay nội dung nhanh</strong>, cần một giá đỡ nam châm chắc chắn nhưng không muốn mang theo nhiều thiết bị riêng lẻ.</p><p><br></p>",
+        "id": "<h2><br></h2>",
+        "zh": "<h2><br></h2>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930062472-8t79pwh2q78-Hero.png"
+    },
+    {
+      "sku": "S01",
+      "slug": "s01",
+      "status": "published",
+      "category": "studio",
+      "subCategory": "creator",
+      "art": "fold",
+      "qi": "testing",
+      "qiId": null,
+      "watt": "15W",
+      "mount": [
+        "desktop"
+      ],
+      "price": 52.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": "new",
+      "name": {
+        "en": "Compact Folding Tripod Magnetic Phone Mount with Carabiner Hook | VIEMAG | S01",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Tripod Gập Gọn Kèm Móc Carabiner | VIEMAG | S01",
+        "id": "Dudukan Ponsel Magnetik dengan Tripod yang Dapat Dilipat, Dilengkapi dengan Karabiner | VIEMAG | S01",
+        "zh": "可摺疊三腳架式磁吸手機支架，附登山扣 | VIEMAG | S01"
+      },
+      "claim": {
+        "en": "Compatible with MagSafe-enabled phones and cases.\nGreat for podcasts, taking selfies, and creating content.\nCarabiner design—convenient to carry with you.\nMagnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\nCompact, foldable design—easy to store and carry.",
+        "vi": "Tương thích với các điện thoại và ốp lưng hỗ trợ MagSafe.\nRất phù hợp để nghe podcast, chụp ảnh tự sướng và sáng tạo nội dung.\nThiết kế móc carabiner — rất tiện lợi để mang theo bên mình.\nCác giá đỡ phụ kiện từ tính ở cả hai bên, cho phép gắn thêm các phụ kiện khác một cách linh hoạt.\nThiết kế nhỏ gọn, có thể gập lại — dễ dàng cất giữ và mang theo.",
+        "id": "Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\nSangat cocok untuk podcast, berfoto selfie, dan membuat konten.\nDesain karabiner—praktis untuk dibawa kemana-mana.\nTempat aksesori magnetik di kedua sisi, sehingga memungkinkan pemasangan aksesori tambahan secara fleksibel.\nDesain ringkas dan dapat dilipat—mudah disimpan dan dibawa.",
+        "zh": "相容於支援 MagSafe 的手機及手機殼。\n非常適合製作播客、拍攝自拍照以及創作內容。\n登山扣設計——方便隨身攜帶。\n兩側均設有磁吸式配件支架，可靈活安裝其他配件。\n輕巧、可摺疊的設計——收納與攜帶皆十分方便。"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880530-aky2hp439c-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_1.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-pp2hu4kc49-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_2.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-5uoxxpbr3ik-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_3.png"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Toiletries set × 1",
+          "Metal ring × 1"
+        ],
+        "vi": [
+          "Bộ vệ sinh × 1",
+          "Vòng kim loại × 1"
+        ],
+        "id": [
+          "Set perlengkapan mandi × 1",
+          "Cincin logam × 1"
+        ],
+        "zh": [
+          "衛生套組 × 1",
+          "金屬圈 × 1"
+        ]
+      },
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<h2>Giá đỡ điện thoại nam châm tripod gập gọn có móc carabiner</h2><p><strong>PQ02</strong><strong> là giá đỡ điện thoại nam châm tích hợp tripod gập gọn và móc carabiner, phù hợp cho chụp ảnh, quay video, xem nội dung và sử dụng điện thoại rảnh tay. Thiết kế nhỏ gọn giúp dễ mang theo khi làm việc, du lịch hoặc sử dụng hằng ngày.</strong></p><h2><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851485176-d4vmgcupnok-___20260825142046_10_61.jpg\" alt=\"\" loading=\"lazy\"></figure></h2><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Gắn điện thoại nhanh bằng nam châm</h2><p>Thiết kế từ tính giúp gắn và tháo điện thoại nhanh chóng. Người dùng có thể dễ dàng đặt điện thoại lên giá đỡ khi cần chụp ảnh, quay video hoặc xem nội dung.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851542016-lrgn9mu8jrs-N52.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851579054-dqel33v9h-C__th__g_p_g_n.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Tripod gập gọn tiện lợi</h2><p>B02 có thể mở thành tripod để đặt điện thoại trên bàn hoặc bề mặt phẳng. Khi không sử dụng, sản phẩm có thể gập lại để giảm kích thước và thuận tiện mang theo.</p></div></section><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Móc carabiner dễ mang theo</h2><p>Móc carabiner tích hợp giúp treo B02 vào balo, túi hoặc các vị trí phù hợp. Thiết kế này giúp sản phẩm luôn sẵn sàng khi cần sử dụng trong các chuyến đi hoặc hoạt động ngoài trời.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851626340-ho7krjguzg5-Ch_n____tam_gi_c.png\" alt=\"\" loading=\"lazy\"></figure></section><figure class=\"rich-image wide\"><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851773551-lil83l2nz1q-___20260825142051_11_61.jpg\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Phù hợp cho nhiều nhu cầu sử dụng<br></h2><h3>Kết hợp giá đỡ điện thoại, tripod và thiết kế di động trong một sản phẩm nhỏ gọn. Phù hợp cho selfie, quay video, sáng tạo nội dung, gọi video, xem nội dung và sử dụng điện thoại rảnh tay.</h3></div></section></figure>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381998941-gmpiox4ht3r-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner.png"
+    },
+    {
+      "sku": "S02",
+      "slug": "s02",
+      "status": "future",
+      "category": "studio",
+      "subCategory": "creator",
       "art": "fold",
       "qi": "none",
       "qiId": null,
@@ -468,10 +860,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "All-in-One Magnetic Phone Mount | VIEMAG",
-        "vi": "Giá đỡ điện thoại đa năng có nam châm | VIEMAG",
-        "id": "Dudukan Ponsel Magnetik Serbaguna | VIEMAG",
-        "zh": "多合一磁吸手機支架 | VIEMAG"
+        "en": "All-in-One Magnetic Phone Mount | VIEMAG | S02",
+        "vi": "Giá đỡ điện thoại đa năng có nam châm | VIEMAG | S02",
+        "id": "Dudukan Ponsel Magnetik Serbaguna | VIEMAG | S02",
+        "zh": "多合一磁吸手機支架 | VIEMAG | S02"
       },
       "claim": {
         "en": "Compatible with MagSafe-enabled phones and phone cases\n360 degrees\nThe hook-style design makes it easy to hang bags and straps; it’s lightweight, portable, and easy to store.",
@@ -520,11 +912,76 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788852564427-ilmb6k3zn5-hero_appleGray_1200_20260908_1427.webp"
     },
     {
-      "sku": "E1",
-      "slug": "E1",
+      "sku": "V01",
+      "slug": "v01",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "art": "vent",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "vent"
+      ],
+      "price": 15.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "360° Magnetic Phone Mount for Air Vents | VIEMAG | V01",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Gắn Cửa Gió 360° | VIEMAG | V01",
+        "id": "Dudukan Ponsel Magnetik yang Dapat Dipasang di Ventilasi 360° | VIEMAG | V01",
+        "zh": "360° 磁吸式車門通風口手機支架 | VIEMAG | V01"
+      },
+      "claim": {
+        "en": "360° rotation — flexibly switch between portrait and landscape orientations.\n17 mm ball joint — easily attaches to compatible phone mounts.\nProtective rubber layer — minimizes scratches in contact areas.",
+        "vi": "Xoay 360° — linh hoạt chuyển góc nhìn dọc hoặc ngang.\nKhớp bi 17 mm — dễ kết hợp với các đầu giữ điện thoại tương thích.\nLớp cao su bảo vệ — hạn chế trầy xước tại vùng tiếp xúc.",
+        "id": "Berputar 360° — fleksibel untuk mengubah sudut pandang secara vertikal atau horizontal.\nSendi bola 17 mm — mudah dipasangkan dengan dudukan ponsel yang kompatibel.\nLapisan karet pelindung — mengurangi goresan pada area yang bersentuhan.",
+        "zh": "360°旋轉 — 可靈活切換縱向或橫向視角。\n17 公釐球形關節 — 輕鬆搭配相容的手機固定座。\n保護性橡膠層——可減少接觸處的刮痕。"
+      },
+      "reports": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "Giá đỡ điện thoại từ tính gắn cửa gió, xoay 360° và dùng chuẩn khớp bi 17 mm, giúp điều chỉnh góc nhìn linh hoạt khi lái xe.",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Alcohol-soaked wipes",
+          "Magnetic Support Ring"
+        ],
+        "vi": [
+          "Khăn tẩm cồn",
+          "Vòng kim loại dán hỗ trợ từ tính"
+        ],
+        "id": [
+          "Kain yang dibasahi alkohol",
+          "Cincin logam tempel dengan dukungan magnetik"
+        ],
+        "zh": [
+          "酒精濕巾",
+          "磁性支撐貼片金屬環"
+        ]
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
+    },
+    {
+      "sku": "V02",
+      "slug": "v02",
       "status": "future",
-      "category": "desk",
-      "subCategory": "stands",
+      "category": "vehicle",
+      "subCategory": "mounts",
       "art": "stand",
       "qi": "none",
       "qiId": null,
@@ -538,10 +995,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "Foldable Magnetic Phone Mount with 270° Rotation | VIEMAG",
-        "vi": "Giá đỡ điện thoại nam châm gập gọn xoay 270°| VIEMAG",
-        "id": "Dudukan ponsel magnetik yang dapat dilipat dan diputar 270° | VIEMAG",
-        "zh": "可摺疊、270°旋轉的磁吸式手機支架 | VIEMAG"
+        "en": "Foldable Magnetic Phone Mount with 270° Rotation | VIEMAG | V02",
+        "vi": "Giá đỡ điện thoại nam châm gập gọn xoay 270°| VIEMAG | V02",
+        "id": "Dudukan ponsel magnetik yang dapat dilipat dan diputar 270° | VIEMAG | V02",
+        "zh": "可摺疊、270°旋轉的磁吸式手機支架 | VIEMAG | V02"
       },
       "claim": {
         "en": "",
@@ -593,11 +1050,60 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788854674264-dpj1r37f0n-hero_appleGray_1200_20260908_1502.webp"
     },
     {
-      "sku": "EC1",
-      "slug": "EC1",
+      "sku": "V03",
+      "slug": "v03",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "art": "tape",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "tape"
+      ],
+      "price": 17.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "N52 Magnetic Phone Mount with Vacuum Suction and 360° Rotation | VIEMAG",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính N52 Hút Chân Không Xoay 360° | VIEMAG",
+        "id": "Dudukan Ponsel Magnetik N52 dengan Hisap Vakum dan Dapat Berputar 360° | VIEMAG",
+        "zh": "N52 磁吸式 360° 旋轉 真空吸盤手機支架 | VIEMAG"
+      },
+      "claim": {
+        "en": "The soft TPU base, combined with a suction mechanism, allows for flexible placement of the phone on a suitable surface.",
+        "vi": "Đế TPU mềm kết hợp cơ cấu hút giúp tạo điểm đặt điện thoại linh hoạt trên bề mặt phù hợp.",
+        "id": "Basis TPU yang lembut dipadukan dengan mekanisme hisap memungkinkan penempatan ponsel secara fleksibel pada permukaan yang sesuai.",
+        "zh": "柔軟的 TPU 底座結合吸附結構，可讓手機在合適的表面上靈活定位。"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787384270413-k24pewvj84s-___A1_ZF162_N52________.jpeg"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787383375551-8rc6siqagt8-A1.png"
+    },
+    {
+      "sku": "VQ01",
+      "slug": "vq01",
       "status": "future",
-      "category": "desk",
-      "subCategory": "stands",
+      "category": "vehicle",
+      "subCategory": "charging-mounts",
       "art": "deskcharge",
       "qi": "testing",
       "qiId": null,
@@ -611,10 +1117,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "15W Magnetic Wireless Charging Stand—Folds Flat and Rotates 270°",
-        "vi": "Giá đỡ sạc không dây từ tính 15W gập gọn xoay 270°",
-        "id": "Dudukan pengisi daya nirkabel magnetik 15W yang dapat dilipat dan diputar 270°",
-        "zh": "15W 磁吸式無線充電支架，可摺疊收納，270°旋轉"
+        "en": "15W Magnetic Wireless Charging Stand—Folds Flat and Rotates 270° | VQ01",
+        "vi": "Giá đỡ sạc không dây từ tính 15W gập gọn xoay 270° | VQ01",
+        "id": "Dudukan pengisi daya nirkabel magnetik 15W yang dapat dilipat dan diputar 270° | VQ01",
+        "zh": "15W 磁吸式無線充電支架，可摺疊收納，270°旋轉 | VQ01"
       },
       "claim": {
         "en": "Supports 15W wireless fast charging.\nMagnetic Closure\n270-degree swivel mount for multi-angle viewing.\nFoldable",
@@ -690,512 +1196,6 @@ window.DB = {
         "zh": "<h2><br></h2><p><br></p><h2>15W 磁吸式無線充電支架，可摺疊且可旋轉 270°</h2>\n<p><strong>15W 磁吸式無線充電支架</strong>，將充電與手機固定功能整合於輕巧設計之中。 本產品適合安裝於汽車儀表板上，支援靈活調整多種視角，並適用於<strong>B2B、OEM/ODM汽車及手機配件</strong>專案。</p>\n<h3>1. 15W 無線快充</h3>\n<p>支援 <strong>最高 15W 的無線充電</strong>，讓您在車上使用手機導航、通話或查看資訊時，仍能維持電池電量。<br>\n一體化設計有助於減少零散配件，讓儀表板區域更顯整潔。</p>\n<h3>2. 穩健吸氣，快速定位</h3>\n<p><strong>磁吸</strong>機制可讓手機牢固地吸附在支架表面，同時僅需一個動作即可快速放置或取下手機。<br>\n適合在駕駛時頻繁使用，無需操作傳統的固定夾。</p>\n<h3>3. 可旋轉 270°，輕鬆調整視角</h3>\n<p>旋轉關節支援調整至 <strong>270°</strong>，讓使用者能輕鬆選擇符合坐姿及儀表板佈局的視角。<br>\n在導航或瀏覽內容時，可靈活將手機以<strong>直向或橫向</strong>模式使用。</p>\n<h3>4. 不使用時可摺疊收納</h3>\n<p>此支架可<strong>摺疊平放於儀表板表面</strong>，既能節省空間，又能減少視野遮擋。<br>\n設計纖薄、現代感十足，適合多種車內裝潢風格。</p>\n<h3>適用於 B2B 及 OEM/ODM</h3>\n<p>此產品結合了 <strong>15W 快充、磁吸、多角度旋轉及可折疊設計</strong>，適合汽車配件品牌、經銷商以及需要客製化設計或品牌識別的 <strong>OEM/ODM 專案</strong>。</p><p><br></p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788855186633-jv5vfy6uj9o-hero_appleGray_1200_20260908_1502.webp"
-    },
-    {
-      "sku": "L2",
-      "slug": "L2",
-      "status": "published",
-      "category": "portable",
-      "subCategory": "stands",
-      "art": "stand",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "magsafe",
-        "desktop"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "3-in-1 Magnetic Mount for Phones, Tablets, and Laptops | VIEMAG",
-        "vi": "Giá đỡ nam châm 3 trong 1 cho điện thoại, tablet và laptop | VIEMAG",
-        "id": "Dudukan magnetik 3-in-1 untuk ponsel, tablet, dan laptop | VIEMAG",
-        "zh": "適用於手機、平板電腦及筆記型電腦的 3 合 1 磁吸支架 | VIEMAG"
-      },
-      "claim": {
-        "en": "Multifunctional stand for multiple devices – Compatible with smartphones, tablets, and laptops; flexibly adapts to various usage scenarios at home, in the office, and for creative projects\n8 flexible height adjustment levels – Precisely adjust to the optimal viewing angle, ensuring comfort during extended use and helping to reduce fatigue\nAviation-grade aluminum・Lightweight and durable - Crafted from a high-strength aluminum alloy, it is rock-solid and elevates the standard of quality\nPowerful magnetic hold・Quick attachment -- Just place it and it sticks right away, making one-handed use smoother and letting you capture wonderful moments with ease\nFoldable・Easy to Carry - Compact and foldable, making it convenient to take along on business trips, vacations, or for creative projects anytime",
-        "vi": "Giá đỡ đa năng cho nhiều thiết bị – Phù hợp với điện thoại di động, máy tính bảng và máy tính xách tay, linh hoạt chuyển đổi giữa các tình huống sử dụng tại nhà, văn phòng và sáng tạo\n8 mức điều chỉnh độ cao linh hoạt – Điều chỉnh chính xác góc nhìn tối ưu, mang lại sự thoải mái khi sử dụng trong thời gian dài và giúp giảm mệt mỏi\nChất liệu nhôm hàng không・Nhẹ và bền - Được chế tạo từ hợp kim nhôm có độ bền cao, chắc chắn không lung lay, nâng tầm chất lượng\nLực hút từ mạnh mẽ・Định vị nhanh chóng -- Chỉ cần đặt là dính ngay, thao tác bằng một tay mượt mà hơn, ghi lại những khoảnh khắc tuyệt vời một cách dễ dàng\nGấp gọn・Dễ dàng mang theo - Nhỏ gọn và có thể gấp lại, thuận tiện mang theo khi đi công tác, du lịch hay sáng tạo bất cứ lúc nào",
-        "id": "Dudukan serbaguna untuk berbagai perangkat – Cocok untuk ponsel, tablet, dan laptop, serta fleksibel untuk digunakan dalam berbagai situasi, baik di rumah, kantor, maupun saat berkreasi\n8 tingkat penyesuaian ketinggian yang fleksibel – Menyesuaikan sudut pandang optimal secara tepat, memberikan kenyamanan saat digunakan dalam waktu lama dan membantu mengurangi kelelahan\nBahan aluminium pesawat terbang・Ringan dan tahan lama - Dibuat dari paduan aluminium berkekuatan tinggi, kokoh dan tidak goyah, sehingga meningkatkan kualitasnya\nDaya hisap yang kuat・Pemasangan cepat -- Cukup tempelkan dan langsung menempel, pengoperasian dengan satu tangan lebih lancar, abadikan momen-momen indah dengan mudah\nDapat dilipat・Mudah dibawa - Ringkas dan dapat dilipat, sehingga praktis untuk dibawa saat bepergian dinas, berwisata, atau berkreasi kapan saja",
-        "zh": "多功能裝置支架——適用於手機、平板電腦和筆記型電腦，可靈活適應居家、辦公室及創意創作等各種使用情境\n8 段靈活的高度調節 – 精準調整至最佳視角，確保長時間使用時的舒適感，並有助於減輕疲勞\n航空級鋁材・輕盈且堅固 — 採用高強度鋁合金製成，穩固不搖晃，提升產品品質\n強勁磁吸力・快速定位——只需輕放即可吸附，單手操作更順暢，輕鬆捕捉精彩瞬間\n可摺疊・便於攜帶 - 體積小巧且可摺疊，無論是出差、旅遊，或是隨時進行創作，攜帶都很方便"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099230-cxp8tzh9c0q-Tr__th__cho_ho_t___ng_s_ng_t_o.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099231-6nwsza82zw7-G_n_nh__chuy_n_c_ng_t_c.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-b2mk0xfpry-_i_u_ch_nh_8_m_c.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-aafabpr0rrq-Gi______a_n_ng_nhi_u_ch____.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-xu1epivdyg-G_p_g_n.png"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [],
-        "vi": [],
-        "id": [],
-        "zh": [
-          "酒精棉片",
-          "黏貼式磁吸環"
-        ]
-      },
-      "article": {
-        "en": "<p><br></p>",
-        "vi": "<p>\n</p><h2>Giá đỡ đa năng 3 trong 1 cho điện thoại, tablet và laptop</h2>\n<p><strong>Giá đỡ đa năng tích hợp nam châm giữ điện thoại</strong>, đồng thời có thể mở rộng để sử dụng với tablet và laptop. Thiết kế gập gọn, thân hợp kim nhôm chắc chắn, phù hợp cho làm việc, giải trí, sáng tạo nội dung và sử dụng khi di chuyển.</p><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923945584-rr2w0vxiu0c-Tr__th__cho_ho_t___ng_s_ng_t_o.png\" alt=\"\" loading=\"lazy\"></figure><p><br></p><figure class=\"rich-image wide\"></figure><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h3>Nam châm giữ điện thoại</h3><p>Tích hợp <strong>cụm nam châm lực hút mạnh</strong>, giúp điện thoại bám nhanh và ổn định, thuận tiện khi xem video, chụp ảnh hoặc sử dụng rảnh tay.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923481623-r6sufvvcy58-Nam_ch_m_h_t_m_nh.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923872205-fkr2ls6sg7e-Gi______a_n_ng_nhi_u_ch____.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h3>Hỗ trợ nhiều thiết bị</h3><p>Ngoài chế độ nam châm dành cho điện thoại, các tay đỡ có thể mở rộng để sử dụng với <strong>tablet và laptop</strong>, đáp ứng nhiều nhu cầu trên cùng một sản phẩm.</p></div></section><h3>Điều chỉnh 8 mức</h3><section class=\"rich-split image-right\"><div class=\"rich-copy\"><p>Hỗ trợ <strong>8 mức điều chỉnh độ cao và góc nhìn</strong>, giúp người dùng dễ chọn tư thế phù hợp khi làm việc hoặc giải trí.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923661740-beorvdyuuj-_i_u_ch_nh_8_m_c.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923757317-7cfjml8izd5-G_n_nh__chuy_n_c_ng_t_c.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h3>Thân hợp kim nhôm nhẹ, bền, gập gọn, dễ mang theo</h3><p>Kết cấu <strong>hợp kim nhôm</strong> mang lại độ chắc chắn, trọng lượng gọn nhẹ và cảm giác sản phẩm cao cấp hơn.</p><p>Có thể <strong>gập lại nhỏ gọn</strong> để cất trong túi hoặc hành lý, phù hợp cho công tác, du lịch và làm việc linh hoạt.</p></div></section><p><strong>Phù hợp B2B:</strong> Một sản phẩm kết hợp <strong>giá đỡ điện thoại nam châm + giá đỡ tablet + giá đỡ laptop</strong>, phù hợp cho đại lý phụ kiện, nhà phân phối và các thương hiệu cần phát triển dòng sản phẩm đa năng.</p><p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p><br></p>"
-      },
-      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923118618-p0i5et1m2eg-Th_ng_s__s_n_ph_m.png",
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788920961370-kw7xo4lypsf-hero_appleGray_1200_20260909_0927.webp"
-    },
-    {
-      "sku": "P01",
-      "slug": "p01",
-      "status": "future",
-      "category": "portable",
-      "subCategory": "travel",
-      "art": "stand",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "suction"
-      ],
-      "price": 8.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "360° Multi-Purpose Magnetic Travel Phone Mount | VIEMAG",
-        "vi": "Giá Đỡ Điện Thoại Từ Tính Kẹp Đa Năng Du Lịch 360° | VIEMAG",
-        "id": "Dudukan Ponsel Magnetik Serbaguna dengan Penjepit untuk Perjalanan 360° | VIEMAG",
-        "zh": "360° 多功能磁吸式旅行手機支架 | VIEMAG"
-      },
-      "claim": {
-        "en": "Compatible with many types of smartphones.\nCompatible with iPhones and Apple-branded MagSafe cases.\nDual-swivel design, allowing for flexible adjustment to multiple angles of use.\nRotates 360°, making it easy to switch between portrait and landscape modes.\nPull the D-ring at the bottom to quickly clip it to a dining table, tray table, handle, and many other surfaces; ideal for use on airplanes, high-speed trains, cars, and outdoors.\nFeatures a powerful magnet on the back that attaches to iron-containing metal surfaces, making it convenient for navigation, taking selfies, livestreaming, or watching videos hands-free.\nFeatures a standard 1/4\"-20 camera thread, compatible with tripods and selfie sticks.\nCompact, lightweight, and easy to carry—perfect for work, travel, or everyday use.",
-        "vi": "Phù hợp với nhiều loại điện thoại thông minh.\nTương thích với iPhone và ốp lưng MagSafe chính hãng Apple.\nThiết kế trục xoay kép, linh hoạt điều chỉnh nhiều góc sử dụng.\nXoay 360°, dễ dàng chuyển đổi giữa chế độ dọc và ngang.\nKéo vòng chữ D phía dưới để kẹp nhanh vào bàn ăn, bàn khay, tay cầm và nhiều vị trí khác; phù hợp sử dụng trên máy bay, tàu cao tốc, ô tô và ngoài trời.\nTích hợp nam châm mạnh ở mặt sau, có thể gắn lên bề mặt kim loại có chứa sắt, tiện lợi khi dẫn đường, selfie/livestream hoặc xem video rảnh tay.\nTích hợp ren máy ảnh tiêu chuẩn 1/4\"-20, tương thích với tripod và gậy selfie.\nThiết kế gập gọn, nhẹ và dễ mang theo khi làm việc, du lịch hoặc sử dụng hằng ngày.",
-        "id": "Cocok untuk berbagai jenis ponsel pintar.\nKompatibel dengan iPhone dan casing MagSafe asli dari Apple.\nDesain poros putar ganda, dapat disesuaikan secara fleksibel untuk berbagai sudut penggunaan.\nDapat diputar 360°, sehingga mudah beralih antara mode potret dan lanskap.\nTarik cincin berbentuk huruf D di bagian bawah untuk menjepitnya dengan cepat ke meja makan, meja baki, pegangan, dan berbagai tempat lainnya; cocok digunakan di pesawat terbang, kereta api cepat, mobil, dan di luar ruangan.\nDilengkapi magnet kuat di bagian belakang, dapat dipasang pada permukaan logam yang mengandung besi, sehingga praktis untuk navigasi, selfie/livestream, atau menonton video tanpa perlu memegang perangkat.\nDilengkapi ulir kamera standar 1/4\"-20, kompatibel dengan tripod dan tongkat selfie.\nDesainnya ringkas, ringan, dan mudah dibawa saat bekerja, bepergian, atau digunakan sehari-hari.",
-        "zh": "適用於多種智慧型手機。\n相容於 iPhone 及 Apple 原廠 MagSafe 保護殼。\n採用雙旋轉軸設計，可靈活調整多種使用角度。\n可旋轉 360°，輕鬆在直式與橫式模式之間切換。\n拉動下方的 D 形環，即可快速夾在餐桌、托盤、把手等各種位置；適合在飛機、高鐵、汽車及戶外使用。\n背面內建強力磁鐵，可吸附於含鐵的金屬表面，方便進行導航、自拍／直播或免持觀看影片。\n配備 1/4\"-20 標準相機螺紋，可與三腳架及自拍桿搭配使用。\n採用可摺疊設計，輕巧且便於攜帶，無論是工作、旅遊或日常使用都十分方便。"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910939-6m0vh5fs0rf-K_p_du__l_ch_1.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787380910940-8bres3fa6dk-K_p_du_l_ch_2.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381198433-sxnr80tre7-K_p_du_l_ch_3.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381198434-i4mqy5shzj-K_p_du_l_ch_4.png"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "Giá Đỡ Điện Thoại Từ Tính Du Lịch Kẹp Đa Năng | VIEMAG",
-        "vi": "Giá đỡ điện thoại từ tính du lịch với ngàm kẹp, hai trục xoay 360°, nam châm mặt sau và ren tripod 1/4 inch cho nhiều tình huống sử dụng.",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "Giá đỡ điện thoại từ tính du lịch với ngàm kẹp, hai trục xoay 360°, nam châm mặt sau và ren tripod 1/4 inch cho nhiều tình huống sử dụng.\tMột giá đỡ nhỏ gọn dùng trên bàn ăn, khay máy bay, tay cầm, bề mặt kim loại hoặc tripod.\n",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "Magnetic Plate"
-        ],
-        "vi": [
-          "Tấm từ tính"
-        ],
-        "id": [
-          "Pelat Magnetik"
-        ],
-        "zh": [
-          "磁性板"
-        ]
-      },
-      "article": {
-        "en": "aaa",
-        "vi": "aaa",
-        "id": "aaa",
-        "zh": "aaa"
-      },
-      "faqs": [
-        "no-magnet"
-      ],
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787379873107-cfjbo84epfh-K_p_du_l_ch.png"
-    },
-    {
-      "sku": "PQ02",
-      "slug": "pq02",
-      "status": "published",
-      "category": "portable",
-      "subCategory": "travel",
-      "art": "fold",
-      "qi": "testing",
-      "qiId": null,
-      "watt": "15W",
-      "mount": [
-        "desktop"
-      ],
-      "price": 52.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "new",
-      "name": {
-        "en": "Compact Folding Tripod Magnetic Phone Mount with Carabiner Hook | VIEMAG",
-        "vi": "Giá Đỡ Điện Thoại Từ Tính Tripod Gập Gọn Kèm Móc Carabiner | VIEMAG",
-        "id": "Dudukan Ponsel Magnetik dengan Tripod yang Dapat Dilipat, Dilengkapi dengan Karabiner | VIEMAG",
-        "zh": "可摺疊三腳架式磁吸手機支架，附登山扣 | VIEMAG"
-      },
-      "claim": {
-        "en": "Compatible with MagSafe-enabled phones and cases.\nGreat for podcasts, taking selfies, and creating content.\nCarabiner design—convenient to carry with you.\nMagnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\nCompact, foldable design—easy to store and carry.",
-        "vi": "Tương thích với các điện thoại và ốp lưng hỗ trợ MagSafe.\nRất phù hợp để nghe podcast, chụp ảnh tự sướng và sáng tạo nội dung.\nThiết kế móc carabiner — rất tiện lợi để mang theo bên mình.\nCác giá đỡ phụ kiện từ tính ở cả hai bên, cho phép gắn thêm các phụ kiện khác một cách linh hoạt.\nThiết kế nhỏ gọn, có thể gập lại — dễ dàng cất giữ và mang theo.",
-        "id": "Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\nSangat cocok untuk podcast, berfoto selfie, dan membuat konten.\nDesain karabiner—praktis untuk dibawa kemana-mana.\nTempat aksesori magnetik di kedua sisi, sehingga memungkinkan pemasangan aksesori tambahan secara fleksibel.\nDesain ringkas dan dapat dilipat—mudah disimpan dan dibawa.",
-        "zh": "相容於支援 MagSafe 的手機及手機殼。\n非常適合製作播客、拍攝自拍照以及創作內容。\n登山扣設計——方便隨身攜帶。\n兩側均設有磁吸式配件支架，可靈活安裝其他配件。\n輕巧、可摺疊的設計——收納與攜帶皆十分方便。"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880530-aky2hp439c-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_1.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-pp2hu4kc49-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_2.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787391880532-5uoxxpbr3ik-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner_3.png"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "Toiletries set × 1",
-          "Metal ring × 1"
-        ],
-        "vi": [
-          "Bộ vệ sinh × 1",
-          "Vòng kim loại × 1"
-        ],
-        "id": [
-          "Set perlengkapan mandi × 1",
-          "Cincin logam × 1"
-        ],
-        "zh": [
-          "衛生套組 × 1",
-          "金屬圈 × 1"
-        ]
-      },
-      "article": {
-        "en": "<p><br></p>",
-        "vi": "<h2>Giá đỡ điện thoại nam châm tripod gập gọn có móc carabiner</h2><p><strong>PQ02</strong><strong> là giá đỡ điện thoại nam châm tích hợp tripod gập gọn và móc carabiner, phù hợp cho chụp ảnh, quay video, xem nội dung và sử dụng điện thoại rảnh tay. Thiết kế nhỏ gọn giúp dễ mang theo khi làm việc, du lịch hoặc sử dụng hằng ngày.</strong></p><h2><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851485176-d4vmgcupnok-___20260825142046_10_61.jpg\" alt=\"\" loading=\"lazy\"></figure></h2><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Gắn điện thoại nhanh bằng nam châm</h2><p>Thiết kế từ tính giúp gắn và tháo điện thoại nhanh chóng. Người dùng có thể dễ dàng đặt điện thoại lên giá đỡ khi cần chụp ảnh, quay video hoặc xem nội dung.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851542016-lrgn9mu8jrs-N52.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851579054-dqel33v9h-C__th__g_p_g_n.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Tripod gập gọn tiện lợi</h2><p>B02 có thể mở thành tripod để đặt điện thoại trên bàn hoặc bề mặt phẳng. Khi không sử dụng, sản phẩm có thể gập lại để giảm kích thước và thuận tiện mang theo.</p></div></section><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Móc carabiner dễ mang theo</h2><p>Móc carabiner tích hợp giúp treo B02 vào balo, túi hoặc các vị trí phù hợp. Thiết kế này giúp sản phẩm luôn sẵn sàng khi cần sử dụng trong các chuyến đi hoặc hoạt động ngoài trời.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851626340-ho7krjguzg5-Ch_n____tam_gi_c.png\" alt=\"\" loading=\"lazy\"></figure></section><figure class=\"rich-image wide\"><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788851773551-lil83l2nz1q-___20260825142051_11_61.jpg\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Phù hợp cho nhiều nhu cầu sử dụng<br></h2><h3>Kết hợp giá đỡ điện thoại, tripod và thiết kế di động trong một sản phẩm nhỏ gọn. Phù hợp cho selfie, quay video, sáng tạo nội dung, gọi video, xem nội dung và sử dụng điện thoại rảnh tay.</h3></div></section></figure>",
-        "id": "<p><br></p>",
-        "zh": "<p><br></p>"
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381998941-gmpiox4ht3r-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner.png"
-    },
-    {
-      "sku": "T3",
-      "slug": "t3",
-      "status": "future",
-      "category": "portable",
-      "subCategory": null,
-      "art": "tripod",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "magnetic",
-        "desktop"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": "new",
-      "name": {
-        "en": "Foldable Mini Tripod Magnetic Phone Stand with Carabiner Hook | VIEMAG",
-        "vi": "Giá Đỡ Điện Thoại Từ Tính Tripod Mini Gập Gọn Kèm Móc Carabiner | VIEMAG",
-        "id": "Dudukan Ponsel Magnetik Tripod Mini Lipat dengan Kait Carabiner | VIEMAG",
-        "zh": "迷你摺疊三腳架磁吸手機支架，附登山扣 | VIEMAG"
-      },
-      "claim": {
-        "en": "Uses an N52 magnet for a secure magnetic hold.\nFully foldable frame — adjust the viewing angle freely.\nRotates 360°, easily switch between portrait and landscape.\nMini tripod design keeps desktop shots steady, no wobble.\nWorks as a phone stand, selfie stand, and shooting tripod.\nCarabiner hook design clips onto bags and straps — compact and easy to carry.\nIncludes a magnetic plate, so non-MagSafe phones can use it too.",
-        "vi": "Nam châm N52, hút chắc điện thoại.\nKhung gập toàn phần, tự do điều chỉnh góc nhìn.\nXoay 360°, dễ dàng chuyển dọc/ngang.\nThiết kế tripod mini, đặt bàn ổn định không rung.\nDùng được như giá đỡ điện thoại, gậy tự sướng và tripod quay phim.\nThiết kế móc carabiner, dễ móc vào túi/dây đeo, gọn nhẹ dễ mang.\nKèm tấm sắt từ tính, điện thoại không hỗ trợ MagSafe vẫn dùng được.",
-        "id": "Magnet N52, cengkeraman magnetik kuat untuk ponsel.\nRangka lipat penuh, sesuaikan sudut pandang bebas.\nBerputar 360°, mudah beralih potret/lanskap.\nDesain tripod mini, pengambilan gambar di meja stabil tanpa goyang.\nBisa jadi dudukan ponsel, tongkat selfie, dan tripod syuting.\nDesain kait carabiner, mudah dikaitkan ke tas/tali, ringkas dan mudah dibawa.\nTermasuk pelat magnetik, ponsel non-MagSafe pun bisa pakai.",
-        "zh": "採用 N52 磁鐵，穩固吸附手機。\n全折疊結構，自由調整觀看角度。\n360 度旋轉，輕鬆切換直向與橫向。\n迷你三腳架設計，桌面拍攝穩定不晃動。\n可作為手機支架、自拍支架及拍攝三腳架。\n掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。\n隨附引磁片，不支援 MagSafe 的裝置也能使用。"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-ku9lm1prpx-M_c_balo_ti_n.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-7hibehib3wi-_a_c_ch_d_ng.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-rykudskl109-Tr_c_xoay_ch_c_ch_n.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-u7t5u2cj0oa-L_p___t_d__d_ng.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-95ifil44qc8-Nam_ch_m_h_t_m_nh.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-5sbcxzfagzj-_m_thanh_vui_tau.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-8fj539jev9-H_p_kim_nh_m_cao_c_p.png",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930072270-akns03bnpbw-_nh_tripod_mini.png"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "Adhesive Magnetic Ring"
-        ],
-        "vi": [
-          "Vòng từ tính dạng dán"
-        ],
-        "id": [
-          "Cincin Magnetik Tempel"
-        ],
-        "zh": [
-          "黏貼式磁吸環"
-        ]
-      },
-      "article": {
-        "en": "<h2><br></h2>",
-        "vi": "<h2>Giá đỡ tripod nam châm mini N52 gập gọn 360°</h2>\n<p><strong>Giá đỡ tripod nam châm mini VIEMAG</strong> dành cho người thường xuyên dùng điện thoại khi làm việc, di chuyển hoặc quay chụp nhanh. Thiết kế gập gọn kết hợp <strong>nam châm N52, xoay 360° và tripod 3 chân</strong>, giúp giữ máy chắc, đổi góc linh hoạt và mang theo dễ dàng.</p>\n<h2>Nam châm N52, gắn nhanh và chắc</h2>\n<p>Sử dụng <strong>nam châm N52</strong> giúp điện thoại bám ổn định khi đặt trên giá. Chỉ cần đưa máy lại gần để gắn, thuận tiện khi xem nội dung, họp video hoặc quay chụp rảnh tay.</p>\n<h2>Gập gọn, điều chỉnh góc linh hoạt</h2>\n<p>Toàn bộ thân giá có thể <strong>gập và điều chỉnh theo nhiều góc</strong>, phù hợp khi đặt trên bàn làm việc, bàn ăn, khách sạn hoặc mang theo khi công tác.</p>\n<h2>Xoay 360°, dùng ngang dọc tùy ý</h2>\n<p>Đầu giữ hỗ trợ <strong>xoay 360°</strong>, giúp chuyển nhanh giữa chế độ dọc và ngang khi xem video, gọi video, livestream hoặc chụp ảnh.</p>\n<h2>Tripod mini ổn định khi quay chụp</h2>\n<p>Mở phần chân đế để sử dụng như <strong>tripod mini để bàn</strong>, tạo điểm tựa ổn định hơn khi quay video, selfie nhóm hoặc ghi lại nội dung mà không cần cầm điện thoại liên tục.</p>\n<h2>Một phụ kiện, nhiều cách dùng</h2>\n<p>Có thể chuyển đổi linh hoạt giữa <strong>giá đỡ điện thoại, tay cầm selfie và tripod quay chụp</strong>. Phù hợp cho người muốn mang ít phụ kiện hơn nhưng vẫn đáp ứng nhiều tình huống sử dụng.</p>\n<h2>Có móc treo, tiện mang theo</h2>\n<p>Thiết kế <strong>móc treo tích hợp</strong> cho phép gắn vào balo hoặc dây đeo. Khi gập lại, sản phẩm nhỏ gọn và dễ cất trong túi khi đi làm hoặc du lịch.</p>\n<h2>Hỗ trợ cả điện thoại không có MagSafe</h2>\n<p>Sản phẩm đi kèm <strong>miếng kim loại hỗ trợ từ tính</strong>, giúp các thiết bị hoặc ốp lưng không hỗ trợ MagSafe vẫn có thể sử dụng với giá đỡ.</p>\n<h3>Gọn hơn cho công việc và hành trình hằng ngày</h3>\n<p>Một lựa chọn phù hợp cho người thường xuyên <strong>làm việc bằng điện thoại, công tác, du lịch hoặc quay nội dung nhanh</strong>, cần một giá đỡ nam châm chắc chắn nhưng không muốn mang theo nhiều thiết bị riêng lẻ.</p><p><br></p>",
-        "id": "<h2><br></h2>",
-        "zh": "<h2><br></h2>"
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930062472-8t79pwh2q78-Hero.png"
-    },
-    {
-      "sku": "V01",
-      "slug": "v01",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "vent",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "vent"
-      ],
-      "price": 15.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "360° Magnetic Phone Mount for Air Vents | VIEMAG",
-        "vi": "Giá Đỡ Điện Thoại Từ Tính Gắn Cửa Gió 360° | VIEMAG",
-        "id": "Dudukan Ponsel Magnetik yang Dapat Dipasang di Ventilasi 360° | VIEMAG",
-        "zh": "360° 磁吸式車門通風口手機支架 | VIEMAG"
-      },
-      "claim": {
-        "en": "360° rotation — flexibly switch between portrait and landscape orientations.\n17 mm ball joint — easily attaches to compatible phone mounts.\nProtective rubber layer — minimizes scratches in contact areas.",
-        "vi": "Xoay 360° — linh hoạt chuyển góc nhìn dọc hoặc ngang.\nKhớp bi 17 mm — dễ kết hợp với các đầu giữ điện thoại tương thích.\nLớp cao su bảo vệ — hạn chế trầy xước tại vùng tiếp xúc.",
-        "id": "Berputar 360° — fleksibel untuk mengubah sudut pandang secara vertikal atau horizontal.\nSendi bola 17 mm — mudah dipasangkan dengan dudukan ponsel yang kompatibel.\nLapisan karet pelindung — mengurangi goresan pada area yang bersentuhan.",
-        "zh": "360°旋轉 — 可靈活切換縱向或橫向視角。\n17 公釐球形關節 — 輕鬆搭配相容的手機固定座。\n保護性橡膠層——可減少接觸處的刮痕。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "Giá đỡ điện thoại từ tính gắn cửa gió, xoay 360° và dùng chuẩn khớp bi 17 mm, giúp điều chỉnh góc nhìn linh hoạt khi lái xe.",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "Alcohol-soaked wipes",
-          "Magnetic Support Ring"
-        ],
-        "vi": [
-          "Khăn tẩm cồn",
-          "Vòng kim loại dán hỗ trợ từ tính"
-        ],
-        "id": [
-          "Kain yang dibasahi alkohol",
-          "Cincin logam tempel dengan dukungan magnetik"
-        ],
-        "zh": [
-          "酒精濕巾",
-          "磁性支撐貼片金屬環"
-        ]
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
-    },
-    {
-      "sku": "V03",
-      "slug": "v03",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "tape",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "tape"
-      ],
-      "price": 17.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "N52 Magnetic Phone Mount with Vacuum Suction and 360° Rotation | VIEMAG",
-        "vi": "Giá Đỡ Điện Thoại Từ Tính N52 Hút Chân Không Xoay 360° | VIEMAG",
-        "id": "Dudukan Ponsel Magnetik N52 dengan Hisap Vakum dan Dapat Berputar 360° | VIEMAG",
-        "zh": "N52 磁吸式 360° 旋轉 真空吸盤手機支架 | VIEMAG"
-      },
-      "claim": {
-        "en": "The soft TPU base, combined with a suction mechanism, allows for flexible placement of the phone on a suitable surface.",
-        "vi": "Đế TPU mềm kết hợp cơ cấu hút giúp tạo điểm đặt điện thoại linh hoạt trên bề mặt phù hợp.",
-        "id": "Basis TPU yang lembut dipadukan dengan mekanisme hisap memungkinkan penempatan ponsel secara fleksibel pada permukaan yang sesuai.",
-        "zh": "柔軟的 TPU 底座結合吸附結構，可讓手機在合適的表面上靈活定位。"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787384270413-k24pewvj84s-___A1_ZF162_N52________.jpeg"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787383375551-8rc6siqagt8-A1.png"
-    },
-    {
-      "sku": "V05",
-      "slug": "v05",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [],
-      "price": 19.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Slim Suction Cup Magsafe Mount",
-        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng",
-        "id": "Dudukan Magsafe Berbentuk Cangkir Hisap yang Ramping",
-        "zh": "超薄吸盤式 MagSafe 支架"
-      },
-      "claim": {
-        "en": "The Thinnest and Lightest MagSafe Suction Cup Stand",
-        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
-        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
-        "zh": "最輕薄的吸盤 Magsafe 支架"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787385364682-1n14m9fxwpe-S4.png"
-    },
-    {
-      "sku": "V08",
-      "slug": "v08",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "suction",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "dashboard",
-        "suction",
-        "screen",
-        "desktop"
-      ],
-      "price": 24.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "bestseller",
-      "name": {
-        "en": "Extended Aluminum Alloy Universal Magnetic Mount",
-        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm",
-        "id": "Dudukan Magnetik Serbaguna Aluminium Alloy Versi Panjang",
-        "zh": "鋁合金加長型萬用磁吸支架"
-      },
-      "claim": {
-        "en": "PU gel suction cup, aluminum alloy build, foldable extendable magnetic mount — a dependable companion for driving and everyday recording.",
-        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
-        "id": "Cangkir hisap gel PU, bahan aluminium alloy, dudukan magnetik lipat yang bisa dipanjangkan — teman yang andal untuk berkendara dan merekam keseharian.",
-        "zh": "PU 凝膠吸盤，鋁合金材質，可收摺加長型磁吸支架，行車駕駛、生活紀錄的好夥伴。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "img": "assets/products/VB001DSH1_BK.png"
     }
   ],
   "tests": [
