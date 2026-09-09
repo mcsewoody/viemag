@@ -654,52 +654,6 @@ window.DB = {
       }
     },
     {
-      "sku": "D02",
-      "slug": "d02",
-      "status": "future",
-      "category": "desk",
-      "subCategory": "stands",
-      "art": "stand",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "desktop"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": "soon",
-      "name": {
-        "en": "VIEMAG Magnetic Dual Device Stand",
-        "vi": "Giá đỡ từ tính hai thiết bị VIEMAG",
-        "id": "VIEMAG Dudukan Perangkat Ganda Magnetik",
-        "zh": "VIEMAG 磁吸式雙裝置支架"
-      },
-      "claim": {
-        "en": "One stand, two devices, maximum efficiency.",
-        "vi": "Một giá đỡ, hai thiết bị, hiệu quả tối đa.",
-        "id": "Satu dudukan, dua perangkat, efisiensi maksimal.",
-        "zh": "一個底座，兩台裝置，效率最大化。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 7,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "E1",
       "slug": "E1",
       "status": "future",
@@ -945,8 +899,7 @@ window.DB = {
         "no-magnet"
       ],
       "related": [
-        "D01",
-        "D02"
+        "D01"
       ],
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787379873107-cfjbo84epfh-K_p_du_l_ch.png"
     },
