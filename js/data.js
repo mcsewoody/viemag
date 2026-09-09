@@ -1128,53 +1128,6 @@ window.DB = {
       "img": "assets/products/VB001DSH1_BK.png"
     },
     {
-      "sku": "VQ11",
-      "slug": "vq11",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "charging-mounts",
-      "art": "fancharge",
-      "qi": "testing",
-      "qiId": null,
-      "watt": "25W",
-      "mount": [
-        "vent",
-        "dashboard"
-      ],
-      "price": 55.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "new",
-      "name": {
-        "en": "VIEMAG 25W Active-Cooling Charging Mount",
-        "vi": "Giá sạc 25W tản nhiệt chủ động VIEMAG",
-        "id": "Dudukan Pengisi Pendingin Aktif 25W VIEMAG",
-        "zh": "VIEMAG 25W 主動散熱車充支架"
-      },
-      "claim": {
-        "en": "25W fast charging built to Qi2.2 with an active cooling fan — the flagship.",
-        "vi": "Sạc nhanh 25W theo chuẩn Qi2.2 với quạt tản nhiệt chủ động — mẫu đầu bảng.",
-        "id": "Pengisian cepat 25W dibuat sesuai Qi2.2 dengan kipas pendingin aktif — model unggulan.",
-        "zh": "依 Qi2.2 標準設計的 25W 快充＋主動散熱風扇，旗艦款。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "VQ12",
       "slug": "vq12",
       "status": "published",
