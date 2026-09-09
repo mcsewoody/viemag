@@ -692,6 +692,76 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788855186633-jv5vfy6uj9o-hero_appleGray_1200_20260908_1502.webp"
     },
     {
+      "sku": "L2",
+      "slug": "L2",
+      "status": "future",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "stand",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "magsafe",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "MO-38 多功能萬用支架 | VIEMAG"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "多裝置萬用支架-手機／平板／筆電皆適用，居家、辦公、創作多情境自由切換\n8 段高度自由調節-精準調整最佳視角，長時間使用更舒適、不易疲勞\n航空鋁材質・輕巧耐用-高強度鋁合金打造，穩固不晃、質感升級\n強力磁吸・快速定位--放即吸，單手操作更順暢，隨手記錄精彩時刻\n折疊收納・隨行好攜帶-輕巧可折，出差旅行、靈感創作隨帶隨用"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099230-cxp8tzh9c0q-Tr__th__cho_ho_t___ng_s_ng_t_o.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099231-6nwsza82zw7-G_n_nh__chuy_n_c_ng_t_c.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-b2mk0xfpry-_i_u_ch_nh_8_m_c.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-aafabpr0rrq-Gi______a_n_ng_nhi_u_ch____.png",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923099232-xu1epivdyg-G_p_g_n.png"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "酒精棉片",
+          "黏貼式磁吸環"
+        ]
+      },
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<p>\n</p><h2>Giá đỡ đa năng 3 trong 1 cho điện thoại, tablet và laptop</h2>\n<p><strong>Giá đỡ đa năng tích hợp nam châm giữ điện thoại</strong>, đồng thời có thể mở rộng để sử dụng với tablet và laptop. Thiết kế gập gọn, thân hợp kim nhôm chắc chắn, phù hợp cho làm việc, giải trí, sáng tạo nội dung và sử dụng khi di chuyển.</p><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923945584-rr2w0vxiu0c-Tr__th__cho_ho_t___ng_s_ng_t_o.png\" alt=\"\" loading=\"lazy\"></figure><p><br></p><figure class=\"rich-image wide\"></figure><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h3>Nam châm giữ điện thoại</h3><p>Tích hợp <strong>cụm nam châm lực hút mạnh</strong>, giúp điện thoại bám nhanh và ổn định, thuận tiện khi xem video, chụp ảnh hoặc sử dụng rảnh tay.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923481623-r6sufvvcy58-Nam_ch_m_h_t_m_nh.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923872205-fkr2ls6sg7e-Gi______a_n_ng_nhi_u_ch____.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h3>Hỗ trợ nhiều thiết bị</h3><p>Ngoài chế độ nam châm dành cho điện thoại, các tay đỡ có thể mở rộng để sử dụng với <strong>tablet và laptop</strong>, đáp ứng nhiều nhu cầu trên cùng một sản phẩm.</p></div></section><h3>Điều chỉnh 8 mức</h3><section class=\"rich-split image-right\"><div class=\"rich-copy\"><p>Hỗ trợ <strong>8 mức điều chỉnh độ cao và góc nhìn</strong>, giúp người dùng dễ chọn tư thế phù hợp khi làm việc hoặc giải trí.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923661740-beorvdyuuj-_i_u_ch_nh_8_m_c.png\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1788923757317-7cfjml8izd5-G_n_nh__chuy_n_c_ng_t_c.png\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h3>Thân hợp kim nhôm nhẹ, bền, gập gọn, dễ mang theo</h3><p>Kết cấu <strong>hợp kim nhôm</strong> mang lại độ chắc chắn, trọng lượng gọn nhẹ và cảm giác sản phẩm cao cấp hơn.</p><p>Có thể <strong>gập lại nhỏ gọn</strong> để cất trong túi hoặc hành lý, phù hợp cho công tác, du lịch và làm việc linh hoạt.</p></div></section><p><strong>Phù hợp B2B:</strong> Một sản phẩm kết hợp <strong>giá đỡ điện thoại nam châm + giá đỡ tablet + giá đỡ laptop</strong>, phù hợp cho đại lý phụ kiện, nhà phân phối và các thương hiệu cần phát triển dòng sản phẩm đa năng.</p><p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923118618-p0i5et1m2eg-Th_ng_s__s_n_ph_m.png",
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788920961370-kw7xo4lypsf-hero_appleGray_1200_20260909_0927.webp"
+    },
+    {
       "sku": "P01",
       "slug": "p01",
       "status": "future",
