@@ -1078,52 +1078,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787385364682-1n14m9fxwpe-S4.png"
     },
     {
-      "sku": "V06",
-      "slug": "v06",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "clip",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "screen"
-      ],
-      "price": 24.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "new",
-      "name": {
-        "en": "VIEMAG Screen-Edge Magnetic Mount",
-        "vi": "Giá kẹp màn hình trung tâm VIEMAG",
-        "id": "Dudukan Magnetik Tepi Layar VIEMAG",
-        "zh": "VIEMAG 螢幕邊磁吸支架"
-      },
-      "claim": {
-        "en": "Clips to the center screen edge — no vents blocked, no adhesive.",
-        "vi": "Kẹp cạnh màn hình trung tâm, không che cửa gió, không dán keo.",
-        "id": "Menjepit tepi layar tengah — tanpa menutup kisi AC, tanpa perekat.",
-        "zh": "夾在中控螢幕邊，不擋出風口、不用貼膠。"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      }
-    },
-    {
       "sku": "V07",
       "slug": "v07",
       "status": "published",
