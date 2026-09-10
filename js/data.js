@@ -620,7 +620,13 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "img": "assets/products/VB001DSH1_BK.png"
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789011928644-b14vf9ppjb8-hero_appleGray_1200_20260910_1040.webp"
     },
     {
       "sku": "P01",
