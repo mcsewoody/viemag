@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.29';
+  var ADMIN_VERSION = '1.30';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1140,6 +1140,14 @@
     html += '<label>' + esc(prefix) + '_*</label>';
     var descHtml = fieldDescHtml(srcName, fields[0]);
     if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
+    var pendingColumn = fields.some(function (f) {
+      return f.requiresColumn && !Object.prototype.hasOwnProperty.call(srcRow, f.name);
+    });
+    if (pendingColumn) {
+      html += '<div class="computed-value muted">' + esc(t('columnPending')) + '</div>';
+      html += '</div>';
+      return html;
+    }
     html += '<div class="lang-inputs' + (prefix === 'product_article' ? ' article-lang-inputs' : '') + '">';
     fields.forEach(function (f) {
       var code = (f.name.match(/_(en|vi|id|zh)$/) || ['', ''])[1].toUpperCase();
@@ -1196,12 +1204,15 @@
     html += '</label>';
     var descHtml = fieldDescHtml(srcName, f);
     if (descHtml) html += '<p class="field-desc">' + descHtml + '</p>';
-    html += renderFieldInput(f, value, ctx.relOptions, ctx.joinValues, srcName);
+    html += renderFieldInput(f, value, ctx.relOptions, ctx.joinValues, srcName, !(f.requiresColumn && !Object.prototype.hasOwnProperty.call(srcRow, f.name)));
     html += '</div>';
     return html;
   }
 
-  function renderFieldInput(f, value, relOptions, joinValues, tableName) {
+  function renderFieldInput(f, value, relOptions, joinValues, tableName, columnReady) {
+    if (columnReady === false) {
+      return '<div class="computed-value muted">' + esc(t('columnPending')) + '</div>';
+    }
     /* Read-only because the DATABASE computes it (a generated column). It gets
        data-readonly-name, never data-name, so collectFormValues cannot pick it up
        and try to write a value Postgres would reject. */
