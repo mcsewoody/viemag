@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.32';
+  var ADMIN_VERSION = '1.34';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -2098,6 +2098,7 @@
   function collectFormValues(def, omitEmpty) {
     var out = {};
     def.fields.forEach(function (f) {
+      if (f.requiresColumn) return;
       if (missingSchemaColumns[f.name]) return;
       if (f.type === 'relation_many') return; // handled separately via join tables
       if (f.type === 'computed' || f.readOnly) return; // not columns we may write
