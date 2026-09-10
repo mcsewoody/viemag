@@ -99,6 +99,7 @@ const PRODUCT_COLS = [
   'gallery_urls', 'spec_sheet_url',
   'product_article_image_url',
   'product_article_en', 'product_article_vi', 'product_article_id', 'product_article_zh',
+  'technical_content_en', 'technical_content_vi', 'technical_content_id', 'technical_content_zh',
   'warranty_months', 'defect_exchange_days',
   'seo_title_en', 'seo_title_vi', 'seo_title_id', 'seo_title_zh',
   'seo_description_en', 'seo_description_vi', 'seo_description_id', 'seo_description_zh',
@@ -385,6 +386,9 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       const article = langObj(r, 'product_article');
       const hasArticle = article.en || article.vi || article.id || article.zh;
       if (hasArticle) out.article = article;
+      const technicalContent = langObj(r, 'technical_content');
+      const hasTechnicalContent = technicalContent.en || technicalContent.vi || technicalContent.id || technicalContent.zh;
+      if (hasTechnicalContent) out.technicalContent = technicalContent;
       if (r.product_article_image_url) out.articleImage = r.product_article_image_url;
       if (r.spec_sheet_url) out.spec = r.spec_sheet_url;
       /* Empty arrays are the common case; omit them so data.js does not carry 19
