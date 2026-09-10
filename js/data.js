@@ -1179,6 +1179,12 @@ window.DB = {
         "id": "",
         "zh": ""
       },
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787383375551-8rc6siqagt8-A1.png"
     },
     {
