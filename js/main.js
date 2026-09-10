@@ -482,6 +482,7 @@
         }
         if (tag === 'p' || tag === 'div') {
           if (node.classList.contains('rich-copy')) return `<div class="rich-copy">${children}</div>`;
+          if (node.classList.contains('rich-table-wrap')) return `<div class="rich-table-wrap">${children}</div>`;
           const align = (node.classList.contains('align-center') || node.style.textAlign === 'center') ? 'center'
             : (node.classList.contains('align-right') || node.style.textAlign === 'right') ? 'right' : '';
           const cls = align ? ` class="align-${align}"` : '';
@@ -493,6 +494,10 @@
         }
         if (tag === 'ul' || tag === 'ol') return `<${tag}>${children}</${tag}>`;
         if (tag === 'li') return `<li>${children}</li>`;
+        if (tag === 'table') return `<div class="rich-table-wrap"><table class="rich-table">${children}</table></div>`;
+        if (tag === 'thead' || tag === 'tbody') return `<${tag}>${children}</${tag}>`;
+        if (tag === 'tr') return `<tr>${children}</tr>`;
+        if (tag === 'th' || tag === 'td') return `<${tag}>${children}</${tag}>`;
         if (tag === 'a') {
           const href = safeHttpUrl(node.getAttribute('href'));
           return href ? `<a href="${href}" target="_blank" rel="noopener">${children}</a>` : children;
@@ -534,7 +539,7 @@
       };
       return Array.from(doc.body.firstChild.childNodes).map(clean).join('');
     };
-    if (/<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|section|br|hr)\b/i.test(String(src))) {
+    if (/<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|section|br|hr|table|thead|tbody|tr|th|td)\b/i.test(String(src))) {
       return cleanRichHtml(src);
     }
     const inline = (str) => esc(str)
@@ -547,13 +552,29 @@
     const out = [];
     let para = [];   // pending plain lines
     let list = [];   // pending list items
+    let table = [];  // pending pipe-table rows
     const flushPara = () => { if (para.length) { out.push(`<p>${para.map(inline).join('<br>')}</p>`); para = []; } };
     const flushList = () => { if (list.length) { out.push('<ul>' + list.map((l) => `<li>${inline(l)}</li>`).join('') + '</ul>'); list = []; } };
-    const flush = () => { flushPara(); flushList(); };
+    const flushTable = () => {
+      if (!table.length) return;
+      out.push('<div class="rich-table-wrap"><table class="rich-table"><tbody>' + table.map((cells) =>
+        `<tr>${cells.map((cell) => `<td>${inline(cell)}</td>`).join('')}</tr>`
+      ).join('') + '</tbody></table></div>');
+      table = [];
+    };
+    const flush = () => { flushPara(); flushList(); flushTable(); };
 
     String(src).split('\n').forEach((raw) => {
       const line = raw.trim();
       if (!line) { flush(); return; }
+      const tableMatch = /^\|(.+)\|$/.exec(line);
+      if (tableMatch) {
+        flushPara(); flushList();
+        const cells = tableMatch[1].split('|').map((x) => x.trim());
+        if (cells.length >= 2 && !cells.every((x) => /^:?-{3,}:?$/.test(x))) table.push(cells);
+        return;
+      }
+      flushTable();
       if (/^(?:---|\*\s*\*\s*\*)$/.test(line)) { flush(); out.push('<hr class="rich-divider">'); return; }
       const img = /^!\[([^\]]*)\]\(([^)]+)\)(?:\{(wide|left|right)\})?$/i.exec(line);
       if (img) {

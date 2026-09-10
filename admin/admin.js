@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.28';
+  var ADMIN_VERSION = '1.29';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1180,7 +1180,7 @@
      accessories joined on 2026-08-11. It is the first MULTI-LINE field here, and
      the Edge Function had to learn to translate line by line before this was
      safe — the line breaks are what make it a list on the product page. */
-  var TRANSLATABLE_PREFIXES = ['name', 'claim', 'accessories', 'product_article'];
+  var TRANSLATABLE_PREFIXES = ['name', 'claim', 'accessories', 'product_article', 'technical_content'];
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
@@ -1263,16 +1263,18 @@
   function renderImageField(name, urls, multi) {
     var html = '<div class="image-field" data-image-field="' + name + '" data-multi="' + (multi ? '1' : '0') + '">';
     html += '<input type="hidden" data-name="' + name + '" value="' + esc(multi ? JSON.stringify(urls) : (urls[0] || '')) + '">';
-    html += '<div class="image-field-preview">' + urls.map(function (u) {
-      return '<div class="thumb-wrap"><img src="' + esc(mediaUrl(u)) + '"><button type="button" class="thumb-remove" data-remove-url="' + esc(u) + '">&times;</button></div>';
-    }).join('') + '</div>';
+    html += '<div class="image-field-preview"></div>';
     /* Must stay in step with viemag-media's allowed_mime_types
        (supabase/migrations/20260730180000). `image/*` used to be offered here,
        which included svg, gif, bmp and tiff — all of them rejected by the bucket
        now. A dialog that lets someone pick a file the server will refuse is worse
        than no limit, because the failure lands after they have done the work. */
-    html += '<input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" ' + (multi ? 'multiple' : '') + '>';
-    html += '<span class="upload-status" style="font-size:.8rem;color:var(--muted)"></span>';
+    html += '<div class="image-field-actions">'
+      + '<label class="file-pick image-pick">' + esc(multi ? t('uploadImage') : (urls[0] ? t('replaceImage') : t('uploadImage')))
+      + '<input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" ' + (multi ? 'multiple' : '') + '></label>'
+      + '<button type="button" class="btn image-clear"' + (urls.length ? '' : ' hidden') + '>' + esc(t('removeImage')) + '</button>'
+      + '<span class="upload-status"></span>'
+      + '</div>';
     html += '</div>';
     return html;
   }
@@ -1362,12 +1364,28 @@
     var out = [];
     var para = [];
     var list = [];
+    var table = [];
     function flushPara() { if (para.length) { out.push('<p>' + para.map(inline).join('<br>') + '</p>'); para = []; } }
     function flushList() { if (list.length) { out.push('<ul>' + list.map(function (l) { return '<li>' + inline(l) + '</li>'; }).join('') + '</ul>'); list = []; } }
-    function flush() { flushPara(); flushList(); }
+    function flushTable() {
+      if (!table.length) return;
+      out.push('<div class="rich-table-wrap"><table class="rich-table"><tbody>' + table.map(function (cells) {
+        return '<tr>' + cells.map(function (cell) { return '<td>' + inline(cell) + '</td>'; }).join('') + '</tr>';
+      }).join('') + '</tbody></table></div>');
+      table = [];
+    }
+    function flush() { flushPara(); flushList(); flushTable(); }
     String(src || '').split('\n').forEach(function (raw) {
       var line = raw.trim();
       if (!line) { flush(); return; }
+      var tableMatch = /^\|(.+)\|$/.exec(line);
+      if (tableMatch) {
+        flushPara(); flushList();
+        var cells = tableMatch[1].split('|').map(function (x) { return x.trim(); });
+        if (cells.length >= 2 && !cells.every(function (x) { return /^:?-{3,}:?$/.test(x); })) table.push(cells);
+        return;
+      }
+      flushTable();
       if (/^(?:---|\*\s*\*\s*\*)$/.test(line)) { flush(); out.push('<hr class="rich-divider">'); return; }
       var media = /^!\[([^\]]*)\]\(([^)]+)\)(?:\{(wide|left|right)\})?$/i.exec(line);
       if (media) {
@@ -1401,7 +1419,7 @@
     var visual = wrap.querySelector('[data-rich-visual]');
     if (!visual) return;
     var savedRange = null;
-    var hasHtml = /<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|section|br|hr)\b/i;
+    var hasHtml = /<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|section|br|hr|table|thead|tbody|tr|th|td)\b/i;
 
     function safeUrl(url, media) {
       var u = String(url || '').trim();
@@ -1440,6 +1458,7 @@
         }
         if (tag === 'p' || tag === 'div') {
           if (node.classList.contains('rich-copy')) return '<div class="rich-copy">' + children + '</div>';
+          if (node.classList.contains('rich-table-wrap')) return '<div class="rich-table-wrap">' + children + '</div>';
           var align = node.style && node.style.textAlign ? node.style.textAlign : '';
           var cls = /^(center|right)$/i.test(align) ? ' class="align-' + align.toLowerCase() + '"' : '';
           return '<p' + cls + '>' + (children || '<br>') + '</p>';
@@ -1449,6 +1468,10 @@
         }
         if (tag === 'ul' || tag === 'ol') return '<' + tag + '>' + children + '</' + tag + '>';
         if (tag === 'li') return '<li>' + children + '</li>';
+        if (tag === 'table') return '<div class="rich-table-wrap"><table class="rich-table">' + children + '</table></div>';
+        if (tag === 'thead' || tag === 'tbody') return '<' + tag + '>' + children + '</' + tag + '>';
+        if (tag === 'tr') return '<tr>' + children + '</tr>';
+        if (tag === 'th' || tag === 'td') return '<' + tag + '>' + children + '</' + tag + '>';
         if (tag === 'a') {
           var href = safeUrl(node.getAttribute('href'), false);
           return href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener">' + children + '</a>' : children;
@@ -1797,6 +1820,7 @@
         var targetEl = document.querySelector('[data-name="' + prefix + '_' + lang + '"]');
         if (!targetEl) return;
         targetEl.value = translations[lang];
+        targetEl.dispatchEvent(new Event('rich-source-changed'));
         var cell = targetEl.closest('.lang-cell');
         if (cell) cell.classList.toggle('empty', !translations[lang]);
       });
@@ -1903,6 +1927,8 @@
     var hidden = wrap.querySelector('input[type=hidden]');
     var statusEl = wrap.querySelector('.upload-status');
     var previewEl = wrap.querySelector('.image-field-preview');
+    var clearBtn = wrap.querySelector('.image-clear');
+    var pickLabel = wrap.querySelector('.image-pick');
 
     function currentUrls() {
       if (!multi) return hidden.value ? [hidden.value] : [];
@@ -1911,11 +1937,32 @@
     function setUrls(urls) {
       hidden.value = multi ? JSON.stringify(urls) : (urls[0] || '');
       previewEl.innerHTML = urls.map(function (u) {
-        return '<div class="thumb-wrap"><img src="' + esc(mediaUrl(u)) + '"><button type="button" class="thumb-remove" data-remove-url="' + esc(u) + '">&times;</button></div>';
+        var isPdf = /\.pdf(?:[?#].*)?$/i.test(u);
+        var preview = isPdf
+          ? '<div class="thumb-file">PDF</div>'
+          : '<img src="' + esc(mediaUrl(u)) + '" alt="">';
+        return '<div class="thumb-wrap">' + preview
+          + '<div class="thumb-actions">'
+          + '<button type="button" class="btn thumb-open" data-open-url="' + esc(u) + '">' + esc(t('openFile')) + '</button>'
+          + '<button type="button" class="btn btn-danger thumb-remove" data-remove-url="' + esc(u) + '">' + esc(t('removeImage')) + '</button>'
+          + '</div></div>';
       }).join('');
+      if (clearBtn) clearBtn.hidden = !urls.length;
+      if (pickLabel) {
+        var label = multi ? t('uploadImage') : (urls.length ? t('replaceImage') : t('uploadImage'));
+        var input = pickLabel.querySelector('input');
+        pickLabel.textContent = label;
+        if (input) pickLabel.appendChild(input);
+      }
+      Array.prototype.forEach.call(previewEl.querySelectorAll('.thumb-open'), function (btn) {
+        btn.addEventListener('click', function () {
+          window.open(btn.dataset.openUrl, '_blank', 'noopener');
+        });
+      });
       Array.prototype.forEach.call(previewEl.querySelectorAll('.thumb-remove'), function (btn) {
         btn.addEventListener('click', function () {
           setUrls(currentUrls().filter(function (u) { return u !== btn.dataset.removeUrl; }));
+          state.formDirty = true;
         });
       });
       /* If this field IS the record's thumbnail, keep the header picture in step.
@@ -1934,6 +1981,10 @@
       }
     }
     setUrls(currentUrls());
+    if (clearBtn) clearBtn.addEventListener('click', function () {
+      setUrls([]);
+      state.formDirty = true;
+    });
 
     fileInput.addEventListener('change', function () {
       var files = Array.prototype.slice.call(fileInput.files || []);
@@ -1949,6 +2000,8 @@
         statusEl.textContent = '';
         var merged = multi ? currentUrls().concat(newUrls) : newUrls.slice(0, 1);
         setUrls(merged);
+        state.formDirty = true;
+        fileInput.value = '';
       }).catch(function (err) {
         statusEl.textContent = err.message || String(err);
       });

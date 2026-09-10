@@ -42,14 +42,25 @@ const DEEPL_TARGET: Record<string, string> = { en: 'EN', vi: 'VI', id: 'ID', zh:
 const DEEPL_SOURCE: Record<string, string> = { en: 'EN', vi: 'VI', id: 'ID', zh: 'ZH' };
 
 const LANGS = ['en', 'vi', 'id', 'zh'];
-// A name or claim is one short line; accessories is a handful of short lines.
-// Neither is a paragraph. Capped well above any real use so a future accidental
-// reuse of this button on a large textarea (e.g. article body) fails loudly
-// instead of quietly burning the monthly character quota on one call.
-const MAX_INPUT_LENGTH = 2000;
-// DeepL accepts up to 50 text elements per request. Lines beyond that mean the
-// button is being used on something it was not designed for.
+// Product articles and technical notes are real translation surfaces now, so the
+// old 2,000-character guard would reject normal catalog work. Keep a generous
+// client-facing cap to avoid accidental quota burns, then batch DeepL requests
+// below its per-request text-element limit.
+const MAX_INPUT_LENGTH = 50000;
 const DEEPL_MAX_TEXTS = 50;
+const DEEPL_BATCH_TEXTS = 45;
+const DEEPL_BATCH_CHARS = 24000;
+
+function shouldPreserveLine(line: string): boolean {
+  const trimmed = line.trim();
+  if (!trimmed) return true;
+  if (/^(?:---|\*\s*\*\s*\*)$/.test(trimmed)) return true;
+  if (/^\|(?:\s*:?-{3,}:?\s*\|)+$/.test(trimmed)) return true;
+  if (/^!\[[^\]]*\]\([^)]+\)(?:\{(?:wide|left|right)\})?$/i.test(trimmed)) return true;
+  if (/^<figure\b[\s\S]*<\/figure>$/i.test(trimmed) && /<(?:img|iframe|video)\b/i.test(trimmed)) return true;
+  if (/^<(?:img|iframe|video)\b[\s\S]*>$/i.test(trimmed)) return true;
+  return false;
+}
 
 async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: string }> {
   const authHeader = req.headers.get('Authorization') || '';
@@ -72,40 +83,64 @@ async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: strin
    For a single-line name or claim this is an array of one, so the request and
    the result are byte-for-byte what they were before.
 
-   Blank lines keep their position and are never sent: DeepL has nothing to do
-   with an empty string, and sending one would just consume an element slot. */
+   Blank lines and media-only/format-only lines keep their position and are never
+   sent: DeepL has nothing useful to do with an image URL, iframe, divider, or
+   table separator, and translating those can break the exact markup/layout the
+   public renderer expects. */
 async function deeplTranslate(text: string, sourceLang: string, targetLang: string): Promise<string> {
   const lines = text.split('\n');
   const sendAt: number[] = [];
   const payload: string[] = [];
   lines.forEach((line, i) => {
-    if (line.trim()) { sendAt.push(i); payload.push(line); }
+    if (!shouldPreserveLine(line)) { sendAt.push(i); payload.push(line); }
   });
   if (!payload.length) return '';
-  if (payload.length > DEEPL_MAX_TEXTS) {
-    throw new Error(`too many lines to translate (${payload.length} > ${DEEPL_MAX_TEXTS})`);
-  }
 
-  const res = await fetch(`${DEEPL_API_HOST}/v2/translate`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ text: payload, source_lang: sourceLang, target_lang: targetLang }),
-  });
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error(`DeepL ${targetLang} failed: ${res.status} ${errText.slice(0, 200)}`);
+  const batches: string[][] = [];
+  let batch: string[] = [];
+  let batchChars = 0;
+  for (const item of payload) {
+    const itemChars = item.length;
+    if (batch.length && (batch.length >= DEEPL_BATCH_TEXTS || batchChars + itemChars > DEEPL_BATCH_CHARS)) {
+      batches.push(batch);
+      batch = [];
+      batchChars = 0;
+    }
+    batch.push(item);
+    batchChars += itemChars;
   }
-  const data = await res.json();
-  const out = data.translations ?? [];
-  /* A mismatch means the line-to-line mapping is not what this code assumes, so
-     writing the results back would scramble which item is which. Fail instead. */
-  if (out.length !== payload.length) {
-    throw new Error(`DeepL ${targetLang} returned ${out.length} results for ${payload.length} lines`);
+  if (batch.length) batches.push(batch);
+
+  const translated: string[] = [];
+  const tagHandling = /<\/?[a-z][\s\S]*>/i.test(text) ? 'html' : undefined;
+  for (const part of batches) {
+    if (part.length > DEEPL_MAX_TEXTS) {
+      throw new Error(`too many lines in one DeepL batch (${part.length} > ${DEEPL_MAX_TEXTS})`);
+    }
+    const body: Record<string, unknown> = { text: part, source_lang: sourceLang, target_lang: targetLang };
+    if (tagHandling) body.tag_handling = tagHandling;
+    const res = await fetch(`${DEEPL_API_HOST}/v2/translate`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`DeepL ${targetLang} failed: ${res.status} ${errText.slice(0, 200)}`);
+    }
+    const data = await res.json();
+    const out = data.translations ?? [];
+    /* A mismatch means the line-to-line mapping is not what this code assumes, so
+       writing the results back would scramble which item is which. Fail instead. */
+    if (out.length !== part.length) {
+      throw new Error(`DeepL ${targetLang} returned ${out.length} results for ${part.length} lines`);
+    }
+    translated.push(...out.map((x: { text?: string }) => x?.text ?? ''));
   }
-  sendAt.forEach((lineNo, k) => { lines[lineNo] = out[k]?.text ?? ''; });
+  sendAt.forEach((lineNo, k) => { lines[lineNo] = translated[k] ?? ''; });
   return lines.join('\n');
 }
 
