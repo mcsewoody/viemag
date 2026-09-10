@@ -496,6 +496,83 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787385364682-1n14m9fxwpe-S4.png"
     },
     {
+      "sku": "D04",
+      "slug": "d04",
+      "status": "future",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "pu-suction",
+        "magsafe"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "MT-29 真空折疊磁吸支架 | VIEMAG | D04"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "奈米膠吸附底座，穩固貼合，可水洗重複使用\n機械式真空鎖定設計，一轉即固定不鬆動\nN52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n雙桿折疊結構，輕巧好收不占空間，隨身攜帶更方便\n多角度自由調整，直橫隨心切換，怎麼看都順手\n鋅合金機身設計，結構穩固耐用不晃動\n滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600810688-gray-short.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600811397-orange-all.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600812164-orange-long.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600812912-orange-short.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600813568-gray-all.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600814296-09.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600815130-01.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600815844-08.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600816629-04.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600817696-05.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600818333-02.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600819014-03.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600819671-07.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600820348-06.jpg"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "酒精棉片"
+        ]
+      },
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600809971-gray-long.jpg"
+    },
+    {
       "sku": "D05",
       "slug": "d05",
       "status": "published",
