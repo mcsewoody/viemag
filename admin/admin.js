@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.33';
+  var ADMIN_VERSION = '1.32';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -31,6 +31,7 @@
     myRole: 'editor', // re-read from admin_users on every showApp(); never trusted for enforcement
     formDirty: false, // set by any input in the open form; gates the "leave anyway?" prompt
   };
+  var missingSchemaColumns = {};
 
   /* Tables that actually feed js/data.js (see supabase/functions/export-site-data).
      Saving/deleting a row in one of these triggers a re-export + GitHub commit.
@@ -1188,7 +1189,7 @@
      accessories joined on 2026-08-11. It is the first MULTI-LINE field here, and
      the Edge Function had to learn to translate line by line before this was
      safe — the line breaks are what make it a list on the product page. */
-  var TRANSLATABLE_PREFIXES = ['name', 'claim', 'accessories', 'product_article'];
+  var TRANSLATABLE_PREFIXES = ['name', 'claim', 'accessories', 'product_article', 'technical_content'];
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
@@ -2097,6 +2098,7 @@
   function collectFormValues(def, omitEmpty) {
     var out = {};
     def.fields.forEach(function (f) {
+      if (missingSchemaColumns[f.name]) return;
       if (f.type === 'relation_many') return; // handled separately via join tables
       if (f.type === 'computed' || f.readOnly) return; // not columns we may write
       if (f.type === 'multiselect') {
@@ -2146,6 +2148,30 @@
       .then(function (res) { return res.error ? res.error.message : null; });
   }
 
+  function missingColumnFromError(error) {
+    var msg = error && error.message ? String(error.message) : '';
+    var match = /Could not find the '([^']+)' column/i.exec(msg);
+    return match ? match[1] : '';
+  }
+
+  function writeRow(tableName, values, isNew, id) {
+    return isNew
+      ? sb.from(tableName).insert(values).select('id').single()
+      : sb.from(tableName).update(values).eq('id', id).select('id').single();
+  }
+
+  function writeRowSkippingMissingColumns(tableName, values, isNew, id, attemptsLeft) {
+    return writeRow(tableName, values, isNew, id).then(function (res) {
+      var missingColumn = res.error && missingColumnFromError(res.error);
+      if (missingColumn && Object.prototype.hasOwnProperty.call(values, missingColumn) && attemptsLeft > 0) {
+        missingSchemaColumns[missingColumn] = true;
+        delete values[missingColumn];
+        return writeRowSkippingMissingColumns(tableName, values, isNew, id, attemptsLeft - 1);
+      }
+      return res;
+    });
+  }
+
   function saveForm(ctx, id, joinFields) {
     var tableName = ctx.tableName, def = ctx.def, isNew = ctx.isNew;
     var statusEl = document.getElementById('saveStatus');
@@ -2161,11 +2187,7 @@
     };
     var values = collectFormValues(def, isNew);
 
-    var savePromise = isNew
-      ? sb.from(tableName).insert(values).select('id').single()
-      : sb.from(tableName).update(values).eq('id', id).select('id').single();
-
-    savePromise.then(function (res) {
+    writeRowSkippingMissingColumns(tableName, values, isNew, id, 8).then(function (res) {
       if (res.error) { fail(t('saveFailed') + res.error.message); return; }
       var rowId = res.data.id;
 
