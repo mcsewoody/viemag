@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.30';
+  var ADMIN_VERSION = '1.31';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1321,6 +1321,8 @@
       + '</select>'
       + '<input type="text" class="rich-image-url" placeholder="' + esc(t('imageUrl')) + '">'
       + '<button type="button" data-format="image" title="' + esc(t('insertImage')) + '">Img</button>'
+      + '<button type="button" data-format="replace-selected-image" title="' + esc(t('replaceSelectedImage')) + '">Replace</button>'
+      + '<button type="button" data-format="remove-selected-media" title="' + esc(t('removeSelectedMedia')) + '">Remove</button>'
       + '<label class="rich-file-pick" title="' + esc(t('uploadArticleImage')) + '">' + esc(t('uploadArticleImage')) + '<input type="file" class="rich-article-image-file" accept="image/jpeg,image/png,image/webp"></label>'
       + '<span class="rich-upload-status"></span>'
       + '<input type="text" class="rich-youtube-url" placeholder="' + esc(t('youtubeUrl')) + '">'
@@ -1430,6 +1432,7 @@
     var visual = wrap.querySelector('[data-rich-visual]');
     if (!visual) return;
     var savedRange = null;
+    var selectedMedia = null;
     var hasHtml = /<\/?(?:p|h2|h3|ul|ol|li|figure|img|iframe|strong|em|a|div|section|br|hr|table|thead|tbody|tr|th|td)\b/i;
 
     function safeUrl(url, media) {
@@ -1519,6 +1522,26 @@
       var sel = window.getSelection();
       if (sel && sel.rangeCount && visual.contains(sel.anchorNode)) savedRange = sel.getRangeAt(0).cloneRange();
     }
+    function selectMedia(figure) {
+      if (selectedMedia) selectedMedia.classList.remove('rich-selected');
+      selectedMedia = figure && visual.contains(figure) ? figure : null;
+      if (selectedMedia) {
+        selectedMedia.classList.add('rich-selected');
+        var img = selectedMedia.querySelector('img');
+        var input = wrap.querySelector('.rich-image-url');
+        if (img && input) input.value = img.getAttribute('src') || '';
+      }
+    }
+    function selectedFigure() {
+      if (selectedMedia && visual.contains(selectedMedia)) return selectedMedia;
+      var sel = window.getSelection();
+      var node = sel && sel.rangeCount ? sel.anchorNode : null;
+      while (node && node !== visual) {
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName && node.tagName.toLowerCase() === 'figure') return node;
+        node = node.parentNode;
+      }
+      return null;
+    }
     function restoreSelection() {
       visual.focus();
       var sel = window.getSelection();
@@ -1581,12 +1604,47 @@
       if (!insertMedia('image', url)) return false;
       return true;
     }
+    function replaceSelectedImage(url) {
+      var src = safeUrl(url, true);
+      var figure = selectedFigure();
+      var img = figure && figure.querySelector('img');
+      if (!src || !img) return false;
+      img.setAttribute('src', src);
+      img.setAttribute('loading', 'lazy');
+      selectMedia(figure);
+      touch();
+      return true;
+    }
+    function removeSelectedMedia() {
+      var figure = selectedFigure();
+      if (!figure) return false;
+      var next = document.createElement('p');
+      next.innerHTML = '<br>';
+      figure.parentNode.insertBefore(next, figure.nextSibling);
+      figure.parentNode.removeChild(figure);
+      selectMedia(null);
+      savedRange = null;
+      syncFromVisual();
+      return true;
+    }
 
     visual.innerHTML = hasHtml.test(textarea.value) ? cleanArticleHtml(textarea.value) : richPreviewHtml(textarea.value);
     if (!visual.innerHTML.trim()) visual.innerHTML = '<p><br></p>';
     textarea.value = cleanArticleHtml(visual.innerHTML).trim();
     visual.addEventListener('keyup', saveSelection);
     visual.addEventListener('mouseup', saveSelection);
+    visual.addEventListener('click', function (ev) {
+      var node = ev.target;
+      while (node && node !== visual) {
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName && node.tagName.toLowerCase() === 'figure') {
+          selectMedia(node);
+          saveSelection();
+          return;
+        }
+        node = node.parentNode;
+      }
+      selectMedia(null);
+    });
     visual.addEventListener('input', syncFromVisual);
     visual.addEventListener('paste', function () {
       window.setTimeout(function () {
@@ -1642,7 +1700,18 @@
           var input = wrap.querySelector('.rich-image-url');
           var url = input ? input.value.trim() : '';
           if (!url) { if (input) input.focus(); return; }
-          if (insertImageUrl(url) && input) input.value = '';
+          if ((replaceSelectedImage(url) || insertImageUrl(url)) && input) input.value = '';
+          return;
+        }
+        if (kind === 'replace-selected-image') {
+          var replaceInput = wrap.querySelector('.rich-image-url');
+          var replaceUrl = replaceInput ? replaceInput.value.trim() : '';
+          if (!replaceUrl || !replaceSelectedImage(replaceUrl)) { if (replaceInput) replaceInput.focus(); return; }
+          if (replaceInput) replaceInput.value = '';
+          return;
+        }
+        if (kind === 'remove-selected-media') {
+          if (!removeSelectedMedia()) visual.focus();
           return;
         }
         if (kind === 'youtube') {
@@ -1665,7 +1734,7 @@
         sb.storage.from(CFG.mediaBucket).upload(path, file).then(function (res) {
           if (res.error) throw res.error;
           var url = sb.storage.from(CFG.mediaBucket).getPublicUrl(path).data.publicUrl;
-          insertImageUrl(url);
+          replaceSelectedImage(url) || insertImageUrl(url);
           articleFile.value = '';
           if (statusEl) statusEl.textContent = '';
         }).catch(function (err) {

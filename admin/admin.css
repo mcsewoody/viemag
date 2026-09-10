@@ -255,6 +255,10 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
 .rich-visual-editor .rich-image, .rich-visual-editor .rich-video, .rich-visual-editor .rich-youtube {
   margin: 18px 0; border: 1px solid #E1D8CB; border-radius: 8px; overflow: hidden; background: #fff;
 }
+.rich-visual-editor figure.rich-selected {
+  outline: 3px solid rgba(11, 87, 152, .5);
+  outline-offset: 4px;
+}
 .rich-visual-editor .rich-image img { display: block; width: 100%; height: auto; }
 .rich-visual-editor .rich-image.left, .rich-visual-editor .rich-image.right { width: min(44%, 360px); margin-top: 5px; }
 .rich-visual-editor .rich-image.left { float: left; margin-right: 18px; }
@@ -385,6 +389,8 @@ table.grid td:last-child { white-space: nowrap; }
   .rich-toolbar select,
   .rich-toolbar input,
   .rich-toolbar button[data-format="image"],
+  .rich-toolbar button[data-format="replace-selected-image"],
+  .rich-toolbar button[data-format="remove-selected-media"],
   .rich-toolbar button[data-format="youtube"],
   .rich-toolbar button[data-format="heading-link"] { grid-column: 1 / -1; width: 100%; }
   .rich-editor-body { grid-template-columns: 1fr; }
