@@ -478,7 +478,13 @@ window.DB = {
         "zh": "最輕薄的吸盤 Magsafe 支架"
       },
       "reports": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401466-565gpuf9jce-7.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-53n2qp51o3h-2.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-f7n1nf2t1j-4.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-pqo2yxl9p0m-5.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-1ca1mpu5p9s-6.jpg"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
@@ -493,7 +499,13 @@ window.DB = {
         "id": "",
         "zh": ""
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787385364682-1n14m9fxwpe-S4.png"
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
     {
       "sku": "D04",
