@@ -533,8 +533,6 @@ window.DB = {
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853629-nd8fvrijmmn-dieu-chinh-da-goc-xoay-quanh-hop.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7a6avsguo3-do-tuong-thich-rong.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-flju22qy1fn-gap-doi-gon-nhe.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-u6ret6pl4cg-gap-gon-duoc.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-ji4u7a2wv2-gia-do.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-dc3cyo4rx9-hop-nhieu-be-mat.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7iluxyudue3-ho-tro-nhieu-dong-may.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-uonmdzn9c8k-khoa-chan-khong-co-hoc.webp"
