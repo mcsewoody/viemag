@@ -514,33 +514,30 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "",
-        "vi": "",
-        "id": "",
+        "en": "MT-29 Vacuum Folding Magnetic Mount | VIEMAG | D04",
+        "vi": "Giá đỡ từ tính gập lại chân không MT-29 | VIEMAG | D04",
+        "id": "MT-29 Dudukan Lipat Vakum dengan Magnet | VIEMAG | D04",
         "zh": "MT-29 真空折疊磁吸支架 | VIEMAG | D04"
       },
       "claim": {
-        "en": "",
-        "vi": "",
-        "id": "",
+        "en": "Nano-gel adhesive base for a secure fit; washable and reusable\nMechanical vacuum-lock design—secures with a single turn and stays in place without loosening\nN52 powerful magnetic attachment—stays securely in place without falling off, so you can use your phone for navigation or watch shows with peace of mind\nThe double-rod folding design is lightweight and compact, making it easy to store and take with you.\nAdjustable from multiple angles; switch between portrait and landscape modes at will—it’s comfortable no matter how you view it.\nZinc alloy body design, sturdy and durable with no wobbling\nSmooth hinge design ensures seamless, jam-free adjustment and more precise angle positioning",
+        "vi": "Đế hấp phụ bằng keo nano, bám dính chắc chắn, có thể giặt bằng nước và tái sử dụng nhiều lần\nThiết kế khóa chân không cơ học, chỉ cần xoay một vòng là cố định, không bị lỏng\nN52 – Lực hút từ mạnh mẽ, bám chắc không bị rơi, giúp bạn yên tâm khi dùng để định vị hay xem phim\nCấu trúc gấp hai thanh, nhẹ nhàng, gọn gàng, không tốn diện tích, thuận tiện hơn khi mang theo bên mình\nCó thể điều chỉnh tự do theo nhiều góc độ, chuyển đổi giữa chế độ dọc và ngang tùy ý, mang lại cảm giác thoải mái khi xem ở mọi góc độ\nThiết kế thân máy bằng hợp kim kẽm, cấu trúc chắc chắn, bền bỉ và không bị lung lay\nThiết kế trục xoay mượt mà, điều chỉnh trơn tru, không bị kẹt, định vị góc chính xác hơn",
+        "id": "Alas penyerap berbahan nano, menempel dengan kokoh, dapat dicuci dan digunakan kembali\nDesain penguncian vakum mekanis, cukup diputar sekali untuk mengunci dan tidak akan kendur\nN52 dengan daya tarik magnet yang kuat, menempel dengan kokoh tanpa lepas, sehingga Anda dapat menggunakan navigasi atau menonton serial TV dengan tenang\nStruktur lipat dua batang, ringan dan mudah disimpan sehingga tidak memakan tempat, serta lebih praktis untuk dibawa-bawa\nDapat disesuaikan secara bebas dari berbagai sudut, beralih antara orientasi vertikal dan horizontal sesuka hati, nyaman dilihat dari sudut mana pun\nDesain bodi dari paduan seng, strukturnya kokoh dan tahan lama serta tidak goyah\nDesain engsel yang mulus, penyesuaian yang lancar tanpa hambatan, serta penentuan sudut yang lebih akurat",
         "zh": "奈米膠吸附底座，穩固貼合，可水洗重複使用\n機械式真空鎖定設計，一轉即固定不鬆動\nN52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n雙桿折疊結構，輕巧好收不占空間，隨身攜帶更方便\n多角度自由調整，直橫隨心切換，怎麼看都順手\n鋅合金機身設計，結構穩固耐用不晃動\n滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
       },
       "reports": [],
       "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600810688-gray-short.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600811397-orange-all.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600812164-orange-long.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600812912-orange-short.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600813568-gray-all.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600814296-09.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600815130-01.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600815844-08.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600816629-04.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600817696-05.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600818333-02.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600819014-03.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600819671-07.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600820348-06.jpg"
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113844453-en1t0te3d4k-hero_appleGray_1200_20260911_0958__1_.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113844454-iav2923u9k-hero_appleGray_1200_20260911_0958.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853629-0dcpuu443hk5-de-keo-nano.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853629-nd8fvrijmmn-dieu-chinh-da-goc-xoay-quanh-hop.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7a6avsguo3-do-tuong-thich-rong.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-flju22qy1fn-gap-doi-gon-nhe.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-u6ret6pl4cg-gap-gon-duoc.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-ji4u7a2wv2-gia-do.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-dc3cyo4rx9-hop-nhieu-be-mat.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7iluxyudue3-ho-tro-nhieu-dong-may.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-uonmdzn9c8k-khoa-chan-khong-co-hoc.webp"
       ],
       "warranty": 12,
       "exchange": 14,
@@ -566,11 +563,12 @@ window.DB = {
       },
       "article": {
         "en": "<p><br></p>",
-        "vi": "<p><br></p>",
+        "vi": "<h2>Giá đỡ điện thoại nam châm N52 đế hút chân không gập gọn</h2><p><strong>Giá đỡ điện thoại nam châm N52 đế hút chân không</strong> kết hợp lực hút từ tính mạnh với cơ chế khóa đế chắc chắn trong một thiết kế nhỏ gọn. Cấu trúc gập linh hoạt, điều chỉnh nhiều góc và khả năng bám trên nhiều bề mặt giúp sản phẩm phù hợp cho cả không gian ô tô lẫn bàn làm việc.</p><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1789114874989-9o1fw51445i-nam-cham-n52.webp\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Nam châm N52, đặt máy là giữ chắc</h2><p>Cụm <strong>nam châm N52</strong> tạo lực hút mạnh, giúp điện thoại giữ ổn định khi dẫn đường, xem màn hình hoặc sử dụng rảnh tay. Thiết kế từ tính cho phép gắn và tháo máy nhanh, không cần thao tác với kẹp giữ hai bên.</p></div></section><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Đế hút chân không, xoay khóa để cố định</h2><p>Phần đế sử dụng <strong>cơ chế hút chân không kết hợp vòng xoay khóa</strong>, giúp tăng độ bám và hạn chế xê dịch trong quá trình sử dụng. Khi cần đổi vị trí, chỉ cần mở khóa để tháo và lắp lại thuận tiện.</p><p>\n</p><p>Lớp <strong>keo nano</strong> ở đáy hỗ trợ tăng độ bám trên bề mặt tiếp xúc. Khi bám bụi, phần đế có thể vệ sinh bằng nước và tái sử dụng sau khi làm sạch.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1789114933208-1147syfqauel-khoa-chan-khong-co-hoc.webp\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1789115384326-xxuxoyqr0vn-dieu-chinh-da-goc-xoay-quanh-hop.webp\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Điều chỉnh góc nhìn linh hoạt</h2><p>Hệ thống khớp xoay cho phép thay đổi độ cao và góc nghiêng theo nhu cầu sử dụng. Người dùng có thể dễ dàng chọn góc nhìn phù hợp khi dẫn đường, xem nội dung hoặc gọi video.</p></div></section><section class=\"rich-split image-right\"><div class=\"rich-copy\"><h2>Dùng được trên nhiều bề mặt</h2><p>Đế hút hỗ trợ nhiều bề mặt phẳng như <strong>kính, nhựa, gạch men, bề mặt vân gỗ và da</strong>, giúp mở rộng vị trí lắp đặt thay vì chỉ giới hạn trên kính hoặc taplo xe.</p></div><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1789115433261-9tl5c6v09l-hop-nhieu-be-mat.webp\" alt=\"\" loading=\"lazy\"></figure></section><section class=\"rich-split image-left\"><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1789115465502-p5678lrlkc-ho-tro-nhieu-dong-may.webp\" alt=\"\" loading=\"lazy\"></figure><div class=\"rich-copy\"><h2>Tương thích MagSafe và nhiều dòng điện thoại</h2><p>Sản phẩm sử dụng trực tiếp với điện thoại hoặc ốp lưng hỗ trợ <strong>MagSafe</strong>. Các thiết bị khác có thể kết hợp thêm vòng kim loại để sử dụng cùng giá đỡ từ tính.</p></div></section><h2>Thông số kỹ thuật</h2><p><figure class=\"rich-image wide\"><img src=\"https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/article-1789115509607-v0g77mqvcd9-thong-so-ki-thuat.webp\" alt=\"\" loading=\"lazy\"></figure></p><h3><br></h3>",
         "id": "<p><br></p>",
         "zh": "<p><br></p>"
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/S2/1788600809971-gray-long.jpg"
+      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113858740-l8qf5myqh1-thong-so-ki-thuat.webp",
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113825978-3ozkxu8b6wo-hero_appleGray_1200_20260911_0956__1_.webp"
     },
     {
       "sku": "D05",
