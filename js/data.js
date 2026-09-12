@@ -508,6 +508,85 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
     {
+      "sku": "D03",
+      "slug": "d03",
+      "status": "future",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "suction",
+        "clamp",
+        "magsafe"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "MT-28 Vacuum/Clamp Dual-Purpose Mount | VIEMAG | D03",
+        "vi": "Giá đỡ đa năng hút chân không và kẹp MT-28 | VIEMAG | D03",
+        "id": "MT-28 Dudukan Serbaguna dengan Penjepit dan Pengisap Vakum | VIEMAG | D03",
+        "zh": "MT-28 真空夾吸兩用支架 | VIEMAG | D03"
+      },
+      "claim": {
+        "en": "Features N52H magnets for a secure hold on your phone\nDual clamping and suction modes—switch quickly with just one hand\nDouble-layered, reinforced nano suction cups + vacuum adhesion for stable and reliable performance\nHeight can be adjusted freely to meet the needs of different usage scenarios\nMade of aircraft-grade aluminum, it offers greater load-bearing capacity and is built to last.\nThe gel suction cup base is washable and reusable, and is suitable for dashboards or uneven surfaces.",
+        "vi": "Sử dụng nam châm N52H, giữ điện thoại chắc chắn\nChế độ kẹp và hút kép, có thể chuyển đổi nhanh chóng chỉ bằng một tay\nMiếng hút nano gia cố hai lớp + hút chân không, ổn định và đáng tin cậy\nChiều cao có thể điều chỉnh linh hoạt, đáp ứng nhu cầu của các tình huống sử dụng khác nhau\nChất liệu nhôm hàng không, có khả năng chịu lực cao hơn và bền bỉ theo thời gian\nĐế hút bằng gel có thể rửa bằng nước và tái sử dụng, phù hợp với bảng điều khiển hoặc các bề mặt không nhẵn",
+        "id": "Menggunakan magnet N52H, sehingga ponsel dapat menempel dengan kokoh\nMode penjepit & pengisap ganda, dapat dialihkan dengan cepat hanya dengan satu tangan\nCangkir hisap nano berlapis ganda yang diperkuat + hisap vakum, stabil dan andal\nTinggi dapat disesuaikan sesuka hati, sehingga memenuhi kebutuhan berbagai skenario penggunaan\nTerbuat dari aluminium penerbangan, memiliki daya dukung yang lebih kuat, serta tahan lama\nDudukan pengisap berbahan gel ini dapat dicuci dan digunakan kembali, cocok untuk dasbor atau permukaan yang tidak rata",
+        "zh": "採用 N52H 磁鐵，穩固吸附手機\n夾持 & 吸附雙模式，單手即可快速切換\n雙層加固奈米吸盤 + 真空吸附，穩定可靠\n高度隨意調整，滿足不同使用場景需求\n航空鋁材質，承重力更強，經久耐用\n凝膠吸盤底座可水洗重複使用，適用儀表板或不平滑表面"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-5jctlm7fysv-dieu-chinh-do-cao-linh-hoat.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-uojzl54qo58-hop-kim-nhom-cao-cap.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-pt9hc8jfyie-kep-hut-2-che-do.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-62bcjb1i8im-nam-cham-n52.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Alcohol Wipes",
+          "Adhesive Magnetic Ring"
+        ],
+        "vi": [
+          "Miếng bông tẩm cồn",
+          "Vòng nam châm dán"
+        ],
+        "id": [
+          "Kain kasa beralkohol",
+          "Cincin magnetik tempel"
+        ],
+        "zh": [
+          "酒精棉片",
+          "黏貼式磁吸環"
+        ]
+      },
+      "article": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185043481-6mjpftuxmq8-hero_appleGray_1200_20260912_1050.webp",
+      "shopee": "https://shopee.tw/K33-%E9%9B%99%E6%A8%A1%E5%BC%8F%E7%A3%81%E5%90%B8%E7%9C%9F%E7%A9%BA%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6%EF%BD%9C%E6%BB%B4%E8%86%A0%E8%87%AA%E9%BB%8F%E5%90%B8%E7%9B%A4%EF%BD%9C%E5%8F%AF%E5%A4%BE%E5%8F%AF%E5%90%B8%EF%BD%9CN52%E5%BC%B7%E7%A3%81-iPhone-MagSafe-%E6%B1%BD%E8%BB%8A%E6%93%8B%E9%A2%A8%E7%8E%BB%E7%92%83-%E5%84%80%E8%A1%A8%E6%9D%BF-i.1384622.46705858637"
+    },
+    {
       "sku": "D04",
       "slug": "d04",
       "status": "future",
