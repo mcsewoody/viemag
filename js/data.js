@@ -583,7 +583,7 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p><br></p>"
       },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185043481-6mjpftuxmq8-hero_appleGray_1200_20260912_1050.webp",
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789186324783-ez6ra5psuc8-hero_appleGray_1200_20260912_1111.webp",
       "shopee": "https://shopee.tw/K33-%E9%9B%99%E6%A8%A1%E5%BC%8F%E7%A3%81%E5%90%B8%E7%9C%9F%E7%A9%BA%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6%EF%BD%9C%E6%BB%B4%E8%86%A0%E8%87%AA%E9%BB%8F%E5%90%B8%E7%9B%A4%EF%BD%9C%E5%8F%AF%E5%A4%BE%E5%8F%AF%E5%90%B8%EF%BD%9CN52%E5%BC%B7%E7%A3%81-iPhone-MagSafe-%E6%B1%BD%E8%BB%8A%E6%93%8B%E9%A2%A8%E7%8E%BB%E7%92%83-%E5%84%80%E8%A1%A8%E6%9D%BF-i.1384622.46705858637"
     },
     {
