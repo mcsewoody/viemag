@@ -527,10 +527,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "MT-28 Vacuum/Clamp Dual-Purpose Mount | VIEMAG | D03",
-        "vi": "Giá đỡ đa năng hút chân không và kẹp MT-28 | VIEMAG | D03",
-        "id": "MT-28 Dudukan Serbaguna dengan Penjepit dan Pengisap Vakum | VIEMAG | D03",
-        "zh": "MT-28 真空夾吸兩用支架 | VIEMAG | D03"
+        "en": "Multipurpose Mount with Clamp and Vacuum Suction Cup | VIEMAG | D03",
+        "vi": "Giá đỡ đa năng có kẹp và miếng hút chân không | VIEMAG | D03",
+        "id": "Dudukan Serbaguna dengan Penjepit dan Pengisap Vakum | VIEMAG | D03",
+        "zh": "附夾具與真空吸盤的多功能支架 | VIEMAG | D03"
       },
       "claim": {
         "en": "Features N52H magnets for a secure hold on your phone\nDual clamping and suction modes—switch quickly with just one hand\nDouble-layered, reinforced nano suction cups + vacuum adhesion for stable and reliable performance\nHeight can be adjusted freely to meet the needs of different usage scenarios\nMade of aircraft-grade aluminum, it offers greater load-bearing capacity and is built to last.\nThe gel suction cup base is washable and reusable, and is suitable for dashboards or uneven surfaces.",
