@@ -1566,6 +1566,31 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "slug": "op-lung-anh-huong-luc-hut-va-sac",
+      "cat": "Magnetic Technology",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "suction",
+      "title": {
+        "en": "",
+        "vi": "Vì sao ốp lưng ảnh hưởng tới lực hút và tốc độ sạc?",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "Ốp lưng là lớp nằm giữa điện thoại và giá đỡ, nên nó ảnh hưởng tới cả lực hút lẫn tốc độ sạc. Bài này giải thích vì sao và cách chọn ốp không phá hỏng trải nghiệm.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Bạn mua một giá đỡ nam châm tốt. Về nhà gắn thử, máy hút chắc. Hôm sau đổi sang cái ốp mới mua, gắn lên, máy trượt xuống khi qua gờ giảm tốc.\n\nGiá đỡ không đổi. Điện thoại không đổi. Thứ duy nhất thay đổi là lớp nằm giữa hai thứ đó.\n\n## Lực từ giảm rất nhanh theo khoảng cách\n\nĐây là điểm quan trọng nhất và cũng là điểm ít người biết.\n\nLực hút giữa hai nam châm không giảm tuyến tính theo khoảng cách. Nó giảm **rất nhanh**. Tăng khoảng cách gấp đôi không làm lực giảm một nửa — nó giảm nhiều hơn thế đáng kể.\n\nỐp lưng chính là khoảng cách đó. Một chiếc ốp dày 1mm và một chiếc ốp dày 3mm tạo ra trải nghiệm hoàn toàn khác nhau, dù giá đỡ và điện thoại giống hệt.\n\nĐiều này giải thích vì sao ốp chống sốc dạng dày, ốp có lớp đệm khí ở góc, hay ốp da nhiều lớp thường làm máy hút yếu hẳn.\n\n## Bốn kiểu ốp và điều xảy ra khi bạn gắn lên giá đỡ\n\n**Ốp mỏng không có vòng nam châm**\n\nMáy vẫn hút được nếu iPhone của bạn có MagSafe tích hợp và ốp đủ mỏng. Nhưng lực hút giảm so với khi không ốp, và độ ổn định khi rung giảm theo.\n\nĐây là nhóm \"dùng tạm được\" — ổn trên bàn, kém tin cậy trên xe.\n\n**Ốp dày không có vòng nam châm**\n\nNhóm gây vấn đề nhiều nhất. Lực hút giảm mạnh, máy dễ trượt khi rung, và nếu bạn sạc không dây thì hiệu suất tụt kèm nhiệt tăng.\n\nNhiều người mua ốp chống sốc để bảo vệ máy rồi không hiểu vì sao giá đỡ \"kém chất lượng\".\n\n**Ốp có vòng nam châm tích hợp**\n\nĐây là lựa chọn đúng cho người dùng giá đỡ từ tính. Vòng nam châm trong ốp bù lại phần khoảng cách, đồng thời giúp máy tự căn tâm.\n\nĐiểm cần kiểm: vòng nam châm phải **đặt đúng vị trí** so với tâm lưng máy. Ốp làm ẩu đặt vòng lệch vài milimet sẽ vừa giảm lực giữ vừa làm lệch cuộn sạc.\n\n**Ốp có tấm kim loại hoặc miếng dán kim loại**\n\nNhóm nguy hiểm nhất nếu bạn sạc không dây.\n\nMột miếng kim loại phẳng đặt giữa cuộn sạc và điện thoại sẽ hấp thụ năng lượng từ trường và **tự nóng lên**. Đây không phải lý thuyết — đây là lý do các hãng sạc không dây đều khuyến cáo tháo thẻ từ, thẻ ngân hàng và miếng kim loại ra khỏi lưng máy.\n\nMiếng kim loại có thể hút vào nam châm rất chắc. Nhưng nó không phải giải pháp thay thế cho vòng nam châm đúng chuẩn khi có sạc không dây trong phương trình.\n\n## Ốp ảnh hưởng tới sạc không dây thế nào\n\nBa cơ chế cùng lúc:\n\n**Khoảng cách giữa hai cuộn dây.** Ốp càng dày, hiệu suất truyền càng thấp. Phần năng lượng mất đi chuyển thành nhiệt.\n\n**Căn tâm.** Nếu ốp không có vòng nam châm, máy không tự căn. Bạn đặt lệch vài milimet là hiệu suất tụt.\n\n**Cách nhiệt.** Ốp dày giữ nhiệt lại bên trong. Máy nóng, hệ thống tự giảm công suất sạc, thời gian sạc kéo dài.\n\nKết quả thực tế: cùng một bộ sạc, cùng một chiếc iPhone, chỉ đổi ốp mà tốc độ sạc và nhiệt độ khác hẳn.\n\n## Cách kiểm tra ốp của bạn trong hai phút\n\n- **Thử lực hút:** gắn máy lên giá đỡ, lắc nhẹ theo phương ngang. Nếu máy xê dịch dễ dàng, lực giữ chưa đủ cho môi trường rung\n- **Thử căn tâm:** đặt máy lên đế sạc và buông tay. Nếu ốp có vòng nam châm đúng vị trí, máy sẽ tự \"nhảy\" vào đúng tâm. Nếu không, bạn phải tự chỉnh\n- **Thử nhiệt:** sạc không dây 15 phút với ốp, rồi 15 phút không ốp, trong cùng điều kiện. So sánh độ ấm và phần trăm pin tăng được\n- **Kiểm tra kim loại:** nhìn kỹ mặt trong ốp. Có tấm kim loại phẳng nào không\n\n## Chọn ốp thế nào nếu bạn dùng giá đỡ từ tính\n\n- **Ưu tiên ốp có vòng nam châm tích hợp.** Đây là khoản đầu tư có ảnh hưởng lớn nhất tới trải nghiệm hằng ngày\n- **Kiểm tra vị trí vòng nam châm**, không chỉ kiểm tra có hay không\n- **Tránh ốp dày không có vòng nam châm** nếu bạn hay gắn máy lên xe\n- **Tránh tấm kim loại phẳng ở lưng ốp** nếu bạn sạc không dây\n- **Cân nhắc độ dày tổng thể.** Ốp chống sốc cấp cao và trải nghiệm từ tính tốt thường phải đánh đổi nhau\n\n## Khi nào nên dán vòng nam châm rời\n\nNếu bạn đã có chiếc ốp yêu thích không có vòng nam châm, vòng dán rời là giải pháp hợp lý.\n\nNhưng nó chỉ hiệu quả khi **dán đúng tâm**. Dán lệch gây ra một loạt vấn đề riêng — từ giảm lực giữ tới lệch cuộn sạc. Chúng tôi có một bài riêng về chủ đề này, nên ở đây chỉ nhấn mạnh: dùng dưỡng căn tâm đi kèm, đừng ước lượng bằng mắt.\n\n## VIEMAG nhìn chuyện ốp lưng thế nào\n\nChúng tôi thiết kế giá đỡ với giả định người dùng **có ốp**, vì trong thực tế gần như ai cũng dùng ốp.\n\nNhưng có một giới hạn vật lý không thiết kế nào vượt qua được: nếu lớp giữa quá dày và không có vòng nam châm, không giá đỡ từ tính nào giữ chắc được. Đây là lý do chúng tôi nói rõ về ốp lưng thay vì hứa \"hút mọi loại ốp\".\n\nNếu bạn mua giá đỡ VIEMAG và thấy lực giữ không như mong đợi, việc đầu tiên nên thử là **tháo ốp và gắn lại**. Nếu khác biệt rõ rệt, vấn đề nằm ở ốp, không nằm ở giá đỡ. Chính sách đổi lỗi 14 ngày vẫn áp dụng nếu sản phẩm thực sự có vấn đề.\n\n## Kết luận nhanh\n\n- Lực từ giảm rất nhanh theo khoảng cách, nên độ dày ốp ảnh hưởng nhiều hơn bạn nghĩ\n- Ốp có vòng nam châm tích hợp là lựa chọn tốt nhất cho người dùng giá đỡ từ tính\n- Tấm kim loại phẳng ở lưng ốp gây vấn đề khi sạc không dây\n- Ốp dày vừa giảm lực hút, vừa giảm hiệu suất sạc, vừa giữ nhiệt\n- Khi nghi ngờ giá đỡ kém, hãy thử tháo ốp trước khi kết luận\n\nXem các mẫu giá đỡ từ tính VIEMAG, hoặc đọc tiếp bài về dán vòng nam châm đúng tâm nếu bạn đang dùng ốp thường.",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "faqs": [
