@@ -1896,7 +1896,7 @@ window.DB = {
       "slug": "usb-c-pd-pps-giai-thich",
       "cat": "Charging Standards",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467859727-dzr8o2rt6en-USB_C__PD__PPS.webp",
       "art": "deskcharge",
       "title": {
         "en": "USB-C, PD, and PPS: An Explanation for Accessory Buyers",
