@@ -1616,6 +1616,31 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "slug": "15w-co-nhanh-hon-7-5w-khong",
+      "cat": "Tech Explained",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "deskcharge",
+      "title": {
+        "en": "",
+        "vi": "Sạc không dây 15W có luôn nhanh hơn 7.5W không?",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "Con số watt trên hộp là trần công suất trong điều kiện lý tưởng, không phải mức máy bạn nhận suốt quá trình sạc. Hiểu điều này giúp bạn chọn đúng và không trả thêm tiền vô ích.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Hai bộ sạc không dây trên kệ. Một cái ghi 7.5W, một cái ghi 15W, giá gấp rưỡi. Theo logic thông thường, cái 15W sẽ sạc nhanh gấp đôi.\n\nTrên thực tế, chênh lệch thời gian sạc thường nhỏ hơn nhiều so với chênh lệch con số. Trong một số điều kiện, hai bộ sạc cho kết quả gần như nhau.\n\nKhông phải người bán lừa bạn. Vấn đề là con số watt đo một thứ, còn trải nghiệm của bạn phụ thuộc vào nhiều thứ khác.\n\n## Watt trên hộp nghĩa là gì\n\nCon số watt ghi trên bao bì là **công suất tối đa mà bộ sạc có thể cung cấp trong điều kiện lý tưởng**.\n\nĐiều kiện lý tưởng nghĩa là:\n\n- Điện thoại căn đúng tâm hoàn hảo\n- Nhiệt độ môi trường mát\n- Pin ở mức thấp, sẵn sàng nhận công suất cao\n- Nguồn cấp vào đủ khỏe\n- Máy không chạy tác vụ nặng\n\nTrong đời thực, hiếm khi cả năm điều kiện cùng đúng.\n\n## Vì sao máy không nhận đủ công suất suốt quá trình\n\n**Đường cong sạc không phẳng**\n\nPin lithium không nhận công suất đều từ 0% tới 100%. Nó nhận cao nhất ở giai đoạn đầu, rồi giảm dần khi đầy.\n\nTừ khoảng 80% trở lên, tốc độ nạp giảm rõ rệt ở mọi hình thức sạc — đây là cơ chế bảo vệ tuổi thọ pin, không phải giới hạn của bộ sạc.\n\nNghĩa là: nếu bạn thường cắm máy lúc pin còn 60%, phần lớn thời gian sạc diễn ra ở vùng công suất thấp. Bộ sạc 15W hay 7.5W không khác nhau nhiều ở vùng này.\n\n**Nhiệt làm giảm công suất**\n\nSạc không dây sinh nhiệt. Khi nhiệt độ pin vượt ngưỡng, hệ thống tự hạ công suất.\n\nĐiều trớ trêu: **bộ sạc công suất cao sinh nhiệt nhiều hơn**. Trong môi trường nóng như cabin xe giữa trưa, một bộ 15W có thể bị hạ xuống mức tương đương một bộ 7.5W chỉ sau vài phút.\n\n**Căn lệch ăn mất công suất**\n\nNếu hai cuộn dây không thẳng hàng, một phần năng lượng không truyền được. Bộ sạc vẫn \"đẩy\" 15W, nhưng máy chỉ nhận được một phần.\n\nĐây là lý do vòng nam châm căn tâm — thứ Qi2 chuẩn hóa — quan trọng hơn con số watt trong nhiều trường hợp.\n\n**Nguồn cấp vào là nút cổ chai**\n\nMột đế sạc 15W cần adapter và cáp đủ khỏe. Cắm vào cổng USB-A đời cũ trên xe hoặc dùng củ sạc 5W là bạn đã giới hạn công suất ngay từ đầu vào.\n\nNhiều người mua đế 15W nhưng dùng lại củ sạc cũ, rồi không hiểu vì sao không thấy khác biệt.\n\n**Máy có trần công suất riêng**\n\nNgay cả khi mọi thứ hoàn hảo, điện thoại vẫn có giới hạn của nó. Với iPhone hiện nay, trần Qi2 tùy đời máy: iPhone 13/14 tối đa 15W, các đời 15/16 hỗ trợ Qi2, và iPhone 17 trở lên có thể đạt 25W trên bộ sạc Qi2 25W — trong khi iPhone Air giới hạn 20W và iPhone 17e giới hạn 15W.\n\nMua bộ sạc 25W cho một chiếc máy có trần 15W không làm máy sạc nhanh hơn 15W.\n\n## Vậy 15W có đáng tiền hơn 7.5W không?\n\nCâu trả lời phụ thuộc vào cách bạn dùng.\n\n**Đáng tiền khi:**\n\n- Bạn hay sạc từ mức pin thấp, cần nạp nhanh trong thời gian ngắn\n- Môi trường sạc mát, ví dụ bàn làm việc có điều hòa\n- Bạn có adapter và cáp đủ công suất\n- Máy bạn hỗ trợ mức cao đó\n- Bạn dùng ốp có vòng nam châm, căn tâm tốt\n\n**Ít đáng tiền khi:**\n\n- Bạn sạc qua đêm — tốc độ không còn quan trọng\n- Bạn sạc trên xe trong điều kiện nóng, nơi công suất bị hạ dù sao\n- Bạn hay cắm máy khi pin còn trên 50%\n- Bạn dùng ốp dày không có vòng nam châm\n- Nguồn cấp trên xe của bạn không đủ khỏe\n\n## Khi nào nên bỏ sạc không dây và dùng cáp\n\nNói thẳng: **nếu bạn cần nạp nhanh, cáp USB-C vẫn thắng.**\n\nSạc có dây hiệu suất cao hơn, sinh nhiệt ít hơn ở cùng lượng điện nạp vào, và không phụ thuộc căn tâm.\n\nSạc không dây thắng ở **sự tiện lợi**: đặt xuống là sạc, nhấc lên là đi, không cắm rút, không mòn cổng.\n\nChọn theo tình huống:\n\n- **Chặng ngắn, pin yếu, cần gấp:** cáp\n- **Chặng dài, muốn pin không tụt khi dùng bản đồ:** không dây là đủ\n- **Để bàn cả ngày:** không dây tiện hơn hẳn\n- **Đi công tác, ít thiết bị, cần nhanh:** cáp\n\n## Cách đọc thông số sạc cho đúng\n\nKhi nhìn một bộ sạc không dây, hãy hỏi:\n\n- **Watt này là trần hay mức duy trì?** Gần như luôn là trần\n- **Có kèm adapter không?** Nếu không, bạn cần tính thêm chi phí và kiểm tra công suất củ sạc hiện có\n- **Có chứng nhận Qi hoặc Qi2 không?** Với thiết bị sạc, đây là thông tin đáng giá hơn con số watt\n- **Có vòng nam châm căn tâm không?** Ảnh hưởng trực tiếp tới công suất thực nhận\n- **Thiết kế có cho nhiệt thoát ra không?** Đế kín, ốp dày, vị trí nắng đều làm giảm hiệu quả\n\n## VIEMAG nghĩ gì về cuộc đua watt\n\nPhần lớn giá đỡ VIEMAG hiện tại là mount từ tính không tích hợp sạc. Đây là lựa chọn có chủ đích với thị trường Việt Nam: điều kiện nhiệt khắc nghiệt khiến \"giữ máy chắc + cáp USB-C\" thường cho kết quả thực tế tốt hơn một bộ sạc không dây giá phổ thông căn tâm kém.\n\nVới các sản phẩm có tích hợp sạc, chúng tôi ghi rõ mức watt và trạng thái kiểm thử, không gắn nhãn chứng nhận khi chưa có.\n\nVà chúng tôi không nói \"sạc nhanh gấp đôi\" — vì câu đó chỉ đúng trong một điều kiện rất hẹp mà hiếm ai gặp trong thực tế.\n\n## Kết luận nhanh\n\n- Watt trên hộp là trần công suất trong điều kiện lý tưởng, không phải mức trung bình\n- Nhiệt, căn lệch, mức pin và nguồn vào đều làm giảm công suất thực nhận\n- Bộ sạc công suất cao hơn sinh nhiệt nhiều hơn, nên trong môi trường nóng lợi thế bị thu hẹp\n- Máy có trần riêng — mua vượt trần của máy không mang lại gì\n- Cần nhanh thì dùng cáp; cần tiện thì dùng không dây\n\nNếu bạn muốn hiểu vì sao máy nóng lên khi sạc không dây, đọc tiếp bài về nhiệt khi sạc. Cần tư vấn cấu hình cho xe của bạn, liên hệ đội hỗ trợ VIEMAG.",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "faqs": [
