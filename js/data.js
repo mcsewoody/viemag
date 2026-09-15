@@ -2071,7 +2071,7 @@ window.DB = {
       "slug": "bo-phu-kien-di-cong-tac-gon-nhe",
       "cat": "Industry Trends",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469055994-8z8i72d3zr-bo-phu-kien-di-cong-tac-gon-nhe.webp",
       "art": "fold",
       "title": {
         "en": "Business Trips: What Should a Compact Phone Accessory Kit Include?",
