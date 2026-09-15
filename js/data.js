@@ -1946,7 +1946,7 @@ window.DB = {
       "slug": "pin-du-phong-nam-cham-chon-sao",
       "cat": "Charging Standards",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467901498-jfl7weqiv2-Pin_d__ph_ng_nam_ch_m_ch_n_sao.webp",
       "art": "powerbank",
       "title": {
         "en": "Magnetic Power Banks: Why Doesn't a 10,000mAh One Charge the Device Twice?",
