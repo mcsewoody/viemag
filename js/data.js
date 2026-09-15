@@ -2221,7 +2221,7 @@ window.DB = {
       "slug": "iphone-duo-man-hinh-gap-va-mount-nam-cham",
       "cat": "Apple Ecosystem",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469327254-o06qhtmzbgg-iphone-duo-va-man-gap-nam-cham.webp",
       "art": "dash",
       "title": {
         "en": "iPhone Duo with a foldable screen and MagSafe: What should you keep in mind when attaching a magnetic mount?",
