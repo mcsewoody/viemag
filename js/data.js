@@ -2246,7 +2246,7 @@ window.DB = {
       "slug": "sac-25w-can-nguon-bao-nhieu-watt",
       "cat": "Charging Standards",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469344089-pdnk7kl7lm-sac-25w-can-nguon-bao-nhieu-w.webp",
       "art": "deskcharge",
       "title": {
         "en": "25W Wireless Charging on the iPhone 18 Pro: Why Do You Need a 35W Charger?",
