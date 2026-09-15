@@ -1971,7 +1971,7 @@ window.DB = {
       "slug": "chon-op-lung-hop-voi-nam-cham",
       "cat": "Magnetic Technology",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789471039888-61dqqyn8yt-chon-op-lung-nao.webp",
       "art": "case",
       "title": {
         "en": "Silicone, TPU, or leather: Which type of phone case works best with magnetic accessories?",
