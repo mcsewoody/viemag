@@ -1521,7 +1521,7 @@ window.DB = {
       "slug": "nam-cham-n52-la-gi",
       "cat": "Magnetic Technology",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789460043527-omm33ztaeqg-nam-cham-n52-la-gi.webp",
       "art": "dash",
       "title": {
         "en": "What is an N52 magnet? Why isn’t the magnetic force determined solely by that number?",
