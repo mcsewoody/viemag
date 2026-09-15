@@ -2046,7 +2046,7 @@ window.DB = {
       "slug": "setup-ban-lam-viec-gon-voi-nam-cham",
       "cat": "Industry Trends",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469026617-llst8jeshnj-set-up-ban-lam-viec-gon-voi-nam-cham.webp",
       "art": "stand",
       "title": {
         "en": "A small desk with lots of cables: How can you keep it tidy with magnetic accessories?",
