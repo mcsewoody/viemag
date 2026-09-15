@@ -1721,7 +1721,7 @@ window.DB = {
       "slug": "standby-iphone-va-gia-do-de-ban",
       "cat": "Apple Ecosystem",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789465274263-vgwxuu6j7g-standby-iphone-va-gia-do-de-ban.webp",
       "art": "stand2in1",
       "title": {
         "en": "StandBy on the iPhone: How to Use It Properly with a Desk Stand?",
