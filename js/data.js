@@ -1546,7 +1546,7 @@ window.DB = {
       "slug": "chon-gia-do-dien-thoai-o-to",
       "cat": "Magnetic Technology",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789461002426-ckeyy3e2fvr-chon-gia-do-dien-thoai-the-nao.webp",
       "art": "dash",
       "title": {
         "en": "Choosing a car phone mount: air vent, dashboard, or windshield suction cup?",
