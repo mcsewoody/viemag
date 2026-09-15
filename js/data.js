@@ -1496,7 +1496,7 @@ window.DB = {
       "slug": "magsafe-compatible-co-phai-chung-nhan-apple",
       "cat": "Charging Standards",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789459676805-r7zd0480ji-masafe-compatible.webp",
       "art": "suction",
       "title": {
         "en": "Is \"MagSafe-compatible\" certified by Apple?",
