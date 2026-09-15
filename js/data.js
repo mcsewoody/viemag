@@ -1571,7 +1571,7 @@ window.DB = {
       "slug": "op-lung-anh-huong-luc-hut-va-sac",
       "cat": "Magnetic Technology",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789461654519-uuo64vj3pul-op-lung-co-anh-huong-gi-den-luc-hut-va-sac.webp",
       "art": "suction",
       "title": {
         "en": "Why do phone cases affect charging power and speed?",
