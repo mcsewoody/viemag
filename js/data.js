@@ -2121,7 +2121,7 @@ window.DB = {
       "slug": "tu-kiem-tra-gia-do-tai-nha",
       "cat": "Tech Explained",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469090332-kaayncf2wzd-tu-kiem-tra-gia-do-tai-nhad.webp",
       "art": "pro",
       "title": {
         "en": "How to Inspect a Shelf at Home in 10 Minutes",
