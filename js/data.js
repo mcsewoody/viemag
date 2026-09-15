@@ -1471,7 +1471,7 @@ window.DB = {
       "slug": "vi-sao-sac-khong-day-bi-nong",
       "cat": "Charging Standards",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789459245844-vlc5qlydtjd-vi-sao-sac-khong-day-bi-nong.webp",
       "art": "deskcharge",
       "title": {
         "en": "Why does wireless charging cause the device to heat up? When is it normal, and when is it abnormal?",
