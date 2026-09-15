@@ -1921,7 +1921,7 @@ window.DB = {
       "slug": "nam-cham-co-hai-dien-thoai-the-tu-khong",
       "cat": "Tech Explained",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467880391-i5z8rqo5h8k-Nam_ch_m_c__h_i__i_n_tho_i_th__t__kh_ng.webp",
       "art": "pro",
       "title": {
         "en": "Do magnets damage cell phones or magnetic cards, or affect your health?",
