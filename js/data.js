@@ -1591,6 +1591,31 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "slug": "dan-vong-nam-cham-lech-tam",
+      "cat": "Tech Explained",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "suction",
+      "title": {
+        "en": "",
+        "vi": "Dán vòng nam châm lệch tâm gây ra vấn đề gì? Cách dán đúng ngay lần đầu",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "Vòng nam châm dán lệch vài milimet đủ để làm máy hút yếu, sạc chậm và nóng hơn. Bài này chỉ rõ hậu quả và quy trình dán đúng ngay lần đầu.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Bạn mua vòng nam châm dán để dùng ốp cũ với giá đỡ từ tính. Bóc keo, ướm bằng mắt, dán lên. Máy hút được — nhưng hơi lệch, hơi yếu, và khi sạc không dây thì nóng hơn trước.\n\nKeo đã dính. Gỡ ra thì sợ hỏng ốp. Dùng tiếp thì khó chịu mỗi ngày.\n\nĐây là một trong những lỗi phổ biến nhất, và cũng là lỗi dễ tránh nhất nếu biết trước.\n\n## Vòng nam châm dán thực ra làm hai việc\n\nNhiều người nghĩ vòng dán chỉ để \"hút được\". Thực ra nó đảm nhiệm hai vai trò khác nhau:\n\n**Giữ máy.** Tạo lực hút giữa điện thoại và giá đỡ.\n\n**Căn tâm.** Dẫn máy vào đúng vị trí so với cuộn sạc hoặc mặt tiếp xúc của giá đỡ.\n\nVai trò thứ hai mới là lý do hệ MagSafe tồn tại. Và đây chính là vai trò bị phá hỏng khi dán lệch.\n\n## Bốn hậu quả khi dán lệch tâm\n\n**Lực giữ giảm không đều**\n\nVòng nam châm của giá đỡ và vòng dán trên ốp không chồng khít. Phần chồng lên nhau tạo lực, phần lệch ra ngoài gần như không đóng góp gì.\n\nKết quả: máy vẫn hút, nhưng yếu hơn và **lệch tâm trọng lực**. Điện thoại có xu hướng tự xoay về một phía khi gặp rung.\n\n**Sạc không dây chậm hoặc chập chờn**\n\nNếu bạn sạc không dây, vòng dán lệch kéo theo cuộn sạc lệch. Hiệu suất truyền tụt, thời gian sạc kéo dài.\n\nỞ mức lệch nhiều, máy có thể **báo sạc rồi ngắt liên tục** — hiện tượng khiến nhiều người tưởng đế sạc hỏng.\n\n**Nhiệt tăng**\n\nPhần năng lượng không truyền được thành điện sẽ thành nhiệt. Lệch tâm càng nhiều, nhiệt càng cao, và máy lại tự giảm công suất để bảo vệ pin.\n\n**Máy đeo lệch trên giá đỡ**\n\nVề mặt sử dụng hằng ngày, đây là thứ gây bực nhất. Điện thoại không nằm thẳng, màn hình nghiêng, và mỗi lần gắn lại bạn phải chỉnh bằng tay.\n\n## Vì sao ướm bằng mắt gần như luôn sai\n\nLưng điện thoại không có dấu mốc. Cụm camera lệch về một góc, logo không nằm đúng tâm vùng nam châm, và bạn đang nhìn từ trên xuống nên có sai số góc nhìn.\n\nVòng nam châm MagSafe trên iPhone nằm ở vị trí xác định — nhưng bạn không nhìn thấy nó qua lớp ốp.\n\nSai số vài milimet nghe có vẻ nhỏ. Nhưng với đường kính vòng nam châm chỉ vài centimet, vài milimet là tỉ lệ lệch đáng kể.\n\n## Quy trình dán đúng ngay lần đầu\n\n**Bước 1: Xác định bạn đang dán lên đâu**\n\nDán lên **mặt ngoài ốp** là lựa chọn an toàn hơn. Nếu sau này muốn đổi, bạn chỉ mất chiếc ốp chứ không ảnh hưởng máy.\n\nDán trực tiếp lên **lưng máy** chỉ nên làm khi bạn dùng máy trần lâu dài, và chấp nhận rằng keo có thể để lại vết.\n\n**Bước 2: Làm sạch bề mặt**\n\nLau sạch bụi và dầu bằng khăn khô, sau đó bằng khăn cồn nếu có. Để khô hoàn toàn. Keo dán không bám tốt trên bề mặt có dầu tay.\n\n**Bước 3: Dùng dưỡng căn tâm**\n\nHầu hết vòng nam châm chất lượng đều kèm một **dưỡng căn tâm** — miếng nhựa hoặc giấy có lỗ định vị.\n\nCách dùng đúng:\n\n- Đặt vòng nam châm vào dưỡng\n- Úp dưỡng lên lưng máy trần (chưa có ốp), để nam châm tự hút vào đúng vị trí vòng MagSafe\n- Giữ nguyên, lồng ốp vào\n- Ấn để keo dính vào mặt trong hoặc ngoài ốp theo hướng dẫn của sản phẩm\n- Gỡ dưỡng ra\n\nNếu bộ sản phẩm không kèm dưỡng, đó là dấu hiệu nên cân nhắc sản phẩm khác.\n\n**Bước 4: Nếu máy bạn không có MagSafe**\n\nVới máy không có vòng nam châm tích hợp, bạn không có mốc để căn. Lúc này hãy căn theo **tâm hình học của vùng sạc không dây** — thường nằm ở giữa lưng máy, hơi lệch lên phía trên so với tâm hình học của cả thân máy. Tra tài liệu của hãng máy để biết vị trí cuộn sạc.\n\n**Bước 5: Ép và chờ**\n\nÉp đều tay trong khoảng nửa phút. Keo hai mặt cần thời gian để đạt độ bám tối đa — tránh gắn lên giá đỡ hay sạc trong vài giờ đầu.\n\n## Nếu đã lỡ dán lệch\n\n- **Đừng giật mạnh.** Hơ ấm nhẹ bằng máy sấy ở mức thấp để keo mềm, rồi gỡ từ từ từ một mép\n- **Đừng dùng vật nhọn cạy** trên lưng kính điện thoại\n- **Làm sạch keo thừa** bằng khăn cồn trước khi dán lại\n- **Keo cũ thường không dùng lại được.** Nhiều bộ sản phẩm bán kèm miếng keo dự phòng — nếu không có, chuẩn bị mua thêm\n- **Nếu dán trên ốp và ốp không đắt**, đôi khi thay ốp mới rẻ hơn và sạch hơn việc cố gỡ\n\n## Khi nào nên bỏ qua vòng dán và mua ốp có nam châm sẵn\n\nVòng dán là giải pháp tốt cho:\n\n- Chiếc ốp bạn thích và không muốn đổi\n- Máy Android không có vòng nam châm tích hợp\n- Nhu cầu tạm thời\n\nỐp có vòng nam châm tích hợp tốt hơn cho:\n\n- Người dùng giá đỡ từ tính hằng ngày\n- Người sạc không dây thường xuyên\n- Người muốn độ dày tổng thể mỏng nhất có thể\n\nVòng dán thêm một lớp dày nữa vào chồng lớp giữa máy và giá đỡ. Với ốp đã dày sẵn, kết quả có thể không như mong đợi dù bạn dán chuẩn.\n\n## VIEMAG khuyến nghị gì\n\nGiá đỡ từ tính VIEMAG hoạt động với cả ba trường hợp: máy có MagSafe tích hợp, ốp có vòng nam châm, hoặc vòng nam châm dán thêm.\n\nNhưng thứ tự ưu tiên về trải nghiệm là rõ ràng: **máy có MagSafe tích hợp tốt nhất, ốp có vòng nam châm tốt nhì, vòng dán đứng thứ ba.**\n\nChúng tôi nói điều này thẳng thắn vì nó ảnh hưởng tới việc bạn có hài lòng với sản phẩm hay không. Một giá đỡ tốt gắn qua một vòng dán lệch vẫn cho trải nghiệm kém.\n\nNếu bạn đã dán và không chắc mình dán đúng, liên hệ đội hỗ trợ VIEMAG kèm ảnh chụp lưng máy — chúng tôi sẽ nói được vấn đề nằm ở đâu.\n\n## Checklist dán vòng nam châm\n\n- Dán lên ốp thay vì lưng máy, nếu có thể\n- Làm sạch và để khô bề mặt trước khi dán\n- Luôn dùng dưỡng căn tâm, không ướm bằng mắt\n- Với máy có MagSafe, dùng chính vòng nam châm của máy làm mốc\n- Ép đều và chờ vài giờ trước khi sử dụng\n- Kiểm tra lại bằng cách đặt máy lên đế sạc: máy tự căn vào tâm là đạt",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "faqs": [
