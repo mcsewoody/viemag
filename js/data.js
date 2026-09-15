@@ -1596,7 +1596,7 @@ window.DB = {
       "slug": "dan-vong-nam-cham-lech-tam",
       "cat": "Tech Explained",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789463918914-3d7g4rchic-dan-vong-nam-cham-lech-tam.webp",
       "art": "suction",
       "title": {
         "en": "What Problems Can Arise from Applying an Off-Center Magnet? How to Apply It Correctly the First Time",
