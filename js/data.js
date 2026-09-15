@@ -1796,7 +1796,7 @@ window.DB = {
       "slug": "chon-gia-do-theo-loai-cua-gio-xe",
       "cat": "Magnetic Technology",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467493720-et1ycuc6v4g-Ch_n_lo_i_gi_____c_a_gi_.webp",
       "art": "vent",
       "title": {
         "en": "What type of air vent does your car have? Choose the right mounting bracket.",
