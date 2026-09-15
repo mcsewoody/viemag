@@ -1746,7 +1746,7 @@ window.DB = {
       "slug": "bo-phu-kien-magsafe-toi-thieu",
       "cat": "Apple Ecosystem",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467452503-8yo1zpa1wbi-bo-phu-kien-magsafe-toi-thieu.webp",
       "art": "ring",
       "title": {
         "en": "The Essential MagSafe Accessory Kit for New iPhone Users",
