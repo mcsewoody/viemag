@@ -1516,6 +1516,31 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "slug": "nam-cham-n52-la-gi",
+      "cat": "Magnetic Technology",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "dash",
+      "title": {
+        "en": "",
+        "vi": "Nam châm N52 là gì? Vì sao lực hút không chỉ nằm ở con số đó",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "N52 là mã cấp vật liệu nam châm, không phải điểm số chất lượng sản phẩm. Hiểu đúng con số này giúp bạn biết vì sao hai giá đỡ cùng ghi N52 lại giữ máy khác hẳn nhau.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Hai giá đỡ điện thoại, cùng ghi \"nam châm N52\", giá chênh nhau gấp đôi. Bạn mua cái rẻ hơn. Chạy qua đoạn đường xấu, điện thoại trượt xuống.\n\nNgười bán không nói dối. Cả hai có thể đều dùng nam châm N52 thật. Nhưng N52 chỉ trả lời **một** trong nhiều câu hỏi quyết định việc máy bạn có bị rơi hay không.\n\n## N52 thực sự nghĩa là gì\n\nN52 là mã phân cấp của **nam châm đất hiếm neodymium** (NdFeB).\n\n- Chữ **N** chỉ loại vật liệu neodymium\n- Số **52** chỉ tích năng lượng từ tối đa của vật liệu — hiểu nôm na là \"mật độ năng lượng từ trên mỗi đơn vị thể tích\"\n\nThang phổ biến chạy từ khoảng N35 đến N52. Số càng cao, vật liệu càng mạnh **trên cùng một thể tích**.\n\nĐây là điểm mấu chốt: N52 mô tả **vật liệu**, không mô tả **sản phẩm hoàn chỉnh**.\n\nNó giống như nói một chiếc xe dùng thép cường độ cao. Thông tin đó có ý nghĩa, nhưng nó không cho bạn biết xe chạy thế nào, phanh ra sao, hay khung có bền không.\n\n## Những yếu tố quyết định lực giữ mà N52 không nói\n\n**Thể tích nam châm.** Một miếng N52 nhỏ có thể yếu hơn một miếng N48 lớn. Tổng lực phụ thuộc cả cấp vật liệu lẫn khối lượng vật liệu được dùng. Đây là chỗ nhà sản xuất cắt chi phí dễ nhất mà vẫn ghi đúng \"N52\" lên hộp.\n\n**Số lượng và cách sắp xếp.** Vòng nam châm trong hệ MagSafe không phải một khối liền. Nó là nhiều viên nhỏ xếp theo vòng tròn với cực từ bố trí có chủ đích. Cách sắp xếp sai làm từ trường triệt tiêu lẫn nhau.\n\n**Khoảng cách tới điện thoại.** Lực từ giảm rất nhanh theo khoảng cách. Một lớp nhựa dày thêm vài milimet giữa nam châm và lưng máy đủ để hạ đáng kể lực hút cảm nhận được. Ốp lưng dày gây ra chính vấn đề này.\n\n**Vật liệu dẫn từ phía sau.** Nam châm đặt trên một tấm thép dẫn từ sẽ tập trung từ trường về phía trước tốt hơn so với nam châm đặt trên nhựa. Đây là chi tiết thiết kế mà bao bì gần như không bao giờ nhắc tới.\n\n**Bề mặt tiếp xúc.** Bề mặt cứng, trơn khiến máy dễ trượt ngang khi rung. Lớp phủ TPU hoặc silicone tăng ma sát, giúp giữ máy ổn định hơn dù lực hút vuông góc không đổi.\n\n## Lực hút và độ ổn định: hai chuyện khác nhau\n\nĐây là hiểu lầm tốn tiền nhất.\n\n**Lực hút vuông góc** là lực cần để kéo điện thoại ra thẳng khỏi mặt nam châm. Con số này dễ đo, dễ ghi lên bao bì, và dễ gây ấn tượng.\n\n**Độ ổn định khi rung** là khả năng chống lại chuyển động ngang và xoay. Đây mới là thứ quyết định trải nghiệm trên xe.\n\nĐiện thoại rất hiếm khi bị \"kéo thẳng ra\" khi bạn lái xe. Nó bị **trượt ngang** và **xoay** do rung, do phanh gấp, do vào cua.\n\nMột giá đỡ có lực hút vuông góc rất mạnh nhưng bề mặt trơn và khớp lỏng vẫn sẽ làm máy bạn xê dịch. Ngược lại, một thiết kế lực hút vừa đủ nhưng có gờ chống trượt, bề mặt bám và khớp cứng sẽ giữ tốt hơn nhiều.\n\n## Vì sao ô tô và xe máy cần tiêu chí khác nhau\n\nTrên ô tô, rung được hệ thống treo và khung xe lọc bớt. Vấn đề chủ yếu là phanh gấp và vào cua.\n\nTrên xe máy, rung truyền gần như trực tiếp từ mặt đường lên tay lái. Tần số rung cao, biên độ thay đổi liên tục, cộng thêm ổ gà và gờ giảm tốc.\n\nVới xe máy, **chỉ dựa vào nam châm là không đủ** cho phần lớn tình huống. Cơ cấu giữ cơ khí — ngàm, viền chặn, khóa phụ — mới là thứ tạo biên độ an toàn. Nam châm lúc này đóng vai trò căn chỉnh và giữ thường ngày, không phải tuyến phòng thủ duy nhất.\n\n## Đọc thông số nam châm cho đúng\n\nKhi thấy một thông số về nam châm, hãy đặt ba câu hỏi:\n\n- **Đo trong điều kiện nào?** Lực hút đo trực tiếp lên vòng nam châm của iPhone khác hẳn đo qua một lớp ốp dày 2mm\n- **Đo theo hướng nào?** Vuông góc hay trượt ngang\n- **Có nói tới thể tích và cách bố trí không?** Chỉ ghi \"N52\" là thông tin chưa đủ để so sánh hai sản phẩm\n\nMột nhà sản xuất tự tin sẽ nói được điều kiện đo. Một nhà sản xuất chỉ in \"N52\" lên hộp là đang cho bạn con số dễ nhất để in.\n\n## VIEMAG làm gì với phần này\n\nCác sản phẩm VIEMAG dùng nam châm N52 — đây là thông tin có trong tài liệu sản phẩm. Nhưng chúng tôi không xem N52 là điểm bán hàng chính, vì như đã phân tích, nó chỉ là một biến trong nhiều biến.\n\nNhững thứ chúng tôi quan tâm khi làm sản phẩm:\n\n- Bố trí vòng nam châm căn đúng tâm hệ MagSafe\n- Bề mặt tiếp xúc có ma sát, hạn chế trượt ngang khi rung\n- Khớp xoay đủ cứng để không tự tụt góc khi gặp xóc\n- Đế bám ổn định, vì một giá đỡ giữ máy chắc nhưng bản thân nó lung lay thì vô nghĩa\n\nChúng tôi không hứa \"không bao giờ rơi\". Không thiết kế nam châm nào đảm bảo được điều đó trong mọi điều kiện đường và mọi loại ốp lưng.\n\n## Checklist chọn giá đỡ nam châm\n\n- Máy của bạn có MagSafe tích hợp, hay cần ốp có vòng nam châm\n- Ốp bạn đang dùng dày bao nhiêu, có vòng nam châm thật không\n- Bạn đi ô tô hay xe máy — xe máy cần cơ cấu giữ cơ khí bổ sung\n- Bề mặt tiếp xúc có chống trượt không, hay chỉ là nhựa trơn\n- Khớp xoay có giữ được góc khi bạn ấn nhẹ vào không\n- Người bán có nói được điều kiện đo lực hút không\n\n## Kết luận\n\nN52 là mã cấp vật liệu, không phải điểm chất lượng sản phẩm. Hai giá đỡ cùng ghi N52 có thể khác nhau về thể tích nam châm, cách bố trí, vật liệu dẫn từ và bề mặt tiếp xúc — và chính những thứ đó quyết định máy bạn có xê dịch hay không.\n\nLần tới khi so sánh hai sản phẩm, đừng dừng ở con số. Hỏi về bề mặt, về khớp, về điều kiện đo.\n\nXem các mẫu giá đỡ từ tính VIEMAG để đối chiếu các tiêu chí trong bài này.",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "faqs": [
