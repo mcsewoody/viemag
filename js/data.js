@@ -2021,7 +2021,7 @@ window.DB = {
       "slug": "dien-thoai-gap-va-phu-kien-nam-cham",
       "cat": "Tech Explained",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469002183-tnnkbf488e-dien-thoai-gap-va-phu-kien-nam-cham.webp",
       "art": "fold",
       "title": {
         "en": "What’s the best way to use magnetic accessories with a foldable phone?",
