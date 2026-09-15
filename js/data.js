@@ -1821,7 +1821,7 @@ window.DB = {
       "slug": "hut-chan-khong-keo-3m-hay-kep",
       "cat": "Magnetic Technology",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467795321-wflffzvpfj-H_t_ch_n_kh_ng_keo_3M_hay_k_p.webp",
       "art": "tape",
       "title": {
         "en": "Vacuum suction, 3M adhesive, or clips: Which method is the most durable for mounting a holder on the dashboard?",
