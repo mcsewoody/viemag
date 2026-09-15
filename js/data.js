@@ -1871,7 +1871,7 @@ window.DB = {
       "slug": "sac-co-day-hay-khong-day-tren-xe",
       "cat": "Charging Standards",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467833831-1ru8y2qcihq-S_c_kh_ng_d_y_hay_c__d_y.webp",
       "art": "carcharge",
       "title": {
         "en": "Should you use a wired or wireless charger in the car?",
