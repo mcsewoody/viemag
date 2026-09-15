@@ -1846,7 +1846,7 @@ window.DB = {
       "slug": "nhiet-cabin-xe-mua-nang",
       "cat": "Tech Explained",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789467816189-n0a042fv8o9-Nhi_t_cabin_xe_m_a_n_ng.webp",
       "art": "dash",
       "title": {
         "en": "Car interiors in hot weather: How does the heat affect cell phones and accessories?",
