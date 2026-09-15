@@ -1621,7 +1621,7 @@ window.DB = {
       "slug": "15w-co-nhanh-hon-7-5w-khong",
       "cat": "Tech Explained",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789463939651-k4b9muam80s-15w-co-nhanh-hon-7-5-w-khong.webp",
       "art": "deskcharge",
       "title": {
         "en": "Is 15W wireless charging always faster than 7.5W?",
