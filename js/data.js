@@ -2171,7 +2171,7 @@ window.DB = {
       "slug": "vi-sao-hai-gia-do-giong-nhau-gia-khac-nhau",
       "cat": "Industry Trends",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469143044-apbpnasj0c-vi-sao-2-gia-do-giong-nhau-gia-lai-khac-nhau.webp",
       "art": "clip",
       "title": {
         "en": "Why do two stands that look exactly the same cost three times as much?",
