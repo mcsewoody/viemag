@@ -2296,7 +2296,7 @@ window.DB = {
       "slug": "checklist-di-trien-lam-chon-nha-cung-cap",
       "cat": "Tech Explained",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469401793-k9t4vhql26g-checklist-di-chon-nha-trien-lam.webp",
       "art": "ring",
       "title": {
         "en": "Attending the Hong Kong Trade Show in October: Checklist for Evaluating Suppliers of Magnetic Accessories",
