@@ -1996,7 +1996,7 @@ window.DB = {
       "slug": "iphone-pro-max-nang-giu-co-khac",
       "cat": "Apple Ecosystem",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789468978115-tdv7mcwp84k-iphone-pro-max.webp",
       "art": "dash",
       "title": {
         "en": "The iPhone Pro Max is heavy and large: Is it any different from holding a smaller model when it’s on a stand?",
