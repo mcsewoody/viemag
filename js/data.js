@@ -1641,6 +1641,31 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "slug": "iphone-nao-co-magsafe-va-qi2",
+      "cat": "Apple Ecosystem",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "deskcharge",
+      "title": {
+        "en": "",
+        "vi": "iPhone nào có MagSafe, iPhone nào hỗ trợ Qi2? Bảng tra nhanh cho người mua phụ kiện",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "Không phải iPhone nào cũng có vòng nam châm MagSafe, và không phải máy có MagSafe nào cũng hỗ trợ Qi2. Bài này tra nhanh theo đời máy trước khi bạn mua phụ kiện từ tính.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Trước khi mua giá đỡ nam châm hay sạc không dây, có một câu hỏi cần trả lời dứt khoát: **máy của bạn thuộc nhóm nào?**\n\nTrả lời sai câu này dẫn tới hai tình huống tốn tiền: mua phụ kiện từ tính cho máy không có nam châm, hoặc mua sạc công suất cao cho máy có trần thấp hơn.\n\n## Ba nhóm cần phân biệt\n\n**Nhóm 1: Có vòng nam châm MagSafe tích hợp**\n\nTừ **iPhone 12** trở đi, Apple đặt một vòng nam châm quanh cuộn sạc không dây ở lưng máy. Đây là nền tảng của toàn bộ hệ sinh thái phụ kiện từ tính.\n\nMáy trong nhóm này gắn thẳng lên giá đỡ nam châm mà **không cần ốp đặc biệt hay vòng dán**.\n\n**Nhóm 2: Có sạc không dây Qi nhưng không có nam châm**\n\nCác đời iPhone trước iPhone 12 có sạc không dây Qi nhưng **không có vòng nam châm**.\n\nMáy trong nhóm này muốn dùng giá đỡ từ tính thì bắt buộc phải có **ốp có vòng nam châm** hoặc **vòng nam châm dán thêm**.\n\n**Nhóm 3: Hỗ trợ Qi2**\n\nĐây là nhóm chồng lấn với nhóm 1 nhưng không trùng hoàn toàn. Qi2 là chuẩn mở của Wireless Power Consortium, và việc máy hỗ trợ Qi2 phụ thuộc cả phần cứng lẫn phiên bản phần mềm.\n\n## Tra nhanh theo đời máy\n\n**iPhone 11 và các đời trước**\n\n- Không có vòng nam châm MagSafe\n- Có sạc không dây Qi ở mức công suất thấp\n- Muốn dùng giá đỡ từ tính: cần ốp có vòng nam châm hoặc vòng dán\n\n**iPhone 12 và iPhone 12 Pro series**\n\n- Có vòng nam châm MagSafe tích hợp\n- Gắn thẳng lên giá đỡ từ tính được\n\n**iPhone 13 và iPhone 14 series**\n\n- Có vòng nam châm MagSafe tích hợp\n- **Hỗ trợ Qi2 ở mức tối đa 15W** sau bản cập nhật iOS 17.2\n- Đây là điểm nhiều người không biết: hai đời máy này được bổ sung Qi2 qua phần mềm\n\n**iPhone 15 series**\n\n- Có MagSafe tích hợp\n- Hỗ trợ Qi2\n\n**iPhone 16 series**\n\n- Có MagSafe tích hợp\n- Hỗ trợ Qi2 — **ngoại trừ iPhone 16e**\n- Từ iPhone 16 trở đi, máy có thể sạc tới 25W trên bộ sạc Qi2 25W\n\n**iPhone 17 series**\n\n- Có MagSafe tích hợp\n- Hỗ trợ Qi2 25W\n- iPhone 17, 17 Pro, 17 Pro Max: tối đa 25W\n- **iPhone Air**: giới hạn 20W\n- **iPhone 17e**: giới hạn 15W\n\nLưu ý quan trọng: danh sách này thay đổi khi Apple ra máy mới hoặc phát hành bản cập nhật phần mềm. Nếu bạn đang quyết định mua sắm lớn, kiểm tra lại trang hỗ trợ chính thức của Apple cho model cụ thể.\n\n## Điều gì thực sự quan trọng khi bạn mua giá đỡ\n\nĐây là chỗ nhiều người nhầm: **giá đỡ từ tính không cần máy hỗ trợ Qi2.**\n\nGiá đỡ không sạc chỉ cần một thứ — **vòng nam châm** để bám vào. Máy có MagSafe tích hợp, ốp có vòng nam châm, hay vòng dán đều được.\n\nChuẩn Qi2 chỉ có ý nghĩa khi sản phẩm **có tích hợp sạc không dây**.\n\nNói cách khác:\n\n- Mua giá đỡ nam châm cho iPhone 11? Được — miễn là bạn có ốp có vòng nam châm\n- Mua giá đỡ nam châm cho iPhone 15? Được — gắn thẳng, không cần gì thêm\n- Mua sạc Qi2 25W cho iPhone 13? Được, nhưng máy chỉ nhận tối đa 15W\n\n## Vòng nam châm tích hợp khác gì ốp có nam châm\n\nCả hai đều dùng được, nhưng trải nghiệm khác nhau:\n\n**Máy có MagSafe tích hợp** cho lực hút mạnh nhất và căn tâm chính xác nhất, vì không có lớp trung gian nào.\n\n**Ốp có vòng nam châm** thêm một lớp dày, lực hút giảm nhẹ, nhưng vẫn giữ được khả năng tự căn tâm. Đây là lựa chọn thực tế nhất cho hầu hết người dùng.\n\n**Vòng nam châm dán thêm** đứng cuối về cả lực hút lẫn độ chính xác, vì phụ thuộc vào việc bạn dán có đúng tâm hay không.\n\n## MagSafe không chỉ để sạc\n\nĐiểm ít được nói tới: vòng nam châm MagSafe là một **giao diện gắn phụ kiện**, không chỉ là cơ cấu sạc.\n\nCùng một vòng nam châm đó cho phép bạn gắn:\n\n- Giá đỡ trên xe, trên bàn, trên tay lái\n- Ví đựng thẻ ở lưng máy\n- Pin dự phòng gắn lưng\n- Tay cầm, chân máy, phụ kiện quay chụp\n- Đế xoay để quay video\n\nĐây là lý do một chiếc iPhone có MagSafe mở ra nhiều lựa chọn phụ kiện hơn hẳn máy không có. Và cũng là lý do đầu tư vào một chiếc ốp có vòng nam châm thật đáng giá hơn nhiều người nghĩ.\n\n## Nếu bạn dùng Android\n\nMột số máy Android đời mới đã hỗ trợ Qi2 với vòng nam châm tích hợp, nhưng phần lớn máy Android trên thị trường vẫn **không có nam châm sẵn**.\n\nVới máy Android, cách tiếp cận thực tế là: dùng ốp có vòng nam châm, hoặc dán vòng nam châm rời căn theo vị trí cuộn sạc không dây của máy.\n\nGiá đỡ từ tính vẫn hoạt động bình thường — chỉ cần có nam châm ở phía điện thoại.\n\n## Checklist trước khi mua phụ kiện từ tính\n\n- Máy của tôi từ iPhone 12 trở lên chưa? Nếu có, tôi có MagSafe tích hợp\n- Nếu máy cũ hơn, tôi đã có ốp có vòng nam châm chưa\n- Sản phẩm tôi định mua có sạc không, hay chỉ giữ máy\n- Nếu có sạc, trần công suất của máy tôi là bao nhiêu\n- Ốp hiện tại của tôi dày bao nhiêu, có vòng nam châm không\n\n## VIEMAG phù hợp với nhóm nào\n\nGiá đỡ từ tính VIEMAG hoạt động với mọi máy có nguồn nam châm ở lưng — dù là MagSafe tích hợp, ốp có vòng nam châm, hay vòng dán.\n\nChúng tôi mô tả sản phẩm là **tương thích với hệ thống từ tính MagSafe**, không gắn nhãn chứng nhận nào khi chưa có chứng nhận tương ứng.\n\nNếu bạn không chắc máy mình thuộc nhóm nào, hoặc không chắc ốp hiện tại có vòng nam châm hay không, gửi tin nhắn cho đội hỗ trợ kèm model máy — chúng tôi sẽ nói rõ bạn cần gì.\n\n## Kết luận\n\nBa câu cần nhớ:\n\n- **iPhone 12 trở lên** có vòng nam châm MagSafe tích hợp\n- **iPhone 13 trở lên** hỗ trợ Qi2 (iPhone 13/14 cần iOS 17.2 trở lên, riêng iPhone 16e không hỗ trợ)\n- **Giá đỡ không sạc** chỉ cần nam châm, không cần Qi2\n\nXem dòng giá đỡ từ tính VIEMAG để chọn theo đúng nhóm máy của bạn.",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "faqs": [
