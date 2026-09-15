@@ -2271,7 +2271,7 @@ window.DB = {
       "slug": "trien-lam-hong-kong-thang-10-2026",
       "cat": "Industry Trends",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469379621-q9bcg7hu3z-trien-lam-hk-thang-10.webp",
       "art": "ring",
       "title": {
         "en": "October in Hong Kong: Two Key Trade Shows That Will Determine Which Accessories You Buy Next Year",
