@@ -1671,7 +1671,7 @@ window.DB = {
       "slug": "cach-doc-claim-chong-rung-giu-chac",
       "cat": "Industry Trends",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789464638581-j3qs69cbwtm-C_ch___c_claim_ch_ng_rung.png",
       "art": "dash",
       "title": {
         "en": "How to Interpret Claims Such as \"Shock-Resistant,\" \"Secure Fit,\" and \"Safe Charging\" in the Accessories Market",
