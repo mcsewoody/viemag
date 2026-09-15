@@ -2196,7 +2196,7 @@ window.DB = {
       "slug": "iphone-18-pro-va-phu-kien-nam-cham",
       "cat": "Apple Ecosystem",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469304825-xki2iqwjtv-iphone-18-va-phu-kien-nam-cham.webp",
       "art": "dash",
       "title": {
         "en": "The iPhone 18 Pro Just Hit the Shelves: Will Your Old Magnetic Accessories Still Work?",
