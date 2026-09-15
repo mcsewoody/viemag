@@ -2096,7 +2096,7 @@ window.DB = {
       "slug": "quay-video-livestream-bang-dien-thoai",
       "cat": "Industry Trends",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469075382-4gba3zrwbqi-quay-video-livestream-bang-dien-thoai.webp",
       "art": "tripod",
       "title": {
         "en": "Recording Videos and Livestreaming with Your Phone: How to Hold the Phone Steady?",
