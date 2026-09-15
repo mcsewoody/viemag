@@ -1646,7 +1646,7 @@ window.DB = {
       "slug": "iphone-nao-co-magsafe-va-qi2",
       "cat": "Apple Ecosystem",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789463961244-jwrwab1u3ub-iphone-nao-co-magsafe-va-qi.webp",
       "art": "deskcharge",
       "title": {
         "en": "Which iPhones have MagSafe, and which ones support Qi2? A quick reference guide for accessory buyers",
