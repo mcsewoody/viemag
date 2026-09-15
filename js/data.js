@@ -1446,7 +1446,7 @@ window.DB = {
       "slug": "qi2-la-gi-khac-gi-magsafe",
       "cat": "Charging Standards",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789458209455-y0d38u1r33-qi-vs-magsafe.webp",
       "art": "deskcharge",
       "title": {
         "en": "What is Qi2? How is it different from MagSafe when charging an iPhone in a car?",
