@@ -1466,6 +1466,31 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "slug": "vi-sao-sac-khong-day-bi-nong",
+      "cat": "Charging Standards",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "deskcharge",
+      "title": {
+        "en": "",
+        "vi": "Vì sao sạc không dây làm nóng máy? Khi nào là bình thường, khi nào là bất thường",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "Sạc không dây nào cũng sinh nhiệt — đó là vật lý, không phải lỗi. Bài này chỉ ra đâu là mức nóng bình thường, đâu là dấu hiệu bạn đang dùng sai cách.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Gắn điện thoại lên đế sạc trên xe, mười lăm phút sau sờ vào thấy ấm rõ. Nhiều người nghĩ ngay là sạc kém chất lượng, hoặc pin sắp hỏng.\n\nSự thật đơn giản hơn: **mọi hệ thống sạc không dây đều sinh nhiệt**. Câu hỏi đúng không phải \"có nóng không\", mà là \"nóng tới mức nào và vì lý do gì\".\n\n## Nhiệt sinh ra từ đâu\n\nSạc không dây truyền điện qua từ trường giữa hai cuộn dây. Quá trình này không bao giờ đạt 100% hiệu suất. Phần năng lượng không chuyển thành điện nạp vào pin sẽ chuyển thành nhiệt.\n\nCó ba nguồn nhiệt chính:\n\n**Tổn hao ở cuộn dây.** Dòng điện chạy qua dây đồng luôn sinh nhiệt. Đây là phần không thể loại bỏ.\n\n**Tổn hao do căn lệch.** Hai cuộn dây càng lệch tâm, tỉ lệ năng lượng thất thoát càng cao. Phần thất thoát đó đi đâu? Thành nhiệt.\n\n**Tổn hao ở mạch chuyển đổi.** Điện từ nguồn phải qua nhiều bước biến đổi ở cả đế sạc lẫn điện thoại. Mỗi bước đều mất một ít.\n\nCộng thêm một yếu tố nữa mà nhiều người quên: bản thân **pin lithium khi nạp cũng tỏa nhiệt**, kể cả khi sạc bằng cáp.\n\n## Mức nóng nào là bình thường\n\nẤm rõ khi chạm vào, nhất là ở vùng lưng máy quanh vòng nam châm, thường là bình thường trong các tình huống sau:\n\n- Đang sạc ở công suất cao, pin còn dưới 50%\n- Vừa sạc vừa dùng bản đồ, màn hình sáng liên tục\n- Nhiệt độ môi trường cao — cabin xe giữa trưa ở Việt Nam\n- Máy đang gắn ốp dày, nhiệt khó thoát ra ngoài\n\nDấu hiệu nên xem lại cách dùng:\n\n- Máy nóng tới mức khó cầm, hoặc iPhone hiện cảnh báo cần hạ nhiệt\n- Sạc cả tiếng mà phần trăm pin gần như không nhích\n- Đế sạc nóng nhiều hơn cả điện thoại\n- Máy nóng ngay cả khi pin đã đầy và không dùng gì\n\n## Vì sao máy nóng lại sạc chậm đi\n\nĐây là phần khiến nhiều người bực nhất, nhưng nó là cơ chế bảo vệ chứ không phải lỗi.\n\nKhi nhiệt độ pin vượt ngưỡng an toàn, phần mềm quản lý sạc sẽ **tự giảm công suất nạp**. Lúc này bạn đang cắm một bộ sạc 15W nhưng thực tế máy chỉ nhận vài watt.\n\nVòng lặp xấu diễn ra như sau: căn lệch làm hiệu suất tụt, hiệu suất tụt sinh thêm nhiệt, nhiệt cao khiến máy giảm công suất, công suất giảm khiến thời gian sạc kéo dài, thời gian kéo dài lại tích thêm nhiệt.\n\nPhá vòng lặp này bắt đầu từ **căn tâm**, không phải từ việc mua sạc nhiều watt hơn.\n\n## Bối cảnh Việt Nam: cabin xe là môi trường khắc nghiệt\n\nMột chiếc xe đậu ngoài trời giữa trưa có nhiệt độ cabin cao hơn nhiệt độ ngoài trời đáng kể. Điện thoại đặt trên taplo còn chịu thêm bức xạ mặt trời trực tiếp.\n\nTrong điều kiện đó, máy có thể đã ở gần ngưỡng giảm công suất **trước khi bạn bắt đầu sạc**.\n\nVài điều chỉnh có tác dụng thật:\n\n- Đặt giá đỡ ở **cửa gió điều hòa** thay vì giữa taplo, để luồng gió mát thổi qua lưng máy\n- Tránh vị trí có nắng chiếu thẳng vào mặt lưng điện thoại\n- Bật điều hòa một lúc trước khi gắn máy lên, nếu xe vừa đậu ngoài nắng\n- Giảm độ sáng màn hình khi dẫn đường ban ngày, hoặc dùng chế độ luôn hiển thị bản đồ với độ sáng tự động\n\n## Ốp lưng: yếu tố bị bỏ quên\n\nỐp lưng vừa là lớp cách nhiệt, vừa là khoảng cách vật lý giữa cuộn sạc và điện thoại.\n\nỐp càng dày, hai cuộn dây càng xa nhau, hiệu suất càng giảm và nhiệt càng tăng. Ốp có tấm kim loại, thẻ từ hoặc miếng gắn giá đỡ dạng kim loại ở lưng còn gây vấn đề nghiêm trọng hơn.\n\nNếu máy bạn nóng bất thường khi sạc không dây, thử tháo ốp và sạc lại. Nếu nhiệt giảm rõ rệt, bạn đã tìm ra nguyên nhân.\n\n## Cách dùng giảm nhiệt trong thực tế\n\n- **Căn tâm chuẩn.** Dùng ốp có vòng nam châm thật hoặc máy có MagSafe tích hợp, để máy tự căn đúng vị trí.\n- **Đừng vừa sạc vừa chạy tác vụ nặng.** Quay video, chơi game, dẫn đường liên tục đều sinh nhiệt từ bên trong.\n- **Chọn đúng vị trí gắn.** Cửa gió tốt hơn taplo về mặt nhiệt trong hầu hết trường hợp.\n- **Ưu tiên cáp khi cần sạc nhanh.** Chặng đường ngắn mà pin yếu thì cáp USB-C luôn hiệu quả hơn.\n- **Không phủ thêm vật lên máy khi đang sạc.** Khăn, giấy tờ, túi đều chặn đường thoát nhiệt.\n\n## VIEMAG tiếp cận vấn đề nhiệt thế nào\n\nPhần lớn giá đỡ VIEMAG là mount từ tính không tích hợp sạc. Với người hay đi đường dài hoặc chạy xe giữa trưa, cấu hình \"mount giữ chắc + cáp USB-C\" thường cho kết quả ổn định hơn về cả tốc độ lẫn nhiệt.\n\nVới các sản phẩm có tích hợp sạc không dây, chúng tôi ghi rõ trạng thái kiểm thử thay vì gắn nhãn chứng nhận khi chưa có.\n\nChúng tôi cũng không hứa \"sạc không nóng\". Không có sản phẩm nào làm được điều đó. Thứ một thiết kế tốt có thể làm là **giữ máy đúng tâm và không cản đường thoát nhiệt** — hai việc này đã xử lý được phần lớn trường hợp nóng bất thường.\n\n## Kết luận nhanh\n\n- Sạc không dây sinh nhiệt là vật lý, không phải lỗi sản phẩm\n- Ấm là bình thường; nóng tới mức cảnh báo hoặc sạc không vào là bất thường\n- Nguyên nhân phổ biến nhất của nhiệt bất thường là **căn lệch** và **ốp lưng không phù hợp**\n- Nhiệt cao làm máy tự giảm công suất, nên \"nóng\" và \"sạc chậm\" thường là cùng một vấn đề\n- Cabin xe nóng ở Việt Nam là điều kiện khắc nghiệt thật sự, cần tính tới khi chọn vị trí gắn\n\nNếu bạn nghi ngờ vấn đề đến từ ốp lưng hoặc vòng nam châm dán thêm, xem tiếp bài về ảnh hưởng của ốp lưng tới lực hút và tốc độ sạc.\n\nCần tư vấn cho tình huống cụ thể của xe bạn, liên hệ đội hỗ trợ VIEMAG.",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "faqs": [
