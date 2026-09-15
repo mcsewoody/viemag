@@ -1491,6 +1491,31 @@ window.DB = {
         "id": "",
         "zh": ""
       }
+    },
+    {
+      "slug": "magsafe-compatible-co-phai-chung-nhan-apple",
+      "cat": "Charging Standards",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "suction",
+      "title": {
+        "en": "",
+        "vi": "\"MagSafe-compatible\" có phải được Apple chứng nhận không?",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "\"MagSafe-compatible\", \"Made for MagSafe\", \"Qi2 Certified\" là ba thứ khác nhau. Phân biệt được ba nhãn này giúp bạn không trả tiền cho một lời hứa không ai kiểm chứng.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Bạn đang xem hai phụ kiện trên sàn thương mại điện tử. Cái nào cũng gắn chữ MagSafe. Giá chênh nhau ba lần. Mô tả sản phẩm đọc gần như y hệt.\n\nVấn đề không nằm ở chỗ ai nói thật ai nói dối. Vấn đề là **các nhãn này không cùng hạng**, và phần lớn người mua không được ai giải thích sự khác nhau.\n\n## Bốn nhãn thường gặp và ý nghĩa thật của chúng\n\n**\"MagSafe-compatible\" (tương thích MagSafe)**\n\nĐây là mô tả do nhà sản xuất tự đưa ra. Nó có nghĩa: sản phẩm này hút được vào vòng nam châm của iPhone.\n\nNó **không** có nghĩa Apple đã kiểm tra, cấp phép hay bảo chứng. Không có bên thứ ba nào xác nhận lực hút, độ bền, hay an toàn khi sạc.\n\nĐây là nhãn phổ biến nhất trên thị trường, và cũng là nhãn có phổ chất lượng rộng nhất — từ sản phẩm rất tốt đến sản phẩm rất tệ.\n\n**\"Made for MagSafe\" (MFi)**\n\nĐây là chương trình cấp phép chính thức của Apple. Nhà sản xuất phải tham gia chương trình MFi, sản phẩm phải qua quy trình kiểm của Apple, và được phép dùng logo chính thức.\n\nNhãn này thực sự có trọng lượng. Nhưng nó cũng hiếm hơn và đắt hơn, vì chi phí cấp phép và kiểm định được tính vào giá bán.\n\n**\"Qi Certified\" / \"Qi2 Certified\"**\n\nĐây là chứng nhận của Wireless Power Consortium (WPC), tổ chức quản lý chuẩn Qi. Sản phẩm phải qua phòng thử nghiệm được WPC công nhận và có mã đăng ký tra được.\n\nLưu ý: chứng nhận này nói về **khả năng sạc không dây đúng chuẩn**, không nói gì về chất lượng cơ khí của giá đỡ hay độ bền của khớp xoay.\n\n**Không ghi gì cả**\n\nVới phụ kiện chỉ giữ máy — giá đỡ, ví gắn lưng, vòng nam châm — không có sạc thì không cần chứng nhận sạc. Việc sản phẩm không có nhãn Qi không phải điểm trừ, miễn là nó không gắn chữ \"Certified\" một cách sai lệch.\n\n## Cách kiểm tra khi bạn đang phân vân\n\nVài bước rất nhanh, làm được ngay trên điện thoại:\n\n- Tìm **logo chính thức** trên bao bì, không phải chữ viết trong phần mô tả. Logo MFi và logo Qi có hình thức cụ thể, dễ nhận\n- Với sản phẩm ghi Qi/Qi2 Certified, tra **mã đăng ký sản phẩm** trên cơ sở dữ liệu của WPC\n- Đọc kỹ **cách diễn đạt**. \"Certified\" khác \"compatible\" khác \"designed for\" khác \"works with\". Người viết mô tả biết rõ sự khác nhau này\n- Cảnh giác với sản phẩm ghi cả \"Made for MagSafe\" lẫn giá rẻ bất thường\n\n## Vì sao chuyện này quan trọng với ví tiền của bạn\n\nBa tình huống thực tế:\n\n**Bạn mua giá đỡ nam châm.** Ở đây nhãn MagSafe gần như không quan trọng. Thứ quyết định là lực hút thực tế, độ cứng khớp, chất lượng nam châm và thiết kế đế. Một sản phẩm \"MagSafe-compatible\" làm tốt phần cơ khí sẽ dùng sướng hơn nhiều so với một sản phẩm có nhãn đẹp nhưng khớp lỏng.\n\n**Bạn mua sạc không dây.** Ở đây nhãn rất quan trọng. Sạc không dây làm việc với điện và nhiệt, đặt trực tiếp lên pin lithium. Chứng nhận Qi/Qi2 là bằng chứng có bên thứ ba đã kiểm các cơ chế bảo vệ cơ bản.\n\n**Bạn mua ốp lưng.** Ốp cần có vòng nam châm thật đặt đúng vị trí. Ốp gắn \"miếng kim loại\" thay cho vòng nam châm có thể hút được nhưng gây cản trở sạc không dây và làm nóng máy.\n\n## Những cách diễn đạt nên thấy đèn vàng\n\n- \"Chứng nhận Apple\" — Apple không cấp chứng nhận chung chung như vậy. Chỉ có chương trình MFi\n- \"Chuẩn MagSafe quốc tế\" — MagSafe là hệ thống riêng của Apple, không phải chuẩn quốc tế. Chuẩn quốc tế là Qi/Qi2 của WPC\n- \"Qi2 15W chính hãng\" mà không nêu tên hãng nào\n- \"Sạc nhanh gấp đôi\" mà không nói so với cái gì, trong điều kiện nào\n\n## VIEMAG nói về sản phẩm của mình thế nào\n\nNguyên tắc nội bộ của chúng tôi rất đơn giản: **không dùng chữ \"chứng nhận\" khi chưa có chứng nhận.**\n\nPhần lớn sản phẩm VIEMAG hiện tại là mount và phụ kiện từ tính không tích hợp sạc. Với nhóm này, chúng tôi mô tả là **tương thích với hệ thống từ tính MagSafe** — tức là hút được vào iPhone có MagSafe hoặc ốp có vòng nam châm — chứ không gắn nhãn chứng nhận nào.\n\nVới sản phẩm có tích hợp sạc không dây, chúng tôi ghi rõ trạng thái đang trong quá trình kiểm thử. Khi nào hoàn tất chứng nhận tương ứng, thông tin trên trang sản phẩm sẽ được cập nhật.\n\nChúng tôi cũng công khai chính sách bảo hành 12 tháng và đổi lỗi trong 14 ngày. Với người mua phổ thông, một chính sách hậu mãi rõ ràng nhiều khi thực dụng hơn một dòng nhãn khó kiểm chứng.\n\n## Checklist trước khi bấm mua\n\n- Sản phẩm này có sạc không? Nếu có, nó ghi nhãn chứng nhận gì\n- Nhãn đó là **logo chính thức** hay chỉ là chữ trong phần mô tả\n- Nếu là giá đỡ thuần cơ khí, tôi có đang trả thêm tiền cho một cái nhãn không liên quan không\n- Người bán có ghi rõ chính sách bảo hành và đổi trả không\n- Mô tả có dùng từ tuyệt đối như \"không bao giờ rơi\", \"an toàn 100%\" không\n\n## Kết luận\n\n\"MagSafe-compatible\" là lời tự giới thiệu, không phải chứng nhận. \"Made for MagSafe\" là chương trình cấp phép của Apple. \"Qi2 Certified\" là chứng nhận của WPC về khả năng sạc.\n\nBa thứ này không thay thế nhau, và không cái nào nói được toàn bộ câu chuyện. Với giá đỡ, hãy đánh giá phần cơ khí. Với sạc, hãy đòi chứng nhận. Với cả hai, hãy đọc chính sách hậu mãi.\n\nXem các dòng giá đỡ từ tính của VIEMAG để so sánh trực tiếp thông số và chính sách trước khi quyết định.",
+        "id": "",
+        "zh": ""
+      }
     }
   ],
   "faqs": [
