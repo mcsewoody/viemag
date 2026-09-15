@@ -1696,7 +1696,7 @@ window.DB = {
       "slug": "mount-xe-may-khac-gi-mount-o-to",
       "cat": "Magnetic Technology",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789465239744-9crbw1koi2s-Mount_xe_m_y_kh_c_g__mount___t_.png",
       "art": "ride",
       "title": {
         "en": "What makes the choice of a mount different for a motorcycle compared to a car?",
