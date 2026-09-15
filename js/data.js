@@ -1441,7 +1441,33 @@ window.DB = {
     }
   ],
   "reports": [],
-  "insights": [],
+  "insights": [
+    {
+      "slug": "qi2-la-gi-khac-gi-magsafe",
+      "cat": "Charging Standards",
+      "date": "2026-09-15",
+      "img": null,
+      "art": "deskcharge",
+      "title": {
+        "en": "",
+        "vi": "Qi2 là gì? Khác gì MagSafe khi sạc iPhone trên xe?",
+        "id": "",
+        "zh": ""
+      },
+      "excerpt": {
+        "en": "",
+        "vi": "Qi2 và MagSafe nghe giống nhau nhưng không phải một thứ. Hiểu đúng hai chuẩn này giúp bạn biết vì sao cùng ghi 15W mà máy vẫn sạc chậm trên xe.",
+        "id": "",
+        "zh": ""
+      },
+      "body": {
+        "en": "",
+        "vi": "Bạn mua một bộ sạc ghi \"Qi2, 15W\", gắn lên xe, chạy 30 phút mà pin chỉ nhích vài phần trăm. Người bán nói sạc đúng chuẩn. Máy bạn cũng là iPhone đời mới. Vậy vấn đề nằm ở đâu?\n\nPhần lớn hiểu lầm bắt đầu từ việc gộp chung ba khái niệm: Qi, Qi2 và MagSafe. Chúng liên quan nhau nhưng không thay thế nhau được.\n\n## Qi là gì, nói cho dễ hiểu\n\nQi là chuẩn sạc không dây do Wireless Power Consortium (WPC) quản lý. Nguyên lý rất cơ bản: cuộn dây trong đế sạc tạo từ trường biến thiên, cuộn dây trong điện thoại nhận từ trường đó và biến lại thành điện.\n\nĐiểm yếu của Qi đời đầu không nằm ở công nghệ, mà nằm ở **vị trí**. Không có gì giữ hai cuộn dây thẳng hàng. Bạn đặt máy lệch một chút, điện truyền qua ít đi, phần năng lượng còn lại biến thành nhiệt.\n\nTrên bàn thì bạn còn chỉnh được. Trên xe đang chạy thì không.\n\n## Qi2 thêm gì vào bức tranh đó\n\nQi2 được WPC công bố năm 2023, với đóng góp kỹ thuật từ Apple. Thay đổi lớn nhất là **Magnetic Power Profile**: chuẩn hóa một vòng nam châm quanh cuộn sạc, để máy và đế tự căn tâm khi chạm vào nhau.\n\nNói cách khác, Qi2 không phát minh ra cách truyền điện mới. Nó giải quyết vấn đề **căn chỉnh** — thứ mà trước đó mỗi hãng tự xoay xở.\n\nĐến tháng 7/2025, WPC công bố tiếp **Qi2 25W** (tên kỹ thuật là Qi v2.2.1), nâng trần công suất lên 25W và siết thêm yêu cầu về hiệu suất cùng kiểm soát nhiệt.\n\n## Vậy MagSafe là gì?\n\nMagSafe là hệ thống riêng của Apple, có từ iPhone 12 (2020). Nó gồm ba phần:\n\n- Vòng nam châm tích hợp trong thân máy\n- Cuộn sạc không dây ở giữa vòng nam châm\n- Lớp nhận diện phụ kiện, để iPhone biết nó đang gắn vào ví, ốp, đế sạc hay giá đỡ\n\nĐiểm khác biệt quan trọng nhất với người mua: **MagSafe là hệ sinh thái của một hãng, Qi2 là chuẩn mở của cả ngành.**\n\nQi2 kế thừa ý tưởng vòng nam châm từ MagSafe. Nhưng một thiết bị Qi2 Certified được WPC kiểm và cấp chứng nhận, còn \"hoạt động với MagSafe\" thì bất kỳ ai cũng viết được lên bao bì.\n\n## iPhone nào dùng được Qi2, và ở mức nào\n\nTính đến thời điểm hiện tại:\n\n- **iPhone 13 và iPhone 14**: nhận Qi2 ở mức tối đa 15W sau bản cập nhật iOS 17.2\n- **iPhone 15, iPhone 16 (trừ iPhone 16e), iPhone 17**: hỗ trợ Qi2\n- **iPhone 17, 17 Pro, 17 Pro Max**: sạc tối đa 25W trên bộ sạc Qi2 25W\n- **iPhone Air**: giới hạn ở 20W\n- **iPhone 17e**: tối đa 15W\n\nMột lưu ý cần nhớ: những con số này là **trần công suất trong điều kiện tốt**, không phải mức máy bạn nhận được suốt quá trình sạc. iPhone tự hạ công suất khi pin gần đầy hoặc khi máy nóng.\n\n## Trên xe, thứ gì thực sự quyết định tốc độ sạc\n\nĐây là phần người bán ít nói tới. Trên ô tô, ba yếu tố ảnh hưởng nhiều hơn cả dòng chữ trên hộp:\n\n**Căn tâm.** Nếu điện thoại bị lệch so với cuộn sạc — do ốp dày, do vòng dán lệch, do rung — hiệu suất tụt và nhiệt tăng.\n\n**Nhiệt cabin.** Xe đậu ngoài nắng ở Việt Nam có thể rất nóng. Máy nóng sẵn, vừa gắn lên đã bị hệ thống giảm công suất để bảo vệ pin.\n\n**Nguồn cấp từ xe.** Bộ sạc không dây 15W cần adapter và cổng nguồn đủ khỏe. Cắm vào cổng USB-A cũ trên xe đời trước thì công suất bị chặn ngay từ đầu vào.\n\n**Tải đang chạy.** Vừa dẫn đường, vừa mở màn hình sáng tối đa, vừa phát nhạc qua Bluetooth thì máy tiêu thụ gần bằng lượng điện nó nhận. Pin không tụt đã là tốt.\n\n## VIEMAG nhìn chuyện này thế nào\n\nPhần lớn giá đỡ VIEMAG hiện tại là **mount từ tính thuần**, không tích hợp sạc. Đây là lựa chọn có chủ đích: tách bạch hai việc khác nhau.\n\nGiữ máy là bài toán cơ khí — lực hút, độ cứng khớp, chống rung, chống trượt.\n\nSạc là bài toán điện và nhiệt — nguồn vào, căn tâm cuộn dây, tản nhiệt.\n\nGộp hai việc vào một sản phẩm rẻ tiền thường khiến cả hai đều làm chưa tới. Nếu bạn cần sạc trên xe, một mount giữ chắc cộng một sợi cáp USB-C thường cho kết quả ổn định hơn một bộ sạc không dây giá thấp căn tâm kém.\n\nVới các sản phẩm có tích hợp sạc, VIEMAG ghi rõ trạng thái đang trong quá trình kiểm thử. Chúng tôi không dùng chữ \"Qi2 Certified\" khi chưa có chứng nhận tương ứng.\n\n## Checklist nhanh trước khi mua\n\n- Máy bạn có nằm trong danh sách hỗ trợ Qi2 không, và trần công suất là bao nhiêu\n- Sản phẩm ghi **Qi2 Certified**, **Qi Certified**, hay chỉ ghi \"MagSafe-compatible\"\n- Adapter và cổng nguồn trên xe có đủ công suất cho mức watt ghi trên hộp không\n- Ốp lưng bạn đang dùng có vòng nam châm thật hay chỉ là ốp thường\n- Bạn thực sự cần sạc không dây trên xe, hay chỉ cần giữ máy chắc rồi cắm cáp\n\n## Kết luận\n\nQi2 là chuẩn mở của WPC, MagSafe là hệ thống của Apple. Qi2 mượn ý tưởng nam châm từ MagSafe để giải quyết vấn đề căn tâm, và Qi2 25W nâng trần công suất lên 25W từ giữa năm 2025.\n\nNhưng chuẩn nào cũng vậy: con số trên hộp là điều kiện lý tưởng. Trên một chiếc xe nóng, rung, cắm vào cổng nguồn yếu, thứ quyết định trải nghiệm của bạn là căn tâm, nhiệt và nguồn — không phải dòng chữ marketing.\n\nNếu máy bạn hay nóng khi sạc không dây, đọc tiếp bài giải thích vì sao sạc không dây làm nóng máy để biết khi nào là bình thường và khi nào cần đổi cách dùng.",
+        "id": "",
+        "zh": ""
+      }
+    }
+  ],
   "faqs": [
     {
       "id": "doa",
