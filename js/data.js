@@ -2146,7 +2146,7 @@ window.DB = {
       "slug": "bao-hanh-12-thang-doi-loi-14-ngay",
       "cat": "Industry Trends",
       "date": "2026-09-15",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/guides/1789469121159-k5oqx3oockb-bao-hanh-12-thang-doi-14-ngay.webp",
       "art": "pro",
       "title": {
         "en": "What do a 12-month warranty and a 14-day return policy actually mean?",
