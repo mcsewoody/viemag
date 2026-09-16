@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.35';
+  var ADMIN_VERSION = '1.36';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -849,6 +849,7 @@
           if (statusField) html += '<td><span class="badge-status">' + esc(r.status ? optionLabel(tableName, statusField.name, r.status) : '—') + '</span></td>';
           html += '<td class="row-actions">';
           html += '<button class="btn edit-btn">' + esc(t('edit')) + '</button>';
+          if (tableName === 'products') html += '<button class="btn clone-btn">' + esc(t('clone')) + '</button>';
           /* Delete is owner-only. Hiding the button is courtesy, not the
              control: the real gate is the RLS policy added in
              20260809*_owner_only_deletes.sql, which rejects an editor's DELETE
@@ -897,6 +898,14 @@
           var id = btn.closest('tr').dataset.id;
           state.view = { table: tableName, mode: 'edit', id: id };
           renderContent();
+        });
+      });
+      Array.prototype.forEach.call(root.querySelectorAll('.clone-btn'), function (btn) {
+        btn.addEventListener('click', function () {
+          var tr = btn.closest('tr');
+          var sourceId = tr.dataset.id;
+          var sourceLabel = tr.children[def.thumb || def.thumbFallback ? 1 : 0].textContent;
+          cloneProduct(sourceId, sourceLabel, document.getElementById('syncStatus'));
         });
       });
       Array.prototype.forEach.call(root.querySelectorAll('.del-btn'), function (btn) {
@@ -954,6 +963,98 @@
         state.relationCache[cacheKey] = opts;
         return opts;
       });
+  }
+
+  function slugifyProductSku(sku) {
+    return String(sku || '').trim().toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function productClonePayload(row, newSku) {
+    var out = {};
+    SCHEMA.products.fields.forEach(function (f) {
+      if (f.requiresColumn) return;
+      if (missingSchemaColumns[f.name]) return;
+      if (f.type === 'relation_many') return;
+      if (f.type === 'computed' || f.readOnly) return;
+      if (!Object.prototype.hasOwnProperty.call(row, f.name)) return;
+      if (row[f.name] == null) return;
+      out[f.name] = row[f.name];
+    });
+    out.product_id = newSku;
+    out.official_sku_code = newSku;
+    out.slug = slugifyProductSku(newSku) || newSku;
+    out.status = 'Draft';
+    return out;
+  }
+
+  function cloneJoinRows(sourceId, newId) {
+    var joinFields = SCHEMA.products.fields.filter(function (f) { return f.type === 'relation_many'; });
+    return Promise.all(joinFields.map(function (f) {
+      return must(sb.from(f.joinTable).select(f.joinTargetKey).eq(f.joinKey, sourceId), 'load ' + f.joinTable)
+        .then(function (data) {
+          var rows = (data || []).map(function (r) {
+            var o = {}; o[f.joinKey] = newId; o[f.joinTargetKey] = r[f.joinTargetKey]; return o;
+          }).filter(function (r) { return r[f.joinTargetKey] !== newId; });
+          if (!rows.length) return null;
+          return sb.from(f.joinTable).insert(rows).then(function (res) {
+            if (res.error) throw new Error(f.joinTable + ' (clone): ' + res.error.message);
+          });
+        });
+    }));
+  }
+
+  function cloneDevelopmentRow(sourceId, newId, role) {
+    if (role !== 'owner') return Promise.resolve(null);
+    return must(sb.from('product_development').select('*').eq('product_id', sourceId).maybeSingle(), 'load product_development')
+      .then(function (row) {
+        if (!row) return null;
+        var values = {};
+        SCHEMA.product_development.fields.forEach(function (f) {
+          if (f.type === 'computed' || f.readOnly) return;
+          if (!Object.prototype.hasOwnProperty.call(row, f.name)) return;
+          if (row[f.name] == null) return;
+          values[f.name] = row[f.name];
+        });
+        values.product_id = newId;
+        return sb.from('product_development').insert(values).then(function (res) {
+          if (res.error) throw new Error('product_development (clone): ' + res.error.message);
+        });
+      });
+  }
+
+  function cloneProduct(sourceId, sourceLabel, statusEl) {
+    var newSku = window.prompt(tf('clonePrompt', { sku: sourceLabel }));
+    if (newSku == null) return;
+    newSku = newSku.trim();
+    if (!newSku) { alert(t('cloneSkuRequired')); return; }
+    statusEl.className = 'save-status';
+    statusEl.textContent = t('cloning');
+    return Promise.all([
+      must(sb.from('products').select('*').eq('id', sourceId).single(), 'load products'),
+      fetchMyRole(),
+    ]).then(function (both) {
+      var source = both[0];
+      var role = both[1];
+      var values = productClonePayload(source, newSku);
+      return writeRowSkippingMissingColumns('products', values, true, null, 8).then(function (res) {
+        if (res.error) throw new Error(res.error.message);
+        var newId = res.data.id;
+        return cloneJoinRows(sourceId, newId).then(function () {
+          return cloneDevelopmentRow(sourceId, newId, role);
+        }).then(function () {
+          state.formDirty = false;
+          state.relationCache = {};
+          triggerExportIfNeeded('products', document.getElementById('syncStatus'));
+          state.view = { table: 'products', mode: 'edit', id: newId };
+          renderContent();
+        });
+      });
+    }).catch(function (err) {
+      statusEl.className = 'save-status error';
+      statusEl.textContent = t('cloneFailed') + err.message;
+    });
   }
 
   function renderForm(root) {
