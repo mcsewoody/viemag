@@ -50,6 +50,47 @@ const MAX_INPUT_LENGTH = 50000;
 const DEEPL_MAX_TEXTS = 50;
 const DEEPL_BATCH_TEXTS = 45;
 const DEEPL_BATCH_CHARS = 24000;
+const DEEPL_REQUEST_TIMEOUT_MS = 45000;
+
+function splitHtmlBlocks(text: string): string[] {
+  const hasHtml = /<\/?[a-z][\s\S]*>/i.test(text);
+  if (!hasHtml) return text.split('\n');
+
+  const blockTags = new Set(['p', 'h2', 'h3', 'ul', 'ol', 'div', 'section', 'figure', 'table']);
+  const voidTags = new Set(['br', 'hr', 'img', 'iframe', 'video', 'source']);
+  const chunks: string[] = [];
+  let cursor = 0;
+  let chunkStart = 0;
+  let depth = 0;
+  const tagRe = /<\/?([a-z][\w-]*)(?:\s[^>]*)?>/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = tagRe.exec(text))) {
+    const raw = match[0];
+    const tag = match[1].toLowerCase();
+    if (!blockTags.has(tag) || voidTags.has(tag)) continue;
+
+    if (match.index > cursor && depth === 0) {
+      const plain = text.slice(cursor, match.index);
+      if (plain) chunks.push(plain);
+      chunkStart = match.index;
+    }
+
+    const isClosing = raw.startsWith('</');
+    const isSelfClosing = raw.endsWith('/>');
+    if (!isClosing && !isSelfClosing) depth += 1;
+    if (isClosing) depth = Math.max(0, depth - 1);
+
+    if (depth === 0) {
+      chunks.push(text.slice(chunkStart, tagRe.lastIndex));
+      cursor = tagRe.lastIndex;
+      chunkStart = cursor;
+    }
+  }
+
+  if (cursor < text.length) chunks.push(text.slice(cursor));
+  return chunks.flatMap((chunk) => chunk.split('\n'));
+}
 
 function shouldPreserveLine(line: string): boolean {
   const trimmed = line.trim();
@@ -88,13 +129,13 @@ async function verifyCaller(req: Request): Promise<{ ok: boolean; reason?: strin
    table separator, and translating those can break the exact markup/layout the
    public renderer expects. */
 async function deeplTranslate(text: string, sourceLang: string, targetLang: string): Promise<string> {
-  const lines = text.split('\n');
+  const lines = splitHtmlBlocks(text);
   const sendAt: number[] = [];
   const payload: string[] = [];
   lines.forEach((line, i) => {
     if (!shouldPreserveLine(line)) { sendAt.push(i); payload.push(line); }
   });
-  if (!payload.length) return '';
+  if (!payload.length) return lines.join('\n');
 
   const batches: string[][] = [];
   let batch: string[] = [];
@@ -119,14 +160,22 @@ async function deeplTranslate(text: string, sourceLang: string, targetLang: stri
     }
     const body: Record<string, unknown> = { text: part, source_lang: sourceLang, target_lang: targetLang };
     if (tagHandling) body.tag_handling = tagHandling;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), DEEPL_REQUEST_TIMEOUT_MS);
     const res = await fetch(`${DEEPL_API_HOST}/v2/translate`, {
       method: 'POST',
+      signal: controller.signal,
       headers: {
         'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-    });
+    }).catch((err) => {
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        throw new Error(`DeepL ${targetLang} timed out after ${Math.round(DEEPL_REQUEST_TIMEOUT_MS / 1000)}s`);
+      }
+      throw err;
+    }).finally(() => clearTimeout(timeout));
     if (!res.ok) {
       const errText = await res.text();
       throw new Error(`DeepL ${targetLang} failed: ${res.status} ${errText.slice(0, 200)}`);

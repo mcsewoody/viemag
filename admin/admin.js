@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = '1.34';
+  var ADMIN_VERSION = '1.35';
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -68,12 +68,22 @@
   function callTranslateFunction(text, source) {
     return sb.auth.getSession().then(function (sessionRes) {
       var token = (sessionRes.data.session && sessionRes.data.session.access_token) || CFG.supabaseAnonKey;
+      var controller = window.AbortController ? new AbortController() : null;
+      var timeout = window.setTimeout(function () {
+        if (controller) controller.abort();
+      }, 70000);
       return fetch(CFG.supabaseUrl + '/functions/v1/translate-text', {
         method: 'POST',
+        signal: controller ? controller.signal : undefined,
         headers: { apikey: CFG.supabaseAnonKey, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: text, source: source }),
       }).then(function (res) {
         return res.json().then(function (data) { return { httpOk: res.ok, data: data }; });
+      }).catch(function (err) {
+        if (err && err.name === 'AbortError') throw new Error(t('translateTimeout') || 'Translation timed out');
+        throw err;
+      }).finally(function () {
+        window.clearTimeout(timeout);
       });
     });
   }
@@ -1647,6 +1657,16 @@
       selectMedia(null);
     });
     visual.addEventListener('input', syncFromVisual);
+    /* The translate button writes into the hidden source textarea. Keep the
+       contenteditable pane in sync so a later edit cannot overwrite the new
+       translation with the stale visual copy. */
+    textarea.addEventListener('rich-source-changed', function () {
+      visual.innerHTML = (hasHtml.test(textarea.value) ? cleanArticleHtml(textarea.value) : richPreviewHtml(textarea.value)) || '<p><br></p>';
+      selectMedia(null);
+      savedRange = null;
+      textarea.value = cleanArticleHtml(visual.innerHTML).trim();
+      textarea.dispatchEvent(new Event('input', { bubbles: true }));
+    });
     visual.addEventListener('paste', function () {
       window.setTimeout(function () {
         visual.innerHTML = cleanArticleHtml(visual.innerHTML) || '<p><br></p>';
