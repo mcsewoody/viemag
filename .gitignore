@@ -33,3 +33,30 @@ products/
 # 2026-08-11 補：先前未被 ignore，若有人把它從 OneDrive 複製到 repo 根目錄就會外洩
 # （planning/ 底下的副本本來就被上面的 planning/ 擋住，這行擋的是放在根目錄的情況）。
 網域與雲端架構操作手冊.md
+
+# 2026-09-21 補：以下檔案當時都散在 repo 根目錄、未被任何規則擋住，只是剛好
+# 還沒被 add 進去。這和上面「網域與雲端架構操作手冊.md」是同一種情況再發生一次。
+# 要點：_config.yml 的 exclude 只擋 supabase/ scripts/ .github/ README.md，
+# 它管的是「Jekyll 要不要發佈」，不是「git 要不要收」。一旦這些檔被 commit，
+# 就同時是 GitHub 公開 repo 裡的檔案，而且能從 https://viemag.biz/<檔名> 直接下載。
+# 供應商資料尤其不能外流——它是報價與供應鏈，不是欄位名稱。
+供應商資料_*.xlsx
+CẤU TRÚC SKU*.docx
+VIEMAG_產品編碼手冊_*.md
+
+# 產品照原始資料夾（以 VM Code 命名）。網站實際使用的圖放在 Supabase Storage，
+# 由 /admin 上傳，不經過 git。
+圖片檔/
+
+# 本機工具與中間產物，沒有一項是網站要用的檔案。
+# product-assets/ 內含圖庫檢視器 _圖庫檢視器.html：那是給自己人在本機開的工具，
+# 用來取代 Supabase Dashboard 的 Storage explorer（後者每張縮圖都會走 image
+# transformation，Pro 方案每月只含 100 張原圖，2026-09 已用到 196%）。
+# 它讀的是線上的 js/data.js，放在本機就能用，沒有理由發佈到公開網站上。
+product-assets/
+outputs/
+artifacts_build/
+index-test.html
+.playwright-mcp/
+scripts/__pycache__/
+shopee_*.png

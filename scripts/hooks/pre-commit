@@ -140,7 +140,7 @@ echo "pre-commit: ${note}，已同步 ${count} 個 ?v= 並加入本次 commit。
 # the browser cache, and a constant that exists solely for a hook to increment is
 # a second place to get out of step for no gain.
 site_version() {
-  FRONT_HTML=$(ls *.html 2>/dev/null || true)
+  FRONT_HTML=$(git ls-files -- '*.html' ':!:admin/*' 2>/dev/null || true)
   [ -z "$FRONT_HTML" ] && return 0
 
   # Only when the commit touches something the pages actually load. Editing a
