@@ -31,6 +31,7 @@
         t,
         tf,
         icon,
+        brandIcon,
         art,
         thumb,
         productCard,
@@ -146,7 +147,7 @@
           const img = p.articleImage || "";
           if (!body && !img) return `<p class="pdp-tab-empty"></p>`;
           return `
-      ${img ? `<figure class="pdp-article-media"><img src="${esc(img)}" alt="${esc(tf(p.name))}" loading="lazy"></figure>` : ""}
+      ${img ? `<figure class="pdp-article-media"><img src="${esc(img)}" alt="${esc(tf(p.name))}" loading="lazy" decoding="async"></figure>` : ""}
       ${body ? `<div class="rich-text">${body}</div>` : ""}`;
         }
 
@@ -181,9 +182,7 @@
         <div class="pdp-tab-panel active" role="tabpanel" id="pdpPanelInfo" aria-labelledby="pdpTabInfo" data-panel="info">
           ${productInfoContent(p)}
         </div>
-        <div class="pdp-tab-panel" role="tabpanel" id="pdpPanelSpecs" aria-labelledby="pdpTabSpecs" data-panel="specs" hidden>
-          ${technicalDetailsContent(p, specRows)}
-        </div>
+        <div class="pdp-tab-panel" role="tabpanel" id="pdpPanelSpecs" aria-labelledby="pdpTabSpecs" data-panel="specs" data-deferred="specs" hidden></div>
       </section>`;
         }
 
@@ -241,8 +240,8 @@
             ? `<div class="notice" style="margin:20px 0">${t("cats.soon")}</div>`
             : `<div class="price">${money(p.price)}</div>
            <div class="pdp-ctas">
-             <a class="btn btn-primary btn-shopee" href="${p.shopee || DB.config.shopeeUrl}" target="_blank" rel="noopener">${icon("cart")}${t("cta.shopee")}</a>
-             <a class="btn btn-ghost btn-zalo" href="${p.zalo || DB.config.zaloUrl}" target="_blank" rel="noopener">${icon("phonecall")}${t("cta.zalo")}</a>
+             <a class="btn btn-primary btn-shopee" href="${p.shopee || DB.config.shopeeUrl}" target="_blank" rel="noopener">${brandIcon("shopee")}${t("cta.shopee")}</a>
+             <a class="btn btn-ghost btn-zalo" href="${p.zalo || DB.config.zaloUrl}" target="_blank" rel="noopener">${brandIcon("zalo")}${t("cta.zalo")}</a>
              <a class="btn btn-ghost btn-dealer" href="dealers.html">${icon("phonecall")}${t("pdp.askDealer")}</a>
            </div>`
       }
@@ -260,7 +259,7 @@
           const main = document.getElementById("pdpMain");
           shots.forEach((btn) =>
             btn.addEventListener("click", () => {
-              main.innerHTML = `<img src="${esc(btn.dataset.src)}" alt="${esc(tf(p.name))}">`;
+              main.innerHTML = `<img src="${esc(btn.dataset.src)}" alt="${esc(tf(p.name))}" decoding="async">`;
               shots.forEach((b) => b.classList.toggle("active", b === btn));
             }),
           );
@@ -269,6 +268,11 @@
         box.querySelectorAll(".pdp-tab-btn").forEach((btn) =>
           btn.addEventListener("click", () => {
             const name = btn.dataset.tab;
+            const specsPanel = document.getElementById("pdpPanelSpecs");
+            if (name === "specs" && specsPanel && specsPanel.dataset.deferred) {
+              specsPanel.innerHTML = technicalDetailsContent(p, specRows);
+              delete specsPanel.dataset.deferred;
+            }
             box.querySelectorAll(".pdp-tab-btn").forEach((b) => {
               const active = b === btn;
               b.classList.toggle("active", active);

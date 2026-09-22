@@ -215,8 +215,8 @@ h2.section-title {
   flex: none;
 }
 .btn .brand-icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   flex: none;
   display: block;
 }
@@ -230,13 +230,13 @@ h2.section-title {
   box-shadow: var(--shadow-md);
 }
 .btn-shopee {
-  background: #e7352f;
-  border-color: #e7352f;
+  background: #ff2f2f;
+  border-color: #ff2f2f;
   color: #fff;
 }
 .btn-shopee:hover {
-  background: #c92621;
-  border-color: #c92621;
+  background: #e42121;
+  border-color: #e42121;
   color: #fff;
   box-shadow: var(--shadow-md);
 }
@@ -1283,8 +1283,8 @@ h2.section-title {
   padding: var(--s3) 0 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 8px;
   flex: 1;
 }
@@ -1299,15 +1299,17 @@ h2.section-title {
    aria-label) — only the drawn height is capped, so one long SKU name cannot
    push its row taller than every other row. */
 .prod-card h3 {
-  font-size: 1rem;
-  line-height: 1.32;
-  font-weight: 700;
-  color: var(--navy);
+  width: 100%;
+  font-size: clamp(0.92rem, 1.05vw, 1.04rem);
+  line-height: 1.22;
+  font-weight: 800;
+  color: var(--midnight);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: calc(1em * 1.32 * 2);
+  min-height: calc(1em * 1.22 * 2);
+  text-wrap: balance;
 }
 .prod-card .claim {
   font-size: 0.85rem;
@@ -1341,6 +1343,12 @@ h2.section-title {
   }
   .prod-card .foot .btn {
     justify-content: center;
+  }
+  .prod-actions {
+    flex-direction: column;
+  }
+  .prod-actions .btn {
+    width: 100%;
   }
   /* One selling point on a phone card. The rest are still in the DOM and on the
      product page — this only stops a four-line claim from doubling card height. */
@@ -1385,7 +1393,7 @@ h2.section-title {
 .prod-card .foot {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--s3);
   margin-top: auto;
   width: 100%;
@@ -1396,28 +1404,31 @@ h2.section-title {
 }
 .prod-actions {
   display: flex;
-  justify-content: center;
-  gap: 6px;
+  justify-content: space-between;
+  gap: 8px;
   flex-wrap: nowrap;
   width: 100%;
 }
 .prod-actions .btn {
-  flex: 0 0 auto;
+  flex: 1 1 0;
   min-width: 0;
-  min-height: 34px;
-  padding: 6px 10px;
-  font-size: 0.75rem;
+  min-height: 46px;
+  padding: 7px 11px;
+  font-size: 0.78rem;
   border-width: 1.5px;
   white-space: nowrap;
+  gap: 7px;
+  line-height: 1;
+  overflow: hidden;
 }
 .prod-actions .btn svg {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 .btn-zalo {
   border-color: #0068ff;
   color: #0068ff;
-  background: #eef6ff;
+  background: #fff;
 }
 .btn-zalo:hover {
   background: #0068ff;

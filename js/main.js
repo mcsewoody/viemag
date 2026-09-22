@@ -251,14 +251,15 @@
   const brandIcon = (name) => {
     if (name === "shopee") {
       return `<svg class="brand-icon brand-icon-shopee" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M7.2 8.2h9.6l.78 11.25a1.45 1.45 0 0 1-1.44 1.55H7.86a1.45 1.45 0 0 1-1.44-1.55L7.2 8.2Z" fill="currentColor"/>
-        <path d="M9.1 8.2V7.1a2.9 2.9 0 0 1 5.8 0v1.1" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round"/>
-        <path d="M9.45 16.3c.82.68 1.76 1.02 2.82 1.02 1.18 0 1.94-.48 1.94-1.22 0-.63-.43-.96-1.86-1.38-1.95-.58-2.78-1.35-2.78-2.65 0-1.53 1.32-2.58 3.23-2.58.98 0 1.86.24 2.6.72" fill="none" stroke="#fff" stroke-width="1.35" stroke-linecap="round"/>
+        <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="4.6" fill="#fff"/>
+        <path d="M7.2 8.4h9.6l.76 9.4a1.25 1.25 0 0 1-1.25 1.36H7.69a1.25 1.25 0 0 1-1.25-1.36L7.2 8.4Z" fill="#fff" stroke="#ee4d2d" stroke-width="1.45"/>
+        <path d="M9.25 8.35V7.45a2.75 2.75 0 0 1 5.5 0v.9" fill="none" stroke="#ee4d2d" stroke-width="1.45" stroke-linecap="round"/>
+        <path d="M10.05 16.05c.62.45 1.25.68 1.95.68.82 0 1.35-.33 1.35-.84 0-.45-.32-.7-1.35-.98-1.46-.4-2.1-1.02-2.1-2.02 0-1.18 1.02-1.96 2.5-1.96.7 0 1.36.16 1.95.5" fill="none" stroke="#ee4d2d" stroke-width="1.35" stroke-linecap="round"/>
       </svg>`;
     }
     if (name === "zalo") {
       return `<svg class="brand-icon brand-icon-zalo" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2.5" y="4.5" width="19" height="15" rx="4.5" fill="currentColor"/>
+        <rect x="2.2" y="3.5" width="19.6" height="17" rx="6" fill="#0068ff"/>
         <text x="12" y="14.9" text-anchor="middle" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="6.2" font-weight="700">Zalo</text>
       </svg>`;
     }
@@ -464,7 +465,7 @@
   /* real photo (Notion Hero Image → assets/products/…) if present, else SVG art */
   const thumb = (p) =>
     p.img
-      ? `<img class="thumb-img" src="${p.img}" alt="${esc(tf(p.name))}" loading="lazy">`
+      ? `<img class="thumb-img" src="${p.img}" alt="${esc(tf(p.name))}" loading="lazy" decoding="async">`
       : art(p.art, tf(p.name));
 
   function productCard(p) {
@@ -494,7 +495,7 @@
        fade the visitor sees for half a second. */
     const alt = (p.gallery || [])[0];
     const altImg = alt
-      ? `<img class="thumb-alt" src="${esc(alt)}" alt="" loading="lazy" aria-hidden="true">`
+      ? `<img class="thumb-alt" src="${esc(alt)}" alt="" loading="lazy" decoding="async" aria-hidden="true">`
       : "";
     return `
     <article class="prod-card">
@@ -508,7 +509,7 @@
   function categoryCard(c) {
     const future = c.status === "future";
     const img = c.img
-      ? `<img src="${esc(c.img)}" alt="${esc(tf(c.name))}" loading="lazy">`
+      ? `<img src="${esc(c.img)}" alt="${esc(tf(c.name))}" loading="lazy" decoding="async">`
       : art(c.art, tf(c.name));
     return `
     <a class="cat-card" href="products.html?cat=${c.id}">
@@ -691,7 +692,7 @@
           const src = safeImageUrl(node.getAttribute("src"));
           const alt = node.getAttribute("alt") || "";
           return src
-            ? `<figure class="rich-image wide"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></figure>`
+            ? `<figure class="rich-image wide"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></figure>`
             : "";
         }
         if (tag === "iframe") {
@@ -723,7 +724,7 @@
                 ? "right"
                 : "wide";
             return src
-              ? `<figure class="rich-image ${layout}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></figure>`
+              ? `<figure class="rich-image ${layout}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></figure>`
               : "";
           }
           const video = node.querySelector("video");
@@ -848,7 +849,7 @@
           if (!src) return;
           const layout = img[3] || "wide";
           out.push(
-            `<figure class="rich-image ${layout}"><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy"></figure>`,
+            `<figure class="rich-image ${layout}"><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy" decoding="async"></figure>`,
           );
           return;
         }
@@ -873,7 +874,7 @@
     const excerpt = tf(a.excerpt);
     return `
     <a class="insight-card reveal" href="insight.html?slug=${encodeURIComponent(a.slug)}" aria-label="${esc(tf(a.title))}">
-      <div class="thumb">${a.img ? `<img src="${esc(a.img)}" alt="" loading="lazy">` : art(a.art || "ring")}</div>
+      <div class="thumb">${a.img ? `<img src="${esc(a.img)}" alt="" loading="lazy" decoding="async">` : art(a.art || "ring")}</div>
       <div class="body">
         <span class="cat-label">${esc(t("insights.cat." + a.cat))}</span>
         <h3>${esc(tf(a.title))}</h3>
@@ -987,7 +988,7 @@
         (src, i) => `
         <button type="button" class="pdp-shot${i === 0 ? " active" : ""}" data-src="${esc(src)}"
                 aria-label="${esc(t("pdp.gallery"))} ${i + 1}">
-          <img src="${esc(src)}" alt="" loading="lazy">
+          <img src="${esc(src)}" alt="" loading="lazy" decoding="async">
         </button>`,
       )
       .join("")}</div>`;
@@ -1075,6 +1076,7 @@
         t,
         tf,
         icon,
+        brandIcon,
         art,
         thumb,
         productCard,

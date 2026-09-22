@@ -43,7 +43,7 @@ window.renderPage = function ({ t, tf, esc, art, insightCard, formatDate, richTe
   }
 
   const hero = a.img
-    ? `<img class="insight-hero-img" src="${esc(a.img)}" alt="${esc(tf(a.title))}" loading="lazy">`
+    ? `<img class="insight-hero-img" src="${esc(a.img)}" alt="${esc(tf(a.title))}" loading="eager" decoding="async">`
     : `<div class="insight-hero-art">${art(a.art || 'ring')}</div>`;
 
   host.innerHTML = `
@@ -62,11 +62,20 @@ window.renderPage = function ({ t, tf, esc, art, insightCard, formatDate, richTe
     <section class="section-tight">
       <div class="container insight-body-wrap">
         ${hero}
-        <div class="insight-body">${richText(tf(a.body))}</div>
+        <div class="insight-body" id="insightBody" aria-busy="true"></div>
         <p class="insight-back"><a class="btn btn-ghost btn-sm" href="insights.html">${t('insights.backToList')}</a></p>
       </div>
     </section>
   </article>`;
+
+  const renderBody = () => {
+    const body = document.getElementById('insightBody');
+    if (!body) return;
+    body.innerHTML = richText(tf(a.body));
+    body.removeAttribute('aria-busy');
+  };
+  if ('requestIdleCallback' in window) window.requestIdleCallback(renderBody, { timeout: 900 });
+  else window.setTimeout(renderBody, 0);
 
   /* Same-category reads, newest first, current article excluded. */
   const more = DB.insights.filter((x) => x.slug !== a.slug && x.cat === a.cat).slice(0, 3);
