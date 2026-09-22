@@ -1439,12 +1439,12 @@ h2.section-title {
 .price {
   font-weight: 800;
   font-size: 1.08rem;
-  color: var(--midnight);
+  color: #ff2f2f;
   font-variant-numeric: tabular-nums;
 }
 .price small {
   font-weight: 600;
-  color: var(--muted);
+  color: #ff2f2f;
   font-size: 0.75rem;
   margin-right: 3px;
 }
