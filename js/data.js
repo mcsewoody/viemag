@@ -40,10 +40,10 @@ window.DB = {
     },
     {
       "id": "desk",
-      "cat": "D",
+      "cat": null,
       "status": "published",
       "art": "deskcharge",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/categories/1790157553784-fzgc4jn34sl-table.webp",
       "name": {
         "en": "Desk",
         "vi": "Để bàn",
