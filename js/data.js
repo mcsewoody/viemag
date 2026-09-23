@@ -71,10 +71,10 @@ window.DB = {
     },
     {
       "id": "ride",
-      "cat": "R",
+      "cat": null,
       "status": "future",
       "art": "ride",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/categories/1790157677023-39g1fhvn8m-bike.webp",
       "name": {
         "en": "Ride",
         "vi": "Xe máy",
