@@ -102,10 +102,10 @@ window.DB = {
     },
     {
       "id": "studio",
-      "cat": "S",
+      "cat": null,
       "status": "future",
       "art": "tripod",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/categories/1790157699051-jyw0io10lon-creation.webp",
       "name": {
         "en": "Studio",
         "vi": "Sáng tạo",
