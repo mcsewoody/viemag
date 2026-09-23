@@ -164,10 +164,10 @@ window.DB = {
     },
     {
       "id": "portable",
-      "cat": "P",
+      "cat": null,
       "status": "published",
       "art": "fold",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/categories/1790157724668-ls6pxiim2ba-portable.webp",
       "name": {
         "en": "Portable",
         "vi": "Di động",
