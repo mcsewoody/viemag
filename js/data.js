@@ -133,10 +133,10 @@ window.DB = {
     },
     {
       "id": "battery",
-      "cat": "B",
+      "cat": null,
       "status": "future",
       "art": "powerbank",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/categories/1790157710465-mrjixpxv6u-Power_Bank.png",
       "name": {
         "en": "Battery",
         "vi": "Sạc dự phòng",
