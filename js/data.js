@@ -195,10 +195,10 @@ window.DB = {
     },
     {
       "id": "accessory",
-      "cat": "A",
+      "cat": null,
       "status": "published",
       "art": "ring",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/categories/1790157737139-1etvir4zhzd-accessory.webp",
       "name": {
         "en": "Accessory",
         "vi": "Phụ kiện",
