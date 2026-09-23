@@ -9,10 +9,10 @@ window.DB = {
   "categories": [
     {
       "id": "vehicle",
-      "cat": "V",
+      "cat": null,
       "status": "published",
       "art": "dash",
-      "img": null,
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/categories/1790157513603-t4ebr90c99-car.webp",
       "name": {
         "en": "Vehicle",
         "vi": "Ô tô",
