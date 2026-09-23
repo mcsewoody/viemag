@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.36";
+  var ADMIN_VERSION = "1.37";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1755,9 +1755,7 @@
     if (!def.tabs) {
       html +=
         '<div class="form-card" style="margin-top:14px"><div class="form-grid">';
-      def.fields.forEach(function (f) {
-        html += fieldBlockHtml(ctx, ctx.tableName, ctx.row, f);
-      });
+      html += flatFieldsHtml(ctx);
       html += "</div>" + formActionsHtml() + "</div>";
       return html;
     }
@@ -1817,6 +1815,36 @@
     return html;
   }
 
+  function flatFieldsHtml(ctx) {
+    var html = "";
+    var skip = {};
+    var fieldByName = {};
+    ctx.def.fields.forEach(function (f) {
+      fieldByName[f.name] = f;
+    });
+    ctx.def.fields.forEach(function (f) {
+      if (skip[f.name]) return;
+      var m = f.name.match(/^(.+)_(en|vi|id|zh)$/);
+      if (m && isTranslatablePrefix(ctx.tableName, m[1])) {
+        var names = ["en", "vi", "id", "zh"].map(function (lang) {
+          return m[1] + "_" + lang;
+        });
+        var hasAll = names.every(function (name) {
+          return !!fieldByName[name];
+        });
+        if (hasAll) {
+          names.forEach(function (name) {
+            skip[name] = true;
+          });
+          html += langRowHtml(ctx, ctx.tableName, ctx.row, names);
+          return;
+        }
+      }
+      html += fieldBlockHtml(ctx, ctx.tableName, ctx.row, f);
+    });
+    return html;
+  }
+
   /* Every group folds; the ones marked collapsed in schema.js simply start
      folded. SEO is the only one that does — its eight fields are all optional
      and the site composes a fallback when they are blank, so eight open empty
@@ -1873,7 +1901,7 @@
       .filter(Boolean);
     if (!fields.length) return "";
     var prefix = fields[0].name.replace(/_(en|vi|id|zh)$/, "");
-    var canTranslate = TRANSLATABLE_PREFIXES.indexOf(prefix) !== -1;
+    var canTranslate = isTranslatablePrefix(srcName, prefix);
     var html =
       '<div class="field wide lang-row" data-field="' + esc(prefix) + '">';
     html += "<label>" + esc(prefix) + "_*</label>";
@@ -1964,6 +1992,17 @@
     "product_article",
     "technical_content",
   ];
+
+  var TABLE_TRANSLATABLE_PREFIXES = {
+    guides: ["title", "excerpt", "body"],
+  };
+
+  function isTranslatablePrefix(srcName, prefix) {
+    return (
+      TRANSLATABLE_PREFIXES.indexOf(prefix) !== -1 ||
+      ((TABLE_TRANSLATABLE_PREFIXES[srcName] || []).indexOf(prefix) !== -1)
+    );
+  }
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
