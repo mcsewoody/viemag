@@ -170,13 +170,41 @@ site_version() {
     fi
   done
 
+  # Only the assets this commit actually changed get the new token. Until
+  # 2026-09-24 one regex rewrote every ?v= on the page, so editing a single
+  # Vietnamese string in js/i18n.js also gave style.css, main.js and the data
+  # payload brand-new URLs — a total cache miss across the browser, Cloudflare
+  # and Fastly at once. Measured cost of that miss on this host: 40-58 s for a
+  # cold origin fetch, on every page, for every visitor, until the edge warmed
+  # up again. The bump is meant to publish one changed file, not to empty the
+  # CDN for the whole site.
+  #
+  # js/data.js and js/data-articles.js are not listed in the HTML — they inherit
+  # data-loader.js's token (see js/data-loader.js) — so a change to either one
+  # bumps the loader instead.
+  changed() { echo "$staged" | grep -qx "$1"; }
+  targets=""
+  if changed 'css/style.css'; then targets="$targets style\\.css"; fi
+  if changed 'js/i18n.js'; then targets="$targets i18n\\.js"; fi
+  if changed 'js/main.js'; then targets="$targets main\\.js"; fi
+  if changed 'js/data-loader.js' || changed 'js/data.js' || changed 'js/data-articles.js'; then
+    targets="$targets data-loader\\.js"
+  fi
+
+  if [ -z "$targets" ]; then
+    echo "pre-commit: 前台版本號不動 — 本次 commit 沒有改到帶 ?v= 的資產。"
+    return 0
+  fi
+
   n=0
   for f in $FRONT_HTML; do
-    perl -pi -e "s/\?v=[0-9]+(?!\.)/?v=$new/g" "$f"
+    for t in $targets; do
+      perl -pi -e "s/($t)\?v=[0-9]+(?!\.)/\$1?v=$new/g" "$f"
+    done
     git add "$f"
     n=$((n + 1))
   done
-  echo "pre-commit: 前台快取版本 $cur → $new，已更新 $n 個 HTML 並加入本次 commit。"
+  echo "pre-commit: 前台快取版本 $cur → $new（只更新$(echo $targets | sed 's/\\\\//g')），已改寫 $n 個 HTML 並加入本次 commit。"
 }
 
 admin_version

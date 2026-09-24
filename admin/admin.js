@@ -3175,8 +3175,13 @@
           "-" +
           safe;
         sb.storage
+          /* A year, because every path above is stamped with Date.now() plus a
+             random suffix — the URL for a given image never changes content, so
+             there is nothing to revalidate. Supabase was answering no-cache on
+             all 123 published images, which made every visitor re-fetch the
+             whole gallery on every page view. */
           .from(CFG.mediaBucket)
-          .upload(path, file)
+          .upload(path, file, { cacheControl: "31536000" })
           .then(function (res) {
             if (res.error) throw res.error;
             var url = sb.storage.from(CFG.mediaBucket).getPublicUrl(path)
@@ -3692,7 +3697,7 @@
             file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
           return sb.storage
             .from(CFG.mediaBucket)
-            .upload(path, file)
+            .upload(path, file, { cacheControl: "31536000" }) // see note above
             .then(function (res) {
               if (res.error) throw res.error;
               return sb.storage.from(CFG.mediaBucket).getPublicUrl(path).data
