@@ -33,12 +33,10 @@
     },
     window.DB,
   );
-  /* Long-form text ships separately (see js/data-loader.js). Fold it back in
-     here, once, so every consumer keeps reading a.body and p.article off the
-     same objects it always did — the split stays invisible past this point.
-     Absent on the pages that do not ask for it, and absent everywhere until the
-     exporter is redeployed, hence the plain no-op when it is missing. */
-  if (window.DB_ARTICLES) {
+  /* Long-form text ships separately. Fold it back in so every consumer keeps
+     reading a.body and p.article off the same objects it always did. */
+  function foldArticles() {
+    if (!window.DB_ARTICLES) return false;
     const A = window.DB_ARTICLES;
     for (const a of window.DB.insights || []) {
       if (!a.body && A.insights && A.insights[a.slug]) a.body = A.insights[a.slug];
@@ -46,7 +44,30 @@
     for (const p of window.DB.products || []) {
       if (!p.article && A.products && A.products[p.sku]) p.article = A.products[p.sku];
     }
+    return true;
   }
+  foldArticles();
+  function dataVersion() {
+    const s = document.querySelector('script[src*="data-loader.js"]');
+    if (!s) return "";
+    const m = /(\?v=[^&#"]+)/.exec(s.getAttribute("src") || "");
+    return m ? m[1] : "";
+  }
+  let articleLoadPromise = null;
+  function loadArticles() {
+    if (foldArticles()) return Promise.resolve(true);
+    if (articleLoadPromise) return articleLoadPromise;
+    articleLoadPromise = new Promise((resolve) => {
+      const s = document.createElement("script");
+      s.src = "js/data-articles.js" + dataVersion();
+      s.async = true;
+      s.onload = () => resolve(foldArticles());
+      s.onerror = () => resolve(false);
+      document.head.appendChild(s);
+    });
+    return articleLoadPromise;
+  }
+  window.VIEMAG = Object.assign(window.VIEMAG || {}, { loadArticles });
   const DB = window.DB,
     DICT = window.I18N_DICT;
   const LANGS = [

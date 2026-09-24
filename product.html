@@ -6,7 +6,7 @@
     <title>Product — VIEMAG</title>
     <meta name="description" content="" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=33" />
+    <link rel="stylesheet" href="css/style.css?v=35" />
   </head>
   <body data-page="products" data-keep-title="1">
     <main>
@@ -24,7 +24,7 @@
       </div>
     </main>
 
-    <script src="js/data-loader.js?v=34" data-articles="1"></script>
+    <script src="js/data-loader.js?v=34"></script>
     <script src="js/i18n.js?v=33"></script>
     <script>
       window.renderPage = function ({
@@ -145,7 +145,8 @@
         function productInfoContent(p) {
           const body = richText(tf(p.article));
           const img = p.articleImage || "";
-          if (!body && !img) return `<p class="pdp-tab-empty"></p>`;
+          if (!body && !img)
+            return `<p class="pdp-tab-empty pdp-tab-loading" aria-busy="true"></p>`;
           return `
       ${img ? `<figure class="pdp-article-media"><img src="${esc(img)}" alt="${esc(tf(p.name))}" loading="lazy" decoding="async"></figure>` : ""}
       ${body ? `<div class="rich-text">${body}</div>` : ""}`;
@@ -252,6 +253,17 @@
   </div>
   ${productTabsBlock(p, specRows)}`;
 
+        if (!p.article && window.VIEMAG && window.VIEMAG.loadArticles) {
+          const hydrateInfo = () =>
+            window.VIEMAG.loadArticles().then(() => {
+              const panel = document.getElementById("pdpPanelInfo");
+              if (panel) panel.innerHTML = productInfoContent(p);
+            });
+          if ("requestIdleCallback" in window)
+            window.requestIdleCallback(hydrateInfo, { timeout: 700 });
+          else window.setTimeout(hydrateInfo, 0);
+        }
+
         /* Thumbnail strip: swap the main image. Bound after innerHTML, and only when
      the strip actually exists (a single-photo product has no strip). */
         const shots = box.querySelectorAll(".pdp-shot");
@@ -335,6 +347,6 @@
         }
       };
     </script>
-    <script src="js/main.js?v=34"></script>
+    <script src="js/main.js?v=35"></script>
   </body>
 </html>
