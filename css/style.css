@@ -539,6 +539,7 @@ h2.section-title {
 .hero-full .hero-copy h1 em {
   font-style: normal;
   color: #ebb748;
+  font-size: 0.82em;
   white-space: nowrap;
 }
 .hero-full .hero-copy p.sub {

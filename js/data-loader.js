@@ -7,11 +7,10 @@
  * Pages CDN both keep serving the old copy for up to 10 minutes, so an edit
  * that HAD published looked like it never synced.
  *
- * THE FIX: put a minute-resolution stamp in the URL. Within any given minute
- * every visitor shares one cached copy; the following minute is a new URL and
- * therefore a fresh fetch. Worst-case staleness drops from 10 minutes to ~1,
- * which is inside GitHub Pages' own build-and-deploy latency anyway — i.e. no
- * longer the bottleneck.
+ * THE FIX: pass this loader's own cache-busting version through to data.js.
+ * The pre-commit hook bumps every HTML reference on deploy, so a fresh deploy
+ * still gets a fresh DB file without forcing repeat visitors to redownload the
+ * full 1MB+ data payload every minute.
  *
  * WHY document.write AND NOT A DYNAMIC <script>: js/data.js defines window.DB,
  * and js/main.js reads it in boot() on DOMContentLoaded. A dynamically inserted
@@ -22,6 +21,7 @@
  * script is same-origin.
  */
 (function () {
-  var minute = Math.floor(Date.now() / 60000);
-  document.write('<script src="js/data.js?v=' + minute + '"><\/script>');
+  var script = document.currentScript;
+  var version = script && script.src ? new URL(script.src, location.href).search : "";
+  document.write('<script src="js/data.js' + version + '"><\/script>');
 })();
