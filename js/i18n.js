@@ -4,15 +4,17 @@
    ============================================================ */
 window.I18N_DICT = {
   vi: {
-    "meta.title": "VIEMAG — Phụ kiện nam châm cho lái xe & bàn làm việc",
+    "meta.title": "Giá đỡ điện thoại nam châm ô tô & để bàn | VIEMAG",
+    "meta.desc":
+      "Giá đỡ điện thoại nam châm cho ô tô và bàn làm việc, chuẩn MagSafe và Qi2. Hút chắc khi xe xóc, sạc ổn định, bảo hành chính hãng.",
     "nav.products": "Sản phẩm",
     "nav.scenarios": "Gợi ý kết hợp",
     "nav.why": "Vì sao VIEMAG",
     "nav.insights": "Góc công nghệ",
     "nav.support": "Hỗ trợ",
-    "nav.dealers": "Đại lý",
+    "nav.dealers": "Dành cho đại lý",
     "nav.about": "Về VIEMAG",
-    "cta.shopee": "Shopee",
+    "cta.shopee": "Mua trên Shopee",
     "cta.explore": "Xem sản phẩm",
     "cta.dealer": "Trở thành đại lý",
     "cta.viewAll": "Xem tất cả sản phẩm",
@@ -21,29 +23,30 @@ window.I18N_DICT = {
     "cta.contact": "Liên hệ hỗ trợ",
     "cta.zalo": "Tư vấn Zalo",
 
-    "hero.eyebrow": "Hệ phụ kiện nam châm — lái xe & làm việc",
-    "hero.slogan": "Tương lai nam châm,<br><em>giờ đã vào vị trí.</em>",
+    "hero.eyebrow": "Hệ phụ kiện nam châm cho ô tô và bàn làm việc",
+    "hero.slogan":
+      "Tương lai nam châm,<br><em>Chạm là gắn chắc. Sẵn sàng muôn nơi</em>",
     "hero.imgAlt":
       "Điện thoại hút trên giá đỡ nam châm trong ô tô, màn hình đang dẫn đường",
     "hero.sub":
-      "VIEMAG là hệ phụ kiện nam châm cho người lái xe mỗi ngày và làm việc bên bàn: so với hàng trôi nổi — ổn định hơn, chắc chắn hơn, bền bỉ hơn.",
+      "Hệ phụ kiện nam châm cho người lái xe hằng ngày và dân văn phòng: hút chắc hơn, ổn định hơn và bền hơn hàng trôi nổi.",
     "hero.trust1": "Bảo hành {m} tháng",
     "hero.trust2": "Lỗi 1 đổi 1 trong {d} ngày",
-    "hero.trust3": "Hỗ trợ ngôn ngữ bản địa",
+    "hero.trust3": "Hỗ trợ bằng tiếng Việt",
 
     "journey.kicker": "Chọn theo nhu cầu",
-    "journey.title": "Bạn muốn dùng VIEMAG theo cách nào?",
+    "journey.title": "Bạn đang ở tình huống nào?",
     "journey.lede":
       "Không cần xem hết danh mục. Chọn tình huống gần với bạn nhất, VIEMAG sẽ dẫn đến nhóm sản phẩm phù hợp.",
-    "journey.1.title": "Muốn bắt đầu từ một bộ dễ dùng",
+    "journey.1.title": "Lần đầu dùng phụ kiện nam châm",
     "journey.1.desc":
       "Bắt đầu theo nơi bạn hay dùng điện thoại: trong ô tô, trên bàn làm việc, lúc đi công tác hoặc khi quay chụp.",
     "journey.1.cta": "Tìm bộ phù hợp",
-    "journey.2.title": "Đã có phụ kiện VIEMAG, muốn bổ sung",
+    "journey.2.title": "Đang dùng phụ kiện nam châm, cần bổ sung",
     "journey.2.desc":
-      "Cần thêm đúng phần còn thiếu: giá đỡ, vòng nam châm dán, đế sạc, cáp hoặc phụ kiện thay thế.",
+      "Cần thêm đúng phần còn thiếu: giá đỡ, vòng dán nam châm (MagSafe), đế sạc, cáp hoặc phụ kiện thay thế.",
     "journey.2.cta": "Xem phụ kiện bổ sung",
-    "journey.3.title": "Muốn thay phụ kiện đang dùng không ổn",
+    "journey.3.title": "Chán hàng trôi nổi hay hỏng vặt",
     "journey.3.desc":
       "Nếu máy hay rơi khi xe xóc, đế bong vì nắng hoặc khớp bị gục sau vài tháng, bắt đầu từ lỗi bạn đang gặp.",
     "journey.3.cta": "Tìm nguyên nhân",
@@ -66,7 +69,7 @@ window.I18N_DICT = {
     "pains.1.fix":
       "Nam châm N52 cùng kết cấu đế và khớp cứng hơn, giữ máy ổn định hơn khi xe rung hoặc phanh gấp.",
     "pains.2.badge": "Nắng nóng / taplo sần",
-    "pains.2.title": "Giá đỡ hút hay bị rơi",
+    "pains.2.title": "Giá đỡ đế hút dùng vài hôm là rơi",
     "pains.2.a": "Cabin hầm nóng làm keo mềm, mép đế bong dần.",
     "pains.2.b": "Taplo sần, phủ da hoặc hơi cong thì đế khó bám lâu.",
     "pains.2.c": "Tháo keo ra dễ để lại vết, nặng hơn là hỏng lớp phủ.",
@@ -81,21 +84,21 @@ window.I18N_DICT = {
       "Khớp siết chắc hơn, và có nhiều kiểu gắn để chọn đúng cho từng xe.",
 
     "cats.kicker": "Năm dòng sản phẩm",
-    "cats.title": "Một hệ nam châm cho mọi bối cảnh",
+    "cats.title": "Một hệ nam châm cho mọi nơi bạn dùng",
     "cats.lede":
       "Từ xe hơi đến bàn làm việc — các dòng sản phẩm dùng chung một chuẩn nam châm, mua một lần dùng cả hệ.",
     "cats.count": "sản phẩm",
     "cats.soon": "Sắp ra mắt",
     "cats.discontinued": "Ngừng bán",
     "badge.new": "Mới",
-    "badge.popular": "Được chọn nhiều",
+    "badge.popular": "Bán chạy",
 
     "scns.kicker": "Gợi ý kết hợp",
-    "scns.title": "Thiết kế cho cuộc sống di động của bạn",
+    "scns.title": "Thiết kế cho người luôn di chuyển",
     "scns.lede":
       "Những bộ sản phẩm đi cùng nhau, chọn theo tình huống bạn thật sự gặp.",
     "scns.tag.primary": "Chủ lực",
-    "scns.tag.secondary": "Trọng tâm",
+    "scns.tag.secondary": "Bộ mở rộng",
     "scns.tag.supporting": "Bổ trợ",
     "scns.tag.future": "Đang mở rộng",
     "scns.combo": "Bộ gợi ý",
@@ -105,21 +108,21 @@ window.I18N_DICT = {
     "feat.lede": "Những mẫu được nhiều người chọn trong hệ VIEMAG.",
 
     "system.kicker": "Một chuẩn kết nối",
-    "system.title": "Một lần thiết lập, dùng linh hoạt nhiều nơi",
+    "system.title": "Gắn một lần, dùng được mọi nơi",
     "system.lede":
-      "Điện thoại chỉ cần một vòng nam châm chuẩn. Sau đó bạn có thể chuyển giữa giá đỡ trong xe, đế để bàn, đế mang theo và chân máy quay. Đổi nơi dùng thì đổi điểm gắn, không phải bắt đầu lại từ đầu.",
+      "Điện thoại chỉ cần một vòng nam châm chuẩn. Sau đó bạn chuyển được giữa giá đỡ trong xe, đế để bàn, đế mang theo và chân máy quay. Đổi chỗ dùng thì chỉ đổi đế, không phải mua lại cả bộ.",
     "system.phone": "Điện thoại",
     "system.core": "VIEMAG Magnetic System",
     "system.car": "Ô tô",
     "system.desk": "Bàn làm việc",
     "system.travel": "Mang theo",
-    "system.studio": "Studio",
+    "system.studio": "Sáng tạo",
 
     "news.kicker": "Đọc trước khi mua",
     "news.title": "Góc công nghệ từ VIEMAG",
     "news.lede":
-      "Những bài viết giúp bạn hiểu đúng về nam châm, sạc, ốp lưng, nhiệt cabin và cách chọn giá đỡ theo xe.",
-    "news.cta": "Xem tất cả Insights",
+      "Những bài viết giúp bạn hiểu đúng về nam châm, sạc, ốp lưng, nhiệt độ trong xe và cách chọn giá đỡ theo xe.",
+    "news.cta": "Xem tất cả bài viết",
 
     "proof.title": "Chất lượng có kiểm chứng, không phải lời quảng cáo",
     "proof.desc":
@@ -133,14 +136,14 @@ window.I18N_DICT = {
     "trust.1.d": "Lỗi vật liệu và sản xuất trong sử dụng bình thường.",
     "trust.2.t": "Lỗi 1 đổi 1 trong {d} ngày",
     "trust.2.d": "Hàng lỗi khi nhận — đổi mới, không sửa chữa.",
-    "trust.3.t": "Hỗ trợ ngôn ngữ bản địa",
-    "trust.3.d": "Hỗ trợ lắp đặt và bảo hành bằng ngôn ngữ bản địa.",
+    "trust.3.t": "Hỗ trợ bằng tiếng Việt",
+    "trust.3.d": "Hỗ trợ lắp đặt và bảo hành bằng tiếng Việt.",
     "trust.4.t": "Hướng dẫn lắp đặt",
     "trust.4.d": "Ảnh và video hướng dẫn cho từng kiểu lắp.",
 
     "dealer.title": "Tìm đối tác phân phối",
     "dealer.desc":
-      "VIEMAG đang mở rộng hệ thống đại lý toàn quốc: dòng sản phẩm rõ ràng, chính sách giá kỷ luật, hỗ trợ hậu mãi và dữ liệu bán hàng minh bạch.",
+      "VIEMAG đang mở rộng hệ thống đại lý toàn quốc: dòng sản phẩm đầy đủ, chính sách giá thống nhất, hỗ trợ hậu mãi và số liệu bán hàng minh bạch.",
     "dealer.tagline": "VIEMAG — Value . Innovation . Excellence.",
 
     "products.title": "Tất cả sản phẩm",
@@ -156,7 +159,7 @@ window.I18N_DICT = {
     "products.applyFilter": "Xem kết quả",
     "products.about": "Sản phẩm VIEMAG",
     "products.aboutBody":
-      "Danh mục VIEMAG được sắp xếp theo dòng sản phẩm, tương ứng với nơi sản phẩm được dùng: trên xe, trên bàn làm việc, hay khi di chuyển. Mỗi mã sản phẩm (A01, PQ02, V01…) ứng với một cấu hình gắn và sạc cụ thể, nên các model trong cùng một dòng có thể so sánh trực tiếp với nhau.",
+      "Danh mục VIEMAG được sắp xếp theo dòng sản phẩm, tương ứng với nơi sản phẩm được dùng: trên xe, trên bàn làm việc, hay khi di chuyển. Mỗi mã sản phẩm (A01, PQ02, V01…) ứng với một cấu hình gắn và sạc cụ thể, nên các mẫu trong cùng một dòng có thể so sánh trực tiếp với nhau.",
     "sort.featured": "Nổi bật",
     "sort.name": "Tên A–Z",
     "sort.priceLow": "Giá thấp đến cao",
@@ -173,7 +176,7 @@ window.I18N_DICT = {
       "Báo cáo chi tiết của mẫu này sẽ hiển thị tại đây sau khi được phê duyệt công bố.",
     "pdp.article": "Mô tả sản phẩm",
     /* ---- Insights (Góc công nghệ) ---- */
-    "insights.title": "VIEMAG Insights",
+    "insights.title": "Góc công nghệ",
     "insights.sub":
       "Nam châm, chuẩn sạc và hệ sinh thái Apple — chia sẻ xu hướng, đón đầu tương lai.",
     "insights.byCat": "Theo chủ đề",
@@ -227,7 +230,7 @@ window.I18N_DICT = {
     "pdp.spec.sku": "Mã sản phẩm",
     "pdp.warranty": "Bảo hành {m} tháng · Lỗi 1 đổi 1 trong {d} ngày",
     "pdp.related": "Sản phẩm cùng tình huống",
-    "pdp.askDealer": "Hỏi Giá Đại Lý",
+    "pdp.askDealer": "Hỏi giá đại lý",
     "pdp.notFound": "Không tìm thấy sản phẩm.",
     "pdp.discontinued":
       "Sản phẩm đã ngừng bán. Trang này được giữ lại để bạn tra thông số và liên hệ bảo hành.",
@@ -236,7 +239,7 @@ window.I18N_DICT = {
     "qi.testing": "Thiết kế theo chuẩn Qi2.2 (đang kiểm định)",
     "qi.certified": "Chứng nhận Qi2",
     "mount.vent": "Cửa gió",
-    "mount.dashboard": "Táp-lô",
+    "mount.dashboard": "Taplo",
     "mount.suction": "Đế hút chân không",
     "mount.pu-suction": "Đế hút keo nano",
     "mount.clip": "Kẹp lò xo",
@@ -258,32 +261,32 @@ window.I18N_DICT = {
       "Nam châm lực mạnh N52, kiểm chứng bằng thử nghiệm lực hút–đẩy đa hướng và rung xóc trên cung đường thật — điện thoại luôn hút chắc trên mọi sản phẩm VIEMAG.",
     "why.c2.t": "Chắc chắn hơn",
     "why.c2.d":
-      "Đế hút cao cấp, miếng keo PU đặc biệt, keo acrylic 3M và thiết kế cơ khí chuyên nghiệp — mọi kiểu cố định đều chắc chắn. VIEMAG gánh vác an toàn cho bạn và chiếc điện thoại.",
+      "Đế hút cao cấp, miếng keo PU đặc biệt, keo acrylic 3M và thiết kế cơ khí chuyên nghiệp — mọi kiểu cố định đều chắc chắn. VIEMAG giữ an toàn cho bạn và chiếc điện thoại.",
     "why.c3.t": "Bền hơn",
     "why.c3.d":
       "Mọi khớp nối, trục xoay và cơ cấu khóa đều trải qua các bài kiểm định độ bền: trục xoay, khớp bi, chu kỳ hút–nhả và rơi rớt, giữ chất lượng qua thời gian dài sử dụng — VIEMAG xứng đáng với niềm tin của bạn.",
     "why.c4.t": "Sạc yên tâm hơn",
     "why.c4.d":
-      "Giám sát nhiệt độ toàn chu trình, phát hiện vật thể lạ và bảo vệ quá nhiệt / quá dòng, kèm trạng thái tương thích hoặc chứng nhận Qi / Qi2 ghi rõ theo từng SKU — thông tin sạc minh bạch để bạn yên tâm.",
+      "Giám sát nhiệt độ toàn chu trình, phát hiện vật thể lạ và bảo vệ quá nhiệt / quá dòng, kèm trạng thái tương thích hoặc chứng nhận Qi / Qi2 ghi rõ theo từng mã sản phẩm — thông tin sạc minh bạch để bạn yên tâm.",
     "why.team.title": "Đội ngũ đứng sau",
     "why.team.desc":
       "VIEMAG được xây dựng bởi một nhóm yêu thích sự phát triển công nghệ và trân trọng trải nghiệm cuộc sống. Chúng tôi luôn nỗ lực đáp ứng nhu cầu của người dùng trong mọi tình huống cuộc sống, để mỗi sản phẩm VIEMAG đều trở thành người bạn đồng hành quan trọng trong cuộc sống của bạn.",
 
     "support.title": "Hỗ trợ & Bảo hành",
     "support.sub":
-      "Chính sách rõ ràng, quy trình đơn giản, hỗ trợ bằng ngôn ngữ bản địa.",
+      "Chính sách rõ ràng, quy trình đơn giản, hỗ trợ bằng tiếng Việt.",
     "support.policy": "Chính sách bảo hành",
     "support.faq": "Câu hỏi thường gặp",
     "support.p1": "Bảo hành {m} tháng cho lỗi vật liệu và sản xuất.",
     "support.p2": "Hàng lỗi khi nhận: đổi mới trong {d} ngày (kèm ảnh/video).",
     "support.p3": "Lỗi không do người dùng: xử lý bằng cách đổi sản phẩm.",
-    "support.p4": "Chi phí đổi trả chia sẻ theo trách nhiệm của mỗi bên.",
+    "support.p4": "Chi phí đổi trả chia theo trách nhiệm của mỗi bên.",
     "support.p5":
-      "Kênh CSKH bằng ngôn ngữ bản địa, phản hồi trong giờ làm việc.",
+      "Kênh chăm sóc khách hàng bằng tiếng Việt, phản hồi trong giờ làm việc.",
 
     "dealers.title": "Hợp tác đại lý & phân phối",
     "dealers.sub":
-      "VIEMAG tìm đối tác muốn bán hàng thật — có động lực bán, giữ kỷ luật giá và chăm sóc khách sau bán.",
+      "VIEMAG tìm đối tác muốn bán hàng thật — có động lực bán, giữ giá bán ổn định và chăm sóc khách sau bán.",
     "dealers.why.title": "Vì sao hợp tác với VIEMAG",
     "dealers.w1.t": "Dòng sản phẩm hoàn chỉnh",
     "dealers.w1.d":
@@ -291,12 +294,12 @@ window.I18N_DICT = {
     "dealers.w2.t": "Bằng chứng chất lượng",
     "dealers.w2.d":
       "Báo cáo kiểm tra và chính sách bảo hành {m} tháng làm vũ khí bán hàng.",
-    "dealers.w3.t": "Kỷ luật giá",
+    "dealers.w3.t": "Giá bán ổn định",
     "dealers.w3.d":
       "Giá niêm yết thống nhất, khuyến mãi có sàn — bảo vệ lợi nhuận đại lý.",
     "dealers.w4.t": "Ngưỡng khởi đầu thấp",
     "dealers.w4.d":
-      "Đơn hàng đầu từ 1.000 USD hoặc 100 sản phẩm để thử thị trường.",
+      "Đơn hàng đầu tiên từ 1.000 USD hoặc 100 sản phẩm để thử thị trường.",
     "dealers.form.title": "Đăng ký trao đổi hợp tác",
     "dealers.form.company": "Tên công ty",
     "dealers.form.contact": "Người liên hệ",
@@ -349,7 +352,7 @@ window.I18N_DICT = {
 
     "about.title": "Về VIEMAG",
     "about.sub":
-      "Value . Innovation . Excellence — và MAG là lời hứa nam châm.",
+      "Value . Innovation . Excellence — và MAG là cam kết về công nghệ nam châm.",
     "about.story1":
       "VIEMAG ra đời từ một quan sát đơn giản: điện thoại là vật được cầm lên – đặt xuống nhiều nhất trong ngày, nhưng đa số phụ kiện giữ nó lại làm rất cẩu thả: hút không chắc, cố định không vững, vài tháng là khớp lỏng.",
     "about.story2":
@@ -376,7 +379,7 @@ window.I18N_DICT = {
     "footer.about": "Về VIEMAG",
     "footer.trust1": "Bảo hành {m} tháng",
     "footer.trust2": "Lỗi 1 đổi 1 trong {d} ngày",
-    "footer.trust3": "Hỗ trợ ngôn ngữ bản địa",
+    "footer.trust3": "Hỗ trợ bằng tiếng Việt",
     "footer.legal":
       "MagSafe là thương hiệu của Apple Inc. Qi và Qi2 là thương hiệu của Wireless Power Consortium. VIEMAG mô tả khả năng tương thích, không hàm ý chứng nhận khi chưa hoàn tất.",
     "footer.rights": "VIEMAG. Bảo lưu mọi quyền.",
@@ -384,6 +387,8 @@ window.I18N_DICT = {
 
   en: {
     "meta.title": "VIEMAG — Magnetic accessories for driving & desk work",
+    "meta.desc":
+      "Magnetic phone mounts for cars and desks, built for MagSafe and Qi2. Secure hold on rough roads, stable charging and official warranty.",
     "nav.products": "Products",
     "nav.scenarios": "Pairing guide",
     "nav.why": "Why VIEMAG",
@@ -765,6 +770,8 @@ window.I18N_DICT = {
 
   zh: {
     "meta.title": "VIEMAG — 為開車與桌面工作而生的磁吸配件系統",
+    "meta.desc":
+      "適用於車內與桌面的磁吸手機支架，支援 MagSafe 與 Qi2。行車穩固吸附，充電穩定，享官方保固。",
     "nav.products": "產品",
     "nav.scenarios": "情境搭配",
     "nav.why": "為什麼選 VIEMAG",
@@ -1087,6 +1094,8 @@ window.I18N_DICT = {
      key auto-track zh again; new zh keys without an entry here auto-convert at runtime. */
   "zh-Hans": {
     "meta.title": "VIEMAG — 为开车与桌面工作而生的磁吸配件系统",
+    "meta.desc":
+      "适用于车内与桌面的磁吸手机支架，支持 MagSafe 与 Qi2。行车稳固吸附，充电稳定，享官方保修。",
     "nav.products": "产品",
     "nav.scenarios": "情境搭配",
     "nav.why": "为什么选 VIEMAG",
@@ -1314,6 +1323,8 @@ window.I18N_DICT = {
 
   id: {
     "meta.title": "VIEMAG — Aksesori magnetik untuk berkendara & meja kerja",
+    "meta.desc":
+      "Dudukan ponsel magnetik untuk mobil dan meja, mendukung MagSafe dan Qi2. Menempel kuat di jalan bergelombang, pengisian stabil, garansi resmi.",
     "nav.products": "Produk",
     "nav.scenarios": "Panduan kombinasi",
     "nav.why": "Kenapa VIEMAG",

@@ -9,7 +9,7 @@
       content="VIEMAG magnetic accessory system for driving and desk work — a more secure magnetic hold and more dependable charging. Compatible with MagSafe-standard accessories, built to the Qi2 standard."
     />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=31" />
+    <link rel="stylesheet" href="css/style.css?v=32" />
   </head>
   <body data-page="home">
     <main>
@@ -279,8 +279,8 @@
       </section>
     </main>
 
-    <script src="js/data-loader.js?v=31"></script>
-    <script src="js/i18n.js?v=31"></script>
+    <script src="js/data-loader.js?v=32"></script>
+    <script src="js/i18n.js?v=32"></script>
     <script>
       window.renderPage = function ({
         t,
@@ -294,6 +294,7 @@
       }) {
         const DB = window.DB;
         document.getElementById("heroShopee").href = DB.config.shopeeUrl;
+        document.getElementById("heroShopee").innerHTML = `${VIEMAG.brandIcon("shopee")}${t("cta.shopee")}`;
         document.getElementById("heroImg").alt = t("hero.imgAlt");
 
         document.getElementById("heroTrust").innerHTML = [
@@ -312,15 +313,15 @@
      returns the key itself for a missing string — a card with fewer lines would
      otherwise render "pains.3.c" on the page. */
         const PAINS = [
-          { art: "dash", bulletIcons: ["wave", "magnet"], bullets: ["a", "b"] },
-          { art: "suction", bulletIcons: ["thermo", "car", "close"], bullets: ["a", "b", "c"] },
-          { art: "vent", bulletIcons: ["cycle", "car"], bullets: ["a", "b"] },
+          { img: "image/khong-qua-noi-o-ga.webp", bulletIcons: ["wave", "magnet"], bullets: ["a", "b"] },
+          { img: "image/nang-nong.webp", bulletIcons: ["thermo", "car", "close"], bullets: ["a", "b", "c"] },
+          { img: "image/guc-dau.webp", bulletIcons: ["cycle", "car"], bullets: ["a", "b"] },
         ];
         document.getElementById("painGrid").innerHTML = PAINS.map((p, idx) => {
           const i = idx + 1;
           return `
     <div class="pain-card pain-compare reveal">
-      <div class="pain-art">${art(p.art, t("pains." + i + ".title"))}</div>
+      <div class="pain-art"><img src="${p.img}" alt="${t("pains." + i + ".title")}" loading="lazy" decoding="async"></div>
       <p class="pain-badge">${t("pains." + i + ".badge")}</p>
       <h3>${t("pains." + i + ".title")}</h3>
       <div class="pain-copy">
@@ -381,6 +382,6 @@
 
       };
     </script>
-    <script src="js/main.js?v=31"></script>
+    <script src="js/main.js?v=32"></script>
   </body>
 </html>

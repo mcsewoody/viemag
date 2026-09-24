@@ -251,15 +251,14 @@
   const brandIcon = (name) => {
     if (name === "shopee") {
       return `<svg class="brand-icon brand-icon-shopee" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2.9" y="2.9" width="18.2" height="18.2" rx="4.2" fill="#fff"/>
-        <path d="M7.15 9h9.7l.65 8.35a1.25 1.25 0 0 1-1.25 1.35h-8.5a1.25 1.25 0 0 1-1.25-1.35L7.15 9Z" fill="#fff" stroke="#ff2f2f" stroke-width="1.45" stroke-linejoin="round"/>
-        <path d="M9.45 8.85V7.65a2.55 2.55 0 0 1 5.1 0v1.2" fill="none" stroke="#ff2f2f" stroke-width="1.45" stroke-linecap="round"/>
-        <path d="M10.15 16.2c.55.42 1.16.63 1.84.63.82 0 1.31-.31 1.31-.82 0-.45-.32-.68-1.32-.96-1.32-.36-1.94-.95-1.94-1.88 0-1.1.94-1.83 2.27-1.83.7 0 1.31.16 1.82.48" fill="none" stroke="#ff2f2f" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M5.7 8.6h12.6l.78 10.05A1.75 1.75 0 0 1 17.34 20.5H6.66a1.75 1.75 0 0 1-1.74-1.85L5.7 8.6Z" fill="#fff"/>
+        <path d="M8.7 8.45V7.2a3.3 3.3 0 0 1 6.6 0v1.25" fill="none" stroke="#fff" stroke-width="1.85" stroke-linecap="round"/>
+        <path d="M10.05 16.15c.55.42 1.2.64 1.94.64.86 0 1.36-.3 1.36-.82 0-.45-.34-.7-1.38-.98-1.36-.37-2-.98-2-1.94 0-1.13.98-1.88 2.36-1.88.72 0 1.35.17 1.88.5" fill="none" stroke="#ff2f2f" stroke-width="1.35" stroke-linecap="round"/>
       </svg>`;
     }
     if (name === "zalo") {
       return `<svg class="brand-icon brand-icon-zalo" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="6" fill="#0068ff"/>
+        <path d="M4.1 4.8A5.1 5.1 0 0 1 8 3h8a5.1 5.1 0 0 1 5.1 5.1v5.8A5.1 5.1 0 0 1 16 19h-4.3l-4 2.15c-.62.33-1.34-.21-1.2-.9L6.9 18.1A5.1 5.1 0 0 1 2.9 13V8.1c0-1.25.45-2.4 1.2-3.3Z" fill="#0068ff"/>
         <path d="M6.35 16.35h5.1v-1.34H8.48l2.9-4.08V9.65H6.56v1.34h2.72l-2.93 4.12v1.24Z" fill="#fff"/>
         <path d="M12.12 16.35h1.28v-2.16c0-.74.43-1.2 1.08-1.2.6 0 .92.38.92 1.08v2.28h1.28v-2.55c0-1.22-.7-1.94-1.8-1.94-.66 0-1.15.25-1.48.72v-.61h-1.28v4.38Z" fill="#fff"/>
         <circle cx="18.1" cy="15.72" r=".68" fill="#fff"/>
@@ -268,6 +267,7 @@
     return "";
   };
   window.VIEMAG.icon = icon;
+  window.VIEMAG.brandIcon = brandIcon;
 
   /* ---------- product art (placeholder illustrations) ---------- */
   const C = {
@@ -1027,6 +1027,7 @@
        that build their own title (product, insight) opt out with
        data-keep-title="1" and set document.title in renderPage. */
     const PAGE_META = {
+      home: ["meta.title", "meta.desc"],
       products: ["products.title", "products.sub"],
       scenarios: ["scenarios.title", "scenarios.sub"],
       why: ["why.title", "why.sub"],
