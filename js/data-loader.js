@@ -19,9 +19,26 @@
  * parsing inserts a parser-blocking script, preserving the exact ordering the
  * static tag had. Chrome's document.write intervention does not apply: the
  * script is same-origin.
+ *
+ * WHY A SECOND FILE: 80% of the old single-file payload was insights[].body —
+ * every article, in four languages, on every page. The home page renders four
+ * article CARDS (title + excerpt) and never touches a body, yet paid 444 KB
+ * gzipped to get them; without the bodies it is 39 KB. Bodies and product
+ * articles now live in js/data-articles.js, which only the two pages that
+ * render long-form text ask for, by putting data-articles="1" on their loader
+ * tag. Both files carry the same ?v=, so a deploy invalidates them together and
+ * a visitor moving from the home page to an article does not re-fetch the
+ * catalogue.
+ *
+ * Safe in both directions: js/main.js folds js/data-articles.js back into
+ * window.DB when it is present and renders exactly as before when it is not, so
+ * the site keeps working whether or not the exporter has been redeployed.
  */
 (function () {
   var script = document.currentScript;
   var version = script && script.src ? new URL(script.src, location.href).search : "";
   document.write('<script src="js/data.js' + version + '"><\/script>');
+  if (script && script.getAttribute("data-articles") === "1") {
+    document.write('<script src="js/data-articles.js' + version + '"><\/script>');
+  }
 })();

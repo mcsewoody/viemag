@@ -33,6 +33,20 @@
     },
     window.DB,
   );
+  /* Long-form text ships separately (see js/data-loader.js). Fold it back in
+     here, once, so every consumer keeps reading a.body and p.article off the
+     same objects it always did — the split stays invisible past this point.
+     Absent on the pages that do not ask for it, and absent everywhere until the
+     exporter is redeployed, hence the plain no-op when it is missing. */
+  if (window.DB_ARTICLES) {
+    const A = window.DB_ARTICLES;
+    for (const a of window.DB.insights || []) {
+      if (!a.body && A.insights && A.insights[a.slug]) a.body = A.insights[a.slug];
+    }
+    for (const p of window.DB.products || []) {
+      if (!p.article && A.products && A.products[p.sku]) p.article = A.products[p.sku];
+    }
+  }
   const DB = window.DB,
     DICT = window.I18N_DICT;
   const LANGS = [
@@ -1038,7 +1052,13 @@
     };
     if (document.body.dataset.keepTitle !== "1") {
       const pm = PAGE_META[active];
-      document.title = pm ? `${stripTags(t(pm[0]))} — VIEMAG` : t("meta.title");
+      /* Append the brand only when the title does not already carry it. Adding
+         home: ["meta.title", ...] to the table above put meta.title through the
+         suffix branch, and every meta.title is written for the SERP with the
+         brand in it already — the live Vietnamese tab read "… | VIEMAG —
+         VIEMAG", and the English one would have read "VIEMAG — … — VIEMAG". */
+      const base = pm ? stripTags(t(pm[0])) : t("meta.title");
+      document.title = base.includes("VIEMAG") ? base : `${base} — VIEMAG`;
       const descEl = document.querySelector('meta[name="description"]');
       if (descEl && pm) descEl.setAttribute("content", stripTags(t(pm[1])));
     }
