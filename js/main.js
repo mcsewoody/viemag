@@ -228,13 +228,20 @@
     }
     return (gone(obj[lang]) ? null : obj[lang]) || obj.en || "";
   };
-  window.VIEMAG = {
-    t,
-    tf,
-    get lang() {
-      return lang;
-    },
-  };
+  /* Merge, never replace: loadArticles() is published onto window.VIEMAG 160
+     lines above, and a plain assignment here deleted it. The symptom was not an
+     error — insight.html falls back to `else { fill(); }` when loadArticles is
+     missing, so every article rendered its header and then an empty body, with
+     a clean console. */
+  window.VIEMAG = window.VIEMAG || {};
+  window.VIEMAG.t = t;
+  window.VIEMAG.tf = tf;
+  /* defineProperty rather than Object.assign: assign would invoke the getter
+     once and copy the value, freezing .lang at whatever it was here. */
+  Object.defineProperty(window.VIEMAG, "lang", {
+    get: () => lang,
+    configurable: true,
+  });
 
   function setLang(next) {
     if (!SUPPORTED.includes(next)) return;
