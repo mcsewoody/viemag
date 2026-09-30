@@ -75,10 +75,14 @@ window.VIEMAG_ADMIN_I18N = {
        頁籤本身就是權限與可見性的說明，所以 products 不再逐欄顯示紅色「內部欄位」標籤。 */
     noteOwnerOnly:
       "這張表只有擁有者讀得到、寫得到（由資料庫的權限規則強制，不是介面上藏起來而已），而且永不發佈到網站。",
-    productTabs: { front: "前台", sales: "業務", dev: "開案" },
+    notePackaging:
+      "這張表存的是印在包裝盒上的文字，不會出現在網站上。所有登入的同事都讀得到、寫得到。填完之後用「下載包裝文案」匯出給包裝設計廠。",
+    productTabs: { front: "前台", sales: "業務", packaging: "包裝", dev: "開案" },
     tabNoteFront: "這一頁的每個欄位都會影響公開網站。",
     tabNoteSales:
       "這一頁全部是內部欄位，不會出現在網站上，但所有登入的同事都看得到。",
+    tabNotePackaging:
+      "這一頁是要印在包裝盒上的文字，不會出現在網站上。依越南第 37/2026/NĐ-CP 號議定，越南文品名、負責公司與地址、原產地為最低必填；帶電產品另需製造年份、技術規格、警語與使用保存說明。填完按最下方的按鈕匯出給設計師。",
     tabNoteDev:
       "這一頁全部是內部欄位，只有擁有者看得到，而且永不發佈。這個限制由資料庫強制，不是介面上藏起來。",
     tabLocked:
@@ -101,7 +105,19 @@ window.VIEMAG_ADMIN_I18N = {
       costStack: "成本組成",
       supplierInfo: "廠商資訊",
       productInfo: "產品資訊",
+      pkgIdentity: "1-2. 品名與型號",
+      pkgUsage: "3. 使用與注意事項",
+      pkgContents: "4. 內容物",
+      pkgMaterial: "5. 主要材質／成分",
+      pkgSpecA: "6A. 磁吸支架技術規格",
+      pkgSpecB: "6B. 充電產品技術規格",
+      pkgSpecC: "6C. 充電寶技術規格",
+      pkgBarcode: "7. 條碼 EAN/UPC",
+      pkgExport: "匯出給設計師",
     },
+    downloadPackagingText: "下載包裝文案（.txt）",
+    packagingExportHint:
+      "匯出目前表單的內容，四語齊全，空白項目不會出現在檔案裡。存檔前也可以先匯出來看。",
     expand: "展開",
     collapse: "收合",
     savedPartialDev: "前台與業務資料已儲存；開案資料未儲存：",
@@ -291,10 +307,14 @@ window.VIEMAG_ADMIN_I18N = {
     /* ---- 产品三页签（2026-07-30）---- */
     noteOwnerOnly:
       "这张表只有拥有者读得到、写得到（由数据库的权限规则强制，不是界面上藏起来而已），而且永不发布到网站。",
-    productTabs: { front: "前台", sales: "业务", dev: "开案" },
+    notePackaging:
+      "这张表存的是印在包装盒上的文字，不会出现在网站上。所有登录的同事都读得到、写得到。填完之后用「下载包装文案」导出给包装设计厂。",
+    productTabs: { front: "前台", sales: "业务", packaging: "包装", dev: "开案" },
     tabNoteFront: "这一页的每个字段都会影响公开网站。",
     tabNoteSales:
       "这一页全部是内部字段，不会出现在网站上，但所有登录的同事都看得到。",
+    tabNotePackaging:
+      "这一页是要印在包装盒上的文字，不会出现在网站上。依越南第 37/2026/NĐ-CP 号议定，越南文品名、负责公司与地址、原产地为最低必填；带电产品另需生产年份、技术规格、警语与使用保存说明。填完按最下方的按钮导出给设计师。",
     tabNoteDev:
       "这一页全部是内部字段，只有拥有者看得到，而且永不发布。这个限制由数据库强制，不是界面上藏起来。",
     tabLocked:
@@ -317,7 +337,19 @@ window.VIEMAG_ADMIN_I18N = {
       costStack: "成本组成",
       supplierInfo: "厂商信息",
       productInfo: "产品信息",
+      pkgIdentity: "1-2. 品名与型号",
+      pkgUsage: "3. 使用与注意事项",
+      pkgContents: "4. 内容物",
+      pkgMaterial: "5. 主要材质／成分",
+      pkgSpecA: "6A. 磁吸支架技术规格",
+      pkgSpecB: "6B. 充电产品技术规格",
+      pkgSpecC: "6C. 充电宝技术规格",
+      pkgBarcode: "7. 条码 EAN/UPC",
+      pkgExport: "导出给设计师",
     },
+    downloadPackagingText: "下载包装文案（.txt）",
+    packagingExportHint:
+      "导出目前表单的内容，四语齐全，空白项目不会出现在文件里。保存前也可以先导出来看。",
     expand: "展开",
     collapse: "收合",
     savedPartialDev: "前台与业务数据已保存；开案数据未保存：",
@@ -510,14 +542,18 @@ window.VIEMAG_ADMIN_I18N = {
       "⚠️ This table is not connected to the site — filling it in has no front-end effect. It was reserved for a product library; that plan was cancelled on 2026-07-30 in favour of the Development product status, so the table currently has no intended purpose. Woody chose to keep it, but do not put anything in it until there is a decision about what it is for.",
     /* ---- product form tabs (2026-07-30) ----
        The tab itself states the visibility rule, which is why products no longer
-       shows a per-field "internal" tag: every field in two of the three tabs is
+       shows a per-field "internal" tag: every field in three of the four tabs is
        internal, so the tag stopped distinguishing anything. */
     noteOwnerOnly:
       "Only owners can read or write this table — enforced by database policy, not by hiding it in the interface — and it is never published to the site.",
-    productTabs: { front: "Site", sales: "Sales", dev: "Development" },
+    notePackaging:
+      "This table holds the text printed on the box. It never reaches the website, and every logged-in colleague can read and write it. Once filled in, use Download packaging text to hand it to the packaging designer.",
+    productTabs: { front: "Site", sales: "Sales", packaging: "Packaging", dev: "Development" },
     tabNoteFront: "Every field on this tab affects the public website.",
     tabNoteSales:
       "Everything on this tab is internal and never reaches the site, but every logged-in colleague can see it.",
+    tabNotePackaging:
+      "This tab is the text printed on the box, not on the website. Decree 37/2026/ND-CP requires at minimum a Vietnamese product name, the responsible company's name and address, and the country of origin; anything electrical also needs a year of manufacture, technical specifications, warnings and use/storage instructions. Fill it in, then use the button at the bottom to hand it to the designer.",
     tabNoteDev:
       "Everything on this tab is internal, visible to owners only, and never published. The restriction is enforced by the database, not by hiding it here.",
     tabLocked:
@@ -540,7 +576,19 @@ window.VIEMAG_ADMIN_I18N = {
       costStack: "Cost components",
       supplierInfo: "Supplier",
       productInfo: "Product",
+      pkgIdentity: "1-2. Product name & model",
+      pkgUsage: "3. Instructions & precautions",
+      pkgContents: "4. Contents",
+      pkgMaterial: "5. Main material / composition",
+      pkgSpecA: "6A. Magnetic bracket specifications",
+      pkgSpecB: "6B. Charging product specifications",
+      pkgSpecC: "6C. Power bank specifications",
+      pkgBarcode: "7. Barcode EAN/UPC",
+      pkgExport: "Hand over to the designer",
     },
+    downloadPackagingText: "Download packaging text (.txt)",
+    packagingExportHint:
+      "Exports what the form holds right now, in all four languages. Anything left blank is left out of the file entirely. You can export before saving to check it.",
     expand: "Show",
     collapse: "Hide",
     savedPartialDev:
@@ -740,11 +788,15 @@ window.VIEMAG_ADMIN_I18N = {
     /* ---- ba thẻ của biểu mẫu sản phẩm (2026-07-30) ---- */
     noteOwnerOnly:
       "Chỉ chủ sở hữu đọc và ghi được bảng này — do chính sách của cơ sở dữ liệu bắt buộc, không phải chỉ ẩn trên giao diện — và bảng này không bao giờ được công bố lên trang web.",
-    productTabs: { front: "Trang web", sales: "Kinh doanh", dev: "Phát triển" },
+    notePackaging:
+      "Bảng này chứa nội dung in trên hộp sản phẩm. Nó không bao giờ lên trang web, và mọi đồng nghiệp đã đăng nhập đều đọc và sửa được. Điền xong thì dùng nút Tải nội dung bao bì để gửi cho bên thiết kế bao bì.",
+    productTabs: { front: "Trang web", sales: "Kinh doanh", packaging: "Bao bì", dev: "Phát triển" },
     tabNoteFront:
       "Mọi trường trên thẻ này đều ảnh hưởng đến trang web công khai.",
     tabNoteSales:
       "Toàn bộ thẻ này là nội bộ, không xuất hiện trên trang web, nhưng mọi đồng nghiệp đã đăng nhập đều xem được.",
+    tabNotePackaging:
+      "Thẻ này là nội dung in trên hộp, không phải nội dung trang web. Nghị định 37/2026/NĐ-CP yêu cầu tối thiểu: tên hàng hóa bằng tiếng Việt, tên và địa chỉ tổ chức chịu trách nhiệm, xuất xứ; sản phẩm có điện cần thêm năm sản xuất, thông số kỹ thuật, cảnh báo và hướng dẫn sử dụng/bảo quản. Điền xong, dùng nút ở cuối thẻ để gửi cho designer.",
     tabNoteDev:
       "Toàn bộ thẻ này là nội bộ, chỉ chủ sở hữu xem được và không bao giờ được công bố. Giới hạn này do cơ sở dữ liệu bắt buộc, không phải chỉ ẩn ở đây.",
     tabLocked:
@@ -767,7 +819,19 @@ window.VIEMAG_ADMIN_I18N = {
       costStack: "Thành phần chi phí",
       supplierInfo: "Nhà cung cấp",
       productInfo: "Sản phẩm",
+      pkgIdentity: "1-2. Tên sản phẩm & mã model",
+      pkgUsage: "3. Hướng dẫn sử dụng & lưu ý",
+      pkgContents: "4. Nội dung bên trong",
+      pkgMaterial: "5. Chất liệu / thành phần chính",
+      pkgSpecA: "6A. Thông số giá đỡ nam châm",
+      pkgSpecB: "6B. Thông số sản phẩm sạc",
+      pkgSpecC: "6C. Thông số sạc dự phòng",
+      pkgBarcode: "7. Mã vạch EAN/UPC",
+      pkgExport: "Gửi cho designer",
     },
+    downloadPackagingText: "Tải nội dung bao bì (.txt)",
+    packagingExportHint:
+      "Xuất đúng nội dung đang có trên biểu mẫu, đủ bốn ngôn ngữ. Mục nào để trống thì không xuất ra file. Có thể xuất thử trước khi lưu.",
     expand: "Mở",
     collapse: "Thu",
     savedPartialDev:

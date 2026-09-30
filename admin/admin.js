@@ -1603,24 +1603,42 @@
             return map;
           });
 
-    /* The owner-only sub-record behind the third tab, plus the single number
-       that is allowed across the wall. The VIEW is read for both roles: an
+    /* The 1:1 sub-records behind their own tabs, plus the single number that is
+       allowed across the owner-only wall. The VIEW is read for both roles: an
        editor cannot touch product_development at all, and product_sales_cost is
-       how the sales tab still gets a cost basis to compute margin against. */
-    var subTab =
-      (def.tabs || []).filter(function (tb) {
-        return tb.table;
-      })[0] || null;
-    var rolePromise = subTab ? fetchMyRole() : Promise.resolve(state.myRole);
+       how the sales tab still gets a cost basis to compute margin against.
+
+       There is more than one such tab now (packaging as well as development), so
+       the gate is each tab's own `ownerOnly` rather than a hardcoded role check.
+       That distinction matters: ownerOnly is declared next to the tab it guards
+       and is backed by an RLS policy, whereas a role check buried here silently
+       applied the strictest table's rule to every sub-table added after it. */
+    var subTabs = (def.tabs || []).filter(function (tb) {
+      return tb.table;
+    });
+    var rolePromise = subTabs.length
+      ? fetchMyRole()
+      : Promise.resolve(state.myRole);
     var subPromise = rolePromise.then(function (role) {
-      if (!subTab || isNew || role !== "owner") return null;
-      return must(
-        sb.from(subTab.table).select("*").eq("product_id", id).maybeSingle(),
-        "load " + subTab.table,
-      );
+      if (!subTabs.length || isNew) return {};
+      return Promise.all(
+        subTabs.map(function (tb) {
+          if (tb.ownerOnly && role !== "owner") return null;
+          return must(
+            sb.from(tb.table).select("*").eq("product_id", id).maybeSingle(),
+            "load " + tb.table,
+          );
+        }),
+      ).then(function (rows) {
+        var map = {};
+        subTabs.forEach(function (tb, i) {
+          map[tb.table] = rows[i];
+        });
+        return map;
+      });
     });
     var costPromise =
-      !subTab || isNew
+      !subTabs.length || isNew
         ? Promise.resolve(null)
         : must(
             sb
@@ -1664,11 +1682,11 @@
           tableName: tableName,
           def: def,
           isNew: isNew,
-          subTab: subTab,
+          subTabs: subTabs,
           row: results[0],
           relOptions: results[1],
           joinValues: results[2],
-          subRow: results[3],
+          subRows: results[3] || {},
           viewCost: results[4],
           role: results[5],
         };
@@ -1803,7 +1821,7 @@
         html += '<div class="locked-panel">' + esc(t("tabLocked")) + "</div>";
       } else {
         var srcName = tb.table || ctx.tableName;
-        var srcRow = tb.table ? ctx.subRow || {} : ctx.row;
+        var srcRow = tb.table ? ctx.subRows[tb.table] || {} : ctx.row;
         tb.groups.forEach(function (g) {
           html += groupHtml(ctx, srcName, srcRow, g);
         });
@@ -1878,8 +1896,114 @@
       })[0];
       if (f) html += fieldBlockHtml(ctx, srcName, srcRow, f);
     });
+    if (g.action === "packagingExport") {
+      html +=
+        '<div class="field wide">' +
+        '<p class="field-desc">' +
+        esc(t("packagingExportHint")) +
+        "</p>" +
+        '<button type="button" class="btn" id="packagingExportBtn">' +
+        esc(t("downloadPackagingText")) +
+        "</button>" +
+        "</div>";
+    }
     html += "</div></section>";
     return html;
+  }
+
+  /* Group-level conditional display. A group may declare
+
+       showIf: { field: 'packaging_product_type', in: ['Charging product', ...] }
+
+     and it is then shown only while that select holds one of those values. This
+     is what makes one product form serve four kinds of box without asking a
+     bracket for its battery capacity.
+
+     Hidden groups stay in the DOM with their values intact, and Save still
+     writes them. That is deliberate: choosing the wrong product type for a
+     second must not destroy what was already typed, and deciding what a box
+     actually prints is the export's job — it emits only the block matching the
+     chosen type. A form that deletes data to express a choice turns a mis-click
+     into lost work. */
+  function wireGroupVisibility(ctx) {
+    var rules = [];
+    (ctx.def.tabs || []).forEach(function (tb) {
+      (tb.groups || []).forEach(function (g) {
+        if (g.showIf) rules.push(g);
+      });
+    });
+    if (!rules.length) return;
+
+    function apply() {
+      rules.forEach(function (g) {
+        var control = document.querySelector(
+          '[data-name="' + g.showIf.field + '"]',
+        );
+        var sec = document.querySelector(
+          'section.group[data-group="' + g.key + '"]',
+        );
+        if (!sec) return;
+        sec.hidden = g.showIf.in.indexOf(control ? control.value : "") === -1;
+      });
+    }
+
+    var seen = {};
+    rules.forEach(function (g) {
+      if (seen[g.showIf.field]) return;
+      seen[g.showIf.field] = true;
+      var control = document.querySelector(
+        '[data-name="' + g.showIf.field + '"]',
+      );
+      if (control) control.addEventListener("change", apply);
+    });
+    apply();
+  }
+
+  /* The Download packaging text button.
+
+     It reads the FORM, not the database, so what comes out is what is on screen
+     — including text typed a second ago and not yet saved. That is the point: a
+     designer waiting on the phone should not have to wait for a Save round-trip,
+     and an export that silently differed from the screen would be the kind of
+     bug nobody reports because nobody believes it.
+
+     The product row is the base and the form values are layered on top, rather
+     than the form alone: a few product fields (qi_id among them) exist in the
+     schema without sitting in any tab, so they are never in the DOM to be read.
+     Those matter here — qi_id is half of whether the Qi logo may be printed. */
+  function wirePackagingExport(ctx) {
+    var btn = document.getElementById("packagingExportBtn");
+    if (!btn || !window.VIEMAG_PACKAGING) return;
+    btn.addEventListener("click", function () {
+      var product = {};
+      var base = ctx.row || {};
+      Object.keys(base).forEach(function (k) {
+        product[k] = base[k];
+      });
+      var live = collectFormValues(SCHEMA.products, false);
+      Object.keys(live).forEach(function (k) {
+        product[k] = live[k];
+      });
+      var pkg = collectFormValues(SCHEMA.product_packaging, false);
+      var today = new Date().toISOString().slice(0, 10);
+      var text = window.VIEMAG_PACKAGING.build(pkg, product, today);
+
+      var url = URL.createObjectURL(
+        new Blob([text], { type: "text/plain;charset=utf-8" }),
+      );
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = window.VIEMAG_PACKAGING.fileName(product);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      /* Revoked on the next tick, not immediately: Safari has not started the
+         download yet when click() returns, and a revoked URL there produces a
+         zero-byte file with no error anywhere. */
+      setTimeout(function () {
+        URL.revokeObjectURL(url);
+      }, 0);
+    });
   }
 
   /* One row of side-by-side language inputs sharing the first field's
@@ -1993,8 +2117,23 @@
     "technical_content",
   ];
 
+  /* Per-table additions. Packaging copy is scoped to its own table rather than
+     added to the list above because these prefixes mean nothing on any other
+     table, and a global entry would put a translate button on any future column
+     that happened to share the name. Every packaging field is translated: unlike
+     seo_*, none of it has a fallback the site can compose — a missing Vietnamese
+     line here is a box that cannot legally be sold. */
   var TABLE_TRANSLATABLE_PREFIXES = {
     guides: ["title", "excerpt", "body"],
+    product_packaging: [
+      "packaging_name",
+      "instructions_precautions",
+      "package_contents",
+      "main_material",
+      "magnetic_bracket_specs",
+      "charging_specs",
+      "power_bank_specs",
+    ],
   };
 
   function isTranslatablePrefix(srcName, prefix) {
@@ -3352,7 +3491,10 @@
       },
     );
 
-    if (!ctx.subTab) return;
+    wireGroupVisibility(ctx);
+    wirePackagingExport(ctx);
+
+    if (!ctx.subTabs || !ctx.subTabs.length) return;
     refreshComputed(ctx);
     var live = [
       "price_usd",
@@ -3773,28 +3915,37 @@
     return out;
   }
 
-  /* Tab 3 is a different table, so Save writes twice. There is deliberately ONE
-     Save button: the tabs are a view of one record, and three buttons would make
-     people believe saving one tab discards the others — a belief that loses real
-     work. Skipped entirely for editors, who had no inputs rendered and so have
-     nothing of theirs to lose. Resolves to null on success, or to a message. */
-  function saveSubRecord(ctx, rowId) {
-    if (!ctx.subTab || ctx.role !== "owner") return Promise.resolve(null);
-    var subDef = SCHEMA[ctx.subTab.table];
-    var values = collectFormValues(subDef, false);
-    var hasAny = Object.keys(values).some(function (k) {
-      return values[k] !== null && values[k] !== "";
+  /* Some tabs are a different table, so Save writes more than once. There is
+     deliberately ONE Save button: the tabs are a view of one record, and a
+     button per tab would make people believe saving one tab discards the others
+     — a belief that loses real work. An owner-only tab is skipped for editors,
+     who had no inputs rendered and so have nothing of theirs to lose. Resolves
+     to null on success, or to the first message. */
+  function saveSubRecords(ctx, rowId) {
+    var tabs = (ctx.subTabs || []).filter(function (tb) {
+      return !tb.ownerOnly || ctx.role === "owner";
     });
-    /* Don't create an all-null row for a product nobody has costed yet — it
-       would make "has a development record" useless as a signal. */
-    if (!hasAny && !ctx.subRow) return Promise.resolve(null);
-    values.product_id = rowId;
-    return sb
-      .from(ctx.subTab.table)
-      .upsert(values, { onConflict: "product_id" })
-      .then(function (res) {
-        return res.error ? res.error.message : null;
+    if (!tabs.length) return Promise.resolve(null);
+    return Promise.all(tabs.map(function (tb) {
+      var subDef = SCHEMA[tb.table];
+      var values = collectFormValues(subDef, false);
+      var hasAny = Object.keys(values).some(function (k) {
+        return values[k] !== null && values[k] !== "";
       });
+      /* Don't create an all-null row for a product nobody has costed or packaged
+         yet — it would make "has a development record" useless as a signal, and
+         would put an empty packaging record behind every product on day one. */
+      if (!hasAny && !ctx.subRows[tb.table]) return null;
+      values.product_id = rowId;
+      return sb
+        .from(tb.table)
+        .upsert(values, { onConflict: "product_id" })
+        .then(function (res) {
+          return res.error ? res.error.message : null;
+        });
+    })).then(function (msgs) {
+      return msgs.filter(Boolean)[0] || null;
+    });
   }
 
   function missingColumnFromError(error) {
@@ -3909,14 +4060,14 @@
 
         Promise.all(joinOps)
           .then(function () {
-            return saveSubRecord(ctx, rowId);
+            return saveSubRecords(ctx, rowId);
           })
           .then(function (subError) {
-            /* Two tables, two writes, no shared transaction — the same shape the join
-           rewrite above already has, and the same rule applies: report the real
-           state instead of printing "Saved". Recovery is just pressing Save
-           again, because the two tables do not depend on each other. The form is
-           left open, and formDirty stays true, because the development inputs
+            /* Several tables, several writes, no shared transaction — the same
+           shape the join rewrite above already has, and the same rule applies:
+           report the real state instead of printing "Saved". Recovery is just
+           pressing Save again, because the tables do not depend on each other.
+           The form is left open, and formDirty stays true, because those inputs
            genuinely still hold unsaved values. */
             if (subError) {
               saveBtn.disabled = false;

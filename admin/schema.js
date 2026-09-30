@@ -74,6 +74,39 @@ window.VIEMAG_SCHEMA = {
         { key: 'channel',   fields: ['distributor'] },
         { key: 'record',    fields: ['owner', 'last_reviewed'] },
       ] },
+      /* Everything a packaging designer needs, in the order the box is read.
+         A second sub-table tab, on the same 1:1 pattern as `dev` below but
+         WITHOUT ownerOnly: packaging copy is printed on a box that ships to the
+         public, so it is not owner material. It still never reaches viemag.biz,
+         which is a different fact — see the table's note.
+
+         Groups 6A/6B/6C carry `showIf`: only the technical block that matches
+         `packaging_product_type` is shown. That is the whole point of the
+         product-type field — a bare magnetic bracket should never be looking at
+         a battery-capacity box. Combined product opens more than one. */
+      { key: 'packaging', table: 'product_packaging', groups: [
+        { key: 'pkgIdentity', fields: ['packaging_status', 'packaging_product_type', 'model_number',
+                                       ['packaging_name_en', 'packaging_name_vi', 'packaging_name_id', 'packaging_name_zh']] },
+        { key: 'pkgUsage',    fields: [['instructions_precautions_en', 'instructions_precautions_vi',
+                                        'instructions_precautions_id', 'instructions_precautions_zh']] },
+        { key: 'pkgContents', fields: [['package_contents_en', 'package_contents_vi',
+                                        'package_contents_id', 'package_contents_zh']] },
+        { key: 'pkgMaterial', fields: [['main_material_en', 'main_material_vi',
+                                        'main_material_id', 'main_material_zh']] },
+        { key: 'pkgSpecA', showIf: { field: 'packaging_product_type', in: ['Magnetic bracket', 'Combined product'] },
+          fields: [['magnetic_bracket_specs_en', 'magnetic_bracket_specs_vi',
+                    'magnetic_bracket_specs_id', 'magnetic_bracket_specs_zh']] },
+        { key: 'pkgSpecB', showIf: { field: 'packaging_product_type', in: ['Charging product', 'Combined product'] },
+          fields: [['charging_specs_en', 'charging_specs_vi', 'charging_specs_id', 'charging_specs_zh']] },
+        { key: 'pkgSpecC', showIf: { field: 'packaging_product_type', in: ['Power bank', 'Combined product'] },
+          fields: [['power_bank_specs_en', 'power_bank_specs_vi',
+                    'power_bank_specs_id', 'power_bank_specs_zh']] },
+        { key: 'pkgBarcode', fields: ['barcode_ean_upc'] },
+        /* No fields: the group exists to hold the Download button. A button is
+           not a column, so it is declared as an `action` rather than faked as a
+           field with a type nothing can save. */
+        { key: 'pkgExport', action: 'packagingExport', fields: [] },
+      ] },
       /* Who and what first, money second (Woody, 2026-07-30). Opening a project
          record on a wall of eight cost boxes says nothing about which product it
          is; the supplier and the drawings do. */
@@ -182,6 +215,60 @@ window.VIEMAG_SCHEMA = {
       { name: 'reference_files', type: 'files_private', internal: true, desc: 'Supplier-side documents: quotations, catalogues, certificates, anything worth keeping with the project. Same private storage and same owner-only access as the design files. A quotation letterhead is exactly the kind of document that must never sit at a public URL.' },
       { name: 'inventory_first_batch', type: 'number', internal: true, desc: 'First-batch quantity planned at project kick-off. Note this is a planning figure, not current sellable stock — if someone needs current stock, that is a different field that does not exist yet, so do not reuse this one for it.' },
       { name: 'certification_notes', type: 'textarea', internal: true, desc: 'Progress notes on certification. Kept behind the wall because in-progress notes ("submitted, expecting approval next quarter") are exactly what must not become a promise to a customer — the site already refuses to show a certification mark unless qi_status is Certified.' },
+    ],
+  },
+
+  /* 1:1 with products, edited as the product form's Packaging tab. Like
+     product_development it is deliberately NOT in VIEMAG_TABLE_ORDER — it is a
+     tab, not a sidebar item — but unlike it, any signed-in colleague may read
+     and write it. Enforcement is the RLS policy in
+     supabase/migrations/20260930120000, not this file.
+
+     Every field is `internal: true`. That flag means one thing to
+     scripts/audit-field-parity.mjs: "does not reach viemag.biz". It is accurate
+     here and it is not a secrecy claim — this text gets printed on a box and
+     handed to a stranger in a shop. It simply is not website copy.
+
+     Descriptions here are PUBLIC (https://viemag.biz/admin/schema.js is
+     fetchable by anyone), so no description may contain the responsible
+     company's registered name or address, even as an example. Those live in
+     admin/packaging-export.js. */
+  product_packaging: {
+    note: 'notePackaging',
+    title: 'product_id',
+    fields: [
+      { name: 'packaging_status', type: 'select', internal: true, options: ['Draft', 'Ready for design', 'Sent to print', 'Printed'], desc: 'Where this box is in its own workflow. Separate from the product Status, which is about the website — a product can be live on the site for months while its packaging is still a draft.' },
+      { name: 'packaging_product_type', type: 'select', internal: true, options: ['Magnetic bracket', 'Charging product', 'Power bank', 'Combined product'], desc: 'Which technical-specification block this product needs. Choosing it shows the matching block below and hides the others; Combined product shows more than one. It also decides what the law asks for — a charging product must print a year of manufacture, a bare bracket need not.' },
+      { name: 'model_number', type: 'text', internal: true, desc: 'The model printed on the box. Normally leave blank: the export falls back to the official SKU code, then to the internal one, so the box, the outer carton and the barcode cannot drift apart. Only fill this in when the printed model genuinely differs.' },
+      { name: 'barcode_ean_upc', type: 'text', internal: true, validate: 'ean13', desc: 'EAN-13, 13 digits. Stored as text on purpose — a number field would drop a leading zero. Saving a half-typed code is allowed; the export is what refuses to sign it off, so nothing goes to print against an unissued barcode.' },
+      { name: 'packaging_name_en', type: 'textarea', internal: true, desc: 'The product name as printed on the box. This must be a real name that says what the thing does — a brand name or a model number does not count as one. All four languages sit side by side; Vietnamese is the one the law actually requires.' },
+      { name: 'packaging_name_vi', type: 'textarea', internal: true, desc: 'Packaging product name (Vietnamese). Legally required, and it must describe the product, e.g. a magnetic car-vent phone mount rather than a brand or a code. Leave blank and the export falls back to the site product name, which is marketing copy and usually not specific enough.' },
+      { name: 'packaging_name_id', type: 'textarea', internal: true, desc: 'Packaging product name (Indonesian).' },
+      { name: 'packaging_name_zh', type: 'textarea', internal: true, desc: 'Packaging product name (Traditional Chinese). Simplified is converted automatically.' },
+      { name: 'instructions_precautions_en', type: 'textarea', large: true, internal: true, desc: 'How to use the product, how to store it, and any warnings — one point per line. Mostly carried by diagrams on the box, so keep the text to what a diagram cannot say. For anything with a battery or a heating part this section is not optional.' },
+      { name: 'instructions_precautions_vi', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Vietnamese), one point per line.' },
+      { name: 'instructions_precautions_id', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Indonesian), one point per line.' },
+      { name: 'instructions_precautions_zh', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Traditional Chinese), one point per line.' },
+      { name: 'package_contents_en', type: 'textarea', internal: true, desc: 'What is in the box with quantities, ONE ITEM PER LINE, e.g. Mount x 1 then Magnetic ring x 1. Leave all four blank and the export falls back to the What-is-in-the-box list on the Front tab, so most products need nothing typed here.' },
+      { name: 'package_contents_vi', type: 'textarea', internal: true, desc: 'Box contents with quantities (Vietnamese), one item per line.' },
+      { name: 'package_contents_id', type: 'textarea', internal: true, desc: 'Box contents with quantities (Indonesian), one item per line.' },
+      { name: 'package_contents_zh', type: 'textarea', internal: true, desc: 'Box contents with quantities (Traditional Chinese), one item per line.' },
+      { name: 'main_material_en', type: 'textarea', internal: true, desc: 'The main materials, listed briefly — this is a label line, not a bill of materials. Required for non-electric products; for electric ones the general appliance list does not ask for the casing material, so it can be left out.' },
+      { name: 'main_material_vi', type: 'textarea', internal: true, desc: 'Main material / composition (Vietnamese).' },
+      { name: 'main_material_id', type: 'textarea', internal: true, desc: 'Main material / composition (Indonesian).' },
+      { name: 'main_material_zh', type: 'textarea', internal: true, desc: 'Main material / composition (Traditional Chinese).' },
+      { name: 'magnetic_bracket_specs_en', type: 'textarea', large: true, internal: true, desc: 'Technical specifications for a bracket, one per line: which phones and cases it works with, whether an adapter ring is needed and whether one is included, the clamping width or thickness for clamp types, and the magnet grade if it is worth stating. Dimensions belong here too, when they are what decides whether the thing fits.' },
+      { name: 'magnetic_bracket_specs_vi', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Vietnamese), one per line.' },
+      { name: 'magnetic_bracket_specs_id', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Indonesian), one per line.' },
+      { name: 'magnetic_bracket_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Traditional Chinese), one per line.' },
+      { name: 'charging_specs_en', type: 'textarea', large: true, internal: true, desc: 'Technical specifications for anything that charges a phone, one per line: input voltage and current, wireless output power, what the supply has to provide to actually reach that power, and the connector type. If it also charges over a cable, give that port its own voltage, current and wattage.' },
+      { name: 'charging_specs_vi', type: 'textarea', large: true, internal: true, desc: 'Charging technical specifications (Vietnamese), one per line.' },
+      { name: 'charging_specs_id', type: 'textarea', large: true, internal: true, desc: 'Charging technical specifications (Indonesian), one per line.' },
+      { name: 'charging_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Charging technical specifications (Traditional Chinese), one per line.' },
+      { name: 'power_bank_specs_en', type: 'textarea', large: true, internal: true, desc: 'Technical specifications for a product with its own cells, one per line: cell type, capacity, nominal voltage, and the input and output of each port. When several ports can run at once, state the total limit — leaving it out is what makes a spec sheet read as a promise it cannot keep. Add the wireless figure if it charges wirelessly.' },
+      { name: 'power_bank_specs_vi', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Vietnamese), one per line.' },
+      { name: 'power_bank_specs_id', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Indonesian), one per line.' },
+      { name: 'power_bank_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Traditional Chinese), one per line.' },
     ],
   },
 

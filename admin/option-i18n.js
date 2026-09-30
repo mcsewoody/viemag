@@ -34,6 +34,10 @@ window.VIEMAG_OPTION_I18N = {
       qi_status: { 'Not applicable': '無充電功能', Compatible: '依 Qi2 標準設計', Testing: '依 Qi2.2 標準設計（認證進行中）', Certified: 'Qi2 認證', Pending: '待定' },
       badge: { bestseller: '人氣', new: '新品', soon: '即將推出' },
     },
+    product_packaging: {
+      packaging_status: { Draft: '草稿', 'Ready for design': '可發設計', 'Sent to print': '已送印', Printed: '已印製' },
+      packaging_product_type: { 'Magnetic bracket': '磁吸支架', 'Charging product': '充電產品', 'Power bank': '行動電源', 'Combined product': '複合型（多項適用）' },
+    },
     categories: {
       visibility: { Public: '公開', Internal: '內部', Future: '即將推出' },
       status: { Published: '已發佈', Hidden: '隱藏' },
@@ -88,6 +92,10 @@ window.VIEMAG_OPTION_I18N = {
       qi_status: { 'Not applicable': '无充电功能', Compatible: '依 Qi2 标准设计', Testing: '依 Qi2.2 标准设计（认证进行中）', Certified: 'Qi2 认证', Pending: '待定' },
       badge: { bestseller: '人气', new: '新品', soon: '即将推出' },
     },
+    product_packaging: {
+      packaging_status: { Draft: '草稿', 'Ready for design': '可发设计', 'Sent to print': '已送印', Printed: '已印制' },
+      packaging_product_type: { 'Magnetic bracket': '磁吸支架', 'Charging product': '充电产品', 'Power bank': '移动电源', 'Combined product': '复合型（多项适用）' },
+    },
     categories: {
       visibility: { Public: '公开', Internal: '内部', Future: '即将推出' },
       status: { Published: '已发布', Hidden: '隐藏' },
@@ -141,6 +149,10 @@ window.VIEMAG_OPTION_I18N = {
       charging_watt: { None: 'Không có', TBD: 'Chưa xác định' },
       qi_status: { 'Not applicable': 'Không sạc', Compatible: 'Thiết kế theo chuẩn Qi2', Testing: 'Thiết kế theo chuẩn Qi2.2 (đang kiểm định)', Certified: 'Chứng nhận Qi2', Pending: 'Đang chờ' },
       badge: { bestseller: 'Được chọn nhiều', new: 'Mới', soon: 'Sắp ra mắt' },
+    },
+    product_packaging: {
+      packaging_status: { Draft: 'Bản nháp', 'Ready for design': 'Sẵn sàng cho thiết kế', 'Sent to print': 'Đã gửi in', Printed: 'Đã in xong' },
+      packaging_product_type: { 'Magnetic bracket': 'Giá đỡ nam châm', 'Charging product': 'Sản phẩm sạc', 'Power bank': 'Sạc dự phòng', 'Combined product': 'Sản phẩm kết hợp (nhiều nhóm)' },
     },
     categories: {
       visibility: { Public: 'Công khai', Internal: 'Nội bộ', Future: 'Sắp ra mắt' },

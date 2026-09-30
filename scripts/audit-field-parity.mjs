@@ -49,6 +49,8 @@
  *   noteInbox      filled by a public form, triaged by staff, never published
  *   noteNotWired   the editor exists but nothing consumes it yet (declared gap)
  *   noteOwnerOnly  owners only, enforced by RLS, never published
+ *   notePackaging  text printed on the box; consumed by the .txt export in
+ *                  admin/packaging-export.js, never by the website
  * admin_users is managed by the Accounts panel, not by a schema.js table.
  *
  * Reading DB columns needs a live connection, so that part is optional: pass a
@@ -106,6 +108,15 @@ for (const table of Object.keys(SCHEMA)) {
     continue;
   }
   if (def.note === 'noteInbox') { console.log(`   · ${table}: inbox, nothing published — skipped`); continue; }
+  /* Packaging copy has a consumer, just not the website: the .txt handed to the
+     packaging designer. That is the whole point of direction A — a field must
+     have SOMEWHERE to go — so this is a pass, not an exemption. The fields are
+     also tagged internal, which direction D then checks against every export
+     whitelist, so "goes to the designer" cannot quietly become "goes live". */
+  if (def.note === 'notePackaging') {
+    console.log(`   · ${table}: packaging text, exported to the designer as .txt, never to the site — skipped`);
+    continue;
+  }
 
   const dead = def.fields
     // `computed` fields are not columns at all — calculated in the browser, stored nowhere.

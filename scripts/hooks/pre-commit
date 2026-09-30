@@ -7,7 +7,7 @@
 # Cache-Control: max-age=14400, so a colleague's browser will keep running
 # yesterday's admin.js for up to four hours after a deploy. The escape hatch is
 # the ?v= query string in admin/index.html — a different URL is a different
-# cache entry — but that means EIGHT numbers (ADMIN_VERSION plus seven ?v=
+# cache entry — but that means NINE numbers (ADMIN_VERSION plus eight ?v=
 # strings) have to stay in step by hand.
 #
 # Forgetting produces no error anywhere. The push succeeds, the Action goes
@@ -17,8 +17,8 @@
 #
 # It bumps rather than merely checking, because a check that only asks "did
 # ADMIN_VERSION change?" still lets a half-done manual edit through (version
-# bumped, one of the seven ?v= missed) and lands you back at the same silent
-# failure. Anything able to verify all eight can just as easily set all eight.
+# bumped, one of the eight ?v= missed) and lands you back at the same silent
+# failure. Anything able to verify all nine can just as easily set all nine.
 #
 # The public site has the same disease with a shorter fuse: GitHub Pages serves
 # css/style.css, js/i18n.js, js/main.js and friends with Cache-Control:
@@ -58,7 +58,7 @@ fi
 head_ver=$(git show "HEAD:$JS" 2>/dev/null | read_ver || true)
 
 # Already moved since HEAD? Then it was bumped by hand before committing. Take
-# that number as given and only make the seven ?v= strings agree with it —
+# that number as given and only make the eight ?v= strings agree with it —
 # bumping on top of a deliberate edit would override a decision someone made.
 #
 # `git commit --amend` needs no special case, verified rather than assumed: at
@@ -86,8 +86,8 @@ fi
 # misbehaves on the other is worse than no hook. perl is the same everywhere.
 #
 # The pattern also requires a version NUMBER after ?v=. index.html's own comment
-# contains the bare string "?v=", so a looser match counts eight occurrences
-# where there are seven real ones, and reports a mismatch on every single run.
+# contains the bare string "?v=", so a looser match counts nine occurrences
+# where there are eight real ones, and reports a mismatch on every single run.
 vers=$(perl -ne 'while (/\?v=([0-9]+\.[0-9]{2})/g) { print "$1\n" }' "$HTML" | sort -u | tr '\n' ' ')
 count=$(perl -ne 'while (/\?v=([0-9]+\.[0-9]{2})/g) { $n++ } END { print $n+0 }' "$HTML")
 
