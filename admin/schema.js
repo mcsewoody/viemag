@@ -14,6 +14,35 @@
    therefore contain no confidential values and no field names that reveal
    anything the brand rules say to keep private. Login protects the DATA, not
    this file. */
+
+/* Which packaging product types need which block. THE one place this is
+   written down.
+
+   It used to be written eleven times — four group `showIf`s and six
+   `requiredIf`s here, three `SPEC_BLOCKS[].types` and two `electric` boolean
+   chains in admin/packaging-export.js — with a comment in each file asking the
+   other to stay in step. They did not stay in step: `Combined product` was
+   missing from every battery rule, so a magnetic power bank saved clean and
+   then exported two [FAIL] lines; and the year-of-manufacture rule disagreed
+   with its own field description. A comment asking a human to keep two arrays
+   equal is the bug, not the fix.
+
+   Declared here rather than in packaging-export.js because admin/index.html
+   loads this file first. scripts/test_packaging_export.mjs evals this file
+   before the exporter for the same reason. */
+window.VIEMAG_PKG_TYPES = {
+  /* Has a magnet and a clamp: block 6A. */
+  bracket: ['Magnetic bracket', 'Combined product'],
+  /* Puts power into a phone, so it has input and output figures: block 6B.
+     A power bank is in here too — it charges a phone exactly as a charger
+     does. Also the Appendix I category-40 set, the one the law asks for a
+     year of manufacture. */
+  charging: ['Charging product', 'Power bank', 'Combined product'],
+  /* Carries its own cells: block 6C, the lithium warning, and the watt-hour
+     figure air freight will not move the goods without. */
+  battery: ['Power bank', 'Combined product'],
+};
+
 window.VIEMAG_SCHEMA = {
   /* The product editor is the only three-tab form in /admin, and the tabs are a
      permission boundary, not decoration:
@@ -100,19 +129,16 @@ window.VIEMAG_SCHEMA = {
            prose last. The prose field is the SAME column it has always been —
            see the comments on it below — so nothing a colleague typed before
            this change moved or disappeared. */
-        { key: 'pkgSpecA', showIf: { field: 'packaging_product_type', in: ['Magnetic bracket', 'Combined product'] },
+        { key: 'pkgSpecA', showIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.bracket },
           fields: ['magnet_grade', 'clamp_range_mm',
                    ['magnetic_bracket_specs_en', 'magnetic_bracket_specs_vi',
                     'magnetic_bracket_specs_id', 'magnetic_bracket_specs_zh']] },
-        /* Power bank is in this list too: a bank that charges a phone has input
-           and output figures exactly like a charger does, and leaving it out
-           meant the only place to put them was the 6C prose box. */
-        { key: 'pkgSpecB', showIf: { field: 'packaging_product_type', in: ['Charging product', 'Power bank', 'Combined product'] },
+        { key: 'pkgSpecB', showIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.charging },
           fields: ['input_voltage', 'input_current', 'input_power',
                    'wireless_output_power', 'max_output_power', 'connector_type',
                    'wired_output_voltage', 'wired_output_current', 'wired_output_power',
                    ['charging_specs_en', 'charging_specs_vi', 'charging_specs_id', 'charging_specs_zh']] },
-        { key: 'pkgSpecC', showIf: { field: 'packaging_product_type', in: ['Power bank', 'Combined product'] },
+        { key: 'pkgSpecC', showIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery },
           fields: ['battery_type', 'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh',
                    'port1_spec', 'port2_spec', 'port3_spec', 'max_combined_output',
                    ['power_bank_specs_en', 'power_bank_specs_vi',
@@ -121,7 +147,7 @@ window.VIEMAG_SCHEMA = {
            warning is a separate legal requirement with its own air-freight
            consequences — buried in a spec box it is the first thing to get
            forgotten. */
-        { key: 'pkgLithium', showIf: { field: 'packaging_product_type', in: ['Power bank', 'Combined product'] },
+        { key: 'pkgLithium', showIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery },
           fields: [['lithium_warning_en', 'lithium_warning_vi',
                     'lithium_warning_id', 'lithium_warning_zh'], 'iata_notes'] },
         { key: 'pkgBarcode', fields: ['barcode_ean_upc'] },
@@ -297,7 +323,13 @@ window.VIEMAG_SCHEMA = {
 
       /* ---------- general label content ---------- */
       { name: 'country_of_origin', type: 'text', internal: true, required: true, desc: 'Where the goods were actually made, as printed, e.g. Made in China. Required on every label whatever the product is. Per product rather than set once for the brand, because the same brand ships boxes made in different countries — and a sticker applied in Vietnam does not make the goods Vietnamese.' },
-      { name: 'manufacturing_year', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: ['Charging product', 'Power bank', 'Combined product'] }, desc: 'Year of manufacture. Mandatory for anything electrical, not asked of a bare bracket. It belongs to a production batch rather than to the product, so leaving it blank is a valid choice: the export then prints a fill-in line for the printer instead of a wrong year.' },
+      /* No requiredIf, deliberately. The description below and header() in
+         packaging-export.js both treat an empty year as the correct answer —
+         the export prints a fill-in line for the printer rather than a year
+         that belongs to some other batch. A rule forcing a value here made
+         that intended blank unsaveable and the fill-in line unreachable. The
+         [WARN] in preflight() is the gate. */
+      { name: 'manufacturing_year', type: 'text', internal: true, desc: 'Year of manufacture. Mandatory for anything electrical, not asked of a bare bracket. It belongs to a production batch rather than to the product, so leaving it blank is a valid choice: the export then prints a fill-in line for the printer instead of a wrong year.' },
       { name: 'storage_instructions_en', type: 'textarea', internal: true, desc: 'How to store the product — temperature, damp, direct sun, anything that shortens its life. The law lists storage separately from instructions for use, so give it its own lines rather than folding it into the box above.' },
       { name: 'storage_instructions_vi', type: 'textarea', internal: true, desc: 'Storage instructions (Vietnamese), one point per line.' },
       { name: 'storage_instructions_id', type: 'textarea', internal: true, desc: 'Storage instructions (Indonesian), one point per line.' },
@@ -319,18 +351,23 @@ window.VIEMAG_SCHEMA = {
       { name: 'wired_output_power', type: 'text', internal: true, desc: 'Output power of the cable port.' },
 
       /* ---------- 6C, measurable ---------- */
-      { name: 'battery_type', type: 'select', internal: true, options: ['Li-ion', 'Li-polymer', 'LiFePO4'], requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Cell chemistry. Needed on the label and needed again by the shipper, who cannot book air freight without it.' },
-      { name: 'battery_capacity_mah', type: 'text', internal: true, unit: 'mAh', requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Cell capacity, e.g. 10000. Give the figure the cells are rated at, not the usable output after conversion — the two differ and the label asks for the first.' },
-      { name: 'rated_voltage', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Nominal voltage of the cells, e.g. 3.7V. Together with the capacity this is what the watt-hour figure is calculated from.' },
-      { name: 'watt_hour_wh', type: 'text', internal: true, unit: 'Wh', requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Watt-hours, e.g. 37. Capacity in Ah multiplied by nominal voltage. Air freight will not accept the goods without it, which is why this form refuses to save a power bank that has no value here.' },
+      { name: 'battery_type', type: 'select', internal: true, options: ['Li-ion', 'Li-polymer', 'LiFePO4'], requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Cell chemistry. Needed on the label and needed again by the shipper, who cannot book air freight without it.' },
+      { name: 'battery_capacity_mah', type: 'text', internal: true, unit: 'mAh', requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Cell capacity, e.g. 10000. Give the figure the cells are rated at, not the usable output after conversion — the two differ and the label asks for the first.' },
+      { name: 'rated_voltage', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Nominal voltage of the cells, e.g. 3.7V. Together with the capacity this is what the watt-hour figure is calculated from.' },
+      { name: 'watt_hour_wh', type: 'text', internal: true, unit: 'Wh', requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Watt-hours, e.g. 37. Capacity in Ah multiplied by nominal voltage. Air freight will not accept the goods without it, which is why this form refuses to save a power bank that has no value here.' },
       { name: 'port1_spec', type: 'text', internal: true, desc: 'First port, input and output on one line, e.g. USB-C In 5V⎓3A / Out 5V⎓3A, 9V⎓2A. One field per port rather than a list, because each port prints as its own line and they are not interchangeable.' },
       { name: 'port2_spec', type: 'text', internal: true, desc: 'Second port, same format. Leave blank if there is only one.' },
       { name: 'port3_spec', type: 'text', internal: true, desc: 'Third port, same format.' },
       { name: 'max_combined_output', type: 'text', internal: true, desc: 'The ceiling when more than one port draws at once, e.g. 65W total. Not the sum of the ports and not derivable from them — leaving it out is what turns a spec list into a claim the product cannot meet.' },
 
       /* ---------- lithium cells ---------- */
-      { name: 'lithium_warning_en', type: 'textarea', large: true, internal: true, requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'The lithium-cell warning, which is stricter than the general warnings above and is why it has its own box: do not crush, puncture, incinerate, immerse, or leave charging unattended; keep away from heat. Vietnamese is the copy that legally has to be there.' },
-      { name: 'lithium_warning_vi', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Vietnamese). Legally required on anything with cells.' },
+      { name: 'lithium_warning_en', type: 'textarea', large: true, internal: true, desc: 'The lithium-cell warning, which is stricter than the general warnings above and is why it has its own box: do not crush, puncture, incinerate, immerse, or leave charging unattended; keep away from heat. Vietnamese is the copy that legally has to be there, so that is the one Save asks for.' },
+      /* The requiredIf is on the VIETNAMESE box, not the English one. Vietnamese
+         is what the law requires on the label, and it is what preflight() fails
+         on — having the form demand English while the export demanded
+         Vietnamese meant a record the form called complete still exported a
+         [FAIL]. */
+      { name: 'lithium_warning_vi', type: 'textarea', large: true, internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Lithium-cell warning (Vietnamese). Legally required on anything with cells.' },
       { name: 'lithium_warning_id', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Indonesian).' },
       { name: 'lithium_warning_zh', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Traditional Chinese).' },
       { name: 'iata_notes', type: 'textarea', internal: true, desc: 'Air-freight marking notes — the lithium handling label, the watt-hour marking on the outer carton, anything the forwarder has asked for. Not printed on the retail box, but the designer needs to know it applies before the outer-carton artwork is laid out.' },

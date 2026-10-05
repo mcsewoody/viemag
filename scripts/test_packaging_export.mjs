@@ -20,8 +20,15 @@ import assert from 'node:assert/strict';
 
 const w = {};
 global.window = w;
+/* schema.js first: it owns VIEMAG_PKG_TYPES, the single declaration of which
+   product type needs which block, and the exporter reads it. Loading them in
+   the same order admin/index.html does means this test exercises the shared
+   constant rather than a copy that could drift from it. */
+eval(fs.readFileSync('admin/schema.js', 'utf8'));
 eval(fs.readFileSync('admin/packaging-export.js', 'utf8'));
 const P = w.VIEMAG_PACKAGING;
+const SCHEMA = w.VIEMAG_SCHEMA;
+const PKG_TYPES = w.VIEMAG_PKG_TYPES;
 
 const DATE = '2026-09-30';
 let checks = 0;
@@ -371,6 +378,71 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
   assert.ok(txt.includes('磁吸手機架') && txt.includes('ABS 塑膠、鋁合金'));
   assert.ok(txt.includes('Dudukan ponsel magnetik'));
   ok('Vietnamese, Traditional Chinese and Indonesian survive the export unchanged');
+}
+
+/* ---------- the form and the export must agree about product types ----------
+   This is the check that would have caught the four rules that had drifted:
+   every battery requiredIf said ['Power bank'] while every other expression of
+   the same rule included 'Combined product', so a magnetic power bank saved
+   clean and then exported two [FAIL] lines. The rule now lives in one place;
+   this asserts that nothing has quietly grown a second copy. */
+{
+  const pk = SCHEMA.product_packaging;
+  const tab = SCHEMA.products.tabs.find((t) => t.key === 'packaging');
+  const group = (k) => tab.groups.find((g) => g.key === k);
+  const field = (n) => pk.fields.find((f) => f.name === n);
+
+  // Each group points at the shared constant, not a copy that happens to match.
+  assert.equal(group('pkgSpecA').showIf.in, PKG_TYPES.bracket);
+  assert.equal(group('pkgSpecB').showIf.in, PKG_TYPES.charging);
+  assert.equal(group('pkgSpecC').showIf.in, PKG_TYPES.battery);
+  assert.equal(group('pkgLithium').showIf.in, PKG_TYPES.battery);
+
+  /* A field may only be required for a type its own group is shown for.
+     Requiring something on a form that hides it is unfixable by the operator. */
+  for (const g of tab.groups) {
+    for (const entry of g.fields || []) {
+      for (const name of [].concat(entry)) {
+        const f = field(name);
+        if (!f || !f.requiredIf) continue;
+        const shown = g.showIf ? g.showIf.in : null;
+        if (!shown) continue;
+        for (const t of f.requiredIf.in) {
+          assert.ok(shown.indexOf(t) !== -1,
+            `${name} is required for "${t}" but its group ${g.key} is hidden for it`);
+        }
+      }
+    }
+  }
+
+  /* Whatever the form forces you to fill, the export must not then FAIL on,
+     and vice versa. These two drifted apart in opposite directions once
+     already: the form demanded lithium_warning_en while preflight checked
+     lithium_warning_vi. */
+  const PRODUCT_MIN = { product_id: 'V01', name_vi: 'X' };
+  for (const type of ['Magnetic bracket', 'Charging product', 'Power bank', 'Combined product']) {
+    /* The barcode is deliberately savable while empty and deliberately fatal to
+       the export — the field description says so, because a half-typed code
+       must still be storable while nothing goes to print against an unissued
+       one. So a "complete" record has to include it; it is not an example of
+       the form and the export disagreeing. */
+    const filled = {
+      packaging_product_type: type,
+      country_of_origin: 'Made in China',
+      barcode_ean_upc: '4006381333931',
+    };
+    pk.fields.forEach((f) => {
+      if (f.requiredIf && f.requiredIf.in.indexOf(type) !== -1) filled[f.name] = '1';
+    });
+    const txt = P.build(filled, PRODUCT_MIN, DATE, {
+      responsible_company: 'C', responsible_address: 'A',
+      importer_name: 'I', importer_address: 'A2',
+    });
+    const fails = txt.split('\n').filter((l) => l.indexOf('[FAIL]') !== -1);
+    assert.deepEqual(fails, [],
+      `${type}: the form accepts this record but the export rejects it:\n${fails.join('\n')}`);
+  }
+  ok('the form and the export agree: no record passes Save and then fails the export');
 }
 
 console.log(`\nClean: ${checks} checks passed.`);

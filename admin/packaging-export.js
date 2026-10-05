@@ -29,6 +29,12 @@
 (function () {
   "use strict";
 
+  /* The product-type rules come from admin/schema.js, which admin/index.html
+     loads first. One declaration, read by both the form that collects the data
+     and the export that prints it — previously each file had its own copy and a
+     comment asking the other to stay in step, which they did not. */
+  var PKG = window.VIEMAG_PKG_TYPES;
+
   var LANGS = [
     { code: "vi", label: "VI — Tiếng Việt" },
     { code: "en", label: "EN — English" },
@@ -84,7 +90,7 @@
   var SPEC_BLOCKS = [
     {
       prefix: "magnetic_bracket_specs",
-      types: ["Magnetic bracket", "Combined product"],
+      types: PKG.bracket,
       label: {
         vi: "6A. Giá đỡ nam châm",
         en: "6A. Magnetic bracket",
@@ -94,11 +100,7 @@
     },
     {
       prefix: "charging_specs",
-      /* Power bank is in this list, and must stay in step with the pkgSpecB
-         group's showIf in admin/schema.js: a bank that charges a phone has the
-         same input and output figures a charger does, and the form showing a
-         box the export then drops is the worst of both. */
-      types: ["Charging product", "Power bank", "Combined product"],
+      types: PKG.charging,
       label: {
         vi: "6B. Sản phẩm sạc",
         en: "6B. Charging product",
@@ -108,7 +110,7 @@
     },
     {
       prefix: "power_bank_specs",
-      types: ["Power bank", "Combined product"],
+      types: PKG.battery,
       label: {
         vi: "6C. Sạc dự phòng",
         en: "6C. Power bank",
@@ -233,7 +235,7 @@
   function preflight(pkg, product, brand) {
     var out = [];
     var type = str(pkg.packaging_product_type);
-    var electric = type === "Charging product" || type === "Power bank" || type === "Combined product";
+    var electric = PKG.charging.indexOf(type) !== -1;
 
     if (pick(pkg.packaging_name_vi, product.name_vi)) {
       out.push("[ok]   Vietnamese product name present");
@@ -288,7 +290,7 @@
       );
     }
 
-    if (type === "Power bank" || type === "Combined product") {
+    if (PKG.battery.indexOf(type) !== -1) {
       var wh = str(pkg.watt_hour_wh);
       out.push(
         wh
@@ -514,7 +516,7 @@
     product = product || {};
     brand = brand || {};
     var type = str(pkg.packaging_product_type);
-    var electric = type === "Charging product" || type === "Power bank" || type === "Combined product";
+    var electric = PKG.charging.indexOf(type) !== -1;
     var out = [];
 
     function sec(heading, body) {
