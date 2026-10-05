@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.39";
+  var ADMIN_VERSION = "1.40";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1419,7 +1419,9 @@
   function productClonePayload(row, newSku) {
     var out = {};
     SCHEMA.products.fields.forEach(function (f) {
-      if (f.requiresColumn) return;
+      /* requiresColumn is not checked here either: the hasOwnProperty test
+         below already covers it, because a column the database does not have
+         cannot be a key on the row we just read back from it. */
       if (missingSchemaColumns[f.name]) return;
       if (f.type === "relation_many") return;
       if (f.type === "computed" || f.readOnly) return;
@@ -3868,10 +3870,18 @@
      launch_tier=NULL — and NULL is not 'Future', so the exporter published it
      to the live site immediately. On UPDATE we DO send null, because there a
      cleared field genuinely means "erase this value". */
+  /* NOTE there is deliberately no `if (f.requiresColumn) return` here. The flag
+     means "this column may not exist in the database yet", NOT "never write
+     this field". When the column really is missing, renderFieldInput and
+     langRowHtml render the columnPending notice instead of an input, so no
+     [data-name] element exists and the `if (!el) return` below already skips
+     it. An unconditional skip here instead silently dropped every
+     technical_content_* edit on save — the operator typed into a working
+     editor, paid for a DeepL translation of it, saw "saved", and got a blank
+     field back on reload. */
   function collectFormValues(def, omitEmpty) {
     var out = {};
     def.fields.forEach(function (f) {
-      if (f.requiresColumn) return;
       if (missingSchemaColumns[f.name]) return;
       if (f.type === "relation_many") return; // handled separately via join tables
       if (f.type === "computed" || f.readOnly) return; // not columns we may write
