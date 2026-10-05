@@ -37,6 +37,11 @@ window.VIEMAG_OPTION_I18N = {
     product_packaging: {
       packaging_status: { Draft: '草稿', 'Ready for design': '可發設計', 'Sent to print': '已送印', Printed: '已印製' },
       packaging_product_type: { 'Magnetic bracket': '磁吸支架', 'Charging product': '充電產品', 'Power bank': '行動電源', 'Combined product': '複合型（多項適用）' },
+      /* The USB names stay as they are in every language: they are the standard's
+         own spelling and they are printed that way on the box. Only the two that
+         are English words rather than connector names actually translate. */
+      connector_type: { 'USB-C': 'USB-C', 'USB-A': 'USB-A', 'USB-C + USB-A': 'USB-C ＋ USB-A', Lightning: 'Lightning', 'Micro-USB': 'Micro-USB', 'DC barrel': 'DC 圓孔', Hardwired: '固定線材（不可拆）' },
+      battery_type: { 'Li-ion': '鋰離子（Li-ion）', 'Li-polymer': '鋰聚合物（Li-polymer）', LiFePO4: '磷酸鋰鐵（LiFePO4）' },
     },
     categories: {
       visibility: { Public: '公開', Internal: '內部', Future: '即將推出' },
@@ -95,6 +100,8 @@ window.VIEMAG_OPTION_I18N = {
     product_packaging: {
       packaging_status: { Draft: '草稿', 'Ready for design': '可发设计', 'Sent to print': '已送印', Printed: '已印制' },
       packaging_product_type: { 'Magnetic bracket': '磁吸支架', 'Charging product': '充电产品', 'Power bank': '移动电源', 'Combined product': '复合型（多项适用）' },
+      connector_type: { 'USB-C': 'USB-C', 'USB-A': 'USB-A', 'USB-C + USB-A': 'USB-C ＋ USB-A', Lightning: 'Lightning', 'Micro-USB': 'Micro-USB', 'DC barrel': 'DC 圆孔', Hardwired: '固定线材（不可拆）' },
+      battery_type: { 'Li-ion': '锂离子（Li-ion）', 'Li-polymer': '锂聚合物（Li-polymer）', LiFePO4: '磷酸锂铁（LiFePO4）' },
     },
     categories: {
       visibility: { Public: '公开', Internal: '内部', Future: '即将推出' },
@@ -153,6 +160,8 @@ window.VIEMAG_OPTION_I18N = {
     product_packaging: {
       packaging_status: { Draft: 'Bản nháp', 'Ready for design': 'Sẵn sàng cho thiết kế', 'Sent to print': 'Đã gửi in', Printed: 'Đã in xong' },
       packaging_product_type: { 'Magnetic bracket': 'Giá đỡ nam châm', 'Charging product': 'Sản phẩm sạc', 'Power bank': 'Sạc dự phòng', 'Combined product': 'Sản phẩm kết hợp (nhiều nhóm)' },
+      connector_type: { 'USB-C': 'USB-C', 'USB-A': 'USB-A', 'USB-C + USB-A': 'USB-C + USB-A', Lightning: 'Lightning', 'Micro-USB': 'Micro-USB', 'DC barrel': 'Giắc tròn DC', Hardwired: 'Dây liền (không tháo rời)' },
+      battery_type: { 'Li-ion': 'Li-ion (lithium-ion)', 'Li-polymer': 'Li-polymer (lithium polymer)', LiFePO4: 'LiFePO4 (lithium sắt phosphat)' },
     },
     categories: {
       visibility: { Public: 'Công khai', Internal: 'Nội bộ', Future: 'Sắp ra mắt' },

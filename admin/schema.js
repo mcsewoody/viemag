@@ -86,22 +86,47 @@ window.VIEMAG_SCHEMA = {
          a battery-capacity box. Combined product opens more than one. */
       { key: 'packaging', table: 'product_packaging', groups: [
         { key: 'pkgIdentity', fields: ['packaging_status', 'packaging_product_type', 'model_number',
+                                       'country_of_origin', 'manufacturing_year',
                                        ['packaging_name_en', 'packaging_name_vi', 'packaging_name_id', 'packaging_name_zh']] },
         { key: 'pkgUsage',    fields: [['instructions_precautions_en', 'instructions_precautions_vi',
-                                        'instructions_precautions_id', 'instructions_precautions_zh']] },
+                                        'instructions_precautions_id', 'instructions_precautions_zh'],
+                                       ['storage_instructions_en', 'storage_instructions_vi',
+                                        'storage_instructions_id', 'storage_instructions_zh']] },
         { key: 'pkgContents', fields: [['package_contents_en', 'package_contents_vi',
                                         'package_contents_id', 'package_contents_zh']] },
         { key: 'pkgMaterial', fields: [['main_material_en', 'main_material_vi',
                                         'main_material_id', 'main_material_zh']] },
+        /* Each 6x group is now the measurable attributes first, then the free
+           prose last. The prose field is the SAME column it has always been —
+           see the comments on it below — so nothing a colleague typed before
+           this change moved or disappeared. */
         { key: 'pkgSpecA', showIf: { field: 'packaging_product_type', in: ['Magnetic bracket', 'Combined product'] },
-          fields: [['magnetic_bracket_specs_en', 'magnetic_bracket_specs_vi',
+          fields: ['magnet_grade', 'clamp_range_mm',
+                   ['magnetic_bracket_specs_en', 'magnetic_bracket_specs_vi',
                     'magnetic_bracket_specs_id', 'magnetic_bracket_specs_zh']] },
-        { key: 'pkgSpecB', showIf: { field: 'packaging_product_type', in: ['Charging product', 'Combined product'] },
-          fields: [['charging_specs_en', 'charging_specs_vi', 'charging_specs_id', 'charging_specs_zh']] },
+        /* Power bank is in this list too: a bank that charges a phone has input
+           and output figures exactly like a charger does, and leaving it out
+           meant the only place to put them was the 6C prose box. */
+        { key: 'pkgSpecB', showIf: { field: 'packaging_product_type', in: ['Charging product', 'Power bank', 'Combined product'] },
+          fields: ['input_voltage', 'input_current', 'input_power',
+                   'wireless_output_power', 'max_output_power', 'connector_type',
+                   'wired_output_voltage', 'wired_output_current', 'wired_output_power',
+                   ['charging_specs_en', 'charging_specs_vi', 'charging_specs_id', 'charging_specs_zh']] },
         { key: 'pkgSpecC', showIf: { field: 'packaging_product_type', in: ['Power bank', 'Combined product'] },
-          fields: [['power_bank_specs_en', 'power_bank_specs_vi',
+          fields: ['battery_type', 'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh',
+                   'port1_spec', 'port2_spec', 'port3_spec', 'max_combined_output',
+                   ['power_bank_specs_en', 'power_bank_specs_vi',
                     'power_bank_specs_id', 'power_bank_specs_zh']] },
+        /* Its own group rather than a paragraph inside 6C, because the lithium
+           warning is a separate legal requirement with its own air-freight
+           consequences — buried in a spec box it is the first thing to get
+           forgotten. */
+        { key: 'pkgLithium', showIf: { field: 'packaging_product_type', in: ['Power bank', 'Combined product'] },
+          fields: [['lithium_warning_en', 'lithium_warning_vi',
+                    'lithium_warning_id', 'lithium_warning_zh'], 'iata_notes'] },
         { key: 'pkgBarcode', fields: ['barcode_ean_upc'] },
+        { key: 'pkgNotes', fields: [['packaging_notes_en', 'packaging_notes_vi',
+                                     'packaging_notes_id', 'packaging_notes_zh']] },
         /* No fields: the group exists to hold the Download button. A button is
            not a column, so it is declared as an `action` rather than faked as a
            field with a type nothing can save. */
@@ -257,18 +282,91 @@ window.VIEMAG_SCHEMA = {
       { name: 'main_material_vi', type: 'textarea', internal: true, desc: 'Main material / composition (Vietnamese).' },
       { name: 'main_material_id', type: 'textarea', internal: true, desc: 'Main material / composition (Indonesian).' },
       { name: 'main_material_zh', type: 'textarea', internal: true, desc: 'Main material / composition (Traditional Chinese).' },
-      { name: 'magnetic_bracket_specs_en', type: 'textarea', large: true, internal: true, desc: 'Technical specifications for a bracket, one per line: which phones and cases it works with, whether an adapter ring is needed and whether one is included, the clamping width or thickness for clamp types, and the magnet grade if it is worth stating. Dimensions belong here too, when they are what decides whether the thing fits.' },
+      { name: 'magnetic_bracket_specs_en', type: 'textarea', large: true, internal: true, desc: 'The part of the bracket specification that only a sentence can say: which phones and cases it works with, whether an adapter ring is needed and whether one is included. The measurable attributes now have their own boxes above — magnet grade and clamping range — so this is for the conditions around them, one per line.' },
       { name: 'magnetic_bracket_specs_vi', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Vietnamese), one per line.' },
       { name: 'magnetic_bracket_specs_id', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Indonesian), one per line.' },
       { name: 'magnetic_bracket_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Traditional Chinese), one per line.' },
-      { name: 'charging_specs_en', type: 'textarea', large: true, internal: true, desc: 'Technical specifications for anything that charges a phone, one per line: input voltage and current, wireless output power, what the supply has to provide to actually reach that power, and the connector type. If it also charges over a cable, give that port its own voltage, current and wattage.' },
+      { name: 'charging_specs_en', type: 'textarea', large: true, internal: true, desc: 'The part of the charging specification that only a sentence can say — above all what the supply has to provide before the maximum output is real, e.g. that it needs a 30W PD adapter. The figures themselves now have their own boxes above. One point per line.' },
       { name: 'charging_specs_vi', type: 'textarea', large: true, internal: true, desc: 'Charging technical specifications (Vietnamese), one per line.' },
       { name: 'charging_specs_id', type: 'textarea', large: true, internal: true, desc: 'Charging technical specifications (Indonesian), one per line.' },
       { name: 'charging_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Charging technical specifications (Traditional Chinese), one per line.' },
-      { name: 'power_bank_specs_en', type: 'textarea', large: true, internal: true, desc: 'Technical specifications for a product with its own cells, one per line: cell type, capacity, nominal voltage, and the input and output of each port. When several ports can run at once, state the total limit — leaving it out is what makes a spec sheet read as a promise it cannot keep. Add the wireless figure if it charges wirelessly.' },
+      { name: 'power_bank_specs_en', type: 'textarea', large: true, internal: true, desc: 'The part of the power-bank specification that only a sentence can say: charging behaviour, pass-through, anything conditional. Cell type, capacity, nominal voltage, watt-hours and the per-port figures now have their own boxes above. One point per line.' },
       { name: 'power_bank_specs_vi', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Vietnamese), one per line.' },
       { name: 'power_bank_specs_id', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Indonesian), one per line.' },
       { name: 'power_bank_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Traditional Chinese), one per line.' },
+
+      /* ---------- general label content ---------- */
+      { name: 'country_of_origin', type: 'text', internal: true, required: true, desc: 'Where the goods were actually made, as printed, e.g. Made in China. Required on every label whatever the product is. Per product rather than set once for the brand, because the same brand ships boxes made in different countries — and a sticker applied in Vietnam does not make the goods Vietnamese.' },
+      { name: 'manufacturing_year', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: ['Charging product', 'Power bank', 'Combined product'] }, desc: 'Year of manufacture. Mandatory for anything electrical, not asked of a bare bracket. It belongs to a production batch rather than to the product, so leaving it blank is a valid choice: the export then prints a fill-in line for the printer instead of a wrong year.' },
+      { name: 'storage_instructions_en', type: 'textarea', internal: true, desc: 'How to store the product — temperature, damp, direct sun, anything that shortens its life. The law lists storage separately from instructions for use, so give it its own lines rather than folding it into the box above.' },
+      { name: 'storage_instructions_vi', type: 'textarea', internal: true, desc: 'Storage instructions (Vietnamese), one point per line.' },
+      { name: 'storage_instructions_id', type: 'textarea', internal: true, desc: 'Storage instructions (Indonesian), one point per line.' },
+      { name: 'storage_instructions_zh', type: 'textarea', internal: true, desc: 'Storage instructions (Traditional Chinese), one point per line.' },
+
+      /* ---------- 6A, measurable ---------- */
+      { name: 'magnet_grade', type: 'text', internal: true, desc: 'Magnet grade, e.g. N52. One box, no language copies: the grade is the same characters everywhere, so four translated copies would only be four chances to mistype it. Leave blank if the grade is not worth printing.' },
+      { name: 'clamp_range_mm', type: 'text', internal: true, unit: 'mm', desc: 'Clamping width or thickness the bracket accepts, e.g. 6-9. Only for clamp types. This is the dimension that decides whether a phone fits, which is why it is here when general product dimensions are deliberately not collected at all.' },
+
+      /* ---------- 6B, measurable ---------- */
+      { name: 'input_voltage', type: 'text', internal: true, desc: 'Input voltage as printed, e.g. 9V, or 5V/9V when it accepts both. Text rather than a number so a range and its unit survive exactly as the box should show them.' },
+      { name: 'input_current', type: 'text', internal: true, desc: 'Input current, e.g. 2A.' },
+      { name: 'input_power', type: 'text', internal: true, desc: 'Input power, e.g. 18W.' },
+      { name: 'wireless_output_power', type: 'text', internal: true, desc: 'Wireless charging output, e.g. 15W. State the figure the product actually sustains, not the peak of the standard it implements.' },
+      { name: 'max_output_power', type: 'text', internal: true, desc: 'The highest output the product can deliver. If reaching it depends on the adapter or the phone, say so in the notes box at the bottom of this section — a bare number that needs a 30W PD charger to be true reads as a promise.' },
+      { name: 'connector_type', type: 'select', internal: true, options: ['USB-C', 'USB-A', 'USB-C + USB-A', 'Lightning', 'Micro-USB', 'DC barrel', 'Hardwired'], desc: 'The connector on the product itself. Pick Hardwired when the cable is fixed and there is no socket.' },
+      { name: 'wired_output_voltage', type: 'text', internal: true, desc: 'Output voltage of the cable port, e.g. 5V⎓3A / 9V⎓2A. Only for products that also charge over a cable.' },
+      { name: 'wired_output_current', type: 'text', internal: true, desc: 'Output current of the cable port.' },
+      { name: 'wired_output_power', type: 'text', internal: true, desc: 'Output power of the cable port.' },
+
+      /* ---------- 6C, measurable ---------- */
+      { name: 'battery_type', type: 'select', internal: true, options: ['Li-ion', 'Li-polymer', 'LiFePO4'], requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Cell chemistry. Needed on the label and needed again by the shipper, who cannot book air freight without it.' },
+      { name: 'battery_capacity_mah', type: 'text', internal: true, unit: 'mAh', requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Cell capacity, e.g. 10000. Give the figure the cells are rated at, not the usable output after conversion — the two differ and the label asks for the first.' },
+      { name: 'rated_voltage', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Nominal voltage of the cells, e.g. 3.7V. Together with the capacity this is what the watt-hour figure is calculated from.' },
+      { name: 'watt_hour_wh', type: 'text', internal: true, unit: 'Wh', requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'Watt-hours, e.g. 37. Capacity in Ah multiplied by nominal voltage. Air freight will not accept the goods without it, which is why this form refuses to save a power bank that has no value here.' },
+      { name: 'port1_spec', type: 'text', internal: true, desc: 'First port, input and output on one line, e.g. USB-C In 5V⎓3A / Out 5V⎓3A, 9V⎓2A. One field per port rather than a list, because each port prints as its own line and they are not interchangeable.' },
+      { name: 'port2_spec', type: 'text', internal: true, desc: 'Second port, same format. Leave blank if there is only one.' },
+      { name: 'port3_spec', type: 'text', internal: true, desc: 'Third port, same format.' },
+      { name: 'max_combined_output', type: 'text', internal: true, desc: 'The ceiling when more than one port draws at once, e.g. 65W total. Not the sum of the ports and not derivable from them — leaving it out is what turns a spec list into a claim the product cannot meet.' },
+
+      /* ---------- lithium cells ---------- */
+      { name: 'lithium_warning_en', type: 'textarea', large: true, internal: true, requiredIf: { field: 'packaging_product_type', in: ['Power bank'] }, desc: 'The lithium-cell warning, which is stricter than the general warnings above and is why it has its own box: do not crush, puncture, incinerate, immerse, or leave charging unattended; keep away from heat. Vietnamese is the copy that legally has to be there.' },
+      { name: 'lithium_warning_vi', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Vietnamese). Legally required on anything with cells.' },
+      { name: 'lithium_warning_id', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Indonesian).' },
+      { name: 'lithium_warning_zh', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Traditional Chinese).' },
+      { name: 'iata_notes', type: 'textarea', internal: true, desc: 'Air-freight marking notes — the lithium handling label, the watt-hour marking on the outer carton, anything the forwarder has asked for. Not printed on the retail box, but the designer needs to know it applies before the outer-carton artwork is laid out.' },
+
+      /* ---------- designer notes ---------- */
+      { name: 'packaging_notes_en', type: 'textarea', large: true, internal: true, desc: 'Anything the designer has to know that is not itself printed — a hanging hole the side label must clear, a panel that has to stay clear for a sticker, a colour that has to match an existing box. Not label content.' },
+      { name: 'packaging_notes_vi', type: 'textarea', large: true, internal: true, desc: 'Notes for the designer (Vietnamese). Not printed on the box.' },
+      { name: 'packaging_notes_id', type: 'textarea', large: true, internal: true, desc: 'Notes for the designer (Indonesian). Not printed on the box.' },
+      { name: 'packaging_notes_zh', type: 'textarea', large: true, internal: true, desc: 'Notes for the designer (Traditional Chinese). Not printed on the box.' },
+    ],
+  },
+
+  /* One row, edited from its own sidebar page rather than per product: this is
+     the block that is identical on every box, so holding it per SKU would mean
+     thirty copies free to drift apart. Owner-only to WRITE — see the RLS in
+     supabase/migrations/20261005090000 — because naming the organisation that
+     answers for the goods is a legal declaration, not product copy.
+
+     Nothing here gets a translate button. A registered company name and address
+     have to match the business licence exactly, and a machine translation of an
+     address is a plausible-looking address that is not the legal one. Only the
+     warranty sentence is prose, so only that one has four languages. */
+  brand_settings: {
+    note: 'notePackaging',
+    title: 'responsible_company',
+    singleton: true,
+    fields: [
+      { name: 'responsible_company', type: 'text', internal: true, required: true, desc: 'The organisation that answers for the goods, in its registered name exactly as it appears on the business licence. Depending on the shipment this may be the manufacturer or the importer; the law cares that it is named and reachable, not which of the two it is.' },
+      { name: 'responsible_address', type: 'textarea', internal: true, required: true, desc: 'Full registered address of the company above. Printed as written — do not abbreviate it to fit the panel.' },
+      { name: 'importer_name', type: 'text', internal: true, desc: 'Registered name of the Vietnamese importer. Required on the label whenever the goods are imported, and separate from the responsible company because the usual case has one of each.' },
+      { name: 'importer_address', type: 'textarea', internal: true, desc: 'Full registered address of the Vietnamese importer.' },
+      { name: 'customer_contact', type: 'text', internal: true, desc: 'At least one channel a buyer can actually reach — a phone number or an email address. Expected next to the responsible-party block, and a buyer with a faulty product is the person it is for.' },
+      { name: 'warranty_terms_en', type: 'textarea', large: true, internal: true, desc: 'The warranty and exchange sentence printed on the box. The NUMBERS live on each product (Warranty months, Defect exchange days on the Sales tab) because they vary per SKU; this is the wording around them. Vietnamese is the copy consumer law requires.' },
+      { name: 'warranty_terms_vi', type: 'textarea', large: true, internal: true, desc: 'Warranty and exchange conditions (Vietnamese). Legally required.' },
+      { name: 'warranty_terms_id', type: 'textarea', large: true, internal: true, desc: 'Warranty and exchange conditions (Indonesian).' },
+      { name: 'warranty_terms_zh', type: 'textarea', large: true, internal: true, desc: 'Warranty and exchange conditions (Traditional Chinese).' },
     ],
   },
 
@@ -487,8 +585,12 @@ window.VIEMAG_SCHEMA = {
 };
 
 /* Table display order + nav grouping in the sidebar */
+/* brand_settings is last on purpose: it is one row that is set up once and then
+   almost never touched, so it sits below the things people open every day. It
+   IS in this list, unlike product_packaging and product_development, because it
+   is not a tab of anything — there is no product to hang it off. */
 window.VIEMAG_TABLE_ORDER = [
-  'products', 'categories', 'scenarios', 'test_reports', 'guides', 
-  'assets', 'faq', 'dealer_leads', 
-  'support_cases'
+  'products', 'categories', 'scenarios', 'test_reports', 'guides',
+  'assets', 'faq', 'dealer_leads',
+  'support_cases', 'brand_settings'
 ];
