@@ -383,10 +383,14 @@
         lines.push(pad(p[0]) + p[1]);
       }
     });
+    /* Deliberately does NOT set `any`. The warning below is about the registered
+       names and addresses, which are the legally required part; a warranty
+       sentence with no company behind it is not a filled-in brand block, and
+       counting it suppressed the warning on a block that was still missing
+       everything that matters. */
     LANGS.forEach(function (l) {
       var terms = str(brand["warranty_terms_" + l.code]);
       if (!terms) return;
-      any = true;
       lines.push("");
       lines.push("   " + l.label);
       lines.push(indent(terms, 6));
@@ -398,6 +402,61 @@
       lines.push("   Set them once on the Packaging legal block page in /admin.");
     }
     return lines.join("\n");
+  }
+
+  /* Section 6 for one language: the 6A/6B/6C blocks the product type opens, each
+     one its measurable attributes then its prose.
+
+     Returns `prose` separately from `text` because the two mean different things
+     to the caller. The attribute rows are the same characters in every language
+     — "9V", "N52", "10000" — so they must not make a language block look
+     translated, for the same reason the model number does not. The prose does.
+
+     Extracted so that languageBlock, buildSubLabel and build's figures-only
+     fallback all read the same assembly instead of three copies of it;
+     buildSubLabel's copy had already started to differ in how it joined rows. */
+  function specSection(lang, pkg, product) {
+    var type = str(pkg.packaging_product_type);
+    var parts = [];
+    var prose = false;
+    SPEC_BLOCKS.forEach(function (b) {
+      if (b.types.indexOf(type) === -1) return;
+      /* Measurable attributes first, then the prose. A designer reading down the
+         block gets the figures that go in the spec table before the sentence
+         that qualifies them. A value of "0" is printed: it is a number someone
+         chose, not an empty box, so the test is against "" rather than
+         falsiness. */
+      var rows = [];
+      (SPEC_ATTRS[b.prefix] || []).forEach(function (a) {
+        var v = str(pkg[a.name]);
+        if (v === "") return;
+        rows.push("      " + a[lang] + ": " + v + (a.unit ? " " + a.unit : ""));
+      });
+      var body = str(pkg[b.prefix + "_" + lang]);
+      if (!rows.length && !body) return;
+      /* 6A/6B/6C sit one level under "6. Technical specifications", so the
+         sub-heading is indented too — at column 0 it reads as a sibling of 6
+         rather than a part of it, which matters when a Combined product stacks
+         three of them. */
+      var piece = "   " + b.label[lang];
+      if (rows.length) piece += "\n" + rows.join("\n");
+      if (body) {
+        piece += "\n" + indent(body, 6);
+        prose = true;
+      }
+      parts.push(piece);
+    });
+    /* Only when NO block matched the type at all do we fall back to the site's
+       technical content. Falling back per-block would mix a generic spec table
+       into a labelled 6A/6B/6C section and make it look reviewed when it is not. */
+    if (!parts.length) {
+      var fallback = str(product["technical_content_" + lang]);
+      if (fallback) {
+        parts.push(indent(fallback));
+        prose = true;
+      }
+    }
+    return { text: parts.join("\n\n"), prose: prose };
   }
 
   /* One language block. Returns "" when the language has nothing at all in it,
@@ -429,51 +488,12 @@
     add(S.contents, pick(pkg["package_contents_" + lang], product["accessories_" + lang]));
     add(S.material, pkg["main_material_" + lang]);
 
-    var type = str(pkg.packaging_product_type);
-    var specParts = [];
-    var specProse = false;
-    SPEC_BLOCKS.forEach(function (b) {
-      if (b.types.indexOf(type) === -1) return;
-      /* Measurable attributes first, then the prose. A designer reading down the
-         block gets the figures that go in the spec table before the sentence
-         that qualifies them. A value of "0" is printed: it is a number someone
-         chose, not an empty box, so the test is against "" rather than
-         falsiness. */
-      var rows = [];
-      (SPEC_ATTRS[b.prefix] || []).forEach(function (a) {
-        var v = str(pkg[a.name]);
-        if (v === "") return;
-        rows.push("      " + a[lang] + ": " + v + (a.unit ? " " + a.unit : ""));
-      });
-      var body = str(pkg[b.prefix + "_" + lang]);
-      if (!rows.length && !body) return;
-      /* 6A/6B/6C sit one level under "6. Technical specifications", so the
-         sub-heading is indented too — at column 0 it reads as a sibling of 6
-         rather than a part of it, which matters when a Combined product stacks
-         three of them. */
-      var piece = "   " + b.label[lang];
-      if (rows.length) piece += "\n" + rows.join("\n");
-      if (body) {
-        piece += "\n" + indent(body, 6);
-        specProse = true;
-      }
-      specParts.push(piece);
-    });
-    /* Only when NO block matched the type at all do we fall back to the site's
-       technical content. Falling back per-block would mix a generic spec table
-       into a labelled 6A/6B/6C section and make it look reviewed when it is not. */
-    if (!specParts.length) {
-      var fallback = str(product["technical_content_" + lang]);
-      if (fallback) {
-        specParts.push(indent(fallback));
-        specProse = true;
-      }
-    }
-    if (specParts.length) {
-      parts.push(S.specs + "\n" + specParts.join("\n\n"));
+    var spec = specSection(lang, pkg, product);
+    if (spec.text) {
+      parts.push(S.specs + "\n" + spec.text);
       /* Only prose counts. A block holding nothing but the shared figures is
          the same four identical copies the model number was made neutral for. */
-      if (specProse) translated++;
+      if (spec.prose) translated++;
     }
 
     add(X.lithium, pkg["lithium_warning_" + lang]);
@@ -507,10 +527,25 @@
          Vietnamese instead — see buildSubLabel. */
       "--- PRE-PRINT CHECKS ---\n" + preflight(pkg, product, brand, "en").join("\n"),
     ];
+    var anyLanguage = false;
     LANGS.forEach(function (l) {
       var b = languageBlock(l.code, pkg, product);
-      if (b) blocks.push(b);
+      if (b) {
+        anyLanguage = true;
+        blocks.push(b);
+      }
     });
+    /* Nothing the operator typed may fall out of the file. A record whose specs
+       are all figures and whose name is still blank produces no language block
+       at all — the figures are neutral by design, so they cannot make one — and
+       eight filled boxes used to vanish while the Vietnamese sticker printed
+       them. Print them once, unwrapped, when that happens. */
+    if (!anyLanguage) {
+      var only = specSection("en", pkg, product);
+      if (only.text) {
+        blocks.push(SECTIONS.en.specs + "\n" + only.text);
+      }
+    }
     blocks.push(brandBlock(brand, product));
     if (str(pkg.iata_notes)) {
       blocks.push("AIR FREIGHT / IATA NOTES\n" + indent(pkg.iata_notes));
@@ -565,17 +600,11 @@
        no room to spare. */
     if (electric) sec("Năm sản xuất", pick(pkg.manufacturing_year, "____"));
 
-    var specRows = [];
-    SPEC_BLOCKS.forEach(function (b) {
-      if (b.types.indexOf(type) === -1) return;
-      (SPEC_ATTRS[b.prefix] || []).forEach(function (a) {
-        var v = str(pkg[a.name]);
-        if (v !== "") specRows.push(a.vi + ": " + v + (a.unit ? " " + a.unit : ""));
-      });
-      var prose = str(pkg[b.prefix + "_vi"]);
-      if (prose) specRows.push(prose);
-    });
-    sec("Thông số kỹ thuật", specRows.join("\n"));
+    /* The same assembly the full export uses, so the sticker and the main sheet
+       cannot disagree about what this product's specs are. `sec` re-indents, so
+       the block headings and leading spaces specSection adds for the .txt are
+       stripped back out here. */
+    sec("Thông số kỹ thuật", specSection("vi", pkg, product).text);
 
     sec("Hướng dẫn sử dụng", pkg.instructions_precautions_vi);
     sec("Hướng dẫn bảo quản", pkg.storage_instructions_vi);

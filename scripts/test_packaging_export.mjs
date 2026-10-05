@@ -476,4 +476,59 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
   ok('the form and the export agree: no record passes Save and then fails the export');
 }
 
+/* ---------- nothing the operator typed may fall out of the file ----------
+   The figures are neutral by design, so they cannot make a language block of
+   their own. A record whose specs are all figures and whose name is still blank
+   therefore produced NO language block, and eight filled boxes vanished — while
+   buildSubLabel printed them, so the two exports disagreed about one record. */
+{
+  const figuresOnly = {
+    packaging_product_type: 'Power bank',
+    battery_type: 'Li-ion', battery_capacity_mah: '10000', rated_voltage: '3.7V',
+    watt_hour_wh: '37', port1_spec: 'USB-C 5V/3A', max_combined_output: '65W',
+    input_voltage: '9V',
+  };
+  const nameless = { product_id: 'V99' };
+  const txt = P.build(figuresOnly, nameless, DATE, {});
+  for (const v of ['10000 mAh', '3.7V', '37 Wh', 'Li-ion', 'USB-C 5V/3A', '65W', '9V']) {
+    assert.ok(txt.includes(v), `"${v}" was typed in and must appear somewhere in the export`);
+  }
+  assert.ok(!txt.includes('VI — Tiếng Việt'),
+    'figures still must not conjure a language block — they are the same in every language');
+  // And the two exports must agree about the same record.
+  const sub = P.buildSubLabel(figuresOnly, nameless, {});
+  assert.ok(sub.includes('10000 mAh') && txt.includes('10000 mAh'),
+    'the sticker and the main sheet must not disagree about this product');
+  ok('spec figures reach the export even when no language has any prose');
+}
+
+/* ---------- the brand block warns until the registered names are in ---------- */
+{
+  const onlyTerms = P.build({ packaging_product_type: 'Magnetic bracket' }, PRODUCT, DATE,
+    { warranty_terms_zh: '保固十二個月' });
+  assert.ok(onlyTerms.includes('NOT YET FILLED IN'),
+    'a warranty sentence with no company behind it is not a filled-in brand block');
+  assert.ok(onlyTerms.includes('保固十二個月'), 'the warranty sentence must still print');
+  ok('the brand block keeps warning until the registered names are filled in');
+}
+
+/* ---------- a product nobody has packaged still saves ----------
+   country_of_origin is legally required on every label, but binding it
+   unconditionally bound every product in the catalogue: editing a price refused
+   to save, naming a field on a tab the operator had never opened. */
+{
+  const pk = SCHEMA.product_packaging;
+  const field = (n) => pk.fields.find((f) => f.name === n);
+  const unconditional = pk.fields.filter((f) => f.required);
+  assert.deepEqual(unconditional, [],
+    'no packaging field may be unconditionally required — the tab renders for every product');
+  assert.deepEqual(SCHEMA.brand_settings.fields.filter((f) => f.required), [],
+    'brand_settings is seeded all-NULL on purpose; a required flag would refuse the intended state');
+  assert.equal(field('country_of_origin').requiredIf.in, PKG_TYPES.all,
+    'country_of_origin binds once a packaging type is chosen, not before');
+  assert.equal(field('manufacturing_year').requiredIf, undefined,
+    'an empty year is the designed answer — header() prints a fill-in line for the printer');
+  ok('a product with an untouched Packaging tab can still be saved');
+}
+
 console.log(`\nClean: ${checks} checks passed.`);

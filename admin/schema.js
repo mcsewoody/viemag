@@ -42,6 +42,13 @@ window.VIEMAG_PKG_TYPES = {
      figure air freight will not move the goods without. */
   battery: ['Power bank', 'Combined product'],
 };
+/* Every type, in the order the select offers them. Also the answer to "has
+   anyone started a packaging record for this product?" — which is what the
+   legally-required-on-every-label fields hang off, so that a product nobody has
+   packaged yet still saves. */
+window.VIEMAG_PKG_TYPES.all = [
+  'Magnetic bracket', 'Charging product', 'Power bank', 'Combined product',
+];
 
 window.VIEMAG_SCHEMA = {
   /* The product editor is the only three-tab form in /admin, and the tabs are a
@@ -289,7 +296,7 @@ window.VIEMAG_SCHEMA = {
     title: 'product_id',
     fields: [
       { name: 'packaging_status', type: 'select', internal: true, options: ['Draft', 'Ready for design', 'Sent to print', 'Printed'], desc: 'Where this box is in its own workflow. Separate from the product Status, which is about the website — a product can be live on the site for months while its packaging is still a draft.' },
-      { name: 'packaging_product_type', type: 'select', internal: true, options: ['Magnetic bracket', 'Charging product', 'Power bank', 'Combined product'], desc: 'Which technical-specification block this product needs. Choosing it shows the matching block below and hides the others; Combined product shows more than one. It also decides what the law asks for — a charging product must print a year of manufacture, a bare bracket need not.' },
+      { name: 'packaging_product_type', type: 'select', internal: true, options: window.VIEMAG_PKG_TYPES.all, desc: 'Which technical-specification block this product needs. Choosing it shows the matching block below and hides the others; Combined product shows more than one. It also decides what the law asks for — a charging product must print a year of manufacture, a bare bracket need not.' },
       { name: 'model_number', type: 'text', internal: true, desc: 'The model printed on the box. Normally leave blank: the export falls back to the official SKU code, then to the internal one, so the box, the outer carton and the barcode cannot drift apart. Only fill this in when the printed model genuinely differs.' },
       { name: 'barcode_ean_upc', type: 'text', internal: true, validate: 'ean13', desc: 'EAN-13, 13 digits. Stored as text on purpose — a number field would drop a leading zero. Saving a half-typed code is allowed; the export is what refuses to sign it off, so nothing goes to print against an unissued barcode.' },
       { name: 'packaging_name_en', type: 'textarea', internal: true, desc: 'The product name as printed on the box. This must be a real name that says what the thing does — a brand name or a model number does not count as one. All four languages sit side by side; Vietnamese is the one the law actually requires.' },
@@ -322,7 +329,14 @@ window.VIEMAG_SCHEMA = {
       { name: 'power_bank_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Traditional Chinese), one per line.' },
 
       /* ---------- general label content ---------- */
-      { name: 'country_of_origin', type: 'text', internal: true, required: true, desc: 'Where the goods were actually made, as printed, e.g. Made in China. Required on every label whatever the product is. Per product rather than set once for the brand, because the same brand ships boxes made in different countries — and a sticker applied in Vietnam does not make the goods Vietnamese.' },
+      /* requiredIf, not required. It is legally required on every label — but
+         the box is only being made once someone has chosen a packaging type,
+         and an unconditional `required` here bound every product in the
+         catalogue: editing a price refused to save, naming a field on a tab the
+         operator had never opened. It also killed the guard in saveSubRecords
+         that exists to avoid writing an empty packaging row for a product
+         nobody has packaged, by making that state unreachable. */
+      { name: 'country_of_origin', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.all }, desc: 'Where the goods were actually made, as printed, e.g. Made in China. Required on every label whatever the product is. Per product rather than set once for the brand, because the same brand ships boxes made in different countries — and a sticker applied in Vietnam does not make the goods Vietnamese.' },
       /* No requiredIf, deliberately. The description below and header() in
          packaging-export.js both treat an empty year as the correct answer —
          the export prints a fill-in line for the printer rather than a year
@@ -390,13 +404,18 @@ window.VIEMAG_SCHEMA = {
      have to match the business licence exactly, and a machine translation of an
      address is a plausible-looking address that is not the legal one. Only the
      warranty sentence is prose, so only that one has four languages. */
+  /* Nothing here is `required`. The migration seeds the single row with every
+     column NULL and calls that the intended state until legal confirms the
+     registered names — so a rule refusing to save it would refuse exactly the
+     state the design asks for. The export's [FAIL] line is the gate, and it
+     fires on every export until the names are filled in. */
   brand_settings: {
     note: 'notePackaging',
     title: 'responsible_company',
     singleton: true,
     fields: [
-      { name: 'responsible_company', type: 'text', internal: true, required: true, desc: 'The organisation that answers for the goods, in its registered name exactly as it appears on the business licence. Depending on the shipment this may be the manufacturer or the importer; the law cares that it is named and reachable, not which of the two it is.' },
-      { name: 'responsible_address', type: 'textarea', internal: true, required: true, desc: 'Full registered address of the company above. Printed as written — do not abbreviate it to fit the panel.' },
+      { name: 'responsible_company', type: 'text', internal: true, desc: 'The organisation that answers for the goods, in its registered name exactly as it appears on the business licence. Depending on the shipment this may be the manufacturer or the importer; the law cares that it is named and reachable, not which of the two it is.' },
+      { name: 'responsible_address', type: 'textarea', internal: true, desc: 'Full registered address of the company above. Printed as written — do not abbreviate it to fit the panel.' },
       { name: 'importer_name', type: 'text', internal: true, desc: 'Registered name of the Vietnamese importer. Required on the label whenever the goods are imported, and separate from the responsible company because the usual case has one of each.' },
       { name: 'importer_address', type: 'textarea', internal: true, desc: 'Full registered address of the Vietnamese importer.' },
       { name: 'customer_contact', type: 'text', internal: true, desc: 'At least one channel a buyer can actually reach — a phone number or an email address. Expected next to the responsible-party block, and a buyer with a faulty product is the person it is for.' },

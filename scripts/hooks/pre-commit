@@ -279,4 +279,43 @@ edge_function_reminder() {
   echo "" >&2
 }
 
+# The two offline checks. Neither needs a database or a network call, so both
+# are cheap enough to run on every commit that touches what they cover.
+#
+# They existed for weeks and nothing ran them: there is no CI in this repo, so
+# "the audit would catch it" meant "someone would remember". It did not get
+# remembered — four rules drifted apart between admin/schema.js and
+# admin/packaging-export.js, and a test that asserted "Vietnamese only" passed
+# while the file ended in thirteen English sentences. A check nobody runs is a
+# comment.
+#
+# Blocking, not advisory: both are deterministic and currently green, so a red
+# one means something real broke. --no-verify is the escape hatch.
+offline_checks() {
+  command -v node >/dev/null 2>&1 || {
+    echo "pre-commit: 找不到 node，略過離線檢查。" >&2
+    return 0
+  }
+
+  if ! git diff --cached --name-only --diff-filter=ACMR \
+       | grep -qE '^(admin/|scripts/test_packaging_export\.mjs)'; then
+    return 0
+  fi
+
+  for check in scripts/test_packaging_export.mjs scripts/audit-field-parity.mjs; do
+    [ -f "$check" ] || continue
+    if ! out=$(node "$check" 2>&1); then
+      echo "" >&2
+      echo "pre-commit: $check 沒有通過，commit 已中止。" >&2
+      echo "$out" | tail -25 >&2
+      echo "" >&2
+      echo "   修好再 commit；真的要跳過請用 git commit --no-verify。" >&2
+      return 1
+    fi
+  done
+
+  echo "pre-commit: 離線檢查通過（包裝匯出、欄位對照）。" >&2
+}
+
 edge_function_reminder
+offline_checks
