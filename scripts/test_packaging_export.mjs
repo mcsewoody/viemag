@@ -316,7 +316,38 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
   );
   assert.ok(!bracket.includes('Năm sản xuất'),
     'a non-electric product must not spend a line of a sticker on a year it does not need');
-  ok('the Vietnamese sub-label carries the mandatory content only, in Vietnamese only');
+
+  /* The sub-label used to end with thirteen English sentences, because it
+     appends preflight() and preflight() was English-only string literals. The
+     block above asserted "Vietnamese only" and passed anyway — it checked the
+     content and never the checks. These two assertions are what that claim
+     actually means. */
+  assert.ok(!txt.includes('PRE-PRINT CHECKS'), 'the English heading must not appear on a Vietnamese sticker');
+  assert.ok(txt.includes('KIỂM TRA TRƯỚC KHI IN'), 'the checks heading must be Vietnamese');
+  const asciiOnly = txt.split('\n').filter((l) =>
+    /^\[(ok|FAIL|WARN|note)\]/.test(l) && !/[àáâãèéêìíòóôõùúýăđĩũơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]/i.test(l));
+  assert.deepEqual(asciiOnly, [], 'every check line on the sticker must be Vietnamese');
+  ok('the Vietnamese sub-label carries the mandatory content only, in Vietnamese only — checks included');
+}
+
+/* ---------- the checks themselves are translated ---------- */
+{
+  const pkg = { packaging_product_type: 'Power bank', barcode_ean_upc: 'nope' };
+  const product = { product_id: 'V01', qi_status: 'Certified' };
+  const seen = {};
+  for (const lang of ['vi', 'en', 'id', 'zh']) {
+    seen[lang] = P.preflight(pkg, product, {}, lang).join('\n');
+  }
+  assert.ok(seen.vi.includes('Mã vạch nope không phải EAN-13 hợp lệ'), 'the {0} slot must carry the value');
+  assert.ok(seen.en.includes('Barcode nope is not a valid EAN-13'));
+  assert.ok(seen.zh.includes('條碼 nope 不是有效的 EAN-13'));
+  assert.ok(seen.id.includes('Barcode nope bukan EAN-13 yang sah'));
+  // Four genuinely different renderings, not one language four times.
+  assert.equal(new Set(Object.values(seen)).size, 4, 'each language must differ from the others');
+  // An unknown language falls back to English rather than printing a key.
+  assert.ok(P.preflight(pkg, product, {}, 'xx').join('\n').includes('Barcode nope is not'),
+    'an unknown language must fall back to English, not emit the key name');
+  ok('every pre-print check renders in all four languages and falls back to English');
 }
 
 /* ---------- the print sheet ---------- */

@@ -224,6 +224,43 @@
     return (10 - (sum % 10)) % 10 === Number(code[12]);
   }
 
+  /* The pre-print checks, one entry per verdict, four languages each.
+
+     They were English-only string literals until buildSubLabel() started
+     appending them: a designer handed a file headed NHÃN PHỤ TIẾNG VIỆT read
+     nine Vietnamese sections and then hit thirteen English sentences,
+     including the two [FAIL] lines that are the entire reason the checks
+     exist. The checks are the part a human must act on, so they are the part
+     that most needed translating.
+
+     {0} is the one value a line carries — a barcode, a Qi ID, a year. One slot
+     is enough for every check here and keeps the table readable. */
+  var CHECKS = {
+    nameOk:        { vi: "[ok]   Có tên sản phẩm tiếng Việt", en: "[ok]   Vietnamese product name present", id: "[ok]   Nama produk bahasa Vietnam tersedia", zh: "[ok]   已有越南文品名" },
+    nameMissing:   { vi: "[FAIL] Thiếu tên sản phẩm tiếng Việt — Điều 42 bắt buộc, và tên thương hiệu hay mã model không được tính là tên sản phẩm", en: "[FAIL] No Vietnamese product name — required by Article 42, and a brand or model code does not count as one", id: "[FAIL] Tidak ada nama produk bahasa Vietnam — diwajibkan Pasal 42; merek atau kode model tidak dihitung", zh: "[FAIL] 沒有越南文品名——第 42 條強制要求，品牌名或型號不算品名" },
+    noType:        { vi: "[WARN] Chưa chọn loại bao bì — không chọn được khối thông số kỹ thuật nào", en: "[WARN] No packaging product type chosen — no technical specification block could be selected", id: "[WARN] Jenis produk kemasan belum dipilih — tidak ada blok spesifikasi yang dapat dipilih", zh: "[WARN] 尚未選擇包裝產品類型——無法選出對應的技術規格區塊" },
+    eanMissing:    { vi: "[FAIL] Mã vạch EAN/UPC còn trống — không gửi in khi mã chưa được cấp", en: "[FAIL] Barcode EAN/UPC is empty — do not send to print before the code has been issued", id: "[FAIL] Barcode EAN/UPC kosong — jangan kirim ke percetakan sebelum kode diterbitkan", zh: "[FAIL] 條碼 EAN/UPC 空白——條碼未配發前不得送印" },
+    eanInvalid:    { vi: "[FAIL] Mã vạch {0} không phải EAN-13 hợp lệ (13 chữ số, số cuối là chữ số kiểm tra)", en: "[FAIL] Barcode {0} is not a valid EAN-13 (13 digits, last one a check digit)", id: "[FAIL] Barcode {0} bukan EAN-13 yang sah (13 digit, digit terakhir adalah check digit)", zh: "[FAIL] 條碼 {0} 不是有效的 EAN-13（13 位數字，最後一位為檢查碼）" },
+    eanOk:         { vi: "[ok]   Mã vạch EAN-13 {0} đúng chữ số kiểm tra", en: "[ok]   Barcode EAN-13 {0} passes its check digit", id: "[ok]   Barcode EAN-13 {0} lolos check digit", zh: "[ok]   條碼 EAN-13 {0} 檢查碼正確" },
+    qiOk:          { vi: "[ok]   Được in logo Qi — đã chứng nhận, mã WPC {0}", en: "[ok]   Qi logo may be printed — certified, WPC ID {0}", id: "[ok]   Logo Qi boleh dicetak — bersertifikat, WPC ID {0}", zh: "[ok]   可印 Qi 標誌——已認證，WPC ID {0}" },
+    qiNoId:        { vi: "[FAIL] Trạng thái Qi là Certified nhưng chưa có mã Qi — không in logo Qi cho tới khi điền mã", en: "[FAIL] Qi status is Certified but no Qi ID is recorded — do not print the Qi logo until the ID is filled in", id: "[FAIL] Status Qi adalah Certified tetapi Qi ID belum dicatat — jangan cetak logo Qi sebelum ID diisi", zh: "[FAIL] Qi 狀態為 Certified 但未登錄 Qi ID——填入 ID 前不得印 Qi 標誌" },
+    qiForbidden:   { vi: "[WARN] KHÔNG được in logo Qi và chữ Certified lên hộp này (trạng thái Qi: {0})", en: "[WARN] Qi logo and the word Certified MUST NOT appear on this box (Qi status: {0})", id: "[WARN] Logo Qi dan kata Certified TIDAK BOLEH muncul pada kotak ini (status Qi: {0})", zh: "[WARN] 本盒不得出現 Qi 標誌與 Certified 字樣（Qi 狀態：{0}）" },
+    originMissing: { vi: "[FAIL] Chưa điền xuất xứ — Điều 42 bắt buộc trên mọi nhãn, không phân biệt loại hàng", en: "[FAIL] Country of origin is empty — Article 42 requires it on every label, whatever the product is", id: "[FAIL] Negara asal kosong — Pasal 42 mewajibkannya pada setiap label, apa pun produknya", zh: "[FAIL] 未填原產地——第 42 條要求每一張標示都必須標明，不分商品類別" },
+    yearFilled:    { vi: "[WARN] Năm sản xuất ghi {0} — năm thay đổi theo lô, hãy đối chiếu với lô đang in", en: "[WARN] Year of manufacture reads {0} — it changes per batch, so confirm it against the run being printed", id: "[WARN] Tahun pembuatan tertulis {0} — berubah per batch, cocokkan dengan produksi yang dicetak", zh: "[WARN] 製造年份為 {0}——此值逐批不同，請與本次印製的批次核對" },
+    yearMissing:   { vi: "[WARN] Hàng điện bắt buộc có năm sản xuất, và năm thay đổi theo lô — điền lúc gửi in", en: "[WARN] Year of manufacture is required for electrical goods and changes per batch — fill it in at print time", id: "[WARN] Tahun pembuatan wajib untuk barang elektrik dan berubah per batch — isi saat akan dicetak", zh: "[WARN] 帶電產品必須標製造年份，且逐批不同——送印時填入" },
+    whOk:          { vi: "[ok]   Đã khai watt-giờ ({0} Wh) — con số vận chuyển hàng không yêu cầu", en: "[ok]   Watt-hours declared ({0} Wh) — the figure air freight asks for", id: "[ok]   Watt-jam dinyatakan ({0} Wh) — angka yang diminta angkutan udara", zh: "[ok]   已申報瓦時（{0} Wh）——空運所需的數值" },
+    whMissing:     { vi: "[FAIL] Sản phẩm có pin nhưng chưa khai watt-giờ — vận chuyển hàng không sẽ không nhận hàng", en: "[FAIL] No watt-hour figure for a product with cells — air freight will not accept the goods without it", id: "[FAIL] Produk berbaterai tanpa angka watt-jam — angkutan udara tidak akan menerima barang", zh: "[FAIL] 含電芯產品未申報瓦時——空運不會收貨" },
+    lithiumMissing:{ vi: "[FAIL] Thiếu cảnh báo pin lithium tiếng Việt — bắt buộc với mọi sản phẩm có pin", en: "[FAIL] No Vietnamese lithium-cell warning — required on anything containing cells", id: "[FAIL] Tidak ada peringatan sel litium bahasa Vietnam — wajib untuk produk berbaterai", zh: "[FAIL] 缺越南文鋰電池警語——含電芯產品一律必填" },
+    brandMissing:  { vi: "[FAIL] Chưa điền công ty chịu trách nhiệm và/hoặc nhà nhập khẩu Việt Nam — điền một lần ở trang Thông tin pháp lý trên bao bì", en: "[FAIL] Responsible company and/or Vietnam importer is not yet filled in — set it once on the Packaging legal block page", id: "[FAIL] Perusahaan penanggung jawab dan/atau importir Vietnam belum diisi — isi sekali di halaman blok legal kemasan", zh: "[FAIL] 尚未填寫責任公司及／或越南進口商——請於「包裝法規資訊」頁一次設定" },
+    notCert:       { vi: "[note] Ghi nhãn không phải là chứng nhận. Việc hợp quy và dấu CR được xác nhận theo từng model với nhà nhập khẩu; danh sách này không thay thế việc đó.", en: "[note] Labelling is not certification. Conformity approval and the CR mark are confirmed per model with the importer; this checklist does not replace that.", id: "[note] Pelabelan bukan sertifikasi. Persetujuan kesesuaian dan tanda CR dikonfirmasi per model dengan importir; daftar ini tidak menggantikannya.", zh: "[note] 標示不等於認證。合規核可與 CR 標誌須就各型號與進口商確認；本檢核表不能取代該程序。" },
+  };
+
+  function check(key, lang, value) {
+    var row = CHECKS[key];
+    var text = (row && (row[lang] || row.en)) || key;
+    return text.replace("{0}", value == null ? "" : String(value));
+  }
+
   /* The checks are advisory on purpose, and they are in the FILE rather than in
      the form. Blocking Save would only produce placeholder barcodes; putting the
      verdict at the top of the document the designer actually opens puts it in
@@ -232,29 +269,23 @@
      Not a compliance certificate: labelling correctly is not the same as being
      approved for sale. Conformity certification and the CR mark are decided per
      model with the importer, and no generic checklist can stand in for that. */
-  function preflight(pkg, product, brand) {
+  function preflight(pkg, product, brand, lang) {
+    lang = lang || "en";
     var out = [];
     var type = str(pkg.packaging_product_type);
     var electric = PKG.charging.indexOf(type) !== -1;
+    var add = function (key, value) {
+      out.push(check(key, lang, value));
+    };
 
-    if (pick(pkg.packaging_name_vi, product.name_vi)) {
-      out.push("[ok]   Vietnamese product name present");
-    } else {
-      out.push("[FAIL] No Vietnamese product name — required by Article 42, and a brand or model code does not count as one");
-    }
+    add(pick(pkg.packaging_name_vi, product.name_vi) ? "nameOk" : "nameMissing");
 
-    if (!type) {
-      out.push("[WARN] No packaging product type chosen — no technical specification block could be selected");
-    }
+    if (!type) add("noType");
 
     var ean = str(pkg.barcode_ean_upc);
-    if (!ean) {
-      out.push("[FAIL] Barcode EAN/UPC is empty — do not send to print before the code has been issued");
-    } else if (!ean13Valid(ean)) {
-      out.push("[FAIL] Barcode " + ean + " is not a valid EAN-13 (13 digits, last one a check digit)");
-    } else {
-      out.push("[ok]   Barcode EAN-13 " + ean + " passes its check digit");
-    }
+    if (!ean) add("eanMissing");
+    else if (!ean13Valid(ean)) add("eanInvalid", ean);
+    else add("eanOk", ean);
 
     /* The V3 coding manual dropped the certification marker from the SKU itself
        (section 7.2): the code no longer tells anyone whether the Qi logo may be
@@ -262,51 +293,32 @@
        line is that gate. */
     if (str(product.qi_status) === "Certified") {
       var qiId = str(product.qi_id);
-      out.push(
-        qiId
-          ? "[ok]   Qi logo may be printed — certified, WPC ID " + qiId
-          : "[FAIL] Qi status is Certified but no Qi ID is recorded — do not print the Qi logo until the ID is filled in",
-      );
+      add(qiId ? "qiOk" : "qiNoId", qiId);
     } else {
-      out.push(
-        "[WARN] Qi logo and the word Certified MUST NOT appear on this box (Qi status: " +
-          (str(product.qi_status) || "not set") +
-          ")",
-      );
+      add("qiForbidden", str(product.qi_status) || "—");
     }
 
-    if (!str(pkg.country_of_origin)) {
-      out.push("[FAIL] Country of origin is empty — Article 42 requires it on every label, whatever the product is");
-    }
+    if (!str(pkg.country_of_origin)) add("originMissing");
 
     if (electric) {
       /* Appendix I category 40. A filled-in year is still only right for the
          batch it was typed for, so the warning stays either way — it just
          changes from "nothing is here" to "check this is still the batch". */
-      out.push(
-        str(pkg.manufacturing_year)
-          ? "[WARN] Year of manufacture reads " + str(pkg.manufacturing_year) + " — it changes per batch, so confirm it against the run being printed"
-          : "[WARN] Year of manufacture is required for electrical goods and changes per batch — fill it in at print time",
-      );
+      var year = str(pkg.manufacturing_year);
+      add(year ? "yearFilled" : "yearMissing", year);
     }
 
     if (PKG.battery.indexOf(type) !== -1) {
       var wh = str(pkg.watt_hour_wh);
-      out.push(
-        wh
-          ? "[ok]   Watt-hours declared (" + wh + " Wh) — the figure air freight asks for"
-          : "[FAIL] No watt-hour figure for a product with cells — air freight will not accept the goods without it",
-      );
-      if (!pick(pkg.lithium_warning_vi)) {
-        out.push("[FAIL] No Vietnamese lithium-cell warning — required on anything containing cells");
-      }
+      add(wh ? "whOk" : "whMissing", wh);
+      if (!pick(pkg.lithium_warning_vi)) add("lithiumMissing");
     }
 
     if (!str(brand.responsible_company) || !str(brand.importer_name)) {
-      out.push("[FAIL] Responsible company and/or Vietnam importer is not yet filled in — set it once on the Packaging legal block page");
+      add("brandMissing");
     }
 
-    out.push("[note] Labelling is not certification. Conformity approval and the CR mark are confirmed per model with the importer; this checklist does not replace that.");
+    add("notCert");
     return out;
   }
 
@@ -490,7 +502,10 @@
     brand = brand || {};
     var blocks = [
       header(pkg, product, today),
-      "--- PRE-PRINT CHECKS ---\n" + preflight(pkg, product, brand).join("\n"),
+      /* English here: the full export is the four-language document and its
+         scaffolding has always been English. The Vietnamese sub-label asks for
+         Vietnamese instead — see buildSubLabel. */
+      "--- PRE-PRINT CHECKS ---\n" + preflight(pkg, product, brand, "en").join("\n"),
     ];
     LANGS.forEach(function (l) {
       var b = languageBlock(l.code, pkg, product);
@@ -575,8 +590,8 @@
     /* The checks run against the same data, so a sticker generated from an
        incomplete record carries the reason it is incomplete rather than looking
        finished. */
-    out.push("--- PRE-PRINT CHECKS ---");
-    out.push(preflight(pkg, product, brand).join("\n"));
+    out.push("--- KIỂM TRA TRƯỚC KHI IN ---");
+    out.push(preflight(pkg, product, brand, "vi").join("\n"));
     return out.join("\n") + "\n";
   }
 
@@ -653,6 +668,10 @@
 
   window.VIEMAG_PACKAGING = {
     build: build,
+    /* Exported for the test suite only — nothing in /admin calls it directly.
+       It is the piece most worth asserting on: thirteen sentences a human acts
+       on, in four languages. */
+    preflight: preflight,
     buildSubLabel: buildSubLabel,
     buildPrintHtml: buildPrintHtml,
     fileName: fileName,
