@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.42";
+  var ADMIN_VERSION = "1.43";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -4015,6 +4015,118 @@
     });
   }
 
+  /* Is this field's rule live right now? Same shape and same reading as a
+     group's showIf, so a field that is only required for a power bank is
+     written the same way as a group that is only shown for one. */
+  function ruleMatches(rule) {
+    if (!rule || !rule.field) return false;
+    var ctl = document.querySelector('[data-name="' + rule.field + '"]');
+    return !!ctl && rule.in.indexOf(ctl.value) !== -1;
+  }
+
+  /* Collects every problem on the form and returns them in document order, so
+     the first one is the one to scroll to.
+
+     Both `required` and `validate` had been sitting in admin/schema.js with
+     nothing reading them. `required` was enforced only by the NOT NULL
+     constraint underneath, which means the operator filled in a long form,
+     pressed Save and got a raw Postgres sentence back; `validate: 'ean13'` was
+     enforced by nothing at all.
+
+     A hidden group is skipped on purpose. Hiding is the form saying the field
+     does not apply to this product, and refusing to save over a box nobody can
+     see would be unfixable. A field on an INACTIVE TAB is still checked — it
+     applies, it is just not on screen — which is why reporting a problem
+     switches to its tab. */
+  function collectFormProblems(def) {
+    var problems = [];
+    def.fields.forEach(function (f) {
+      if (f.type === "computed" || f.readOnly || f.type === "relation_many")
+        return;
+      var el = document.querySelector('[data-name="' + f.name + '"]');
+      if (!el) return;
+      var group = el.closest ? el.closest("section.group") : null;
+      if (group && group.hidden) return;
+      var val = String(el.value == null ? "" : el.value).trim();
+      if (!val && (f.required || ruleMatches(f.requiredIf))) {
+        problems.push({ el: el, msg: tf("fieldRequired", { field: f.name }) });
+        return;
+      }
+      /* Only when something was typed: a blank barcode is a `required` question,
+         not a malformed-barcode one, and reporting both for one empty box is
+         noise. */
+      if (
+        val &&
+        f.validate === "ean13" &&
+        window.VIEMAG_PACKAGING &&
+        !window.VIEMAG_PACKAGING.ean13Valid(val)
+      ) {
+        problems.push({ el: el, msg: tf("fieldBadEan", { field: f.name }) });
+      }
+    });
+    return problems;
+  }
+
+  /* Marks the problems, reveals and focuses the first, and returns its message
+     — or null when the form is clean. */
+  function validateForm(ctx) {
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".field.field-error"),
+      function (n) {
+        n.classList.remove("field-error");
+      },
+    );
+    var defs = [ctx.def].concat(
+      (ctx.subTabs || [])
+        .filter(function (tb) {
+          return !tb.ownerOnly || ctx.role === "owner";
+        })
+        .map(function (tb) {
+          return SCHEMA[tb.table];
+        }),
+    );
+    var problems = [];
+    defs.forEach(function (d) {
+      if (d) problems = problems.concat(collectFormProblems(d));
+    });
+    if (!problems.length) return null;
+    problems.forEach(function (p) {
+      var wrap = p.el.closest ? p.el.closest(".field") : null;
+      if (wrap) wrap.classList.add("field-error");
+    });
+    var first = problems[0].el;
+    // Bring its tab to the front, or the operator is told to fix a box that is
+    // not on screen.
+    var panel = first.closest ? first.closest(".tab-panel") : null;
+    if (panel && panel.hidden) {
+      var key = panel.dataset.tab;
+      Array.prototype.forEach.call(
+        document.querySelectorAll(".tab-panel"),
+        function (p) {
+          p.hidden = p.dataset.tab !== key;
+        },
+      );
+      Array.prototype.forEach.call(
+        document.querySelectorAll(".tab-btn"),
+        function (b) {
+          b.classList.toggle("active", b.dataset.tab === key);
+        },
+      );
+    }
+    /* Unfold by clicking its own toggle rather than stripping the class: the
+       folded state is a class, a hidden body AND a caret glyph, and reproducing
+       all three here would be a second copy free to drift from the first. */
+    var group = first.closest ? first.closest("section.group") : null;
+    if (group && group.classList.contains("collapsed")) {
+      var toggle = group.querySelector(".group-toggle");
+      if (toggle) toggle.click();
+    }
+    if (first.scrollIntoView)
+      first.scrollIntoView({ block: "center", behavior: "smooth" });
+    if (first.focus) first.focus();
+    return problems[0].msg;
+  }
+
   function saveForm(ctx, id, joinFields) {
     var tableName = ctx.tableName,
       def = ctx.def,
@@ -4022,6 +4134,12 @@
     var statusEl = document.getElementById("saveStatus");
     var saveBtn = document.getElementById("saveBtn");
     statusEl.className = "save-status";
+    var problem = validateForm(ctx);
+    if (problem) {
+      statusEl.className = "save-status error";
+      statusEl.textContent = problem;
+      return;
+    }
     statusEl.textContent = t("loading");
     // Guard against double-click creating two rows in tables with no unique key.
     saveBtn.disabled = true;

@@ -197,6 +197,10 @@ table.grid td.num-col { text-align: right; font-variant-numeric: tabular-nums; w
   background: var(--panel); color: var(--text);
 }
 .field input:disabled, .field select:disabled { background: var(--panel); color: var(--muted); }
+/* Marked by validateForm when Save is refused. The label turns too, because a
+   border alone is easy to miss on a form this tall. */
+.field.field-error input, .field.field-error select, .field.field-error textarea { border-color: var(--danger); }
+.field.field-error label { color: var(--danger); }
 /* Helper text under a field needs air, or it reads as part of the next row. */
 .field .hint { margin-top: 6px; line-height: 1.5; }
 /* What this field actually does, between the label and the input — read this

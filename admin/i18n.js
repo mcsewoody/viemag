@@ -54,6 +54,8 @@ window.VIEMAG_ADMIN_I18N = {
     passwordRequired: "請輸入密碼。",
     passwordWrong: "密碼不正確，未刪除任何資料。",
     editorCannotDelete: "刪除資料需要管理者權限。如需刪除，請聯絡管理者。",
+    fieldRequired: "「{field}」是必填欄位，尚未填寫。",
+    fieldBadEan: "「{field}」不是有效的 EAN-13／UPC-A：請檢查位數與檢查碼。",
     singletonMissing:
       "這一頁的資料列還不存在，表示建立它的資料庫 migration 尚未執行。請先在 Supabase 執行，再回到這一頁。",
     internalField: "內部欄位",
@@ -292,6 +294,8 @@ window.VIEMAG_ADMIN_I18N = {
     passwordRequired: "请输入密码。",
     passwordWrong: "密码不正确，未删除任何数据。",
     editorCannotDelete: "删除数据需要管理者权限。如需删除，请联系管理者。",
+    fieldRequired: "「{field}」是必填栏位，尚未填写。",
+    fieldBadEan: "「{field}」不是有效的 EAN-13／UPC-A：请检查位数与检查码。",
     singletonMissing:
       "这一页的资料列还不存在，表示建立它的资料库 migration 尚未执行。请先在 Supabase 执行，再回到这一页。",
     internalField: "内部字段",
@@ -532,6 +536,9 @@ window.VIEMAG_ADMIN_I18N = {
     passwordWrong: "That password is not correct. Nothing was deleted.",
     editorCannotDelete:
       "Deleting records requires owner permission. Ask an owner if something needs removing.",
+    fieldRequired: "{field} is required and is still empty.",
+    fieldBadEan:
+      "{field} is not a valid EAN-13 or UPC-A: check the digit count and the check digit.",
     singletonMissing:
       "The row this page edits does not exist yet, which means the migration that seeds it has not been run. Run it in Supabase, then come back to this page.",
     internalField: "Internal",
@@ -782,6 +789,9 @@ window.VIEMAG_ADMIN_I18N = {
     passwordWrong: "Mật khẩu không đúng. Không có dữ liệu nào bị xóa.",
     editorCannotDelete:
       "Xóa dữ liệu cần quyền quản trị viên. Hãy liên hệ quản trị viên nếu cần xóa.",
+    fieldRequired: "{field} là trường bắt buộc và vẫn đang để trống.",
+    fieldBadEan:
+      "{field} không phải EAN-13 hoặc UPC-A hợp lệ: kiểm tra lại số chữ số và chữ số kiểm tra.",
     singletonMissing:
       "Dòng dữ liệu của trang này chưa tồn tại, nghĩa là migration tạo ra nó chưa được chạy. Hãy chạy trên Supabase rồi quay lại trang này.",
     internalField: "Nội bộ",
