@@ -123,6 +123,10 @@ window.VIEMAG_ADMIN_I18N = {
       pkgExport: "匯出給設計師",
     },
     downloadPackagingText: "下載包裝文案（.txt）",
+    packagingPrintSheet: "開啟列印版（含圖片）",
+    downloadSubLabel: "下載越南文副標（.txt）",
+    printNow: "列印／另存 PDF",
+    close: "關閉",
     packagingExportHint:
       "匯出目前表單的內容，四語齊全，空白項目不會出現在檔案裡。存檔前也可以先匯出來看。",
     expand: "展開",
@@ -362,6 +366,10 @@ window.VIEMAG_ADMIN_I18N = {
       pkgExport: "导出给设计师",
     },
     downloadPackagingText: "下载包装文案（.txt）",
+    packagingPrintSheet: "打开列印版（含图片）",
+    downloadSubLabel: "下载越南文副标（.txt）",
+    printNow: "列印／另存 PDF",
+    close: "关闭",
     packagingExportHint:
       "导出目前表单的内容，四语齐全，空白项目不会出现在文件里。保存前也可以先导出来看。",
     expand: "展开",
@@ -609,6 +617,10 @@ window.VIEMAG_ADMIN_I18N = {
       pkgExport: "Hand over to the designer",
     },
     downloadPackagingText: "Download packaging text (.txt)",
+    packagingPrintSheet: "Open print sheet (with images)",
+    downloadSubLabel: "Download Vietnamese sub-label (.txt)",
+    printNow: "Print / Save as PDF",
+    close: "Close",
     packagingExportHint:
       "Exports what the form holds right now, in all four languages. Anything left blank is left out of the file entirely. You can export before saving to check it.",
     expand: "Show",
@@ -860,6 +872,10 @@ window.VIEMAG_ADMIN_I18N = {
       pkgExport: "Gửi cho designer",
     },
     downloadPackagingText: "Tải nội dung bao bì (.txt)",
+    packagingPrintSheet: "Mở bản in (kèm ảnh)",
+    downloadSubLabel: "Tải nhãn phụ tiếng Việt (.txt)",
+    printNow: "In / Lưu PDF",
+    close: "Đóng",
     packagingExportHint:
       "Xuất đúng nội dung đang có trên biểu mẫu, đủ bốn ngôn ngữ. Mục nào để trống thì không xuất ra file. Có thể xuất thử trước khi lưu.",
     expand: "Mở",

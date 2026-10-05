@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.43";
+  var ADMIN_VERSION = "1.44";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1670,6 +1670,26 @@
             return r ? r.sales_cost_usd : null;
           });
 
+    /* The brand block the packaging export prints. Only fetched for a form that
+       has a packaging tab, and a failure resolves to {} rather than rejecting:
+       the export then prints its NOT YET FILLED IN paragraph, which is what it
+       does for an empty row anyway. Losing the whole product form because one
+       read-only extra was unavailable would be the wrong trade. */
+    var brandPromise = subTabs.some(function (tb) {
+      return tb.table === "product_packaging";
+    })
+      ? sb
+          .from("brand_settings")
+          .select("*")
+          .maybeSingle()
+          .then(function (r) {
+            return (!r.error && r.data) || {};
+          })
+          .catch(function () {
+            return {};
+          })
+      : Promise.resolve({});
+
     Promise.all([
       rowPromise,
       relOptionsPromise,
@@ -1677,6 +1697,7 @@
       subPromise,
       costPromise,
       rolePromise,
+      brandPromise,
     ])
       .catch(function (err) {
         // Never render a half-loaded form — it would be a loaded gun for Save.
@@ -1708,6 +1729,7 @@
           subRows: results[3] || {},
           viewCost: results[4],
           role: results[5],
+          brand: results[6] || {},
         };
         root.innerHTML = buildFormHtml(ctx);
         wireFormEvents(ctx, id, joinFields);
@@ -1921,9 +1943,17 @@
         '<p class="field-desc">' +
         esc(t("packagingExportHint")) +
         "</p>" +
+        '<div class="btn-row">' +
+        '<button type="button" class="btn btn-primary" id="packagingPrintBtn">' +
+        esc(t("packagingPrintSheet")) +
+        "</button>" +
         '<button type="button" class="btn" id="packagingExportBtn">' +
         esc(t("downloadPackagingText")) +
         "</button>" +
+        '<button type="button" class="btn" id="packagingSubLabelBtn">' +
+        esc(t("downloadSubLabel")) +
+        "</button>" +
+        "</div>" +
         "</div>";
     }
     html += "</div></section>";
@@ -1991,9 +2021,25 @@
      schema without sitting in any tab, so they are never in the DOM to be read.
      Those matter here — qi_id is half of whether the Qi logo may be printed. */
   function wirePackagingExport(ctx) {
-    var btn = document.getElementById("packagingExportBtn");
-    if (!btn || !window.VIEMAG_PACKAGING) return;
-    btn.addEventListener("click", function () {
+    if (!window.VIEMAG_PACKAGING) return;
+
+    /* LOCAL date parts, not toISOString(). Vietnam is UTC+7, so an export run
+       before 07:00 stamped yesterday onto a document that goes to a printer.
+       js/main.js:formatDate already builds dates this way. */
+    function todayLocal() {
+      var d = new Date();
+      var m = d.getMonth() + 1,
+        day = d.getDate();
+      return (
+        d.getFullYear() +
+        "-" +
+        (m < 10 ? "0" + m : m) +
+        "-" +
+        (day < 10 ? "0" + day : day)
+      );
+    }
+
+    function snapshot() {
       var product = {};
       var base = ctx.row || {};
       Object.keys(base).forEach(function (k) {
@@ -2003,16 +2049,21 @@
       Object.keys(live).forEach(function (k) {
         product[k] = live[k];
       });
-      var pkg = collectFormValues(SCHEMA.product_packaging, false);
-      var today = new Date().toISOString().slice(0, 10);
-      var text = window.VIEMAG_PACKAGING.build(pkg, product, today);
+      return {
+        product: product,
+        pkg: collectFormValues(SCHEMA.product_packaging, false),
+        brand: ctx.brand || {},
+        today: todayLocal(),
+      };
+    }
 
+    function download(text, suffix, product) {
       var url = URL.createObjectURL(
         new Blob([text], { type: "text/plain;charset=utf-8" }),
       );
       var a = document.createElement("a");
       a.href = url;
-      a.download = window.VIEMAG_PACKAGING.fileName(product);
+      a.download = window.VIEMAG_PACKAGING.fileName(product, suffix);
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -2022,6 +2073,71 @@
       setTimeout(function () {
         URL.revokeObjectURL(url);
       }, 0);
+    }
+
+    function on(id, handler) {
+      var btn = document.getElementById(id);
+      if (btn) btn.addEventListener("click", handler);
+    }
+
+    on("packagingExportBtn", function () {
+      var s = snapshot();
+      download(
+        window.VIEMAG_PACKAGING.build(s.pkg, s.product, s.today, s.brand),
+        "-packaging.txt",
+        s.product,
+      );
+    });
+
+    on("packagingSubLabelBtn", function () {
+      var s = snapshot();
+      download(
+        window.VIEMAG_PACKAGING.buildSubLabel(s.pkg, s.product, s.brand),
+        "-nhan-phu-vi.txt",
+        s.product,
+      );
+    });
+
+    /* The sheet is rendered into the live page rather than a new window:
+       window.open() is blocked often enough to be unreliable, and a popup would
+       need its own copy of the stylesheet. One overlay plus an @media print rule
+       in admin.css gets a printable page with no second document to keep in
+       step. */
+    on("packagingPrintBtn", function () {
+      var s = snapshot();
+      var host = document.getElementById("printSheet");
+      if (!host) {
+        host = document.createElement("div");
+        host.id = "printSheet";
+        document.body.appendChild(host);
+      }
+      host.innerHTML =
+        '<div class="ps-bar">' +
+        '<button type="button" class="btn btn-primary" id="psPrint">' +
+        esc(t("printNow")) +
+        "</button>" +
+        '<button type="button" class="btn" id="psClose">' +
+        esc(t("close")) +
+        "</button>" +
+        "</div>" +
+        window.VIEMAG_PACKAGING.buildPrintHtml(
+          s.pkg,
+          s.product,
+          s.today,
+          s.brand,
+          state.formDirty,
+        );
+      host.hidden = false;
+      document.body.classList.add("printing");
+      document.getElementById("psPrint").addEventListener("click", function () {
+        window.print();
+      });
+      document.getElementById("psClose").addEventListener("click", function () {
+        host.hidden = true;
+        host.innerHTML = "";
+        document.body.classList.remove("printing");
+      });
+      host.scrollTop = 0;
     });
   }
 

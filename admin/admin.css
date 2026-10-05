@@ -461,3 +461,34 @@ table.grid td:last-child { white-space: nowrap; }
 .file-pick:hover { border-color: var(--copper); color: #E0AE3E; }
 .file-pick input[type=file] { display: none; }
 .file-field .upload-status { font-size: .8rem; color: var(--muted); }
+
+/* ---------- packaging print sheet ----------
+   Rendered into the live page as an overlay rather than opened in a new window:
+   window.open is blocked often enough to be unreliable, and a popup would need
+   its own copy of this stylesheet to keep in step. The @media print rule is the
+   whole trick — on paper everything except the sheet is removed, so Ctrl+P
+   produces the designer's PDF with no library involved. */
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+#printSheet {
+  position: fixed; inset: 0; z-index: 90; overflow: auto;
+  background: #fff; color: #111; padding: 24px 32px 64px;
+}
+.ps-bar { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+.ps-head h1 { font-size: 1.4rem; margin: 0 0 4px; }
+.ps-head p { margin: 0; color: #555; font-size: .85rem; }
+.ps-draft { color: var(--danger); font-weight: 600; }
+.ps-images { display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0; }
+.ps-images figure { margin: 0; max-width: 260px; }
+.ps-images img { max-width: 100%; height: auto; border: 1px solid #ddd; display: block; }
+.ps-images figcaption { font-size: .68rem; color: #777; word-break: break-all; margin-top: 4px; }
+.ps-body {
+  white-space: pre-wrap; word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .78rem; line-height: 1.5; margin: 0;
+}
+@media print {
+  body.printing > *:not(#printSheet) { display: none !important; }
+  #printSheet { position: static; padding: 0; overflow: visible; }
+  .ps-bar { display: none; }
+  .ps-images figure { break-inside: avoid; }
+}
