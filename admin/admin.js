@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.41";
+  var ADMIN_VERSION = "1.42";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1082,6 +1082,23 @@
         return;
       }
       var rows = res.data || [];
+      /* A singleton table has no list worth showing: one row, no adding, no
+         deleting. Go straight to its form so the sidebar entry opens the thing
+         itself rather than a one-line table someone still has to click.
+         If the row is missing, the migration that seeds it has not been run —
+         say that, rather than letting the form try an insert that the RLS
+         policy has no rule for and failing with a Postgres message about it. */
+      if (def.singleton) {
+        if (!rows.length) {
+          root.innerHTML =
+            '<h2>' + esc(tTable(tableName)) + '</h2>' +
+            '<p class="save-status error">' + esc(t("singletonMissing")) + "</p>";
+          return;
+        }
+        state.view = { table: tableName, mode: "edit", id: rows[0].id };
+        renderContent();
+        return;
+      }
       // Fold the extra sources onto each row so the column loop below stays uniform.
       rows.forEach(function (r) {
         extras.forEach(function (x, i) {
