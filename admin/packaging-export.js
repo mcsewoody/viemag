@@ -361,7 +361,7 @@
     return s;
   }
 
-  function brandBlock(brand, product, contentOnly) {
+  function brandBlock(brand, product, contentOnly, languages) {
     var lines = ["BRAND INFORMATION — identical on every SKU"];
     var pairs = [
       ["Responsible company", str(brand.responsible_company)],
@@ -388,7 +388,7 @@
        sentence with no company behind it is not a filled-in brand block, and
        counting it suppressed the warning on a block that was still missing
        everything that matters. */
-    LANGS.forEach(function (l) {
+    (languages ? languages.map(function (code) { return LANGS.find(function (l) { return l.code === code; }); }) : LANGS).forEach(function (l) {
       var terms = str(brand["warranty_terms_" + l.code]);
       if (!terms) return;
       lines.push("");
@@ -553,25 +553,34 @@
     return blocks.join("\n\n") + "\n";
   }
 
-  function buildDesigner(pkg, product, today, brand) {
+  function buildDesigner(pkg, product, today, brand, languages) {
     pkg = pkg || {};
     product = product || {};
     brand = brand || {};
+    languages = (languages || ["zh", "en", "vi", "id"]).filter(function (code, index, codes) {
+      return LANGS.some(function (l) { return l.code === code; }) && codes.indexOf(code) === index;
+    });
+    if (!languages.length) return "";
     var shared = ["VIEMAG — PACKAGING CONTENT", "DRAFT — " + today];
     [["Model", product.product_id], ["Barcode EAN/UPC", pkg.barcode_ean_upc],
       ["Country of origin", pkg.country_of_origin],
       ["Year of manufacture", PKG.charging.indexOf(str(pkg.packaging_product_type)) !== -1 ? pkg.manufacturing_year : ""]
     ].forEach(function (pair) { if (str(pair[1])) shared.push(pair[0] + ": " + str(pair[1])); });
     var blocks = [shared.join("\n")];
-    LANGS.forEach(function (language) {
-      var block = languageBlock(language.code, pkg, product, true);
+    languages.forEach(function (language) {
+      var block = languageBlock(language, pkg, product, true);
+      var warranty = str(brand["warranty_terms_" + language]);
+      if (warranty) {
+        if (!block) block = LANGS.find(function (l) { return l.code === language; }).label;
+        block += "\n\n" + indent(warranty);
+      }
       if (block) blocks.push(block);
     });
     if (blocks.length === 1) {
-      var specs = specSection("en", pkg, product).text;
-      if (specs) blocks.push(SECTIONS.en.specs + "\n" + specs);
+      var specs = specSection(languages[0], pkg, product).text;
+      if (specs) blocks.push(SECTIONS[languages[0]].specs + "\n" + specs);
     }
-    var legal = brandBlock(brand, product, true);
+    var legal = brandBlock(brand, product, true, []);
     if (legal) blocks.push(legal);
     return blocks.join("\n\n") + "\n";
   }
@@ -676,7 +685,7 @@
      with no library at all: the images are <img> tags, Ctrl+P saves a PDF, and
      the repo stays at its one dependency. A PDF or ZIP would mean adding a CDN
      script to a page whose whole output is already in the DOM. */
-  function buildPrintHtml(pkg, product, today, brand, draft) {
+  function buildPrintHtml(pkg, product, today, brand, draft, languages) {
     pkg = pkg || {};
     product = product || {};
     brand = brand || {};
@@ -706,7 +715,7 @@
     /* The text half is the .txt verbatim inside a <pre>. Two renderers of the
        same content would drift, and the designer who wants to copy a line out
        of the sheet gets exactly the line the .txt has. */
-    html += '<pre class="ps-body">' + escHtml(build(pkg, product, today, brand)) + "</pre>";
+    html += '<pre class="ps-body">' + escHtml(languages ? buildDesigner(pkg, product, today, brand, languages) : build(pkg, product, today, brand)) + "</pre>";
     return html;
   }
 

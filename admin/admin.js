@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.56";
+  var ADMIN_VERSION = "1.57";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1882,12 +1882,7 @@
         var srcRow = tb.table ? ctx.subRows[tb.table] || {} : ctx.row;
         if (tb.key === "packaging") {
           html += packagingToolbarHtml();
-          html += '<div class="packaging-layout"><nav class="packaging-group-nav" aria-label="' + esc(t("packagingGroups")) + '">';
-          tb.groups.forEach(function (g) {
-            html += '<button type="button" data-packaging-group="' + esc(g.key) + '">' +
-              esc((dict.fieldGroups && dict.fieldGroups[g.key]) || g.key) + '</button>';
-          });
-          html += '</nav><div class="packaging-groups">';
+          html += '<div class="packaging-layout"><div class="packaging-groups">';
         }
         tb.groups.forEach(function (g) {
           html += groupHtml(ctx, srcName, srcRow, g);
@@ -1934,13 +1929,17 @@
   function packagingToolbarHtml() {
     var html = '<div class="packaging-toolbar"><input type="search" data-packaging-search placeholder="' +
       esc(t("packagingSearch")) + '" aria-label="' + esc(t("packagingSearch")) + '">';
-    html += '<select data-packaging-language aria-label="' + esc(t("packagingLanguage")) + '">';
-    var current = state.lang === "vi" || state.lang === "id" ? state.lang : state.lang.indexOf("zh") === 0 ? "zh" : "en";
-    [["vi", "VI"], ["en", "EN"], ["id", "ID"], ["zh", "ZH"]].forEach(function (language) {
-      html += '<option value="' + language[0] + '"' + (language[0] === current ? ' selected' : '') + '>' + language[1] + '</option>';
+    return html + '</div>';
+  }
+
+  function packagingExportOptionsHtml() {
+    var html = '<fieldset class="packaging-export-options"><legend>' + esc(t("packagingExportLanguages")) + '</legend>';
+    [["zh", "中文"], ["en", "English"], ["vi", "Tiếng Việt"], ["id", "Bahasa Indonesia"]].forEach(function (language) {
+      html += '<div class="packaging-export-language" data-export-language="' + language[0] + '"><label><input type="checkbox" checked> ' + language[1] + '</label>' +
+        '<button type="button" data-export-move="up" title="' + esc(t("packagingMoveUp")) + '" aria-label="' + esc(t("packagingMoveUp") + ': ' + language[1]) + '">↑</button>' +
+        '<button type="button" data-export-move="down" title="' + esc(t("packagingMoveDown")) + '" aria-label="' + esc(t("packagingMoveDown") + ': ' + language[1]) + '">↓</button></div>';
     });
-    return html + '</select><label class="packaging-all"><input type="checkbox" data-packaging-all> ' +
-      esc(t("packagingAllGroups")) + '</label></div>';
+    return html + '</fieldset>';
   }
 
   /* Every group folds; the ones marked collapsed in schema.js simply start
@@ -2000,6 +1999,7 @@
         '<p class="field-desc">' +
         esc(t("packagingExportHint")) +
         "</p>" +
+        packagingExportOptionsHtml() +
         '<div class="btn-row">' +
         '<button type="button" class="btn btn-primary" id="packagingPrintBtn">' +
         esc(t("packagingPrintSheet")) +
@@ -2074,11 +2074,7 @@
     var panel = document.querySelector('.tab-panel[data-tab="packaging"]');
     if (!panel || !panel.querySelector(".packaging-layout")) return;
     var groups = Array.from(panel.querySelectorAll(".packaging-groups > .group"));
-    var buttons = Array.from(panel.querySelectorAll("[data-packaging-group]"));
     var search = panel.querySelector("[data-packaging-search]");
-    var language = panel.querySelector("[data-packaging-language]");
-    var all = panel.querySelector("[data-packaging-all]");
-    var active = groups[0] ? groups[0].dataset.group : "";
     function normalized(value) {
       return String(value || "").normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
     }
@@ -2121,52 +2117,35 @@
     });
     function apply() {
       var query = normalized(search.value).trim();
-      var available = groups.filter(function (group) { return group.dataset.applies !== "false"; });
-      if (!available.some(function (group) { return group.dataset.group === active; })) active = available[0] ? available[0].dataset.group : "";
       var anyVisible = false;
       groups.forEach(function (group) {
         var matching = !query;
         group.querySelectorAll("[data-content-lang]").forEach(function (cell) {
-          cell.hidden = cell.dataset.contentLang !== language.value;
+          cell.hidden = false;
         });
         group.querySelectorAll(".group-body > .field").forEach(function (field) {
-          var cell = field.querySelector('.lang-cell:not([hidden])');
-          var values = Array.from((cell || field).querySelectorAll("[data-name], [data-shared-name]")).map(function (input) {
+          var values = Array.from(field.querySelectorAll("[data-name], [data-shared-name]")).map(function (input) {
             return input.dataset.name || input.dataset.sharedName;
           }).join(" ");
-          var text = Array.from((cell || field).querySelectorAll("input, textarea, select, [data-shared-name]")).map(function (input) {
+          var text = Array.from(field.querySelectorAll("input, textarea, select, [data-shared-name]")).map(function (input) {
             return input.value == null ? input.textContent : input.value;
           }).join(" ");
           var matches = !query || normalized((field.querySelector("label") || field).textContent + " " + values + " " + text).indexOf(query) !== -1;
           field.hidden = !matches;
           matching = matching || matches;
         });
-        group.hidden = group.dataset.applies === "false" || !matching || (!query && !all.checked && group.dataset.group !== active);
+        group.hidden = group.dataset.applies === "false" || !matching;
         if (!group.hidden) {
           anyVisible = true;
           if (query && group.classList.contains("collapsed")) group.querySelector(".group-toggle").click();
         }
       });
-      buttons.forEach(function (button) {
-        var group = groups.find(function (item) { return item.dataset.group === button.dataset.packagingGroup; });
-        button.hidden = !group || group.dataset.applies === "false";
-        button.classList.toggle("active", button.dataset.packagingGroup === active);
-        button.setAttribute("aria-pressed", String(button.dataset.packagingGroup === active));
-      });
       panel.querySelector(".packaging-no-results").hidden = anyVisible;
     }
-    buttons.forEach(function (button) {
-      button.addEventListener("click", function () { active = button.dataset.packagingGroup; search.value = ""; apply(); });
-    });
     search.addEventListener("input", apply);
-    language.addEventListener("change", apply);
-    all.addEventListener("change", apply);
     panel.addEventListener("packaging-visibility-change", apply);
     panel.addEventListener("packaging-reveal", function (event) {
       search.value = "";
-      active = event.detail.group;
-      var suffix = (event.detail.name || "").match(/_(en|vi|id|zh)$/);
-      if (suffix) language.value = suffix[1];
       apply();
     });
     apply();
@@ -2186,6 +2165,35 @@
      Those matter here — qi_id is half of whether the Qi logo may be printed. */
   function wirePackagingExport(ctx) {
     if (!window.VIEMAG_PACKAGING) return;
+    var options = document.querySelector(".packaging-export-options");
+    function exportLanguages() {
+      return Array.from(options.querySelectorAll("[data-export-language]")).filter(function (row) {
+        return row.querySelector("input").checked;
+      }).map(function (row) { return row.dataset.exportLanguage; });
+    }
+    function updateOptions() {
+      var rows = Array.from(options.querySelectorAll("[data-export-language]"));
+      rows.forEach(function (row, index) {
+        row.querySelector('[data-export-move="up"]').disabled = index === 0;
+        row.querySelector('[data-export-move="down"]').disabled = index === rows.length - 1;
+      });
+      ["packagingExportBtn", "packagingPrintBtn"].forEach(function (id) {
+        document.getElementById(id).disabled = !exportLanguages().length;
+      });
+    }
+    if (options) {
+      options.addEventListener("change", updateOptions);
+      options.addEventListener("click", function (event) {
+        var button = event.target.closest("[data-export-move]");
+        if (!button) return;
+        var row = button.closest("[data-export-language]");
+        if (button.dataset.exportMove === "up" && row.previousElementSibling && row.previousElementSibling.matches("[data-export-language]")) options.insertBefore(row, row.previousElementSibling);
+        if (button.dataset.exportMove === "down" && row.nextElementSibling) options.insertBefore(row.nextElementSibling, row);
+        updateOptions();
+        button.focus();
+      });
+      updateOptions();
+    }
 
     /* LOCAL date parts, not toISOString(). Vietnam is UTC+7, so an export run
        before 07:00 stamped yesterday onto a document that goes to a printer.
@@ -2247,7 +2255,7 @@
     on("packagingExportBtn", function () {
       var s = snapshot();
       download(
-        window.VIEMAG_PACKAGING.buildDesigner(s.pkg, s.product, s.today, s.brand),
+        window.VIEMAG_PACKAGING.buildDesigner(s.pkg, s.product, s.today, s.brand, exportLanguages()),
         "-packaging.txt",
         s.product,
       );
@@ -2294,6 +2302,7 @@
           s.today,
           s.brand,
           state.formDirty,
+          exportLanguages(),
         );
       host.hidden = false;
       document.body.classList.add("printing");
@@ -2333,6 +2342,7 @@
       }
       source.addEventListener("input", refresh);
       source.addEventListener("change", refresh);
+      source.addEventListener("rich-source-changed", refresh);
       refresh();
     });
   }
@@ -3803,10 +3813,10 @@
     state.formDirty = false;
     if (card) {
       card.addEventListener("input", function (event) {
-        if (!event.target.closest(".packaging-toolbar")) state.formDirty = true;
+        if (!event.target.closest(".packaging-toolbar, .packaging-export-options")) state.formDirty = true;
       });
       card.addEventListener("change", function (event) {
-        if (!event.target.closest(".packaging-toolbar")) state.formDirty = true;
+        if (!event.target.closest(".packaging-toolbar, .packaging-export-options")) state.formDirty = true;
       });
     }
 

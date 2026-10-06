@@ -623,4 +623,23 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
   ok('designer content contains printable values only; checks and internal notes remain in the review export');
 }
 
+{
+  const product = { product_id: 'LANG-01', name_zh: 'NAME-ZH', name_en: 'NAME-EN', name_vi: 'NAME-VI', name_id: 'NAME-ID' };
+  const brand = { manufacturer_name: 'Shared manufacturer', warranty_terms_zh: 'WARRANTY-ZH', warranty_terms_en: 'WARRANTY-EN', warranty_terms_vi: 'WARRANTY-VI' };
+  const defaults = P.buildDesigner({}, product, DATE, brand);
+  assert.ok(defaults.indexOf('NAME-ZH') < defaults.indexOf('NAME-EN'));
+  assert.ok(defaults.indexOf('WARRANTY-ZH') < defaults.indexOf('NAME-EN'), 'Finish all Chinese content before English starts');
+  assert.ok(defaults.indexOf('NAME-EN') < defaults.indexOf('NAME-VI'));
+  assert.ok(defaults.indexOf('NAME-VI') < defaults.indexOf('NAME-ID'));
+  const selected = P.buildDesigner({}, product, DATE, brand, ['en', 'zh', 'en', 'invalid']);
+  assert.ok(selected.indexOf('NAME-EN') < selected.indexOf('NAME-ZH'));
+  assert.equal(selected.split('NAME-EN').length, 2);
+  assert.ok(!selected.includes('NAME-VI') && !selected.includes('NAME-ID') && !selected.includes('WARRANTY-VI'));
+  assert.ok(selected.includes('Shared manufacturer'));
+  assert.equal(P.buildDesigner({}, product, DATE, brand, []), '');
+  const printed = P.buildPrintHtml({}, product, DATE, brand, false, ['zh']);
+  assert.ok(printed.includes('NAME-ZH') && !printed.includes('NAME-EN') && !printed.includes('WARRANTY-EN'));
+  ok('designer export and print respect selected languages and order, with Chinese first by default');
+}
+
 console.log(`\nClean: ${checks} checks passed.`);

@@ -139,7 +139,7 @@ window.VIEMAG_ADMIN_I18N = {
     printNow: "列印／另存 PDF",
     close: "關閉",
     packagingExportHint:
-      "匯出目前表單的內容，四語齊全，空白項目不會出現在檔案裡。存檔前也可以先匯出來看。",
+      "匯出目前表單的內容，依所選語言與順序，空白項目不會出現在檔案裡。存檔前也可以先匯出來看。",
     expand: "展開",
     collapse: "收合",
     savedPartialDev: "前台與業務資料已儲存；開案資料未儲存：",
@@ -393,7 +393,7 @@ window.VIEMAG_ADMIN_I18N = {
     printNow: "列印／另存 PDF",
     close: "关闭",
     packagingExportHint:
-      "导出目前表单的内容，四语齐全，空白项目不会出现在文件里。保存前也可以先导出来看。",
+      "导出目前表单的内容，按所选语言与顺序，空白项目不会出现在文件里。保存前也可以先导出来看。",
     expand: "展开",
     collapse: "收合",
     savedPartialDev: "前台与业务数据已保存；开案数据未保存：",
@@ -655,7 +655,7 @@ window.VIEMAG_ADMIN_I18N = {
     printNow: "Print / Save as PDF",
     close: "Close",
     packagingExportHint:
-      "Exports what the form holds right now, in all four languages. Anything left blank is left out of the file entirely. You can export before saving to check it.",
+      "Exports the current form in the selected languages and order. Blank items are omitted. You can export before saving.",
     expand: "Show",
     collapse: "Hide",
     savedPartialDev:
@@ -921,7 +921,7 @@ window.VIEMAG_ADMIN_I18N = {
     printNow: "In / Lưu PDF",
     close: "Đóng",
     packagingExportHint:
-      "Xuất đúng nội dung đang có trên biểu mẫu, đủ bốn ngôn ngữ. Mục nào để trống thì không xuất ra file. Có thể xuất thử trước khi lưu.",
+      "Xuất nội dung hiện tại theo ngôn ngữ và thứ tự đã chọn. Bỏ qua mục trống. Có thể xuất trước khi lưu.",
     expand: "Mở",
     collapse: "Thu",
     savedPartialDev:
@@ -1054,6 +1054,17 @@ Object.entries({
 }).forEach(function ([lang, labels]) {
   window.VIEMAG_ADMIN_I18N[lang].fieldGroups.pkgLegal = labels[0];
   window.VIEMAG_ADMIN_I18N[lang].packagingReviewFile = labels[1];
+});
+
+Object.entries({
+  en: ["Export languages & order", "Move up", "Move down"],
+  vi: ["Ngôn ngữ & thứ tự xuất", "Đưa lên", "Đưa xuống"],
+  "zh-Hant": ["匯出語言與順序", "上移", "下移"],
+  "zh-Hans": ["导出语言与顺序", "上移", "下移"],
+}).forEach(function ([lang, labels]) {
+  window.VIEMAG_ADMIN_I18N[lang].packagingExportLanguages = labels[0];
+  window.VIEMAG_ADMIN_I18N[lang].packagingMoveUp = labels[1];
+  window.VIEMAG_ADMIN_I18N[lang].packagingMoveDown = labels[2];
 });
 
 window.VIEMAG_ADMIN_LANGS = [
