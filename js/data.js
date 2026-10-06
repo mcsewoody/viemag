@@ -1181,6 +1181,9 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p>AM-12</p><p>材質 : 塑膠+橡膠</p><p>尺寸 : 92*28*31mm</p><p>重量 : 22g</p><p>BH-08</p><p>材質 : 塑膠+橡膠+金屬</p><p>尺寸 : 60*60*20mm</p><p>重量 : 29g</p><p>出風口式底座</p><p>材質 : 塑膠+金屬</p><p>尺寸 : 90*50*31mm</p><p>重量 : 26g</p>"
       },
+      "packaging": {
+        "year": "2026"
+      },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
     },
     {
