@@ -169,6 +169,17 @@ const FAQ_COLS = [
   'answer_en', 'answer_vi', 'answer_id', 'answer_zh',
 ].join(',');
 
+const PACKAGING_COLS = [
+  'product_id', 'packaging_product_type', 'country_of_origin', 'manufacturing_year',
+  'packaging_name_en', 'packaging_name_vi', 'packaging_name_id', 'packaging_name_zh',
+  'magnet_grade', 'clamp_range_mm',
+  'input_voltage', 'input_current', 'input_power', 'wireless_output_power',
+  'max_output_power', 'connector_type', 'wired_output_voltage',
+  'wired_output_current', 'wired_output_power',
+  'battery_type', 'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh',
+  'port1_spec', 'port2_spec', 'port3_spec', 'max_combined_output',
+].join(',');
+
 /* PostgREST caps a response at 1000 rows and gives NO truncation signal — it
    just returns 200 with 1000 rows. The Notion-era exporter paginated; that got
    dropped in the migration. Page explicitly so a growing catalog can never be
@@ -192,7 +203,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
   const sb = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
   const [catRows, scnRows, prodRows, faqRows, reportRows, reportLinkRows, guideRows,
-         faqLinkRows, relatedLinkRows] =
+         faqLinkRows, relatedLinkRows, packagingRows] =
     await Promise.all([
       selectAll(sb, 'categories', CATEGORY_COLS, (q: any) => q.order('sort_order').order('slug')),
       /* Scenarios survive the V3 change as an EDITORIAL surface only — the
@@ -224,6 +235,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         (q: any) => q.order('product_id').order('faq_id')),
       selectAll(sb, 'product_related_products', 'product_id, related_product_id',
         (q: any) => q.order('product_id').order('related_product_id')),
+      selectAll(sb, 'product_packaging', PACKAGING_COLS, (q: any) => q.order('product_id')),
     ]);
 
   /* Many-to-many, in both directions (Woody, 2026-07-29): one report can cover
@@ -258,6 +270,7 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
   const skuById = new Map((prodRows || [])
     .filter((r: any) => r.status === 'Published')
     .map((r: any) => [r.id, r.official_sku_code || r.product_id]));
+  const packagingByProduct = new Map((packagingRows || []).map((r: any) => [r.product_id, r]));
   const relatedSkusByProduct = new Map<string, string[]>();
   (relatedLinkRows || []).forEach((l: any) => {
     const sku = skuById.get(l.related_product_id);
@@ -391,6 +404,30 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       if (hasTechnicalContent) out.technicalContent = technicalContent;
       if (r.product_article_image_url) out.articleImage = r.product_article_image_url;
       if (r.spec_sheet_url) out.spec = r.spec_sheet_url;
+      const pkg = packagingByProduct.get(r.id);
+      if (pkg) {
+        const specs: Record<string, string> = {};
+        [
+          'magnet_grade', 'clamp_range_mm',
+          'input_voltage', 'input_current', 'input_power', 'wireless_output_power',
+          'max_output_power', 'connector_type', 'wired_output_voltage',
+          'wired_output_current', 'wired_output_power',
+          'battery_type', 'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh',
+          'port1_spec', 'port2_spec', 'port3_spec', 'max_combined_output',
+        ].forEach((key) => {
+          if (pkg[key]) specs[key] = pkg[key];
+        });
+        const packaging: any = {};
+        if (pkg.packaging_product_type) packaging.type = pkg.packaging_product_type;
+        if (pkg.country_of_origin) packaging.origin = pkg.country_of_origin;
+        if (pkg.manufacturing_year) packaging.year = pkg.manufacturing_year;
+        const packagingName = langObj(pkg, 'packaging_name');
+        if (packagingName.en || packagingName.vi || packagingName.id || packagingName.zh) {
+          packaging.name = packagingName;
+        }
+        if (Object.keys(specs).length) packaging.specs = specs;
+        if (Object.keys(packaging).length) out.packaging = packaging;
+      }
       /* Empty arrays are the common case; omit them so data.js does not carry 19
          copies of `"faqs": []` and `"related": []`. */
       const ownFaqs = faqKeysByProduct.get(r.id);
