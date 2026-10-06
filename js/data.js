@@ -920,7 +920,7 @@ window.DB = {
         "en": "Uses an N52 magnet for a secure magnetic hold.\nFully foldable frame — adjust the viewing angle freely.\nRotates 360°, easily switch between portrait and landscape.\nMini tripod design keeps desktop shots steady, no wobble.\nWorks as a phone stand, selfie stand, and shooting tripod.\nCarabiner hook design clips onto bags and straps — compact and easy to carry.\nIncludes a magnetic plate, so non-MagSafe phones can use it too.",
         "vi": "Nam châm N52, hút chắc điện thoại.\nKhung gập toàn phần, tự do điều chỉnh góc nhìn.\nXoay 360°, dễ dàng chuyển dọc/ngang.\nThiết kế tripod mini, đặt bàn ổn định không rung.\nDùng được như giá đỡ điện thoại, gậy tự sướng và tripod quay phim.\nThiết kế móc carabiner, dễ móc vào túi/dây đeo, gọn nhẹ dễ mang.\nKèm tấm sắt từ tính, điện thoại không hỗ trợ MagSafe vẫn dùng được.",
         "id": "Magnet N52, cengkeraman magnetik kuat untuk ponsel.\nRangka lipat penuh, sesuaikan sudut pandang bebas.\nBerputar 360°, mudah beralih potret/lanskap.\nDesain tripod mini, pengambilan gambar di meja stabil tanpa goyang.\nBisa jadi dudukan ponsel, tongkat selfie, dan tripod syuting.\nDesain kait carabiner, mudah dikaitkan ke tas/tali, ringkas dan mudah dibawa.\nTermasuk pelat magnetik, ponsel non-MagSafe pun bisa pakai.",
-        "zh": "採用 N52 磁鐵，穩固吸附手機。\n全折疊結構，自由調整觀看角度。\n360 度旋轉，輕鬆切換直向與橫向。\n迷你三腳架設計，桌面拍攝穩定不晃動。\n可作為手機支架、自拍支架及拍攝三腳架。\n掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。\n隨附引磁片，不支援 MagSafe 的裝置也能使用。"
+        "zh": "1.採用 N52 磁鐵，穩固吸附手機\n2.全折疊結構，自由調整觀看角度\n3.360 度旋轉，輕鬆切換直向與橫向\n4.迷你三腳架設計，桌面拍攝穩定不晃動\n5.可作為手機支架、自拍支架及拍攝三腳架\n6.掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。\n7.隨附引磁片，不支援 MagSafe 的裝置也能使用"
       },
       "reports": [],
       "gallery": [
@@ -960,6 +960,12 @@ window.DB = {
         "zh": [
           "黏貼式磁吸環"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 鋁合金</p><p>尺寸 : 100*58*14mm </p><p>重量 : 約 104g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930062472-8t79pwh2q78-Hero.png"
     },
