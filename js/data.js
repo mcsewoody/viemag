@@ -488,7 +488,7 @@ window.DB = {
         "en": "The thinnest and lightest MagSafe mount with a suction cup",
         "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
         "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
-        "zh": "最輕薄的 Magsafe 吸盤式支架"
+        "zh": "1.超薄真空吸盤\n2.N54超薄磁吸\n3.可折疊\n4.可 360 度+雙 180 旋轉"
       },
       "reports": [],
       "gallery": [
@@ -511,6 +511,22 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "1.酒精棉片",
+          "2.黏貼式磁吸環*2",
+          "3.鏡面貼"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 鋅合金</p><p>尺寸 : 76*59*20mm</p><p>重量 : 136g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
