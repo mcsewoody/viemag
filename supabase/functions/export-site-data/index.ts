@@ -171,7 +171,7 @@ const FAQ_COLS = [
 
 const PACKAGING_COLS = [
   'product_id', 'packaging_product_type', 'country_of_origin', 'manufacturing_year',
-  'packaging_name_en', 'packaging_name_vi', 'packaging_name_id', 'packaging_name_zh',
+  'main_material_en', 'main_material_vi', 'main_material_id', 'main_material_zh',
   'magnet_grade', 'clamp_range_mm',
   'input_voltage', 'input_current', 'input_power', 'wireless_output_power',
   'max_output_power', 'connector_type', 'wired_output_voltage',
@@ -407,13 +407,16 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
       const pkg = packagingByProduct.get(r.id);
       if (pkg) {
         const specs: Record<string, string> = {};
+        const bracket = ['Magnetic bracket', 'Combined product'].includes(pkg.packaging_product_type);
+        const charging = ['Charging product', 'Power bank', 'Combined product'].includes(pkg.packaging_product_type);
+        const battery = ['Power bank', 'Combined product'].includes(pkg.packaging_product_type);
         [
-          'magnet_grade', 'clamp_range_mm',
-          'input_voltage', 'input_current', 'input_power', 'wireless_output_power',
+          ...(bracket ? ['magnet_grade', 'clamp_range_mm'] : []),
+          ...(charging ? ['input_voltage', 'input_current', 'input_power', 'wireless_output_power',
           'max_output_power', 'connector_type', 'wired_output_voltage',
-          'wired_output_current', 'wired_output_power',
-          'battery_type', 'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh',
-          'port1_spec', 'port2_spec', 'port3_spec', 'max_combined_output',
+          'wired_output_current', 'wired_output_power'] : []),
+          ...(battery ? ['battery_type', 'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh',
+          'port1_spec', 'port2_spec', 'port3_spec', 'max_combined_output'] : []),
         ].forEach((key) => {
           if (pkg[key]) specs[key] = pkg[key];
         });
@@ -421,9 +424,9 @@ async function buildDataJs(): Promise<{ content: string; counts: Record<string, 
         if (pkg.packaging_product_type) packaging.type = pkg.packaging_product_type;
         if (pkg.country_of_origin) packaging.origin = pkg.country_of_origin;
         if (pkg.manufacturing_year) packaging.year = pkg.manufacturing_year;
-        const packagingName = langObj(pkg, 'packaging_name');
-        if (packagingName.en || packagingName.vi || packagingName.id || packagingName.zh) {
-          packaging.name = packagingName;
+        const material = langObj(pkg, 'main_material');
+        if (material.en || material.vi || material.id || material.zh) {
+          packaging.material = material;
         }
         if (Object.keys(specs).length) packaging.specs = specs;
         if (Object.keys(packaging).length) out.packaging = packaging;

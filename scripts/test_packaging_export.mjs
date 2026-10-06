@@ -17,6 +17,7 @@
  */
 import fs from 'fs';
 import assert from 'node:assert/strict';
+import vm from 'node:vm';
 
 const w = {};
 global.window = w;
@@ -46,8 +47,8 @@ ok('EAN-13 validation accepts a real code and rejects length, digits and checksu
 /* ---------- nothing empty is printed ---------- */
 {
   const txt = P.build(
-    { packaging_product_type: 'Magnetic bracket', packaging_name_vi: 'Giá đỡ nam châm' },
-    { product_id: 'V01' },
+    { packaging_product_type: 'Magnetic bracket' },
+    { product_id: 'V01', name_vi: 'Giá đỡ nam châm' },
     DATE,
   );
   assert.ok(txt.includes('1. Tên sản phẩm'), 'the filled Vietnamese name must appear');
@@ -299,12 +300,12 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
       instructions_precautions_en: 'KEEP-AWAY-FROM-HEAT-EN',
       lithium_warning_vi: 'Không đốt.',
     },
-    { product_id: 'V01', official_sku_code: 'BQ01', warranty_months: 12 },
+    { product_id: 'V01', official_sku_code: 'BQ01', name_vi: 'Sạc dự phòng nam châm', name_en: 'Magnetic power bank', warranty_months: 12 },
     brand,
   );
   assert.ok(txt.includes('Sạc dự phòng nam châm'));
   assert.ok(txt.includes('COMART') && txt.includes('VN Importer'), 'both responsible parties are mandatory');
-  assert.ok(txt.includes('Made in China'));
+  assert.ok(txt.includes('Trung Quốc'));
   assert.ok(txt.includes('Năm sản xuất'), 'an electrical product carries a year of manufacture');
   assert.ok(txt.includes('37 Wh'));
   assert.ok(txt.includes('Bảo hành 12 tháng'));
@@ -357,6 +358,7 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
     { packaging_product_type: 'Magnetic bracket', packaging_name_vi: 'Giá đỡ <nam châm>' },
     {
       product_id: 'V01',
+      name_vi: 'Giá đỡ <nam châm>',
       hero_image_url: 'https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/a.png',
       gallery_urls: ['javascript:alert(1)', 'https://evil.example.com/x.png'],
     },
@@ -404,7 +406,7 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
       main_material_vi: 'Nhựa ABS, hợp kim nhôm',
       main_material_zh: 'ABS 塑膠、鋁合金',
     },
-    PRODUCT, DATE, {},
+    { ...PRODUCT, name_vi: 'Giá đỡ điện thoại nam châm', name_zh: '磁吸手機架', name_id: 'Dudukan ponsel magnetik' }, DATE, {},
   );
   assert.ok(txt.includes('Giá đỡ điện thoại nam châm'));
   assert.ok(txt.includes('磁吸手機架') && txt.includes('ABS 塑膠、鋁合金'));
@@ -531,6 +533,94 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
   assert.equal(field('manufacturing_year').requiredIf, undefined,
     'an empty year is the designed answer — header() prints a fill-in line for the printer');
   ok('a product with an untouched Packaging tab can still be saved');
+}
+
+/* Shared fields must never read stale packaging overrides, even when Site is blank. */
+{
+  const pkg = {
+    packaging_product_type: 'Magnetic bracket',
+    model_number: 'STALE-MODEL', packaging_name_vi: 'STALE-NAME',
+    package_contents_vi: 'STALE-CONTENTS', country_of_origin: 'China',
+  };
+  const product = {
+    product_id: 'PRODUCT-ID', official_sku_code: 'PUBLIC-SKU',
+    name_vi: 'Tên chung', accessories_vi: 'Phụ kiện chung x 1',
+  };
+  for (const text of [P.build(pkg, product, DATE), P.buildSubLabel(pkg, product, {}), P.buildPrintHtml(pkg, product, DATE, {}, true)]) {
+    assert.ok(text.includes('PRODUCT-ID') && text.includes('Tên chung'));
+    assert.ok(!/STALE-(MODEL|NAME|CONTENTS)/.test(text));
+  }
+  const text = P.build(pkg, product, DATE);
+  assert.ok(text.includes('Phụ kiện chung x 1'));
+  assert.ok(P.preflight(pkg, { product_id: 'PRODUCT-ID' }, {}, 'en').some((line) => line.includes('No Vietnamese product name')));
+  const tab = SCHEMA.products.tabs.find((t) => t.key === 'packaging');
+  assert.equal(tab.groups.find((g) => g.key === 'pkgIdentity').source, 'products');
+  assert.equal(tab.groups.find((g) => g.key === 'pkgIdentity').readOnly, true);
+  assert.equal(tab.groups.find((g) => g.key === 'pkgContents').source, 'products');
+  assert.equal(tab.groups.find((g) => g.key === 'pkgContents').readOnly, true);
+  assert.ok(!SCHEMA.product_packaging.fields.some((f) => /^(model_number|packaging_name_|package_contents_)/.test(f.name)));
+  ok('model, names and contents share the Site source; stale packaging overrides cannot leak into any export');
+}
+{
+  const fields = SCHEMA.product_packaging.fields;
+  const origin = fields.find((f) => f.name === 'country_of_origin');
+  const year = fields.find((f) => f.name === 'manufacturing_year');
+  assert.equal(origin.type, 'select');
+  assert.deepEqual(origin.options, ['China', 'Taiwan', 'Vietnam']);
+  assert.equal(origin.normalizeValue('Made in China'), 'China');
+  assert.equal(origin.normalizeValue('Đài Loan'), 'Taiwan');
+  assert.equal(origin.normalizeValue('Việt Nam'), 'Vietnam');
+  assert.equal(origin.normalizeValue('Japan'), 'Japan');
+  assert.equal(year.type, 'select');
+  assert.equal(year.defaultValue, w.VIEMAG_PACKAGING_YEAR);
+  assert.ok(['2025', '2026', '2027', '2028', w.VIEMAG_PACKAGING_YEAR].every((value) => year.options.includes(value)));
+  ok('origin and year dropdowns use canonical values and the current-year default');
+}
+
+{
+  const front = SCHEMA.products.tabs.find((tab) => tab.key === 'front');
+  const spec = front.groups.find((group) => group.key === 'spec');
+  assert.ok(!front.groups.some((group) => group.key === 'pkgMaterial'));
+  assert.equal(spec.sharedFields[0].source, 'product_packaging');
+  const adminSource = fs.readFileSync('admin/admin.js', 'utf8');
+  const start = adminSource.indexOf('function groupHtml(');
+  const end = adminSource.indexOf('function wireGroupVisibility(', start);
+  const context = vm.createContext({
+    SCHEMA, I18N: { en: {} }, state: { lang: 'en' },
+    esc: (value) => String(value),
+    langRowHtml: (ctx, source, row, names, readOnly) => names.map((name) =>
+      `<div ${readOnly ? 'data-shared-name' : 'data-name'}="${name}">${row[name] || ''}</div>`).join(''),
+    fieldBlockHtml: (ctx, source, row, field) => `<input data-name="${field.name}">`,
+    sharedValueHtml: (name, value) => `<div data-shared-name="${name}">${value ?? ''}</div>`,
+  });
+  vm.runInContext(adminSource.slice(start, end), context);
+  const html = context.groupHtml({ tableName: 'products', subRows: {
+    product_packaging: { main_material_en: 'ABS', country_of_origin: 'China', input_voltage: '5V' },
+  } }, 'products', {}, spec);
+  assert.ok(html.includes('data-group="spec"'));
+  assert.ok(html.includes('data-shared-name="main_material_en">ABS'));
+  assert.ok(html.includes('data-shared-name="input_voltage">5V'));
+  assert.ok(!html.includes('data-name="main_material_en"'));
+  assert.ok(!html.includes('data-name="input_voltage"'));
+  assert.ok(html.includes('data-shared-hide-empty hidden'));
+  assert.ok(!html.includes('data-shared-name="manufacturing_year"'));
+  ok('Admin Tech Specs includes read-only packaging values without duplicate editable fields; empty figures stay hidden');
+}
+
+{
+  const pkg = { packaging_product_type: 'Charging product', manufacturing_year: '2026',
+    country_of_origin: 'China', main_material_vi: 'ABS', input_voltage: '9V',
+    packaging_notes_vi: 'INTERNAL-NOTE', iata_notes: 'INTERNAL-IATA', lithium_warning_vi: 'STALE-BATTERY-WARNING' };
+  const product = { product_id: 'V01', name_vi: 'Fixture name', accessories_vi: 'Cable' };
+  const brand = { manufacturer_name: 'Fixture manufacturer', manufacturer_address: 'Fixture address' };
+  const text = P.buildDesigner(pkg, product, DATE, brand);
+  for (const value of ['V01', 'Fixture name', 'Cable', 'ABS', '9V', '2026', 'China', 'Fixture manufacturer', 'Fixture address']) assert.ok(text.includes(value));
+  for (const value of ['PRE-PRINT CHECKS', 'INTERNAL-NOTE', 'INTERNAL-IATA', 'STALE-BATTERY-WARNING', 'NOT YET FILLED IN', 'Packaging status:']) assert.ok(!text.includes(value));
+  const review = P.build(pkg, product, DATE, brand);
+  assert.ok(review.includes('PRE-PRINT CHECKS'));
+  assert.ok(review.includes('INTERNAL-NOTE'));
+  assert.ok(review.includes('INTERNAL-IATA'));
+  ok('designer content contains printable values only; checks and internal notes remain in the review export');
 }
 
 console.log(`\nClean: ${checks} checks passed.`);

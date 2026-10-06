@@ -276,7 +276,7 @@
       out.push(check(key, lang, value));
     };
 
-    add(pick(pkg.packaging_name_vi, product.name_vi) ? "nameOk" : "nameMissing");
+    add(str(product.name_vi) ? "nameOk" : "nameMissing");
 
     if (!type) add("noType");
 
@@ -330,7 +330,7 @@
     lines.push("");
 
     var pairs = [
-      ["Model number", pick(pkg.model_number, product.official_sku_code, product.product_id)],
+      ["Model number", str(product.product_id)],
       ["Barcode EAN/UPC", str(pkg.barcode_ean_upc)],
       ["Country of origin", str(pkg.country_of_origin)],
       /* Still a fill-in line when the column is empty: the value belongs to a
@@ -361,7 +361,7 @@
     return s;
   }
 
-  function brandBlock(brand, product) {
+  function brandBlock(brand, product, contentOnly) {
     var lines = ["BRAND INFORMATION — identical on every SKU"];
     var pairs = [
       ["Responsible company", str(brand.responsible_company)],
@@ -395,13 +395,13 @@
       lines.push("   " + l.label);
       lines.push(indent(terms, 6));
     });
-    if (!any) {
+    if (!any && !contentOnly) {
       lines.push("   NOT YET FILLED IN. The responsible company's registered name and");
       lines.push("   the Vietnam importer's name and address are legally required on the");
       lines.push("   box and must be added before this file can go to a printer.");
       lines.push("   Set them once on the Packaging legal block page in /admin.");
     }
-    return lines.join("\n");
+    return contentOnly && lines.length === 1 ? "" : lines.join("\n");
   }
 
   /* Section 6 for one language: the 6A/6B/6C blocks the product type opens, each
@@ -462,7 +462,7 @@
   /* One language block. Returns "" when the language has nothing at all in it,
      so a file for a SKU translated into two languages contains two blocks rather
      than two blocks and two headings over empty space. */
-  function languageBlock(lang, pkg, product) {
+  function languageBlock(lang, pkg, product, contentOnly) {
     var S = SECTIONS[lang];
     var parts = [];
     /* The model and the barcode are the same characters in all four languages,
@@ -481,11 +481,11 @@
 
     var X = EXTRA_SECTIONS[lang];
 
-    add(S.name, pick(pkg["packaging_name_" + lang], product["name_" + lang]));
-    add(S.model, pick(pkg.model_number, product.official_sku_code, product.product_id), true);
+    add(S.name, product["name_" + lang]);
+    add(S.model, str(product.product_id), true);
     add(S.instructions, pkg["instructions_precautions_" + lang]);
     add(X.storage, pkg["storage_instructions_" + lang]);
-    add(S.contents, pick(pkg["package_contents_" + lang], product["accessories_" + lang]));
+    add(S.contents, product["accessories_" + lang]);
     add(S.material, pkg["main_material_" + lang]);
 
     var spec = specSection(lang, pkg, product);
@@ -496,9 +496,9 @@
       if (spec.prose) translated++;
     }
 
-    add(X.lithium, pkg["lithium_warning_" + lang]);
+    if (!contentOnly || PKG.battery.indexOf(str(pkg.packaging_product_type)) !== -1) add(X.lithium, pkg["lithium_warning_" + lang]);
     add(S.barcode, pkg.barcode_ean_upc, true);
-    add(X.notes, pkg["packaging_notes_" + lang]);
+    if (!contentOnly) add(X.notes, pkg["packaging_notes_" + lang]);
 
     if (!translated) return "";
     return (
@@ -553,6 +553,29 @@
     return blocks.join("\n\n") + "\n";
   }
 
+  function buildDesigner(pkg, product, today, brand) {
+    pkg = pkg || {};
+    product = product || {};
+    brand = brand || {};
+    var shared = ["VIEMAG — PACKAGING CONTENT", "DRAFT — " + today];
+    [["Model", product.product_id], ["Barcode EAN/UPC", pkg.barcode_ean_upc],
+      ["Country of origin", pkg.country_of_origin],
+      ["Year of manufacture", PKG.charging.indexOf(str(pkg.packaging_product_type)) !== -1 ? pkg.manufacturing_year : ""]
+    ].forEach(function (pair) { if (str(pair[1])) shared.push(pair[0] + ": " + str(pair[1])); });
+    var blocks = [shared.join("\n")];
+    LANGS.forEach(function (language) {
+      var block = languageBlock(language.code, pkg, product, true);
+      if (block) blocks.push(block);
+    });
+    if (blocks.length === 1) {
+      var specs = specSection("en", pkg, product).text;
+      if (specs) blocks.push(SECTIONS.en.specs + "\n" + specs);
+    }
+    var legal = brandBlock(brand, product, true);
+    if (legal) blocks.push(legal);
+    return blocks.join("\n\n") + "\n";
+  }
+
   /* The Vietnamese supplementary label, on its own.
 
      The 2026-09-28 meeting settled on a shared English box plus a Vietnamese
@@ -582,8 +605,8 @@
     out.push("");
 
     sec("Tên sản phẩm và model", function () {
-      var name = pick(pkg.packaging_name_vi, product.name_vi);
-      var model = pick(pkg.model_number, product.official_sku_code, product.product_id);
+      var name = str(product.name_vi);
+      var model = str(product.product_id);
       return name && model ? name + "\n" + model : name || model;
     }());
     sec("Tổ chức chịu trách nhiệm về hàng hóa", function () {
@@ -598,7 +621,8 @@
       var a = str(brand.importer_name), b = str(brand.importer_address);
       return a && b ? a + "\n" + b : a || b;
     }());
-    sec("Xuất xứ", pkg.country_of_origin);
+    var origin = window.VIEMAG_NORMALIZE_ORIGIN(pkg.country_of_origin);
+    sec("Xuất xứ", ({ China: "Trung Quốc", Taiwan: "Đài Loan", Vietnam: "Việt Nam" })[origin] || origin);
     /* Appendix I category 40 only. A bare bracket printing a year of manufacture
        is not wrong, but it is one more line to keep true on a sticker that has
        no room to spare. */
@@ -701,6 +725,7 @@
 
   window.VIEMAG_PACKAGING = {
     build: build,
+    buildDesigner: buildDesigner,
     /* Exported for the test suite only — nothing in /admin calls it directly.
        It is the piece most worth asserting on: thirteen sentences a human acts
        on, in four languages. */

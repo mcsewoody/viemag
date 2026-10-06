@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.53";
+  var ADMIN_VERSION = "1.56";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1880,9 +1880,19 @@
       } else {
         var srcName = tb.table || ctx.tableName;
         var srcRow = tb.table ? ctx.subRows[tb.table] || {} : ctx.row;
+        if (tb.key === "packaging") {
+          html += packagingToolbarHtml();
+          html += '<div class="packaging-layout"><nav class="packaging-group-nav" aria-label="' + esc(t("packagingGroups")) + '">';
+          tb.groups.forEach(function (g) {
+            html += '<button type="button" data-packaging-group="' + esc(g.key) + '">' +
+              esc((dict.fieldGroups && dict.fieldGroups[g.key]) || g.key) + '</button>';
+          });
+          html += '</nav><div class="packaging-groups">';
+        }
         tb.groups.forEach(function (g) {
           html += groupHtml(ctx, srcName, srcRow, g);
         });
+        if (tb.key === "packaging") html += '<p class="packaging-no-results" hidden>' + esc(t("packagingNoResults")) + '</p></div></div>';
       }
       html += "</div>";
     });
@@ -1921,11 +1931,27 @@
     return html;
   }
 
+  function packagingToolbarHtml() {
+    var html = '<div class="packaging-toolbar"><input type="search" data-packaging-search placeholder="' +
+      esc(t("packagingSearch")) + '" aria-label="' + esc(t("packagingSearch")) + '">';
+    html += '<select data-packaging-language aria-label="' + esc(t("packagingLanguage")) + '">';
+    var current = state.lang === "vi" || state.lang === "id" ? state.lang : state.lang.indexOf("zh") === 0 ? "zh" : "en";
+    [["vi", "VI"], ["en", "EN"], ["id", "ID"], ["zh", "ZH"]].forEach(function (language) {
+      html += '<option value="' + language[0] + '"' + (language[0] === current ? ' selected' : '') + '>' + language[1] + '</option>';
+    });
+    return html + '</select><label class="packaging-all"><input type="checkbox" data-packaging-all> ' +
+      esc(t("packagingAllGroups")) + '</label></div>';
+  }
+
   /* Every group folds; the ones marked collapsed in schema.js simply start
      folded. SEO is the only one that does — its eight fields are all optional
      and the site composes a fallback when they are blank, so eight open empty
      boxes only manufacture anxiety. */
   function groupHtml(ctx, srcName, srcRow, g) {
+    if (g.source) {
+      srcName = g.source;
+      srcRow = srcName === "brand_settings" ? ctx.brand || {} : srcName === ctx.tableName ? ctx.row : ctx.subRows[srcName] || {};
+    }
     var dict = I18N[state.lang] || I18N.en;
     var title = (dict.fieldGroups && dict.fieldGroups[g.key]) || g.key;
     var folded = !!g.collapsed;
@@ -1934,6 +1960,7 @@
       (folded ? " collapsed" : "") +
       '" data-group="' +
       esc(g.key) +
+      '" data-source="' + esc(srcName) +
       '">';
     html +=
       '<h3 class="group-title"><button type="button" class="group-toggle">' +
@@ -1943,16 +1970,29 @@
       "</span></button></h3>";
     html +=
       '<div class="form-grid group-body"' + (folded ? " hidden" : "") + ">";
-    var srcDef = SCHEMA[srcName];
-    g.fields.forEach(function (entry) {
-      if (Array.isArray(entry)) {
-        html += langRowHtml(ctx, srcName, srcRow, entry);
-        return;
-      }
-      var f = srcDef.fields.filter(function (x) {
-        return x.name === entry;
-      })[0];
-      if (f) html += fieldBlockHtml(ctx, srcName, srcRow, f);
+    function appendFields(fieldSource, fieldRow, entries, readOnly, hideEmpty) {
+      var srcDef = SCHEMA[fieldSource];
+      entries.forEach(function (entry) {
+        if (Array.isArray(entry)) {
+          html += langRowHtml(ctx, fieldSource, fieldRow, entry, readOnly);
+          return;
+        }
+        var f = srcDef.fields.filter(function (x) {
+          return x.name === entry;
+        })[0];
+        if (!f) return;
+        if (readOnly) {
+          var empty = fieldRow[f.name] == null || String(fieldRow[f.name]).trim() === '';
+          html += '<div class="field"' + (hideEmpty ? ' data-shared-hide-empty' + (empty ? ' hidden' : '') : '') + '><label>' +
+            esc(f.name) + '</label>' + sharedValueHtml(f.name, fieldRow[f.name]) + '</div>';
+        } else {
+          html += fieldBlockHtml(ctx, fieldSource, fieldRow, f);
+        }
+      });
+    }
+    appendFields(srcName, srcRow, g.fields, g.readOnly);
+    (g.sharedFields || []).forEach(function (shared) {
+      appendFields(shared.source, ctx.subRows[shared.source] || {}, shared.fields, true, true);
     });
     if (g.action === "packagingExport") {
       html +=
@@ -1967,6 +2007,7 @@
         '<button type="button" class="btn" id="packagingExportBtn">' +
         esc(t("downloadPackagingText")) +
         "</button>" +
+        '<button type="button" class="btn" id="packagingReviewBtn">' + esc(t("packagingReviewFile")) + '</button>' +
         '<button type="button" class="btn" id="packagingSubLabelBtn">' +
         esc(t("downloadSubLabel")) +
         "</button>" +
@@ -2009,8 +2050,12 @@
           'section.group[data-group="' + g.key + '"]',
         );
         if (!sec) return;
-        sec.hidden = g.showIf.in.indexOf(control ? control.value : "") === -1;
+        var applies = g.showIf.in.indexOf(control ? control.value : "") !== -1;
+        sec.dataset.applies = String(applies);
+        if (!sec.closest(".packaging-groups")) sec.hidden = !applies;
       });
+      var packagingPanel = document.querySelector('.tab-panel[data-tab="packaging"]');
+      if (packagingPanel) packagingPanel.dispatchEvent(new Event("packaging-visibility-change"));
     }
 
     var seen = {};
@@ -2021,6 +2066,108 @@
         '[data-name="' + g.showIf.field + '"]',
       );
       if (control) control.addEventListener("change", apply);
+    });
+    apply();
+  }
+
+  function wirePackagingWorkbench() {
+    var panel = document.querySelector('.tab-panel[data-tab="packaging"]');
+    if (!panel || !panel.querySelector(".packaging-layout")) return;
+    var groups = Array.from(panel.querySelectorAll(".packaging-groups > .group"));
+    var buttons = Array.from(panel.querySelectorAll("[data-packaging-group]"));
+    var search = panel.querySelector("[data-packaging-search]");
+    var language = panel.querySelector("[data-packaging-language]");
+    var all = panel.querySelector("[data-packaging-all]");
+    var active = groups[0] ? groups[0].dataset.group : "";
+    function normalized(value) {
+      return String(value || "").normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+    }
+    groups.forEach(function (group) {
+      group.querySelectorAll(".group-body > .field").forEach(function (field) {
+        var description = field.querySelector(".field-desc");
+        var label = field.querySelector("label");
+        if (label && description) label.title = description.textContent.trim();
+        if (!field.querySelector("[data-name], [data-shared-name]")) return;
+        field.dataset.packagingRow = "true";
+        var mirror = field.querySelector("[data-shared-name]");
+        var source = document.createElement(mirror ? "button" : "span");
+        source.className = "packaging-field-source";
+        source.textContent = group.dataset.source === "brand_settings" ? tTable("brand_settings") : group.dataset.source === "products" ? t("packagingSourceSite") : t("packagingSourcePackaging");
+        if (mirror) {
+          source.type = "button";
+          source.title = t("packagingEditSource");
+          source.addEventListener("click", function () {
+            var visible = field.querySelector('.lang-cell:not([hidden]) [data-shared-name]') || mirror;
+            var input = document.querySelector('[data-name="' + visible.dataset.sharedName + '"]');
+            if (!input && group.dataset.source === "brand_settings") {
+              if (state.formDirty && !confirm(t("unsavedLeave"))) return;
+              state.formDirty = false;
+              state.view = { table: "brand_settings", mode: "list", id: null };
+              renderContent();
+              return;
+            }
+            if (!input) return;
+            var targetPanel = input.closest(".tab-panel");
+            var tab = document.querySelector('.tab-btn[data-tab="' + targetPanel.dataset.tab + '"]');
+            if (tab) tab.click();
+            var targetGroup = input.closest(".group");
+            if (targetGroup && targetGroup.classList.contains("collapsed")) targetGroup.querySelector(".group-toggle").click();
+            input.scrollIntoView({ block: "center", behavior: "smooth" });
+            input.focus();
+          });
+        }
+        field.appendChild(source);
+      });
+    });
+    function apply() {
+      var query = normalized(search.value).trim();
+      var available = groups.filter(function (group) { return group.dataset.applies !== "false"; });
+      if (!available.some(function (group) { return group.dataset.group === active; })) active = available[0] ? available[0].dataset.group : "";
+      var anyVisible = false;
+      groups.forEach(function (group) {
+        var matching = !query;
+        group.querySelectorAll("[data-content-lang]").forEach(function (cell) {
+          cell.hidden = cell.dataset.contentLang !== language.value;
+        });
+        group.querySelectorAll(".group-body > .field").forEach(function (field) {
+          var cell = field.querySelector('.lang-cell:not([hidden])');
+          var values = Array.from((cell || field).querySelectorAll("[data-name], [data-shared-name]")).map(function (input) {
+            return input.dataset.name || input.dataset.sharedName;
+          }).join(" ");
+          var text = Array.from((cell || field).querySelectorAll("input, textarea, select, [data-shared-name]")).map(function (input) {
+            return input.value == null ? input.textContent : input.value;
+          }).join(" ");
+          var matches = !query || normalized((field.querySelector("label") || field).textContent + " " + values + " " + text).indexOf(query) !== -1;
+          field.hidden = !matches;
+          matching = matching || matches;
+        });
+        group.hidden = group.dataset.applies === "false" || !matching || (!query && !all.checked && group.dataset.group !== active);
+        if (!group.hidden) {
+          anyVisible = true;
+          if (query && group.classList.contains("collapsed")) group.querySelector(".group-toggle").click();
+        }
+      });
+      buttons.forEach(function (button) {
+        var group = groups.find(function (item) { return item.dataset.group === button.dataset.packagingGroup; });
+        button.hidden = !group || group.dataset.applies === "false";
+        button.classList.toggle("active", button.dataset.packagingGroup === active);
+        button.setAttribute("aria-pressed", String(button.dataset.packagingGroup === active));
+      });
+      panel.querySelector(".packaging-no-results").hidden = anyVisible;
+    }
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () { active = button.dataset.packagingGroup; search.value = ""; apply(); });
+    });
+    search.addEventListener("input", apply);
+    language.addEventListener("change", apply);
+    all.addEventListener("change", apply);
+    panel.addEventListener("packaging-visibility-change", apply);
+    panel.addEventListener("packaging-reveal", function (event) {
+      search.value = "";
+      active = event.detail.group;
+      var suffix = (event.detail.name || "").match(/_(en|vi|id|zh)$/);
+      if (suffix) language.value = suffix[1];
+      apply();
     });
     apply();
   }
@@ -2100,10 +2247,14 @@
     on("packagingExportBtn", function () {
       var s = snapshot();
       download(
-        window.VIEMAG_PACKAGING.build(s.pkg, s.product, s.today, s.brand),
+        window.VIEMAG_PACKAGING.buildDesigner(s.pkg, s.product, s.today, s.brand),
         "-packaging.txt",
         s.product,
       );
+    });
+    on("packagingReviewBtn", function () {
+      var s = snapshot();
+      download(window.VIEMAG_PACKAGING.build(s.pkg, s.product, s.today, s.brand), "-review-notes.txt", s.product);
     });
 
     on("packagingSubLabelBtn", function () {
@@ -2166,7 +2317,27 @@
      Not every four-language row gets a translate button — TRANSLATABLE_PREFIXES
      (in this file, further down) lists the ones that do, rather than turning it
      on site-wide. */
-  function langRowHtml(ctx, srcName, srcRow, names) {
+  function sharedValueHtml(name, value) {
+    return '<div class="computed-value" style="white-space:pre-wrap" data-shared-name="' +
+      esc(name) + '">' + esc(value || "—") + '</div>';
+  }
+
+  function wireSharedValues() {
+    document.querySelectorAll('[data-shared-name]').forEach(function (mirror) {
+      var source = document.querySelector('[data-name="' + mirror.dataset.sharedName + '"]');
+      if (!source) return;
+      function refresh() {
+        mirror.textContent = source.value || "—";
+        var field = mirror.closest('[data-shared-hide-empty]');
+        if (field) field.hidden = String(source.value || '').trim() === '';
+      }
+      source.addEventListener("input", refresh);
+      source.addEventListener("change", refresh);
+      refresh();
+    });
+  }
+
+  function langRowHtml(ctx, srcName, srcRow, names, readOnly) {
     var srcDef = SCHEMA[srcName];
     var fields = names
       .map(function (n) {
@@ -2177,7 +2348,7 @@
       .filter(Boolean);
     if (!fields.length) return "";
     var prefix = fields[0].name.replace(/_(en|vi|id|zh)$/, "");
-    var canTranslate = isTranslatablePrefix(srcName, prefix);
+    var canTranslate = !readOnly && isTranslatablePrefix(srcName, prefix);
     var html =
       '<div class="field wide lang-row" data-field="' + esc(prefix) + '">';
     html += "<label>" + esc(prefix) + "_*</label>";
@@ -2204,7 +2375,7 @@
     fields.forEach(function (f) {
       var code = (f.name.match(/_(en|vi|id|zh)$/) || ["", ""])[1].toUpperCase();
       var v = srcRow[f.name];
-      html += '<div class="lang-cell' + (v ? "" : " empty") + '">';
+      html += '<div class="lang-cell' + (v ? "" : " empty") + '" data-content-lang="' + code.toLowerCase() + '">';
       html +=
         '<div class="lang-cell-head"><span class="lang-tag">' +
         esc(code) +
@@ -2236,7 +2407,7 @@
          point per line, eight of them on P01 — was stuck at the same three rows as
          a one-line field, and you edited the eighth line through a scrollbar. */
       html +=
-        f.type === "textarea"
+        readOnly ? sharedValueHtml(f.name, v) : f.type === "textarea"
           ? textareaHtml(f, v, f.large ? 8 : 3)
           : '<input type="text" data-name="' +
             f.name +
@@ -2278,9 +2449,7 @@
   var TABLE_TRANSLATABLE_PREFIXES = {
     guides: ["title", "excerpt", "body"],
     product_packaging: [
-      "packaging_name",
       "instructions_precautions",
-      "package_contents",
       "main_material",
       "magnetic_bracket_specs",
       "charging_specs",
@@ -2297,6 +2466,8 @@
 
   function fieldBlockHtml(ctx, srcName, srcRow, f) {
     var value = srcRow[f.name];
+    if (f.normalizeValue) value = f.normalizeValue(value);
+    if ((value == null || value === "") && f.defaultValue != null) value = f.defaultValue;
     var wideTypes = [
       "textarea",
       "multiselect",
@@ -2403,14 +2574,18 @@
           (value ? "checked" : "") +
           "></div>"
         );
-      case "select":
+      case "select": {
+        var options = f.options.slice();
+        value = value == null ? "" : String(value);
+        // Keep older values selectable until staff deliberately changes them.
+        if (value && options.indexOf(value) === -1) options.push(value);
         /* value= is always the raw stored string (required for save/compare);
            only the VISIBLE label is translated, via optionLabel(). */
         return (
           '<select data-name="' +
           f.name +
           '"><option value="">—</option>' +
-          f.options
+          options
             .map(function (o) {
               return (
                 '<option value="' +
@@ -2425,6 +2600,7 @@
             .join("") +
           "</select>"
         );
+      }
       case "multiselect": {
         var arr = value || [];
         return (
@@ -3626,11 +3802,11 @@
     var card = document.querySelector(".form-card");
     state.formDirty = false;
     if (card) {
-      card.addEventListener("input", function () {
-        state.formDirty = true;
+      card.addEventListener("input", function (event) {
+        if (!event.target.closest(".packaging-toolbar")) state.formDirty = true;
       });
-      card.addEventListener("change", function () {
-        state.formDirty = true;
+      card.addEventListener("change", function (event) {
+        if (!event.target.closest(".packaging-toolbar")) state.formDirty = true;
       });
     }
 
@@ -3644,7 +3820,9 @@
     );
 
     wireGroupVisibility(ctx);
+    wirePackagingWorkbench();
     wirePackagingExport(ctx);
+    wireSharedValues();
 
     if (!ctx.subTabs || !ctx.subTabs.length) return;
     refreshComputed(ctx);
@@ -4093,6 +4271,9 @@
       var subDef = SCHEMA[tb.table];
       var values = collectFormValues(subDef, false);
       var hasAny = Object.keys(values).some(function (k) {
+        var field = subDef.fields.find(function (f) { return f.name === k; });
+        if (!ctx.subRows[tb.table] && field && field.defaultValue != null &&
+            values[k] === field.defaultValue) return false;
         return values[k] !== null && values[k] !== "";
       });
       /* Don't create an all-null row for a product nobody has costed or packaged
@@ -4174,11 +4355,9 @@
      pressed Save and got a raw Postgres sentence back; `validate: 'ean13'` was
      enforced by nothing at all.
 
-     A hidden group is skipped on purpose. Hiding is the form saying the field
-     does not apply to this product, and refusing to save over a box nobody can
-     see would be unfixable. A field on an INACTIVE TAB is still checked — it
-     applies, it is just not on screen — which is why reporting a problem
-     switches to its tab. */
+     Only inapplicable groups are skipped. Packaging navigation and search also
+     hide applicable groups, so those must still be checked, like inactive tabs.
+     Reporting a problem reveals its group and content language. */
   function collectFormProblems(def) {
     var problems = [];
     def.fields.forEach(function (f) {
@@ -4187,7 +4366,7 @@
       var el = document.querySelector('[data-name="' + f.name + '"]');
       if (!el) return;
       var group = el.closest ? el.closest("section.group") : null;
-      if (group && group.hidden) return;
+      if (group && (group.closest(".packaging-groups") ? group.dataset.applies === "false" : group.hidden)) return;
       var val = String(el.value == null ? "" : el.value).trim();
       if (!val && (f.required || ruleMatches(f.requiredIf))) {
         problems.push({ el: el, msg: tf("fieldRequired", { field: f.name }) });
@@ -4258,6 +4437,9 @@
        folded state is a class, a hidden body AND a caret glyph, and reproducing
        all three here would be a second copy free to drift from the first. */
     var group = first.closest ? first.closest("section.group") : null;
+    if (group && group.closest(".packaging-groups")) {
+      panel.dispatchEvent(new CustomEvent("packaging-reveal", { detail: { group: group.dataset.group, name: first.dataset.name } }));
+    }
     if (group && group.classList.contains("collapsed")) {
       var toggle = group.querySelector(".group-toggle");
       if (toggle) toggle.click();

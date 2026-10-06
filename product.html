@@ -26,7 +26,7 @@
     </main>
 
     <script src="js/data-loader.js?v=34"></script>
-    <script src="js/i18n.js?v=39"></script>
+    <script src="js/i18n.js?v=40"></script>
     <script>
       window.renderPage = function ({
         t,
@@ -160,8 +160,7 @@
       <div class="pdp-technical-grid pdp-spec-simple">
         ${technicalBody ? `<div class="rich-text pdp-technical-content">${technicalBody}</div>` : ""}
         <div class="spec-block spec-main">
-          <table aria-label="${esc(t("pdp.specs"))}">${specRows}</table>
-          ${packagingRows ? `<h3 class="spec-subhead">${esc(t("pdp.packagingSpecs"))}</h3><table aria-label="${esc(t("pdp.packagingSpecs"))}">${packagingRows}</table>` : ""}
+          <table aria-label="${esc(t("pdp.specs"))}">${specRows}${packagingRows}</table>
           ${p.spec ? `<p class="spec-download"><a href="${esc(p.spec)}" target="_blank" rel="noopener">${icon("external")}${t("pdp.specSheet")}</a></p>` : ""}
         </div>
         ${accessoryBlock(p)}
@@ -194,10 +193,8 @@
           const pkg = p.packaging || {};
           const specs = pkg.specs || {};
           const rows = [
-            [t("pdp.packaging.type"), pkg.type],
-            [t("pdp.packaging.name"), tf(pkg.name)],
+            [t("pdp.packaging.material"), tf(pkg.material)],
             [t("pdp.packaging.origin"), pkg.origin],
-            [t("pdp.packaging.year"), pkg.year],
             [t("pdp.packaging.magnetGrade"), specs.magnet_grade],
             [t("pdp.packaging.clampRange"), specs.clamp_range_mm ? `${specs.clamp_range_mm} mm` : ""],
             [t("pdp.packaging.inputVoltage"), specs.input_voltage],

@@ -252,6 +252,7 @@ const OPTION_EXCLUDED = {
   products: new Set(['art_key']),
   categories: new Set(['internal_cat_mapping']),
   scenarios: new Set(['scenario_code']),
+  product_packaging: new Set(['manufacturing_year']), // numeric year is language-neutral
 };
 const OPTION_LANGS = ['zh-Hant', 'zh-Hans', 'vi'];
 console.log('\nG. select/multiselect options are translated\n');

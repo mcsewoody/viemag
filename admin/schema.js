@@ -50,6 +50,19 @@ window.VIEMAG_PKG_TYPES.all = [
   'Magnetic bracket', 'Charging product', 'Power bank', 'Combined product',
 ];
 
+window.VIEMAG_PACKAGING_YEAR = new Intl.DateTimeFormat('en', {
+  timeZone: 'Asia/Bangkok', year: 'numeric',
+}).format(new Date());
+window.VIEMAG_NORMALIZE_ORIGIN = function (value) {
+  var aliases = {
+    'china': 'China', 'made in china': 'China', 'trung quốc': 'China', '中國': 'China', '中国': 'China',
+    'taiwan': 'Taiwan', 'made in taiwan': 'Taiwan', 'đài loan': 'Taiwan', '台灣': 'Taiwan', '台湾': 'Taiwan',
+    'vietnam': 'Vietnam', 'viet nam': 'Vietnam', 'made in vietnam': 'Vietnam', 'việt nam': 'Vietnam', '越南': 'Vietnam',
+  };
+  var text = String(value == null ? '' : value).trim();
+  return aliases[text.toLowerCase()] || text;
+};
+
 window.VIEMAG_SCHEMA = {
   /* The product editor is the only three-tab form in /admin, and the tabs are a
      permission boundary, not decoration:
@@ -92,7 +105,16 @@ window.VIEMAG_SCHEMA = {
         { key: 'article',   fields: ['product_article_image_url',
                                     ['product_article_en', 'product_article_vi', 'product_article_id', 'product_article_zh']] },
         { key: 'spec',      fields: ['mount_type', 'charging_watt', 'qi_status', 'warranty_months', 'defect_exchange_days',
-                                    ['technical_content_en', 'technical_content_vi', 'technical_content_id', 'technical_content_zh']] },
+                                    ['technical_content_en', 'technical_content_vi', 'technical_content_id', 'technical_content_zh']],
+          sharedFields: [{ source: 'product_packaging', fields: [
+            ['main_material_en', 'main_material_vi', 'main_material_id', 'main_material_zh'],
+            'country_of_origin', 'magnet_grade', 'clamp_range_mm',
+            'input_voltage', 'input_current', 'input_power', 'wireless_output_power',
+            'max_output_power', 'connector_type', 'wired_output_voltage',
+            'wired_output_current', 'wired_output_power', 'battery_type',
+            'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh',
+            'port1_spec', 'port2_spec', 'port3_spec', 'max_combined_output',
+          ] }] },
         { key: 'card',      fields: ['badge', 'rating', 'review_count'] },
         { key: 'links',     fields: ['test_report_ids', 'faq_ids', 'related_product_ids'] },
         /* Collapsed by default: all eight are optional and the site composes a
@@ -121,15 +143,20 @@ window.VIEMAG_SCHEMA = {
          product-type field — a bare magnetic bracket should never be looking at
          a battery-capacity box. Combined product opens more than one. */
       { key: 'packaging', table: 'product_packaging', groups: [
-        { key: 'pkgIdentity', fields: ['packaging_status', 'packaging_product_type', 'model_number',
-                                       'country_of_origin', 'manufacturing_year',
-                                       ['packaging_name_en', 'packaging_name_vi', 'packaging_name_id', 'packaging_name_zh']] },
+        { key: 'pkgIdentity', source: 'products', readOnly: true,
+          fields: ['product_id', ['name_en', 'name_vi', 'name_id', 'name_zh']] },
+        { key: 'pkgSetup', fields: ['packaging_status', 'packaging_product_type',
+                                    'country_of_origin', 'manufacturing_year'] },
+        { key: 'pkgLegal', source: 'brand_settings', readOnly: true,
+          fields: ['responsible_company', 'responsible_address', 'manufacturer_name', 'manufacturer_address',
+                   'importer_name', 'importer_address', 'customer_contact',
+                   ['warranty_terms_en', 'warranty_terms_vi', 'warranty_terms_id', 'warranty_terms_zh']] },
         { key: 'pkgUsage',    fields: [['instructions_precautions_en', 'instructions_precautions_vi',
                                         'instructions_precautions_id', 'instructions_precautions_zh'],
                                        ['storage_instructions_en', 'storage_instructions_vi',
                                         'storage_instructions_id', 'storage_instructions_zh']] },
-        { key: 'pkgContents', fields: [['package_contents_en', 'package_contents_vi',
-                                        'package_contents_id', 'package_contents_zh']] },
+        { key: 'pkgContents', source: 'products', readOnly: true,
+          fields: [['accessories_en', 'accessories_vi', 'accessories_id', 'accessories_zh']] },
         { key: 'pkgMaterial', fields: [['main_material_en', 'main_material_vi',
                                         'main_material_id', 'main_material_zh']] },
         /* Each 6x group is now the measurable attributes first, then the free
@@ -177,7 +204,7 @@ window.VIEMAG_SCHEMA = {
       ] },
     ],
     fields: [
-      { name: 'product_id', type: 'text', required: true, desc: 'Internal SKU code, unique per product. If official_sku_code is blank, the front end uses this value as the SKU shown to visitors.' },
+      { name: 'product_id', type: 'text', required: true, desc: 'Unique product code and the packaging model number. Edit on Site; Packaging displays the same value read-only. If official_sku_code is blank, the website also uses this code as its SKU.' },
       { name: 'official_sku_code', type: 'text', desc: 'The SKU shown to customers and used in the product page URL (?sku=). Do not put an internal-only code here.' },
       { name: 'slug', type: 'text', required: true, desc: 'URL-friendly short name. The site currently links products by ?sku=, so this is reserved for future per-language URLs; changing it will not break anything yet, but will once those exist.' },
       { name: 'status', type: 'select', options: ['Development', 'Draft', 'Review', 'Published', 'Hidden', 'Discontinued'], desc: 'Controls whether this product appears on the site at all — only Published is shown. Development means the product does not exist yet and is still being sourced or tooled; Draft means it exists but its copy is unfinished. Keeping those apart is what lets the list answer "how many projects are running".' },
@@ -282,10 +309,8 @@ window.VIEMAG_SCHEMA = {
      and write it. Enforcement is the RLS policy in
      supabase/migrations/20260930120000, not this file.
 
-     Every field is `internal: true`. That flag means one thing to
-     scripts/audit-field-parity.mjs: "does not reach viemag.biz". It is accurate
-     here and it is not a secrecy claim — this text gets printed on a box and
-     handed to a stranger in a shop. It simply is not website copy.
+     Packaging-only fields are tagged internal. Main material is shared with
+     the website and is edited once here.
 
      Descriptions here are PUBLIC (https://viemag.biz/admin/schema.js is
      fetchable by anyone), so no description may contain the responsible
@@ -297,24 +322,15 @@ window.VIEMAG_SCHEMA = {
     fields: [
       { name: 'packaging_status', type: 'select', internal: true, options: ['Draft', 'Ready for design', 'Sent to print', 'Printed'], desc: 'Where this box is in its own workflow. Separate from the product Status, which is about the website — a product can be live on the site for months while its packaging is still a draft.' },
       { name: 'packaging_product_type', type: 'select', internal: true, options: window.VIEMAG_PKG_TYPES.all, desc: 'Which technical-specification block this product needs. Choosing it shows the matching block below and hides the others; Combined product shows more than one. It also decides what the law asks for — a charging product must print a year of manufacture, a bare bracket need not.' },
-      { name: 'model_number', type: 'text', internal: true, desc: 'The model printed on the box. Normally leave blank: the export falls back to the official SKU code, then to the internal one, so the box, the outer carton and the barcode cannot drift apart. Only fill this in when the printed model genuinely differs.' },
       { name: 'barcode_ean_upc', type: 'text', internal: true, validate: 'ean13', desc: 'EAN-13, 13 digits. Stored as text on purpose — a number field would drop a leading zero. Saving a half-typed code is allowed; the export is what refuses to sign it off, so nothing goes to print against an unissued barcode.' },
-      { name: 'packaging_name_en', type: 'textarea', internal: true, desc: 'The product name as printed on the box. This must be a real name that says what the thing does — a brand name or a model number does not count as one. All four languages sit side by side; Vietnamese is the one the law actually requires.' },
-      { name: 'packaging_name_vi', type: 'textarea', internal: true, desc: 'Packaging product name (Vietnamese). Legally required, and it must describe the product, e.g. a magnetic car-vent phone mount rather than a brand or a code. Leave blank and the export falls back to the site product name, which is marketing copy and usually not specific enough.' },
-      { name: 'packaging_name_id', type: 'textarea', internal: true, desc: 'Packaging product name (Indonesian).' },
-      { name: 'packaging_name_zh', type: 'textarea', internal: true, desc: 'Packaging product name (Traditional Chinese). Simplified is converted automatically.' },
       { name: 'instructions_precautions_en', type: 'textarea', large: true, internal: true, desc: 'How to use the product, how to store it, and any warnings — one point per line. Mostly carried by diagrams on the box, so keep the text to what a diagram cannot say. For anything with a battery or a heating part this section is not optional.' },
       { name: 'instructions_precautions_vi', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Vietnamese), one point per line.' },
       { name: 'instructions_precautions_id', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Indonesian), one point per line.' },
       { name: 'instructions_precautions_zh', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Traditional Chinese), one point per line.' },
-      { name: 'package_contents_en', type: 'textarea', internal: true, desc: 'What is in the box with quantities, ONE ITEM PER LINE, e.g. Mount x 1 then Magnetic ring x 1. Leave all four blank and the export falls back to the What-is-in-the-box list on the Front tab, so most products need nothing typed here.' },
-      { name: 'package_contents_vi', type: 'textarea', internal: true, desc: 'Box contents with quantities (Vietnamese), one item per line.' },
-      { name: 'package_contents_id', type: 'textarea', internal: true, desc: 'Box contents with quantities (Indonesian), one item per line.' },
-      { name: 'package_contents_zh', type: 'textarea', internal: true, desc: 'Box contents with quantities (Traditional Chinese), one item per line.' },
-      { name: 'main_material_en', type: 'textarea', internal: true, desc: 'The main materials, listed briefly — this is a label line, not a bill of materials. Required for non-electric products; for electric ones the general appliance list does not ask for the casing material, so it can be left out.' },
-      { name: 'main_material_vi', type: 'textarea', internal: true, desc: 'Main material / composition (Vietnamese).' },
-      { name: 'main_material_id', type: 'textarea', internal: true, desc: 'Main material / composition (Indonesian).' },
-      { name: 'main_material_zh', type: 'textarea', internal: true, desc: 'Main material / composition (Traditional Chinese).' },
+      { name: 'main_material_en', type: 'textarea', desc: 'Main material / composition, listed briefly. One shared value for packaging and the product specifications on the website. Edit here; the Site tab shows a read-only copy.' },
+      { name: 'main_material_vi', type: 'textarea', desc: 'Main material / composition (Vietnamese), shared with the website.' },
+      { name: 'main_material_id', type: 'textarea', desc: 'Main material / composition (Indonesian), shared with the website.' },
+      { name: 'main_material_zh', type: 'textarea', desc: 'Main material / composition (Traditional Chinese), shared with the website.' },
       { name: 'magnetic_bracket_specs_en', type: 'textarea', large: true, internal: true, desc: 'The part of the bracket specification that only a sentence can say: which phones and cases it works with, whether an adapter ring is needed and whether one is included. The measurable attributes now have their own boxes above — magnet grade and clamping range — so this is for the conditions around them, one per line.' },
       { name: 'magnetic_bracket_specs_vi', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Vietnamese), one per line.' },
       { name: 'magnetic_bracket_specs_id', type: 'textarea', large: true, internal: true, desc: 'Bracket technical specifications (Indonesian), one per line.' },
@@ -336,14 +352,10 @@ window.VIEMAG_SCHEMA = {
          operator had never opened. It also killed the guard in saveSubRecords
          that exists to avoid writing an empty packaging row for a product
          nobody has packaged, by making that state unreachable. */
-      { name: 'country_of_origin', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.all }, desc: 'Where the goods were actually made, as printed, e.g. Made in China. Required on every label whatever the product is. Per product rather than set once for the brand, because the same brand ships boxes made in different countries — and a sticker applied in Vietnam does not make the goods Vietnamese.' },
-      /* No requiredIf, deliberately. The description below and header() in
-         packaging-export.js both treat an empty year as the correct answer —
-         the export prints a fill-in line for the printer rather than a year
-         that belongs to some other batch. A rule forcing a value here made
-         that intended blank unsaveable and the fill-in line unreachable. The
-         [WARN] in preflight() is the gate. */
-      { name: 'manufacturing_year', type: 'text', internal: true, desc: 'Year of manufacture. Mandatory for anything electrical, not asked of a bare bracket. It belongs to a production batch rather than to the product, so leaving it blank is a valid choice: the export then prints a fill-in line for the printer instead of a wrong year.' },
+      { name: 'country_of_origin', type: 'select', options: ['China', 'Taiwan', 'Vietnam'], normalizeValue: window.VIEMAG_NORMALIZE_ORIGIN, internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.all }, desc: 'Actual country of origin: China, Taiwan or Vietnam. Select the country supported by the product records.' },
+      /* The current-year default is a convenience; the production batch still
+         determines which year staff must select. */
+      { name: 'manufacturing_year', type: 'select', options: Array.from({ length: Math.max(2035, Number(window.VIEMAG_PACKAGING_YEAR) + 5) - 2025 + 1 }, function (_, i) { return String(2025 + i); }), defaultValue: window.VIEMAG_PACKAGING_YEAR, internal: true, desc: 'Year of manufacture. Defaults to the current year when not entered; select the actual production year for the batch.' },
       { name: 'storage_instructions_en', type: 'textarea', internal: true, desc: 'How to store the product — temperature, damp, direct sun, anything that shortens its life. The law lists storage separately from instructions for use, so give it its own lines rather than folding it into the box above.' },
       { name: 'storage_instructions_vi', type: 'textarea', internal: true, desc: 'Storage instructions (Vietnamese), one point per line.' },
       { name: 'storage_instructions_id', type: 'textarea', internal: true, desc: 'Storage instructions (Indonesian), one point per line.' },
