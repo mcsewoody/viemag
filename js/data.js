@@ -1211,7 +1211,7 @@ window.DB = {
         "en": "",
         "vi": "",
         "id": "",
-        "zh": "磁吸\n270度旋轉支架，多角度調節觀看。\n可折疊"
+        "zh": "1.磁吸\n2.270度旋轉支架，多角度調節觀看。\n3.可折疊"
       },
       "reports": [],
       "gallery": [
@@ -1241,12 +1241,18 @@ window.DB = {
         "vi": [],
         "id": [],
         "zh": [
-          "酒精棉片",
-          "黏貼式磁吸環*1",
-          "保護貼",
-          "定位卡",
-          "3M金屬座"
+          "1.酒精棉片",
+          "2.黏貼式磁吸環*1",
+          "3.保護貼",
+          "4.定位卡",
+          "5.3M金屬座"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : ABS+PC+硅膠</p><p>尺寸 : 87*60*8mm</p><p>重量 : 60g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788854674264-dpj1r37f0n-hero_appleGray_1200_20260908_1502.webp"
     },
