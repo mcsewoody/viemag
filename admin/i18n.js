@@ -92,6 +92,8 @@ window.VIEMAG_ADMIN_I18N = {
       "這一頁全部是內部欄位，只有擁有者看得到，而且永不發佈。這個限制由資料庫強制，不是介面上藏起來。",
     tabLocked:
       "這一頁需要擁有者權限。你的角色是編輯者，所以這裡的資料沒有載入——不是空白欄位，是讀不到的欄位。",
+    tabMigrationPending:
+      "這個分頁正在等待資料庫 migration。產品編輯仍然安全；Supabase schema 更新後，包裝欄位就會出現。",
     fieldGroups: {
       ident: "識別與上架",
       naming: "名稱與賣點",
@@ -335,6 +337,8 @@ window.VIEMAG_ADMIN_I18N = {
       "这一页全部是内部字段，只有拥有者看得到，而且永不发布。这个限制由数据库强制，不是界面上藏起来。",
     tabLocked:
       "这一页需要拥有者权限。你的角色是编辑者，所以这里的数据没有载入——不是空白字段，是读不到的字段。",
+    tabMigrationPending:
+      "这个分页正在等待数据库 migration。产品编辑仍然安全；Supabase schema 更新后，包装字段就会出现。",
     fieldGroups: {
       ident: "识别与上架",
       naming: "名称与卖点",
@@ -586,6 +590,8 @@ window.VIEMAG_ADMIN_I18N = {
       "Everything on this tab is internal, visible to owners only, and never published. The restriction is enforced by the database, not by hiding it here.",
     tabLocked:
       "This tab requires owner permission. Your role is editor, so nothing here was loaded — these are not empty fields, they are unreadable ones.",
+    tabMigrationPending:
+      "This tab is waiting for its database migration. Product editing is still safe; packaging fields will appear after Supabase schema is updated.",
     fieldGroups: {
       ident: "Identity & publishing",
       naming: "Name & selling point",
@@ -841,6 +847,8 @@ window.VIEMAG_ADMIN_I18N = {
       "Toàn bộ thẻ này là nội bộ, chỉ chủ sở hữu xem được và không bao giờ được công bố. Giới hạn này do cơ sở dữ liệu bắt buộc, không phải chỉ ẩn ở đây.",
     tabLocked:
       "Thẻ này cần quyền chủ sở hữu. Vai trò của bạn là biên tập viên nên dữ liệu ở đây không được tải — không phải trường trống, mà là trường không đọc được.",
+    tabMigrationPending:
+      "Thẻ này đang chờ migration cơ sở dữ liệu. Vẫn có thể sửa sản phẩm an toàn; các trường bao bì sẽ hiện sau khi Supabase schema được cập nhật.",
     fieldGroups: {
       ident: "Nhận dạng & phát hành",
       naming: "Tên & điểm bán hàng",

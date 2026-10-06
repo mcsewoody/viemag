@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.50";
+  var ADMIN_VERSION = "1.51";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1875,7 +1875,7 @@
       ) {
         html +=
           '<div class="locked-panel">' +
-          esc("This tab is waiting for its database migration. Product editing is still safe; packaging fields will appear after Supabase schema is updated.") +
+          esc(t("tabMigrationPending")) +
           "</div>";
       } else {
         var srcName = tb.table || ctx.tableName;

@@ -834,6 +834,7 @@ window.I18N_DICT = {
     "cta.view": "查看詳情",
     "cta.learnMore": "了解更多",
     "cta.contact": "聯絡客服",
+    "cta.zalo": "透過 Zalo 諮詢",
 
     "hero.eyebrow": "為開車與桌面工作而生的磁吸系統",
     "hero.slogan": "磁吸未來，<br><em>現在就位</em>",
@@ -843,6 +844,27 @@ window.I18N_DICT = {
     "hero.trust1": "{m} 個月保固",
     "hero.trust2": "{d} 天瑕疵換新",
     "hero.trust3": "本地語言客服",
+
+    "journey.kicker": "從需求開始選",
+    "journey.title": "你現在是哪一種情境？",
+    "journey.lede":
+      "不必看完整本型錄。選最接近你的情境，VIEMAG 會帶你找到合適的產品組合。",
+    "journey.1.title": "第一次使用磁吸配件",
+    "journey.1.desc":
+      "先從你最常使用手機的地方開始：車內、桌面、出差途中，或拍攝內容時。",
+    "journey.1.cta": "找到適合的組合",
+    "journey.2.title": "已經在用磁吸配件，需要補齊",
+    "journey.2.desc":
+      "只補上缺少的那一件：支架、磁吸轉接環、充電底座、線材或替換配件。",
+    "journey.2.cta": "查看補充配件",
+    "journey.3.title": "受夠白牌配件小毛病",
+    "journey.3.desc":
+      "如果手機常在顛簸時掉落、底座因曝曬翹起，或關節用了幾個月就下垂，先從你遇到的問題開始。",
+    "journey.3.cta": "找出原因",
+    "journey.4.title": "想先了解清楚再購買",
+    "journey.4.desc":
+      "快速了解 N52 磁鐵、手機殼、車內高溫、Qi2、3M 膠，以及車內合理安裝位置。",
+    "journey.4.cta": "閱讀科技洞察",
 
     "pains.kicker": "是不是很熟悉？",
     "pains.title": "白牌支架的三大痛點",
@@ -889,6 +911,23 @@ window.I18N_DICT = {
     "feat.kicker": "熱銷推薦",
     "feat.title": "精選產品",
     "feat.lede": "VIEMAG 系統中較受歡迎的幾款。",
+
+    "system.kicker": "一套連接標準",
+    "system.title": "手機設定一次，到哪都能用",
+    "system.lede":
+      "手機只需要一個標準磁吸環。之後就能在車用支架、桌面底座、隨身支架與拍攝腳架之間共用同一介面。換場景時只換底座，不必重買整套。",
+    "system.phone": "手機",
+    "system.core": "VIEMAG 磁吸系統",
+    "system.car": "汽車",
+    "system.desk": "桌面",
+    "system.travel": "隨身",
+    "system.studio": "創作",
+
+    "news.kicker": "購買前先讀",
+    "news.title": "VIEMAG 科技洞察",
+    "news.lede":
+      "幫你正確認識磁鐵、充電、手機殼、車內溫度，以及如何依車型選擇支架。",
+    "news.cta": "查看全部文章",
 
     "proof.title": "可驗證的品質，不是廣告詞",
     "proof.desc":
@@ -1435,6 +1474,7 @@ window.I18N_DICT = {
     "cta.view": "Lihat detail",
     "cta.learnMore": "Pelajari lebih lanjut",
     "cta.contact": "Hubungi dukungan",
+    "cta.zalo": "Konsultasi lewat Zalo",
 
     "hero.eyebrow": "Sistem magnetik untuk berkendara & meja kerja",
     "hero.slogan": "Masa depan magnetik,<br><em>kini di tempatnya.</em>",
@@ -1445,6 +1485,27 @@ window.I18N_DICT = {
     "hero.trust1": "Garansi {m} bulan",
     "hero.trust2": "Tukar cacat {d} hari",
     "hero.trust3": "Dukungan bahasa lokal",
+
+    "journey.kicker": "Pilih sesuai kebutuhan",
+    "journey.title": "Situasi mana yang paling cocok untuk Anda?",
+    "journey.lede":
+      "Tidak perlu membaca seluruh katalog. Pilih situasi yang paling dekat, VIEMAG akan mengarahkan ke kelompok produk yang sesuai.",
+    "journey.1.title": "Pertama kali memakai aksesori magnetik",
+    "journey.1.desc":
+      "Mulai dari tempat Anda paling sering memakai ponsel: di mobil, di meja kerja, saat bepergian, atau saat membuat konten.",
+    "journey.1.cta": "Temukan set yang sesuai",
+    "journey.2.title": "Sudah memakai magnet, perlu melengkapi",
+    "journey.2.desc":
+      "Tambahkan bagian yang kurang: dudukan, cincin adaptor magnetik, basis pengisi daya, kabel, atau komponen pengganti.",
+    "journey.2.cta": "Lihat aksesori tambahan",
+    "journey.3.title": "Lelah dengan produk tanpa merek",
+    "journey.3.desc":
+      "Jika ponsel sering jatuh di jalan bergelombang, dasar terangkat karena panas, atau sendi melorot setelah beberapa bulan, mulai dari masalah yang Anda alami.",
+    "journey.3.cta": "Cari penyebabnya",
+    "journey.4.title": "Ingin memahami dulu sebelum membeli",
+    "journey.4.desc":
+      "Baca ringkas tentang magnet N52, casing ponsel, panas kabin, Qi2, perekat 3M, dan titik pemasangan yang tepat di mobil.",
+    "journey.4.cta": "Baca Wawasan",
 
     "pains.kicker": "Terdengar akrab?",
     "pains.title": "Tiga cara dudukan tanpa merek mengecewakan",
@@ -1502,6 +1563,23 @@ window.I18N_DICT = {
     "feat.kicker": "Terlaris",
     "feat.title": "Produk unggulan",
     "feat.lede": "Pilihan populer dari sistem VIEMAG.",
+
+    "system.kicker": "Satu standar koneksi",
+    "system.title": "Atur ponsel sekali, gunakan di mana saja",
+    "system.lede":
+      "Ponsel Anda hanya perlu satu cincin magnetik yang tepat. Setelah itu, antarmuka yang sama bisa dipakai dengan dudukan mobil, stand meja, stand perjalanan, dan tripod. Ganti situasi, cukup ganti basisnya, bukan seluruh set.",
+    "system.phone": "Ponsel",
+    "system.core": "Sistem Magnetik VIEMAG",
+    "system.car": "Mobil",
+    "system.desk": "Meja",
+    "system.travel": "Bepergian",
+    "system.studio": "Kreasi",
+
+    "news.kicker": "Baca sebelum membeli",
+    "news.title": "Wawasan VIEMAG",
+    "news.lede":
+      "Panduan untuk memahami magnet, pengisian daya, casing, panas kabin, dan memilih dudukan mobil yang tepat.",
+    "news.cta": "Lihat semua artikel",
 
     "proof.title": "Kualitas teruji, bukan sekadar iklan",
     "proof.desc":
