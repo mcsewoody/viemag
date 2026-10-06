@@ -826,6 +826,75 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787379873107-cfjbo84epfh-K_p_du_l_ch.png"
     },
     {
+      "sku": "P02",
+      "slug": "p02",
+      "status": "future",
+      "category": "portable",
+      "subCategory": null,
+      "art": "",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "MagSafe Adjustable Magnetic Mount | VIEMAG",
+        "vi": "Giá đỡ từ tính có thể điều chỉnh MagSafe | VIEMAG",
+        "id": "Dudukan Magnetik MagSafe yang Dapat Disesuaikan | VIEMAG",
+        "zh": "MagSafe 可調式磁吸支架 | VIEMAG"
+      },
+      "claim": {
+        "en": "It features a freely moldable base that can be adjusted to fit different pipe diameters.\nIt can be attached to round tubes, oval tubes, square tubes, and irregular curved surfaces—it adheres to any metal surface.\nN52 high-performance magnets provide a secure MagSafe magnetic connection.\nComes with a ring-shaped magnetic adapter for use with devices that do not support MagSafe.\nRotates 360 degrees for easy viewing angle adjustment.\nThe base is made of non-slip silicone, which increases friction and protects the contact surface.\nIncludes a square metal mounting plate that can be installed on the center console, dashboard, or other locations inside the vehicle.",
+        "vi": "Sử dụng đế có thể định hình tự do, cho phép điều chỉnh hình dạng phù hợp với các đường kính ống khác nhau.\nCó thể gắn vào ống tròn, ống hình elip, ống vuông và các bề mặt cong không đều; miễn là bề mặt kim loại thì đều có thể bám dính.\nNam châm mạnh N52, mang lại hiệu ứng hút từ MagSafe vững chắc.\nĐi kèm miếng dẫn từ hình vòng, phù hợp với các thiết bị không hỗ trợ tính năng hút từ MagSafe.\nXoay 360 độ, dễ dàng điều chỉnh góc nhìn.\nPhần đế được làm từ chất liệu silicone chống trượt, giúp tăng độ ma sát và bảo vệ bề mặt tiếp xúc.\nSản phẩm đi kèm miếng dán kim loại hình vuông, có thể lắp đặt tại các vị trí như bảng điều khiển trung tâm, bảng đồng hồ trên xe.",
+        "id": "Dilengkapi dengan alas yang dapat dibentuk sesuka hati, sehingga bentuknya dapat disesuaikan dengan diameter pipa yang berbeda-beda.\nDapat dipasang pada pipa bundar, pipa oval, pipa persegi, dan permukaan melengkung yang tidak beraturan; produk ini dapat menempel pada semua permukaan logam.\nMagnet N52 yang sangat kuat, memberikan daya tarik magnetik MagSafe yang kokoh.\nDilengkapi dengan pelat magnet berbentuk cincin, cocok untuk perangkat yang tidak mendukung fitur pengisian daya nirkabel MagSafe.\nBerputar 360 derajat, sehingga sudut pandang dapat disesuaikan dengan mudah.\nBagian alasnya terbuat dari bahan silikon anti selip, yang meningkatkan daya gesek sekaligus melindungi permukaan yang bersentuhan.\nDilengkapi dengan pelat logam berbentuk persegi yang dapat dipasang di konsol tengah, dasbor, dan bagian lain di dalam mobil.",
+        "zh": "1.採用自由塑形底座，可依不同管徑調整形狀。\n2.可固定於圓管、橢圓管、方管及不規則曲面，只要是金屬面皆可吸附。\n3.N52 強力磁鐵，提供穩固的 MagSafe 磁吸效果。\n4附環形引磁片，適用於不支援 MagSafe 磁吸功能的装置。\n5.360 度旋轉，輕鬆調整視角。\n6.底座採防滑矽膠材質，提高摩擦力並保護接觸表面。\n7.內附金屬方形貼片，可安裝於車內中控台、儀表板等位置。"
+      },
+      "reports": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "1. Adhesive Magnetic Ring",
+          "2. Magnetic metal plate *1"
+        ],
+        "vi": [
+          "1. Vòng nam châm dán",
+          "2. Miếng kim loại hút từ*1"
+        ],
+        "id": [
+          "1. Cincin magnetik tempel",
+          "2. Pelat logam dengan daya tarik magnet*1"
+        ],
+        "zh": [
+          "1.黏貼式磁吸環",
+          "2.磁吸金屬片*1"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 矽膠+塑膠(ABS)+橡膠+金屬</p><p>尺寸 :102*60*33mm</p><p>重量 : 101g</p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791280197295-afo3x5yfgza-P02_Hero.png"
+    },
+    {
       "sku": "P03",
       "slug": "p03",
       "status": "published",
