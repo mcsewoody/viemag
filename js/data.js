@@ -450,6 +450,17 @@ window.DB = {
         "id": "",
         "zh": ""
       },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026"
+      },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
