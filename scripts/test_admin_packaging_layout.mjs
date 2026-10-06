@@ -20,7 +20,7 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.route('http://admin.test/**', route => route.fulfill({ contentType: 'text/html',
-    body: '<button id="syncNowBtn"></button><form id="loginForm"></form><button id="signOutBtn"></button><div id="fixture"></div>' }));
+    body: '<form id="loginForm" hidden></form><div class="app"><aside class="sidebar"><div class="brand">VIEMAG Admin</div></aside><div><header class="topbar"><button id="syncNowBtn">Sync</button><button id="signOutBtn">Sign out</button></header><div class="content" id="fixture"></div></div></div>' }));
   await page.goto('http://admin.test/');
   await page.evaluate(() => {
     window.VIEMAG_ADMIN_CONFIG = {};
@@ -75,6 +75,13 @@ try {
   const languageBoxes = await page.locator('[data-name^="main_material_"]').evaluateAll(inputs => inputs.map(input => input.getBoundingClientRect().y));
   assert.equal(new Set(languageBoxes).size, 1, 'Four translations share one desktop row');
   assert.ok(await page.locator('[data-name="main_material_en"]').evaluate(input => input.getBoundingClientRect().width > 180), 'Translations must use the full page width');
+  await page.setViewportSize({ width: 1008, height: 900 });
+  const laptopBoxes = await page.locator('[data-name^="main_material_"]').evaluateAll(inputs => inputs.map(input => ({ y: input.getBoundingClientRect().y, width: input.getBoundingClientRect().width })));
+  assert.equal(new Set(laptopBoxes.map(box => box.y)).size, 1, 'A laptop with the real admin sidebar must retain four comparison columns');
+  assert.ok(laptopBoxes.every(box => box.width >= 130));
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  if (process.env.PACKAGING_SCREENSHOT_PATH) await page.screenshot({ path: process.env.PACKAGING_SCREENSHOT_PATH.replace('.png', '-laptop.png'), fullPage: false });
+  await page.setViewportSize({ width: 1440, height: 1000 });
   if (process.env.PACKAGING_SCREENSHOT_PATH) await page.screenshot({ path: process.env.PACKAGING_SCREENSHOT_PATH, fullPage: true });
   await page.locator('[data-name="main_material_vi"]').fill('Silicone');
   await page.locator('[data-packaging-search]').fill('Silicone');
