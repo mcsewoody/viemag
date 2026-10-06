@@ -124,19 +124,19 @@ ok('EAN-13 validation accepts a real code and rejects length, digits and checksu
   ok('a filled spec block replaces the site fallback rather than joining it');
 }
 
-/* ---------- EAN-13 edge cases the old check got wrong ---------- */
-/* 036000291452 is the canonical GS1 UPC-A example. The field is labelled
-   "EAN/UPC" and a UPC-A is an EAN-13 with a leading zero, so refusing it was the
-   check calling a correct barcode wrong. */
-assert.equal(P.ean13Valid('036000291452'), true, 'a valid 12-digit UPC-A must be accepted');
-assert.equal(P.ean13Valid('036000291453'), false, 'a UPC-A with a wrong check digit must still fail');
+/* ---------- EAN-13 edge cases ---------- */
+/* The packaging source says the series uses EAN-13 only, with 13 digits in the
+   database. A UPC-A value may have an EAN-13 representation, but the admin
+   field must hold that exact 13-digit code rather than a 12-digit shorthand. */
+assert.equal(P.ean13Valid('036000291452'), false, 'a 12-digit UPC-A shorthand must not be accepted');
+assert.equal(P.ean13Valid('0036000291452'), true, 'the 13-digit EAN representation must be accepted');
 /* Exported on window, so it can be called with whatever the caller holds.
    code[i] on a Number is undefined and the checksum would be NaN. */
 assert.equal(P.ean13Valid(4006381333931), true, 'a numeric argument must not fail on string indexing');
 assert.equal(P.ean13Valid(null), false);
 assert.equal(P.ean13Valid(undefined), false);
 assert.equal(P.ean13Valid('  4006381333931  '), true, 'a pasted code with whitespace must be accepted');
-ok('EAN-13 accepts UPC-A and a numeric argument, and still rejects a bad check digit');
+ok('EAN-13 accepts only exact 13-digit codes and still handles pasted/numeric input');
 
 /* ---------- per-product-type field matrix ----------
    The one rule the whole feature exists for: a designer must not receive a
@@ -228,12 +228,13 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
 
   const filled = P.build({ packaging_product_type: 'Magnetic bracket' }, PRODUCT, DATE, {
     responsible_company: 'COMART', responsible_address: 'Addr 1',
+    manufacturer_name: 'Factory Co.', manufacturer_address: 'Factory Rd.',
     importer_name: 'VN Importer', importer_address: 'Addr 2',
     customer_contact: 'hotline@example.com',
     warranty_terms_vi: 'Bảo hành 12 tháng kể từ ngày mua.',
   });
   assert.ok(!filled.includes('[FAIL] Responsible company'), 'a filled brand block must clear the failure');
-  assert.ok(filled.includes('COMART') && filled.includes('VN Importer'));
+  assert.ok(filled.includes('COMART') && filled.includes('Factory Co.') && filled.includes('VN Importer'));
   assert.ok(filled.includes('Bảo hành 12 tháng'), 'the warranty sentence must reach the file');
   ok('the brand block fails loudly when unset and prints when filled');
 }
@@ -467,6 +468,7 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
     });
     const txt = P.build(filled, PRODUCT_MIN, DATE, {
       responsible_company: 'C', responsible_address: 'A',
+      manufacturer_name: 'M', manufacturer_address: 'MA',
       importer_name: 'I', importer_address: 'A2',
     });
     const fails = txt.split('\n').filter((l) => l.indexOf('[FAIL]') !== -1);

@@ -204,10 +204,9 @@
      proofreader and only shows up as a scanner that reads nothing, after the
      boxes are printed.
 
-     A 12-digit UPC-A is accepted too, by left-padding it with the zero that is
-     formally there anyway — the two are the same number and the field is
-     labelled "EAN/UPC", so rejecting a valid UPC-A was the check calling a
-     correct barcode wrong.
+     The packaging-source discussion tightened this to EAN-13 only. UPC-A can
+     be represented in EAN-13 space, but the administered code must still be the
+     exact 13-digit value that maps to the SKU, carton, and marketplace record.
 
      String() first, and not just for the regex: the regex coerces on its own,
      but code[i] on a Number is undefined and the checksum would then be NaN and
@@ -215,7 +214,6 @@
      caller happens to hold. */
   function ean13Valid(code) {
     code = String(code == null ? "" : code).trim();
-    if (/^\d{12}$/.test(code)) code = "0" + code;
     if (!/^\d{13}$/.test(code)) return false;
     var sum = 0;
     for (var i = 0; i < 12; i++) {
@@ -368,6 +366,8 @@
     var pairs = [
       ["Responsible company", str(brand.responsible_company)],
       ["Address", str(brand.responsible_address)],
+      ["Manufacturer", str(brand.manufacturer_name)],
+      ["Manufacturer address", str(brand.manufacturer_address)],
       ["Vietnam importer", str(brand.importer_name)],
       ["Importer address", str(brand.importer_address)],
       ["Customer contact", str(brand.customer_contact)],
@@ -588,6 +588,10 @@
     }());
     sec("Tổ chức chịu trách nhiệm về hàng hóa", function () {
       var a = str(brand.responsible_company), b = str(brand.responsible_address);
+      return a && b ? a + "\n" + b : a || b;
+    }());
+    sec("Nhà sản xuất", function () {
+      var a = str(brand.manufacturer_name), b = str(brand.manufacturer_address);
       return a && b ? a + "\n" + b : a || b;
     }());
     sec("Nhà nhập khẩu", function () {

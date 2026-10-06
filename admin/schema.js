@@ -416,6 +416,8 @@ window.VIEMAG_SCHEMA = {
     fields: [
       { name: 'responsible_company', type: 'text', internal: true, desc: 'The organisation that answers for the goods, in its registered name exactly as it appears on the business licence. Depending on the shipment this may be the manufacturer or the importer; the law cares that it is named and reachable, not which of the two it is.' },
       { name: 'responsible_address', type: 'textarea', internal: true, desc: 'Full registered address of the company above. Printed as written — do not abbreviate it to fit the panel.' },
+      { name: 'manufacturer_name', type: 'text', internal: true, desc: 'Registered manufacturer name, when the label must state the maker separately from the responsible company. Leave blank only when legal confirms the responsible-company line is the correct manufacturer/commissioning-party line for this shipment.' },
+      { name: 'manufacturer_address', type: 'textarea', internal: true, desc: 'Full registered address of the manufacturer, printed as written when the manufacturer line is used.' },
       { name: 'importer_name', type: 'text', internal: true, desc: 'Registered name of the Vietnamese importer. Required on the label whenever the goods are imported, and separate from the responsible company because the usual case has one of each.' },
       { name: 'importer_address', type: 'textarea', internal: true, desc: 'Full registered address of the Vietnamese importer.' },
       { name: 'customer_contact', type: 'text', internal: true, desc: 'At least one channel a buyer can actually reach — a phone number or an email address. Expected next to the responsible-party block, and a buyer with a faulty product is the person it is for.' },

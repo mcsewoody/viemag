@@ -165,6 +165,8 @@ window.VIEMAG_FIELD_I18N = {
     brand_settings: {
       responsible_company: '對這批貨負責的單位，填營業執照上的登記全名。依實際法律關係，可能是製造方也可能是進口商；法規在意的是有沒有具名、找不找得到人，而不是這兩者中的哪一個',
       responsible_address: '上述公司的完整登記地址。照原文印——不要為了排版把它縮寫',
+      manufacturer_name: '製造方的登記全名。當標籤需要把製造方與責任公司分開列示時填寫；若法規顧問確認責任公司那一行已經是正確的製造／委託製造主體，才可留空',
+      manufacturer_address: '製造方的完整登記地址。使用製造方欄位時照原文印',
       importer_name: '越南進口商的登記全名。只要是進口貨就必須標示，與責任公司分開填，因為常見狀況是兩者各一家',
       importer_address: '越南進口商的完整登記地址',
       customer_contact: '至少一個買家真的找得到人的管道——電話或電子郵件。法規要求它跟責任公司資訊放在一起，而會用到它的人是手上拿著壞掉產品的消費者',
@@ -481,6 +483,8 @@ window.VIEMAG_FIELD_I18N = {
     brand_settings: {
       responsible_company: '对这批货负责的单位，填营业执照上的登记全名。依实际法律关系，可能是制造方也可能是进口商；法规在意的是有没有具名、找不找得到人，而不是这两者中的哪一个',
       responsible_address: '上述公司的完整登记地址。照原文印——不要为了排版把它缩写',
+      manufacturer_name: '制造方的登记全名。当标签需要把制造方与责任公司分开列示时填写；若法规顾问确认责任公司那一行已经是正确的制造／委托制造主体，才可留空',
+      manufacturer_address: '制造方的完整登记地址。使用制造方字段时照原文印',
       importer_name: '越南进口商的登记全名。只要是进口货就必须标示，与责任公司分开填，因为常见状况是两者各一家',
       importer_address: '越南进口商的完整登记地址',
       customer_contact: '至少一个买家真的找得到人的管道——电话或电子邮件。法规要求它跟责任公司资讯放在一起，而会用到它的人是手上拿着坏掉产品的消费者',
@@ -797,6 +801,8 @@ window.VIEMAG_FIELD_I18N = {
     brand_settings: {
       responsible_company: 'Tổ chức chịu trách nhiệm về hàng hóa, ghi đúng tên đăng ký trên giấy phép kinh doanh. Tùy quan hệ pháp lý thực tế, có thể là bên sản xuất hoặc bên nhập khẩu; luật quan tâm có nêu tên và liên hệ được hay không, chứ không quan tâm là bên nào trong hai bên',
       responsible_address: 'Địa chỉ đăng ký đầy đủ của công ty nêu trên. In đúng nguyên văn — không viết tắt cho vừa khuôn',
+      manufacturer_name: 'Tên đăng ký đầy đủ của nhà sản xuất. Điền khi nhãn cần tách nhà sản xuất khỏi tổ chức chịu trách nhiệm; chỉ để trống khi tư vấn pháp lý xác nhận dòng tổ chức chịu trách nhiệm đã là đúng chủ thể sản xuất/đặt gia công cho lô này',
+      manufacturer_address: 'Địa chỉ đăng ký đầy đủ của nhà sản xuất. Khi dùng dòng nhà sản xuất thì in đúng nguyên văn',
       importer_name: 'Tên đăng ký đầy đủ của nhà nhập khẩu Việt Nam. Bắt buộc ghi nhãn khi hàng là hàng nhập, và để riêng với công ty chịu trách nhiệm vì trường hợp thường gặp là mỗi bên một công ty',
       importer_address: 'Địa chỉ đăng ký đầy đủ của nhà nhập khẩu Việt Nam',
       customer_contact: 'Ít nhất một kênh người mua thật sự liên hệ được — số điện thoại hoặc email. Luật đòi nó nằm cạnh khối thông tin bên chịu trách nhiệm, và người dùng tới nó là người đang cầm sản phẩm hỏng',
