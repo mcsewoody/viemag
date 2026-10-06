@@ -841,10 +841,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "MagSafe Adjustable Magnetic Mount | VIEMAG",
-        "vi": "Giá đỡ từ tính có thể điều chỉnh MagSafe | VIEMAG",
-        "id": "Dudukan Magnetik MagSafe yang Dapat Disesuaikan | VIEMAG",
-        "zh": "MagSafe 可調式磁吸支架 | VIEMAG"
+        "en": "P02 Magnetic Phone Mount with Flexible Base | VIEMAG",
+        "vi": "Giá đỡ điện thoại từ tính P02 đế uốn linh hoạt | VIEMAG",
+        "id": "Dudukan ponsel magnetik P02 dengan alas yang dapat ditekuk secara fleksibel | VIEMAG",
+        "zh": "P02 磁吸式手機支架，底座可靈活彎曲 | VIEMAG"
       },
       "claim": {
         "en": "It features a freely moldable base that can be adjusted to fit different pipe diameters.\nIt can be attached to round tubes, oval tubes, square tubes, and irregular curved surfaces—it adheres to any metal surface.\nN52 high-performance magnets provide a secure MagSafe magnetic connection.\nComes with a ring-shaped magnetic adapter for use with devices that do not support MagSafe.\nRotates 360 degrees for easy viewing angle adjustment.\nThe base is made of non-slip silicone, which increases friction and protects the contact surface.\nIncludes a square metal mounting plate that can be installed on the center console, dashboard, or other locations inside the vehicle.",
@@ -862,13 +862,13 @@ window.DB = {
       "exchange": 14,
       "seoTitle": {
         "en": "",
-        "vi": "",
+        "vi": "Giá đỡ điện thoại từ tính P02 đế uốn linh hoạt | VIEMAG",
         "id": "",
         "zh": ""
       },
       "seoDesc": {
         "en": "",
-        "vi": "",
+        "vi": "P02 có đế uốn linh hoạt, nam châm N52 và vòng từ tính đi kèm, phù hợp thiết bị gym, tủ lạnh, xe golf, xe đẩy và bề mặt kim loại.",
         "id": "",
         "zh": ""
       },
