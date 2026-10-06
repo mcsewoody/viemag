@@ -996,7 +996,7 @@ window.DB = {
         "en": "Compatible with MagSafe-enabled phones and cases.\nGreat for podcasts, taking selfies, and creating content.\nCarabiner design—convenient to carry with you.\nMagnetic accessory holders on both sides, allowing for flexible attachment of additional accessories.\nCompact, foldable design—easy to store and carry.",
         "vi": "Tương thích với các điện thoại và ốp lưng hỗ trợ MagSafe.\nRất phù hợp để nghe podcast, chụp ảnh tự sướng và sáng tạo nội dung.\nThiết kế móc carabiner — rất tiện lợi để mang theo bên mình.\nCác giá đỡ phụ kiện từ tính ở cả hai bên, cho phép gắn thêm các phụ kiện khác một cách linh hoạt.\nThiết kế nhỏ gọn, có thể gập lại — dễ dàng cất giữ và mang theo.",
         "id": "Kompatibel dengan ponsel dan casing yang mendukung MagSafe.\nSangat cocok untuk podcast, berfoto selfie, dan membuat konten.\nDesain karabiner—praktis untuk dibawa kemana-mana.\nTempat aksesori magnetik di kedua sisi, sehingga memungkinkan pemasangan aksesori tambahan secara fleksibel.\nDesain ringkas dan dapat dilipat—mudah disimpan dan dibawa.",
-        "zh": "相容於支援 MagSafe 的手機及手機殼。\n非常適合製作播客、拍攝自拍照以及創作內容。\n登山扣設計——方便隨身攜帶。\n兩側均設有磁吸式配件支架，可靈活安裝其他配件。\n輕巧、可摺疊的設計——收納與攜帶皆十分方便。"
+        "zh": "1. 適用於支援 MagSafe 的手機和手機殼\n2. 適用於 podcast、自拍和內容創作\n3. 登山扣式設計，方便攜帶\n4 雙側磁吸式配件支架\n5. 可折疊，方便收納"
       },
       "reports": [],
       "gallery": [
@@ -1032,9 +1032,14 @@ window.DB = {
           "Cincin logam × 1"
         ],
         "zh": [
-          "衛生套組 × 1",
-          "金屬圈 × 1"
+          "清潔包*1、引磁片*1"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 合金＋硅膠＋ABS</p><p>尺寸 : 163*59*9mm</p><p>重量 : 106g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787381998941-gmpiox4ht3r-Gi______i_n_Tho_i_T__T_nh_Tripod_G_p_G_n_K_m_M_c_Carabiner.png"
     },
