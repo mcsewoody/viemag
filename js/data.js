@@ -853,7 +853,11 @@ window.DB = {
         "zh": "1.採用自由塑形底座，可依不同管徑調整形狀。\n2.可固定於圓管、橢圓管、方管及不規則曲面，只要是金屬面皆可吸附。\n3.N52 強力磁鐵，提供穩固的 MagSafe 磁吸效果。\n4附環形引磁片，適用於不支援 MagSafe 磁吸功能的装置。\n5.360 度旋轉，輕鬆調整視角。\n6.底座採防滑矽膠材質，提高摩擦力並保護接觸表面。\n7.內附金屬方形貼片，可安裝於車內中控台、儀表板等位置。"
       },
       "reports": [],
-      "gallery": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791281410140-jlrz7irbhtk-feature-01.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791281410141-kgzx69llbjg-feature-02.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791281410141-sl5l5ssj0ln-feature-03.webp"
+      ],
       "warranty": 12,
       "exchange": 14,
       "seoTitle": {
