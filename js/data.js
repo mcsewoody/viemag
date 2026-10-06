@@ -850,7 +850,7 @@ window.DB = {
         "en": "Multifunctional stand for multiple devices – Compatible with smartphones, tablets, and laptops; flexibly adapts to various usage scenarios at home, in the office, and for creative projects\n8 flexible height adjustment levels – Precisely adjust to the optimal viewing angle, ensuring comfort during extended use and helping to reduce fatigue\nAviation-grade aluminum・Lightweight and durable - Crafted from a high-strength aluminum alloy, it is rock-solid and elevates the standard of quality\nPowerful magnetic hold・Quick attachment -- Just place it and it sticks right away, making one-handed use smoother and letting you capture wonderful moments with ease\nFoldable・Easy to Carry - Compact and foldable, making it convenient to take along on business trips, vacations, or for creative projects anytime",
         "vi": "Giá đỡ đa năng cho nhiều thiết bị – Phù hợp với điện thoại di động, máy tính bảng và máy tính xách tay, linh hoạt chuyển đổi giữa các tình huống sử dụng tại nhà, văn phòng và sáng tạo\n8 mức điều chỉnh độ cao linh hoạt – Điều chỉnh chính xác góc nhìn tối ưu, mang lại sự thoải mái khi sử dụng trong thời gian dài và giúp giảm mệt mỏi\nChất liệu nhôm hàng không・Nhẹ và bền - Được chế tạo từ hợp kim nhôm có độ bền cao, chắc chắn không lung lay, nâng tầm chất lượng\nLực hút từ mạnh mẽ・Định vị nhanh chóng -- Chỉ cần đặt là dính ngay, thao tác bằng một tay mượt mà hơn, ghi lại những khoảnh khắc tuyệt vời một cách dễ dàng\nGấp gọn・Dễ dàng mang theo - Nhỏ gọn và có thể gấp lại, thuận tiện mang theo khi đi công tác, du lịch hay sáng tạo bất cứ lúc nào",
         "id": "Dudukan serbaguna untuk berbagai perangkat – Cocok untuk ponsel, tablet, dan laptop, serta fleksibel untuk digunakan dalam berbagai situasi, baik di rumah, kantor, maupun saat berkreasi\n8 tingkat penyesuaian ketinggian yang fleksibel – Menyesuaikan sudut pandang optimal secara tepat, memberikan kenyamanan saat digunakan dalam waktu lama dan membantu mengurangi kelelahan\nBahan aluminium pesawat terbang・Ringan dan tahan lama - Dibuat dari paduan aluminium berkekuatan tinggi, kokoh dan tidak goyah, sehingga meningkatkan kualitasnya\nDaya hisap yang kuat・Pemasangan cepat -- Cukup tempelkan dan langsung menempel, pengoperasian dengan satu tangan lebih lancar, abadikan momen-momen indah dengan mudah\nDapat dilipat・Mudah dibawa - Ringkas dan dapat dilipat, sehingga praktis untuk dibawa saat bepergian dinas, berwisata, atau berkreasi kapan saja",
-        "zh": "多功能裝置支架——適用於手機、平板電腦和筆記型電腦，可靈活適應居家、辦公室及創意創作等各種使用情境\n8 段靈活的高度調節 – 精準調整至最佳視角，確保長時間使用時的舒適感，並有助於減輕疲勞\n航空級鋁材・輕盈且堅固 — 採用高強度鋁合金製成，穩固不搖晃，提升產品品質\n強勁磁吸力・快速定位——只需輕放即可吸附，單手操作更順暢，輕鬆捕捉精彩瞬間\n可摺疊・便於攜帶 - 體積小巧且可摺疊，無論是出差、旅遊，或是隨時進行創作，攜帶都很方便"
+        "zh": "1.多裝置萬用支架-手機／平板／筆電皆適用，居家、辦公、創作多情境自由切換\n2.8 段高度自由調節-精準調整最佳視角，長時間使用更舒適、不易疲勞\n3.航空鋁材質・輕巧耐用-高強度鋁合金打造，穩固不晃、質感升級\n4.強力磁吸・快速定位--放即吸，單手操作更順暢，隨手記錄精彩時刻\n5.折疊收納・隨行好攜帶-輕巧可折，出差旅行、靈感創作隨帶隨用"
       },
       "reports": [],
       "gallery": [
@@ -879,9 +879,15 @@ window.DB = {
         "vi": [],
         "id": [],
         "zh": [
-          "酒精棉片",
-          "黏貼式磁吸環"
+          "1.酒精棉片",
+          "2.黏貼式磁吸環"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 金屬+矽膠</p><p>尺寸 : 58*181.5*21mm </p><p>重量 : 約 150g</p>"
       },
       "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788923118618-p0i5et1m2eg-Th_ng_s__s_n_ph_m.png",
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788920961370-kw7xo4lypsf-hero_appleGray_1200_20260909_0927.webp"
