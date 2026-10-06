@@ -637,7 +637,7 @@ window.DB = {
         "en": "Nano-adhesive backing, secure adhesion, washable with water, and reusable multiple times\nMechanical vacuum lock design—simply turn it once to secure it; it won’t come loose\nN52 – Strong magnetic force, holds securely without falling off, giving you peace of mind when using it for navigation or watching movies\nA two-bar folding design that’s lightweight, compact, space-saving, and more convenient to carry around\nIt can be freely adjusted to various angles and switched between portrait and landscape modes as desired, providing a comfortable viewing experience from any angle\nThe body is made of zinc alloy, featuring a sturdy, durable design that does not wobble\nSmooth swivel design, seamless adjustment, no jamming, and more precise angle positioning",
         "vi": "Đế hấp phụ bằng keo nano, bám dính chắc chắn, có thể giặt bằng nước và tái sử dụng nhiều lần\nThiết kế khóa chân không cơ học, chỉ cần xoay một vòng là cố định, không bị lỏng\nN52 – Lực hút từ mạnh mẽ, bám chắc không bị rơi, giúp bạn yên tâm khi dùng để định vị hay xem phim\nCấu trúc gấp hai thanh, nhẹ nhàng, gọn gàng, không tốn diện tích, thuận tiện hơn khi mang theo bên mình\nCó thể điều chỉnh tự do theo nhiều góc độ, chuyển đổi giữa chế độ dọc và ngang tùy ý, mang lại cảm giác thoải mái khi xem ở mọi góc độ\nThiết kế thân máy bằng hợp kim kẽm, cấu trúc chắc chắn, bền bỉ và không bị lung lay\nThiết kế trục xoay mượt mà, điều chỉnh trơn tru, không bị kẹt, định vị góc chính xác hơn",
         "id": "Dasar yang dilapisi nano-lem, menempel dengan kuat, dapat dicuci dengan air, dan dapat digunakan kembali berkali-kali\nDesain pengunci vakum mekanis, cukup diputar satu putaran untuk menguncinya, tidak akan kendur\nN52 – Daya tarik magnet yang kuat, menempel dengan kokoh tanpa jatuh, sehingga Anda dapat merasa tenang saat menggunakannya untuk menandai lokasi atau menonton film\nDesain lipat dua batang, ringan, ringkas, tidak memakan tempat, dan lebih praktis untuk dibawa-bawa\nDapat disesuaikan secara bebas ke berbagai sudut, beralih antara mode potret dan lanskap sesuka hati, sehingga memberikan kenyamanan saat menonton dari segala sudut\nDesain bodi terbuat dari paduan seng, dengan struktur yang kokoh, tahan lama, dan tidak goyah\nDesain poros putar yang mulus, pengaturan yang lancar, tidak macet, dan penentuan sudut yang lebih akurat",
-        "zh": "採用奈米膠吸附底座，黏著牢固，可用水清洗並可重複使用多次\n採用機械式真空鎖定設計，只需轉動一圈即可固定，不會鬆脫\nN52 – 強勁磁力，牢固吸附不掉落，讓您在定位或觀看影片時都能安心使用\n雙桿摺疊式結構，輕巧、簡潔，不佔空間，隨身攜帶更方便\n可自由調整多種角度，隨意在直立與橫向模式之間切換，讓您從任何角度觀看時都能感到舒適\n機身採用鋅合金設計，結構堅固、耐用且不會晃動\n採用順暢旋轉軸設計，調整流暢無卡滯，定位角度更精準"
+        "zh": "1.奈米膠吸附底座，穩固貼合，可水洗重複使用\n2.機械式真空鎖定設計，一轉即固定不鬆動\n3.N52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n4.雙桿折疊結構，輕巧好收不占空間，隨身攜帶更方便\n5.多角度自由調整，直橫隨心切換，怎麼看都順手\n6.鋅合金機身設計，結構穩固耐用不晃動\n7.滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
       },
       "reports": [],
       "gallery": [
@@ -672,6 +672,12 @@ window.DB = {
         "zh": [
           "酒精棉片"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : PC+ABS+TPU+金屬漆+鋅合金</p><p>尺寸 : 63*63*46mm</p><p>重量 : 163g</p>"
       },
       "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113858740-l8qf5myqh1-thong-so-ki-thuat.webp",
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789115735201-rluz7o06z9f-hero_appleGray_1200_20260911_1534.webp"
