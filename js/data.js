@@ -712,7 +712,7 @@ window.DB = {
         "en": "PU gel suction base, aluminum alloy construction, and a foldable, extendable magnetic mount—a reliable companion for every journey and moment.",
         "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
         "id": "Basis penghisap PU gel, terbuat dari paduan aluminium, dengan dudukan magnetik yang dapat dilipat dan diperpanjang — teman setia untuk setiap perjalanan dan momen.",
-        "zh": "PU凝膠吸盤、鋁合金材質、可折疊伸縮的磁吸支架——是您每段旅程與每個時刻的可靠夥伴。"
+        "zh": "1.奈米膠吸附底座，穩固貼合，可水洗重複使用\n2.機械式真空鎖定設計，一轉即固定不鬆動\n3.N52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n4.雙桿折疊延伸設計，最高可延伸至 208 mm，自由調整觀看高度與距離\n5.多角度自由調整，直橫隨心切換，怎麼看都順手\n6.鋅合金機身設計，結構穩固耐用不晃動\n7.滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
       },
       "reports": [],
       "gallery": [],
@@ -729,6 +729,20 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "黏貼式磁吸環"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 鋅合金、ABS、磁鐵、奈米膠</p><p>尺寸 : 64x64x47mm </p><p>重量 : 約 150g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789011928644-b14vf9ppjb8-hero_appleGray_1200_20260910_1040.webp"
     },
