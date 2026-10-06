@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.48";
+  var ADMIN_VERSION = "1.49";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1643,10 +1643,18 @@
       return Promise.all(
         subTabs.map(function (tb) {
           if (tb.ownerOnly && role !== "owner") return null;
-          return must(
-            sb.from(tb.table).select("*").eq("product_id", id).maybeSingle(),
-            "load " + tb.table,
-          );
+          return sb
+            .from(tb.table)
+            .select("*")
+            .eq("product_id", id)
+            .maybeSingle()
+            .then(function (res) {
+              if (res.error && tableMissingFromError(res.error)) {
+                return { __missingTable: true, table: tb.table };
+              }
+              if (res.error) throw new Error("load " + tb.table + ": " + res.error.message);
+              return res.data;
+            });
         }),
       ).then(function (rows) {
         var map = {};
@@ -1860,6 +1868,15 @@
            boxes, and the first thing they would do is fill them in and press
            Save, losing the typing to a permission error they cannot interpret. */
         html += '<div class="locked-panel">' + esc(t("tabLocked")) + "</div>";
+      } else if (
+        tb.table &&
+        ctx.subRows[tb.table] &&
+        ctx.subRows[tb.table].__missingTable
+      ) {
+        html +=
+          '<div class="locked-panel">' +
+          esc("This tab is waiting for its database migration. Product editing is still safe; packaging fields will appear after Supabase schema is updated.") +
+          "</div>";
       } else {
         var srcName = tb.table || ctx.tableName;
         var srcRow = tb.table ? ctx.subRows[tb.table] || {} : ctx.row;
@@ -4070,6 +4087,9 @@
     });
     if (!tabs.length) return Promise.resolve(null);
     return Promise.all(tabs.map(function (tb) {
+      if (ctx.subRows[tb.table] && ctx.subRows[tb.table].__missingTable) {
+        return null;
+      }
       var subDef = SCHEMA[tb.table];
       var values = collectFormValues(subDef, false);
       var hasAny = Object.keys(values).some(function (k) {
@@ -4095,6 +4115,11 @@
     var msg = error && error.message ? String(error.message) : "";
     var match = /Could not find the '([^']+)' column/i.exec(msg);
     return match ? match[1] : "";
+  }
+
+  function tableMissingFromError(error) {
+    var msg = error && error.message ? String(error.message) : "";
+    return /Could not find the table 'public\.[^']+' in the schema cache/i.test(msg);
   }
 
   function writeRow(tableName, values, isNew, id) {
