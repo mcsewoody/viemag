@@ -1070,7 +1070,7 @@ window.DB = {
         "en": "Compatible with MagSafe-enabled phones and phone cases\n360 degrees\nThe hook-style design makes it easy to hang bags and straps; it’s lightweight, portable, and easy to store.",
         "vi": "Dùng cho điện thoại và ốp lưng hỗ trợ MagSafe\nCó thể xoay 360 độ\nThiết kế dạng móc treo, thuận tiện để treo túi xách và dây đeo, nhẹ nhàng, dễ mang theo và cất giữ.",
         "id": "Cocok untuk ponsel dan casing ponsel yang mendukung MagSafe\n360 derajat\nDesain dengan kait, memudahkan untuk menggantung tas dan tali ransel, ringan, mudah dibawa, dan praktis untuk disimpan.",
-        "zh": "適用於支援 MagSafe 的手機和手機殼\n可 360 度\n掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。"
+        "zh": "1. 適用於支援 MagSafe 的手機和手機殼\n2. 可 360 度\n3.掛勾式設計，方便掛包包與背帶，輕巧便攜好收納。"
       },
       "reports": [],
       "gallery": [
@@ -1103,6 +1103,12 @@ window.DB = {
         "zh": [
           "清潔包*1、引磁片*1"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 尼龍加纖＋鋁合金＋硅膠＋磁鐵</p><p>尺寸 : 104*59*28mm</p><p>重量 : 112g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788852564427-ilmb6k3zn5-hero_appleGray_1200_20260908_1427.webp"
     },
