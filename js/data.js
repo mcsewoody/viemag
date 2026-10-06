@@ -1333,7 +1333,7 @@ window.DB = {
         "en": "Supports 15W wireless fast charging.\nMagnetic Closure\n270-degree swivel mount for multi-angle viewing.\nFoldable",
         "vi": "Hỗ trợ sạc nhanh không dây 15W.\nGắn nam châm\nGiá đỡ xoay 270 độ, cho phép điều chỉnh góc nhìn đa dạng.\nCó thể gập lại",
         "id": "Mendukung pengisian daya nirkabel cepat 15W.\nPemasangan magnetik\nDudukan yang dapat berputar 270 derajat, memungkinkan penyesuaian sudut pandang dari berbagai arah.\nDapat dilipat",
-        "zh": "支援15W無線快充。\n磁吸\n270度旋轉支架，多角度調節觀看。\n可折疊"
+        "zh": "1.支援15W無線快充。\n2.磁吸\n3.270度旋轉支架，多角度調節觀看。\n4.可折疊\n"
       },
       "reports": [],
       "gallery": [
@@ -1388,13 +1388,19 @@ window.DB = {
           "Kabel pengisi daya"
         ],
         "zh": [
-          "酒精棉片",
-          "黏貼式磁吸環*1",
-          "保護貼",
-          "定位卡",
-          "3M金屬座*2",
-          "充電線"
+          "1.酒精棉片",
+          "2.黏貼式磁吸環*1",
+          "3.保護貼",
+          "4.定位卡",
+          "5.3M金屬座*2",
+          "6.充電線"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : ABS+PC+矽膠</p><p>尺寸 : 89*60*13mm</p><p>重量 : 84g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788855186633-jv5vfy6uj9o-hero_appleGray_1200_20260908_1502.webp"
     }
