@@ -1139,7 +1139,7 @@ window.DB = {
         "en": "360° rotation — flexibly switch between portrait and landscape orientations.\n17 mm ball joint — easily attaches to compatible phone mounts.\nProtective rubber layer — minimizes scratches in contact areas.",
         "vi": "Xoay 360° — linh hoạt chuyển góc nhìn dọc hoặc ngang.\nKhớp bi 17 mm — dễ kết hợp với các đầu giữ điện thoại tương thích.\nLớp cao su bảo vệ — hạn chế trầy xước tại vùng tiếp xúc.",
         "id": "Berputar 360° — fleksibel untuk mengubah sudut pandang secara vertikal atau horizontal.\nSendi bola 17 mm — mudah dipasangkan dengan dudukan ponsel yang kompatibel.\nLapisan karet pelindung — mengurangi goresan pada area yang bersentuhan.",
-        "zh": "360°旋轉 — 可靈活切換縱向或橫向視角。\n17 公釐球形關節 — 輕鬆搭配相容的手機固定座。\n保護性橡膠層——可減少接觸處的刮痕。"
+        "zh": "1.增加使用情境，適應各種角度 \n2.連接兩端產品即可使用\n3.360 度旋轉，輕鬆調整視角\n4.採用橡膠材質，保護手機不刮傷\n5.可搭配 17 mm 球窩的手機架"
       },
       "reports": [],
       "gallery": [],
@@ -1171,9 +1171,15 @@ window.DB = {
           "Cincin logam tempel dengan dukungan magnetik"
         ],
         "zh": [
-          "酒精濕巾",
-          "磁性支撐貼片金屬環"
+          "1.酒精棉片",
+          "2.黏貼式磁吸環"
         ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>AM-12</p><p>材質 : 塑膠+橡膠</p><p>尺寸 : 92*28*31mm</p><p>重量 : 22g</p><p>BH-08</p><p>材質 : 塑膠+橡膠+金屬</p><p>尺寸 : 60*60*20mm</p><p>重量 : 29g</p><p>出風口式底座</p><p>材質 : 塑膠+金屬</p><p>尺寸 : 90*50*31mm</p><p>重量 : 26g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
     },
