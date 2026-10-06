@@ -528,6 +528,9 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p>材質 : 鋅合金</p><p>尺寸 : 76*59*20mm</p><p>重量 : 136g</p>"
       },
+      "packaging": {
+        "year": "2026"
+      },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
     {
