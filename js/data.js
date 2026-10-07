@@ -952,6 +952,8 @@ window.DB = {
         "zh": "<p>材質 : 矽膠+塑膠(ABS)+橡膠+金屬</p><p>尺寸 :102*60*33mm</p><p>重量 : 101g</p>"
       },
       "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
         "year": "2026"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791280197295-afo3x5yfgza-P02_Hero.png"
