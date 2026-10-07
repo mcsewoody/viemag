@@ -457,7 +457,7 @@ window.DB = {
         "zh": "<p><br></p>"
       },
       "packaging": {
-        "type": "Magnetic bracket",
+        "type": "Combined product",
         "origin": "China",
         "year": "2026",
         "specs": {
