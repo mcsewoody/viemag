@@ -534,7 +534,10 @@ window.DB = {
       "packaging": {
         "type": "Magnetic bracket",
         "origin": "China",
-        "year": "2026"
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N54"
+        }
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
