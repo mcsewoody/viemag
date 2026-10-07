@@ -412,7 +412,7 @@ window.DB = {
       "qiId": null,
       "watt": null,
       "mount": [],
-      "price": 19.9,
+      "price": null,
       "rating": null,
       "reviews": 0,
       "badge": null,
@@ -451,9 +451,21 @@ window.DB = {
         "zh": ""
       },
       "accessories": {
-        "en": [],
-        "vi": [],
-        "id": [],
+        "en": [
+          "1. Alcohol swabs",
+          "2. Adhesive magnetic rings (2)",
+          "3. Mirror-Finish Sticker"
+        ],
+        "vi": [
+          "1. Miếng bông tẩm cồn",
+          "2. Vòng nam châm dán*2",
+          "3. Miếng dán gương"
+        ],
+        "id": [
+          "1. Kain kasa beralkohol",
+          "2. Cincin magnet tempel*2",
+          "3. Stiker cermin"
+        ],
         "zh": [
           "1.酒精棉片",
           "2.黏貼式磁吸環*2",
