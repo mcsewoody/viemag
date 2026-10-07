@@ -407,7 +407,7 @@ window.DB = {
       "status": "published",
       "category": "desk",
       "subCategory": "stands",
-      "art": "",
+      "art": "suction",
       "qi": "none",
       "qiId": null,
       "watt": null,
