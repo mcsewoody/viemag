@@ -851,6 +851,8 @@ window.DB = {
         "zh": "<p>材質 : 鋅合金</p><p>尺寸 : 105*59*38mm</p><p>重量 : 115g</p>"
       },
       "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
         "year": "2026"
       },
       "faqs": [
