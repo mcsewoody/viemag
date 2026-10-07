@@ -847,6 +847,9 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p>材質 : 鋅合金</p><p>尺寸 : 105*59*38mm</p><p>重量 : 115g</p>"
       },
+      "packaging": {
+        "year": "2026"
+      },
       "faqs": [
         "no-magnet"
       ],
