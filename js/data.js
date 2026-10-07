@@ -1119,6 +1119,80 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930062472-8t79pwh2q78-Hero.png"
     },
     {
+      "sku": "P05",
+      "slug": "p05",
+      "status": "future",
+      "category": "portable",
+      "subCategory": null,
+      "art": "",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Rectangular MagSafe Magnetic Exercise Holder, Two Rows, 8 Magnets | VIEMAG | P05",
+        "vi": "Giá đỡ tập thể dục từ tính MagSafe hình chữ nhật, hai hàng, 8 nam châm | VIEMAG | P05 ",
+        "id": "Dudukan olahraga magnetik MagSafe berbentuk persegi panjang, dua baris, 8 magnet | VIEMAG | P05",
+        "zh": "MagSafe 矩形雙排磁吸健身支架，8 顆磁鐵 | VIEMAG | P05"
+      },
+      "claim": {
+        "en": "1. High-Power N52 Magnets\n2. MagSafe Compatible\n3. Can be mounted on exercise equipment or other metal surfaces",
+        "vi": "1. Nam châm N52 siêu mạnh\n2. Tương thích với MagSafe\n3. Có thể lắp đặt trên các thiết bị tập thể dục hoặc các bề mặt kim loại khác",
+        "id": "1. Magnet N52 yang sangat kuat\n2. Kompatibel dengan MagSafe\n3. Dapat dipasang pada peralatan kebugaran atau permukaan logam lainnya",
+        "zh": "1.強力N52磁鐵\n2.MagSafe相容\n3.可安裝在健身器材或其他金屬表面"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791366428608-5ksjls7415u-01-1.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791366428609-uru14dd21hp-02-2.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791366428609-74m0wks3jz-01-2.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Adhesive Magnetic Ring"
+        ],
+        "vi": [
+          "Vòng nam châm dán"
+        ],
+        "id": [
+          "Cincin magnetik tempel"
+        ],
+        "zh": [
+          "黏貼式磁吸環"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質：塑料、金屬、硅膠</p><p>尺寸：68 × 直徑 60 × 36 毫米</p><p>重量：95 g</p><p><br></p>"
+      },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791366413680-jeql49lovk-hero_appleGray_1200_20261007_1645.webp"
+    },
+    {
       "sku": "P06",
       "slug": "p06",
       "status": "future",
