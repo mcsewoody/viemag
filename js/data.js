@@ -688,6 +688,14 @@ window.DB = {
         "zh": "<p>材質 : PC+ABS+TPU+金屬漆+鋅合金</p><p>尺寸 : 63*63*46mm</p><p>重量 : 163g</p>"
       },
       "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113858740-l8qf5myqh1-thong-so-ki-thuat.webp",
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N52"
+        }
+      },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789115735201-rluz7o06z9f-hero_appleGray_1200_20260911_1534.webp"
     },
     {
