@@ -841,10 +841,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "P02 Magnetic Phone Mount with Flexible Base | VIEMAG",
-        "vi": "Giá đỡ điện thoại từ tính P02 đế uốn linh hoạt | VIEMAG",
-        "id": "Dudukan ponsel magnetik P02 dengan alas yang dapat ditekuk secara fleksibel | VIEMAG",
-        "zh": "P02 磁吸式手機支架，底座可靈活彎曲 | VIEMAG"
+        "en": "Magnetic Phone Mount with Flexible Base | VIEMAG | P02",
+        "vi": "Giá đỡ điện thoại từ tính  đế uốn linh hoạt | VIEMAG | P02",
+        "id": "Dudukan ponsel magnetik dengan alas yang fleksibel | VIEMAG | P02",
+        "zh": "磁吸式手機支架　可彎曲底座 | VIEMAG | P02"
       },
       "claim": {
         "en": "It features a freely moldable base that can be adjusted to fit different pipe diameters.\nIt can be attached to round tubes, oval tubes, square tubes, and irregular curved surfaces—it adheres to any metal surface.\nN52 high-performance magnets provide a secure MagSafe magnetic connection.\nComes with a ring-shaped magnetic adapter for use with devices that do not support MagSafe.\nRotates 360 degrees for easy viewing angle adjustment.\nThe base is made of non-slip silicone, which increases friction and protects the contact surface.\nIncludes a square metal mounting plate that can be installed on the center console, dashboard, or other locations inside the vehicle.",
