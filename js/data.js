@@ -766,6 +766,14 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p>材質 : 鋅合金、ABS、磁鐵、奈米膠</p><p>尺寸 : 64x64x47mm </p><p>重量 : 約 150g</p>"
       },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N52"
+        }
+      },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789011928644-b14vf9ppjb8-hero_appleGray_1200_20260910_1040.webp"
     },
     {
