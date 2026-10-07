@@ -712,7 +712,7 @@ window.DB = {
       "badge": "bestseller",
       "name": {
         "en": "Longer Multi-Purpose Magnetic Holder, Aluminum Alloy Frame | D05",
-        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm | D05",
+        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm |VIEMAG|D05",
         "id": "Dudukan Magnet Serbaguna yang Lebih Panjang, Rangka dari Paduan Aluminium | D05",
         "zh": "加長型多功能磁吸支架，鋁合金框架 | D05"
       },
@@ -739,9 +739,15 @@ window.DB = {
         "zh": ""
       },
       "accessories": {
-        "en": [],
-        "vi": [],
-        "id": [],
+        "en": [
+          "Adhesive Magnetic Ring"
+        ],
+        "vi": [
+          "Vòng nam châm dán"
+        ],
+        "id": [
+          "Cincin magnetik tempel"
+        ],
         "zh": [
           "黏貼式磁吸環"
         ]
