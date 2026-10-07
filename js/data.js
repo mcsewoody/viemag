@@ -1209,7 +1209,7 @@ window.DB = {
       "badge": null,
       "name": {
         "en": "MagSafe Rectangular Magnetic Fitness Mount—Single Row of Magnets—4 Magnets | VIEMAG",
-        "vi": "Giá đỡ tập thể dục từ tính MagSafe hình chữ nhật – Dãy nam châm đơn – 4 nam châm | VIEMAG",
+        "vi": "Giá đỡ tập thể dục từ tính MagSafe hình chữ nhật – 4 nam châm | VIEMAG | P06",
         "id": "Dudukan Olahraga Magnetik MagSafe Berbentuk Panjang - Baris Tunggal - 4 Magnet | VIEMAG",
         "zh": "MagSafe長形磁吸式健身支架-單排磁鐵－４顆磁鐵 | VIEMAG"
       },
