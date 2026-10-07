@@ -51,7 +51,8 @@
     const s = document.querySelector('script[src*="data-loader.js"]');
     if (!s) return "";
     const m = /(\?v=[^&#"]+)/.exec(s.getAttribute("src") || "");
-    return m ? m[1] : "";
+    const version = m ? m[1] : "";
+    return version + (version ? "&" : "?") + "db=" + Math.floor(Date.now() / 60000);
   }
   let articleLoadPromise = null;
   function loadArticles() {

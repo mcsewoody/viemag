@@ -7,10 +7,12 @@
  * Pages CDN both keep serving the old copy for up to 10 minutes, so an edit
  * that HAD published looked like it never synced.
  *
- * THE FIX: pass this loader's own cache-busting version through to data.js.
- * The pre-commit hook bumps every HTML reference on deploy, so a fresh deploy
- * still gets a fresh DB file without forcing repeat visitors to redownload the
- * full 1MB+ data payload every minute.
+ * THE FIX: pass this loader's own cache-busting version through to data.js and
+ * add a short data-only freshness token. The pre-commit hook bumps HTML
+ * references when front-end code changes, but /admin exports commit only
+ * js/data.js and js/data-articles.js through the GitHub Contents API — no local
+ * hook runs, and no HTML ?v= changes. Without this second token, a correct
+ * export can still look stale until the CDN/browser releases js/data.js.
  *
  * WHY document.write AND NOT A DYNAMIC <script>: js/data.js defines window.DB,
  * and js/main.js reads it in boot() on DOMContentLoaded. A dynamically inserted
@@ -26,9 +28,7 @@
  * gzipped to get them; without the bodies it is 39 KB. Bodies and product
  * articles now live in js/data-articles.js, which only the two pages that
  * render long-form text ask for, by putting data-articles="1" on their loader
- * tag. Both files carry the same ?v=, so a deploy invalidates them together and
- * a visitor moving from the home page to an article does not re-fetch the
- * catalogue.
+ * tag. Both files carry the same token, so they stay in step.
  *
  * Safe in both directions: js/main.js folds js/data-articles.js back into
  * window.DB when it is present and renders exactly as before when it is not, so
@@ -37,6 +37,10 @@
 (function () {
   var script = document.currentScript;
   var version = script && script.src ? new URL(script.src, location.href).search : "";
+  /* Data is edited from /admin, independently of HTML deploys. Keep a little
+     browser/CDN reuse, but cap visible staleness at about one minute. */
+  var sep = version ? "&" : "?";
+  version += sep + "db=" + Math.floor(Date.now() / 60000);
   document.write('<script src="js/data.js' + version + '"><\/script>');
   if (script && script.getAttribute("data-articles") === "1") {
     document.write('<script src="js/data-articles.js' + version + '"><\/script>');
