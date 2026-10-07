@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.59";
+  var ADMIN_VERSION = "1.60";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -4466,6 +4466,7 @@
     var tableName = ctx.tableName,
       def = ctx.def,
       isNew = ctx.isNew;
+    if (!isNew && ctx.row && ctx.row.id) id = ctx.row.id;
     var statusEl = document.getElementById("saveStatus");
     var saveBtn = document.getElementById("saveBtn");
     statusEl.className = "save-status";
@@ -4488,10 +4489,29 @@
     writeRowSkippingMissingColumns(tableName, values, isNew, id, 8).then(
       function (res) {
         if (res.error) {
+          if (tableName === "products" && res.error.code === "23505" &&
+              /products_product_id_key/.test(res.error.message || "")) {
+            fail(tf("duplicateProductCode", { code: values.product_id }));
+            var codeInput = document.querySelector('[data-name="product_id"]');
+            var siteTab = document.querySelector('.tab-btn[data-tab="front"]');
+            if (siteTab) siteTab.click();
+            if (codeInput) {
+              var field = codeInput.closest(".field");
+              if (field) field.classList.add("field-error");
+              codeInput.scrollIntoView({ block: "center" });
+              codeInput.focus();
+            }
+            return;
+          }
           fail(t("saveFailed") + res.error.message);
           return;
         }
         var rowId = res.data.id;
+        // The primary insert has committed even if later writes fail. Retrying
+        // this form must update that row, not insert a second product.
+        ctx.isNew = false;
+        ctx.row = Object.assign({}, ctx.row, values, { id: rowId });
+        state.view.id = rowId;
 
         /* Relation sets are rewritten delete-then-insert. That is destructive, so
          every step is error-checked: if the insert fails (e.g. a CHECK

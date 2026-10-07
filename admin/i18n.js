@@ -1067,6 +1067,15 @@ Object.entries({
   window.VIEMAG_ADMIN_I18N[lang].packagingMoveDown = labels[2];
 });
 
+Object.entries({
+  en: 'Product code "{code}" already exists. Use a different code for a new product, or open the existing product to edit it. Your entries are still on this form.',
+  vi: 'Mã sản phẩm "{code}" đã tồn tại. Dùng mã khác cho sản phẩm mới, hoặc mở sản phẩm hiện có để chỉnh sửa. Nội dung bạn nhập vẫn được giữ trên form.',
+  "zh-Hant": '產品代碼「{code}」已存在。新增產品請使用其他代碼，或開啟現有產品編輯。表單內容仍保留。',
+  "zh-Hans": '产品代码「{code}」已存在。新增产品请使用其他代码，或打开现有产品编辑。表单内容仍保留。',
+}).forEach(function ([lang, message]) {
+  window.VIEMAG_ADMIN_I18N[lang].duplicateProductCode = message;
+});
+
 window.VIEMAG_ADMIN_LANGS = [
   { code: "en", label: "English" },
   { code: "vi", label: "Tiếng Việt" },
