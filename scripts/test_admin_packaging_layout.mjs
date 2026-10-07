@@ -37,7 +37,7 @@ try {
     'window.__qa={buildFormHtml,wireFormEvents,collectFormValues,validateForm,state};return;' + marker));
   await page.evaluate(() => {
     const ctx = { tableName: 'products', def: window.VIEMAG_SCHEMA.products, isNew: false, role: 'owner',
-      row: { product_id: 'VQ09-WH', name_en: 'Mount', name_vi: 'Gia do', accessories_en: 'Cable', accessories_vi: 'Cap' },
+      row: { product_id: 'VQ09-WH', slug: 'vq09-wh', name_en: 'Mount', name_vi: 'Gia do', accessories_en: 'Cable', accessories_vi: 'Cap' },
       subRows: { product_packaging: { packaging_product_type: 'Charging product', country_of_origin: 'Made in China',
         main_material_en: 'ABS', main_material_vi: 'PC', input_voltage: '9V' } },
       brand: { manufacturer_name: 'Fixture manufacturer', manufacturer_address: 'Fixture address' },
@@ -107,17 +107,42 @@ try {
   await page.locator('[data-name="packaging_product_type"]').selectOption('Power bank');
   const validate = () => page.evaluate(() => window.__qa.validateForm({ def: { fields: [] }, role: 'owner',
     subTabs: [{ table: 'product_packaging' }] }));
-  assert.ok(await validate(), 'Required fields must be checked in inactive groups');
+  assert.equal(await validate(), null, 'An incomplete power bank draft must be savable');
   assert.ok(await page.locator('.packaging-groups [data-group="pkgSpecC"]').isVisible());
   await page.locator('[data-name="battery_type"]').selectOption('Li-ion');
   await page.locator('[data-name="battery_capacity_mah"]').fill('10000');
   await page.locator('[data-name="rated_voltage"]').fill('3.7V');
   await page.locator('[data-name="watt_hour_wh"]').fill('37');
   await page.locator('[data-packaging-search]').fill('main_material');
-  assert.ok(await validate());
-  assert.ok(await page.locator('[data-name="lithium_warning_vi"]').isVisible(), 'Reveal the required language as well as its group');
+  assert.equal(await validate(), null, 'Missing lithium copy must not block draft saves');
+  await page.locator('[data-packaging-search]').fill('');
   await page.locator('[data-name="lithium_warning_vi"]').fill('Sample warning');
   assert.equal(await validate(), null);
+  await page.locator('[data-name="packaging_product_type"]').selectOption('Combined product');
+  for (const name of ['battery_type', 'battery_capacity_mah', 'rated_voltage', 'watt_hour_wh', 'lithium_warning_vi']) {
+    const field = page.locator('[data-name="' + name + '"]');
+    if (name === 'battery_type') await field.selectOption('');
+    else await field.fill('');
+  }
+  await page.locator('[data-name="country_of_origin"]').selectOption('');
+  await page.locator('[data-name="barcode_ean_upc"]').fill('123');
+  assert.equal(await validate(), null, 'Combined without battery specs, origin or a finished barcode must save');
+  for (const status of ['Draft', 'Ready for design', 'Sent to print', 'Printed']) {
+    await page.locator('[data-name="packaging_status"]').selectOption(status);
+    assert.equal(await validate(), null, 'Workflow status must not silently lock draft editing');
+  }
+  const identityChecks = await page.evaluate(() => {
+    const input = document.querySelector('[data-name="product_id"]');
+    const previous = input.value;
+    input.value = '';
+    const problem = window.__qa.validateForm(window.__ctx);
+    input.value = previous;
+    return { problem, restored: window.__qa.validateForm(window.__ctx) };
+  });
+  assert.ok(identityChecks.problem.includes('product_id'), 'Product identity validation must remain enforced');
+  assert.equal(identityChecks.restored, null);
+  await page.locator('.tab-btn[data-tab="packaging"]').click();
+  await page.locator('[data-name="battery_capacity_mah"]').fill('10000');
   await page.locator('[data-name="packaging_product_type"]').selectOption('Magnetic bracket');
   assert.ok(!await page.locator('.packaging-groups [data-group="pkgSpecC"]').isVisible());
   assert.equal((await page.evaluate(() => window.__qa.collectFormValues(window.VIEMAG_SCHEMA.product_packaging))).battery_capacity_mah, '10000');

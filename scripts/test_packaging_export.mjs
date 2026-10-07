@@ -465,9 +465,7 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
       country_of_origin: 'Made in China',
       barcode_ean_upc: '4006381333931',
     };
-    pk.fields.forEach((f) => {
-      if (f.requiredIf && f.requiredIf.in.indexOf(type) !== -1) filled[f.name] = '1';
-    });
+    Object.assign(filled, { battery_type: 'Li-ion', battery_capacity_mah: '10000', rated_voltage: '3.7V', watt_hour_wh: '37', lithium_warning_vi: 'Fixture warning' });
     const txt = P.build(filled, PRODUCT_MIN, DATE, {
       responsible_company: 'C', responsible_address: 'A',
       manufacturer_name: 'M', manufacturer_address: 'MA',
@@ -477,7 +475,7 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
     assert.deepEqual(fails, [],
       `${type}: the form accepts this record but the export rejects it:\n${fails.join('\n')}`);
   }
-  ok('the form and the export agree: no record passes Save and then fails the export');
+  ok('a completed record has no review failures; incomplete drafts are allowed to save separately');
 }
 
 /* ---------- nothing the operator typed may fall out of the file ----------
@@ -528,8 +526,8 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
     'no packaging field may be unconditionally required — the tab renders for every product');
   assert.deepEqual(SCHEMA.brand_settings.fields.filter((f) => f.required), [],
     'brand_settings is seeded all-NULL on purpose; a required flag would refuse the intended state');
-  assert.equal(field('country_of_origin').requiredIf.in, PKG_TYPES.all,
-    'country_of_origin binds once a packaging type is chosen, not before');
+  assert.ok(pk.fields.every((f) => !f.required && !f.requiredIf),
+    'no packaging completeness rule may block saving a draft');
   assert.equal(field('manufacturing_year').requiredIf, undefined,
     'an empty year is the designed answer — header() prints a fill-in line for the printer');
   ok('a product with an untouched Packaging tab can still be saved');
@@ -640,6 +638,17 @@ const PRODUCT = { product_id: 'V01', name_vi: 'Giá đỡ', name_en: 'Mount' };
   const printed = P.buildPrintHtml({}, product, DATE, brand, false, ['zh']);
   assert.ok(printed.includes('NAME-ZH') && !printed.includes('NAME-EN') && !printed.includes('WARRANTY-EN'));
   ok('designer export and print respect selected languages and order, with Chinese first by default');
+}
+
+{
+  const combined = { packaging_product_type: 'Combined product', charging_specs_vi: 'Charger without cells' };
+  const noBattery = P.preflight(combined, { name_vi: 'Fixture' }, {}, 'en').join('\n');
+  assert.ok(!noBattery.includes('watt-hour') && !noBattery.includes('lithium-cell'));
+  const startedBattery = P.preflight({ ...combined, battery_capacity_mah: '10000' }, { name_vi: 'Fixture' }, {}, 'en').join('\n');
+  assert.ok(startedBattery.includes('watt-hour') && startedBattery.includes('lithium-cell'));
+  const draftBank = P.preflight({ packaging_product_type: 'Power bank', barcode_ean_upc: '123' }, { name_vi: 'Fixture' }, {}, 'en').join('\n');
+  assert.ok(draftBank.includes('[FAIL]'));
+  ok('Combined without battery content has no battery review failures; incomplete battery drafts retain review warnings');
 }
 
 console.log(`\nClean: ${checks} checks passed.`);

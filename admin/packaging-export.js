@@ -35,6 +35,19 @@
      comment asking the other to stay in step, which they did not. */
   var PKG = window.VIEMAG_PKG_TYPES;
 
+  function hasBattery(pkg) {
+    if (pkg.packaging_product_type === "Power bank") return true;
+    if (pkg.packaging_product_type !== "Combined product") return false;
+    // Combined can be a mount + charger without cells. Only entered battery
+    // content activates the battery-specific review for that flexible type.
+    return ["battery_type", "battery_capacity_mah", "rated_voltage", "watt_hour_wh",
+      "port1_spec", "port2_spec", "port3_spec", "max_combined_output"].some(function (name) {
+        return str(pkg[name]) !== "";
+      }) || ["en", "vi", "id", "zh"].some(function (lang) {
+        return str(pkg["power_bank_specs_" + lang]) !== "" || str(pkg["lithium_warning_" + lang]) !== "";
+      });
+  }
+
   var LANGS = [
     { code: "vi", label: "VI — Tiếng Việt" },
     { code: "en", label: "EN — English" },
@@ -306,7 +319,7 @@
       add(year ? "yearFilled" : "yearMissing", year);
     }
 
-    if (PKG.battery.indexOf(type) !== -1) {
+    if (hasBattery(pkg)) {
       var wh = str(pkg.watt_hour_wh);
       add(wh ? "whOk" : "whMissing", wh);
       if (!pick(pkg.lithium_warning_vi)) add("lithiumMissing");

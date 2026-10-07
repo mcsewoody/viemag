@@ -322,7 +322,7 @@ window.VIEMAG_SCHEMA = {
     fields: [
       { name: 'packaging_status', type: 'select', internal: true, options: ['Draft', 'Ready for design', 'Sent to print', 'Printed'], desc: 'Where this box is in its own workflow. Separate from the product Status, which is about the website — a product can be live on the site for months while its packaging is still a draft.' },
       { name: 'packaging_product_type', type: 'select', internal: true, options: window.VIEMAG_PKG_TYPES.all, desc: 'Which technical-specification block this product needs. Choosing it shows the matching block below and hides the others; Combined product shows more than one. It also decides what the law asks for — a charging product must print a year of manufacture, a bare bracket need not.' },
-      { name: 'barcode_ean_upc', type: 'text', internal: true, validate: 'ean13', desc: 'EAN-13, 13 digits. Stored as text on purpose — a number field would drop a leading zero. Saving a half-typed code is allowed; the export is what refuses to sign it off, so nothing goes to print against an unissued barcode.' },
+      { name: 'barcode_ean_upc', type: 'text', internal: true, validate: 'ean13', desc: 'EAN-13, 13 digits. Stored as text to preserve leading zeros. A partial code can be saved; missing or invalid codes are flagged in the review export.' },
       { name: 'instructions_precautions_en', type: 'textarea', large: true, internal: true, desc: 'How to use the product, how to store it, and any warnings — one point per line. Mostly carried by diagrams on the box, so keep the text to what a diagram cannot say. For anything with a battery or a heating part this section is not optional.' },
       { name: 'instructions_precautions_vi', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Vietnamese), one point per line.' },
       { name: 'instructions_precautions_id', type: 'textarea', large: true, internal: true, desc: 'Instructions, storage and warnings (Indonesian), one point per line.' },
@@ -345,14 +345,9 @@ window.VIEMAG_SCHEMA = {
       { name: 'power_bank_specs_zh', type: 'textarea', large: true, internal: true, desc: 'Power-bank technical specifications (Traditional Chinese), one per line.' },
 
       /* ---------- general label content ---------- */
-      /* requiredIf, not required. It is legally required on every label — but
-         the box is only being made once someone has chosen a packaging type,
-         and an unconditional `required` here bound every product in the
-         catalogue: editing a price refused to save, naming a field on a tab the
-         operator had never opened. It also killed the guard in saveSubRecords
-         that exists to avoid writing an empty packaging row for a product
-         nobody has packaged, by making that state unreachable. */
-      { name: 'country_of_origin', type: 'select', options: ['China', 'Taiwan', 'Vietnam'], normalizeValue: window.VIEMAG_NORMALIZE_ORIGIN, internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.all }, desc: 'Actual country of origin: China, Taiwan or Vietnam. Select the country supported by the product records.' },
+      /* Packaging can be saved while incomplete. Readiness checks belong to
+         the review export, not the shared Site/Sales/Packaging Save button. */
+      { name: 'country_of_origin', type: 'select', options: ['China', 'Taiwan', 'Vietnam'], normalizeValue: window.VIEMAG_NORMALIZE_ORIGIN, internal: true, desc: 'Actual country of origin: China, Taiwan or Vietnam. Select the country supported by the product records. May be left blank while drafting.' },
       /* The current-year default is a convenience; the production batch still
          determines which year staff must select. */
       { name: 'manufacturing_year', type: 'select', options: Array.from({ length: Math.max(2035, Number(window.VIEMAG_PACKAGING_YEAR) + 5) - 2025 + 1 }, function (_, i) { return String(2025 + i); }), defaultValue: window.VIEMAG_PACKAGING_YEAR, internal: true, desc: 'Year of manufacture. Defaults to the current year when not entered; select the actual production year for the batch.' },
@@ -377,23 +372,18 @@ window.VIEMAG_SCHEMA = {
       { name: 'wired_output_power', type: 'text', internal: true, desc: 'Output power of the cable port.' },
 
       /* ---------- 6C, measurable ---------- */
-      { name: 'battery_type', type: 'select', internal: true, options: ['Li-ion', 'Li-polymer', 'LiFePO4'], requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Cell chemistry. Needed on the label and needed again by the shipper, who cannot book air freight without it.' },
-      { name: 'battery_capacity_mah', type: 'text', internal: true, unit: 'mAh', requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Cell capacity, e.g. 10000. Give the figure the cells are rated at, not the usable output after conversion — the two differ and the label asks for the first.' },
-      { name: 'rated_voltage', type: 'text', internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Nominal voltage of the cells, e.g. 3.7V. Together with the capacity this is what the watt-hour figure is calculated from.' },
-      { name: 'watt_hour_wh', type: 'text', internal: true, unit: 'Wh', requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Watt-hours, e.g. 37. Capacity in Ah multiplied by nominal voltage. Air freight will not accept the goods without it, which is why this form refuses to save a power bank that has no value here.' },
+      { name: 'battery_type', type: 'select', internal: true, options: ['Li-ion', 'Li-polymer', 'LiFePO4'], desc: 'Cell chemistry. Fill for products with cells; leave blank for products without a battery or while drafting.' },
+      { name: 'battery_capacity_mah', type: 'text', internal: true, unit: 'mAh', desc: 'Cell capacity, e.g. 10000. Give the rated cell capacity, not the usable output after conversion. May be left blank while drafting.' },
+      { name: 'rated_voltage', type: 'text', internal: true, desc: 'Nominal voltage of the cells, e.g. 3.7V. Together with capacity this is used to calculate watt-hours. May be left blank while drafting.' },
+      { name: 'watt_hour_wh', type: 'text', internal: true, unit: 'Wh', desc: 'Watt-hours, e.g. 37. Capacity in Ah multiplied by nominal voltage. Missing values are flagged in the review export, not blocked on Save.' },
       { name: 'port1_spec', type: 'text', internal: true, desc: 'First port, input and output on one line, e.g. USB-C In 5V⎓3A / Out 5V⎓3A, 9V⎓2A. One field per port rather than a list, because each port prints as its own line and they are not interchangeable.' },
       { name: 'port2_spec', type: 'text', internal: true, desc: 'Second port, same format. Leave blank if there is only one.' },
       { name: 'port3_spec', type: 'text', internal: true, desc: 'Third port, same format.' },
       { name: 'max_combined_output', type: 'text', internal: true, desc: 'The ceiling when more than one port draws at once, e.g. 65W total. Not the sum of the ports and not derivable from them — leaving it out is what turns a spec list into a claim the product cannot meet.' },
 
       /* ---------- lithium cells ---------- */
-      { name: 'lithium_warning_en', type: 'textarea', large: true, internal: true, desc: 'The lithium-cell warning, which is stricter than the general warnings above and is why it has its own box: do not crush, puncture, incinerate, immerse, or leave charging unattended; keep away from heat. Vietnamese is the copy that legally has to be there, so that is the one Save asks for.' },
-      /* The requiredIf is on the VIETNAMESE box, not the English one. Vietnamese
-         is what the law requires on the label, and it is what preflight() fails
-         on — having the form demand English while the export demanded
-         Vietnamese meant a record the form called complete still exported a
-         [FAIL]. */
-      { name: 'lithium_warning_vi', type: 'textarea', large: true, internal: true, requiredIf: { field: 'packaging_product_type', in: window.VIEMAG_PKG_TYPES.battery }, desc: 'Lithium-cell warning (Vietnamese). Legally required on anything with cells.' },
+      { name: 'lithium_warning_en', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell safety warning (English). Fill when applicable; may be left blank while drafting.' },
+      { name: 'lithium_warning_vi', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Vietnamese). Missing text for a battery product is flagged in the review export, not blocked on Save.' },
       { name: 'lithium_warning_id', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Indonesian).' },
       { name: 'lithium_warning_zh', type: 'textarea', large: true, internal: true, desc: 'Lithium-cell warning (Traditional Chinese).' },
       { name: 'iata_notes', type: 'textarea', internal: true, desc: 'Air-freight marking notes — the lithium handling label, the watt-hour marking on the outer carton, anything the forwarder has asked for. Not printed on the retail box, but the designer needs to know it applies before the outer-carton artwork is laid out.' },

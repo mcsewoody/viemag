@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.58";
+  var ADMIN_VERSION = "1.59";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -4370,6 +4370,8 @@
      Reporting a problem reveals its group and content language. */
   function collectFormProblems(def) {
     var problems = [];
+    // Packaging is a draft workspace; completeness and barcode checks are advisory.
+    if (def === SCHEMA.product_packaging) return problems;
     def.fields.forEach(function (f) {
       if (f.type === "computed" || f.readOnly || f.type === "relation_many")
         return;
