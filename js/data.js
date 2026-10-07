@@ -1265,6 +1265,81 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791366006732-ray2q7dnj6f-p07-hero.webp"
     },
     {
+      "sku": "P07",
+      "slug": "p07",
+      "status": "published",
+      "category": "portable",
+      "subCategory": null,
+      "art": "pro",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Magnetic Phone Holder in a Wrist Strap Design | VIEMAG | P07",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính Dạng Dây Đeo | VIEMAG | P07 ",
+        "id": "Dudukan Ponsel Magnetik Berbentuk Tali Leher | VIEMAG | P07",
+        "zh": "磁吸式手機支架（掛繩款） | VIEMAG | P07"
+      },
+      "claim": {
+        "en": "1. The MagSafe-compatible front magnetic design securely holds your phone in place.\n2. Equipped with 4 N50-grade magnets, it adheres securely to metal surfaces.\n3. It can be easily installed on exercise equipment or other metal surfaces.\n4. Specifically designed for curved or cylindrical crossbars.",
+        "vi": "1. Thiết kế nam châm phía trước tương thích với MagSafe, giúp giữ điện thoại chắc chắn.\n2. Được trang bị 4 nam châm loại N50, có thể bám chặt vào bề mặt kim loại.\n3. Có thể lắp đặt dễ dàng trên các thiết bị tập thể dục hoặc các bề mặt kim loại khác.\n4. Được thiết kế riêng cho các thanh ngang có bề mặt cong hoặc hình trụ.",
+        "id": "1. Desain magnetik di bagian depan yang kompatibel dengan MagSafe, sehingga ponsel dapat menempel dengan kokoh.\n2. Dilengkapi dengan 4 buah magnet kelas N50, sehingga dapat menempel dengan kuat pada permukaan logam.\n3. Dapat dipasang dengan mudah pada peralatan kebugaran atau permukaan logam lainnya.\n4. Dirancang khusus untuk palang melintang yang melengkung atau berbentuk silinder.",
+        "zh": "1.相容 MagSafe 的前置磁吸設計，可將手機穩固吸附。\n2.配備 4 顆 N50 等級磁鐵，可牢固吸附於金屬表面。\n3.可輕鬆安裝於健身器材或其他金屬表面。\n4.專為曲面或圓柱形橫桿設計。"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791371154103-csv2prjda2d-magnetic-watch-strap-holder-4.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791371154103-2wsgq8fug6i-magnetic-watch-strap-holder-5.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791371154103-9qlwv0p2gqd-magnetic-watch-strap-holder-1.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791371154104-d2ek0p4uou-magnetic-watch-strap-holder-3.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Adhesive Magnetic Ring"
+        ],
+        "vi": [
+          "Vòng nam châm dán"
+        ],
+        "id": [
+          "Cincin magnetik tempel"
+        ],
+        "zh": [
+          "黏貼式磁吸環"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質：矽膠、磁鐵、金屬</p><p>尺寸：60 × 60 ×15mm</p><p>重量：106 g</p><p><br></p>"
+      },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791371147998-q8cg1ascv7h-hero_appleGray_1200_20261007_1804.webp"
+    },
+    {
       "sku": "V01",
       "slug": "v01",
       "status": "published",
