@@ -1111,6 +1111,11 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p>材質 : 鋁合金</p><p>尺寸 : 100*58*14mm </p><p>重量 : 約 104g</p>"
       },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026"
+      },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788930062472-8t79pwh2q78-Hero.png"
     },
     {
