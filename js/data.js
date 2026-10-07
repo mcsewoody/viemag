@@ -891,9 +891,9 @@ window.DB = {
         ]
       },
       "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
+        "en": "<p>Material: Silicone + Plastic (ABS) + Rubber + Metal</p>\n<p>Dimensions: 102 × 60 × 33 mm</p>\n<p>Weight: 101 g</p>",
+        "vi": "<p>Chất liệu: Silicone + nhựa (ABS) + cao su + kim loại</p>\n<p>Kích thước: 102 × 60 × 33 mm</p>\n<p>Trọng lượng: 101g</p>",
+        "id": "<p>Bahan: silikon + plastik (ABS) + karet + logam</p>\n<p>Ukuran: 102 × 60 × 33 mm</p>\n<p>Berat: 101 g</p>",
         "zh": "<p>材質 : 矽膠+塑膠(ABS)+橡膠+金屬</p><p>尺寸 :102*60*33mm</p><p>重量 : 101g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791280197295-afo3x5yfgza-P02_Hero.png"
