@@ -1582,10 +1582,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "N52 Magnetic Phone Mount with Vacuum Suction and 360° Rotation | VIEMAG",
-        "vi": "Giá Đỡ Điện Thoại Từ Tính N52 Hút Chân Không Xoay 360° | VIEMAG",
-        "id": "Dudukan Ponsel Magnetik N52 dengan Hisap Vakum dan Dapat Berputar 360° | VIEMAG",
-        "zh": "N52 磁吸式 360° 旋轉 真空吸盤手機支架 | VIEMAG"
+        "en": "N52 Magnetic Phone Mount with Vacuum Suction and 360° Rotation | VIEMAG | V03",
+        "vi": "Giá Đỡ Điện Thoại Từ Tính N52 Hút Chân Không Xoay 360° | VIEMAG |  V03",
+        "id": "Dudukan Ponsel Magnetik N52 dengan Hisap Vakum dan Dapat Berputar 360° | VIEMAG | V03",
+        "zh": "N52 磁吸式 360° 旋轉 真空吸盤手機支架 | VIEMAG |  V03"
       },
       "claim": {
         "en": "The soft TPU base, combined with a suction mechanism, allows for flexible placement of the phone on a suitable surface.",
@@ -1610,6 +1610,12 @@ window.DB = {
         "vi": "",
         "id": "",
         "zh": ""
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787383375551-8rc6siqagt8-A1.png"
     },
