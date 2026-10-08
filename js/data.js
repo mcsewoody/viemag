@@ -467,93 +467,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
-      "sku": "D03",
-      "slug": "d03",
-      "status": "future",
-      "category": "desk",
-      "subCategory": "stands",
-      "art": "suction",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "suction",
-        "clamp",
-        "magsafe"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Dual-Purpose Vacuum Clamp and Suction Mount | VIEMAG | D03",
-        "vi": "Giá đỡ đa năng hút chân không và kẹp | VIEMAG | D03",
-        "id": "Dudukan Serbaguna untuk Penjepit dan Penghisap Vakum | VIEMAG | D03",
-        "zh": "真空夾吸兩用支架 | VIEMAG | D03"
-      },
-      "claim": {
-        "en": "Uses N52H magnets to hold the phone securely\nDual clamp and suction mode, which can be quickly switched with just one hand\nTwo-layer reinforced nano suction pad + vacuum suction—stable and reliable\nThe height is flexibly adjustable to meet the needs of various usage scenarios\nMade of aircraft-grade aluminum, it offers greater strength and long-lasting durability\nThe gel suction pad is washable with water and reusable; it is suitable for control panels or non-smooth surfaces",
-        "vi": "Sử dụng nam châm N52H, giữ điện thoại chắc chắn\nChế độ kẹp và hút kép, có thể chuyển đổi nhanh chóng chỉ bằng một tay\nMiếng hút nano gia cố hai lớp + hút chân không, ổn định và đáng tin cậy\nChiều cao có thể điều chỉnh linh hoạt, đáp ứng nhu cầu của các tình huống sử dụng khác nhau\nChất liệu nhôm hàng không, có khả năng chịu lực cao hơn và bền bỉ theo thời gian\nĐế hút bằng gel có thể rửa bằng nước và tái sử dụng, phù hợp với bảng điều khiển hoặc các bề mặt không nhẵn",
-        "id": "Menggunakan magnet N52H, menahan ponsel dengan kokoh\nMode penjepit dan pengisap ganda, dapat diubah dengan cepat hanya dengan satu tangan\nPenyedot nano berlapis ganda + vakum, stabil dan andal\nTinggi dapat disesuaikan secara fleksibel, sehingga sesuai dengan kebutuhan berbagai situasi penggunaan\nTerbuat dari aluminium kelas penerbangan, yang memiliki daya tahan beban lebih tinggi dan tahan lama\nBasis penghisap berbahan gel ini dapat dicuci dengan air dan digunakan kembali, cocok untuk panel kontrol atau permukaan yang tidak rata",
-        "zh": "1.採用 N52H 磁鐵，穩固吸附手機\n2.夾持 & 吸附雙模式，單手即可快速切換\n3.雙層加固奈米吸盤 + 真空吸附，穩定可靠\n4.高度隨意調整，滿足不同使用場景需求\n5.航空鋁材質，承重力更強，經久耐用\n6.凝膠吸盤底座可水洗重複使用，適用儀表板或不平滑表面"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-5jctlm7fysv-dieu-chinh-do-cao-linh-hoat.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-uojzl54qo58-hop-kim-nhom-cao-cap.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-pt9hc8jfyie-kep-hut-2-che-do.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-62bcjb1i8im-nam-cham-n52.webp"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "Alcohol-soaked cotton pad",
-          "Magnetic Adhesive Rings"
-        ],
-        "vi": [
-          "Miếng bông tẩm cồn",
-          "Vòng nam châm dán"
-        ],
-        "id": [
-          "Kain kasa yang dibasahi alkohol",
-          "Cincin magnet tempel"
-        ],
-        "zh": [
-          "1.酒精棉片",
-          "2.黏貼式磁吸環"
-        ]
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p>材質 : PC+ABS+TPU+硅膠+鋅合金</p><p>尺寸 : 81*64*44.5mm</p><p>重量 : 160g</p>"
-      },
-      "packaging": {
-        "type": "Magnetic bracket",
-        "origin": "China",
-        "year": "2026",
-        "specs": {
-          "magnet_grade": "N52"
-        }
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789186324783-ez6ra5psuc8-hero_appleGray_1200_20260912_1111.webp",
-      "shopee": "https://shopee.tw/K33-%E9%9B%99%E6%A8%A1%E5%BC%8F%E7%A3%81%E5%90%B8%E7%9C%9F%E7%A9%BA%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6%EF%BD%9C%E6%BB%B4%E8%86%A0%E8%87%AA%E9%BB%8F%E5%90%B8%E7%9B%A4%EF%BD%9C%E5%8F%AF%E5%A4%BE%E5%8F%AF%E5%90%B8%EF%BD%9CN52%E5%BC%B7%E7%A3%81-iPhone-MagSafe-%E6%B1%BD%E8%BB%8A%E6%93%8B%E9%A2%A8%E7%8E%BB%E7%92%83-%E5%84%80%E8%A1%A8%E6%9D%BF-i.1384622.46705858637"
-    },
-    {
       "sku": "D04",
       "slug": "d04",
       "status": "future",
@@ -1617,6 +1530,93 @@ window.DB = {
         "zh": "<p>材質 : ABS+PC+硅膠</p><p>尺寸 : 87*60*8mm</p><p>重量 : 60g</p>"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788854674264-dpj1r37f0n-hero_appleGray_1200_20260908_1502.webp"
+    },
+    {
+      "sku": "V06",
+      "slug": "v06",
+      "status": "future",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "suction",
+        "clamp",
+        "magsafe"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Dual-Purpose Vacuum Clamp and Suction Mount | VIEMAG | V06",
+        "vi": "Giá đỡ đa năng hút chân không và kẹp | VIEMAG | V06",
+        "id": "Dudukan Serbaguna untuk Penjepit dan Penghisap Vakum | VIEMAG | V06",
+        "zh": "真空夾吸兩用支架 | VIEMAG | V06"
+      },
+      "claim": {
+        "en": "Uses N52H magnets to hold the phone securely\nDual clamp and suction mode, which can be quickly switched with just one hand\nTwo-layer reinforced nano suction pad + vacuum suction—stable and reliable\nThe height is flexibly adjustable to meet the needs of various usage scenarios\nMade of aircraft-grade aluminum, it offers greater strength and long-lasting durability\nThe gel suction pad is washable with water and reusable; it is suitable for control panels or non-smooth surfaces",
+        "vi": "Sử dụng nam châm N52H, giữ điện thoại chắc chắn\nChế độ kẹp và hút kép, có thể chuyển đổi nhanh chóng chỉ bằng một tay\nMiếng hút nano gia cố hai lớp + hút chân không, ổn định và đáng tin cậy\nChiều cao có thể điều chỉnh linh hoạt, đáp ứng nhu cầu của các tình huống sử dụng khác nhau\nChất liệu nhôm hàng không, có khả năng chịu lực cao hơn và bền bỉ theo thời gian\nĐế hút bằng gel có thể rửa bằng nước và tái sử dụng, phù hợp với bảng điều khiển hoặc các bề mặt không nhẵn",
+        "id": "Menggunakan magnet N52H, menahan ponsel dengan kokoh\nMode penjepit dan pengisap ganda, dapat diubah dengan cepat hanya dengan satu tangan\nPenyedot nano berlapis ganda + vakum, stabil dan andal\nTinggi dapat disesuaikan secara fleksibel, sehingga sesuai dengan kebutuhan berbagai situasi penggunaan\nTerbuat dari aluminium kelas penerbangan, yang memiliki daya tahan beban lebih tinggi dan tahan lama\nBasis penghisap berbahan gel ini dapat dicuci dengan air dan digunakan kembali, cocok untuk panel kontrol atau permukaan yang tidak rata",
+        "zh": "1.採用 N52H 磁鐵，穩固吸附手機\n2.夾持 & 吸附雙模式，單手即可快速切換\n3.雙層加固奈米吸盤 + 真空吸附，穩定可靠\n4.高度隨意調整，滿足不同使用場景需求\n5.航空鋁材質，承重力更強，經久耐用\n6.凝膠吸盤底座可水洗重複使用，適用儀表板或不平滑表面"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-5jctlm7fysv-dieu-chinh-do-cao-linh-hoat.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-uojzl54qo58-hop-kim-nhom-cao-cap.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-pt9hc8jfyie-kep-hut-2-che-do.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789185095742-62bcjb1i8im-nam-cham-n52.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Alcohol-soaked cotton pad",
+          "Magnetic Adhesive Rings"
+        ],
+        "vi": [
+          "Miếng bông tẩm cồn",
+          "Vòng nam châm dán"
+        ],
+        "id": [
+          "Kain kasa yang dibasahi alkohol",
+          "Cincin magnet tempel"
+        ],
+        "zh": [
+          "1.酒精棉片",
+          "2.黏貼式磁吸環"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : PC+ABS+TPU+硅膠+鋅合金</p><p>尺寸 : 81*64*44.5mm</p><p>重量 : 160g</p>"
+      },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N52"
+        }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789186324783-ez6ra5psuc8-hero_appleGray_1200_20260912_1111.webp",
+      "shopee": "https://shopee.tw/K33-%E9%9B%99%E6%A8%A1%E5%BC%8F%E7%A3%81%E5%90%B8%E7%9C%9F%E7%A9%BA%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6%EF%BD%9C%E6%BB%B4%E8%86%A0%E8%87%AA%E9%BB%8F%E5%90%B8%E7%9B%A4%EF%BD%9C%E5%8F%AF%E5%A4%BE%E5%8F%AF%E5%90%B8%EF%BD%9CN52%E5%BC%B7%E7%A3%81-iPhone-MagSafe-%E6%B1%BD%E8%BB%8A%E6%93%8B%E9%A2%A8%E7%8E%BB%E7%92%83-%E5%84%80%E8%A1%A8%E6%9D%BF-i.1384622.46705858637"
     },
     {
       "sku": "VQ01",
