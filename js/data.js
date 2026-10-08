@@ -417,10 +417,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "Slim Suction Cup MagSafe Mount | VIEMAG | D01",
-        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng | VIEMAG | D01",
-        "id": "Dudukan Magsafe berbentuk cangkir hisap tipis | VIEMAG | D01",
-        "zh": "超薄吸盤式 MagSafe 支架 | VIEMAG | D01"
+        "en": "Slim, Foldable Vacuum Magnetic Mount | VIEMAG | D01",
+        "vi": "Giá đỡ từ tính chân không gập gọn, kiểu mỏng | VIEMAG | D01",
+        "id": "Dudukan Magnetik Vakum Lipat Tipis | VIEMAG | D01",
+        "zh": "薄型折疊真空磁吸支架 | VIEMAG | D01"
       },
       "claim": {
         "en": "The thinnest and lightest MagSafe mount with a suction cup",
