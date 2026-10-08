@@ -467,87 +467,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
-      "sku": "D04",
-      "slug": "d04",
-      "status": "future",
-      "category": "desk",
-      "subCategory": "stands",
-      "art": "suction",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "pu-suction",
-        "magsafe"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Vacuum Folding Magnetic Mount | VIEMAG | D04",
-        "vi": "Giá đỡ gập chân không có nam châm | VIEMAG | D04",
-        "id": "Dudukan Lipat Vakum dengan Penahan Magnetik | VIEMAG | D04",
-        "zh": "真空折疊磁吸支架 | VIEMAG | D04"
-      },
-      "claim": {
-        "en": "Nano-adhesive backing, secure adhesion, washable with water, and reusable multiple times\nMechanical vacuum lock design—simply turn it once to secure it; it won’t come loose\nN52 – Strong magnetic force, holds securely without falling off, giving you peace of mind when using it for navigation or watching movies\nA two-bar folding design that’s lightweight, compact, space-saving, and more convenient to carry around\nIt can be freely adjusted to various angles and switched between portrait and landscape modes as desired, providing a comfortable viewing experience from any angle\nThe body is made of zinc alloy, featuring a sturdy, durable design that does not wobble\nSmooth swivel design, seamless adjustment, no jamming, and more precise angle positioning",
-        "vi": "Đế hấp phụ bằng keo nano, bám dính chắc chắn, có thể giặt bằng nước và tái sử dụng nhiều lần\nThiết kế khóa chân không cơ học, chỉ cần xoay một vòng là cố định, không bị lỏng\nN52 – Lực hút từ mạnh mẽ, bám chắc không bị rơi, giúp bạn yên tâm khi dùng để định vị hay xem phim\nCấu trúc gấp hai thanh, nhẹ nhàng, gọn gàng, không tốn diện tích, thuận tiện hơn khi mang theo bên mình\nCó thể điều chỉnh tự do theo nhiều góc độ, chuyển đổi giữa chế độ dọc và ngang tùy ý, mang lại cảm giác thoải mái khi xem ở mọi góc độ\nThiết kế thân máy bằng hợp kim kẽm, cấu trúc chắc chắn, bền bỉ và không bị lung lay\nThiết kế trục xoay mượt mà, điều chỉnh trơn tru, không bị kẹt, định vị góc chính xác hơn",
-        "id": "Dasar yang dilapisi nano-lem, menempel dengan kuat, dapat dicuci dengan air, dan dapat digunakan kembali berkali-kali\nDesain pengunci vakum mekanis, cukup diputar satu putaran untuk menguncinya, tidak akan kendur\nN52 – Daya tarik magnet yang kuat, menempel dengan kokoh tanpa jatuh, sehingga Anda dapat merasa tenang saat menggunakannya untuk menandai lokasi atau menonton film\nDesain lipat dua batang, ringan, ringkas, tidak memakan tempat, dan lebih praktis untuk dibawa-bawa\nDapat disesuaikan secara bebas ke berbagai sudut, beralih antara mode potret dan lanskap sesuka hati, sehingga memberikan kenyamanan saat menonton dari segala sudut\nDesain bodi terbuat dari paduan seng, dengan struktur yang kokoh, tahan lama, dan tidak goyah\nDesain poros putar yang mulus, pengaturan yang lancar, tidak macet, dan penentuan sudut yang lebih akurat",
-        "zh": "1.奈米膠吸附底座，穩固貼合，可水洗重複使用\n2.機械式真空鎖定設計，一轉即固定不鬆動\n3.N52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n4.雙桿折疊結構，輕巧好收不占空間，隨身攜帶更方便\n5.多角度自由調整，直橫隨心切換，怎麼看都順手\n6.鋅合金機身設計，結構穩固耐用不晃動\n7.滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113844453-en1t0te3d4k-hero_appleGray_1200_20260911_0958__1_.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113844454-iav2923u9k-hero_appleGray_1200_20260911_0958.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853629-0dcpuu443hk5-de-keo-nano.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853629-nd8fvrijmmn-dieu-chinh-da-goc-xoay-quanh-hop.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7a6avsguo3-do-tuong-thich-rong.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-flju22qy1fn-gap-doi-gon-nhe.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-dc3cyo4rx9-hop-nhieu-be-mat.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7iluxyudue3-ho-tro-nhieu-dong-may.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-uonmdzn9c8k-khoa-chan-khong-co-hoc.webp"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [],
-        "vi": [],
-        "id": [],
-        "zh": [
-          "酒精棉片"
-        ]
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p>材質 : PC+ABS+TPU+金屬漆+鋅合金</p><p>尺寸 : 63*63*46mm</p><p>重量 : 163g</p>"
-      },
-      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113858740-l8qf5myqh1-thong-so-ki-thuat.webp",
-      "packaging": {
-        "type": "Magnetic bracket",
-        "origin": "China",
-        "year": "2026",
-        "specs": {
-          "magnet_grade": "N52"
-        }
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789115735201-rluz7o06z9f-hero_appleGray_1200_20260911_1534.webp"
-    },
-    {
       "sku": "D05",
       "slug": "d05",
       "status": "published",
@@ -1617,6 +1536,87 @@ window.DB = {
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789186324783-ez6ra5psuc8-hero_appleGray_1200_20260912_1111.webp",
       "shopee": "https://shopee.tw/K33-%E9%9B%99%E6%A8%A1%E5%BC%8F%E7%A3%81%E5%90%B8%E7%9C%9F%E7%A9%BA%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6%EF%BD%9C%E6%BB%B4%E8%86%A0%E8%87%AA%E9%BB%8F%E5%90%B8%E7%9B%A4%EF%BD%9C%E5%8F%AF%E5%A4%BE%E5%8F%AF%E5%90%B8%EF%BD%9CN52%E5%BC%B7%E7%A3%81-iPhone-MagSafe-%E6%B1%BD%E8%BB%8A%E6%93%8B%E9%A2%A8%E7%8E%BB%E7%92%83-%E5%84%80%E8%A1%A8%E6%9D%BF-i.1384622.46705858637"
+    },
+    {
+      "sku": "V07",
+      "slug": "v07",
+      "status": "future",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "pu-suction",
+        "magsafe"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Vacuum Folding Magnetic Mount | VIEMAG | V07",
+        "vi": "Giá đỡ gập chân không có nam châm | VIEMAG | V07",
+        "id": "Dudukan Lipat Vakum dengan Penahan Magnetik | VIEMAG | V07",
+        "zh": "真空折疊磁吸支架 | VIEMAG | V07"
+      },
+      "claim": {
+        "en": "Nano-adhesive backing, secure adhesion, washable with water, and reusable multiple times\nMechanical vacuum lock design—simply turn it once to secure it; it won’t come loose\nN52 – Strong magnetic force, holds securely without falling off, giving you peace of mind when using it for navigation or watching movies\nA two-bar folding design that’s lightweight, compact, space-saving, and more convenient to carry around\nIt can be freely adjusted to various angles and switched between portrait and landscape modes as desired, providing a comfortable viewing experience from any angle\nThe body is made of zinc alloy, featuring a sturdy, durable design that does not wobble\nSmooth swivel design, seamless adjustment, no jamming, and more precise angle positioning",
+        "vi": "Đế hấp phụ bằng keo nano, bám dính chắc chắn, có thể giặt bằng nước và tái sử dụng nhiều lần\nThiết kế khóa chân không cơ học, chỉ cần xoay một vòng là cố định, không bị lỏng\nN52 – Lực hút từ mạnh mẽ, bám chắc không bị rơi, giúp bạn yên tâm khi dùng để định vị hay xem phim\nCấu trúc gấp hai thanh, nhẹ nhàng, gọn gàng, không tốn diện tích, thuận tiện hơn khi mang theo bên mình\nCó thể điều chỉnh tự do theo nhiều góc độ, chuyển đổi giữa chế độ dọc và ngang tùy ý, mang lại cảm giác thoải mái khi xem ở mọi góc độ\nThiết kế thân máy bằng hợp kim kẽm, cấu trúc chắc chắn, bền bỉ và không bị lung lay\nThiết kế trục xoay mượt mà, điều chỉnh trơn tru, không bị kẹt, định vị góc chính xác hơn",
+        "id": "Dasar yang dilapisi nano-lem, menempel dengan kuat, dapat dicuci dengan air, dan dapat digunakan kembali berkali-kali\nDesain pengunci vakum mekanis, cukup diputar satu putaran untuk menguncinya, tidak akan kendur\nN52 – Daya tarik magnet yang kuat, menempel dengan kokoh tanpa jatuh, sehingga Anda dapat merasa tenang saat menggunakannya untuk menandai lokasi atau menonton film\nDesain lipat dua batang, ringan, ringkas, tidak memakan tempat, dan lebih praktis untuk dibawa-bawa\nDapat disesuaikan secara bebas ke berbagai sudut, beralih antara mode potret dan lanskap sesuka hati, sehingga memberikan kenyamanan saat menonton dari segala sudut\nDesain bodi terbuat dari paduan seng, dengan struktur yang kokoh, tahan lama, dan tidak goyah\nDesain poros putar yang mulus, pengaturan yang lancar, tidak macet, dan penentuan sudut yang lebih akurat",
+        "zh": "1.奈米膠吸附底座，穩固貼合，可水洗重複使用\n2.機械式真空鎖定設計，一轉即固定不鬆動\n3.N52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n4.雙桿折疊結構，輕巧好收不占空間，隨身攜帶更方便\n5.多角度自由調整，直橫隨心切換，怎麼看都順手\n6.鋅合金機身設計，結構穩固耐用不晃動\n7.滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113844453-en1t0te3d4k-hero_appleGray_1200_20260911_0958__1_.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113844454-iav2923u9k-hero_appleGray_1200_20260911_0958.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853629-0dcpuu443hk5-de-keo-nano.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853629-nd8fvrijmmn-dieu-chinh-da-goc-xoay-quanh-hop.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7a6avsguo3-do-tuong-thich-rong.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-flju22qy1fn-gap-doi-gon-nhe.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-dc3cyo4rx9-hop-nhieu-be-mat.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-7iluxyudue3-ho-tro-nhieu-dong-may.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113853630-uonmdzn9c8k-khoa-chan-khong-co-hoc.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "酒精棉片"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : PC+ABS+TPU+金屬漆+鋅合金</p><p>尺寸 : 63*63*46mm</p><p>重量 : 163g</p>"
+      },
+      "spec": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789113858740-l8qf5myqh1-thong-so-ki-thuat.webp",
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N52"
+        }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789115735201-rluz7o06z9f-hero_appleGray_1200_20260911_1534.webp"
     },
     {
       "sku": "VQ01",
