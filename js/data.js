@@ -280,7 +280,7 @@ window.DB = {
       },
       "img": null,
       "combo": [
-        "D01",
+        "V02",
         "D02",
         "A02"
       ]
