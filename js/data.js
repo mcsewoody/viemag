@@ -742,10 +742,10 @@ window.DB = {
       "reviews": 0,
       "badge": "bestseller",
       "name": {
-        "en": "Longer Multi-Purpose Magnetic Holder, Aluminum Alloy Frame | D05",
+        "en": "Longer Multi-Purpose Magnetic Holder, Aluminum Alloy Frame |VIEMAG|D05",
         "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm |VIEMAG|D05",
-        "id": "Dudukan Magnet Serbaguna yang Lebih Panjang, Rangka dari Paduan Aluminium | D05",
-        "zh": "加長型多功能磁吸支架，鋁合金框架 | D05"
+        "id": "Dudukan Magnetik Serbaguna yang Lebih Panjang, Rangka dari Paduan Aluminium |VIEMAG|D05",
+        "zh": "加長型多功能磁性支架，鋁合金框架 |VIEMAG|D05"
       },
       "claim": {
         "en": "PU gel suction base, aluminum alloy construction, and a foldable, extendable magnetic mount—a reliable companion for every journey and moment.",
