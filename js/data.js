@@ -1654,11 +1654,9 @@ window.DB = {
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600772578-C9W-013.png",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600775058-C9W-025P-std-Perspective.PNG",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600778065-C9W-024P-std-Perspective.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600779751-C9W-022P-std-Perspective.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600781011-C9W-021P-std-Perspective.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600782233-C9W-020P-std-Perspective.webp",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600783528-C9W-023P-std-Perspective.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600784752-C9W-018P-std-Perspective.PNG",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600787115-C9W-018P-std-Perspective-1.png",
         "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/EC1/1788600789692-C9W-024P-std-Perspective-1.webp"
       ],
