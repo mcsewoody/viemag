@@ -1640,7 +1640,7 @@ window.DB = {
         "en": "15W Magnetic Wireless Charging Stand—Folds Flat and Rotates 270° | VQ01",
         "vi": "Giá đỡ sạc không dây từ tính 15W gập gọn xoay 270° | VQ01",
         "id": "Dudukan pengisi daya nirkabel magnetik 15W yang dapat dilipat dan diputar 270° | VQ01",
-        "zh": "15W 磁吸式無線充電支架，可摺疊收納，270°旋轉 | VQ01"
+        "zh": "MagSafe 無線充電旋轉折疊磁吸支架 | VQ01"
       },
       "claim": {
         "en": "Supports 15W wireless fast charging.\nMagnetic Closure\n270-degree swivel mount for multi-angle viewing.\nFoldable",
