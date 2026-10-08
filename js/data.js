@@ -1289,7 +1289,7 @@ window.DB = {
         "en": "Rectangular MagSafe Magnetic Exercise Holder – 4 Magnets | VIEMAG | P06",
         "vi": "Giá đỡ tập thể dục từ tính MagSafe hình chữ nhật – 4 nam châm | VIEMAG | P06",
         "id": "Dudukan olahraga magnetik MagSafe berbentuk persegi panjang – 4 magnet | VIEMAG | P06",
-        "zh": "MagSafe 矩形磁吸健身支架 – 4 顆磁鐵 | VIEMAG | P06"
+        "zh": "MagSafe 長型磁吸健身支架-4 磁款 | VIEMAG | P06"
       },
       "claim": {
         "en": "1. High-Power N52 Magnets\n2. MagSafe Compatible\n3. Can be mounted on exercise equipment or other metal surfaces",
