@@ -1513,7 +1513,7 @@ window.DB = {
         "en": "Foldable Magnetic Phone Mount with 270° Rotation | VIEMAG | V02",
         "vi": "Giá đỡ điện thoại nam châm gập gọn xoay 270°| VIEMAG | V02",
         "id": "Dudukan ponsel magnetik yang dapat dilipat dan diputar 270° | VIEMAG | V02",
-        "zh": "可摺疊、270°旋轉的磁吸式手機支架 | VIEMAG | V02"
+        "zh": "MagSafe 旋轉折疊磁吸支架 | VIEMAG | V02"
       },
       "claim": {
         "en": "",
