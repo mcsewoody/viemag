@@ -573,10 +573,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "Multipurpose Mount with Clamp and Vacuum Suction Cup | VIEMAG | D03",
-        "vi": "Giá đỡ đa năng có kẹp và miếng hút chân không | VIEMAG | D03",
-        "id": "Dudukan serbaguna dengan penjepit dan pengisap vakum | VIEMAG | D03",
-        "zh": "附夾具與真空吸盤的多功能支架 | VIEMAG | D03"
+        "en": "Dual-Purpose Vacuum Clamp and Suction Mount | VIEMAG | D03",
+        "vi": "Giá đỡ đa năng hút chân không và kẹp | VIEMAG | D03",
+        "id": "Dudukan Serbaguna untuk Penjepit dan Penghisap Vakum | VIEMAG | D03",
+        "zh": "真空夾吸兩用支架 | VIEMAG | D03"
       },
       "claim": {
         "en": "Uses N52H magnets to hold the phone securely\nDual clamp and suction mode, which can be quickly switched with just one hand\nTwo-layer reinforced nano suction pad + vacuum suction—stable and reliable\nThe height is flexibly adjustable to meet the needs of various usage scenarios\nMade of aircraft-grade aluminum, it offers greater strength and long-lasting durability\nThe gel suction pad is washable with water and reusable; it is suitable for control panels or non-smooth surfaces",
