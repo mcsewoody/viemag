@@ -1136,7 +1136,7 @@ window.DB = {
         "en": "Foldable Mini Tripod Magnetic Phone Stand with Carabiner Hook | VIEMAG | P04",
         "vi": "Giá Đỡ Điện Thoại Từ Tính Tripod Mini Gập Gọn Kèm Móc Carabiner | VIEMAG | P04",
         "id": "Dudukan Ponsel Magnetik Tripod Mini Lipat dengan Kait Carabiner | VIEMAG | P04",
-        "zh": "迷你摺疊三腳架磁吸手機支架，附登山扣 | VIEMAG | P04"
+        "zh": "多功能折疊磁吸隨身支架 | VIEMAG | P04"
       },
       "claim": {
         "en": "Uses an N52 magnet for a secure magnetic hold.\nFully foldable frame — adjust the viewing angle freely.\nRotates 360°, easily switch between portrait and landscape.\nMini tripod design keeps desktop shots steady, no wobble.\nWorks as a phone stand, selfie stand, and shooting tripod.\nCarabiner hook design clips onto bags and straps — compact and easy to carry.\nIncludes a magnetic plate, so non-MagSafe phones can use it too.",
