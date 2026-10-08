@@ -467,84 +467,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
-      "sku": "D05",
-      "slug": "d05",
-      "status": "published",
-      "category": "desk",
-      "subCategory": "stands",
-      "art": "suction",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "dashboard",
-        "suction",
-        "screen",
-        "desktop"
-      ],
-      "price": 24.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": "bestseller",
-      "name": {
-        "en": "Longer Multi-Purpose Magnetic Holder, Aluminum Alloy Frame |VIEMAG|D05",
-        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm |VIEMAG|D05",
-        "id": "Dudukan Magnetik Serbaguna yang Lebih Panjang, Rangka dari Paduan Aluminium |VIEMAG|D05",
-        "zh": "真空延伸磁吸支架 |VIEMAG|D05"
-      },
-      "claim": {
-        "en": "PU gel suction base, aluminum alloy construction, and a foldable, extendable magnetic mount—a reliable companion for every journey and moment.",
-        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
-        "id": "Basis penghisap PU gel, terbuat dari paduan aluminium, dengan dudukan magnetik yang dapat dilipat dan diperpanjang — teman setia untuk setiap perjalanan dan momen.",
-        "zh": "1.奈米膠吸附底座，穩固貼合，可水洗重複使用\n2.機械式真空鎖定設計，一轉即固定不鬆動\n3.N52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n4.雙桿折疊延伸設計，最高可延伸至 208 mm，自由調整觀看高度與距離\n5.多角度自由調整，直橫隨心切換，怎麼看都順手\n6.鋅合金機身設計，結構穩固耐用不晃動\n7.滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "Adhesive Magnetic Ring"
-        ],
-        "vi": [
-          "Vòng nam châm dán"
-        ],
-        "id": [
-          "Cincin magnetik tempel"
-        ],
-        "zh": [
-          "黏貼式磁吸環"
-        ]
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p>材質 : 鋅合金、ABS、磁鐵、奈米膠</p><p>尺寸 : 64x64x47mm </p><p>重量 : 約 150g</p>"
-      },
-      "packaging": {
-        "type": "Magnetic bracket",
-        "origin": "China",
-        "year": "2026",
-        "specs": {
-          "magnet_grade": "N52"
-        }
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789011928644-b14vf9ppjb8-hero_appleGray_1200_20260910_1040.webp"
-    },
-    {
       "sku": "D06",
       "slug": "d06",
       "status": "future",
@@ -1617,6 +1539,84 @@ window.DB = {
         }
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789115735201-rluz7o06z9f-hero_appleGray_1200_20260911_1534.webp"
+    },
+    {
+      "sku": "V08",
+      "slug": "v08",
+      "status": "published",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "dashboard",
+        "suction",
+        "screen",
+        "desktop"
+      ],
+      "price": 24.9,
+      "rating": null,
+      "reviews": 0,
+      "badge": "bestseller",
+      "name": {
+        "en": "Longer Multi-Purpose Magnetic Holder, Aluminum Alloy Frame |VIEMAG|V08",
+        "vi": "Giá Đỡ Từ Tính Đa Năng Dài Hơn, Khung Hợp Kim Nhôm |VIEMAG|V08",
+        "id": "Dudukan Magnetik Serbaguna yang Lebih Panjang, Rangka dari Paduan Aluminium |VIEMAG|V08",
+        "zh": "真空延伸磁吸支架 |VIEMAG|V08"
+      },
+      "claim": {
+        "en": "PU gel suction base, aluminum alloy construction, and a foldable, extendable magnetic mount—a reliable companion for every journey and moment.",
+        "vi": "Đế hút PU gel, chất liệu hợp kim nhôm, giá đỡ nam châm gập gọn kéo dài — người bạn đồng hành đáng tin cậy cho mọi hành trình và khoảnh khắc.",
+        "id": "Basis penghisap PU gel, terbuat dari paduan aluminium, dengan dudukan magnetik yang dapat dilipat dan diperpanjang — teman setia untuk setiap perjalanan dan momen.",
+        "zh": "1.奈米膠吸附底座，穩固貼合，可水洗重複使用\n2.機械式真空鎖定設計，一轉即固定不鬆動\n3.N52 強力磁吸，牢牢吸附不掉落，導航追劇都安心\n4.雙桿折疊延伸設計，最高可延伸至 208 mm，自由調整觀看高度與距離\n5.多角度自由調整，直橫隨心切換，怎麼看都順手\n6.鋅合金機身設計，結構穩固耐用不晃動\n7.滑順轉軸設計，調整流暢不卡頓，角度定位更精準"
+      },
+      "reports": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Adhesive Magnetic Ring"
+        ],
+        "vi": [
+          "Vòng nam châm dán"
+        ],
+        "id": [
+          "Cincin magnetik tempel"
+        ],
+        "zh": [
+          "黏貼式磁吸環"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 鋅合金、ABS、磁鐵、奈米膠</p><p>尺寸 : 64x64x47mm </p><p>重量 : 約 150g</p>"
+      },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N52"
+        }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789011928644-b14vf9ppjb8-hero_appleGray_1200_20260910_1040.webp"
     },
     {
       "sku": "VQ01",
