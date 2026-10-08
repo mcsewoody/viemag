@@ -1492,79 +1492,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
     },
     {
-      "sku": "V02",
-      "slug": "v02",
-      "status": "future",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "stand",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "magsafe",
-        "desktop"
-      ],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Foldable Magnetic Phone Mount with 270° Rotation | VIEMAG | V02",
-        "vi": "Giá đỡ điện thoại nam châm gập gọn xoay 270°| VIEMAG | V02",
-        "id": "Dudukan ponsel magnetik yang dapat dilipat dan diputar 270° | VIEMAG | V02",
-        "zh": "MagSafe 旋轉折疊磁吸支架 | VIEMAG | V02"
-      },
-      "claim": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": "1.磁吸\n2.270度旋轉支架，多角度調節觀看。\n3.可折疊"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600879748-C9-006-std-Perspective.PNG",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600881946-C9-_-016-std-Perspective.denoiser.PNG",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600883925-C9-020-std-Perspective-1.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600887998-C9-020-std-Perspective.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600891814-C9-022-1.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600896386-C9-022.webp"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [],
-        "vi": [],
-        "id": [],
-        "zh": [
-          "1.酒精棉片",
-          "2.黏貼式磁吸環*1",
-          "3.保護貼",
-          "4.定位卡",
-          "5.3M金屬座"
-        ]
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p>材質 : ABS+PC+硅膠</p><p>尺寸 : 87*60*8mm</p><p>重量 : 60g</p>"
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788854674264-dpj1r37f0n-hero_appleGray_1200_20260908_1502.webp"
-    },
-    {
       "sku": "V03",
       "slug": "v03",
       "status": "published",
@@ -1617,6 +1544,79 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p><br></p>"
       }
+    },
+    {
+      "sku": "V05",
+      "slug": "v05",
+      "status": "future",
+      "category": "vehicle",
+      "subCategory": "mounts",
+      "art": "stand",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [
+        "magsafe",
+        "desktop"
+      ],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Foldable Magnetic Phone Mount with 270° Rotation | VIEMAG | V05",
+        "vi": "Giá đỡ điện thoại nam châm gập gọn xoay 270°| VIEMAG | V05",
+        "id": "Dudukan ponsel magnetik yang dapat dilipat dan diputar 270° | VIEMAG | V05",
+        "zh": "MagSafe 旋轉折疊磁吸支架 | VIEMAG | V05"
+      },
+      "claim": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": "1.磁吸\n2.270度旋轉支架，多角度調節觀看。\n3.可折疊"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600879748-C9-006-std-Perspective.PNG",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600881946-C9-_-016-std-Perspective.denoiser.PNG",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600883925-C9-020-std-Perspective-1.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600887998-C9-020-std-Perspective.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600891814-C9-022-1.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/E1/1788600896386-C9-022.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [],
+        "vi": [],
+        "id": [],
+        "zh": [
+          "1.酒精棉片",
+          "2.黏貼式磁吸環*1",
+          "3.保護貼",
+          "4.定位卡",
+          "5.3M金屬座"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : ABS+PC+硅膠</p><p>尺寸 : 87*60*8mm</p><p>重量 : 60g</p>"
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788854674264-dpj1r37f0n-hero_appleGray_1200_20260908_1502.webp"
     },
     {
       "sku": "VQ01",
