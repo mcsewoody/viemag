@@ -1058,7 +1058,7 @@ window.DB = {
         "en": "3-in-1 Magnetic Mount for Phones, Tablets, and Laptops | VIEMAG | P03",
         "vi": "Giá đỡ nam châm 3 trong 1 cho điện thoại, tablet và laptop | VIEMAG | P03",
         "id": "Dudukan magnetik 3-in-1 untuk ponsel, tablet, dan laptop | VIEMAG | P03",
-        "zh": "適用於手機、平板電腦及筆記型電腦的 3 合 1 磁吸支架 | VIEMAG | P03"
+        "zh": "多功能萬用支架 | VIEMAG | P03"
       },
       "claim": {
         "en": "Multifunctional stand for multiple devices – Compatible with smartphones, tablets, and laptops; flexibly adapts to various usage scenarios at home, in the office, and for creative projects\n8 flexible height adjustment levels – Precisely adjust to the optimal viewing angle, ensuring comfort during extended use and helping to reduce fatigue\nAviation-grade aluminum・Lightweight and durable - Crafted from a high-strength aluminum alloy, it is rock-solid and elevates the standard of quality\nPowerful magnetic hold・Quick attachment -- Just place it and it sticks right away, making one-handed use smoother and letting you capture wonderful moments with ease\nFoldable・Easy to Carry - Compact and foldable, making it convenient to take along on business trips, vacations, or for creative projects anytime",
