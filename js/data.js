@@ -1438,7 +1438,7 @@ window.DB = {
         "en": "360° Magnetic Phone Mount for Air Vents | VIEMAG | V01",
         "vi": "Giá Đỡ Điện Thoại Từ Tính Gắn Cửa Gió 360° | VIEMAG | V01",
         "id": "Dudukan Ponsel Magnetik yang Dapat Dipasang di Ventilasi 360° | VIEMAG | V01",
-        "zh": "360° 磁吸式車門通風口手機支架 | VIEMAG | V01"
+        "zh": "MagSafe 磁吸冷氣出風口支架 | VIEMAG | V01"
       },
       "claim": {
         "en": "360° rotation — flexibly switch between portrait and landscape orientations.\n17 mm ball joint — easily attaches to compatible phone mounts.\nProtective rubber layer — minimizes scratches in contact areas.",
