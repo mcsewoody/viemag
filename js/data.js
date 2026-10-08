@@ -417,10 +417,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "Slim MagSafe Suction Cup Mount | D01",
-        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng | D01",
-        "id": "Dudukan Magsafe berbentuk cangkir hisap tipis | D01",
-        "zh": "超薄吸盤式 MagSafe 支架 | D01"
+        "en": "Slim Suction Cup MagSafe Mount | VIEMAG | D01",
+        "vi": "Giá đỡ Magsafe dạng cốc hút mỏng | VIEMAG | D01",
+        "id": "Dudukan Magsafe berbentuk cangkir hisap tipis | VIEMAG | D01",
+        "zh": "超薄吸盤式 MagSafe 支架 | VIEMAG | D01"
       },
       "claim": {
         "en": "The thinnest and lightest MagSafe mount with a suction cup",
