@@ -467,84 +467,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
-      "sku": "D06",
-      "slug": "d06",
-      "status": "future",
-      "category": "desk",
-      "subCategory": null,
-      "art": "",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Three-Axis Vacuum Magnetic Holder | VIEMAG | D06",
-        "vi": "Giá đỡ từ tính chân không ba trục  | VIEMAG | D06",
-        "id": "Penahan magnetik vakum tiga sumbu  | VIEMAG | D06",
-        "zh": "三軸真空磁吸支架  | VIEMAG | D06"
-      },
-      "claim": {
-        "en": "Vacuum suction combined with magnetic force ensures a secure grip, stable attachment, and prevents slipping\nJust turn it once to lock it—one-handed operation is now more intuitive\nFreely adjustable along three axes, folds 180° + rotates 360°\nThe height is fully adjustable, up to a maximum of 13.5 cm\nA minimalist design made of metal, combining durability with style",
-        "vi": "Hút chân không kết hợp lực hút từ tính giúp bám chắc chắn, cố định vững vàng và không bị trượt\nChỉ cần xoay một vòng là khóa ngay, thao tác bằng một tay trở nên trực quan hơn\nĐiều chỉnh tự do theo ba trục, gập 180° + xoay 360°\nChiều cao có thể điều chỉnh tùy ý, tối đa lên đến 13,5 cm\nThiết kế tối giản với chất liệu kim loại, vừa bền bỉ vừa thời trang",
-        "id": "Kombinasi hisap vakum dan daya tarik magnetis memastikan pemasangan yang kokoh, stabil, dan tidak tergelincir\nCukup diputar satu putaran untuk menguncinya, sehingga pengoperasian dengan satu tangan menjadi lebih intuitif\nDapat disesuaikan secara bebas pada tiga sumbu, dapat dilipat 180° + diputar 360°\nTinggi dapat disesuaikan sesuka hati, hingga maksimum 13,5 cm\nDesain minimalis dengan bahan logam, yang tidak hanya tahan lama tetapi juga modis",
-        "zh": "1.真空磁吸穩固吸附，牢牢固定不滑落\n2.一轉即鎖快速固定，單手操作更直覺\n3.三軸自由調節，180° 翻折＋360° 旋轉\n4.高度隨意調整，最高可達 13.5 cm\n5.金屬質感簡約外型，耐用又有型"
-      },
-      "reports": [],
-      "gallery": [],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "Magnetic Adhesive Rings",
-          "Base*1"
-        ],
-        "vi": [
-          "Vòng nam châm dán",
-          "Chân đế*1"
-        ],
-        "id": [
-          "Cincin magnet tempel",
-          "Alas*1"
-        ],
-        "zh": [
-          "黏貼式磁吸環",
-          "底座*1"
-        ]
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p>材質 : 鋅合金+塑膠</p><p>尺寸 : 61*61*40mm</p><p>重量 : 131g</p>"
-      },
-      "packaging": {
-        "type": "Magnetic bracket",
-        "origin": "China",
-        "year": "2026",
-        "specs": {
-          "magnet_grade": "N52"
-        }
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791371723721-zmddbh02c9-hero_D06_appleGray_1200_20261007_1815.webp",
-      "shopee": "https://shopee.tw/SHOWHAN-2025%E7%88%86%E6%AC%BE-%E9%8B%85%E5%90%88%E9%87%91%E9%87%91%E5%B1%AC%E8%B3%AA%E6%84%9F-%E7%A3%81%E9%90%B5N54-%E7%9C%9F%E7%A9%BA%E5%90%B8%E9%99%84%E7%A3%81%E5%90%B8360%E5%BA%A6%E4%B8%89%E8%BB%B8%E6%8A%98%E7%96%8A%E6%97%8B%E8%BD%89%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6-%E8%BB%8A%E7%94%A8%E6%94%AF%E6%9E%B6-G512-i.5584314.28831643837"
-    },
-    {
       "sku": "P01",
       "slug": "p01",
       "status": "future",
@@ -1617,6 +1539,84 @@ window.DB = {
         }
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789011928644-b14vf9ppjb8-hero_appleGray_1200_20260910_1040.webp"
+    },
+    {
+      "sku": "V09",
+      "slug": "v09",
+      "status": "future",
+      "category": "desk",
+      "subCategory": null,
+      "art": "",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Three-Axis Vacuum Magnetic Holder | VIEMAG | V09",
+        "vi": "Giá đỡ từ tính chân không ba trục  | VIEMAG | V09",
+        "id": "Penahan magnetik vakum tiga sumbu  | VIEMAG | V09",
+        "zh": "三軸真空磁吸支架  | VIEMAG | V09"
+      },
+      "claim": {
+        "en": "Vacuum suction combined with magnetic force ensures a secure grip, stable attachment, and prevents slipping\nJust turn it once to lock it—one-handed operation is now more intuitive\nFreely adjustable along three axes, folds 180° + rotates 360°\nThe height is fully adjustable, up to a maximum of 13.5 cm\nA minimalist design made of metal, combining durability with style",
+        "vi": "Hút chân không kết hợp lực hút từ tính giúp bám chắc chắn, cố định vững vàng và không bị trượt\nChỉ cần xoay một vòng là khóa ngay, thao tác bằng một tay trở nên trực quan hơn\nĐiều chỉnh tự do theo ba trục, gập 180° + xoay 360°\nChiều cao có thể điều chỉnh tùy ý, tối đa lên đến 13,5 cm\nThiết kế tối giản với chất liệu kim loại, vừa bền bỉ vừa thời trang",
+        "id": "Kombinasi hisap vakum dan daya tarik magnetis memastikan pemasangan yang kokoh, stabil, dan tidak tergelincir\nCukup diputar satu putaran untuk menguncinya, sehingga pengoperasian dengan satu tangan menjadi lebih intuitif\nDapat disesuaikan secara bebas pada tiga sumbu, dapat dilipat 180° + diputar 360°\nTinggi dapat disesuaikan sesuka hati, hingga maksimum 13,5 cm\nDesain minimalis dengan bahan logam, yang tidak hanya tahan lama tetapi juga modis",
+        "zh": "1.真空磁吸穩固吸附，牢牢固定不滑落\n2.一轉即鎖快速固定，單手操作更直覺\n3.三軸自由調節，180° 翻折＋360° 旋轉\n4.高度隨意調整，最高可達 13.5 cm\n5.金屬質感簡約外型，耐用又有型"
+      },
+      "reports": [],
+      "gallery": [],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "Magnetic Adhesive Rings",
+          "Base*1"
+        ],
+        "vi": [
+          "Vòng nam châm dán",
+          "Chân đế*1"
+        ],
+        "id": [
+          "Cincin magnet tempel",
+          "Alas*1"
+        ],
+        "zh": [
+          "黏貼式磁吸環",
+          "底座*1"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 鋅合金+塑膠</p><p>尺寸 : 61*61*40mm</p><p>重量 : 131g</p>"
+      },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N52"
+        }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1791371723721-zmddbh02c9-hero_D06_appleGray_1200_20261007_1815.webp",
+      "shopee": "https://shopee.tw/SHOWHAN-2025%E7%88%86%E6%AC%BE-%E9%8B%85%E5%90%88%E9%87%91%E9%87%91%E5%B1%AC%E8%B3%AA%E6%84%9F-%E7%A3%81%E9%90%B5N54-%E7%9C%9F%E7%A9%BA%E5%90%B8%E9%99%84%E7%A3%81%E5%90%B8360%E5%BA%A6%E4%B8%89%E8%BB%B8%E6%8A%98%E7%96%8A%E6%97%8B%E8%BD%89%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6-%E8%BB%8A%E7%94%A8%E6%94%AF%E6%9E%B6-G512-i.5584314.28831643837"
     },
     {
       "sku": "VQ01",
