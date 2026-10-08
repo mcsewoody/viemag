@@ -659,10 +659,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "Vacuum-Mounted Magnetic Holder | VIEMAG | D04",
-        "vi": "Giá đỡ từ tính gập lại chân không | VIEMAG | D04",
-        "id": "Dudukan magnetik yang dapat dilipat tanpa kaki | VIEMAG | D04",
-        "zh": "真空式可摺疊磁性支架 | VIEMAG | D04"
+        "en": "Vacuum Folding Magnetic Mount | VIEMAG | D04",
+        "vi": "Giá đỡ gập chân không có nam châm | VIEMAG | D04",
+        "id": "Dudukan Lipat Vakum dengan Penahan Magnetik | VIEMAG | D04",
+        "zh": "真空折疊磁吸支架 | VIEMAG | D04"
       },
       "claim": {
         "en": "Nano-adhesive backing, secure adhesion, washable with water, and reusable multiple times\nMechanical vacuum lock design—simply turn it once to secure it; it won’t come loose\nN52 – Strong magnetic force, holds securely without falling off, giving you peace of mind when using it for navigation or watching movies\nA two-bar folding design that’s lightweight, compact, space-saving, and more convenient to carry around\nIt can be freely adjusted to various angles and switched between portrait and landscape modes as desired, providing a comfortable viewing experience from any angle\nThe body is made of zinc alloy, featuring a sturdy, durable design that does not wobble\nSmooth swivel design, seamless adjustment, no jamming, and more precise angle positioning",
