@@ -402,93 +402,6 @@ window.DB = {
   ],
   "products": [
     {
-      "sku": "D01",
-      "slug": "d01",
-      "status": "published",
-      "category": "desk",
-      "subCategory": "stands",
-      "art": "suction",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Slim, Foldable Vacuum Magnetic Mount | VIEMAG | D01",
-        "vi": "Giá đỡ từ tính chân không gập gọn, kiểu mỏng | VIEMAG | D01",
-        "id": "Dudukan Magnetik Vakum Lipat Tipis | VIEMAG | D01",
-        "zh": "薄型折疊真空磁吸支架 | VIEMAG | D01"
-      },
-      "claim": {
-        "en": "The thinnest and lightest MagSafe mount with a suction cup",
-        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
-        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
-        "zh": "1.超薄真空吸盤\n2.N54超薄磁吸\n3.可折疊\n4.可 360 度+雙 180 旋轉"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401466-565gpuf9jce-7.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-53n2qp51o3h-2.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-f7n1nf2t1j-4.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-pqo2yxl9p0m-5.jpg",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-1ca1mpu5p9s-6.jpg"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "accessories": {
-        "en": [
-          "1. Alcohol swabs",
-          "2. Adhesive magnetic rings (2)",
-          "3. Mirror-Finish Sticker"
-        ],
-        "vi": [
-          "1. Miếng bông tẩm cồn",
-          "2. Vòng nam châm dán*2",
-          "3. Miếng dán gương"
-        ],
-        "id": [
-          "1. Kain kasa beralkohol",
-          "2. Cincin magnet tempel*2",
-          "3. Stiker cermin"
-        ],
-        "zh": [
-          "1.酒精棉片",
-          "2.黏貼式磁吸環*2",
-          "3.鏡面貼"
-        ]
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p>材質 : 鋅合金</p><p>尺寸 : 76*59*20mm</p><p>重量 : 136g</p>"
-      },
-      "packaging": {
-        "type": "Magnetic bracket",
-        "origin": "China",
-        "year": "2026",
-        "specs": {
-          "magnet_grade": "N54"
-        }
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
-    },
-    {
       "sku": "D02",
       "slug": "D02",
       "status": "published",
@@ -1490,6 +1403,93 @@ window.DB = {
         "year": "2026"
       },
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787374463701-ddmx7zval24-K_p_c_a_gi___i_u_h_a.png"
+    },
+    {
+      "sku": "V02",
+      "slug": "v02",
+      "status": "published",
+      "category": "desk",
+      "subCategory": "stands",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Slim, Foldable Vacuum Magnetic Mount | VIEMAG | V02",
+        "vi": "Giá đỡ từ tính chân không gập gọn, kiểu mỏng | VIEMAG | V02",
+        "id": "Dudukan Magnetik Vakum Lipat Tipis | VIEMAG | V02",
+        "zh": "薄型折疊真空磁吸支架 | VIEMAG | V02"
+      },
+      "claim": {
+        "en": "The thinnest and lightest MagSafe mount with a suction cup",
+        "vi": "Giá đỡ Magsafe bằng miếng hút mỏng và nhẹ nhất",
+        "id": "Dudukan Magsafe dengan pengisap yang paling tipis dan ringan",
+        "zh": "1.超薄真空吸盤\n2.N54超薄磁吸\n3.可折疊\n4.可 360 度+雙 180 旋轉"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401466-565gpuf9jce-7.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-53n2qp51o3h-2.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-f7n1nf2t1j-4.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-pqo2yxl9p0m-5.jpg",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116401467-1ca1mpu5p9s-6.jpg"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "accessories": {
+        "en": [
+          "1. Alcohol swabs",
+          "2. Adhesive magnetic rings (2)",
+          "3. Mirror-Finish Sticker"
+        ],
+        "vi": [
+          "1. Miếng bông tẩm cồn",
+          "2. Vòng nam châm dán*2",
+          "3. Miếng dán gương"
+        ],
+        "id": [
+          "1. Kain kasa beralkohol",
+          "2. Cincin magnet tempel*2",
+          "3. Stiker cermin"
+        ],
+        "zh": [
+          "1.酒精棉片",
+          "2.黏貼式磁吸環*2",
+          "3.鏡面貼"
+        ]
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p>材質 : 鋅合金</p><p>尺寸 : 76*59*20mm</p><p>重量 : 136g</p>"
+      },
+      "packaging": {
+        "type": "Magnetic bracket",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N54"
+        }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
     {
       "sku": "V03",
