@@ -1361,7 +1361,7 @@ window.DB = {
         "en": "Magnetic Phone Holder in a Wrist Strap Design | VIEMAG | P07",
         "vi": "Giá Đỡ Điện Thoại Từ Tính Dạng Dây Đeo | VIEMAG | P07 ",
         "id": "Dudukan Ponsel Magnetik Berbentuk Tali Leher | VIEMAG | P07",
-        "zh": "磁吸式手機支架（掛繩款） | VIEMAG | P07"
+        "zh": "MagSafe 磁吸手錶錶帶 | VIEMAG | P07"
       },
       "claim": {
         "en": "1. The MagSafe-compatible front magnetic design securely holds your phone in place.\n2. Equipped with 4 N50-grade magnets, it adheres securely to metal surfaces.\n3. It can be easily installed on exercise equipment or other metal surfaces.\n4. Specifically designed for curved or cylindrical crossbars.",
