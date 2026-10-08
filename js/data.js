@@ -1619,8 +1619,8 @@ window.DB = {
       "shopee": "https://shopee.tw/SHOWHAN-2025%E7%88%86%E6%AC%BE-%E9%8B%85%E5%90%88%E9%87%91%E9%87%91%E5%B1%AC%E8%B3%AA%E6%84%9F-%E7%A3%81%E9%90%B5N54-%E7%9C%9F%E7%A9%BA%E5%90%B8%E9%99%84%E7%A3%81%E5%90%B8360%E5%BA%A6%E4%B8%89%E8%BB%B8%E6%8A%98%E7%96%8A%E6%97%8B%E8%BD%89%E6%89%8B%E6%A9%9F%E6%94%AF%E6%9E%B6-%E8%BB%8A%E7%94%A8%E6%94%AF%E6%9E%B6-G512-i.5584314.28831643837"
     },
     {
-      "sku": "VQ01",
-      "slug": "vq01",
+      "sku": "VQ04",
+      "slug": "vq04",
       "status": "future",
       "category": "vehicle",
       "subCategory": "charging-mounts",
@@ -1637,10 +1637,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "15W Magnetic Wireless Charging Stand—Folds Flat and Rotates 270° | VQ01",
-        "vi": "Giá đỡ sạc không dây từ tính 15W gập gọn xoay 270° | VQ01",
-        "id": "Dudukan pengisi daya nirkabel magnetik 15W yang dapat dilipat dan diputar 270° | VQ01",
-        "zh": "MagSafe 無線充電旋轉折疊磁吸支架 | VQ01"
+        "en": "15W Magnetic Wireless Charging Stand—Folds Flat and Rotates 270° | VQ04",
+        "vi": "Giá đỡ sạc không dây từ tính 15W gập gọn xoay 270° | VQ04",
+        "id": "Dudukan pengisi daya nirkabel magnetik 15W yang dapat dilipat dan diputar 270° | VQ04",
+        "zh": "MagSafe 無線充電旋轉折疊磁吸支架 | VQ04"
       },
       "claim": {
         "en": "Supports 15W wireless fast charging.\nMagnetic Closure\n270-degree swivel mount for multi-angle viewing.\nFoldable",
