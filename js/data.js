@@ -898,7 +898,7 @@ window.DB = {
         "en": "360° Multi-Purpose Magnetic Travel Phone Mount | VIEMAG | P01",
         "vi": "Giá Đỡ Điện Thoại Từ Tính Kẹp Đa Năng Du Lịch 360° | VIEMAG | P01",
         "id": "Dudukan Ponsel Magnetik Serbaguna dengan Penjepit untuk Perjalanan 360° | VIEMAG | P01",
-        "zh": "360° 多功能磁吸式旅行手機支架 | VIEMAG | P01"
+        "zh": "MagSafe 雙磁吸旅行支架 | VIEMAG | P01"
       },
       "claim": {
         "en": "Compatible with many types of smartphones.\nCompatible with iPhones and Apple-branded MagSafe cases.\nDual-axis swivel design, allowing for flexible adjustment to multiple angles of use.\nRotates 360°, making it easy to switch between portrait and landscape modes.\nPull the D-ring at the bottom to quickly clip it to a dining table, tray table, handle, and many other surfaces; ideal for use on airplanes, high-speed trains, cars, and outdoors.\nFeatures a powerful magnet on the back that attaches to iron-containing metal surfaces, making it convenient for navigation, taking selfies, livestreaming, or watching videos hands-free.\nFeatures a standard 1/4\"-20 camera thread, compatible with tripods and selfie sticks.\nCompact, lightweight, and easy to carry—perfect for work, travel, or everyday use.",
