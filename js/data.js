@@ -818,7 +818,7 @@ window.DB = {
         "en": "Three-Axis Vacuum Magnetic Holder | VIEMAG | D06",
         "vi": "Giá đỡ từ tính chân không ba trục  | VIEMAG | D06",
         "id": "Penahan magnetik vakum tiga sumbu  | VIEMAG | D06",
-        "zh": "三軸真空磁吸夾具  | VIEMAG | D06"
+        "zh": "三軸真空磁吸支架  | VIEMAG | D06"
       },
       "claim": {
         "en": "Vacuum suction combined with magnetic force ensures a secure grip, stable attachment, and prevents slipping\nJust turn it once to lock it—one-handed operation is now more intuitive\nFreely adjustable along three axes, folds 180° + rotates 360°\nThe height is fully adjustable, up to a maximum of 13.5 cm\nA minimalist design made of metal, combining durability with style",
