@@ -505,7 +505,7 @@ window.DB = {
       "badge": null,
       "name": {
         "en": "Vacuum-Mounted Magnetic Holder",
-        "vi": "Giá đỡ từ tính dán chân không",
+        "vi": "Giá đỡ từ tính dán chân không | VIEMAG | D02",
         "id": "Dudukan magnetik dengan perekat vakum",
         "zh": "真空吸附式磁吸支架"
       },
