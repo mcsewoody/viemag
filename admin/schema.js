@@ -81,6 +81,7 @@ window.VIEMAG_SCHEMA = {
      description — used for the four-language sets, so a missing translation sits
      visibly next to its filled siblings instead of being three scrolls away. */
   products: {
+    translationLocks: true,
     title: 'product_id',
     order: 'product_id',
     thumb: 'hero_image_url',
@@ -317,6 +318,7 @@ window.VIEMAG_SCHEMA = {
      company's registered name or address, even as an example. Those live in
      admin/packaging-export.js. */
   product_packaging: {
+    translationLocks: true,
     note: 'notePackaging',
     title: 'product_id',
     fields: [
@@ -412,6 +414,7 @@ window.VIEMAG_SCHEMA = {
      state the design asks for. The export's [FAIL] line is the gate, and it
      fires on every export until the names are filled in. */
   brand_settings: {
+    translationLocks: true,
     note: 'notePackaging',
     title: 'responsible_company',
     singleton: true,
@@ -431,6 +434,7 @@ window.VIEMAG_SCHEMA = {
   },
 
   categories: {
+    translationLocks: true,
     title: 'category_name',
     order: 'sort_order',
     thumb: 'hero_image_url',
@@ -464,6 +468,7 @@ window.VIEMAG_SCHEMA = {
   },
 
   scenarios: {
+    translationLocks: true,
     title: 'scenario_name',
     order: 'priority',
     thumb: 'hero_image_url',
@@ -496,6 +501,7 @@ window.VIEMAG_SCHEMA = {
      approved_for_marketing = true. BOTH are required — the export function
      filters on both in Postgres, so ticking only one publishes nothing. */
   test_reports: {
+    translationLocks: true,
     title: 'title_en',
     order: 'sort_order',
     fields: [
@@ -525,6 +531,7 @@ window.VIEMAG_SCHEMA = {
      Published only when status = Published. `category` must stay in step with
      the DB check constraint AND the insights.cat.* labels in js/i18n.js. */
   guides: {
+    translationLocks: true,
     title: 'title_en',
     order: 'sort_order',
     thumb: 'hero_image_url',
@@ -578,6 +585,7 @@ window.VIEMAG_SCHEMA = {
   },
 
   faq: {
+    translationLocks: true,
     title: 'faq_key',
     fields: [
       { name: 'faq_key', type: 'text', required: true, desc: 'Unique identifier for this question. This is the value a product’s FAQ selector actually looks up, so use a readable short English name.' },

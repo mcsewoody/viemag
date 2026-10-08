@@ -14,7 +14,7 @@
   /* Admin panel version, shown after the brand label top-left (e.g. "VIEMAG
      後台管理 v1.01"). Bump by 0.01 on every change shipped to /admin — this
      is the only place to edit; showApp() reads it on every render/lang switch. */
-  var ADMIN_VERSION = "1.60";
+  var ADMIN_VERSION = "1.61";
 
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
 
@@ -1822,6 +1822,7 @@
     if (!def.tabs) {
       html +=
         '<div class="form-card" style="margin-top:14px"><div class="form-grid">';
+      if (def.translationLocks) html += hiddenTranslationLocksHtml(ctx.tableName, ctx.row);
       html += flatFieldsHtml(ctx);
       html += "</div>" + formActionsHtml() + "</div>";
       return html;
@@ -1846,6 +1847,7 @@
       "</div>";
 
     html += '<div class="form-card">';
+    if (def.translationLocks) html += hiddenTranslationLocksHtml(ctx.tableName, ctx.row);
     def.tabs.forEach(function (tb, i) {
       /* All panels stay in the DOM; switching tabs only toggles `hidden`. That is
          why a tab switch cannot lose what was typed on another tab — there is no
@@ -1880,6 +1882,7 @@
       } else {
         var srcName = tb.table || ctx.tableName;
         var srcRow = tb.table ? ctx.subRows[tb.table] || {} : ctx.row;
+        if (tb.table && SCHEMA[srcName].translationLocks) html += hiddenTranslationLocksHtml(srcName, srcRow);
         if (tb.key === "packaging") {
           html += packagingToolbarHtml();
           html += '<div class="packaging-layout"><div class="packaging-groups">';
@@ -1906,7 +1909,7 @@
     ctx.def.fields.forEach(function (f) {
       if (skip[f.name]) return;
       var m = f.name.match(/^(.+)_(en|vi|id|zh)$/);
-      if (m && isTranslatablePrefix(ctx.tableName, m[1])) {
+      if (m && ctx.def.translationLocks) {
         var names = ["en", "vi", "id", "zh"].map(function (lang) {
           return m[1] + "_" + lang;
         });
@@ -2331,6 +2334,76 @@
       esc(name) + '">' + esc(value || "—") + '</div>';
   }
 
+  function parseJsonObject(value) {
+    if (!value) return {};
+    if (typeof value === "object" && !Array.isArray(value)) return value;
+    try {
+      var parsed = JSON.parse(value);
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+        ? parsed
+        : {};
+    } catch (_err) {
+      return {};
+    }
+  }
+
+  function translationLocksFor(row) {
+    return parseJsonObject(row && row.translation_locks);
+  }
+
+  function translationLockInput(tableName) {
+    return document.querySelector(
+      '[data-translation-locks="' + tableName + '"]',
+    );
+  }
+
+  function translationLockState(tableName) {
+    var input = translationLockInput(tableName);
+    return parseJsonObject(input && input.value);
+  }
+
+  function translationFieldLocked(tableName, fieldName) {
+    return !!translationLockState(tableName)[fieldName];
+  }
+
+  function setTranslationFieldLocked(tableName, fieldName, locked) {
+    var input = translationLockInput(tableName);
+    if (!input) return;
+    var locks = parseJsonObject(input.value);
+    if (locked) locks[fieldName] = true;
+    else delete locks[fieldName];
+    input.value = JSON.stringify(locks);
+  }
+
+  function hiddenTranslationLocksHtml(tableName, row) {
+    return (
+      '<input type="hidden" data-name="translation_locks" data-translation-locks="' +
+      esc(tableName) +
+      '" value="' +
+      esc(JSON.stringify(translationLocksFor(row))) +
+      '">'
+    );
+  }
+
+  function toggleTranslationLock(btn) {
+    var tableName = btn.dataset.lockTable;
+    var fieldName = btn.dataset.lockField;
+    if (btn.disabled || !translationLockInput(tableName)) return;
+    var locked = !translationFieldLocked(tableName, fieldName);
+    setTranslationFieldLocked(tableName, fieldName, locked);
+    // Shared read-only rows mirror the editable field's current review state.
+    document.querySelectorAll('.lang-lock-btn').forEach(function (mirror) {
+      if (mirror.dataset.lockTable !== tableName || mirror.dataset.lockField !== fieldName) return;
+      var hint = t(locked ? "translationLockedHint" : "translationUnlockedHint");
+      mirror.setAttribute("aria-pressed", String(locked));
+      mirror.setAttribute("aria-label", hint);
+      mirror.title = hint;
+      mirror.innerHTML = locked ? "&#128274;" : "&#128275;";
+      mirror.closest(".lang-cell").classList.toggle("locked", locked);
+    });
+    state.formDirty = true;
+  }
+
   function wireSharedValues() {
     document.querySelectorAll('[data-shared-name]').forEach(function (mirror) {
       var source = document.querySelector('[data-name="' + mirror.dataset.sharedName + '"]');
@@ -2359,8 +2432,9 @@
     if (!fields.length) return "";
     var prefix = fields[0].name.replace(/_(en|vi|id|zh)$/, "");
     var canTranslate = !readOnly && isTranslatablePrefix(srcName, prefix);
+    var locks = translationLocksFor(srcRow);
     var html =
-      '<div class="field wide lang-row" data-field="' + esc(prefix) + '">';
+      '<div class="field wide lang-row" data-lock-table="' + esc(srcName) + '" data-field="' + esc(prefix) + '">';
     html += "<label>" + esc(prefix) + "_*</label>";
     var descHtml = fieldDescHtml(srcName, fields[0]);
     if (descHtml) html += '<p class="field-desc">' + descHtml + "</p>";
@@ -2385,11 +2459,29 @@
     fields.forEach(function (f) {
       var code = (f.name.match(/_(en|vi|id|zh)$/) || ["", ""])[1].toUpperCase();
       var v = srcRow[f.name];
-      html += '<div class="lang-cell' + (v ? "" : " empty") + '" data-content-lang="' + code.toLowerCase() + '">';
+      var locked = !!locks[f.name];
+      html += '<div class="lang-cell' + (v ? "" : " empty") + (locked ? " locked" : "") + '" data-content-lang="' + code.toLowerCase() + '">';
       html +=
         '<div class="lang-cell-head"><span class="lang-tag">' +
         esc(code) +
         "</span>";
+      html += '<span class="lang-cell-actions">';
+      html +=
+        '<button type="button" class="lang-lock-btn" data-lock-table="' +
+        esc(srcName) +
+        '" data-lock-field="' +
+        esc(f.name) +
+        '"' +
+        (readOnly ? " disabled" : "") +
+        ' aria-pressed="' +
+        (locked ? "true" : "false") +
+        '" title="' +
+        esc(locked ? t("translationLockedHint") : t("translationUnlockedHint")) +
+        '" aria-label="' +
+        esc(locked ? t("translationLockedHint") : t("translationUnlockedHint")) +
+        '">' +
+        (locked ? "&#128274;" : "&#128275;") +
+        "</button>";
       if (canTranslate) {
         /* data-target, NOT data-name: collectFormValues() and every other form
            reader select real fields by [data-name="..."]. Giving this button
@@ -2411,6 +2503,7 @@
           esc(t("translateBtn")) +
           "</button>";
       }
+      html += "</span>";
       html += "</div>";
       /* A four-language row honours schema's `large` flag just like a standalone
          field does. It did not before, so claim_* — where staff write one selling
@@ -3821,6 +3914,13 @@
     }
 
     Array.prototype.forEach.call(
+      document.querySelectorAll(".lang-lock-btn:not(:disabled)"),
+      function (btn) {
+        btn.addEventListener("click", function () { toggleTranslationLock(btn); });
+      },
+    );
+
+    Array.prototype.forEach.call(
       document.querySelectorAll(".lang-translate-btn"),
       function (btn) {
         btn.addEventListener("click", function () {
@@ -3897,11 +3997,17 @@
           return;
         }
         var translations = result.data.translations || {};
+        var skippedLocked = 0;
         Object.keys(translations).forEach(function (lang) {
-          var targetEl = document.querySelector(
+          if (lang === source) return;
+          var targetEl = (row || document).querySelector(
             '[data-name="' + prefix + "_" + lang + '"]',
           );
           if (!targetEl) return;
+          if (translationFieldLocked(row ? row.dataset.lockTable || "" : "", prefix + "_" + lang)) {
+            skippedLocked += 1;
+            return;
+          }
           targetEl.value = translations[lang];
           targetEl.dispatchEvent(new Event("rich-source-changed"));
           var cell = targetEl.closest(".lang-cell");
@@ -3910,7 +4016,7 @@
         state.formDirty = true;
         if (statusEl) {
           statusEl.className = "translate-status";
-          statusEl.textContent = "";
+          statusEl.textContent = skippedLocked ? tf("translateSkippedLocked", { n: skippedLocked }) : "";
         }
       })
       .catch(function (err) {
@@ -4217,7 +4323,7 @@
      technical_content_* edit on save — the operator typed into a working
      editor, paid for a DeepL translation of it, saw "saved", and got a blank
      field back on reload. */
-  function collectFormValues(def, omitEmpty) {
+  function collectFormValues(def, omitEmpty, tableName) {
     var out = {};
     def.fields.forEach(function (f) {
       if (missingSchemaColumns[f.name]) return;
@@ -4260,6 +4366,13 @@
       }
       out[f.name] = el.value;
     });
+    if (def.translationLocks) {
+      var lockInput = translationLockInput(tableName || Object.keys(SCHEMA).find(function (name) { return SCHEMA[name] === def; }));
+      if (lockInput) {
+        var locks = parseJsonObject(lockInput.value);
+        if (!omitEmpty || Object.keys(locks).length) out.translation_locks = locks;
+      }
+    }
     return out;
   }
 
@@ -4279,8 +4392,9 @@
         return null;
       }
       var subDef = SCHEMA[tb.table];
-      var values = collectFormValues(subDef, false);
+      var values = collectFormValues(subDef, false, tb.table);
       var hasAny = Object.keys(values).some(function (k) {
+        if (k === "translation_locks" && !Object.keys(values[k]).length) return false;
         var field = subDef.fields.find(function (f) { return f.name === k; });
         if (!ctx.subRows[tb.table] && field && field.defaultValue != null &&
             values[k] === field.defaultValue) return false;
@@ -4328,8 +4442,10 @@
   ) {
     return writeRow(tableName, values, isNew, id).then(function (res) {
       var missingColumn = res.error && missingColumnFromError(res.error);
+      // Never report a successful save after dropping the user's review locks.
       if (
         missingColumn &&
+        missingColumn !== "translation_locks" &&
         Object.prototype.hasOwnProperty.call(values, missingColumn) &&
         attemptsLeft > 0
       ) {
@@ -4484,7 +4600,7 @@
       statusEl.className = "save-status error";
       statusEl.textContent = msg;
     };
-    var values = collectFormValues(def, isNew);
+    var values = collectFormValues(def, isNew, tableName);
 
     writeRowSkippingMissingColumns(tableName, values, isNew, id, 8).then(
       function (res) {

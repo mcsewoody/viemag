@@ -450,6 +450,20 @@ button.packaging-field-source { border: 0; border-radius: 0; background: transpa
 
 /* translate button (2026-08-05): only the rows listed in TRANSLATABLE_PREFIXES */
 .lang-cell-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.lang-cell-actions { display: flex; align-items: center; gap: 4px; }
+.lang-lock-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 25px; height: 25px; padding: 0; flex: none;
+  border: 1px solid var(--line); border-radius: 4px; background: var(--panel);
+  cursor: pointer; font-size: 14px;
+}
+.lang-lock-btn:hover:not(:disabled), .lang-lock-btn:focus-visible { border-color: var(--copper); }
+.lang-lock-btn:disabled { cursor: default; opacity: .65; }
+.lang-lock-btn[aria-pressed="true"] { border-color: #E0AE3E; background: rgba(200,148,26,.09); }
+.lang-cell.locked .lang-tag { color: #E0AE3E; }
+.lang-cell.locked input, .lang-cell.locked textarea, .lang-cell.locked .computed-value {
+  border-color: rgba(200,148,26,.7);
+}
 .lang-translate-btn {
   padding: 1px 7px; border: 1px solid var(--line); border-radius: 5px; background: var(--panel);
   color: var(--muted); font-size: .68rem; cursor: pointer; font-family: inherit; line-height: 1.6;
