@@ -504,10 +504,10 @@ window.DB = {
       "reviews": 0,
       "badge": null,
       "name": {
-        "en": "Vacuum-Mounted Magnetic Holder | VIEMAG | D02",
-        "vi": "Giá đỡ từ tính dán chân không | VIEMAG | D02",
-        "id": "Dudukan magnetik dengan perekat vakum | VIEMAG | D02",
-        "zh": "真空吸附式磁性支架 | VIEMAG | D02"
+        "en": "Adhesive Folding Magnetic Mount | VIEMAG | D02",
+        "vi": "Giá đỡ từ tính gập lại dạng dán | VIEMAG | D02",
+        "id": "Dudukan Lipat Magnetik Tempel | VIEMAG | D02",
+        "zh": "黏貼式折疊磁吸支架 | VIEMAG | D02"
       },
       "claim": {
         "en": "1. Soft TPU leather sole\n2. N52 Magnet\n3. Foldable\n4. Can rotate 360 degrees + double 180-degree rotation",
