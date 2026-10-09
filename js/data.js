@@ -488,7 +488,7 @@ window.DB = {
       "status": "published",
       "category": "portable",
       "subCategory": null,
-      "art": "",
+      "art": "pro",
       "qi": "none",
       "qiId": null,
       "watt": null,
