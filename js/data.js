@@ -797,7 +797,7 @@ window.DB = {
     {
       "sku": "P06",
       "slug": "p06",
-      "status": "future",
+      "status": "published",
       "category": "portable",
       "subCategory": null,
       "art": "",
