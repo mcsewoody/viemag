@@ -1103,60 +1103,6 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
     {
-      "sku": "V03",
-      "slug": "v03",
-      "status": "published",
-      "category": "vehicle",
-      "subCategory": "mounts",
-      "art": "tape",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [
-        "tape"
-      ],
-      "price": 17.9,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "N52 Magnetic Phone Mount with Vacuum Suction and 360° Rotation | VIEMAG | V03",
-        "vi": "Giá Đỡ Điện Thoại Từ Tính N52 Hút Chân Không Xoay 360° | VIEMAG |  V03",
-        "id": "Dudukan Ponsel Magnetik N52 dengan Hisap Vakum dan Dapat Berputar 360° | VIEMAG | V03",
-        "zh": "黏貼式折疊磁吸支架 | VIEMAG |  V03"
-      },
-      "claim": {
-        "en": "The soft TPU base, combined with a suction mechanism, allows for flexible placement of the phone on a suitable surface.",
-        "vi": "Đế TPU mềm kết hợp cơ cấu hút giúp tạo điểm đặt điện thoại linh hoạt trên bề mặt phù hợp.",
-        "id": "Basis TPU yang lembut dipadukan dengan mekanisme hisap memungkinkan penempatan ponsel secara fleksibel pada permukaan yang sesuai.",
-        "zh": "柔軟的 TPU 底座結合吸附結構，可讓手機在合適的表面上靈活定位。"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1787384270413-k24pewvj84s-___A1_ZF162_N52________.jpeg"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p><br></p>"
-      }
-    },
-    {
       "sku": "V031",
       "slug": "V03",
       "status": "published",
