@@ -1103,7 +1103,7 @@ window.DB = {
       "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1789116392106-44s3pkxcda7-1.jpg"
     },
     {
-      "sku": "V031",
+      "sku": "V03",
       "slug": "V03",
       "status": "published",
       "category": "vehicle",
