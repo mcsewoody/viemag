@@ -402,71 +402,6 @@ window.DB = {
   ],
   "products": [
     {
-      "sku": "D02",
-      "slug": "D02",
-      "status": "published",
-      "category": "accessory",
-      "subCategory": "interface",
-      "art": "suction",
-      "qi": "none",
-      "qiId": null,
-      "watt": null,
-      "mount": [],
-      "price": null,
-      "rating": null,
-      "reviews": 0,
-      "badge": null,
-      "name": {
-        "en": "Adhesive Folding Magnetic Mount | VIEMAG | D02",
-        "vi": "Giá đỡ từ tính gập lại dạng dán | VIEMAG | D02",
-        "id": "Dudukan Lipat Magnetik Tempel | VIEMAG | D02",
-        "zh": "黏貼式折疊磁吸支架 | VIEMAG | D02"
-      },
-      "claim": {
-        "en": "1. Soft TPU leather sole\n2. N52 Magnet\n3. Foldable\n4. Can rotate 360 degrees + double 180-degree rotation",
-        "vi": "1. Đế bằng da mềm TPU\n2. Nam châm N52\n3. Có thể gập lại được\n4. Có thể xoay 360 độ + xoay kép 180 độ",
-        "id": "1. Sol dari bahan TPU yang lembut\n2. Magnet N52\n3. Dapat dilipat\n4. Dapat diputar 360 derajat + putaran ganda 180 derajat",
-        "zh": "1. 採用柔軟 TPU 皮革製成的鞋底\n2. N52 磁鐵\n3. 可摺疊\n4. 可進行 360 度旋轉 + 180 度雙向旋轉"
-      },
-      "reports": [],
-      "gallery": [
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-saivz4aito-A1_2__appleGray.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-mmpdql1cwtb-A1_3__appleGray.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-qvv3skw549h-A1_4__appleGray.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-spwnga51bgr-A1_5__appleGray.webp",
-        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-bl8vj2apqek-A1_6__appleGray.webp"
-      ],
-      "warranty": 12,
-      "exchange": 14,
-      "seoTitle": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "seoDesc": {
-        "en": "",
-        "vi": "",
-        "id": "",
-        "zh": ""
-      },
-      "technicalContent": {
-        "en": "<p><br></p>",
-        "vi": "<p><br></p>",
-        "id": "<p><br></p>",
-        "zh": "<p><br></p>"
-      },
-      "packaging": {
-        "type": "Combined product",
-        "origin": "China",
-        "year": "2026",
-        "specs": {
-          "magnet_grade": "N52"
-        }
-      },
-      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
-    },
-    {
       "sku": "P01",
       "slug": "p01",
       "status": "future",
@@ -1220,6 +1155,71 @@ window.DB = {
         "id": "<p><br></p>",
         "zh": "<p><br></p>"
       }
+    },
+    {
+      "sku": "V031",
+      "slug": "V03",
+      "status": "published",
+      "category": "vehicle",
+      "subCategory": "interface",
+      "art": "suction",
+      "qi": "none",
+      "qiId": null,
+      "watt": null,
+      "mount": [],
+      "price": null,
+      "rating": null,
+      "reviews": 0,
+      "badge": null,
+      "name": {
+        "en": "Foldable Magnetic Mount with Adhesive Back | VIEMAG | V03",
+        "vi": "Giá đỡ từ tính gập lại dạng dán | VIEMAG | V03",
+        "id": "Dudukan magnetik lipat tipe tempel | VIEMAG | V03",
+        "zh": "可摺疊式磁吸支架 | VIEMAG | V03"
+      },
+      "claim": {
+        "en": "1. Soft TPU leather sole\n2. N52 Magnet\n3. Foldable\n4. Can rotate 360 degrees + double 180-degree rotation",
+        "vi": "1. Đế bằng da mềm TPU\n2. Nam châm N52\n3. Có thể gập lại được\n4. Có thể xoay 360 độ + xoay kép 180 độ",
+        "id": "1. Sol dari bahan TPU yang lembut\n2. Magnet N52\n3. Dapat dilipat\n4. Dapat diputar 360 derajat + putaran ganda 180 derajat",
+        "zh": "1. 採用柔軟 TPU 皮革製成的鞋底\n2. N52 磁鐵\n3. 可摺疊\n4. 可進行 360 度旋轉 + 180 度雙向旋轉"
+      },
+      "reports": [],
+      "gallery": [
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-saivz4aito-A1_2__appleGray.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-mmpdql1cwtb-A1_3__appleGray.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-qvv3skw549h-A1_4__appleGray.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-spwnga51bgr-A1_5__appleGray.webp",
+        "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836622050-bl8vj2apqek-A1_6__appleGray.webp"
+      ],
+      "warranty": 12,
+      "exchange": 14,
+      "seoTitle": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "seoDesc": {
+        "en": "",
+        "vi": "",
+        "id": "",
+        "zh": ""
+      },
+      "technicalContent": {
+        "en": "<p><br></p>",
+        "vi": "<p><br></p>",
+        "id": "<p><br></p>",
+        "zh": "<p><br></p>"
+      },
+      "packaging": {
+        "type": "Combined product",
+        "origin": "China",
+        "year": "2026",
+        "specs": {
+          "magnet_grade": "N52"
+        }
+      },
+      "img": "https://zqmpjenlpzmeozoufvzy.supabase.co/storage/v1/object/public/viemag-media/products/1788836605463-y56pw8jlfc-Herro.webp"
     },
     {
       "sku": "V05",
